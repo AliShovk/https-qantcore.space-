@@ -183,6 +183,41 @@ header{position:sticky;top:0;z-index:100;backdrop-filter:blur(20px) saturate(180
 .compare-clear{font-size:12px;color:var(--muted);cursor:pointer;background:none;border:none}
 .compare-clear:hover{color:var(--red)}
 
+/* ─── Integrations Overlay ─── */
+.integ-overlay{position:fixed;top:0;left:0;width:100%;height:100%;z-index:9999;
+  background:rgba(0,0,0,.85);backdrop-filter:blur(8px);
+  display:flex;align-items:flex-start;justify-content:center;padding:40px 20px;overflow-y:auto}
+.integ-modal{background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);
+  width:100%;max-width:900px;padding:0;box-shadow:0 20px 60px rgba(0,0,0,.5)}
+.integ-header{display:flex;align-items:center;justify-content:space-between;
+  padding:20px 28px;border-bottom:1px solid var(--border)}
+.integ-header h2{font-size:20px;font-weight:700;color:var(--text)}
+.integ-close{background:none;border:none;color:var(--muted);font-size:22px;cursor:pointer;
+  padding:4px 8px;border-radius:6px;transition:all .2s}
+.integ-close:hover{color:var(--red);background:rgba(255,255,255,.05)}
+.integ-agents{display:flex;gap:12px;padding:20px 28px;flex-wrap:wrap;justify-content:center;
+  border-bottom:1px solid var(--border)}
+.integ-agent-card{display:flex;align-items:center;gap:8px;background:var(--card-bg);
+  border:1px solid var(--border);border-radius:8px;padding:8px 14px;font-size:13px;color:var(--text)}
+.integ-agent-card .iac-icon{width:24px;height:24px;border-radius:4px;
+  background:rgba(59,130,246,.15);display:flex;align-items:center;justify-content:center;font-size:14px}
+.integ-diagram{padding:8px 28px;background:rgba(0,0,0,.2);border-bottom:1px solid var(--border)}
+.integ-diagram svg{display:block}
+.integ-matches{padding:24px 28px}
+.integ-matches h3{font-size:16px;font-weight:700;color:var(--text);margin-bottom:16px}
+.integ-list{display:flex;flex-direction:column;gap:12px}
+.integ-match{background:var(--card-bg);border:1px solid var(--border);border-radius:8px;padding:16px 20px}
+.im-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
+.im-type{font-size:13px;font-weight:600;color:var(--green);background:rgba(16,185,129,.1);
+  padding:3px 10px;border-radius:4px}
+.im-effort{font-size:12px;color:var(--muted)}
+.im-desc{font-size:13px;color:var(--muted);line-height:1.6;margin-bottom:8px}
+.im-agents{font-size:11px;color:var(--dim);font-family:monospace}
+.integ-empty{text-align:center;padding:40px 20px;color:var(--muted)}
+.integ-cta{text-align:center;padding:20px 28px;border-top:1px solid var(--border);
+  background:linear-gradient(180deg,transparent,rgba(16,185,129,.04))}
+.integ-cta p{font-size:14px;color:var(--muted);margin-bottom:12px}
+
 /* ─── Featured Section ─── */
 .featured{max-width:1320px;margin:0 auto;padding:0 24px 32px}
 .featured-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(380px,1fr));gap:16px}
@@ -367,13 +402,13 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
       <span class="nav-sep"></span>
       <a href="/catalog/review/" class="">Обзоры</a>
       <span class="nav-sep"></span>
-      <a href="#rankings">Рейтинг</a>
+      <a href="/benchmarks/">Рейтинг</a>
       <span class="nav-sep"></span>
-      <a href="#local-ai">Локальный AI</a>
+      <a href="/catalog/product/">Локальный AI</a>
       <span class="nav-sep"></span>
-      <a href="#coding-agents">Разработка</a>
+      <a href="/catalog/product/">Разработка</a>
       <span class="nav-sep"></span>
-      <a href="#multi-agent">Мульти-агенты</a>
+      <a href="/catalog/product/">Мульти-агенты</a>
       <span class="nav-sep"></span>
       <a href="#guides">Гайды</a>
       <span class="nav-sep"></span>
@@ -419,7 +454,7 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
       <div class="card-title">LangGraph — оркестрация агентов как граф состояний</div>
       <div class="card-desc">Stateful multi-actor приложения от создателей LangChain</div>
       <div class="card-panel"><div class="panel-item qs-badge"><div class="pv" style="color:var(--cyan);font-size:16px">79</div><div class="pl">QantScore™</div></div><div class="panel-item"><div class="pv amber">4.4 ★</div><div class="pl">Rating</div></div><div class="panel-item"><div class="pv green">Open Source</div><div class="pl">Цена</div></div><div class="panel-item"><div class="pv">🏠 Local</div><div class="pl">Развёртывание</div></div><div class="panel-item"><div class="pv">9.8</div><div class="pl">Maturity /10</div></div><div class="panel-item"><div class="pv cyan">↑↑ +15.9%</div><div class="pl">Velocity</div></div><div class="panel-item"><div class="pv">8.1</div><div class="pl">Deploy /10</div></div></div>
-      <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T06:54:38.463588+00:00">🕐 5h ago</span><span>📊 190 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
+      <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T06:54:38.463588+00:00">🕐 6h ago</span><span>📊 190 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
     </a><a href="/product/langsmith-langchain/" class="card">
       
       <button class="bookmark-btn" data-slug="langsmith-langchain" onclick="toggleSave(this,&#39;langsmith-langchain&#39;)" title="Save">☆</button>
@@ -443,7 +478,7 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
       <div class="card-title">LangChain — главный фреймворк для LLM-приложений</div>
       <div class="card-desc">Стандарт индустрии для построения AI-пайплайнов</div>
       <div class="card-panel"><div class="panel-item qs-badge"><div class="pv" style="color:var(--cyan);font-size:16px">79</div><div class="pl">QantScore™</div></div><div class="panel-item"><div class="pv amber">4.1 ★</div><div class="pl">Rating</div></div><div class="panel-item"><div class="pv green">Open Source</div><div class="pl">Цена</div></div><div class="panel-item"><div class="pv">🏠 Local</div><div class="pl">Развёртывание</div></div><div class="panel-item"><div class="pv">10</div><div class="pl">Maturity /10</div></div><div class="panel-item"><div class="pv cyan">↑↑ +23.0%</div><div class="pl">Velocity</div></div><div class="panel-item"><div class="pv">8.1</div><div class="pl">Deploy /10</div></div></div>
-      <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T06:54:38.484118+00:00">🕐 5h ago</span><span>📊 1600 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
+      <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T06:54:38.484118+00:00">🕐 6h ago</span><span>📊 1600 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
     </a></div>
 </div>
 <footer>

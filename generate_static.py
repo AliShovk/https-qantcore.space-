@@ -177,6 +177,41 @@ header{position:sticky;top:0;z-index:100;backdrop-filter:blur(20px) saturate(180
 .compare-clear{font-size:12px;color:var(--muted);cursor:pointer;background:none;border:none}
 .compare-clear:hover{color:var(--red)}
 
+/* ─── Integrations Overlay ─── */
+.integ-overlay{position:fixed;top:0;left:0;width:100%;height:100%;z-index:9999;
+  background:rgba(0,0,0,.85);backdrop-filter:blur(8px);
+  display:flex;align-items:flex-start;justify-content:center;padding:40px 20px;overflow-y:auto}
+.integ-modal{background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);
+  width:100%;max-width:900px;padding:0;box-shadow:0 20px 60px rgba(0,0,0,.5)}
+.integ-header{display:flex;align-items:center;justify-content:space-between;
+  padding:20px 28px;border-bottom:1px solid var(--border)}
+.integ-header h2{font-size:20px;font-weight:700;color:var(--text)}
+.integ-close{background:none;border:none;color:var(--muted);font-size:22px;cursor:pointer;
+  padding:4px 8px;border-radius:6px;transition:all .2s}
+.integ-close:hover{color:var(--red);background:rgba(255,255,255,.05)}
+.integ-agents{display:flex;gap:12px;padding:20px 28px;flex-wrap:wrap;justify-content:center;
+  border-bottom:1px solid var(--border)}
+.integ-agent-card{display:flex;align-items:center;gap:8px;background:var(--card-bg);
+  border:1px solid var(--border);border-radius:8px;padding:8px 14px;font-size:13px;color:var(--text)}
+.integ-agent-card .iac-icon{width:24px;height:24px;border-radius:4px;
+  background:rgba(59,130,246,.15);display:flex;align-items:center;justify-content:center;font-size:14px}
+.integ-diagram{padding:8px 28px;background:rgba(0,0,0,.2);border-bottom:1px solid var(--border)}
+.integ-diagram svg{display:block}
+.integ-matches{padding:24px 28px}
+.integ-matches h3{font-size:16px;font-weight:700;color:var(--text);margin-bottom:16px}
+.integ-list{display:flex;flex-direction:column;gap:12px}
+.integ-match{background:var(--card-bg);border:1px solid var(--border);border-radius:8px;padding:16px 20px}
+.im-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
+.im-type{font-size:13px;font-weight:600;color:var(--green);background:rgba(16,185,129,.1);
+  padding:3px 10px;border-radius:4px}
+.im-effort{font-size:12px;color:var(--muted)}
+.im-desc{font-size:13px;color:var(--muted);line-height:1.6;margin-bottom:8px}
+.im-agents{font-size:11px;color:var(--dim);font-family:monospace}
+.integ-empty{text-align:center;padding:40px 20px;color:var(--muted)}
+.integ-cta{text-align:center;padding:20px 28px;border-top:1px solid var(--border);
+  background:linear-gradient(180deg,transparent,rgba(16,185,129,.04))}
+.integ-cta p{font-size:14px;color:var(--muted);margin-bottom:12px}
+
 /* ─── Featured Section ─── */
 .featured{max-width:1320px;margin:0 auto;padding:0 24px 32px}
 .featured-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(380px,1fr));gap:16px}
@@ -499,13 +534,13 @@ ym(109327472,'init',{{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer"
       <span class="nav-sep"></span>
       <a href="/catalog/review/" class="{active_review}">Обзоры</a>
       <span class="nav-sep"></span>
-      <a href="#rankings">Рейтинг</a>
+      <a href="/benchmarks/">Рейтинг</a>
       <span class="nav-sep"></span>
-      <a href="#local-ai">Локальный AI</a>
+      <a href="/catalog/product/">Локальный AI</a>
       <span class="nav-sep"></span>
-      <a href="#coding-agents">Разработка</a>
+      <a href="/catalog/product/">Разработка</a>
       <span class="nav-sep"></span>
-      <a href="#multi-agent">Мульти-агенты</a>
+      <a href="/catalog/product/">Мульти-агенты</a>
       <span class="nav-sep"></span>
       <a href="#guides">Гайды</a>
       <span class="nav-sep"></span>
@@ -639,7 +674,7 @@ def generate_home():
         type_counts[pt] = type_counts.get(pt, 0) + 1
 
     # Top rated (featured)
-    featured = sorted(products, key=lambda p: (p.get("rating", 0) or 0), reverse=True)[:6]
+    featured = sorted(products, key=lambda p: (p.get("rating", 0) or 0), reverse=True)[:8]
     # Trending: high rating + recent
     trending = sorted(products, key=lambda p: ((p.get("rating", 0) or 0) * 0.6 + (p.get("freshness_score", 0) or 0) * 0.4), reverse=True)[:8]
 
@@ -723,11 +758,11 @@ def generate_home():
 <div class="grid">{comp_cards}</div>"""
 
     # ─── New Releases (Level 2.5: latest 6 by date) ───
-    newest = sorted(products, key=lambda p: p.get("updated_at", ""), reverse=True)[:6]
+    newest = sorted(products, key=lambda p: p.get("updated_at", ""), reverse=True)[:8]
     new_cards = ""
     for p in newest:
         new_cards += make_product_card(p)
-    new_html = f"""<div class="section-hd"><h2>🆕 New & Updated</h2><a href="/catalog/product/" class="see-all">All {tp} →</a></div>
+    new_html = f"""<div class="section-hd"><h2>🆕 Новые и обновлённые</h2><a href="/catalog/product/" class="see-all">Все {tp} →</a></div>
 <div class="grid">{new_cards}</div>"""
 
     # ─── Benchmark Intelligence Snapshot ───
@@ -802,16 +837,17 @@ def generate_home():
 
     # ─── Compare Bar ───
     compare_bar = """<div class="compare-bar" id="compare-bar">
-  <span class="sel"><strong id="compare-count">0</strong> selected</span>
-  <button class="compare-btn" id="compare-btn" disabled onclick="doCompare()">Compare</button>
-  <button class="compare-clear" onclick="clearCompare()">Clear</button>
+  <span class="sel"><strong id="compare-count">0</strong> выбрано</span>
+  <button class="compare-btn" id="compare-btn" disabled onclick="doCompare()">⚖️ Сравнить</button>
+  <button class="compare-btn" id="integrate-btn" disabled onclick="showIntegrations()" style="background:var(--blue)">🔗 Связки</button>
+  <button class="compare-clear" onclick="clearCompare()">Сброс</button>
 </div>"""
 
     content = hero + auth + featured_html + enterprise_cta + trending_html + new_html + bench_html + live_html + guides_html + catalog_html + compare_bar
 
     # Scripts
     scripts = """<script>
-var searchResults={search_json};
+var searchResults = {search_json};
 
 // ─── Compare ───
 var selected = [];
@@ -825,20 +861,219 @@ function updateCompareBar() {
   var bar = document.getElementById('compare-bar');
   var cnt = document.getElementById('compare-count');
   var btn = document.getElementById('compare-btn');
+  var ibtn = document.getElementById('integrate-btn');
   cnt.textContent = selected.length;
   bar.classList.toggle('active', selected.length > 0);
   btn.disabled = selected.length < 2;
+  if (ibtn) ibtn.disabled = selected.length < 2;
 }
 function doCompare() {
   if (selected.length >= 2) {
     var slugs = selected.join(',');
-Нет истории сравнений
     var comps = JSON.parse(localStorage.getItem('qantcore_comparisons') || '[]');
     comps.push({slugs: selected.slice(), date: new Date().toISOString().substring(0,10)});
     if (comps.length > 20) comps = comps.slice(-20);
     localStorage.setItem('qantcore_comparisons', JSON.stringify(comps));
     window.location = '/compare/?slugs=' + slugs;
   }
+}
+// ─── Integrations ───
+var integrations = {
+  "aider-ai": ["bolt-new","chatgpt-openai","claude-anthropic","claude-code","claude-desktop","cline-vscode","codex-cli","codex-desktop","continue-dev","cursor-ide","deepseek-llm","devin-agent","e2b-sandbox","github-copilot","google-gemini","hermes-agent","jan-ai","langchain-framework","llama-meta","lm-studio","lovable-dev","microsoft-copilot","mistral-ai","ollama","open-interpreter","phind-ai","replit-ai","vercel-v0","windsurf-ide"],
+  "amazon-q-developer": ["chatgpt-openai","claude-anthropic","cursor-ide","github-copilot","microsoft-copilot","sourcegraph-cody","tabnine-ai"],
+  "anthropic-mcp": ["claude-code","claude-desktop","cline-vscode","composio-tools","langchain-framework","langsmith-langchain","open-interpreter"],
+  "anythingllm": ["dify-platform","flowise-lowcode","langchain-framework","lm-studio","n8n-automation","ollama","openai-swarm"],
+  "autogen-microsoft": ["chatdev-agent","composio-tools","crewai-framework","langchain-framework","langgraph-framework","langsmith-langchain","metagpt-framework","openai-swarm","openclaw-agent","semantic-kernel","superagi-agent"],
+  "autogpt-agent": ["babyagi-agent","crewai-framework","langchain-framework","metagpt-framework","open-interpreter","superagi-agent"],
+  "babyagi-agent": ["autogpt-agent","crewai-framework","langchain-framework","open-interpreter"],
+  "bolt-new": ["aider-ai","chatgpt-openai","claude-anthropic","cline-vscode","cursor-ide","github-copilot","lovable-dev","replit-ai","vercel-v0","windsurf-ide"],
+  "chatdev-agent": ["autogen-microsoft","crewai-framework","langchain-framework","metagpt-framework"],
+  "chatgpt-openai": ["aider-ai","anythingllm","cline-vscode","copy-ai","cursor-ide","dify-platform","github-copilot","jan-ai","langchain-framework","openai-swarm","windsurf-ide"],
+  "claude-anthropic": ["aider-ai","anthropic-mcp","anythingllm","claude-code","cline-vscode","cursor-ide","jan-ai","langchain-framework","sourcegraph-cody","windsurf-ide"],
+  "claude-code": ["aider-ai","anthropic-mcp","cline-vscode","cursor-ide","devin-agent","github-copilot","open-interpreter","sourcegraph-cody","windsurf-ide"],
+  "claude-desktop": ["aider-ai","anthropic-mcp","claude-code","cline-vscode","cursor-ide","sourcegraph-cody"],
+  "cline-vscode": ["aider-ai","anthropic-mcp","bolt-new","chatgpt-openai","claude-anthropic","claude-code","claude-desktop","codex-cli","continue-dev","cursor-ide","deepseek-llm","devin-agent","e2b-sandbox","github-copilot","google-gemini","hermes-agent","jan-ai","llama-meta","lm-studio","lovable-dev","microsoft-copilot","mistral-ai","ollama","open-interpreter","phind-ai","vercel-v0","windsurf-ide"],
+  "codeium-windsurf": ["chatgpt-openai","cline-vscode","cursor-ide","github-copilot","microsoft-copilot","tabnine-ai","windsurf-ide"],
+  "codex-cli": ["aider-ai","claude-code","cline-vscode","cursor-ide","github-copilot","open-interpreter"],
+  "codex-desktop": ["aider-ai","cline-vscode","codex-cli","cursor-ide","github-copilot"],
+  "composio-tools": ["autogen-microsoft","crewai-framework","dify-platform","langchain-framework","n8n-automation","openai-swarm","phidata-framework"],
+  "continue-dev": ["aider-ai","claude-code","cline-vscode","cursor-ide","github-copilot","lm-studio","ollama","tabnine-ai","windsurf-ide"],
+  "copy-ai": ["chatgpt-openai","dify-platform","jasper-ai","n8n-automation","notion-ai","zapier-ai"],
+  "crewai-framework": ["autogen-microsoft","autogpt-agent","babyagi-agent","chatdev-agent","composio-tools","e2b-sandbox","langchain-framework","langgraph-framework","langsmith-langchain","metagpt-framework","open-interpreter","openclaw-agent","semantic-kernel","superagi-agent"],
+  "cursor-ide": ["aider-ai","bolt-new","chatgpt-openai","claude-anthropic","claude-code","claude-desktop","cline-vscode","codeium-windsurf","codex-cli","codex-desktop","continue-dev","deepseek-llm","devin-agent","github-copilot","google-gemini","hermes-agent","jan-ai","llama-meta","lm-studio","lovable-dev","microsoft-copilot","mistral-ai","ollama","open-interpreter","phind-ai","replit-ai","sourcegraph-cody","tabnine-ai","vercel-v0","windsurf-ide"],
+  "deepseek-llm": ["aider-ai","anythingllm","cline-vscode","continue-dev","cursor-ide","jan-ai","langchain-framework","lm-studio","ollama","open-interpreter"],
+  "devin-agent": ["aider-ai","claude-code","cline-vscode","codex-cli","codex-desktop","cursor-ide","e2b-sandbox","github-copilot","lovable-dev","open-interpreter"],
+  "dify-platform": ["anythingllm","chatgpt-openai","composio-tools","copy-ai","flowise-lowcode","hermes-agent","jasper-ai","langchain-framework","langgraph-framework","langsmith-langchain","n8n-automation","notion-ai","openai-swarm","phidata-framework","you-com","zapier-ai"],
+  "e2b-sandbox": ["aider-ai","autogpt-agent","cline-vscode","crewai-framework","devin-agent","langchain-framework","open-interpreter","swe-agent"],
+  "flowise-lowcode": ["anythingllm","composio-tools","dify-platform","hermes-agent","langchain-framework","langsmith-langchain","n8n-automation","ollama","zapier-ai"],
+  "github-copilot": ["aider-ai","amazon-q-developer","bolt-new","chatgpt-openai","claude-anthropic","claude-code","cline-vscode","codeium-windsurf","codex-cli","codex-desktop","continue-dev","cursor-ide","deepseek-llm","devin-agent","google-gemini","llama-meta","lovable-dev","microsoft-copilot","mistral-ai","phind-ai","replit-ai","sourcegraph-cody","tabnine-ai","vercel-v0","windsurf-ide"],
+  "google-gemini": ["aider-ai","anythingllm","cline-vscode","cursor-ide","github-copilot","jan-ai","langchain-framework","windsurf-ide"],
+  "hermes-agent": ["aider-ai","anythingllm","cline-vscode","composio-tools","cursor-ide","dify-platform","flowise-lowcode","langchain-framework","lm-studio","n8n-automation","ollama","open-interpreter"],
+  "jan-ai": ["anythingllm","chatgpt-openai","claude-anthropic","continue-dev","cursor-ide","deepseek-llm","google-gemini","hermes-agent","llama-meta","lm-studio","mistral-ai","ollama"],
+  "jasper-ai": ["chatgpt-openai","copy-ai","dify-platform","n8n-automation","notion-ai","zapier-ai"],
+  "langchain-framework": ["aider-ai","anthropic-mcp","autogen-microsoft","autogpt-agent","babyagi-agent","chatdev-agent","chatgpt-openai","claude-anthropic","composio-tools","crewai-framework","deepseek-llm","dify-platform","e2b-sandbox","flowise-lowcode","google-gemini","hermes-agent","langgraph-framework","langsmith-langchain","llama-meta","metagpt-framework","mistral-ai","n8n-automation","ollama","open-interpreter","openai-swarm","openclaw-agent","phidata-framework","semantic-kernel","smolagents-huggingface","superagi-agent","you-com"],
+  "langgraph-framework": ["autogen-microsoft","crewai-framework","dify-platform","langchain-framework","openai-swarm","phidata-framework","semantic-kernel","sourcegraph-cody","superagi-agent"],
+  "langsmith-langchain": ["crewai-framework","dify-platform","langchain-framework","langgraph-framework","openai-swarm","phidata-framework"],
+  "llama-meta": ["aider-ai","anythingllm","cline-vscode","continue-dev","cursor-ide","hermes-agent","jan-ai","langchain-framework","lm-studio","ollama"],
+  "lm-studio": ["aider-ai","anythingllm","chatgpt-openai","claude-anthropic","cline-vscode","continue-dev","cursor-ide","deepseek-llm","google-gemini","hermes-agent","jan-ai","llama-meta","mistral-ai","ollama"],
+  "lovable-dev": ["aider-ai","bolt-new","cursor-ide","github-copilot","replit-ai","vercel-v0","windsurf-ide"],
+  "metagpt-framework": ["autogen-microsoft","autogpt-agent","chatdev-agent","crewai-framework","langchain-framework"],
+  "microsoft-copilot": ["aider-ai","amazon-q-developer","cline-vscode","codeium-windsurf","cursor-ide","github-copilot","tabnine-ai","windsurf-ide"],
+  "mistral-ai": ["aider-ai","anythingllm","cline-vscode","continue-dev","cursor-ide","hermes-agent","jan-ai","langchain-framework","lm-studio","ollama"],
+  "n8n-automation": ["anythingllm","composio-tools","copy-ai","dify-platform","flowise-lowcode","hermes-agent","jasper-ai","langchain-framework","notion-ai","zapier-ai"],
+  "notion-ai": ["chatgpt-openai","copy-ai","dify-platform","jasper-ai","n8n-automation","taskade-ai","zapier-ai"],
+  "ollama": ["aider-ai","anythingllm","chatgpt-openai","claude-anthropic","cline-vscode","continue-dev","cursor-ide","deepseek-llm","flowise-lowcode","google-gemini","hermes-agent","jan-ai","langchain-framework","llama-meta","lm-studio","mistral-ai","open-interpreter"],
+  "open-interpreter": ["aider-ai","autogpt-agent","babyagi-agent","claude-code","cline-vscode","codex-cli","codex-desktop","crewai-framework","cursor-ide","deepseek-llm","e2b-sandbox","hermes-agent","langchain-framework","llama-meta","lm-studio","ollama","openclaw-agent"],
+  "openai-swarm": ["autogen-microsoft","chatgpt-openai","composio-tools","dify-platform","langchain-framework","langgraph-framework","langsmith-langchain","phidata-framework","semantic-kernel","smolagents-huggingface"],
+  "openclaw-agent": ["autogpt-agent","crewai-framework","langchain-framework","metagpt-framework","open-interpreter","superagi-agent"],
+  "perplexity-ai": ["chatgpt-openai","google-gemini","langchain-framework","openai-swarm","phind-ai","you-com"],
+  "phidata-framework": ["composio-tools","dify-platform","langchain-framework","langgraph-framework","langsmith-langchain","ollama","openai-swarm"],
+  "phind-ai": ["aider-ai","cline-vscode","cursor-ide","github-copilot","perplexity-ai","sourcegraph-cody","windsurf-ide"],
+  "replit-ai": ["aider-ai","bolt-new","chatgpt-openai","cursor-ide","github-copilot","lovable-dev","vercel-v0","windsurf-ide"],
+  "semantic-kernel": ["autogen-microsoft","crewai-framework","langchain-framework","langgraph-framework","openai-swarm"],
+  "smolagents-huggingface": ["langchain-framework","openai-swarm","phidata-framework"],
+  "sourcegraph-cody": ["amazon-q-developer","chatgpt-openai","claude-anthropic","claude-code","continue-dev","cursor-ide","github-copilot","langgraph-framework","phind-ai"],
+  "superagi-agent": ["autogen-microsoft","autogpt-agent","composio-tools","crewai-framework","e2b-sandbox","langchain-framework","langgraph-framework","openclaw-agent"],
+  "swe-agent": ["aider-ai","claude-code","cursor-ide","devin-agent","open-interpreter"],
+  "tabnine-ai": ["amazon-q-developer","chatgpt-openai","codeium-windsurf","continue-dev","cursor-ide","github-copilot","microsoft-copilot","windsurf-ide"],
+  "taskade-ai": ["dify-platform","flowise-lowcode","langchain-framework","n8n-automation"],
+  "vercel-v0": ["bolt-new","cursor-ide","github-copilot","lovable-dev","replit-ai","windsurf-ide"],
+  "windsurf-ide": ["aider-ai","bolt-new","chatgpt-openai","claude-anthropic","claude-desktop","cline-vscode","codeium-windsurf","codex-cli","codex-desktop","continue-dev","cursor-ide","deepseek-llm","github-copilot","google-gemini","lovable-dev","microsoft-copilot","phind-ai","replit-ai","tabnine-ai","vercel-v0"],
+  "you-com": ["dify-platform","langchain-framework","perplexity-ai"],
+  "zapier-ai": ["chatgpt-openai","copy-ai","dify-platform","flowise-lowcode","jasper-ai","n8n-automation","notion-ai","taskade-ai"]
+};
+var integrationInfo = {
+  "cursor-ide|github-copilot": {type:"IDE-ассистент",desc:"Cursor и Copilot — лидеры AI-автодополнения. Используйте Cursor для сложного рефакторинга, Copilot для быстрых подсказок. Вместе — полное покрытие.",effort:"Низкая"},
+  "cursor-ide|claude-code": {type:"Код + Терминал",desc:"Cursor (редактор) + Claude Code (терминал) = полный цикл разработки. Claude Code берёт сложные задачи, Cursor — повседневное редактирование.",effort:"Средняя"},
+  "claude-code|cline-vscode": {type:"Автономные агенты",desc:"Claude Code и Cline — два подхода к автономной разработке. Cline лучше для VS Code, Claude Code для терминальных сценариев CI/CD.",effort:"Низкая"},
+  "langchain-framework|langgraph-framework": {type:"Цепочки + Графы",desc:"LangChain для линейных пайплайнов, LangGraph для сложных графовых агентов с ветвлением. Вместе покрывают все сценарии.",effort:"Средняя"},
+  "langchain-framework|crewai-framework": {type:"Фреймворк + Оркестрация",desc:"LangChain как фундамент, CrewAI для multi-agent оркестрации. CrewAI строит команды агентов поверх LangChain-инструментов.",effort:"Средняя"},
+  "crewai-framework|autogen-microsoft": {type:"Multi-agent",desc:"CrewAI и AutoGen — два лидера multi-agent. CrewAI проще в настройке, AutoGen мощнее для исследовательских сценариев.",effort:"Высокая"},
+  "dify-platform|flowise-lowcode": {type:"Low-code связка",desc:"Dify для production-пайплайнов, Flowise для быстрого прототипирования. Экспортируйте flow из Flowise в Dify.",effort:"Низкая"},
+  "dify-platform|n8n-automation": {type:"AI + Автоматизация",desc:"Dify генерирует AI-ответы, n8n автоматизирует их доставку (email, Slack, CRM). Идеально для поддержки и чат-ботов.",effort:"Средняя"},
+  "langchain-framework|openai-swarm": {type:"Фреймворк + Агенты",desc:"LangChain для пайплайнов, OpenAI Swarm для экспериментов с мульти-агентными системами. Swarm легковесный, LangChain production-ready.",effort:"Низкая"},
+  "autogen-microsoft|semantic-kernel": {type:"Microsoft AI Stack",desc:"AutoGen (агенты) + Semantic Kernel (AI-интеграция) — официальный стек Microsoft для enterprise AI-решений.",effort:"Средняя"},
+  "claude-code|anthropic-mcp": {type:"Claude + Протокол",desc:"MCP (Model Context Protocol) — стандарт подключения Claude к данным. Claude Code использует MCP для доступа к файлам, API, базам данных.",effort:"Средняя"},
+  "cline-vscode|anthropic-mcp": {type:"Агент + Протокол",desc:"Cline поддерживает MCP-серверы для расширения контекста. Подключите базы данных и API напрямую к агенту.",effort:"Средняя"},
+  "aider-ai|open-interpreter": {type:"Код + Данные",desc:"Aider для написания кода, Open Interpreter для выполнения и анализа данных. Вместе: пишем → запускаем → анализируем.",effort:"Низкая"},
+  "flowise-lowcode|n8n-automation": {type:"Визуальная автоматизация",desc:"Flowise строит AI-воркфлоу, n8n запускает их по расписанию. Low-code стек для автоматизации без программирования.",effort:"Низкая"},
+  "cursor-ide|windsurf-ide": {type:"IDE-дуэт",desc:"Cursor для сложных проектов, Windsurf для быстрого прототипирования. Используйте оба в зависимости от задачи.",effort:"Низкая"},
+  "github-copilot|codeium-windsurf": {type:"Copilot-экосистема",desc:"GitHub Copilot и Codeium — два подхода к AI-автодополнению. Copilot глубже интегрирован с GitHub, Codeium быстрее на больших файлах.",effort:"Низкая"},
+  "cursor-ide|aider-ai": {type:"Редактор + CLI",desc:"Cursor для визуального редактирования, Aider для терминальных сессий. Aider работает в фоне, пока вы в Cursor.",effort:"Средняя"},
+  "claude-code|aider-ai": {type:"Терминальный тандем",desc:"Claude Code для автономных задач, Aider для инкрементального редактирования. Разные режимы — одна терминальная среда.",effort:"Низкая"},
+  "autogpt-agent|babyagi-agent": {type:"Автономные агенты",desc:"AutoGPT и BabyAGI — пионеры автономных агентов. AutoGPT для сложных цепочек, BabyAGI для минималистичных сценариев.",effort:"Низкая"},
+  "metagpt-framework|chatdev-agent": {type:"Командная разработка",desc:"MetaGPT и ChatDev — виртуальные команды разработчиков. MetaGPT для сложных проектов, ChatDev для быстрых прототипов.",effort:"Средняя"},
+  "langchain-framework|autogen-microsoft": {type:"Фреймворк + Агенты",desc:"LangChain для RAG и пайплайнов, AutoGen для multi-agent диалогов. Разные парадигмы — одна экосистема.",effort:"Высокая"},
+  "cursor-ide|cline-vscode": {type:"IDE + Агент",desc:"Cursor для ручного кодинга, Cline для автономных задач внутри VS Code. Переключайтесь между режимами в одном редакторе.",effort:"Низкая"},
+  "cline-vscode|open-interpreter": {type:"Агент + Терминал",desc:"Cline пишет код, Open Interpreter выполняет и тестирует. Автоматический цикл разработки.",effort:"Средняя"},
+  "langchain-framework|semantic-kernel": {type:"Кроссплатформенный стек",desc:"LangChain (Python/JS) + Semantic Kernel (.NET/Java) — покройте все языки вашей команды.",effort:"Высокая"},
+  "autogen-microsoft|metagpt-framework": {type:"Multi-agent фабрика",desc:"AutoGen для диалоговых агентов, MetaGPT для ролевых команд. Два подхода к multi-agent архитектуре.",effort:"Высокая"},
+  "langchain-framework|phidata-framework": {type:"RAG + Агенты",desc:"LangChain для построения RAG-пайплайнов, Phidata для агентной надстройки. Phidata добавляет memory и инструменты поверх LangChain.",effort:"Средняя"},
+  "dify-platform|langchain-framework": {type:"Low-code + Код",desc:"Dify для визуального прототипирования, LangChain для кастомной логики. Экспортируйте из Dify в код.",effort:"Средняя"},
+  "bolt-new|cursor-ide": {type:"Full-stack связка",desc:"Bolt.new для быстрой генерации full-stack приложений, Cursor для тонкой доработки кода.",effort:"Низкая"},
+  "devin-agent|cursor-ide": {type:"Автономный + Ручной",desc:"Devin для автономных задач (PR, баги), Cursor для ручного контроля. Devin делает черновую работу, вы — финальную.",effort:"Средняя"},
+  "replit-ai|cursor-ide": {type:"Облако + Локально",desc:"Replit для облачного прототипирования, Cursor для локальной разработки. Начните в Replit, продолжите в Cursor.",effort:"Низкая"},
+  "langchain-framework|n8n-automation": {type:"AI + Workflow",desc:"LangChain генерирует AI-ответы, n8n встраивает их в бизнес-процессы. Автоматизация поддержки, CRM, документооборота.",effort:"Средняя"},
+  "langchain-framework|flowise-lowcode": {type:"Код + Визуал",desc:"LangChain для разработчиков, Flowise для визуального конструирования. Одна экосистема — два интерфейса.",effort:"Низкая"},
+  "openai-swarm|phidata-framework": {type:"Агенты + Инфраструктура",desc:"OpenAI Swarm для прототипов агентов, Phidata для production-инфраструктуры (мониторинг, memory, evaluation).",effort:"Средняя"},
+  "langgraph-framework|crewai-framework": {type:"Графы + Команды",desc:"LangGraph для сложных графовых потоков, CrewAI для ролевых команд агентов. LangGraph даёт контроль, CrewAI — простоту.",effort:"Высокая"},
+  "open-interpreter|langchain-framework": {type:"Исполнение + Пайплайны",desc:"Open Interpreter для интерактивного выполнения кода, LangChain для структурированных AI-пайплайнов.",effort:"Низкая"},
+  "cursor-ide|devin-agent": {type:"Ручной + Автономный",desc:"Cursor для ежедневной разработки, Devin для автономных задач (bug fixing, refactoring). Делегируйте рутину Devin'у.",effort:"Средняя"},
+  "github-copilot|amazon-q-developer": {type:"AWS + GitHub",desc:"Copilot для GitHub-экосистемы, Amazon Q для AWS-интеграции. Покрытие двух крупнейших платформ.",effort:"Средняя"},
+  "swe-agent|aider-ai": {type:"Автономный рефакторинг",desc:"SWE-Agent для полного цикла исправления багов, Aider для инкрементальных правок. Автоматизируйте рутину.",effort:"Средняя"},
+  "superagi-agent|crewai-framework": {type:"Агенты + Оркестрация",desc:"SuperAGI для автономных агентов с GUI, CrewAI для оркестрации команд. SuperAGI даёт визуальный контроль.",effort:"Средняя"},
+  "perplexity-ai|langchain-framework": {type:"Поиск + RAG",desc:"Perplexity для research и fact-checking, LangChain для построения RAG-систем на основе найденных данных.",effort:"Низкая"}
+};
+function showIntegrations() {
+  if (selected.length < 2) return;
+  // Build overlay
+  var overlay = document.createElement('div');
+  overlay.id = 'integrations-overlay';
+  overlay.className = 'integ-overlay';
+  var html = '<div class=\"integ-modal\"><div class=\"integ-header\"><h2>🔗 Интеграции выбранных агентов</h2><button class=\"integ-close\" onclick=\"closeIntegrations()\">✕</button></div>';
+  // Agent cards row
+  html += '<div class=\"integ-agents\">';
+  selected.forEach(function(slug) {
+    var p = searchResults.find(function(x){return x.u === '/product/'+slug+'/'});
+    var title = p ? p.ti : slug;
+    html += '<div class=\"integ-agent-card\"><span class=\"iac-icon\">' + (p&&p.img?p.img:'🔹') + '</span><span>' + title.substring(0,25) + '</span></div>';
+  });
+  html += '</div>';
+  // SVG diagram
+  html += '<div class=\"integ-diagram\"><svg id=\"integ-svg\" width=\"100%\" height=\"300\"></svg></div>';
+  // Integration matches
+  html += '<div class=\"integ-matches\"><h3>Найденные связки</h3><div class=\"integ-list\" id=\"integ-list\"></div></div>';
+  // CTA
+  html += '<div class=\"integ-cta\"><p>Хотите подробную инструкцию по интеграции?</p><a href=\"/media-kit/\" class=\"cta-primary\">Заказать аудит AI-стека</a></div>';
+  html += '</div>';
+  overlay.innerHTML = html;
+  document.body.appendChild(overlay);
+  document.body.style.overflow = 'hidden';
+  // Draw SVG diagram
+  setTimeout(drawIntegDiagram, 100);
+  // Populate matches
+  setTimeout(populateIntegMatches, 50);
+}
+function closeIntegrations() {
+  var ov = document.getElementById('integrations-overlay');
+  if (ov) { ov.remove(); document.body.style.overflow = ''; }
+}
+function drawIntegDiagram() {
+  var svg = document.getElementById('integ-svg');
+  if (!svg) return;
+  var w = svg.clientWidth;
+  var h = 280;
+  svg.setAttribute('viewBox', '0 0 '+w+' 280');
+  svg.innerHTML = '';
+  var n = selected.length;
+  var cx = w / 2, cy = 140, rx = Math.min(w/2 - 60, 200), ry = 80;
+  var positions = [];
+  for (var i = 0; i < n; i++) {
+    var angle = (i / n) * 2 * Math.PI - Math.PI/2;
+    positions.push({x: cx + rx * Math.cos(angle), y: cy + ry * Math.sin(angle)});
+  }
+  // Draw connections
+  for (var i = 0; i < n; i++) {
+    for (var j = i+1; j < n; j++) {
+      var si = selected[i], sj = selected[j];
+      var connected = (integrations[si] && integrations[si].includes(sj)) || (integrations[sj] && integrations[sj].includes(si));
+      var pi = positions[i], pj = positions[j];
+      if (connected) {
+        svg.innerHTML += '<line x1=\"'+pi.x+'\" y1=\"'+pi.y+'\" x2=\"'+pj.x+'\" y2=\"'+pj.y+'\" stroke=\"#10b981\" stroke-width=\"2\" opacity=\"0.6\"/>';
+      } else {
+        svg.innerHTML += '<line x1=\"'+pi.x+'\" y1=\"'+pi.y+'\" x2=\"'+pj.x+'\" y2=\"'+pj.y+'\" stroke=\"#374151\" stroke-width=\"1\" stroke-dasharray=\"4,4\" opacity=\"0.4\"/>';
+      }
+    }
+  }
+  // Draw nodes
+  positions.forEach(function(p, i) {
+    var slug = selected[i];
+    var prod = searchResults.find(function(x){return x.u === '/product/'+slug+'/'});
+    var name = prod ? prod.ti.substring(0,18) : slug.substring(0,18);
+    svg.innerHTML += '<circle cx=\"'+p.x+'\" cy=\"'+p.y+'\" r=\"28\" fill=\"#171F2B\" stroke=\"#3B82F6\" stroke-width=\"2\"/>';
+    svg.innerHTML += '<text x=\"'+p.x+'\" y=\"'+p.y+'\" text-anchor=\"middle\" dy=\"0.35em\" fill=\"#F5F7FA\" font-size=\"10\" font-weight=\"600\">'+name+'</text>';
+  });
+}
+function populateIntegMatches() {
+  var list = document.getElementById('integ-list');
+  if (!list) return;
+  var html = '';
+  var found = false;
+  for (var i = 0; i < selected.length; i++) {
+    for (var j = i+1; j < selected.length; j++) {
+      var a = selected[i], b = selected[j];
+      var connected = (integrations[a] && integrations[a].includes(b)) || (integrations[b] && integrations[b].includes(a));
+      if (!connected) continue;
+      found = true;
+      var key1 = a+'|'+b, key2 = b+'|'+a;
+      var info = integrationInfo[key1] || integrationInfo[key2] || {type:'Совместимы',desc:'Эти агенты могут работать в связке. Детали уточняются.',effort:'Средняя'};
+      html += '<div class=\"integ-match\"><div class=\"im-header\"><span class=\"im-type\">'+info.type+'</span><span class=\"im-effort\">⚡ '+info.effort+' сложность</span></div><p class=\"im-desc\">'+info.desc+'</p><div class=\"im-agents\">'+a+' ↔ '+b+'</div></div>';
+    }
+  }
+  if (!found) {
+    html = '<div class=\"integ-empty\"><p>Прямых интеграций между выбранными агентами не найдено.</p><p style=\"color:var(--green);margin-top:8px\">Попробуйте выбрать агентов из одной экосистемы (например, LangChain + LangGraph) или связку IDE + терминальный агент.</p></div>';
+  }
+  list.innerHTML = html;
 }
 function clearCompare() {
   selected = [];
@@ -948,7 +1183,7 @@ if(getSaved().length>0){var nav=document.querySelector('.saved-nav');if(nav)nav.
 </script>"""
 
     search_json = build_search_index()
-    scripts = scripts.replace("{search_json}", json.dumps(search_json))
+    scripts = scripts.replace("{search_json}", search_json)
 
     html = render_page("Каталог AI-агентов", "Каталог AI-агентов: {}+ отслеживается, глубокие обзоры, живые бенчмарки.".format(tp),
                        content, scripts=scripts, total=tp, active_home="active",
@@ -1160,7 +1395,7 @@ def generate_catalog(category):
     tp = DB.articles.count_documents({"category": "product"})
 
     if not items:
-        cards = f'<div class="empty"><h2>Пока ничего нет</h2><p>Категория «{esc(label)}» пуста</p></div>'
+        cards = f'<div class="empty"><h2>Пока ничего нет</h2><p>Категория «{esc(label)}» пуста</p><p style="margin-top:12px"><a href="/catalog/product/" style="color:var(--green)">← Смотреть каталог агентов</a></p></div>'
     else:
         cards = '<div class="grid">'
         for item in items:
