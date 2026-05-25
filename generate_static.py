@@ -504,6 +504,8 @@ ym(109327472,'init',{{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer"
       <span class="nav-sep"></span>
       <a href="/workspace/" class="{active_ws}">Workspace</a>
       <span class="nav-sep"></span>
+      <a href="/company/">Companies</a>
+      <span class="nav-sep"></span>
       <a href="#saved" class="saved-nav" style="display:none">★ Saved</a>
     </div>
   </div>
@@ -1843,6 +1845,162 @@ def generate_media_kit():
     print(f"  /media-kit/index.html")
 
 
+def generate_company_pages():
+    """Generate /company/{slug}/ pages for major AI companies."""
+    products = list(DB.articles.find({"category": "product"}))
+    
+    # Company mapping: company_slug → {name, description, product_slugs}
+    companies = {}
+    for p in products:
+        slug = p["slug"]
+        # Map products to companies
+        company = None
+        if slug in ["claude-anthropic", "claude-code", "claude-desktop", "anthropic-mcp"]:
+            company = "anthropic"
+        elif slug in ["chatgpt-openai", "codex-cli", "codex-desktop", "openai-swarm"]:
+            company = "openai"
+        elif slug in ["autogen-microsoft", "github-copilot", "microsoft-copilot", "semantic-kernel"]:
+            company = "microsoft"
+        elif slug in ["google-gemini"]:
+            company = "google"
+        elif slug in ["llama-meta"]:
+            company = "meta"
+        elif slug in ["langchain-framework", "langgraph-framework", "langsmith-langchain"]:
+            company = "langchain"
+        elif slug in ["codeium-windsurf", "windsurf-ide"]:
+            company = "codeium"
+        elif slug in ["smolagents-huggingface"]:
+            company = "huggingface"
+        elif slug in ["devin-agent"]:
+            company = "cognition"
+        elif slug in ["deepseek-llm"]:
+            company = "deepseek"
+        elif slug in ["mistral-ai"]:
+            company = "mistral"
+        elif slug in ["vercel-v0"]:
+            company = "vercel"
+        elif slug in ["amazon-q-developer"]:
+            company = "amazon"
+        elif slug in ["perplexity-ai"]:
+            company = "perplexity"
+        elif slug in ["notion-ai"]:
+            company = "notion"
+        elif slug in ["zapier-ai"]:
+            company = "zapier"
+        
+        if company:
+            if company not in companies:
+                companies[company] = {"name": "", "desc": "", "products": []}
+            companies[company]["products"].append(p)
+    
+    # Company metadata
+    meta = {
+        "anthropic": {"name": "Anthropic", "desc": "AI safety company behind Claude. Creator of the Model Context Protocol (MCP), setting the standard for AI-tool integration."},
+        "openai": {"name": "OpenAI", "desc": "Creator of ChatGPT, GPT-4, and the Codex CLI ecosystem. Pioneering AI agents, swarm orchestration, and developer tools."},
+        "microsoft": {"name": "Microsoft", "desc": "Enterprise AI ecosystem spanning GitHub Copilot, AutoGen multi-agent framework, Semantic Kernel, and Microsoft 365 Copilot."},
+        "google": {"name": "Google DeepMind", "desc": "Multimodal AI research powerhouse behind Gemini, pushing the frontier of reasoning, coding, and scientific AI."},
+        "meta": {"name": "Meta AI", "desc": "Open-source AI leader. Llama models power local deployment and community innovation at global scale."},
+        "langchain": {"name": "LangChain", "desc": "The standard framework for LLM application development. Ecosystem spans orchestration (LangGraph), observability (LangSmith), and deployment."},
+        "codeium": {"name": "Codeium", "desc": "AI-powered coding platform. Windsurf IDE and Codeium autocomplete serve millions of developers."},
+        "huggingface": {"name": "Hugging Face", "desc": "The home of open-source AI. SmolAgents brings minimalistic agent frameworks to the community."},
+        "cognition": {"name": "Cognition AI", "desc": "Creator of Devin — the first autonomous AI software engineer. Pushing the boundary of agent-driven development."},
+        "deepseek": {"name": "DeepSeek", "desc": "Chinese AI lab producing state-of-the-art open-weight LLMs at fraction of competitor costs."},
+        "mistral": {"name": "Mistral AI", "desc": "European champion of open-weight models. Fast, efficient, and deployment-friendly LLMs."},
+        "vercel": {"name": "Vercel", "desc": "Frontend cloud platform. v0 generates production UI components from text prompts."},
+        "amazon": {"name": "Amazon AWS", "desc": "Cloud infrastructure leader. Amazon Q Developer brings AI assistance to the AWS ecosystem."},
+        "perplexity": {"name": "Perplexity AI", "desc": "AI-native search engine with agentic capabilities. Redefining how developers find and verify information."},
+        "notion": {"name": "Notion", "desc": "Connected workspace platform. Notion AI integrates intelligence directly into knowledge management."},
+        "zapier": {"name": "Zapier", "desc": "Workflow automation leader. Zapier AI brings no-code AI agents to business process automation."},
+    }
+    
+    tp = len(products)
+    tc = DB.articles.count_documents({"category": "comparison"})
+    
+    # Generate individual company pages
+    for comp_slug, comp_data in sorted(companies.items()):
+        info = meta.get(comp_slug, {"name": comp_slug.title(), "desc": "AI technology company."})
+        prods = comp_data["products"]
+        
+        # Product cards
+        pcards = ""
+        for p in sorted(prods, key=lambda x: x.get("rating", 0) or 0, reverse=True):
+            pcards += make_product_card(p, with_compare=False)
+        
+        # Aggregate stats
+        avg_rating = round(sum(p.get("rating", 0) or 0 for p in prods) / len(prods), 1) if prods else 0
+        avg_freshness = int(sum(p.get("freshness_score", 0) or 0 for p in prods) / len(prods) * 100) if prods else 0
+        total_reviews = sum(p.get("review_count", 0) or 0 for p in prods)
+        
+        # Ecosystem map
+        eco = ""
+        for i, p in enumerate(prods):
+            links = []
+            for j, p2 in enumerate(prods):
+                if i != j:
+                    links.append(p2["slug"])
+            if links:
+                eco += f'<div style="margin-bottom:8px"><strong>{esc(p.get("title","")[:35])}</strong>'
+                eco += f'<span style="color:var(--dim);font-size:11px"> → ' + ", ".join(l[:20] for l in links) + '</span></div>'
+        
+        body = f"""<div class="container detail">
+  <div class="breadcrumbs"><a href="/">Catalog</a> &rsaquo; <span>{info['name']}</span></div>
+  <div style="display:flex;align-items:flex-start;gap:24px;margin:24px 0;flex-wrap:wrap">
+    <div style="flex:1;min-width:280px">
+      <h1 style="font-size:28px;font-weight:800;color:#f1f5f9;margin-bottom:8px">{info['name']}</h1>
+      <p style="color:var(--muted);font-size:15px;line-height:1.7">{info['desc']}</p>
+    </div>
+    <div style="display:flex;gap:12px;flex-wrap:wrap">
+      <div class="hero-metric"><div class="val">{len(prods)}</div><div class="lbl">Products</div></div>
+      <div class="hero-metric"><div class="val amber">{avg_rating} ★</div><div class="lbl">Avg Rating</div></div>
+      <div class="hero-metric"><div class="val">{avg_freshness}%</div><div class="lbl">Freshness</div></div>
+      <div class="hero-metric"><div class="val">{total_reviews}</div><div class="lbl">Reviews</div></div>
+    </div>
+  </div>
+  
+  <div class="section-hd"><h2>Ecosystem Map</h2></div>
+  <div style="padding:16px 20px;background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);margin-bottom:32px">
+    {eco}
+  </div>
+  
+  <div class="section-hd"><h2>Products ({len(prods)})</h2></div>
+  <div class="grid">{pcards}</div>
+</div>"""
+        
+        html = render_page(f"{info['name']} — AI Products & Ecosystem", 
+                           f"{info['name']}: {len(prods)} AI products tracked. Ratings, benchmarks, ecosystem map.",
+                           body, total=tp)
+        write_html(f"{OUT}/company/{comp_slug}/index.html", html)
+    
+    # Generate company index page
+    index_rows = ""
+    for comp_slug, comp_data in sorted(companies.items(), key=lambda x: len(x[1]["products"]), reverse=True):
+        info = meta.get(comp_slug, {"name": comp_slug.title(), "desc": ""})
+        prods = comp_data["products"]
+        avg_r = round(sum(p.get("rating", 0) or 0 for p in prods) / len(prods), 1) if prods else 0
+        index_rows += f"""<a href="/company/{comp_slug}/" class="featured-card" style="display:block">
+      <div class="fc-label">{len(prods)} PRODUCTS</div>
+      <div class="fc-title">{info['name']}</div>
+      <div class="fc-desc">{info['desc'][:120]}</div>
+      <div style="margin-top:12px;display:flex;gap:16px;font-size:12px">
+        <span style="color:var(--amber)">★ {avg_r}</span>
+        <span style="color:var(--green)">{len(prods)} agents</span>
+      </div>
+    </a>"""
+    
+    index_body = f"""<div class="container">
+  <div class="breadcrumbs"><a href="/">Catalog</a> &rsaquo; <span>Companies</span></div>
+  <h1 style="font-size:28px;font-weight:800;color:#f1f5f9;margin:24px 0 8px">AI Company Profiles</h1>
+  <p style="color:var(--muted);font-size:15px;margin-bottom:24px">Explore AI agent ecosystems by company. Track products, benchmark scores, and release activity for each organization.</p>
+  <div class="featured-grid">{index_rows}</div>
+</div>"""
+    
+    html = render_page("AI Companies — Ecosystem Profiles", 
+                       f"Company profiles for {len(companies)} AI organizations. Products, benchmarks, ecosystem maps.",
+                       index_body, total=tp)
+    write_html(f"{OUT}/company/index.html", html)
+    print(f"  /company/index.html + {len(companies)} company pages")
+
+
 # ─── Main ─────────────────────────────────────────────────────────
 if __name__ == "__main__":
     import shutil
@@ -1878,6 +2036,9 @@ if __name__ == "__main__":
 
     # Media Kit
     generate_media_kit()
+
+    # Company Pages
+    generate_company_pages()
 
     for cat in ["product", "comparison", "review"]:
         generate_catalog(cat)
