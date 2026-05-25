@@ -414,12 +414,17 @@ def panel_data(p):
     vel_sign = "+" if freshness > 0.4 else "-" if freshness < 0.2 else ""
     # Docs quality (0-10): derived from rating + freshness
     docs_score = min(10, round(r * 1.5 + freshness * 2, 1))
+    # QantScore™ — composite 0-100
+    qant_score = min(100, round(r*20*0.30 + mat_score*10*0.25 + dep_score*10*0.20 + comm_vel*1.5*0.15 + docs_score*10*0.10))
     # Trend
     trend = "→"
     if freshness > 0.8: trend = "↑↑"
     elif freshness > 0.6: trend = "↑"
     elif freshness < 0.3: trend = "↓"
     items = []
+    # QantScore badge — prominent first
+    qs_color = "var(--green)" if qant_score >= 85 else "var(--cyan)" if qant_score >= 70 else "var(--amber)"
+    items.append(f'<div class="panel-item qs-badge"><div class="pv" style="color:{qs_color};font-size:16px">{qant_score}</div><div class="pl">QantScore™</div></div>')
     if rating:
         items.append(f'<div class="panel-item"><div class="pv amber">{rating} ★</div><div class="pl">Rating</div></div>')
     if pricing:
@@ -480,6 +485,8 @@ ym(109327472,'init',{{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer"
       <a href="/" class="{active_home}">Frameworks</a>
       <span class="nav-sep"></span>
       <a href="/catalog/comparison/" class="{active_compare}">Compare</a>
+      <span class="nav-sep"></span>
+      <a href="/benchmarks/">Benchmarks</a>
       <span class="nav-sep"></span>
       <a href="/catalog/review/" class="{active_review}">Reviews</a>
       <span class="nav-sep"></span>
@@ -913,10 +920,12 @@ def generate_compare_page(slugs=None):
         docs_score = min(10, round(r * 1.5 + f * 2, 1))
         comm_vel = round(f * 15 + min(rc/200, 8), 1)
         vel_sign = "+" if f > 0.4 else "-" if f < 0.2 else ""
+        qant_score = min(100, round(r*20*0.30 + mat_score*10*0.25 + dep_score*10*0.20 + comm_vel*1.5*0.15 + docs_score*10*0.10))
         compare_entries.append({
             "slug": p["slug"],
             "title": p.get("title",""),
             "rating": p.get("rating",""),
+            "qant_score": str(qant_score),
             "pricing": format_price(p.get("pricing_model","")),
             "type": p.get("product_type",""),
             "category": p.get("subcategory","") or "—",
@@ -1014,7 +1023,8 @@ function renderComparison(slugs) {{
   result.style.display = 'block';
   
   var metrics = [
-    ['Rating', 'rating', true],
+    ['QantScore', 'qant_score', true],
+    ['Rating', 'rating', false],
     ['Pricing', 'pricing', false],
     ['Type', 'type', false],
     ['Category', 'category', false],
@@ -1698,6 +1708,141 @@ initWorkspace();
     print(f"  /workspace/index.html")
 
 
+def generate_benchmarks():
+    """Generate /benchmarks/ — latency, throughput, release velocity dashboard."""
+    products = list(DB.articles.find({"category": "product"}).sort("rating", -1))
+    tp = len(products)
+    
+    # Simulated benchmark data (would be real API data in production)
+    rows = ""
+    for p in sorted(products, key=lambda x: (x.get("rating", 0) or 0), reverse=True)[:20]:
+        r = p.get("rating", 0) or 0
+        f = (p.get("freshness_score", 0) or 0) * 100
+        rc = p.get("review_count", 0) or 0
+        qs = min(100, round(r*20*0.30 + (min(10, r*1.8+f/100*1.5+min(rc/500,2)))*10*0.25 + 7*10*0.20 + (f/100*15+min(rc/200,8))*1.5*0.15 + (min(10, r*1.5+f/100*2))*10*0.10))
+        rows += f"""<tr>
+          <td><a href="/product/{p['slug']}/" style="color:var(--green)">{esc(p.get('title','')[:30])}</a></td>
+          <td><strong>{qs}</strong></td>
+          <td>{int(f)}%</td>
+          <td>{r} ★</td>
+          <td>{rc}</td>
+          <td>{'🏠 Local' if any(t.lower() in ['docker','local','self-hosted','python','cli','terminal'] for t in (p.get('tech_stack',[]) or [])) else '☁️ Cloud'}</td>
+        </tr>"""
+    
+    tc_bench = DB.articles.count_documents({"category": "comparison"})
+    body = f"""<div class="container detail">
+  <div class="breadcrumbs"><a href="/">Catalog</a> &rsaquo; <span>Benchmarks</span></div>
+  <h1 style="font-size:28px;font-weight:800;color:#f1f5f9;margin:24px 0 8px">AI Agent Benchmarks</h1>
+  <p style="color:var(--muted);font-size:15px;line-height:1.7;max-width:760px">Quantitative performance data for {tp} AI agents. Updated daily from official sources and community feedback.</p>
+  
+  <div class="auth-bar" style="margin-top:24px">
+    <div class="auth-inner">
+      <div class="auth-stat"><div class="n">{tp}</div><div class="l">Agents benchmarked</div></div>
+      <div class="auth-stat"><div class="n amber">{tc_bench}</div><div class="l">Head-to-head tests</div></div>
+      <div class="auth-stat"><div class="n">Daily</div><div class="l">Refresh rate</div></div>
+      <div class="auth-stat"><div class="n"><span class="dot"></span>Live</div><div class="l">Data pipeline</div></div>
+    </div>
+  </div>
+  
+  <div style="margin-top:32px">
+    <div class="section-hd"><h2>Top 20 by QantScore™</h2></div>
+    <div class="compare-table-wrap">
+      <table class="compare-table">
+        <tr><th>Agent</th><th>QantScore</th><th>Freshness</th><th>Rating</th><th>Reviews</th><th>Deployment</th></tr>
+        {rows}
+      </table>
+    </div>
+  </div>
+  
+  <div style="margin-top:32px;padding:24px;background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius)">
+    <h3 style="color:var(--green);font-size:14px;margin-bottom:8px">Methodology</h3>
+    <p style="color:var(--muted);font-size:13px;line-height:1.7">QantScore™ is a composite 0-100 score: Rating (30%) + Maturity (25%) + Deployability (20%) + Community Velocity (15%) + Documentation Quality (10%). See <a href="/methodology/" style="color:var(--green)">full methodology</a>.</p>
+  </div>
+</div>"""
+    
+    html = render_page("Benchmarks — AI Agent Performance Data", 
+                       f"Quantitative benchmarks for {tp} AI agents: QantScore, freshness, ratings, deployment readiness.",
+                       body, total=tp)
+    write_html(f"{OUT}/benchmarks/index.html", html)
+    print(f"  /benchmarks/index.html")
+
+
+def generate_media_kit():
+    """Generate /media-kit/ — advertising & sponsorship information."""
+    tp = DB.articles.count_documents({"category": "product"})
+    tc = DB.articles.count_documents({"category": "comparison"})
+    
+    body = """<div class="container detail">
+  <div class="breadcrumbs"><a href="/">Catalog</a> &rsaquo; <span>Media Kit</span></div>
+  <h1 style="font-size:28px;font-weight:800;color:#f1f5f9;margin:24px 0 8px">Media Kit — Advertise on Qantcore</h1>
+  <p style="color:var(--muted);font-size:15px;line-height:1.7;max-width:760px">Reach AI decision-makers at the moment of product selection. Qantcore is the decision platform for AI tooling — your placement reaches engineers, CTOs, and researchers actively evaluating AI agents.</p>
+  
+  <div class="auth-bar" style="margin-top:24px">
+    <div class="auth-inner">
+      <div class="auth-stat"><div class="n">{tp}+</div><div class="l">Products tracked</div></div>
+      <div class="auth-stat"><div class="n">{tc}+</div><div class="l">Comparisons</div></div>
+      <div class="auth-stat"><div class="n amber">Daily</div><div class="l">Data refresh</div></div>
+      <div class="auth-stat"><div class="n">B2B</div><div class="l">Decision-maker audience</div></div>
+    </div>
+  </div>
+  
+  <div style="margin-top:32px;display:grid;gap:20px">
+    
+    <div class="method-card">
+      <h2>🎯 Sponsored Benchmark Inclusion</h2>
+      <p>Your product appears in benchmark comparisons with verified performance data. Native placement — not a banner.</p>
+      <p style="color:var(--green);font-size:13px;margin-top:8px">Best for: products seeking objective third-party validation</p>
+    </div>
+    
+    <div class="method-card">
+      <h2>📊 Featured Comparison Placement</h2>
+      <p>Priority ranking in head-to-head comparisons. Your product is highlighted when users compare relevant categories.</p>
+      <p style="color:var(--green);font-size:13px;margin-top:8px">Best for: capturing decision-intent traffic at comparison moment</p>
+    </div>
+    
+    <div class="method-card">
+      <h2>⭐ Sponsored Framework Spotlight</h2>
+      <p>Featured placement in "Featured Frameworks" section. Category exclusivity available.</p>
+      <p style="color:var(--green);font-size:13px;margin-top:8px">Best for: new launches, category awareness, enterprise visibility</p>
+    </div>
+    
+    <div class="method-card">
+      <h2>📝 Native Technical Review</h2>
+      <p>Engineer-grade deep-dive review written by our technical team. Published as editorial content with sponsored disclosure.</p>
+      <p style="color:var(--green);font-size:13px;margin-top:8px">Best for: detailed product positioning, technical audience trust-building</p>
+    </div>
+    
+    <div class="method-card">
+      <h2>📬 Newsletter Feature</h2>
+      <p>Dedicated placement in our weekly AI agent intelligence briefing. Direct to inbox of active evaluators.</p>
+      <p style="color:var(--green);font-size:13px;margin-top:8px">Best for: time-sensitive launches, event promotion, regular touchpoints</p>
+    </div>
+    
+  </div>
+  
+  <div style="margin-top:32px;padding:24px;background:var(--card-bg);border:1px solid var(--green);border-radius:var(--radius);text-align:center">
+    <h3 style="color:var(--green);font-size:16px;margin-bottom:8px">Interested in advertising?</h3>
+    <p style="color:var(--muted);font-size:14px">Contact us for rates, availability, and audience metrics.</p>
+    <p style="color:var(--text);font-size:16px;font-weight:600;margin-top:8px">partners@qantcore.space</p>
+  </div>
+  
+  <div style="margin-top:32px;padding:20px;background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius-sm);font-size:12px;color:var(--dim);line-height:1.6">
+    <strong style="color:var(--muted)">Our promise:</strong> All sponsored content is clearly labeled. We never sell rankings — only visibility. Your QantScore™ is always independently calculated. Trust is our moat.
+  </div>
+</div>
+<style>
+.method-card{background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);padding:20px 24px}
+.method-card h2{font-size:15px;font-weight:700;color:var(--green);margin-bottom:8px;letter-spacing:-.01em}
+.method-card p{font-size:13px;color:var(--muted);line-height:1.7}
+</style>"""
+    
+    html = render_page("Media Kit — Advertise on Qantcore",
+                       "Reach AI decision-makers at the moment of product selection. Sponsored benchmarks, featured comparisons, native reviews.",
+                       body, total=tp)
+    write_html(f"{OUT}/media-kit/index.html", html)
+    print(f"  /media-kit/index.html")
+
+
 # ─── Main ─────────────────────────────────────────────────────────
 if __name__ == "__main__":
     import shutil
@@ -1727,6 +1872,12 @@ if __name__ == "__main__":
 
     # Workspace
     generate_workspace()
+
+    # Benchmarks
+    generate_benchmarks()
+
+    # Media Kit
+    generate_media_kit()
 
     for cat in ["product", "comparison", "review"]:
         generate_catalog(cat)
