@@ -199,6 +199,10 @@ header{position:sticky;top:0;z-index:100;backdrop-filter:blur(20px) saturate(180
   font-size:16px;cursor:pointer;color:var(--dim);transition:all .2s;padding:4px}
 .bookmark-btn:hover{color:var(--amber);transform:scale(1.2)}
 .bookmark-btn.saved{color:var(--amber)}
+.watch-btn{position:absolute;top:36px;left:12px;z-index:5;background:none;border:none;
+  font-size:12px;cursor:pointer;color:var(--dim);transition:all .2s;padding:4px}
+.watch-btn:hover{color:var(--cyan);transform:scale(1.2)}
+.watch-btn.watching{color:var(--cyan)}
 .saved-section{margin-top:24px}
 /* ─── Feed ─── */
 .feed-list{display:flex;flex-direction:column;gap:8px}
@@ -354,6 +358,8 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
       <span class="nav-sep"></span>
       <a href="/methodology/" class="">Methodology</a>
       <span class="nav-sep"></span>
+      <a href="/workspace/" class="">Workspace</a>
+      <span class="nav-sep"></span>
       <a href="#saved" class="saved-nav" style="display:none">★ Saved</a>
     </div>
   </div>
@@ -362,7 +368,8 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
   <h2 style="font-size:22px;font-weight:700;color:#f1f5f9;margin-bottom:20px">Products</h2>
   <div class="grid"><a href="/product/cursor-ide/" class="card">
       
-      <button class="bookmark-btn" data-slug="cursor-ide" onclick="toggleSave(this,'cursor-ide')" title="Save">☆</button>
+      <button class="bookmark-btn" data-slug="cursor-ide" onclick="toggleSave(this,&#39;cursor-ide&#39;)" title="Save">☆</button>
+      <button class="watch-btn" data-slug="cursor-ide" onclick="event.preventDefault();toggleWatch(this,&#39;cursor-ide&#39;)" title="Track releases">🔔</button>
       <div class="card-top">
         <div class="card-icon"><img src="/images/cursor-ide.png" alt="" loading="lazy"></div>
         <span class="card-badge badge-agent">Agent</span>
@@ -373,7 +380,8 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
       <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T06:54:38.434828+00:00">🕐 3h ago</span><span>📊 2340 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
     </a><a href="/product/github-copilot/" class="card">
       
-      <button class="bookmark-btn" data-slug="github-copilot" onclick="toggleSave(this,'github-copilot')" title="Save">☆</button>
+      <button class="bookmark-btn" data-slug="github-copilot" onclick="toggleSave(this,&#39;github-copilot&#39;)" title="Save">☆</button>
+      <button class="watch-btn" data-slug="github-copilot" onclick="event.preventDefault();toggleWatch(this,&#39;github-copilot&#39;)" title="Track releases">🔔</button>
       <div class="card-top">
         <div class="card-icon"><img src="/images/github-copilot.png" alt="" loading="lazy"></div>
         <span class="card-badge badge-agent">Agent</span>
@@ -384,7 +392,8 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
       <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T06:54:38.447978+00:00">🕐 3h ago</span><span>📊 5200 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
     </a><a href="/product/claude-code/" class="card">
       
-      <button class="bookmark-btn" data-slug="claude-code" onclick="toggleSave(this,'claude-code')" title="Save">☆</button>
+      <button class="bookmark-btn" data-slug="claude-code" onclick="toggleSave(this,&#39;claude-code&#39;)" title="Save">☆</button>
+      <button class="watch-btn" data-slug="claude-code" onclick="event.preventDefault();toggleWatch(this,&#39;claude-code&#39;)" title="Track releases">🔔</button>
       <div class="card-top">
         <div class="card-icon"><img src="/images/claude-code.png" alt="" loading="lazy"></div>
         <span class="card-badge badge-agent">Agent</span>
@@ -395,7 +404,8 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
       <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T06:54:38.452029+00:00">🕐 3h ago</span><span>📊 890 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
     </a><a href="/product/cline-vscode/" class="card">
       
-      <button class="bookmark-btn" data-slug="cline-vscode" onclick="toggleSave(this,'cline-vscode')" title="Save">☆</button>
+      <button class="bookmark-btn" data-slug="cline-vscode" onclick="toggleSave(this,&#39;cline-vscode&#39;)" title="Save">☆</button>
+      <button class="watch-btn" data-slug="cline-vscode" onclick="event.preventDefault();toggleWatch(this,&#39;cline-vscode&#39;)" title="Track releases">🔔</button>
       <div class="card-top">
         <div class="card-icon"><img src="/images/cline-vscode.png" alt="" loading="lazy"></div>
         <span class="card-badge badge-agent">Agent</span>
@@ -406,7 +416,8 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
       <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T06:54:38.454650+00:00">🕐 3h ago</span><span>📊 560 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
     </a><a href="/product/windsurf-ide/" class="card">
       
-      <button class="bookmark-btn" data-slug="windsurf-ide" onclick="toggleSave(this,'windsurf-ide')" title="Save">☆</button>
+      <button class="bookmark-btn" data-slug="windsurf-ide" onclick="toggleSave(this,&#39;windsurf-ide&#39;)" title="Save">☆</button>
+      <button class="watch-btn" data-slug="windsurf-ide" onclick="event.preventDefault();toggleWatch(this,&#39;windsurf-ide&#39;)" title="Track releases">🔔</button>
       <div class="card-top">
         <div class="card-icon"><img src="/images/windsurf-ide.png" alt="" loading="lazy"></div>
         <span class="card-badge badge-agent">Agent</span>
@@ -417,7 +428,8 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
       <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T06:54:38.457238+00:00">🕐 3h ago</span><span>📊 1200 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
     </a><a href="/product/crewai-framework/" class="card">
       
-      <button class="bookmark-btn" data-slug="crewai-framework" onclick="toggleSave(this,'crewai-framework')" title="Save">☆</button>
+      <button class="bookmark-btn" data-slug="crewai-framework" onclick="toggleSave(this,&#39;crewai-framework&#39;)" title="Save">☆</button>
+      <button class="watch-btn" data-slug="crewai-framework" onclick="event.preventDefault();toggleWatch(this,&#39;crewai-framework&#39;)" title="Track releases">🔔</button>
       <div class="card-top">
         <div class="card-icon"><img src="/images/crewai-framework.png" alt="" loading="lazy"></div>
         <span class="card-badge badge-framework">Framework</span>
@@ -428,7 +440,8 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
       <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T06:54:38.459666+00:00">🕐 3h ago</span><span>📊 340 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
     </a><a href="/product/autogen-microsoft/" class="card">
       
-      <button class="bookmark-btn" data-slug="autogen-microsoft" onclick="toggleSave(this,'autogen-microsoft')" title="Save">☆</button>
+      <button class="bookmark-btn" data-slug="autogen-microsoft" onclick="toggleSave(this,&#39;autogen-microsoft&#39;)" title="Save">☆</button>
+      <button class="watch-btn" data-slug="autogen-microsoft" onclick="event.preventDefault();toggleWatch(this,&#39;autogen-microsoft&#39;)" title="Track releases">🔔</button>
       <div class="card-top">
         <div class="card-icon"><img src="/images/autogen-microsoft.png" alt="" loading="lazy"></div>
         <span class="card-badge badge-framework">Framework</span>
@@ -439,7 +452,8 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
       <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T06:54:38.461634+00:00">🕐 3h ago</span><span>📊 280 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
     </a><a href="/product/langgraph-framework/" class="card">
       
-      <button class="bookmark-btn" data-slug="langgraph-framework" onclick="toggleSave(this,'langgraph-framework')" title="Save">☆</button>
+      <button class="bookmark-btn" data-slug="langgraph-framework" onclick="toggleSave(this,&#39;langgraph-framework&#39;)" title="Save">☆</button>
+      <button class="watch-btn" data-slug="langgraph-framework" onclick="event.preventDefault();toggleWatch(this,&#39;langgraph-framework&#39;)" title="Track releases">🔔</button>
       <div class="card-top">
         <div class="card-icon"><img src="/images/langgraph-framework.png" alt="" loading="lazy"></div>
         <span class="card-badge badge-framework">Framework</span>
@@ -450,7 +464,8 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
       <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T06:54:38.463588+00:00">🕐 3h ago</span><span>📊 190 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
     </a><a href="/product/devin-agent/" class="card">
       
-      <button class="bookmark-btn" data-slug="devin-agent" onclick="toggleSave(this,'devin-agent')" title="Save">☆</button>
+      <button class="bookmark-btn" data-slug="devin-agent" onclick="toggleSave(this,&#39;devin-agent&#39;)" title="Save">☆</button>
+      <button class="watch-btn" data-slug="devin-agent" onclick="event.preventDefault();toggleWatch(this,&#39;devin-agent&#39;)" title="Track releases">🔔</button>
       <div class="card-top">
         <div class="card-icon"><img src="/images/devin-agent.png" alt="" loading="lazy"></div>
         <span class="card-badge badge-agent">Agent</span>
@@ -461,7 +476,8 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
       <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T06:54:38.465670+00:00">🕐 3h ago</span><span>📊 460 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
     </a><a href="/product/dify-platform/" class="card">
       
-      <button class="bookmark-btn" data-slug="dify-platform" onclick="toggleSave(this,'dify-platform')" title="Save">☆</button>
+      <button class="bookmark-btn" data-slug="dify-platform" onclick="toggleSave(this,&#39;dify-platform&#39;)" title="Save">☆</button>
+      <button class="watch-btn" data-slug="dify-platform" onclick="event.preventDefault();toggleWatch(this,&#39;dify-platform&#39;)" title="Track releases">🔔</button>
       <div class="card-top">
         <div class="card-icon"><img src="/images/dify-platform.png" alt="" loading="lazy"></div>
         <span class="card-badge badge-platform">Platform</span>
@@ -472,7 +488,8 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
       <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T06:54:38.467672+00:00">🕐 3h ago</span><span>📊 780 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
     </a><a href="/product/flowise-lowcode/" class="card">
       
-      <button class="bookmark-btn" data-slug="flowise-lowcode" onclick="toggleSave(this,'flowise-lowcode')" title="Save">☆</button>
+      <button class="bookmark-btn" data-slug="flowise-lowcode" onclick="toggleSave(this,&#39;flowise-lowcode&#39;)" title="Save">☆</button>
+      <button class="watch-btn" data-slug="flowise-lowcode" onclick="event.preventDefault();toggleWatch(this,&#39;flowise-lowcode&#39;)" title="Track releases">🔔</button>
       <div class="card-top">
         <div class="card-icon"><img src="/images/flowise-lowcode.png" alt="" loading="lazy"></div>
         <span class="card-badge badge-platform">Platform</span>
@@ -483,7 +500,8 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
       <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T06:54:38.469720+00:00">🕐 3h ago</span><span>📊 440 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
     </a><a href="/product/n8n-automation/" class="card">
       
-      <button class="bookmark-btn" data-slug="n8n-automation" onclick="toggleSave(this,'n8n-automation')" title="Save">☆</button>
+      <button class="bookmark-btn" data-slug="n8n-automation" onclick="toggleSave(this,&#39;n8n-automation&#39;)" title="Save">☆</button>
+      <button class="watch-btn" data-slug="n8n-automation" onclick="event.preventDefault();toggleWatch(this,&#39;n8n-automation&#39;)" title="Track releases">🔔</button>
       <div class="card-top">
         <div class="card-icon"><img src="/images/n8n-automation.png" alt="" loading="lazy"></div>
         <span class="card-badge badge-platform">Platform</span>
@@ -494,7 +512,8 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
       <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T06:54:38.471456+00:00">🕐 3h ago</span><span>📊 1200 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
     </a><a href="/product/perplexity-ai/" class="card">
       
-      <button class="bookmark-btn" data-slug="perplexity-ai" onclick="toggleSave(this,'perplexity-ai')" title="Save">☆</button>
+      <button class="bookmark-btn" data-slug="perplexity-ai" onclick="toggleSave(this,&#39;perplexity-ai&#39;)" title="Save">☆</button>
+      <button class="watch-btn" data-slug="perplexity-ai" onclick="event.preventDefault();toggleWatch(this,&#39;perplexity-ai&#39;)" title="Track releases">🔔</button>
       <div class="card-top">
         <div class="card-icon"><img src="/images/perplexity-ai.png" alt="" loading="lazy"></div>
         <span class="card-badge badge-agent">Agent</span>
@@ -505,7 +524,8 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
       <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T06:54:38.473254+00:00">🕐 3h ago</span><span>📊 3100 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
     </a><a href="/product/chatgpt-openai/" class="card">
       
-      <button class="bookmark-btn" data-slug="chatgpt-openai" onclick="toggleSave(this,'chatgpt-openai')" title="Save">☆</button>
+      <button class="bookmark-btn" data-slug="chatgpt-openai" onclick="toggleSave(this,&#39;chatgpt-openai&#39;)" title="Save">☆</button>
+      <button class="watch-btn" data-slug="chatgpt-openai" onclick="event.preventDefault();toggleWatch(this,&#39;chatgpt-openai&#39;)" title="Track releases">🔔</button>
       <div class="card-top">
         <div class="card-icon"><img src="/images/chatgpt-openai.png" alt="" loading="lazy"></div>
         <span class="card-badge badge-agent">Agent</span>
@@ -516,7 +536,8 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
       <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T06:54:38.475236+00:00">🕐 3h ago</span><span>📊 25000 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
     </a><a href="/product/claude-anthropic/" class="card">
       
-      <button class="bookmark-btn" data-slug="claude-anthropic" onclick="toggleSave(this,'claude-anthropic')" title="Save">☆</button>
+      <button class="bookmark-btn" data-slug="claude-anthropic" onclick="toggleSave(this,&#39;claude-anthropic&#39;)" title="Save">☆</button>
+      <button class="watch-btn" data-slug="claude-anthropic" onclick="event.preventDefault();toggleWatch(this,&#39;claude-anthropic&#39;)" title="Track releases">🔔</button>
       <div class="card-top">
         <div class="card-icon"><img src="/images/claude-anthropic.png" alt="" loading="lazy"></div>
         <span class="card-badge badge-agent">Agent</span>
@@ -527,7 +548,8 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
       <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T06:54:38.477249+00:00">🕐 3h ago</span><span>📊 4200 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
     </a><a href="/product/deepseek-llm/" class="card">
       
-      <button class="bookmark-btn" data-slug="deepseek-llm" onclick="toggleSave(this,'deepseek-llm')" title="Save">☆</button>
+      <button class="bookmark-btn" data-slug="deepseek-llm" onclick="toggleSave(this,&#39;deepseek-llm&#39;)" title="Save">☆</button>
+      <button class="watch-btn" data-slug="deepseek-llm" onclick="event.preventDefault();toggleWatch(this,&#39;deepseek-llm&#39;)" title="Track releases">🔔</button>
       <div class="card-top">
         <div class="card-icon"><img src="/images/deepseek-llm.png" alt="" loading="lazy"></div>
         <span class="card-badge badge-model">Model</span>
@@ -538,7 +560,8 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
       <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T06:54:38.479937+00:00">🕐 3h ago</span><span>📊 1800 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
     </a><a href="/product/autogpt-agent/" class="card">
       
-      <button class="bookmark-btn" data-slug="autogpt-agent" onclick="toggleSave(this,'autogpt-agent')" title="Save">☆</button>
+      <button class="bookmark-btn" data-slug="autogpt-agent" onclick="toggleSave(this,&#39;autogpt-agent&#39;)" title="Save">☆</button>
+      <button class="watch-btn" data-slug="autogpt-agent" onclick="event.preventDefault();toggleWatch(this,&#39;autogpt-agent&#39;)" title="Track releases">🔔</button>
       <div class="card-top">
         <div class="card-icon"><img src="/images/autogpt-agent.png" alt="" loading="lazy"></div>
         <span class="card-badge badge-agent">Agent</span>
@@ -549,7 +572,8 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
       <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T06:54:38.481974+00:00">🕐 3h ago</span><span>📊 2200 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
     </a><a href="/product/langchain-framework/" class="card">
       
-      <button class="bookmark-btn" data-slug="langchain-framework" onclick="toggleSave(this,'langchain-framework')" title="Save">☆</button>
+      <button class="bookmark-btn" data-slug="langchain-framework" onclick="toggleSave(this,&#39;langchain-framework&#39;)" title="Save">☆</button>
+      <button class="watch-btn" data-slug="langchain-framework" onclick="event.preventDefault();toggleWatch(this,&#39;langchain-framework&#39;)" title="Track releases">🔔</button>
       <div class="card-top">
         <div class="card-icon"><img src="/images/langchain-framework.png" alt="" loading="lazy"></div>
         <span class="card-badge badge-framework">Framework</span>
@@ -560,7 +584,8 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
       <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T06:54:38.484118+00:00">🕐 3h ago</span><span>📊 1600 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
     </a><a href="/product/taskade-ai/" class="card">
       
-      <button class="bookmark-btn" data-slug="taskade-ai" onclick="toggleSave(this,'taskade-ai')" title="Save">☆</button>
+      <button class="bookmark-btn" data-slug="taskade-ai" onclick="toggleSave(this,&#39;taskade-ai&#39;)" title="Save">☆</button>
+      <button class="watch-btn" data-slug="taskade-ai" onclick="event.preventDefault();toggleWatch(this,&#39;taskade-ai&#39;)" title="Track releases">🔔</button>
       <div class="card-top">
         <div class="card-icon"><img src="/images/taskade-ai.png" alt="" loading="lazy"></div>
         <span class="card-badge badge-agent">Agent</span>
@@ -571,7 +596,8 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
       <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T06:54:38.486078+00:00">🕐 3h ago</span><span>📊 650 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
     </a><a href="/product/babyagi-agent/" class="card">
       
-      <button class="bookmark-btn" data-slug="babyagi-agent" onclick="toggleSave(this,'babyagi-agent')" title="Save">☆</button>
+      <button class="bookmark-btn" data-slug="babyagi-agent" onclick="toggleSave(this,&#39;babyagi-agent&#39;)" title="Save">☆</button>
+      <button class="watch-btn" data-slug="babyagi-agent" onclick="event.preventDefault();toggleWatch(this,&#39;babyagi-agent&#39;)" title="Track releases">🔔</button>
       <div class="card-top">
         <div class="card-icon"><img src="/images/babyagi-agent.png" alt="" loading="lazy"></div>
         <span class="card-badge badge-agent">Agent</span>
@@ -582,7 +608,8 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
       <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T06:54:38.488263+00:00">🕐 3h ago</span><span>📊 980 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
     </a><a href="/product/replit-ai/" class="card">
       
-      <button class="bookmark-btn" data-slug="replit-ai" onclick="toggleSave(this,'replit-ai')" title="Save">☆</button>
+      <button class="bookmark-btn" data-slug="replit-ai" onclick="toggleSave(this,&#39;replit-ai&#39;)" title="Save">☆</button>
+      <button class="watch-btn" data-slug="replit-ai" onclick="event.preventDefault();toggleWatch(this,&#39;replit-ai&#39;)" title="Track releases">🔔</button>
       <div class="card-top">
         <div class="card-icon"><img src="/images/replit-ai.png" alt="" loading="lazy"></div>
         <span class="card-badge badge-agent">Agent</span>
@@ -593,7 +620,8 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
       <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span>📊 3400 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
     </a><a href="/product/codeium-windsurf/" class="card">
       
-      <button class="bookmark-btn" data-slug="codeium-windsurf" onclick="toggleSave(this,'codeium-windsurf')" title="Save">☆</button>
+      <button class="bookmark-btn" data-slug="codeium-windsurf" onclick="toggleSave(this,&#39;codeium-windsurf&#39;)" title="Save">☆</button>
+      <button class="watch-btn" data-slug="codeium-windsurf" onclick="event.preventDefault();toggleWatch(this,&#39;codeium-windsurf&#39;)" title="Track releases">🔔</button>
       <div class="card-top">
         <div class="card-icon"><img src="/images/codeium-windsurf.png" alt="" loading="lazy"></div>
         <span class="card-badge badge-agent">Agent</span>
@@ -604,7 +632,8 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
       <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span>📊 1200 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
     </a><a href="/product/amazon-q-developer/" class="card">
       
-      <button class="bookmark-btn" data-slug="amazon-q-developer" onclick="toggleSave(this,'amazon-q-developer')" title="Save">☆</button>
+      <button class="bookmark-btn" data-slug="amazon-q-developer" onclick="toggleSave(this,&#39;amazon-q-developer&#39;)" title="Save">☆</button>
+      <button class="watch-btn" data-slug="amazon-q-developer" onclick="event.preventDefault();toggleWatch(this,&#39;amazon-q-developer&#39;)" title="Track releases">🔔</button>
       <div class="card-top">
         <div class="card-icon"><img src="/images/amazon-q-developer.png" alt="" loading="lazy"></div>
         <span class="card-badge badge-agent">Agent</span>
@@ -615,7 +644,8 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
       <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span>📊 980 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
     </a><a href="/product/tabnine-ai/" class="card">
       
-      <button class="bookmark-btn" data-slug="tabnine-ai" onclick="toggleSave(this,'tabnine-ai')" title="Save">☆</button>
+      <button class="bookmark-btn" data-slug="tabnine-ai" onclick="toggleSave(this,&#39;tabnine-ai&#39;)" title="Save">☆</button>
+      <button class="watch-btn" data-slug="tabnine-ai" onclick="event.preventDefault();toggleWatch(this,&#39;tabnine-ai&#39;)" title="Track releases">🔔</button>
       <div class="card-top">
         <div class="card-icon"><img src="/images/tabnine-ai.png" alt="" loading="lazy"></div>
         <span class="card-badge badge-agent">Agent</span>
@@ -626,7 +656,8 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
       <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span>📊 2100 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
     </a><a href="/product/sourcegraph-cody/" class="card">
       
-      <button class="bookmark-btn" data-slug="sourcegraph-cody" onclick="toggleSave(this,'sourcegraph-cody')" title="Save">☆</button>
+      <button class="bookmark-btn" data-slug="sourcegraph-cody" onclick="toggleSave(this,&#39;sourcegraph-cody&#39;)" title="Save">☆</button>
+      <button class="watch-btn" data-slug="sourcegraph-cody" onclick="event.preventDefault();toggleWatch(this,&#39;sourcegraph-cody&#39;)" title="Track releases">🔔</button>
       <div class="card-top">
         <div class="card-icon"><img src="/images/sourcegraph-cody.png" alt="" loading="lazy"></div>
         <span class="card-badge badge-agent">Agent</span>
@@ -637,7 +668,8 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
       <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span>📊 670 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
     </a><a href="/product/aider-ai/" class="card">
       
-      <button class="bookmark-btn" data-slug="aider-ai" onclick="toggleSave(this,'aider-ai')" title="Save">☆</button>
+      <button class="bookmark-btn" data-slug="aider-ai" onclick="toggleSave(this,&#39;aider-ai&#39;)" title="Save">☆</button>
+      <button class="watch-btn" data-slug="aider-ai" onclick="event.preventDefault();toggleWatch(this,&#39;aider-ai&#39;)" title="Track releases">🔔</button>
       <div class="card-top">
         <div class="card-icon"><img src="/images/aider-ai.png" alt="" loading="lazy"></div>
         <span class="card-badge badge-agent">Agent</span>
@@ -648,7 +680,8 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
       <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span>📊 540 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
     </a><a href="/product/open-interpreter/" class="card">
       
-      <button class="bookmark-btn" data-slug="open-interpreter" onclick="toggleSave(this,'open-interpreter')" title="Save">☆</button>
+      <button class="bookmark-btn" data-slug="open-interpreter" onclick="toggleSave(this,&#39;open-interpreter&#39;)" title="Save">☆</button>
+      <button class="watch-btn" data-slug="open-interpreter" onclick="event.preventDefault();toggleWatch(this,&#39;open-interpreter&#39;)" title="Track releases">🔔</button>
       <div class="card-top">
         <div class="card-icon"><img src="/images/open-interpreter.png" alt="" loading="lazy"></div>
         <span class="card-badge badge-agent">Agent</span>
@@ -659,7 +692,8 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
       <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span>📊 3200 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
     </a><a href="/product/swe-agent/" class="card">
       
-      <button class="bookmark-btn" data-slug="swe-agent" onclick="toggleSave(this,'swe-agent')" title="Save">☆</button>
+      <button class="bookmark-btn" data-slug="swe-agent" onclick="toggleSave(this,&#39;swe-agent&#39;)" title="Save">☆</button>
+      <button class="watch-btn" data-slug="swe-agent" onclick="event.preventDefault();toggleWatch(this,&#39;swe-agent&#39;)" title="Track releases">🔔</button>
       <div class="card-top">
         <div class="card-icon"><img src="/images/swe-agent.png" alt="" loading="lazy"></div>
         <span class="card-badge badge-agent">Agent</span>
@@ -670,7 +704,8 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
       <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span>📊 430 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
     </a><a href="/product/metagpt-framework/" class="card">
       
-      <button class="bookmark-btn" data-slug="metagpt-framework" onclick="toggleSave(this,'metagpt-framework')" title="Save">☆</button>
+      <button class="bookmark-btn" data-slug="metagpt-framework" onclick="toggleSave(this,&#39;metagpt-framework&#39;)" title="Save">☆</button>
+      <button class="watch-btn" data-slug="metagpt-framework" onclick="event.preventDefault();toggleWatch(this,&#39;metagpt-framework&#39;)" title="Track releases">🔔</button>
       <div class="card-top">
         <div class="card-icon"><img src="/images/metagpt-framework.png" alt="" loading="lazy"></div>
         <span class="card-badge badge-framework">Framework</span>
@@ -681,7 +716,8 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
       <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span>📊 780 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
     </a><a href="/product/chatdev-agent/" class="card">
       
-      <button class="bookmark-btn" data-slug="chatdev-agent" onclick="toggleSave(this,'chatdev-agent')" title="Save">☆</button>
+      <button class="bookmark-btn" data-slug="chatdev-agent" onclick="toggleSave(this,&#39;chatdev-agent&#39;)" title="Save">☆</button>
+      <button class="watch-btn" data-slug="chatdev-agent" onclick="event.preventDefault();toggleWatch(this,&#39;chatdev-agent&#39;)" title="Track releases">🔔</button>
       <div class="card-top">
         <div class="card-icon"><img src="/images/chatdev-agent.png" alt="" loading="lazy"></div>
         <span class="card-badge badge-framework">Framework</span>
@@ -692,7 +728,8 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
       <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span>📊 320 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
     </a><a href="/product/superagi-agent/" class="card">
       
-      <button class="bookmark-btn" data-slug="superagi-agent" onclick="toggleSave(this,'superagi-agent')" title="Save">☆</button>
+      <button class="bookmark-btn" data-slug="superagi-agent" onclick="toggleSave(this,&#39;superagi-agent&#39;)" title="Save">☆</button>
+      <button class="watch-btn" data-slug="superagi-agent" onclick="event.preventDefault();toggleWatch(this,&#39;superagi-agent&#39;)" title="Track releases">🔔</button>
       <div class="card-top">
         <div class="card-icon"><img src="/images/superagi-agent.png" alt="" loading="lazy"></div>
         <span class="card-badge badge-framework">Framework</span>
@@ -703,7 +740,8 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
       <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span>📊 560 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
     </a><a href="/product/semantic-kernel/" class="card">
       
-      <button class="bookmark-btn" data-slug="semantic-kernel" onclick="toggleSave(this,'semantic-kernel')" title="Save">☆</button>
+      <button class="bookmark-btn" data-slug="semantic-kernel" onclick="toggleSave(this,&#39;semantic-kernel&#39;)" title="Save">☆</button>
+      <button class="watch-btn" data-slug="semantic-kernel" onclick="event.preventDefault();toggleWatch(this,&#39;semantic-kernel&#39;)" title="Track releases">🔔</button>
       <div class="card-top">
         <div class="card-icon"><img src="/images/semantic-kernel.png" alt="" loading="lazy"></div>
         <span class="card-badge badge-framework">Framework</span>
@@ -714,7 +752,8 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
       <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span>📊 890 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
     </a><a href="/product/phidata-framework/" class="card">
       
-      <button class="bookmark-btn" data-slug="phidata-framework" onclick="toggleSave(this,'phidata-framework')" title="Save">☆</button>
+      <button class="bookmark-btn" data-slug="phidata-framework" onclick="toggleSave(this,&#39;phidata-framework&#39;)" title="Save">☆</button>
+      <button class="watch-btn" data-slug="phidata-framework" onclick="event.preventDefault();toggleWatch(this,&#39;phidata-framework&#39;)" title="Track releases">🔔</button>
       <div class="card-top">
         <div class="card-icon"><img src="/images/phidata-framework.png" alt="" loading="lazy"></div>
         <span class="card-badge badge-framework">Framework</span>
@@ -725,7 +764,8 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
       <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span>📊 340 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
     </a><a href="/product/openai-swarm/" class="card">
       
-      <button class="bookmark-btn" data-slug="openai-swarm" onclick="toggleSave(this,'openai-swarm')" title="Save">☆</button>
+      <button class="bookmark-btn" data-slug="openai-swarm" onclick="toggleSave(this,&#39;openai-swarm&#39;)" title="Save">☆</button>
+      <button class="watch-btn" data-slug="openai-swarm" onclick="event.preventDefault();toggleWatch(this,&#39;openai-swarm&#39;)" title="Track releases">🔔</button>
       <div class="card-top">
         <div class="card-icon"><img src="/images/openai-swarm.png" alt="" loading="lazy"></div>
         <span class="card-badge badge-framework">Framework</span>
@@ -736,7 +776,8 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
       <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span>📊 280 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
     </a><a href="/product/smolagents-huggingface/" class="card">
       
-      <button class="bookmark-btn" data-slug="smolagents-huggingface" onclick="toggleSave(this,'smolagents-huggingface')" title="Save">☆</button>
+      <button class="bookmark-btn" data-slug="smolagents-huggingface" onclick="toggleSave(this,&#39;smolagents-huggingface&#39;)" title="Save">☆</button>
+      <button class="watch-btn" data-slug="smolagents-huggingface" onclick="event.preventDefault();toggleWatch(this,&#39;smolagents-huggingface&#39;)" title="Track releases">🔔</button>
       <div class="card-top">
         <div class="card-icon"><img src="/images/smolagents-huggingface.png" alt="" loading="lazy"></div>
         <span class="card-badge badge-framework">Framework</span>
@@ -747,7 +788,8 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
       <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span>📊 210 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
     </a><a href="/product/you-com/" class="card">
       
-      <button class="bookmark-btn" data-slug="you-com" onclick="toggleSave(this,'you-com')" title="Save">☆</button>
+      <button class="bookmark-btn" data-slug="you-com" onclick="toggleSave(this,&#39;you-com&#39;)" title="Save">☆</button>
+      <button class="watch-btn" data-slug="you-com" onclick="event.preventDefault();toggleWatch(this,&#39;you-com&#39;)" title="Track releases">🔔</button>
       <div class="card-top">
         <div class="card-icon"><img src="/images/you-com.png" alt="" loading="lazy"></div>
         <span class="card-badge badge-agent">Agent</span>
@@ -758,7 +800,8 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
       <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span>📊 1800 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
     </a><a href="/product/phind-ai/" class="card">
       
-      <button class="bookmark-btn" data-slug="phind-ai" onclick="toggleSave(this,'phind-ai')" title="Save">☆</button>
+      <button class="bookmark-btn" data-slug="phind-ai" onclick="toggleSave(this,&#39;phind-ai&#39;)" title="Save">☆</button>
+      <button class="watch-btn" data-slug="phind-ai" onclick="event.preventDefault();toggleWatch(this,&#39;phind-ai&#39;)" title="Track releases">🔔</button>
       <div class="card-top">
         <div class="card-icon"><img src="/images/phind-ai.png" alt="" loading="lazy"></div>
         <span class="card-badge badge-agent">Agent</span>
@@ -769,7 +812,8 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
       <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span>📊 920 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
     </a><a href="/product/jasper-ai/" class="card">
       
-      <button class="bookmark-btn" data-slug="jasper-ai" onclick="toggleSave(this,'jasper-ai')" title="Save">☆</button>
+      <button class="bookmark-btn" data-slug="jasper-ai" onclick="toggleSave(this,&#39;jasper-ai&#39;)" title="Save">☆</button>
+      <button class="watch-btn" data-slug="jasper-ai" onclick="event.preventDefault();toggleWatch(this,&#39;jasper-ai&#39;)" title="Track releases">🔔</button>
       <div class="card-top">
         <div class="card-icon"><img src="/images/jasper-ai.png" alt="" loading="lazy"></div>
         <span class="card-badge badge-agent">Agent</span>
@@ -780,7 +824,8 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
       <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span>📊 4200 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
     </a><a href="/product/copy-ai/" class="card">
       
-      <button class="bookmark-btn" data-slug="copy-ai" onclick="toggleSave(this,'copy-ai')" title="Save">☆</button>
+      <button class="bookmark-btn" data-slug="copy-ai" onclick="toggleSave(this,&#39;copy-ai&#39;)" title="Save">☆</button>
+      <button class="watch-btn" data-slug="copy-ai" onclick="event.preventDefault();toggleWatch(this,&#39;copy-ai&#39;)" title="Track releases">🔔</button>
       <div class="card-top">
         <div class="card-icon"><img src="/images/copy-ai.png" alt="" loading="lazy"></div>
         <span class="card-badge badge-agent">Agent</span>
@@ -791,7 +836,8 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
       <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span>📊 3100 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
     </a><a href="/product/microsoft-copilot/" class="card">
       
-      <button class="bookmark-btn" data-slug="microsoft-copilot" onclick="toggleSave(this,'microsoft-copilot')" title="Save">☆</button>
+      <button class="bookmark-btn" data-slug="microsoft-copilot" onclick="toggleSave(this,&#39;microsoft-copilot&#39;)" title="Save">☆</button>
+      <button class="watch-btn" data-slug="microsoft-copilot" onclick="event.preventDefault();toggleWatch(this,&#39;microsoft-copilot&#39;)" title="Track releases">🔔</button>
       <div class="card-top">
         <div class="card-icon"><img src="/images/microsoft-copilot.png" alt="" loading="lazy"></div>
         <span class="card-badge badge-agent">Agent</span>
@@ -802,7 +848,8 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
       <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span>📊 5600 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
     </a><a href="/product/google-gemini/" class="card">
       
-      <button class="bookmark-btn" data-slug="google-gemini" onclick="toggleSave(this,'google-gemini')" title="Save">☆</button>
+      <button class="bookmark-btn" data-slug="google-gemini" onclick="toggleSave(this,&#39;google-gemini&#39;)" title="Save">☆</button>
+      <button class="watch-btn" data-slug="google-gemini" onclick="event.preventDefault();toggleWatch(this,&#39;google-gemini&#39;)" title="Track releases">🔔</button>
       <div class="card-top">
         <div class="card-icon"><img src="/images/google-gemini.png" alt="" loading="lazy"></div>
         <span class="card-badge badge-agent">Agent</span>
@@ -813,7 +860,8 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
       <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span>📊 8900 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
     </a><a href="/product/llama-meta/" class="card">
       
-      <button class="bookmark-btn" data-slug="llama-meta" onclick="toggleSave(this,'llama-meta')" title="Save">☆</button>
+      <button class="bookmark-btn" data-slug="llama-meta" onclick="toggleSave(this,&#39;llama-meta&#39;)" title="Save">☆</button>
+      <button class="watch-btn" data-slug="llama-meta" onclick="event.preventDefault();toggleWatch(this,&#39;llama-meta&#39;)" title="Track releases">🔔</button>
       <div class="card-top">
         <div class="card-icon"><img src="/images/llama-meta.png" alt="" loading="lazy"></div>
         <span class="card-badge badge-model">Model</span>
@@ -824,7 +872,8 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
       <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span>📊 12000 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
     </a><a href="/product/mistral-ai/" class="card">
       
-      <button class="bookmark-btn" data-slug="mistral-ai" onclick="toggleSave(this,'mistral-ai')" title="Save">☆</button>
+      <button class="bookmark-btn" data-slug="mistral-ai" onclick="toggleSave(this,&#39;mistral-ai&#39;)" title="Save">☆</button>
+      <button class="watch-btn" data-slug="mistral-ai" onclick="event.preventDefault();toggleWatch(this,&#39;mistral-ai&#39;)" title="Track releases">🔔</button>
       <div class="card-top">
         <div class="card-icon"><img src="/images/mistral-ai.png" alt="" loading="lazy"></div>
         <span class="card-badge badge-model">Model</span>
@@ -835,7 +884,8 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
       <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span>📊 4300 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
     </a><a href="/product/lovable-dev/" class="card">
       
-      <button class="bookmark-btn" data-slug="lovable-dev" onclick="toggleSave(this,'lovable-dev')" title="Save">☆</button>
+      <button class="bookmark-btn" data-slug="lovable-dev" onclick="toggleSave(this,&#39;lovable-dev&#39;)" title="Save">☆</button>
+      <button class="watch-btn" data-slug="lovable-dev" onclick="event.preventDefault();toggleWatch(this,&#39;lovable-dev&#39;)" title="Track releases">🔔</button>
       <div class="card-top">
         <div class="card-icon"><img src="/images/lovable-dev.png" alt="" loading="lazy"></div>
         <span class="card-badge badge-agent">Agent</span>
@@ -846,7 +896,8 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
       <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span>📊 1800 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
     </a><a href="/product/bolt-new/" class="card">
       
-      <button class="bookmark-btn" data-slug="bolt-new" onclick="toggleSave(this,'bolt-new')" title="Save">☆</button>
+      <button class="bookmark-btn" data-slug="bolt-new" onclick="toggleSave(this,&#39;bolt-new&#39;)" title="Save">☆</button>
+      <button class="watch-btn" data-slug="bolt-new" onclick="event.preventDefault();toggleWatch(this,&#39;bolt-new&#39;)" title="Track releases">🔔</button>
       <div class="card-top">
         <div class="card-icon"><img src="/images/bolt-new.png" alt="" loading="lazy"></div>
         <span class="card-badge badge-agent">Agent</span>
@@ -857,7 +908,8 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
       <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span>📊 2200 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
     </a><a href="/product/vercel-v0/" class="card">
       
-      <button class="bookmark-btn" data-slug="vercel-v0" onclick="toggleSave(this,'vercel-v0')" title="Save">☆</button>
+      <button class="bookmark-btn" data-slug="vercel-v0" onclick="toggleSave(this,&#39;vercel-v0&#39;)" title="Save">☆</button>
+      <button class="watch-btn" data-slug="vercel-v0" onclick="event.preventDefault();toggleWatch(this,&#39;vercel-v0&#39;)" title="Track releases">🔔</button>
       <div class="card-top">
         <div class="card-icon"><img src="/images/vercel-v0.png" alt="" loading="lazy"></div>
         <span class="card-badge badge-agent">Agent</span>
@@ -868,7 +920,8 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
       <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span>📊 3400 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
     </a><a href="/product/composio-tools/" class="card">
       
-      <button class="bookmark-btn" data-slug="composio-tools" onclick="toggleSave(this,'composio-tools')" title="Save">☆</button>
+      <button class="bookmark-btn" data-slug="composio-tools" onclick="toggleSave(this,&#39;composio-tools&#39;)" title="Save">☆</button>
+      <button class="watch-btn" data-slug="composio-tools" onclick="event.preventDefault();toggleWatch(this,&#39;composio-tools&#39;)" title="Track releases">🔔</button>
       <div class="card-top">
         <div class="card-icon"><img src="/images/composio-tools.png" alt="" loading="lazy"></div>
         <span class="card-badge badge-infra">Infra</span>
@@ -879,7 +932,8 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
       <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span>📊 430 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
     </a><a href="/product/langsmith-langchain/" class="card">
       
-      <button class="bookmark-btn" data-slug="langsmith-langchain" onclick="toggleSave(this,'langsmith-langchain')" title="Save">☆</button>
+      <button class="bookmark-btn" data-slug="langsmith-langchain" onclick="toggleSave(this,&#39;langsmith-langchain&#39;)" title="Save">☆</button>
+      <button class="watch-btn" data-slug="langsmith-langchain" onclick="event.preventDefault();toggleWatch(this,&#39;langsmith-langchain&#39;)" title="Track releases">🔔</button>
       <div class="card-top">
         <div class="card-icon"><img src="/images/langsmith-langchain.png" alt="" loading="lazy"></div>
         <span class="card-badge badge-infra">Infra</span>
@@ -890,7 +944,8 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
       <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span>📊 670 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
     </a><a href="/product/e2b-sandbox/" class="card">
       
-      <button class="bookmark-btn" data-slug="e2b-sandbox" onclick="toggleSave(this,'e2b-sandbox')" title="Save">☆</button>
+      <button class="bookmark-btn" data-slug="e2b-sandbox" onclick="toggleSave(this,&#39;e2b-sandbox&#39;)" title="Save">☆</button>
+      <button class="watch-btn" data-slug="e2b-sandbox" onclick="event.preventDefault();toggleWatch(this,&#39;e2b-sandbox&#39;)" title="Track releases">🔔</button>
       <div class="card-top">
         <div class="card-icon"><img src="/images/e2b-sandbox.png" alt="" loading="lazy"></div>
         <span class="card-badge badge-infra">Infra</span>
@@ -901,7 +956,8 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
       <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span>📊 280 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
     </a><a href="/product/zapier-ai/" class="card">
       
-      <button class="bookmark-btn" data-slug="zapier-ai" onclick="toggleSave(this,'zapier-ai')" title="Save">☆</button>
+      <button class="bookmark-btn" data-slug="zapier-ai" onclick="toggleSave(this,&#39;zapier-ai&#39;)" title="Save">☆</button>
+      <button class="watch-btn" data-slug="zapier-ai" onclick="event.preventDefault();toggleWatch(this,&#39;zapier-ai&#39;)" title="Track releases">🔔</button>
       <div class="card-top">
         <div class="card-icon"><img src="/images/zapier-ai.png" alt="" loading="lazy"></div>
         <span class="card-badge badge-agent">Agent</span>
@@ -912,7 +968,8 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
       <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span>📊 5200 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
     </a><a href="/product/notion-ai/" class="card">
       
-      <button class="bookmark-btn" data-slug="notion-ai" onclick="toggleSave(this,'notion-ai')" title="Save">☆</button>
+      <button class="bookmark-btn" data-slug="notion-ai" onclick="toggleSave(this,&#39;notion-ai&#39;)" title="Save">☆</button>
+      <button class="watch-btn" data-slug="notion-ai" onclick="event.preventDefault();toggleWatch(this,&#39;notion-ai&#39;)" title="Track releases">🔔</button>
       <div class="card-top">
         <div class="card-icon"><img src="/images/notion-ai.png" alt="" loading="lazy"></div>
         <span class="card-badge badge-agent">Agent</span>
@@ -923,7 +980,8 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
       <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span>📊 4500 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
     </a><a href="/product/anthropic-mcp/" class="card">
       
-      <button class="bookmark-btn" data-slug="anthropic-mcp" onclick="toggleSave(this,'anthropic-mcp')" title="Save">☆</button>
+      <button class="bookmark-btn" data-slug="anthropic-mcp" onclick="toggleSave(this,&#39;anthropic-mcp&#39;)" title="Save">☆</button>
+      <button class="watch-btn" data-slug="anthropic-mcp" onclick="event.preventDefault();toggleWatch(this,&#39;anthropic-mcp&#39;)" title="Track releases">🔔</button>
       <div class="card-top">
         <div class="card-icon"><img src="/images/anthropic-mcp.png" alt="" loading="lazy"></div>
         <span class="card-badge badge-infra">Infra</span>
@@ -934,7 +992,8 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
       <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span>📊 380 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
     </a><a href="/product/openclaw-agent/" class="card">
       
-      <button class="bookmark-btn" data-slug="openclaw-agent" onclick="toggleSave(this,'openclaw-agent')" title="Save">☆</button>
+      <button class="bookmark-btn" data-slug="openclaw-agent" onclick="toggleSave(this,&#39;openclaw-agent&#39;)" title="Save">☆</button>
+      <button class="watch-btn" data-slug="openclaw-agent" onclick="event.preventDefault();toggleWatch(this,&#39;openclaw-agent&#39;)" title="Track releases">🔔</button>
       <div class="card-top">
         <div class="card-icon"><img src="/images/openclaw-agent.png" alt="" loading="lazy"></div>
         <span class="card-badge badge-agent">Agent</span>
@@ -945,7 +1004,8 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
       <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T06:54:41.530478+00:00">🕐 3h ago</span><span>📊 2100 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
     </a><a href="/product/codex-cli/" class="card">
       
-      <button class="bookmark-btn" data-slug="codex-cli" onclick="toggleSave(this,'codex-cli')" title="Save">☆</button>
+      <button class="bookmark-btn" data-slug="codex-cli" onclick="toggleSave(this,&#39;codex-cli&#39;)" title="Save">☆</button>
+      <button class="watch-btn" data-slug="codex-cli" onclick="event.preventDefault();toggleWatch(this,&#39;codex-cli&#39;)" title="Track releases">🔔</button>
       <div class="card-top">
         <div class="card-icon"><img src="/images/codex-cli.png" alt="" loading="lazy"></div>
         <span class="card-badge badge-agent">Agent</span>
@@ -956,7 +1016,8 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
       <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T06:54:41.534104+00:00">🕐 3h ago</span><span>📊 1800 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
     </a><a href="/product/hermes-agent/" class="card">
       
-      <button class="bookmark-btn" data-slug="hermes-agent" onclick="toggleSave(this,'hermes-agent')" title="Save">☆</button>
+      <button class="bookmark-btn" data-slug="hermes-agent" onclick="toggleSave(this,&#39;hermes-agent&#39;)" title="Save">☆</button>
+      <button class="watch-btn" data-slug="hermes-agent" onclick="event.preventDefault();toggleWatch(this,&#39;hermes-agent&#39;)" title="Track releases">🔔</button>
       <div class="card-top">
         <div class="card-icon"><img src="/images/hermes-agent.png" alt="" loading="lazy"></div>
         <span class="card-badge badge-agent">Agent</span>
@@ -967,7 +1028,8 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
       <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T06:54:41.537089+00:00">🕐 3h ago</span><span>📊 3200 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
     </a><a href="/product/continue-dev/" class="card">
       
-      <button class="bookmark-btn" data-slug="continue-dev" onclick="toggleSave(this,'continue-dev')" title="Save">☆</button>
+      <button class="bookmark-btn" data-slug="continue-dev" onclick="toggleSave(this,&#39;continue-dev&#39;)" title="Save">☆</button>
+      <button class="watch-btn" data-slug="continue-dev" onclick="event.preventDefault();toggleWatch(this,&#39;continue-dev&#39;)" title="Track releases">🔔</button>
       <div class="card-top">
         <div class="card-icon"><img src="/images/continue-dev.png" alt="" loading="lazy"></div>
         <span class="card-badge badge-agent">Agent</span>
@@ -978,7 +1040,8 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
       <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T06:54:41.541897+00:00">🕐 3h ago</span><span>📊 950 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
     </a><a href="/product/jan-ai/" class="card">
       
-      <button class="bookmark-btn" data-slug="jan-ai" onclick="toggleSave(this,'jan-ai')" title="Save">☆</button>
+      <button class="bookmark-btn" data-slug="jan-ai" onclick="toggleSave(this,&#39;jan-ai&#39;)" title="Save">☆</button>
+      <button class="watch-btn" data-slug="jan-ai" onclick="event.preventDefault();toggleWatch(this,&#39;jan-ai&#39;)" title="Track releases">🔔</button>
       <div class="card-top">
         <div class="card-icon"><img src="/images/jan-ai.png" alt="" loading="lazy"></div>
         <span class="card-badge badge-agent">Agent</span>
@@ -989,7 +1052,8 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
       <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T06:54:41.548512+00:00">🕐 3h ago</span><span>📊 1100 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
     </a><a href="/product/anythingllm/" class="card">
       
-      <button class="bookmark-btn" data-slug="anythingllm" onclick="toggleSave(this,'anythingllm')" title="Save">☆</button>
+      <button class="bookmark-btn" data-slug="anythingllm" onclick="toggleSave(this,&#39;anythingllm&#39;)" title="Save">☆</button>
+      <button class="watch-btn" data-slug="anythingllm" onclick="event.preventDefault();toggleWatch(this,&#39;anythingllm&#39;)" title="Track releases">🔔</button>
       <div class="card-top">
         <div class="card-icon"><img src="/images/anythingllm.png" alt="" loading="lazy"></div>
         <span class="card-badge badge-agent">Agent</span>
@@ -1000,7 +1064,8 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
       <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T06:54:41.551561+00:00">🕐 3h ago</span><span>📊 1500 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
     </a><a href="/product/ollama/" class="card">
       
-      <button class="bookmark-btn" data-slug="ollama" onclick="toggleSave(this,'ollama')" title="Save">☆</button>
+      <button class="bookmark-btn" data-slug="ollama" onclick="toggleSave(this,&#39;ollama&#39;)" title="Save">☆</button>
+      <button class="watch-btn" data-slug="ollama" onclick="event.preventDefault();toggleWatch(this,&#39;ollama&#39;)" title="Track releases">🔔</button>
       <div class="card-top">
         <div class="card-icon"><img src="/images/ollama.png" alt="" loading="lazy"></div>
         <span class="card-badge badge-agent">Agent</span>
@@ -1011,7 +1076,8 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
       <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T06:54:41.555446+00:00">🕐 3h ago</span><span>📊 5600 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
     </a><a href="/product/lm-studio/" class="card">
       
-      <button class="bookmark-btn" data-slug="lm-studio" onclick="toggleSave(this,'lm-studio')" title="Save">☆</button>
+      <button class="bookmark-btn" data-slug="lm-studio" onclick="toggleSave(this,&#39;lm-studio&#39;)" title="Save">☆</button>
+      <button class="watch-btn" data-slug="lm-studio" onclick="event.preventDefault();toggleWatch(this,&#39;lm-studio&#39;)" title="Track releases">🔔</button>
       <div class="card-top">
         <div class="card-icon"><img src="/images/lm-studio.png" alt="" loading="lazy"></div>
         <span class="card-badge badge-agent">Agent</span>

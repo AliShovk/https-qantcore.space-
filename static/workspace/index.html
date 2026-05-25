@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Workspace — Saved Agents &amp; Release Alerts | Qantcore — AI Agents Intelligence</title>
+<meta name="description" content="Your personal AI agent workspace: saved agents, release watches, stack drafts, comparison history.">
+<link rel="icon" type="image/svg+xml" href="/images/favicon.svg">
+
+<style>*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#0B0F14;--surface:#121821;--card-bg:#171F2B;--border:rgba(255,255,255,.06);
+  --text:#F5F7FA;--muted:#9AA4B2;--dim:#6B7280;
+  --green:#10b981;--green-dim:rgba(16,185,129,.12);
+  --blue:#3B82F6;--blue-dim:rgba(59,130,246,.12);
+  --cyan:#22D3EE;--cyan-dim:rgba(34,211,238,.12);
+  --amber:#f59e0b;--amber-dim:rgba(245,158,11,.12);
+  --red:#ef4444;--red-dim:rgba(239,68,68,.12);
+  --radius:12px;--radius-sm:8px}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
+  background:var(--bg);color:var(--text);min-height:100vh;line-height:1.6;
+  -webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:#1e2233;border-radius:2px}
+
+/* ─── Header & Mega-Nav ─── */
+header{position:sticky;top:0;z-index:100;backdrop-filter:blur(20px) saturate(180%);
+  background:rgba(11,15,20,.92);border-bottom:1px solid var(--border)}
+.header-inner{max-width:1320px;margin:0 auto;padding:14px 24px;
+  display:flex;align-items:center;justify-content:space-between}
+.logo{font-size:20px;font-weight:800;letter-spacing:-.02em;color:var(--text);
+  display:flex;align-items:center;gap:8px}
+.logo-dot{width:8px;height:8px;border-radius:50%;background:var(--green);
+  box-shadow:0 0 8px rgba(16,185,129,.5);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.mega-nav{display:flex;gap:4px;align-items:center}
+.mega-nav a,.mega-nav .nav-section{font-size:12.5px;color:var(--muted);
+  padding:6px 12px;border-radius:6px;transition:all .2s;font-weight:500;
+  letter-spacing:.01em;white-space:nowrap}
+.mega-nav a:hover{color:var(--text);background:rgba(255,255,255,.04)}
+.mega-nav a.active{color:var(--green);background:var(--green-dim)}
+.nav-sep{width:1px;height:18px;background:var(--border);margin:0 4px}
+
+/* ─── Terminal Grid (hero bg) ─── */
+.terminal-grid{position:absolute;top:0;left:0;right:0;bottom:0;overflow:hidden;pointer-events:none;z-index:0}
+.terminal-grid::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;
+  background-image:
+    linear-gradient(rgba(16,185,129,.04) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(16,185,129,.04) 1px,transparent 1px);
+  background-size:40px 40px;
+  animation:grid-scroll 20s linear infinite}
+@keyframes grid-scroll{0%{transform:translate(0,0)}100%{transform:translate(40px,40px)}}
+.terminal-grid::after{content:'';position:absolute;top:0;left:0;right:0;bottom:0;
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(16,185,129,.1) 0%, transparent 60%),
+    radial-gradient(circle at 20% 80%, rgba(59,130,246,.06) 0%, transparent 40%),
+    radial-gradient(circle at 80% 20%, rgba(16,185,129,.05) 0%, transparent 40%);
+  z-index:1}
+/* ─── Hero ─── */
+.hero{text-align:center;padding:72px 24px 48px;position:relative;overflow:hidden}
+.hero>*{position:relative;z-index:2}
+.hero h1{font-size:clamp(32px,5vw,56px);font-weight:800;letter-spacing:-.03em;
+  line-height:1.15;color:#f1f5f9;max-width:800px;margin:0 auto}
+.hero h1 .accent{color:var(--green)}
+.hero .sub{font-size:17px;color:var(--muted);margin-top:16px;max-width:640px;
+  margin-left:auto;margin-right:auto;line-height:1.6}
+.hero .tagline{font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:var(--green);
+  font-weight:600;margin-bottom:16px}
+.hero-metrics{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:28px}
+.hero-metric{background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius-sm);
+  padding:10px 18px;text-align:center;min-width:100px}
+.hero-metric .val{font-size:22px;font-weight:800;color:var(--green);font-variant-numeric:tabular-nums}
+.hero-metric .lbl{font-size:11px;color:var(--muted);margin-top:2px;text-transform:uppercase;letter-spacing:.06em}
+.hero-cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:32px}
+.cta-primary{padding:12px 28px;border-radius:var(--radius-sm);font-size:14px;font-weight:600;
+  background:var(--green);color:#000;border:none;cursor:pointer;transition:all .2s;
+  letter-spacing:-.01em}
+.cta-primary:hover{filter:brightness(1.15);transform:translateY(-1px)}
+.cta-secondary{padding:12px 28px;border-radius:var(--radius-sm);font-size:14px;font-weight:600;
+  background:transparent;color:var(--text);border:1px solid var(--border);cursor:pointer;
+  transition:all .2s}
+.cta-secondary:hover{border-color:var(--green);color:var(--green)}
+
+/* ─── Authority Bar ─── */
+.auth-bar{max-width:1320px;margin:0 auto 0;padding:0 24px 32px}
+.auth-inner{display:flex;gap:0;background:var(--card-bg);border:1px solid var(--border);
+  border-radius:var(--radius);overflow:hidden;flex-wrap:wrap}
+.auth-stat{flex:1;min-width:130px;padding:18px 20px;text-align:center;
+  border-right:1px solid var(--border);position:relative}
+.auth-stat:last-child{border-right:none}
+.auth-stat .n{font-size:26px;font-weight:800;color:var(--green);font-variant-numeric:tabular-nums;
+  letter-spacing:-.02em}
+.auth-stat .n.amber{color:var(--amber)}
+.auth-stat .l{font-size:11px;color:var(--muted);margin-top:3px;text-transform:uppercase;letter-spacing:.05em}
+.auth-stat .dot{display:inline-block;width:6px;height:6px;border-radius:50%;
+  background:var(--green);margin-right:6px;animation:pulse 2s infinite}
+
+/* ─── Section Headers ─── */
+.section-hd{max-width:1320px;margin:0 auto;padding:8px 24px 16px;
+  display:flex;align-items:center;justify-content:space-between}
+.section-hd h2{font-size:18px;font-weight:700;color:var(--text);letter-spacing:-.01em}
+.section-hd .see-all{font-size:13px;color:var(--green);font-weight:500}
+.section-hd .see-all:hover{text-decoration:underline}
+
+/* ─── Filters ─── */
+.filters-bar{max-width:1320px;margin:0 auto;padding:0 24px 20px;display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.filters-bar .label{font-size:12px;color:var(--dim);text-transform:uppercase;letter-spacing:.05em;margin-right:4px}
+.filter-btn{padding:6px 14px;border-radius:20px;font-size:12px;font-weight:500;
+  border:1px solid var(--border);background:transparent;
+  color:var(--muted);cursor:pointer;transition:all .2s;white-space:nowrap}
+.filter-btn:hover,.filter-btn.active{border-color:var(--green);color:var(--green);
+  background:var(--green-dim)}
+.filter-btn .count{font-size:10px;color:var(--dim);margin-left:4px}
+
+/* ─── Grid & Cards ─── */
+.grid{max-width:1320px;margin:0 auto;padding:0 24px 32px;
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
+
+.card{background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);
+  padding:20px;transition:all .2s;position:relative;display:flex;flex-direction:column}
+.card:hover{border-color:rgba(16,185,129,.25);transform:translateY(-2px);
+  box-shadow:0 8px 30px rgba(0,0,0,.4)}
+.card-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:12px}
+.card-icon{width:40px;height:40px;border-radius:var(--radius-sm);background:rgba(255,255,255,.04);
+  display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;overflow:hidden}
+.card-icon img{width:100%;height:100%;object-fit:contain;padding:6px}
+.card-badge{padding:2px 8px;border-radius:4px;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.04em}
+.badge-agent{background:var(--blue-dim);color:var(--blue)}
+.badge-framework{background:var(--green-dim);color:var(--green)}
+.badge-platform{background:var(--amber-dim);color:var(--amber)}
+.badge-model{background:var(--red-dim);color:var(--red)}
+.badge-infra{background:rgba(139,92,246,.12);color:#8b5cf6}
+.card-title{font-size:15px;font-weight:700;color:#f1f5f9;margin-bottom:6px;letter-spacing:-.01em;line-height:1.3}
+.card-desc{font-size:12.5px;color:var(--muted);line-height:1.5;display:-webkit-box;
+  -webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;margin-bottom:12px;flex:1}
+/* Intelligence Panel */
+.card-panel{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:auto}
+.panel-item{background:rgba(255,255,255,.02);border-radius:6px;padding:8px 10px}
+.panel-item .pv{font-size:14px;font-weight:700;color:var(--text);font-variant-numeric:tabular-nums}
+.panel-item .pv.green{color:var(--green)}
+.panel-item .pv.amber{color:var(--amber)}
+.panel-item .pl{font-size:10px;color:var(--dim);margin-top:1px;text-transform:uppercase;letter-spacing:.03em}
+.card-compare{position:absolute;top:12px;right:12px;z-index:5}
+.card-compare input[type=checkbox]{appearance:none;width:18px;height:18px;border-radius:4px;
+  border:2px solid var(--dim);cursor:pointer;transition:all .2s;position:relative}
+.card-compare input[type=checkbox]:checked{border-color:var(--green);background:var(--green)}
+.card-compare input[type=checkbox]:checked::after{content:'✓';position:absolute;
+  top:-1px;left:2px;color:#000;font-size:13px;font-weight:700}
+.card-trust{display:flex;gap:12px;margin-top:8px;font-size:10px;color:var(--dim)}
+.card-trust span{display:flex;align-items:center;gap:3px}
+
+/* ─── Compare Bar ─── */
+.compare-bar{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);
+  background:var(--card-bg);border:1px solid var(--green);
+  border-radius:var(--radius);padding:12px 20px;display:none;align-items:center;gap:16px;
+  z-index:200;box-shadow:0 8px 40px rgba(0,0,0,.6);backdrop-filter:blur(16px)}
+.compare-bar.active{display:flex}
+.compare-bar .sel{font-size:13px;color:var(--muted)}
+.compare-bar .sel strong{color:var(--green)}
+.compare-btn{padding:8px 20px;border-radius:6px;font-size:13px;font-weight:600;
+  background:var(--green);color:#000;border:none;cursor:pointer;transition:all .2s}
+.compare-btn:hover{filter:brightness(1.15)}
+.compare-btn:disabled{opacity:.3;cursor:not-allowed}
+.compare-clear{font-size:12px;color:var(--muted);cursor:pointer;background:none;border:none}
+.compare-clear:hover{color:var(--red)}
+
+/* ─── Featured Section ─── */
+.featured{max-width:1320px;margin:0 auto;padding:0 24px 32px}
+.featured-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(380px,1fr));gap:16px}
+.featured-card{background:var(--card-bg);border:1px solid var(--border);
+  border-radius:var(--radius);padding:24px;transition:all .2s;
+  position:relative;overflow:hidden}
+.featured-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,var(--green),var(--blue));opacity:0;transition:opacity .2s}
+.featured-card:hover::before{opacity:1}
+.featured-card:hover{transform:translateY(-2px);border-color:rgba(16,185,129,.2);
+  box-shadow:0 8px 30px rgba(0,0,0,.4)}
+.featured-card .fc-label{font-size:10px;text-transform:uppercase;letter-spacing:.06em;
+  color:var(--green);margin-bottom:8px;font-weight:600}
+.featured-card .fc-title{font-size:18px;font-weight:700;color:#f1f5f9;margin-bottom:6px}
+.featured-card .fc-desc{font-size:13px;color:var(--muted);line-height:1.6}
+
+/* ─── Compare Table ─── */
+.compare-table-wrap{overflow-x:auto;margin:20px 0}
+.compare-table{width:100%;border-collapse:collapse;font-size:13px}
+.compare-table th{text-align:left;padding:12px 16px;color:var(--muted);font-weight:500;
+  font-size:11px;text-transform:uppercase;letter-spacing:.04em;border-bottom:1px solid var(--border)}
+.compare-table td{padding:14px 16px;border-bottom:1px solid var(--border)}
+.compare-table tr:last-child td{border-bottom:none}
+.compare-table .winner{color:var(--green);font-weight:600}
+.compare-check{color:var(--green)}
+
+/* ─── Live Feed ─── */
+.live-dot{display:inline-block;width:8px;height:8px;border-radius:50%;
+  background:var(--green);margin-right:8px;animation:pulse 2s infinite}
+
+/* ─── Bookmark ─── */
+.bookmark-btn{position:absolute;top:12px;left:12px;z-index:5;background:none;border:none;
+  font-size:16px;cursor:pointer;color:var(--dim);transition:all .2s;padding:4px}
+.bookmark-btn:hover{color:var(--amber);transform:scale(1.2)}
+.bookmark-btn.saved{color:var(--amber)}
+.watch-btn{position:absolute;top:36px;left:12px;z-index:5;background:none;border:none;
+  font-size:12px;cursor:pointer;color:var(--dim);transition:all .2s;padding:4px}
+.watch-btn:hover{color:var(--cyan);transform:scale(1.2)}
+.watch-btn.watching{color:var(--cyan)}
+.saved-section{margin-top:24px}
+/* ─── Feed ─── */
+.feed-list{display:flex;flex-direction:column;gap:8px}
+.feed-item{display:flex;align-items:flex-start;gap:12px;padding:12px 16px;
+  background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius-sm);
+  transition:all .2s;font-size:13px}
+.feed-item:hover{border-color:rgba(16,185,129,.2)}
+.feed-item .fi-time{font-size:10px;color:var(--dim);white-space:nowrap;min-width:55px;padding-top:2px}
+.feed-item .fi-icon{font-size:14px;flex-shrink:0}
+.feed-item .fi-text{color:var(--muted);line-height:1.5}
+.feed-item .fi-text strong{color:var(--text)}
+
+/* ─── Trust Badges ─── */
+.trust-badge{display:inline-flex;align-items:center;gap:4px;font-size:10px;
+  padding:3px 8px;border-radius:4px;font-weight:500}
+.trust-verified{background:var(--green-dim);color:var(--green)}
+.trust-fresh{background:rgba(16,185,129,.06);color:var(--green)}
+.trust-stale{background:var(--amber-dim);color:var(--amber)}
+
+/* ─── Stack Builder ─── */
+.stack-builder{max-width:1320px;margin:0 auto;padding:32px 24px}
+.stack-inner{background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);
+  padding:32px}
+.stack-inner h2{font-size:20px;font-weight:700;margin-bottom:8px}
+.stack-inner .stack-sub{font-size:14px;color:var(--muted);margin-bottom:24px}
+.stack-slots{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-bottom:24px}
+.stack-slot{background:rgba(255,255,255,.02);border:2px dashed var(--border);
+  border-radius:var(--radius-sm);padding:16px;text-align:center;cursor:pointer;transition:all .2s}
+.stack-slot:hover{border-color:var(--green)}
+.stack-slot.filled{border-style:solid;border-color:rgba(16,185,129,.3);background:var(--green-dim)}
+.stack-slot .ss-label{font-size:10px;text-transform:uppercase;color:var(--dim);letter-spacing:.05em;margin-bottom:6px}
+.stack-slot .ss-value{font-size:14px;font-weight:600;color:var(--text)}
+.stack-result{background:rgba(16,185,129,.06);border:1px solid rgba(16,185,129,.2);
+  border-radius:var(--radius-sm);padding:20px;display:none}
+.stack-result.active{display:block}
+.stack-result h3{font-size:16px;color:var(--green);margin-bottom:12px}
+.stack-metrics{display:flex;gap:20px;flex-wrap:wrap}
+.stack-metric{text-align:center}
+.stack-metric .sm-val{font-size:20px;font-weight:700;color:var(--text)}
+.stack-metric .sm-lbl{font-size:11px;color:var(--dim);margin-top:2px}
+
+/* ─── Product Detail ─── */
+.detail{max-width:900px}
+.detail-header{margin-bottom:32px}
+.detail-header h1{font-size:32px;font-weight:800;color:#f1f5f9;letter-spacing:-.01em}
+.detail-header .tagline{font-size:16px;color:var(--muted);margin-top:8px}
+.detail-meta{display:flex;gap:12px;flex-wrap:wrap;margin-top:16px}
+.meta-item{display:flex;align-items:center;gap:6px;padding:8px 14px;
+  background:var(--card-bg);border-radius:var(--radius-sm);font-size:12.5px;color:var(--muted);
+  border:1px solid var(--border)}
+.meta-item strong{color:var(--text)}
+.meta-item.green{color:var(--green);border-color:rgba(16,185,129,.2)}
+.detail-body{margin-top:28px;font-size:14.5px;line-height:1.8;color:#b0b8c8}
+.detail-body h2{font-size:20px;font-weight:700;color:var(--text);margin:28px 0 10px}
+.detail-body h3{font-size:16px;font-weight:600;color:#d0d8e8;margin:22px 0 8px}
+.detail-body p{margin-bottom:14px}
+.detail-body ul,.detail-body ol{padding-left:22px;margin-bottom:14px}
+.detail-body li{margin-bottom:5px}
+.detail-body code{background:rgba(255,255,255,.06);padding:2px 6px;border-radius:4px;font-size:12.5px;color:var(--green)}
+.detail-body strong{color:var(--text)}
+.detail-body table{width:100%;border-collapse:collapse;margin:14px 0}
+.detail-body td,.detail-body th{border:1px solid var(--border);padding:10px 14px;text-align:left;font-size:12.5px}
+.detail-body th{background:rgba(255,255,255,.03);color:var(--green);font-weight:600}
+
+.breadcrumbs{font-size:12.5px;color:var(--dim);margin-bottom:20px}
+.breadcrumbs a{color:var(--muted);transition:color .2s}
+.breadcrumbs a:hover{color:var(--green)}
+.breadcrumbs span{color:var(--text)}
+
+.detail-image{width:100px;height:100px;border-radius:var(--radius);overflow:hidden;flex-shrink:0;
+  background:rgba(255,255,255,.03);display:flex;align-items:center;justify-content:center}
+.detail-image img{width:100%;height:100%;object-fit:contain;padding:10px}
+
+.rating{color:var(--amber);font-weight:700;font-size:13px}
+.price{font-weight:600;color:var(--green)}
+
+.stats-mini{display:flex;gap:16px;flex-wrap:wrap;margin:20px 0}
+.stat-mini{background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius-sm);
+  padding:14px 20px;text-align:center;min-width:100px}
+.stat-mini .sv{font-size:22px;font-weight:800;color:var(--green)}
+.stat-mini .sl{font-size:10px;color:var(--dim);text-transform:uppercase;letter-spacing:.04em;margin-top:2px}
+
+.empty{text-align:center;padding:80px 24px}
+.empty h2{font-size:24px;color:var(--muted);margin-bottom:8px}
+.empty p{color:var(--dim)}
+
+footer{text-align:center;padding:40px 24px;color:#1e2233;font-size:12px;
+  border-top:1px solid var(--border);margin-top:40px}
+footer a{color:var(--green)}
+
+/* ─── Search ─── */
+.search-bar{max-width:1320px;margin:0 auto;padding:0 24px 24px}
+.search-bar input{width:100%;padding:12px 18px;border-radius:var(--radius-sm);
+  background:var(--card-bg);border:1px solid var(--border);
+  color:var(--text);font-size:14px;outline:none;transition:border-color .2s}
+.search-bar input:focus{border-color:var(--green)}
+.search-bar input::placeholder{color:var(--dim)}
+
+@media(max-width:768px){
+  .hero h1{font-size:28px}
+  .grid,.featured-grid{grid-template-columns:1fr}
+  .mega-nav{overflow-x:auto;gap:2px;-webkit-overflow-scrolling:touch}
+  .mega-nav a,.mega-nav .nav-section{font-size:11px;padding:5px 8px}
+  .nav-sep{display:none}
+  .auth-stat{min-width:80px;padding:12px 10px}
+  .auth-stat .n{font-size:18px}
+  .auth-stat .l{font-size:9px}
+  .hero-metrics{gap:6px}
+  .hero-metric{min-width:70px;padding:8px 12px}
+  .hero-metric .val{font-size:16px}
+  .hero-metric .lbl{font-size:9px}
+  .compare-bar{left:16px;right:16px;transform:none;border-radius:var(--radius-sm)}
+  .section-hd{padding:8px 16px 12px}
+  .filters-bar,.grid,.featured,.auth-bar{padding-left:16px;padding-right:16px}
+  .header-inner{padding:12px 16px}
+}</style>
+<script type="application/ld+json">
+{}
+</script>
+</head>
+<body>
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+(function(m,e,t,r,i,k,a){
+m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+m[i].l=1*new Date();
+for (var j=0;j<document.scripts.length;j++){if(document.scripts[j].src===r){return;}}
+k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+})(window,document,'script','https://mc.yandex.ru/metrika/tag.js?id=109327472','ym');
+ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",referrer:document.referrer,url:location.href,accurateTrackBounce:true,trackLinks:true});
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/109327472" style="position:absolute;left:-9999px" alt=""/></div></noscript>
+<!-- /Yandex.Metrika counter -->
+<header>
+  <div class="header-inner">
+    <a href="/" class="logo"><span class="logo-dot"></span>Qantcore</a>
+    <div class="mega-nav">
+      <a href="/" class="">Frameworks</a>
+      <span class="nav-sep"></span>
+      <a href="/catalog/comparison/" class="">Compare</a>
+      <span class="nav-sep"></span>
+      <a href="/catalog/review/" class="">Reviews</a>
+      <span class="nav-sep"></span>
+      <a href="#rankings">Rankings</a>
+      <span class="nav-sep"></span>
+      <a href="#local-ai">Local AI</a>
+      <span class="nav-sep"></span>
+      <a href="#coding-agents">Coding</a>
+      <span class="nav-sep"></span>
+      <a href="#multi-agent">Multi-Agent</a>
+      <span class="nav-sep"></span>
+      <a href="#guides">Guides</a>
+      <span class="nav-sep"></span>
+      <a href="/methodology/" class="">Methodology</a>
+      <span class="nav-sep"></span>
+      <a href="/workspace/" class="">Workspace</a>
+      <span class="nav-sep"></span>
+      <a href="#saved" class="saved-nav" style="display:none">★ Saved</a>
+    </div>
+  </div>
+</header>
+<div class="container" id="workspace-root">
+  <div class="breadcrumbs"><a href="/">Catalog</a> &rsaquo; <span>Workspace</span></div>
+  
+  <!-- Empty state -->
+  <div id="ws-empty" style="text-align:center;padding:80px 20px">
+    <div style="font-size:48px;margin-bottom:16px">📋</div>
+    <h2 style="font-size:22px;font-weight:700;color:var(--text);margin-bottom:8px">Your Workspace</h2>
+    <p style="color:var(--muted);font-size:14px;max-width:500px;margin:0 auto;line-height:1.6">
+      Save agents, track releases, and build your AI stack.
+      <br>Bookmark agents with ★, watch releases with 🔔, or build a stack at <a href="/stack-builder/" style="color:var(--green)">Stack Builder</a>.
+    </p>
+  </div>
+  
+  <!-- Saved Agents -->
+  <div id="ws-saved" style="display:none">
+    <div class="section-hd"><h2>★ Saved Agents</h2></div>
+    <div class="grid" id="ws-saved-grid"></div>
+  </div>
+  
+  <!-- Release Watches -->
+  <div id="ws-watches" style="display:none;margin-top:32px">
+    <div class="section-hd"><h2>🔔 Release Alerts</h2></div>
+    <div id="ws-watches-list" style="display:flex;flex-direction:column;gap:8px"></div>
+  </div>
+  
+  <!-- Stack Drafts -->
+  <div id="ws-stacks" style="display:none;margin-top:32px">
+    <div class="section-hd"><h2>🧩 Stack Drafts</h2></div>
+    <div id="ws-stacks-list" style="display:flex;flex-direction:column;gap:8px"></div>
+  </div>
+  
+  <!-- Recent Comparisons -->
+  <div id="ws-comparisons" style="display:none;margin-top:32px">
+    <div class="section-hd"><h2>⚖️ Recent Comparisons</h2></div>
+    <div id="ws-comparisons-list" style="display:flex;flex-direction:column;gap:8px"></div>
+  </div>
+</div>
+<footer>
+  Qantcore &copy; 2026 &mdash; AI Agents Intelligence Platform &mdash;
+  Updated daily &mdash; <a href="https://t.me/nousresearch">@nousresearch</a>
+</footer>
+<script>
+var WS_PRODUCTS = {"hermes-agent": {"slug": "hermes-agent", "title": "Hermes Agent \u2014 AI-\u0430\u0433\u0435\u043d\u0442, \u043a\u043e\u0442\u043e\u0440\u044b\u0439 \u0440\u0430\u0441\u0442\u0451\u0442 \u0432\u043c\u0435\u0441\u0442\u0435 \u0441 \u0432\u0430\u043c\u0438", "rating": 4.9, "product_type": "agent", "updated_at": "2026-05-25T06:54:41.537089+00:00", "tagline": "\u0410\u0433\u0435\u043d\u0442 \u0441 \u043f\u0430\u043c\u044f\u0442\u044c\u044e, \u043d\u0430\u0432\u044b\u043a\u0430\u043c\u0438 \u0438 \u043f\u043e\u043b\u043d\u044b\u043c \u0434\u043e\u0441\u0442\u0443\u043f\u043e\u043c \u043a \u0441\u0438\u0441\u0442\u0435\u043c\u0435", "version": 1, "deployment": "\ud83c\udfe0 Local"}, "ollama": {"slug": "ollama", "title": "Ollama \u2014 \u043b\u043e\u043a\u0430\u043b\u044c\u043d\u044b\u0439 \u0437\u0430\u043f\u0443\u0441\u043a LLM \u043e\u0434\u043d\u043e\u0439 \u043a\u043e\u043c\u0430\u043d\u0434\u043e\u0439", "rating": 4.9, "product_type": "agent", "updated_at": "2026-05-25T06:54:41.555446+00:00", "tagline": "\u0417\u0430\u043f\u0443\u0441\u0442\u0438\u0442\u0435 Kimi-K2.5, DeepSeek, Qwen, Gemma \u0438 \u0441\u043e\u0442\u043d\u0438 \u0434\u0440\u0443\u0433\u0438\u0445 \u043b\u043e\u043a\u0430\u043b\u044c\u043d\u043e", "version": 1, "deployment": "\u2601\ufe0f Cloud"}, "cursor-ide": {"slug": "cursor-ide", "title": "Cursor IDE \u2014 AI-\u0441\u0440\u0435\u0434\u0430 \u0440\u0430\u0437\u0440\u0430\u0431\u043e\u0442\u043a\u0438 \u043d\u043e\u0432\u043e\u0433\u043e \u043f\u043e\u043a\u043e\u043b\u0435\u043d\u0438\u044f", "rating": 4.8, "product_type": "agent", "updated_at": "2026-05-25T06:54:38.434828+00:00", "tagline": "AI-first IDE, \u043a\u043e\u0442\u043e\u0440\u043e\u0435 \u043f\u043e\u043d\u0438\u043c\u0430\u0435\u0442 \u0432\u0430\u0448 \u043a\u043e\u0434", "version": 1, "deployment": "\u2601\ufe0f Cloud"}, "open-interpreter": {"slug": "open-interpreter", "title": "Open Interpreter \u2014 AI-\u0430\u0433\u0435\u043d\u0442 \u0441 \u0434\u043e\u0441\u0442\u0443\u043f\u043e\u043c \u043a \u043a\u043e\u043c\u043f\u044c\u044e\u0442\u0435\u0440\u0443", "rating": 4.8, "product_type": "agent", "updated_at": "", "tagline": "AI, \u043a\u043e\u0442\u043e\u0440\u044b\u0439 \u0438\u0441\u043f\u043e\u043b\u043d\u044f\u0435\u0442 \u043a\u043e\u0434 \u043d\u0430 \u0432\u0430\u0448\u0435\u043c \u043a\u043e\u043c\u043f\u044c\u044e\u0442\u0435\u0440\u0435", "version": 1, "deployment": "\ud83c\udfe0 Local"}, "llama-meta": {"slug": "llama-meta", "title": "Llama 3 \u2014 \u043e\u0442\u043a\u0440\u044b\u0442\u0430\u044f \u043c\u043e\u0434\u0435\u043b\u044c \u043e\u0442 Meta", "rating": 4.8, "product_type": "model", "updated_at": "", "tagline": "\u041b\u0443\u0447\u0448\u0430\u044f open source LLM: 8B \u0438 70B \u043f\u0430\u0440\u0430\u043c\u0435\u0442\u0440\u043e\u0432", "version": 1, "deployment": "\u2601\ufe0f Cloud"}, "openclaw-agent": {"slug": "openclaw-agent", "title": "OpenClaw \u2014 \u043f\u0435\u0440\u0441\u043e\u043d\u0430\u043b\u044c\u043d\u044b\u0439 AI-\u0430\u0441\u0441\u0438\u0441\u0442\u0435\u043d\u0442 \u0441 \u043e\u0442\u043a\u0440\u044b\u0442\u044b\u043c \u043a\u043e\u0434\u043e\u043c", "rating": 4.8, "product_type": "agent", "updated_at": "2026-05-25T06:54:41.530478+00:00", "tagline": "\u0412\u0430\u0448 \u043b\u0438\u0447\u043d\u044b\u0439 AI. \u041b\u044e\u0431\u0430\u044f \u041e\u0421. \u041b\u044e\u0431\u0430\u044f \u043f\u043b\u0430\u0442\u0444\u043e\u0440\u043c\u0430. \ud83e\udd9e", "version": 1, "deployment": "\ud83c\udfe0 Local"}, "cline-vscode": {"slug": "cline-vscode", "title": "Cline \u2014 \u0430\u0432\u0442\u043e\u043d\u043e\u043c\u043d\u044b\u0439 AI-\u0430\u0433\u0435\u043d\u0442 \u0434\u043b\u044f VS Code", "rating": 4.7, "product_type": "agent", "updated_at": "2026-05-25T06:54:38.454650+00:00", "tagline": "AI-\u0430\u0433\u0435\u043d\u0442 \u0441 \u0434\u043e\u0441\u0442\u0443\u043f\u043e\u043c \u043a \u0444\u0430\u0439\u043b\u0430\u043c \u0438 \u0442\u0435\u0440\u043c\u0438\u043d\u0430\u043b\u0443", "version": 1, "deployment": "\u2601\ufe0f Cloud"}, "perplexity-ai": {"slug": "perplexity-ai", "title": "Perplexity AI \u2014 \u043f\u043e\u0438\u0441\u043a\u043e\u0432\u0430\u044f \u0441\u0438\u0441\u0442\u0435\u043c\u0430 \u0441 \u0438\u0441\u043a\u0443\u0441\u0441\u0442\u0432\u0435\u043d\u043d\u044b\u043c \u0438\u043d\u0442\u0435\u043b\u043b\u0435\u043a\u0442\u043e\u043c", "rating": 4.7, "product_type": "agent", "updated_at": "2026-05-25T06:54:38.473254+00:00", "tagline": "AI-\u043f\u043e\u0438\u0441\u043a\u043e\u0432\u0438\u043a \u0441 \u0446\u0438\u0442\u0438\u0440\u043e\u0432\u0430\u043d\u0438\u0435\u043c \u0438\u0441\u0442\u043e\u0447\u043d\u0438\u043a\u043e\u0432", "version": 1, "deployment": "\u2601\ufe0f Cloud"}, "claude-anthropic": {"slug": "claude-anthropic", "title": "Claude \u2014 AI-\u0430\u0441\u0441\u0438\u0441\u0442\u0435\u043d\u0442 \u043e\u0442 Anthropic", "rating": 4.7, "product_type": "agent", "updated_at": "2026-05-25T06:54:38.477249+00:00", "tagline": "\u042d\u0442\u0438\u0447\u043d\u044b\u0439 AI \u0441 \u0434\u043b\u0438\u043d\u043d\u044b\u043c \u043a\u043e\u043d\u0442\u0435\u043a\u0441\u0442\u043e\u043c \u0438 agentic \u0440\u0435\u0436\u0438\u043c\u043e\u043c", "version": 1, "deployment": "\u2601\ufe0f Cloud"}, "aider-ai": {"slug": "aider-ai", "title": "Aider \u2014 AI-\u043f\u0430\u0440\u043d\u044b\u0439 \u043f\u0440\u043e\u0433\u0440\u0430\u043c\u043c\u0438\u0441\u0442 \u0432 \u0442\u0435\u0440\u043c\u0438\u043d\u0430\u043b\u0435", "rating": 4.7, "product_type": "agent", "updated_at": "", "tagline": "Open source AI-\u0430\u0433\u0435\u043d\u0442 \u0434\u043b\u044f \u0442\u0435\u0440\u043c\u0438\u043d\u0430\u043b\u0430: \u043f\u0438\u0448\u0435\u0442 \u0438 \u043f\u0440\u0430\u0432\u0438\u0442 \u043a\u043e\u0434 \u0432 Git", "version": 1, "deployment": "\ud83c\udfe0 Local"}, "smolagents-huggingface": {"slug": "smolagents-huggingface", "title": "SmolAgents \u2014 \u043c\u0438\u043d\u0438\u043c\u0430\u043b\u0438\u0441\u0442\u0438\u0447\u043d\u044b\u0435 \u0430\u0433\u0435\u043d\u0442\u044b \u043e\u0442 Hugging Face", "rating": 4.7, "product_type": "framework", "updated_at": "", "tagline": "\u0410\u0433\u0435\u043d\u0442\u044b \u0432 100 \u0441\u0442\u0440\u043e\u043a \u043a\u043e\u0434\u0430: code agents \u0438 tool-calling agents", "version": 1, "deployment": "\u2601\ufe0f Cloud"}, "mistral-ai": {"slug": "mistral-ai", "title": "Mistral AI \u2014 \u0435\u0432\u0440\u043e\u043f\u0435\u0439\u0441\u043a\u0438\u0439 \u043b\u0438\u0434\u0435\u0440 \u043e\u0442\u043a\u0440\u044b\u0442\u044b\u0445 LLM", "rating": 4.7, "product_type": "model", "updated_at": "", "tagline": "SoTA \u043e\u0442\u043a\u0440\u044b\u0442\u044b\u0435 \u043c\u043e\u0434\u0435\u043b\u0438 \u043e\u0442 \u0444\u0440\u0430\u043d\u0446\u0443\u0437\u0441\u043a\u043e\u0433\u043e \u0441\u0442\u0430\u0440\u0442\u0430\u043f\u0430", "version": 1, "deployment": "\u2601\ufe0f Cloud"}, "vercel-v0": {"slug": "vercel-v0", "title": "v0 by Vercel \u2014 \u0433\u0435\u043d\u0435\u0440\u0430\u0446\u0438\u044f UI \u043a\u043e\u043c\u043f\u043e\u043d\u0435\u043d\u0442\u043e\u0432 \u0442\u0435\u043a\u0441\u0442\u043e\u043c", "rating": 4.7, "product_type": "agent", "updated_at": "", "tagline": "\u041f\u0440\u043e\u043c\u043f\u0442 \u2192 React-\u043a\u043e\u043c\u043f\u043e\u043d\u0435\u043d\u0442 \u0441 Tailwind: \u0434\u0438\u0437\u0430\u0439\u043d \u0437\u0430 \u0441\u0435\u043a\u0443\u043d\u0434\u044b", "version": 1, "deployment": "\u2601\ufe0f Cloud"}, "anthropic-mcp": {"slug": "anthropic-mcp", "title": "Anthropic MCP \u2014 \u043f\u0440\u043e\u0442\u043e\u043a\u043e\u043b \u0434\u043b\u044f \u043f\u043e\u0434\u043a\u043b\u044e\u0447\u0435\u043d\u0438\u044f AI \u043a \u0434\u0430\u043d\u043d\u044b\u043c", "rating": 4.7, "product_type": "infrastructure", "updated_at": "", "tagline": "\u041e\u0442\u043a\u0440\u044b\u0442\u044b\u0439 \u043f\u0440\u043e\u0442\u043e\u043a\u043e\u043b Model Context Protocol: AI \u2194 \u0438\u043d\u0441\u0442\u0440\u0443\u043c\u0435\u043d\u0442\u044b \u0438 \u0434\u0430\u043d\u043d\u044b\u0435", "version": 1, "deployment": "\ud83c\udfe0 Local"}, "codex-cli": {"slug": "codex-cli", "title": "OpenAI Codex CLI \u2014 \u043b\u0451\u0433\u043a\u0438\u0439 \u0430\u0433\u0435\u043d\u0442 \u0434\u043b\u044f \u043a\u043e\u0434\u0430 \u0432 \u0442\u0435\u0440\u043c\u0438\u043d\u0430\u043b\u0435", "rating": 4.7, "product_type": "agent", "updated_at": "2026-05-25T06:54:41.534104+00:00", "tagline": "AI-\u0430\u0433\u0435\u043d\u0442, \u043a\u043e\u0442\u043e\u0440\u044b\u0439 \u0436\u0438\u0432\u0451\u0442 \u0432 \u0432\u0430\u0448\u0435\u043c \u0442\u0435\u0440\u043c\u0438\u043d\u0430\u043b\u0435", "version": 1, "deployment": "\u2601\ufe0f Cloud"}, "anythingllm": {"slug": "anythingllm", "title": "AnythingLLM \u2014 \u0443\u043d\u0438\u0432\u0435\u0440\u0441\u0430\u043b\u044c\u043d\u044b\u0439 AI-\u0443\u0441\u043a\u043e\u0440\u0438\u0442\u0435\u043b\u044c \u043f\u0440\u043e\u0434\u0443\u043a\u0442\u0438\u0432\u043d\u043e\u0441\u0442\u0438", "rating": 4.7, "product_type": "agent", "updated_at": "2026-05-25T06:54:41.551561+00:00", "tagline": "\u0412\u0441\u0451-\u0432-\u043e\u0434\u043d\u043e\u043c: RAG, \u0430\u0433\u0435\u043d\u0442\u044b, MCP \u0438 \u043a\u0430\u0441\u0442\u043e\u043c\u043d\u044b\u0435 \u043c\u043e\u0434\u0435\u043b\u0438 \u2014 \u0431\u0435\u0437 \u043d\u0430\u0441\u0442\u0440\u043e\u0439\u043a\u0438", "version": 1, "deployment": "\u2601\ufe0f Cloud"}, "lm-studio": {"slug": "lm-studio", "title": "LM Studio \u2014 \u0434\u0435\u0441\u043a\u0442\u043e\u043f\u043d\u043e\u0435 \u043f\u0440\u0438\u043b\u043e\u0436\u0435\u043d\u0438\u0435 \u0434\u043b\u044f \u043b\u043e\u043a\u0430\u043b\u044c\u043d\u044b\u0445 LLM", "rating": 4.7, "product_type": "agent", "updated_at": "2026-05-25T06:54:41.558495+00:00", "tagline": "\u0417\u0430\u043f\u0443\u0441\u043a\u0430\u0439\u0442\u0435 \u043b\u044e\u0431\u044b\u0435 \u043c\u043e\u0434\u0435\u043b\u0438 \u043b\u043e\u043a\u0430\u043b\u044c\u043d\u043e \u0441 \u0443\u0434\u043e\u0431\u043d\u044b\u043c UI \u0438 GPU-\u0443\u0441\u043a\u043e\u0440\u0435\u043d\u0438\u0435\u043c", "version": 1, "deployment": "\u2601\ufe0f Cloud"}, "claude-code": {"slug": "claude-code", "title": "Claude Code \u2014 \u0430\u0433\u0435\u043d\u0442\u043d\u043e\u0435 \u043f\u0440\u043e\u0433\u0440\u0430\u043c\u043c\u0438\u0440\u043e\u0432\u0430\u043d\u0438\u0435 \u043e\u0442 Anthropic", "rating": 4.6, "product_type": "agent", "updated_at": "2026-05-25T06:54:38.452029+00:00", "tagline": "AI-\u0430\u0433\u0435\u043d\u0442, \u043a\u043e\u0442\u043e\u0440\u044b\u0439 \u0447\u0438\u0442\u0430\u0435\u0442 \u043a\u043e\u0434\u043e\u0432\u0443\u044e \u0431\u0430\u0437\u0443 \u0438 \u043f\u0438\u0448\u0435\u0442 PR", "version": 1, "deployment": "\ud83c\udfe0 Local"}, "n8n-automation": {"slug": "n8n-automation", "title": "n8n \u2014 \u0430\u0432\u0442\u043e\u043c\u0430\u0442\u0438\u0437\u0430\u0446\u0438\u044f \u0440\u0430\u0431\u043e\u0447\u0438\u0445 \u043f\u0440\u043e\u0446\u0435\u0441\u0441\u043e\u0432 \u0441 AI", "rating": 4.6, "product_type": "platform", "updated_at": "2026-05-25T06:54:38.471456+00:00", "tagline": "Open-source \u0430\u043b\u044c\u0442\u0435\u0440\u043d\u0430\u0442\u0438\u0432\u0430 Zapier \u0441 AI-\u043d\u043e\u0434\u0430\u043c\u0438", "version": 1, "deployment": "\u2601\ufe0f Cloud"}, "chatgpt-openai": {"slug": "chatgpt-openai", "title": "ChatGPT \u2014 \u0443\u043d\u0438\u0432\u0435\u0440\u0441\u0430\u043b\u044c\u043d\u044b\u0439 AI-\u0430\u0441\u0441\u0438\u0441\u0442\u0435\u043d\u0442 \u043e\u0442 OpenAI", "rating": 4.6, "product_type": "agent", "updated_at": "2026-05-25T06:54:38.475236+00:00", "tagline": "\u0421\u0430\u043c\u044b\u0439 \u043f\u043e\u043f\u0443\u043b\u044f\u0440\u043d\u044b\u0439 AI-\u0447\u0430\u0442 \u0441 \u0430\u0433\u0435\u043d\u0442\u043d\u044b\u043c\u0438 \u0432\u043e\u0437\u043c\u043e\u0436\u043d\u043e\u0441\u0442\u044f\u043c\u0438", "version": 1, "deployment": "\ud83c\udfe0 Local"}, "metagpt-framework": {"slug": "metagpt-framework", "title": "MetaGPT \u2014 multi-agent \u0444\u0440\u0435\u0439\u043c\u0432\u043e\u0440\u043a \u0441 \u0440\u043e\u043b\u044f\u043c\u0438 \u043a\u0430\u043a \u0432 \u043a\u043e\u043c\u043f\u0430\u043d\u0438\u0438", "rating": 4.6, "product_type": "framework", "updated_at": "", "tagline": "\u0421\u0438\u043c\u0443\u043b\u044f\u0446\u0438\u044f IT-\u043a\u043e\u043c\u043f\u0430\u043d\u0438\u0438: \u0430\u0433\u0435\u043d\u0442\u044b-\u0430\u0440\u0445\u0438\u0442\u0435\u043a\u0442\u043e\u0440\u044b, \u0440\u0430\u0437\u0440\u0430\u0431\u043e\u0442\u0447\u0438\u043a\u0438, \u0442\u0435\u0441\u0442\u0438\u0440\u043e\u0432\u0449\u0438\u043a\u0438", "version": 1, "deployment": "\u2601\ufe0f Cloud"}, "openai-swarm": {"slug": "openai-swarm", "title": "OpenAI Swarm \u2014 \u043c\u0438\u043d\u0438\u043c\u0430\u043b\u0438\u0441\u0442\u0438\u0447\u043d\u0430\u044f \u043e\u0440\u043a\u0435\u0441\u0442\u0440\u0430\u0446\u0438\u044f \u0430\u0433\u0435\u043d\u0442\u043e\u0432", "rating": 4.6, "product_type": "framework", "updated_at": "", "tagline": "\u041b\u0451\u0433\u043a\u0438\u0439 \u0444\u0440\u0435\u0439\u043c\u0432\u043e\u0440\u043a \u0434\u043b\u044f multi-agent \u0441\u0438\u0441\u0442\u0435\u043c \u043e\u0442 OpenAI", "version": 1, "deployment": "\u2601\ufe0f Cloud"}, "phind-ai": {"slug": "phind-ai", "title": "Phind \u2014 AI-\u043f\u043e\u0438\u0441\u043a\u043e\u0432\u0438\u043a \u0434\u043b\u044f \u0440\u0430\u0437\u0440\u0430\u0431\u043e\u0442\u0447\u0438\u043a\u043e\u0432", "rating": 4.6, "product_type": "agent", "updated_at": "", "tagline": "\u0422\u0435\u0445\u043d\u0438\u0447\u0435\u0441\u043a\u0438\u0439 \u043f\u043e\u0438\u0441\u043a \u0441 \u043c\u0433\u043d\u043e\u0432\u0435\u043d\u043d\u044b\u043c\u0438 \u043e\u0442\u0432\u0435\u0442\u0430\u043c\u0438 \u0438 \u0441\u0441\u044b\u043b\u043a\u0430\u043c\u0438 \u043d\u0430 \u043a\u043e\u0434", "version": 1, "deployment": "\u2601\ufe0f Cloud"}, "lovable-dev": {"slug": "lovable-dev", "title": "Lovable \u2014 AI-\u0440\u0430\u0437\u0440\u0430\u0431\u043e\u0442\u043a\u0430 \u043f\u0440\u0438\u043b\u043e\u0436\u0435\u043d\u0438\u0439 \u0431\u0435\u0437 \u043a\u043e\u0434\u0430", "rating": 4.6, "product_type": "agent", "updated_at": "", "tagline": "\u041e\u043f\u0438\u0448\u0438\u0442\u0435 \u0438\u0434\u0435\u044e \u2014 \u043f\u043e\u043b\u0443\u0447\u0438\u0442\u0435 \u0440\u0430\u0431\u043e\u0442\u0430\u044e\u0449\u0435\u0435 \u043f\u0440\u0438\u043b\u043e\u0436\u0435\u043d\u0438\u0435", "version": 1, "deployment": "\u2601\ufe0f Cloud"}, "composio-tools": {"slug": "composio-tools", "title": "Composio \u2014 \u043f\u043b\u0430\u0442\u0444\u043e\u0440\u043c\u0430 \u0438\u043d\u0442\u0435\u0433\u0440\u0430\u0446\u0438\u0439 \u0434\u043b\u044f AI-\u0430\u0433\u0435\u043d\u0442\u043e\u0432", "rating": 4.6, "product_type": "infrastructure", "updated_at": "", "tagline": "200+ \u0438\u043d\u0441\u0442\u0440\u0443\u043c\u0435\u043d\u0442\u043e\u0432 \u0438 \u0438\u043d\u0442\u0435\u0433\u0440\u0430\u0446\u0438\u0439 \u0434\u043b\u044f \u0430\u0433\u0435\u043d\u0442\u043e\u0432: Gmail, GitHub, Jira...", "version": 1, "deployment": "\u2601\ufe0f Cloud"}, "continue-dev": {"slug": "continue-dev", "title": "Continue \u2014 AI-\u0440\u0430\u0441\u0448\u0438\u0440\u0435\u043d\u0438\u0435 \u0434\u043b\u044f IDE \u0441 \u043e\u0442\u043a\u0440\u044b\u0442\u044b\u043c \u043a\u043e\u0434\u043e\u043c", "rating": 4.6, "product_type": "agent", "updated_at": "2026-05-25T06:54:41.541897+00:00", "tagline": "AI-\u043f\u0440\u043e\u0432\u0435\u0440\u043a\u0438 \u043a\u043e\u0434\u0430, enforceable \u0432 CI", "version": 1, "deployment": "\u2601\ufe0f Cloud"}, "github-copilot": {"slug": "github-copilot", "title": "GitHub Copilot \u2014 AI-\u043f\u0430\u0440\u043d\u044b\u0439 \u043f\u0440\u043e\u0433\u0440\u0430\u043c\u043c\u0438\u0441\u0442", "rating": 4.5, "product_type": "agent", "updated_at": "2026-05-25T06:54:38.447978+00:00", "tagline": "AI-\u043f\u043e\u043c\u043e\u0449\u043d\u0438\u043a, \u0432\u0441\u0442\u0440\u043e\u0435\u043d\u043d\u044b\u0439 \u0432 \u0432\u0430\u0448 \u0440\u0435\u0434\u0430\u043a\u0442\u043e\u0440", "version": 1, "deployment": "\u2601\ufe0f Cloud"}, "dify-platform": {"slug": "dify-platform", "title": "Dify \u2014 \u043f\u043b\u0430\u0442\u0444\u043e\u0440\u043c\u0430 \u0434\u043b\u044f LLM-\u043f\u0440\u0438\u043b\u043e\u0436\u0435\u043d\u0438\u0439", "rating": 4.5, "product_type": "platform", "updated_at": "2026-05-25T06:54:38.467672+00:00", "tagline": "Open-source \u043f\u043b\u0430\u0442\u0444\u043e\u0440\u043c\u0430 \u0434\u043b\u044f \u0441\u043e\u0437\u0434\u0430\u043d\u0438\u044f AI-\u043f\u0440\u0438\u043b\u043e\u0436\u0435\u043d\u0438\u0439", "version": 1, "deployment": "\ud83c\udfe0 Local"}, "deepseek-llm": {"slug": "deepseek-llm", "title": "DeepSeek \u2014 \u043a\u0438\u0442\u0430\u0439\u0441\u043a\u0438\u0439 LLM \u043d\u043e\u0432\u043e\u0433\u043e \u043f\u043e\u043a\u043e\u043b\u0435\u043d\u0438\u044f", "rating": 4.5, "product_type": "model", "updated_at": "2026-05-25T06:54:38.479937+00:00", "tagline": "\u041e\u0442\u043a\u0440\u044b\u0442\u0430\u044f \u043c\u043e\u0434\u0435\u043b\u044c, \u0441\u0440\u0430\u0432\u043d\u0438\u043c\u0430\u044f \u0441 GPT-4", "version": 1, "deployment": "\ud83c\udfe0 Local"}, "swe-agent": {"slug": "swe-agent", "title": "SWE-Agent \u2014 AI \u0434\u043b\u044f \u0440\u0435\u0448\u0435\u043d\u0438\u044f GitHub issues", "rating": 4.5, "product_type": "agent", "updated_at": "", "tagline": "\u0410\u0432\u0442\u043e\u043d\u043e\u043c\u043d\u044b\u0439 \u0430\u0433\u0435\u043d\u0442: \u043e\u0442 \u0431\u0430\u0433-\u0440\u0435\u043f\u043e\u0440\u0442\u0430 \u0434\u043e Pull Request", "version": 1, "deployment": "\u2601\ufe0f Cloud"}, "phidata-framework": {"slug": "phidata-framework", "title": "Phidata \u2014 \u0444\u0440\u0435\u0439\u043c\u0432\u043e\u0440\u043a \u0434\u043b\u044f AI-\u0430\u0433\u0435\u043d\u0442\u043e\u0432 \u0441 \u0434\u043e\u043b\u0433\u043e\u0432\u0440\u0435\u043c\u0435\u043d\u043d\u043e\u0439 \u043f\u0430\u043c\u044f\u0442\u044c\u044e", "rating": 4.5, "product_type": "framework", "updated_at": "", "tagline": "\u0421\u0442\u0440\u043e\u0438\u0442\u0435\u043b\u044c\u043d\u044b\u0435 \u0431\u043b\u043e\u043a\u0438 \u0434\u043b\u044f \u0430\u0433\u0435\u043d\u0442\u043e\u0432: \u043f\u0430\u043c\u044f\u0442\u044c, \u0437\u043d\u0430\u043d\u0438\u044f, \u0438\u043d\u0441\u0442\u0440\u0443\u043c\u0435\u043d\u0442\u044b", "version": 1, "deployment": "\u2601\ufe0f Cloud"}, "bolt-new": {"slug": "bolt-new", "title": "Bolt.new \u2014 full-stack \u043f\u0440\u0438\u043b\u043e\u0436\u0435\u043d\u0438\u044f \u0432 \u0431\u0440\u0430\u0443\u0437\u0435\u0440\u0435 \u0441 AI", "rating": 4.5, "product_type": "agent", "updated_at": "", "tagline": "\u041f\u0438\u0448\u0438\u0442\u0435 \u043f\u0440\u043e\u043c\u043f\u0442 \u2014 \u043f\u043e\u043b\u0443\u0447\u0430\u0439\u0442\u0435 full-stack \u043f\u0440\u0438\u043b\u043e\u0436\u0435\u043d\u0438\u0435 \u0441 \u0434\u0435\u043f\u043b\u043e\u0435\u043c", "version": 1, "deployment": "\u2601\ufe0f Cloud"}, "e2b-sandbox": {"slug": "e2b-sandbox", "title": "E2B \u2014 \u043f\u0435\u0441\u043e\u0447\u043d\u0438\u0446\u044b \u0434\u043b\u044f AI-\u0430\u0433\u0435\u043d\u0442\u043e\u0432", "rating": 4.5, "product_type": "infrastructure", "updated_at": "", "tagline": "Sandboxed cloud environments \u0434\u043b\u044f \u0431\u0435\u0437\u043e\u043f\u0430\u0441\u043d\u043e\u0433\u043e \u0438\u0441\u043f\u043e\u043b\u043d\u0435\u043d\u0438\u044f \u043a\u043e\u0434\u0430 \u0430\u0433\u0435\u043d\u0442\u043e\u0432", "version": 1, "deployment": "\u2601\ufe0f Cloud"}, "jan-ai": {"slug": "jan-ai", "title": "Jan \u2014 \u043e\u043f\u0435\u043d\u0441\u043e\u0440\u0441\u043d\u0430\u044f \u0430\u043b\u044c\u0442\u0435\u0440\u043d\u0430\u0442\u0438\u0432\u0430 ChatGPT \u0441 \u043b\u043e\u043a\u0430\u043b\u044c\u043d\u044b\u043c \u0437\u0430\u043f\u0443\u0441\u043a\u043e\u043c", "rating": 4.5, "product_type": "agent", "updated_at": "2026-05-25T06:54:41.548512+00:00", "tagline": "ChatGPT \u0441 \u043e\u0442\u043a\u0440\u044b\u0442\u044b\u043c \u043a\u043e\u0434\u043e\u043c, \u0440\u0430\u0431\u043e\u0442\u0430\u044e\u0449\u0438\u0439 100% \u043e\u0444\u043b\u0430\u0439\u043d", "version": 1, "deployment": "\u2601\ufe0f Cloud"}, "windsurf-ide": {"slug": "windsurf-ide", "title": "Windsurf \u2014 AI IDE \u043e\u0442 Codeium", "rating": 4.4, "product_type": "agent", "updated_at": "2026-05-25T06:54:38.457238+00:00", "tagline": "\u041f\u0435\u0440\u0432\u044b\u0439 AI Flow IDE \u0441 \u043a\u0430\u0441\u043a\u0430\u0434\u043d\u044b\u043c \u043a\u043e\u043d\u0442\u0435\u043a\u0441\u0442\u043e\u043c", "version": 1, "deployment": "\u2601\ufe0f Cloud"}, "langgraph-framework": {"slug": "langgraph-framework", "title": "LangGraph \u2014 \u043e\u0440\u043a\u0435\u0441\u0442\u0440\u0430\u0446\u0438\u044f \u0430\u0433\u0435\u043d\u0442\u043e\u0432 \u043a\u0430\u043a \u0433\u0440\u0430\u0444 \u0441\u043e\u0441\u0442\u043e\u044f\u043d\u0438\u0439", "rating": 4.4, "product_type": "framework", "updated_at": "2026-05-25T06:54:38.463588+00:00", "tagline": "Stateful multi-actor \u043f\u0440\u0438\u043b\u043e\u0436\u0435\u043d\u0438\u044f \u043e\u0442 \u0441\u043e\u0437\u0434\u0430\u0442\u0435\u043b\u0435\u0439 LangChain", "version": 1, "deployment": "\ud83c\udfe0 Local"}, "codeium-windsurf": {"slug": "codeium-windsurf", "title": "Codeium \u2014 AI-\u0430\u0432\u0442\u043e\u0434\u043e\u043f\u043e\u043b\u043d\u0435\u043d\u0438\u0435 \u0438 \u043f\u043e\u0438\u0441\u043a \u043f\u043e \u043a\u043e\u0434\u043e\u0432\u043e\u0439 \u0431\u0430\u0437\u0435", "rating": 4.4, "product_type": "agent", "updated_at": "", "tagline": "\u0411\u0435\u0441\u043f\u043b\u0430\u0442\u043d\u043e\u0435 AI-\u0434\u043e\u043f\u043e\u043b\u043d\u0435\u043d\u0438\u0435 \u043a\u043e\u0434\u0430 \u0441 \u043a\u043e\u043d\u0442\u0435\u043a\u0441\u0442\u043d\u044b\u043c \u043f\u043e\u0438\u0441\u043a\u043e\u043c", "version": 1, "deployment": "\u2601\ufe0f Cloud"}, "chatdev-agent": {"slug": "chatdev-agent", "title": "ChatDev \u2014 \u0432\u0438\u0440\u0442\u0443\u0430\u043b\u044c\u043d\u0430\u044f \u0441\u043e\u0444\u0442\u0432\u0435\u0440\u043d\u0430\u044f \u043a\u043e\u043c\u043f\u0430\u043d\u0438\u044f \u0438\u0437 AI-\u0430\u0433\u0435\u043d\u0442\u043e\u0432", "rating": 4.4, "product_type": "framework", "updated_at": "", "tagline": "AI-\u0430\u0433\u0435\u043d\u0442\u044b \u0441 \u0440\u043e\u043b\u044f\u043c\u0438 CEO, CTO, \u043f\u0440\u043e\u0433\u0440\u0430\u043c\u043c\u0438\u0441\u0442\u0430 \u0438 \u0442\u0435\u0441\u0442\u0438\u0440\u043e\u0432\u0449\u0438\u043a\u0430", "version": 1, "deployment": "\u2601\ufe0f Cloud"}, "you-com": {"slug": "you-com", "title": "You.com \u2014 AI-\u043f\u043e\u0438\u0441\u043a\u043e\u0432\u0438\u043a \u0441 \u0430\u0433\u0435\u043d\u0442\u043d\u044b\u043c\u0438 \u0440\u0435\u0436\u0438\u043c\u0430\u043c\u0438", "rating": 4.4, "product_type": "agent", "updated_at": "", "tagline": "\u041f\u043e\u0438\u0441\u043a\u043e\u0432\u0430\u044f \u0441\u0438\u0441\u0442\u0435\u043c\u0430 \u0441 AI-\u0430\u0433\u0435\u043d\u0442\u043e\u043c: research, creative, genius", "version": 1, "deployment": "\ud83c\udfe0 Local"}, "google-gemini": {"slug": "google-gemini", "title": "Google Gemini \u2014 \u043c\u0443\u043b\u044c\u0442\u0438\u043c\u043e\u0434\u0430\u043b\u044c\u043d\u044b\u0439 AI \u0434\u043b\u044f \u0431\u0438\u0437\u043d\u0435\u0441\u0430 \u0438 \u0440\u0430\u0437\u0440\u0430\u0431\u043e\u0442\u043a\u0438", "rating": 4.4, "product_type": "agent", "updated_at": "", "tagline": "\u041c\u0443\u043b\u044c\u0442\u0438\u043c\u043e\u0434\u0430\u043b\u044c\u043d\u044b\u0439 AI \u043e\u0442 Google: \u0442\u0435\u043a\u0441\u0442, \u043a\u043e\u0434, \u0438\u0437\u043e\u0431\u0440\u0430\u0436\u0435\u043d\u0438\u044f, \u0432\u0438\u0434\u0435\u043e", "version": 1, "deployment": "\u2601\ufe0f Cloud"}, "langsmith-langchain": {"slug": "langsmith-langchain", "title": "LangSmith \u2014 observability \u0438 \u0442\u0435\u0441\u0442\u0438\u0440\u043e\u0432\u0430\u043d\u0438\u0435 LLM-\u043f\u0440\u0438\u043b\u043e\u0436\u0435\u043d\u0438\u0439", "rating": 4.4, "product_type": "infrastructure", "updated_at": "", "tagline": "DevOps \u0434\u043b\u044f LLM: \u0442\u0440\u0435\u0439\u0441\u0438\u043d\u0433, \u043e\u0446\u0435\u043d\u043a\u0430, \u044d\u043a\u0441\u043f\u0435\u0440\u0438\u043c\u0435\u043d\u0442\u044b", "version": 1, "deployment": "\ud83c\udfe0 Local"}, "zapier-ai": {"slug": "zapier-ai", "title": "Zapier AI \u2014 \u0430\u0432\u0442\u043e\u043c\u0430\u0442\u0438\u0437\u0430\u0446\u0438\u044f \u0441 AI \u0431\u0435\u0437 \u043a\u043e\u0434\u0430", "rating": 4.4, "product_type": "agent", "updated_at": "", "tagline": "6000+ \u0438\u043d\u0442\u0435\u0433\u0440\u0430\u0446\u0438\u0439 \u0441 AI-\u0448\u0430\u0433\u0430\u043c\u0438 \u0432 \u0440\u0430\u0431\u043e\u0447\u0438\u0445 \u043f\u0440\u043e\u0446\u0435\u0441\u0441\u0430\u0445", "version": 1, "deployment": "\u2601\ufe0f Cloud"}, "crewai-framework": {"slug": "crewai-framework", "title": "CrewAI \u2014 \u0444\u0440\u0435\u0439\u043c\u0432\u043e\u0440\u043a \u0434\u043b\u044f multi-agent \u0441\u0438\u0441\u0442\u0435\u043c", "rating": 4.3, "product_type": "framework", "updated_at": "2026-05-25T06:54:38.459666+00:00", "tagline": "\u041e\u0440\u043a\u0435\u0441\u0442\u0440\u0430\u0446\u0438\u044f AI-\u0430\u0433\u0435\u043d\u0442\u043e\u0432 \u0441 \u0440\u043e\u043b\u044f\u043c\u0438 \u0438 \u0437\u0430\u0434\u0430\u0447\u0430\u043c\u0438", "version": 1, "deployment": "\ud83c\udfe0 Local"}, "flowise-lowcode": {"slug": "flowise-lowcode", "title": "Flowise \u2014 low-code \u043a\u043e\u043d\u0441\u0442\u0440\u0443\u043a\u0442\u043e\u0440 LLM-\u043f\u043e\u0442\u043e\u043a\u043e\u0432", "rating": 4.3, "product_type": "platform", "updated_at": "2026-05-25T06:54:38.469720+00:00", "tagline": "\u0412\u0438\u0437\u0443\u0430\u043b\u044c\u043d\u043e\u0435 \u043f\u043e\u0441\u0442\u0440\u043e\u0435\u043d\u0438\u0435 AI-\u043f\u0430\u0439\u043f\u043b\u0430\u0439\u043d\u043e\u0432 drag-and-drop", "version": 1, "deployment": "\u2601\ufe0f Cloud"}, "replit-ai": {"slug": "replit-ai", "title": "Replit AI \u2014 \u043e\u0431\u043b\u0430\u0447\u043d\u0430\u044f IDE \u0441\u043e \u0432\u0441\u0442\u0440\u043e\u0435\u043d\u043d\u044b\u043c AI-\u0430\u0433\u0435\u043d\u0442\u043e\u043c", "rating": 4.3, "product_type": "agent", "updated_at": "", "tagline": "\u041e\u0431\u043b\u0430\u0447\u043d\u0430\u044f \u0441\u0440\u0435\u0434\u0430 \u0440\u0430\u0437\u0440\u0430\u0431\u043e\u0442\u043a\u0438 \u0441 AI-\u0430\u0433\u0435\u043d\u0442\u043e\u043c \u0438 \u0434\u0435\u043f\u043b\u043e\u0435\u043c \u0432 \u043e\u0434\u0438\u043d \u043a\u043b\u0438\u043a", "version": 1, "deployment": "\ud83c\udfe0 Local"}, "sourcegraph-cody": {"slug": "sourcegraph-cody", "title": "Sourcegraph Cody \u2014 AI \u0441 \u043f\u043e\u043d\u0438\u043c\u0430\u043d\u0438\u0435\u043c \u0432\u0441\u0435\u0439 \u043a\u043e\u0434\u043e\u0432\u043e\u0439 \u0431\u0430\u0437\u044b", "rating": 4.3, "product_type": "agent", "updated_at": "", "tagline": "AI-\u043f\u043e\u043c\u043e\u0449\u043d\u0438\u043a, \u043a\u043e\u0442\u043e\u0440\u044b\u0439 \u0447\u0438\u0442\u0430\u0435\u0442 \u0438 \u043f\u043e\u043d\u0438\u043c\u0430\u0435\u0442 \u0432\u0435\u0441\u044c \u0432\u0430\u0448 \u0440\u0435\u043f\u043e\u0437\u0438\u0442\u043e\u0440\u0438\u0439", "version": 1, "deployment": "\u2601\ufe0f Cloud"}, "superagi-agent": {"slug": "superagi-agent", "title": "SuperAGI \u2014 \u043e\u0442\u043a\u0440\u044b\u0442\u0430\u044f \u043f\u043b\u0430\u0442\u0444\u043e\u0440\u043c\u0430 \u0430\u0432\u0442\u043e\u043d\u043e\u043c\u043d\u044b\u0445 \u0430\u0433\u0435\u043d\u0442\u043e\u0432", "rating": 4.3, "product_type": "framework", "updated_at": "", "tagline": "\u0418\u043d\u0444\u0440\u0430\u0441\u0442\u0440\u0443\u043a\u0442\u0443\u0440\u0430 \u0434\u043b\u044f \u0441\u043e\u0437\u0434\u0430\u043d\u0438\u044f \u0438 \u0434\u0435\u043f\u043b\u043e\u044f \u0430\u0432\u0442\u043e\u043d\u043e\u043c\u043d\u044b\u0445 AI-\u0430\u0433\u0435\u043d\u0442\u043e\u0432", "version": 1, "deployment": "\u2601\ufe0f Cloud"}, "copy-ai": {"slug": "copy-ai", "title": "Copy.ai \u2014 GTM-\u043f\u043b\u0430\u0442\u0444\u043e\u0440\u043c\u0430 \u0441 AI-\u0432\u043e\u0440\u043a\u0444\u043b\u043e\u0443", "rating": 4.3, "product_type": "agent", "updated_at": "", "tagline": "\u041e\u0442 AI-\u043a\u043e\u043f\u0438\u0440\u0430\u0439\u0442\u0435\u0440\u0430 \u043a \u043f\u043b\u0430\u0442\u0444\u043e\u0440\u043c\u0435 Go-To-Market", "version": 1, "deployment": "\u2601\ufe0f Cloud"}, "notion-ai": {"slug": "notion-ai", "title": "Notion AI \u2014 AI-\u043f\u043e\u043c\u043e\u0449\u043d\u0438\u043a \u0432 \u0440\u0430\u0431\u043e\u0447\u0435\u043c \u043f\u0440\u043e\u0441\u0442\u0440\u0430\u043d\u0441\u0442\u0432\u0435", "rating": 4.3, "product_type": "agent", "updated_at": "", "tagline": "AI, \u0432\u0441\u0442\u0440\u043e\u0435\u043d\u043d\u044b\u0439 \u0432 Notion: \u043f\u0438\u0448\u0435\u0442, \u0440\u0435\u0434\u0430\u043a\u0442\u0438\u0440\u0443\u0435\u0442, \u0430\u043d\u0430\u043b\u0438\u0437\u0438\u0440\u0443\u0435\u0442", "version": 1, "deployment": "\u2601\ufe0f Cloud"}, "autogen-microsoft": {"slug": "autogen-microsoft", "title": "AutoGen \u2014 multi-agent \u0444\u0440\u0435\u0439\u043c\u0432\u043e\u0440\u043a \u043e\u0442 Microsoft", "rating": 4.2, "product_type": "framework", "updated_at": "2026-05-25T06:54:38.461634+00:00", "tagline": "\u0421\u043e\u0437\u0434\u0430\u043d\u0438\u0435 conversable \u0430\u0433\u0435\u043d\u0442\u043e\u0432 \u043e\u0442 Microsoft Research", "version": 1, "deployment": "\ud83c\udfe0 Local"}, "taskade-ai": {"slug": "taskade-ai", "title": "Taskade \u2014 AI-\u043f\u0440\u043e\u0434\u0443\u043a\u0442\u0438\u0432\u043d\u043e\u0441\u0442\u044c \u0434\u043b\u044f \u043a\u043e\u043c\u0430\u043d\u0434", "rating": 4.2, "product_type": "agent", "updated_at": "2026-05-25T06:54:38.486078+00:00", "tagline": "\u0415\u0434\u0438\u043d\u043e\u0435 \u0440\u0430\u0431\u043e\u0447\u0435\u0435 \u043f\u0440\u043e\u0441\u0442\u0440\u0430\u043d\u0441\u0442\u0432\u043e \u0441 AI-\u0430\u0433\u0435\u043d\u0442\u0430\u043c\u0438", "version": 1, "deployment": "\u2601\ufe0f Cloud"}, "amazon-q-developer": {"slug": "amazon-q-developer", "title": "Amazon Q Developer \u2014 AI-\u043f\u043e\u043c\u043e\u0449\u043d\u0438\u043a \u043e\u0442 AWS", "rating": 4.2, "product_type": "agent", "updated_at": "", "tagline": "AI-\u0440\u0430\u0437\u0440\u0430\u0431\u043e\u0442\u0447\u0438\u043a \u0434\u043b\u044f AWS-\u044d\u043a\u043e\u0441\u0438\u0441\u0442\u0435\u043c\u044b: \u043a\u043e\u0434, \u0434\u0435\u043f\u043b\u043e\u0439, \u0434\u0438\u0430\u0433\u043d\u043e\u0441\u0442\u0438\u043a\u0430", "version": 1, "deployment": "\ud83c\udfe0 Local"}, "semantic-kernel": {"slug": "semantic-kernel", "title": "Microsoft Semantic Kernel \u2014 \u043e\u0440\u043a\u0435\u0441\u0442\u0440\u0430\u0446\u0438\u044f AI \u0432 enterprise", "rating": 4.2, "product_type": "framework", "updated_at": "", "tagline": "\u041a\u043e\u0440\u043f\u043e\u0440\u0430\u0442\u0438\u0432\u043d\u044b\u0439 SDK \u0434\u043b\u044f AI-\u043e\u0440\u043a\u0435\u0441\u0442\u0440\u0430\u0446\u0438\u0438 \u043e\u0442 Microsoft", "version": 1, "deployment": "\u2601\ufe0f Cloud"}, "jasper-ai": {"slug": "jasper-ai", "title": "Jasper AI \u2014 \u043f\u043b\u0430\u0442\u0444\u043e\u0440\u043c\u0430 \u0434\u043b\u044f AI-\u043a\u043e\u043d\u0442\u0435\u043d\u0442\u0430 \u0432 enterprise", "rating": 4.2, "product_type": "agent", "updated_at": "", "tagline": "Enterprise-\u043f\u043b\u0430\u0442\u0444\u043e\u0440\u043c\u0430 \u0434\u043b\u044f \u043c\u0430\u0440\u043a\u0435\u0442\u0438\u043d\u0433\u043e\u0432\u043e\u0433\u043e \u043a\u043e\u043d\u0442\u0435\u043d\u0442\u0430 \u0441 AI", "version": 1, "deployment": "\u2601\ufe0f Cloud"}, "langchain-framework": {"slug": "langchain-framework", "title": "LangChain \u2014 \u0433\u043b\u0430\u0432\u043d\u044b\u0439 \u0444\u0440\u0435\u0439\u043c\u0432\u043e\u0440\u043a \u0434\u043b\u044f LLM-\u043f\u0440\u0438\u043b\u043e\u0436\u0435\u043d\u0438\u0439", "rating": 4.1, "product_type": "framework", "updated_at": "2026-05-25T06:54:38.484118+00:00", "tagline": "\u0421\u0442\u0430\u043d\u0434\u0430\u0440\u0442 \u0438\u043d\u0434\u0443\u0441\u0442\u0440\u0438\u0438 \u0434\u043b\u044f \u043f\u043e\u0441\u0442\u0440\u043e\u0435\u043d\u0438\u044f AI-\u043f\u0430\u0439\u043f\u043b\u0430\u0439\u043d\u043e\u0432", "version": 1, "deployment": "\ud83c\udfe0 Local"}, "tabnine-ai": {"slug": "tabnine-ai", "title": "Tabnine \u2014 AI-\u0430\u0432\u0442\u043e\u0434\u043e\u043f\u043e\u043b\u043d\u0435\u043d\u0438\u0435 \u0441 \u043b\u043e\u043a\u0430\u043b\u044c\u043d\u044b\u043c\u0438 \u043c\u043e\u0434\u0435\u043b\u044f\u043c\u0438", "rating": 4.1, "product_type": "agent", "updated_at": "", "tagline": "AI-\u0434\u043e\u043f\u043e\u043b\u043d\u0435\u043d\u0438\u0435 \u043a\u043e\u0434\u0430 \u0441 on-premise \u0440\u0430\u0437\u0432\u0451\u0440\u0442\u044b\u0432\u0430\u043d\u0438\u0435\u043c", "version": 1, "deployment": "\u2601\ufe0f Cloud"}, "microsoft-copilot": {"slug": "microsoft-copilot", "title": "Microsoft 365 Copilot \u2014 AI \u0432 Office \u0438 \u0431\u0438\u0437\u043d\u0435\u0441-\u043f\u0440\u043e\u0446\u0435\u0441\u0441\u0430\u0445", "rating": 4.1, "product_type": "agent", "updated_at": "", "tagline": "AI-\u0430\u0441\u0441\u0438\u0441\u0442\u0435\u043d\u0442, \u0432\u0441\u0442\u0440\u043e\u0435\u043d\u043d\u044b\u0439 \u0432 Word, Excel, Teams \u0438 \u0432\u0441\u044e \u044d\u043a\u043e\u0441\u0438\u0441\u0442\u0435\u043c\u0443 M365", "version": 1, "deployment": "\u2601\ufe0f Cloud"}, "devin-agent": {"slug": "devin-agent", "title": "Devin \u2014 \u0430\u0432\u0442\u043e\u043d\u043e\u043c\u043d\u044b\u0439 AI-\u0440\u0430\u0437\u0440\u0430\u0431\u043e\u0442\u0447\u0438\u043a \u043e\u0442 Cognition", "rating": 4.0, "product_type": "agent", "updated_at": "2026-05-25T06:54:38.465670+00:00", "tagline": "\u041f\u0435\u0440\u0432\u044b\u0439 AI software engineer \u0441 \u043f\u043e\u043b\u043d\u044b\u043c \u0446\u0438\u043a\u043b\u043e\u043c \u0440\u0430\u0437\u0440\u0430\u0431\u043e\u0442\u043a\u0438", "version": 1, "deployment": "\u2601\ufe0f Cloud"}, "autogpt-agent": {"slug": "autogpt-agent", "title": "AutoGPT \u2014 \u043f\u0438\u043e\u043d\u0435\u0440 \u0430\u0432\u0442\u043e\u043d\u043e\u043c\u043d\u044b\u0445 AI-\u0430\u0433\u0435\u043d\u0442\u043e\u0432", "rating": 3.8, "product_type": "agent", "updated_at": "2026-05-25T06:54:38.481974+00:00", "tagline": "\u0410\u0432\u0442\u043e\u043d\u043e\u043c\u043d\u044b\u0439 \u0430\u0433\u0435\u043d\u0442 \u0441 \u0446\u0435\u043f\u043e\u0447\u043a\u0430\u043c\u0438 \u0437\u0430\u0434\u0430\u0447 \u0438 \u043f\u0430\u043c\u044f\u0442\u044c\u044e", "version": 1, "deployment": "\ud83c\udfe0 Local"}, "babyagi-agent": {"slug": "babyagi-agent", "title": "BabyAGI \u2014 \u043c\u0438\u043d\u0438\u043c\u0430\u043b\u0438\u0441\u0442\u0438\u0447\u043d\u044b\u0439 \u0430\u0432\u0442\u043e\u043d\u043e\u043c\u043d\u044b\u0439 \u0430\u0433\u0435\u043d\u0442", "rating": 3.5, "product_type": "agent", "updated_at": "2026-05-25T06:54:38.488263+00:00", "tagline": "Task-driven AI \u0430\u0433\u0435\u043d\u0442 \u0432 140 \u0441\u0442\u0440\u043e\u043a\u0430\u0445 \u043a\u043e\u0434\u0430", "version": 1, "deployment": "\ud83c\udfe0 Local"}};
+
+function initWorkspace() {
+  var saved = JSON.parse(localStorage.getItem('qantcore_saved') || '[]');
+  var watches = JSON.parse(localStorage.getItem('qantcore_watches') || '[]');
+  var stacks = JSON.parse(localStorage.getItem('qantcore_stacks') || '[]');
+  var comparisons = JSON.parse(localStorage.getItem('qantcore_comparisons') || '[]');
+  
+  var hasData = saved.length || watches.length || stacks.length || comparisons.length;
+  document.getElementById('ws-empty').style.display = hasData ? 'none' : '';
+  
+  // Saved agents
+  if (saved.length) {
+    document.getElementById('ws-saved').style.display = '';
+    var grid = document.getElementById('ws-saved-grid');
+    var html = '';
+    saved.forEach(function(slug) {
+      var p = WS_PRODUCTS[slug];
+      if (!p) return;
+      html += '<a href="/product/' + slug + '/" class="card">' +
+        '<div style="display:flex;align-items:center;gap:8px;margin-bottom:8px"><span style="font-size:11px;text-transform:uppercase;font-weight:600;color:var(--green)">' + p.product_type + '</span></div>' +
+        '<div class="card-title">' + escapeHTML(p.title) + '</div>' +
+        '<div class="card-desc">' + escapeHTML(p.tagline) + '</div>' +
+        '<div style="margin-top:8px;font-size:12px;color:var(--muted)">★ ' + p.rating + ' · ' + p.deployment + '</div>' +
+        '<button onclick="event.preventDefault();removeSaved(\'' + slug + '\')" style="margin-top:8px;background:none;border:1px solid var(--border);color:var(--muted);padding:4px 10px;border-radius:4px;font-size:11px;cursor:pointer">Remove</button>' +
+        '</a>';
+    });
+    grid.innerHTML = html;
+  }
+  
+  // Release watches
+  if (watches.length) {
+    document.getElementById('ws-watches').style.display = '';
+    var list = document.getElementById('ws-watches-list');
+    var html = '';
+    watches.forEach(function(slug) {
+      var p = WS_PRODUCTS[slug];
+      if (!p) return;
+      html += '<div class="feed-item" style="justify-content:space-between">' +
+        '<div><strong style="color:var(--text)">' + escapeHTML(p.title) + '</strong>' +
+        '<span style="color:var(--dim);font-size:11px;margin-left:8px">v' + p.version + '</span>' +
+        '<span style="color:var(--muted);font-size:11px;margin-left:8px">· Updated ' + p.updated_at.substring(0,10) + '</span></div>' +
+        '<button onclick="removeWatch(\'' + slug + '\')" style="background:none;border:1px solid var(--border);color:var(--muted);padding:4px 10px;border-radius:4px;font-size:11px;cursor:pointer">Unwatch</button>' +
+        '</div>';
+    });
+    list.innerHTML = html;
+  }
+  
+  // Stack drafts
+  if (stacks.length) {
+    document.getElementById('ws-stacks').style.display = '';
+    var list = document.getElementById('ws-stacks-list');
+    var html = '';
+    stacks.forEach(function(stack, i) {
+      html += '<div class="feed-item" style="justify-content:space-between">' +
+        '<div><strong style="color:var(--text)">' + escapeHTML(stack.name || 'Draft ' + (i+1)) + '</strong>' +
+        '<span style="color:var(--dim);font-size:11px;margin-left:8px">' + Object.keys(stack.layers || {}).length + ' components</span>' +
+        '<span style="color:var(--muted);font-size:11px;margin-left:8px">· ' + (stack.date || '') + '</span></div>' +
+        '<div><button onclick="loadStack(' + i + ')" style="background:none;border:1px solid var(--green);color:var(--green);padding:4px 10px;border-radius:4px;font-size:11px;cursor:pointer;margin-right:6px">Load</button>' +
+        '<button onclick="removeStack(' + i + ')" style="background:none;border:1px solid var(--border);color:var(--muted);padding:4px 10px;border-radius:4px;font-size:11px;cursor:pointer">Delete</button></div>' +
+        '</div>';
+    });
+    list.innerHTML = html;
+  }
+  
+  // Recent comparisons
+  if (comparisons.length) {
+    document.getElementById('ws-comparisons').style.display = '';
+    var list = document.getElementById('ws-comparisons-list');
+    var html = '';
+    comparisons.slice(-5).reverse().forEach(function(c) {
+      var names = c.slugs.map(function(s) { var p = WS_PRODUCTS[s]; return p ? p.title : s; }).join(' vs ');
+      html += '<a href="/compare/?slugs=' + c.slugs.join(',') + '" class="feed-item">' +
+        '<span style="font-size:14px">⚖️</span>' +
+        '<div><strong style="color:var(--text)">' + escapeHTML(names) + '</strong>' +
+        '<span style="color:var(--dim);font-size:11px;margin-left:8px">· ' + c.date + '</span></div>' +
+        '</a>';
+    });
+    list.innerHTML = html;
+  }
+}
+
+function removeSaved(slug) {
+  var saved = JSON.parse(localStorage.getItem('qantcore_saved') || '[]');
+  saved = saved.filter(function(s) { return s !== slug; });
+  localStorage.setItem('qantcore_saved', JSON.stringify(saved));
+  location.reload();
+}
+function removeWatch(slug) {
+  var w = JSON.parse(localStorage.getItem('qantcore_watches') || '[]');
+  w = w.filter(function(s) { return s !== slug; });
+  localStorage.setItem('qantcore_watches', JSON.stringify(w));
+  location.reload();
+}
+function removeStack(i) {
+  var stacks = JSON.parse(localStorage.getItem('qantcore_stacks') || '[]');
+  stacks.splice(i, 1);
+  localStorage.setItem('qantcore_stacks', JSON.stringify(stacks));
+  location.reload();
+}
+function loadStack(i) {
+  var stacks = JSON.parse(localStorage.getItem('qantcore_stacks') || '[]');
+  var stack = stacks[i];
+  if (stack) {
+    localStorage.setItem('qantcore_load_stack', JSON.stringify(stack));
+    window.location = '/stack-builder/';
+  }
+}
+function escapeHTML(str) {
+  var div = document.createElement('div');
+  div.textContent = str;
+  return div.innerHTML;
+}
+initWorkspace();
+</script>
+</body>
+</html>

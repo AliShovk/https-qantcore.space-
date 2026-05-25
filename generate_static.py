@@ -204,6 +204,10 @@ header{position:sticky;top:0;z-index:100;backdrop-filter:blur(20px) saturate(180
   font-size:16px;cursor:pointer;color:var(--dim);transition:all .2s;padding:4px}
 .bookmark-btn:hover{color:var(--amber);transform:scale(1.2)}
 .bookmark-btn.saved{color:var(--amber)}
+.watch-btn{position:absolute;top:36px;left:12px;z-index:5;background:none;border:none;
+  font-size:12px;cursor:pointer;color:var(--dim);transition:all .2s;padding:4px}
+.watch-btn:hover{color:var(--cyan);transform:scale(1.2)}
+.watch-btn.watching{color:var(--cyan)}
 .saved-section{margin-top:24px}
 /* ─── Feed ─── */
 .feed-list{display:flex;flex-direction:column;gap:8px}
@@ -489,6 +493,8 @@ ym(109327472,'init',{{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer"
       <span class="nav-sep"></span>
       <a href="/methodology/" class="{active_method}">Methodology</a>
       <span class="nav-sep"></span>
+      <a href="/workspace/" class="{active_ws}">Workspace</a>
+      <span class="nav-sep"></span>
       <a href="#saved" class="saved-nav" style="display:none">★ Saved</a>
     </div>
   </div>
@@ -529,13 +535,13 @@ def build_search_index():
     return json.dumps(entries)
 
 def render_page(title, description, content, scripts="", total=0, search_val="", search_json="[]",
-                active_home="", active_compare="", active_review="", active_method="",
+                active_home="", active_compare="", active_review="", active_method="", active_ws="",
                 open_graph="", schema_org="{}"):
     return PAGE.format(
         title=esc(title), description=esc(description),
         css=CSS, content=content, scripts=scripts, total=str(total),
         search_val=esc(search_val), search_json=search_json,
-        active_home=active_home, active_compare=active_compare, active_review=active_review, active_method=active_method,
+        active_home=active_home, active_compare=active_compare, active_review=active_review, active_method=active_method, active_ws=active_ws,
         open_graph=open_graph, schema_org=schema_org)
 
 
@@ -545,12 +551,14 @@ def make_product_card(p, with_compare=True):
     compare_html = ""
     if with_compare:
         compare_html = f'<div class="card-compare"><input type="checkbox" value="{p["slug"]}" onchange="toggleCompare(this)" aria-label="Compare"></div>'
-    bookmark_html = f'<button class="bookmark-btn" data-slug="{p["slug"]}" onclick="toggleSave(this,\'{p["slug"]}\')" title="Save">☆</button>'
+    bookmark_html = f'<button class="bookmark-btn" data-slug="{p["slug"]}" onclick="toggleSave(this,&#39;{p["slug"]}&#39;)" title="Save">☆</button>'
+    watch_html = f'<button class="watch-btn" data-slug="{p["slug"]}" onclick="event.preventDefault();toggleWatch(this,&#39;{p["slug"]}&#39;)" title="Track releases">🔔</button>'
     panel = panel_data(p)
     trust = trust_indicators(p)
     return f"""<a href="/product/{p['slug']}/" class="card">
       {compare_html}
       {bookmark_html}
+      {watch_html}
       <div class="card-top">
         {product_image(p)}
         {product_type_badge(p.get('product_type',''))}
@@ -741,7 +749,13 @@ function updateCompareBar() {
 }
 function doCompare() {
   if (selected.length >= 2) {
-    window.location = '/compare/?slugs=' + selected.join(',');
+    var slugs = selected.join(',');
+    // Save to comparison history
+    var comps = JSON.parse(localStorage.getItem('qantcore_comparisons') || '[]');
+    comps.push({slugs: selected.slice(), date: new Date().toISOString().substring(0,10)});
+    if (comps.length > 20) comps = comps.slice(-20);
+    localStorage.setItem('qantcore_comparisons', JSON.stringify(comps));
+    window.location = '/compare/?slugs=' + slugs;
   }
 }
 function clearCompare() {
@@ -817,6 +831,21 @@ function unsaveSlug(slug){
 function toggleSave(el,slug){
   if(getSaved().includes(slug))unsaveSlug(slug);else saveSlug(slug);
 }
+// ─── Watch / Release Alerts ───
+function getWatches(){try{return JSON.parse(localStorage.getItem('qantcore_watches')||'[]')}catch(e){return[]}}
+function toggleWatch(el,slug){
+  var w=getWatches();
+  if(w.includes(slug)){w=w.filter(function(x){return x!==slug});el.classList.remove('watching');el.textContent='🔔'}
+  else{w.push(slug);el.classList.add('watching');el.textContent='🔔'}
+  localStorage.setItem('qantcore_watches',JSON.stringify(w));
+}
+// Init watches on load
+(function(){
+  var w=getWatches();
+  document.querySelectorAll('.watch-btn').forEach(function(b){
+    if(w.includes(b.getAttribute('data-slug'))){b.classList.add('watching');b.textContent='🔔'}
+  });
+})();
 function showSaved(){
   var saved=getSaved();var all=document.querySelectorAll('#catalog-grid .card, .grid .card');
   all.forEach(function(c){c.style.display=''});
@@ -1288,6 +1317,7 @@ def generate_stack_builder():
       <div class="stack-result" id="stack-result">
         <h3>Stack Analysis</h3>
         <div class="stack-metrics" id="stack-metrics"></div>
+        <button onclick="saveStack()" style="margin-top:16px;padding:8px 18px;border-radius:6px;background:var(--green);color:#000;border:none;cursor:pointer;font-size:13px;font-weight:600;display:none" id="save-stack-btn">Save to Workspace</button>
       </div>
     </div>
   </div>
@@ -1326,6 +1356,7 @@ function analyzeStack() {
   var metrics = document.getElementById('stack-metrics');
   if (count >= 3) {
     result.classList.add('active');
+    document.getElementById('save-stack-btn').style.display = '';
     var avgRating = ratings.length ? (ratings.reduce(function(a,b){return a+b},0)/ratings.length).toFixed(1) : '—';
     var deployDiff = complexity <= 6 ? '🟢 Low' : complexity <= 12 ? '🟡 Medium' : '🔴 High';
     metrics.innerHTML =
@@ -1335,8 +1366,33 @@ function analyzeStack() {
       '<div class="stack-metric"><div class="sm-val">' + deployDiff + '</div><div class="sm-lbl">Deploy complexity</div></div>';
   } else {
     result.classList.remove('active');
+    document.getElementById('save-stack-btn').style.display = 'none';
   }
 }
+function saveStack() {
+  var layers = {};
+  document.querySelectorAll('.stack-slot select').forEach(function(s) {
+    if (s.value) layers[s.closest('.stack-slot').querySelector('.ss-label').textContent] = s.value;
+  });
+  var stacks = JSON.parse(localStorage.getItem('qantcore_stacks') || '[]');
+  stacks.push({name: 'Stack ' + (stacks.length + 1), layers: layers, date: new Date().toISOString().substring(0,10)});
+  localStorage.setItem('qantcore_stacks', JSON.stringify(stacks));
+  alert('Stack saved to Workspace! View it at /workspace/');
+}
+// Load stack from workspace
+(function() {
+  var loadData = localStorage.getItem('qantcore_load_stack');
+  if (loadData) {
+    try {
+      var stack = JSON.parse(loadData);
+      Object.entries(stack.layers || {}).forEach(function(e) {
+        var sel = document.querySelector('#slot-' + e[0].toLowerCase().replace(/ /g,'-') + ' select');
+        if (sel) { sel.value = e[1]; sel.dispatchEvent(new Event('change')); }
+      });
+      localStorage.removeItem('qantcore_load_stack');
+    } catch(ex) {}
+  }
+})();
 </script>"""
 
     html = render_page("AI Stack Builder", "Assemble your AI agent stack — LLM, memory, tools, orchestration. Estimate cost and complexity.",
@@ -1428,6 +1484,184 @@ def generate_methodology():
     print(f"  /methodology/index.html")
 
 
+def generate_workspace():
+    """Generate /workspace/ — saved agents, release watches, stack drafts."""
+    tp = DB.articles.count_documents({"category": "product"})
+    all_prods = list(DB.articles.find({"category": "product"}).sort("rating", -1))
+    
+    # Build product lookup for client-side rendering
+    prod_lookup = {}
+    for p in all_prods:
+        prod_lookup[p["slug"]] = {
+            "slug": p["slug"], "title": p.get("title",""),
+            "rating": p.get("rating",""), "product_type": p.get("product_type",""),
+            "updated_at": str(p.get("updated_at","")), "tagline": (p.get("tagline","") or "")[:100],
+            "version": p.get("version","") or "latest",
+            "deployment": "🏠 Local" if (p.get("local_first") or any(t.lower() in ["docker","local","self-hosted","python","cli","terminal"] for t in (p.get("tech_stack",[]) or []))) else "☁️ Cloud",
+        }
+    
+    body = f"""<div class="container" id="workspace-root">
+  <div class="breadcrumbs"><a href="/">Catalog</a> &rsaquo; <span>Workspace</span></div>
+  
+  <!-- Empty state -->
+  <div id="ws-empty" style="text-align:center;padding:80px 20px">
+    <div style="font-size:48px;margin-bottom:16px">📋</div>
+    <h2 style="font-size:22px;font-weight:700;color:var(--text);margin-bottom:8px">Your Workspace</h2>
+    <p style="color:var(--muted);font-size:14px;max-width:500px;margin:0 auto;line-height:1.6">
+      Save agents, track releases, and build your AI stack.
+      <br>Bookmark agents with ★, watch releases with 🔔, or build a stack at <a href="/stack-builder/" style="color:var(--green)">Stack Builder</a>.
+    </p>
+  </div>
+  
+  <!-- Saved Agents -->
+  <div id="ws-saved" style="display:none">
+    <div class="section-hd"><h2>★ Saved Agents</h2></div>
+    <div class="grid" id="ws-saved-grid"></div>
+  </div>
+  
+  <!-- Release Watches -->
+  <div id="ws-watches" style="display:none;margin-top:32px">
+    <div class="section-hd"><h2>🔔 Release Alerts</h2></div>
+    <div id="ws-watches-list" style="display:flex;flex-direction:column;gap:8px"></div>
+  </div>
+  
+  <!-- Stack Drafts -->
+  <div id="ws-stacks" style="display:none;margin-top:32px">
+    <div class="section-hd"><h2>🧩 Stack Drafts</h2></div>
+    <div id="ws-stacks-list" style="display:flex;flex-direction:column;gap:8px"></div>
+  </div>
+  
+  <!-- Recent Comparisons -->
+  <div id="ws-comparisons" style="display:none;margin-top:32px">
+    <div class="section-hd"><h2>⚖️ Recent Comparisons</h2></div>
+    <div id="ws-comparisons-list" style="display:flex;flex-direction:column;gap:8px"></div>
+  </div>
+</div>"""
+    
+    scripts = f"""<script>
+var WS_PRODUCTS = {json.dumps(prod_lookup)};
+
+function initWorkspace() {{
+  var saved = JSON.parse(localStorage.getItem('qantcore_saved') || '[]');
+  var watches = JSON.parse(localStorage.getItem('qantcore_watches') || '[]');
+  var stacks = JSON.parse(localStorage.getItem('qantcore_stacks') || '[]');
+  var comparisons = JSON.parse(localStorage.getItem('qantcore_comparisons') || '[]');
+  
+  var hasData = saved.length || watches.length || stacks.length || comparisons.length;
+  document.getElementById('ws-empty').style.display = hasData ? 'none' : '';
+  
+  // Saved agents
+  if (saved.length) {{
+    document.getElementById('ws-saved').style.display = '';
+    var grid = document.getElementById('ws-saved-grid');
+    var html = '';
+    saved.forEach(function(slug) {{
+      var p = WS_PRODUCTS[slug];
+      if (!p) return;
+      html += '<a href="/product/' + slug + '/" class="card">' +
+        '<div style="display:flex;align-items:center;gap:8px;margin-bottom:8px"><span style="font-size:11px;text-transform:uppercase;font-weight:600;color:var(--green)">' + p.product_type + '</span></div>' +
+        '<div class="card-title">' + escapeHTML(p.title) + '</div>' +
+        '<div class="card-desc">' + escapeHTML(p.tagline) + '</div>' +
+        '<div style="margin-top:8px;font-size:12px;color:var(--muted)">★ ' + p.rating + ' · ' + p.deployment + '</div>' +
+        '<button onclick="event.preventDefault();removeSaved(\\'' + slug + '\\')" style="margin-top:8px;background:none;border:1px solid var(--border);color:var(--muted);padding:4px 10px;border-radius:4px;font-size:11px;cursor:pointer">Remove</button>' +
+        '</a>';
+    }});
+    grid.innerHTML = html;
+  }}
+  
+  // Release watches
+  if (watches.length) {{
+    document.getElementById('ws-watches').style.display = '';
+    var list = document.getElementById('ws-watches-list');
+    var html = '';
+    watches.forEach(function(slug) {{
+      var p = WS_PRODUCTS[slug];
+      if (!p) return;
+      html += '<div class="feed-item" style="justify-content:space-between">' +
+        '<div><strong style="color:var(--text)">' + escapeHTML(p.title) + '</strong>' +
+        '<span style="color:var(--dim);font-size:11px;margin-left:8px">v' + p.version + '</span>' +
+        '<span style="color:var(--muted);font-size:11px;margin-left:8px">· Updated ' + p.updated_at.substring(0,10) + '</span></div>' +
+        '<button onclick="removeWatch(\\'' + slug + '\\')" style="background:none;border:1px solid var(--border);color:var(--muted);padding:4px 10px;border-radius:4px;font-size:11px;cursor:pointer">Unwatch</button>' +
+        '</div>';
+    }});
+    list.innerHTML = html;
+  }}
+  
+  // Stack drafts
+  if (stacks.length) {{
+    document.getElementById('ws-stacks').style.display = '';
+    var list = document.getElementById('ws-stacks-list');
+    var html = '';
+    stacks.forEach(function(stack, i) {{
+      html += '<div class="feed-item" style="justify-content:space-between">' +
+        '<div><strong style="color:var(--text)">' + escapeHTML(stack.name || 'Draft ' + (i+1)) + '</strong>' +
+        '<span style="color:var(--dim);font-size:11px;margin-left:8px">' + Object.keys(stack.layers || {{}}).length + ' components</span>' +
+        '<span style="color:var(--muted);font-size:11px;margin-left:8px">· ' + (stack.date || '') + '</span></div>' +
+        '<div><button onclick="loadStack(' + i + ')" style="background:none;border:1px solid var(--green);color:var(--green);padding:4px 10px;border-radius:4px;font-size:11px;cursor:pointer;margin-right:6px">Load</button>' +
+        '<button onclick="removeStack(' + i + ')" style="background:none;border:1px solid var(--border);color:var(--muted);padding:4px 10px;border-radius:4px;font-size:11px;cursor:pointer">Delete</button></div>' +
+        '</div>';
+    }});
+    list.innerHTML = html;
+  }}
+  
+  // Recent comparisons
+  if (comparisons.length) {{
+    document.getElementById('ws-comparisons').style.display = '';
+    var list = document.getElementById('ws-comparisons-list');
+    var html = '';
+    comparisons.slice(-5).reverse().forEach(function(c) {{
+      var names = c.slugs.map(function(s) {{ var p = WS_PRODUCTS[s]; return p ? p.title : s; }}).join(' vs ');
+      html += '<a href="/compare/?slugs=' + c.slugs.join(',') + '" class="feed-item">' +
+        '<span style="font-size:14px">⚖️</span>' +
+        '<div><strong style="color:var(--text)">' + escapeHTML(names) + '</strong>' +
+        '<span style="color:var(--dim);font-size:11px;margin-left:8px">· ' + c.date + '</span></div>' +
+        '</a>';
+    }});
+    list.innerHTML = html;
+  }}
+}}
+
+function removeSaved(slug) {{
+  var saved = JSON.parse(localStorage.getItem('qantcore_saved') || '[]');
+  saved = saved.filter(function(s) {{ return s !== slug; }});
+  localStorage.setItem('qantcore_saved', JSON.stringify(saved));
+  location.reload();
+}}
+function removeWatch(slug) {{
+  var w = JSON.parse(localStorage.getItem('qantcore_watches') || '[]');
+  w = w.filter(function(s) {{ return s !== slug; }});
+  localStorage.setItem('qantcore_watches', JSON.stringify(w));
+  location.reload();
+}}
+function removeStack(i) {{
+  var stacks = JSON.parse(localStorage.getItem('qantcore_stacks') || '[]');
+  stacks.splice(i, 1);
+  localStorage.setItem('qantcore_stacks', JSON.stringify(stacks));
+  location.reload();
+}}
+function loadStack(i) {{
+  var stacks = JSON.parse(localStorage.getItem('qantcore_stacks') || '[]');
+  var stack = stacks[i];
+  if (stack) {{
+    localStorage.setItem('qantcore_load_stack', JSON.stringify(stack));
+    window.location = '/stack-builder/';
+  }}
+}}
+function escapeHTML(str) {{
+  var div = document.createElement('div');
+  div.textContent = str;
+  return div.innerHTML;
+}}
+initWorkspace();
+</script>"""
+    
+    html = render_page("Workspace — Saved Agents & Release Alerts",
+                       "Your personal AI agent workspace: saved agents, release watches, stack drafts, comparison history.",
+                       body, scripts=scripts, total=tp)
+    write_html(f"{OUT}/workspace/index.html", html)
+    print(f"  /workspace/index.html")
+
+
 # ─── Main ─────────────────────────────────────────────────────────
 if __name__ == "__main__":
     import shutil
@@ -1454,6 +1688,9 @@ if __name__ == "__main__":
 
     # Methodology
     generate_methodology()
+
+    # Workspace
+    generate_workspace()
 
     for cat in ["product", "comparison", "review"]:
         generate_catalog(cat)

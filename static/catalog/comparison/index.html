@@ -199,6 +199,10 @@ header{position:sticky;top:0;z-index:100;backdrop-filter:blur(20px) saturate(180
   font-size:16px;cursor:pointer;color:var(--dim);transition:all .2s;padding:4px}
 .bookmark-btn:hover{color:var(--amber);transform:scale(1.2)}
 .bookmark-btn.saved{color:var(--amber)}
+.watch-btn{position:absolute;top:36px;left:12px;z-index:5;background:none;border:none;
+  font-size:12px;cursor:pointer;color:var(--dim);transition:all .2s;padding:4px}
+.watch-btn:hover{color:var(--cyan);transform:scale(1.2)}
+.watch-btn.watching{color:var(--cyan)}
 .saved-section{margin-top:24px}
 /* ─── Feed ─── */
 .feed-list{display:flex;flex-direction:column;gap:8px}
@@ -353,6 +357,8 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
       <a href="#guides">Guides</a>
       <span class="nav-sep"></span>
       <a href="/methodology/" class="">Methodology</a>
+      <span class="nav-sep"></span>
+      <a href="/workspace/" class="">Workspace</a>
       <span class="nav-sep"></span>
       <a href="#saved" class="saved-nav" style="display:none">★ Saved</a>
     </div>
