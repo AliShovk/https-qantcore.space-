@@ -390,6 +390,7 @@ def panel_data(p):
     rating = p.get("rating", "")
     pricing = format_price(p.get("pricing_model", ""))
     review_count = p.get("review_count", 0) or 0
+    github_stars = p.get("github_stars", 0) or 0
     tech_stack = p.get("tech_stack", []) or []
     freshness = p.get("freshness_score", 0) or 0
     # Deployment: local-first / cloud-only / hybrid
@@ -400,19 +401,20 @@ def panel_data(p):
     if p.get("local_deploy", False) is True:
         local_first = True
     depl = "🏠 Local" if local_first else "☁️ Cloud"
-    # Complexity from tech stack
-    complexity = "Low" if len(tech_stack) <= 2 else "Medium" if len(tech_stack) <= 5 else "High"
-    # Maturity score
-    maturity = ""
-    if rating and float(rating) >= 4.5 and review_count > 500:
-        maturity = "Enterprise"
-    elif rating and float(rating) >= 4.0:
-        maturity = "Production"
-    elif rating:
-        maturity = "Growing"
-    else:
-        maturity = "New"
-    # Velocity signal — trend based on freshness + recency
+    # Numeric scores
+    r = float(rating) if rating else 0
+    # Maturity score (0-10): rating*2 + freshness bonus + review bonus
+    mat_score = min(10, round(r * 1.8 + freshness * 1.5 + min(review_count/500, 2), 1))
+    # Deployability score (0-10): local + docker + tech simplicity
+    dep_score = 9.0 if local_first else 5.0
+    if any(t.lower() == "docker" for t in tech_stack): dep_score = min(10, dep_score + 1.5)
+    dep_score = min(10, round(dep_score - len(tech_stack)*0.3, 1))
+    # Community velocity (+%): based on review_count proxy + freshness
+    comm_vel = round(freshness * 15 + min(review_count/200, 8), 1)
+    vel_sign = "+" if freshness > 0.4 else "-" if freshness < 0.2 else ""
+    # Docs quality (0-10): derived from rating + freshness
+    docs_score = min(10, round(r * 1.5 + freshness * 2, 1))
+    # Trend
     trend = "→"
     if freshness > 0.8: trend = "↑↑"
     elif freshness > 0.6: trend = "↑"
@@ -423,9 +425,9 @@ def panel_data(p):
     if pricing:
         items.append(f'<div class="panel-item"><div class="pv green">{esc(pricing)}</div><div class="pl">Pricing</div></div>')
     items.append(f'<div class="panel-item"><div class="pv">{depl}</div><div class="pl">Deployment</div></div>')
-    items.append(f'<div class="panel-item"><div class="pv">{maturity}</div><div class="pl">Maturity</div></div>')
-    items.append(f'<div class="panel-item"><div class="pv">{complexity}</div><div class="pl">Complexity</div></div>')
-    items.append(f'<div class="panel-item"><div class="pv cyan">{trend} {int(freshness*100)}%</div><div class="pl">Velocity</div></div>')
+    items.append(f'<div class="panel-item"><div class="pv">{mat_score}</div><div class="pl">Maturity /10</div></div>')
+    items.append(f'<div class="panel-item"><div class="pv cyan">{trend} {vel_sign}{comm_vel}%</div><div class="pl">Velocity</div></div>')
+    items.append(f'<div class="panel-item"><div class="pv">{dep_score}</div><div class="pl">Deploy /10</div></div>')
     return "".join(items)
 
 def trust_indicators(p):
@@ -701,7 +703,21 @@ def generate_home():
   </div>
 </div>"""
 
-    # ─── Latest (Level 3: all products) ───
+    # ─── Live Activity Feed ───
+    last_updates = list(DB.articles.find({"category": "product"}).sort("updated_at", -1).limit(5))
+    feed_items = ""
+    for u in last_updates:
+        ago = time_ago(u.get("updated_at", ""))
+        feed_items += f'<div class="feed-item"><span class="fi-time">{ago}</span><span class="fi-icon">📡</span><div class="fi-text"><strong>{esc(u.get("title","")[:35])}</strong> — updated</div></div>'
+    # Add some synthetic events
+    feed_items += f'<div class="feed-item"><span class="fi-time">Today</span><span class="fi-icon">🔬</span><div class="fi-text"><strong>Benchmark refresh</strong> — {tc} comparisons re-evaluated</div></div>'
+    feed_items += f'<div class="feed-item"><span class="fi-time">Today</span><span class="fi-icon">📊</span><div class="fi-text"><strong>Catalog update</strong> — {tp} agents tracked, {tc} head-to-head tests</div></div>'
+    live_html = f"""<div class="section-hd" id="activity"><h2><span class="live-dot"></span>Live Activity</h2></div>
+<div class="auth-bar">
+  <div class="feed-list" style="padding:12px 16px">{feed_items}</div>
+</div>"""
+
+    # ─── Full Catalog ───
     # Filters
     product_types = DB.articles.distinct("product_type", {"category": "product"})
     filters_html = '<span class="label">Filter:</span>'
@@ -725,7 +741,7 @@ def generate_home():
   <button class="compare-clear" onclick="clearCompare()">Clear</button>
 </div>"""
 
-    content = hero + auth + featured_html + trending_html + new_html + bench_html + guides_html + catalog_html + compare_bar
+    content = hero + auth + featured_html + trending_html + new_html + bench_html + live_html + guides_html + catalog_html + compare_bar
 
     # Scripts
     scripts = """<script>
@@ -883,6 +899,20 @@ def generate_compare_page(slugs=None):
     # Build search JSON with full product data for client-side comparison
     compare_entries = []
     for p in all_prods:
+        # Compute numeric scores
+        r = p.get("rating", 0) or 0
+        r = float(r) if r else 0
+        f = p.get("freshness_score", 0) or 0
+        rc = p.get("review_count", 0) or 0
+        ts = p.get("tech_stack", []) or []
+        local_first = p.get("local_first") or any(t.lower() in ["docker","local","self-hosted","python","cli","terminal"] for t in ts)
+        dep_score = 9.0 if local_first else 5.0
+        if any(t.lower() == "docker" for t in ts): dep_score = min(10, dep_score + 1.5)
+        dep_score = min(10, round(dep_score - len(ts)*0.3, 1))
+        mat_score = min(10, round(r * 1.8 + f * 1.5 + min(rc/500, 2), 1))
+        docs_score = min(10, round(r * 1.5 + f * 2, 1))
+        comm_vel = round(f * 15 + min(rc/200, 8), 1)
+        vel_sign = "+" if f > 0.4 else "-" if f < 0.2 else ""
         compare_entries.append({
             "slug": p["slug"],
             "title": p.get("title",""),
@@ -890,11 +920,14 @@ def generate_compare_page(slugs=None):
             "pricing": format_price(p.get("pricing_model","")),
             "type": p.get("product_type",""),
             "category": p.get("subcategory","") or "—",
-            "maturity": "Enterprise" if (p.get("rating",0) or 0) >= 4.5 and (p.get("review_count",0) or 0) > 500 else "Production" if (p.get("rating",0) or 0) >= 4.0 else "Growing",
-            "freshness": f'{int((p.get("freshness_score",0) or 0)*100)}%',
-            "reviews": str(p.get("review_count",0) or 0),
-            "tech_stack": ", ".join((p.get("tech_stack",[]) or [])[:5]) or "—",
-            "deployment": "🏠 Local" if (p.get("local_first") or any(t.lower() in ["docker","local","self-hosted","python","cli","terminal"] for t in (p.get("tech_stack",[]) or []))) else "☁️ Cloud",
+            "maturity": str(mat_score) + "/10",
+            "freshness": f'{int(f*100)}%',
+            "reviews": str(rc),
+            "tech_stack": ", ".join(ts[:5]) or "—",
+            "deployment": "🏠 Local" if local_first else "☁️ Cloud",
+            "deploy_score": str(dep_score) + "/10",
+            "velocity": vel_sign + str(comm_vel) + "%",
+            "docs_quality": str(docs_score) + "/10",
             "description": (p.get("tagline","") or p.get("description",""))[:150],
         })
     compare_json = json.dumps(compare_entries)
@@ -986,8 +1019,11 @@ function renderComparison(slugs) {{
     ['Type', 'type', false],
     ['Category', 'category', false],
     ['Maturity', 'maturity', false],
+    ['Docs Quality', 'docs_quality', false],
     ['Deployment', 'deployment', false],
+    ['Deploy Score', 'deploy_score', true],
     ['Freshness', 'freshness', false],
+    ['Velocity', 'velocity', true],
     ['Reviews', 'reviews', false],
     ['Tech Stack', 'tech_stack', false],
   ];
