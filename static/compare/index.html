@@ -8,10 +8,11 @@
 <link rel="icon" type="image/svg+xml" href="/images/favicon.svg">
 
 <style>*{margin:0;padding:0;box-sizing:border-box}
-:root{--bg:#06080d;--card-bg:#0c0f17;--border:rgba(255,255,255,.06);
-  --text:#e2e8f0;--muted:#64748b;--dim:#3b3f4a;
+:root{--bg:#0B0F14;--surface:#121821;--card-bg:#171F2B;--border:rgba(255,255,255,.06);
+  --text:#F5F7FA;--muted:#9AA4B2;--dim:#6B7280;
   --green:#10b981;--green-dim:rgba(16,185,129,.12);
-  --blue:#6366f1;--blue-dim:rgba(99,102,241,.12);
+  --blue:#3B82F6;--blue-dim:rgba(59,130,246,.12);
+  --cyan:#22D3EE;--cyan-dim:rgba(34,211,238,.12);
   --amber:#f59e0b;--amber-dim:rgba(245,158,11,.12);
   --red:#ef4444;--red-dim:rgba(239,68,68,.12);
   --radius:12px;--radius-sm:8px}
@@ -24,7 +25,7 @@ a{color:inherit;text-decoration:none}
 
 /* ─── Header & Mega-Nav ─── */
 header{position:sticky;top:0;z-index:100;backdrop-filter:blur(20px) saturate(180%);
-  background:rgba(6,8,13,.92);border-bottom:1px solid var(--border)}
+  background:rgba(11,15,20,.92);border-bottom:1px solid var(--border)}
 .header-inner{max-width:1320px;margin:0 auto;padding:14px 24px;
   display:flex;align-items:center;justify-content:space-between}
 .logo{font-size:20px;font-weight:800;letter-spacing:-.02em;color:var(--text);
@@ -52,7 +53,7 @@ header{position:sticky;top:0;z-index:100;backdrop-filter:blur(20px) saturate(180
 .terminal-grid::after{content:'';position:absolute;top:0;left:0;right:0;bottom:0;
   background:
     radial-gradient(ellipse at 50% 0%, rgba(16,185,129,.1) 0%, transparent 60%),
-    radial-gradient(circle at 20% 80%, rgba(99,102,241,.06) 0%, transparent 40%),
+    radial-gradient(circle at 20% 80%, rgba(59,130,246,.06) 0%, transparent 40%),
     radial-gradient(circle at 80% 20%, rgba(16,185,129,.05) 0%, transparent 40%);
   z-index:1}
 /* ─── Hero ─── */
@@ -361,40 +362,40 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
       <div class="card-compare"><input type="checkbox" value="hermes-agent" onchange="toggleCompare(this)" aria-label="Compare"></div>
       <button class="bookmark-btn" data-slug="hermes-agent" onclick="toggleSave(this,'hermes-agent')" title="Save">☆</button>
       <div class="card-top">
-        <div class="card-icon">🤖</div>
+        <div class="card-icon"><img src="/images/hermes-agent.png" alt="" loading="lazy"></div>
         <span class="card-badge badge-agent">Agent</span>
       </div>
       <div class="card-title">Hermes Agent — AI-агент, который растёт вместе с вами</div>
       <div class="card-desc">Агент с памятью, навыками и полным доступом к системе</div>
       <div class="card-panel"><div class="panel-item"><div class="pv amber">4.9 ★</div><div class="pl">Rating</div></div><div class="panel-item"><div class="pv green">Open Source</div><div class="pl">Pricing</div></div><div class="panel-item"><div class="pv">🏠 Local</div><div class="pl">Deployment</div></div><div class="panel-item"><div class="pv">Enterprise</div><div class="pl">Maturity</div></div></div>
-      <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T09:17:39.500149+00:00">🕐 27m ago</span><span>📊 3200 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
+      <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T06:54:41.537089+00:00">🕐 3h ago</span><span>📊 3200 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
     </a><a href="/product/ollama/" class="card">
       <div class="card-compare"><input type="checkbox" value="ollama" onchange="toggleCompare(this)" aria-label="Compare"></div>
       <button class="bookmark-btn" data-slug="ollama" onclick="toggleSave(this,'ollama')" title="Save">☆</button>
       <div class="card-top">
-        <div class="card-icon">🤖</div>
+        <div class="card-icon"><img src="/images/ollama.png" alt="" loading="lazy"></div>
         <span class="card-badge badge-agent">Agent</span>
       </div>
       <div class="card-title">Ollama — локальный запуск LLM одной командой</div>
       <div class="card-desc">Запустите Kimi-K2.5, DeepSeek, Qwen, Gemma и сотни других локально</div>
       <div class="card-panel"><div class="panel-item"><div class="pv amber">4.9 ★</div><div class="pl">Rating</div></div><div class="panel-item"><div class="pv green">Open Source</div><div class="pl">Pricing</div></div><div class="panel-item"><div class="pv">☁️ Cloud</div><div class="pl">Deployment</div></div><div class="panel-item"><div class="pv">Enterprise</div><div class="pl">Maturity</div></div></div>
-      <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T09:17:39.511418+00:00">🕐 27m ago</span><span>📊 5600 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
+      <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T06:54:41.555446+00:00">🕐 3h ago</span><span>📊 5600 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
     </a><a href="/product/cursor-ide/" class="card">
       <div class="card-compare"><input type="checkbox" value="cursor-ide" onchange="toggleCompare(this)" aria-label="Compare"></div>
       <button class="bookmark-btn" data-slug="cursor-ide" onclick="toggleSave(this,'cursor-ide')" title="Save">☆</button>
       <div class="card-top">
-        <div class="card-icon">🤖</div>
+        <div class="card-icon"><img src="/images/cursor-ide.png" alt="" loading="lazy"></div>
         <span class="card-badge badge-agent">Agent</span>
       </div>
       <div class="card-title">Cursor IDE — AI-среда разработки нового поколения</div>
       <div class="card-desc">AI-first IDE, которое понимает ваш код</div>
       <div class="card-panel"><div class="panel-item"><div class="pv amber">4.8 ★</div><div class="pl">Rating</div></div><div class="panel-item"><div class="pv green">Freemium</div><div class="pl">Pricing</div></div><div class="panel-item"><div class="pv">☁️ Cloud</div><div class="pl">Deployment</div></div><div class="panel-item"><div class="pv">Enterprise</div><div class="pl">Maturity</div></div></div>
-      <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T09:17:36.292177+00:00">🕐 27m ago</span><span>📊 2340 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
+      <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T06:54:38.434828+00:00">🕐 3h ago</span><span>📊 2340 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
     </a><a href="/product/open-interpreter/" class="card">
       <div class="card-compare"><input type="checkbox" value="open-interpreter" onchange="toggleCompare(this)" aria-label="Compare"></div>
       <button class="bookmark-btn" data-slug="open-interpreter" onclick="toggleSave(this,'open-interpreter')" title="Save">☆</button>
       <div class="card-top">
-        <div class="card-icon">🤖</div>
+        <div class="card-icon"><img src="/images/open-interpreter.png" alt="" loading="lazy"></div>
         <span class="card-badge badge-agent">Agent</span>
       </div>
       <div class="card-title">Open Interpreter — AI-агент с доступом к компьютеру</div>
@@ -405,7 +406,7 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
       <div class="card-compare"><input type="checkbox" value="llama-meta" onchange="toggleCompare(this)" aria-label="Compare"></div>
       <button class="bookmark-btn" data-slug="llama-meta" onclick="toggleSave(this,'llama-meta')" title="Save">☆</button>
       <div class="card-top">
-        <div class="card-icon">🧠</div>
+        <div class="card-icon"><img src="/images/llama-meta.png" alt="" loading="lazy"></div>
         <span class="card-badge badge-model">Model</span>
       </div>
       <div class="card-title">Llama 3 — открытая модель от Meta</div>
@@ -416,51 +417,51 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
       <div class="card-compare"><input type="checkbox" value="openclaw-agent" onchange="toggleCompare(this)" aria-label="Compare"></div>
       <button class="bookmark-btn" data-slug="openclaw-agent" onclick="toggleSave(this,'openclaw-agent')" title="Save">☆</button>
       <div class="card-top">
-        <div class="card-icon">🤖</div>
+        <div class="card-icon"><img src="/images/openclaw-agent.png" alt="" loading="lazy"></div>
         <span class="card-badge badge-agent">Agent</span>
       </div>
       <div class="card-title">OpenClaw — персональный AI-ассистент с открытым кодом</div>
       <div class="card-desc">Ваш личный AI. Любая ОС. Любая платформа. 🦞</div>
       <div class="card-panel"><div class="panel-item"><div class="pv amber">4.8 ★</div><div class="pl">Rating</div></div><div class="panel-item"><div class="pv green">Open Source</div><div class="pl">Pricing</div></div><div class="panel-item"><div class="pv">🏠 Local</div><div class="pl">Deployment</div></div><div class="panel-item"><div class="pv">Enterprise</div><div class="pl">Maturity</div></div></div>
-      <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T09:17:39.492100+00:00">🕐 27m ago</span><span>📊 2100 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
+      <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T06:54:41.530478+00:00">🕐 3h ago</span><span>📊 2100 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
     </a><a href="/product/cline-vscode/" class="card">
       <div class="card-compare"><input type="checkbox" value="cline-vscode" onchange="toggleCompare(this)" aria-label="Compare"></div>
       <button class="bookmark-btn" data-slug="cline-vscode" onclick="toggleSave(this,'cline-vscode')" title="Save">☆</button>
       <div class="card-top">
-        <div class="card-icon">🤖</div>
+        <div class="card-icon"><img src="/images/cline-vscode.png" alt="" loading="lazy"></div>
         <span class="card-badge badge-agent">Agent</span>
       </div>
       <div class="card-title">Cline — автономный AI-агент для VS Code</div>
       <div class="card-desc">AI-агент с доступом к файлам и терминалу</div>
       <div class="card-panel"><div class="panel-item"><div class="pv amber">4.7 ★</div><div class="pl">Rating</div></div><div class="panel-item"><div class="pv green">Open Source</div><div class="pl">Pricing</div></div><div class="panel-item"><div class="pv">☁️ Cloud</div><div class="pl">Deployment</div></div><div class="panel-item"><div class="pv">Enterprise</div><div class="pl">Maturity</div></div></div>
-      <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T09:17:36.313645+00:00">🕐 27m ago</span><span>📊 560 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
+      <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T06:54:38.454650+00:00">🕐 3h ago</span><span>📊 560 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
     </a><a href="/product/perplexity-ai/" class="card">
       <div class="card-compare"><input type="checkbox" value="perplexity-ai" onchange="toggleCompare(this)" aria-label="Compare"></div>
       <button class="bookmark-btn" data-slug="perplexity-ai" onclick="toggleSave(this,'perplexity-ai')" title="Save">☆</button>
       <div class="card-top">
-        <div class="card-icon">🤖</div>
+        <div class="card-icon"><img src="/images/perplexity-ai.png" alt="" loading="lazy"></div>
         <span class="card-badge badge-agent">Agent</span>
       </div>
       <div class="card-title">Perplexity AI — поисковая система с искусственным интеллектом</div>
       <div class="card-desc">AI-поисковик с цитированием источников</div>
       <div class="card-panel"><div class="panel-item"><div class="pv amber">4.7 ★</div><div class="pl">Rating</div></div><div class="panel-item"><div class="pv green">Freemium</div><div class="pl">Pricing</div></div><div class="panel-item"><div class="pv">☁️ Cloud</div><div class="pl">Deployment</div></div><div class="panel-item"><div class="pv">Enterprise</div><div class="pl">Maturity</div></div></div>
-      <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T09:17:36.336752+00:00">🕐 27m ago</span><span>📊 3100 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
+      <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T06:54:38.473254+00:00">🕐 3h ago</span><span>📊 3100 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
     </a><a href="/product/claude-anthropic/" class="card">
       <div class="card-compare"><input type="checkbox" value="claude-anthropic" onchange="toggleCompare(this)" aria-label="Compare"></div>
       <button class="bookmark-btn" data-slug="claude-anthropic" onclick="toggleSave(this,'claude-anthropic')" title="Save">☆</button>
       <div class="card-top">
-        <div class="card-icon">🤖</div>
+        <div class="card-icon"><img src="/images/claude-anthropic.png" alt="" loading="lazy"></div>
         <span class="card-badge badge-agent">Agent</span>
       </div>
       <div class="card-title">Claude — AI-ассистент от Anthropic</div>
       <div class="card-desc">Этичный AI с длинным контекстом и agentic режимом</div>
       <div class="card-panel"><div class="panel-item"><div class="pv amber">4.7 ★</div><div class="pl">Rating</div></div><div class="panel-item"><div class="pv green">Freemium</div><div class="pl">Pricing</div></div><div class="panel-item"><div class="pv">☁️ Cloud</div><div class="pl">Deployment</div></div><div class="panel-item"><div class="pv">Enterprise</div><div class="pl">Maturity</div></div></div>
-      <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T09:17:36.341624+00:00">🕐 27m ago</span><span>📊 4200 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
+      <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T06:54:38.477249+00:00">🕐 3h ago</span><span>📊 4200 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
     </a><a href="/product/aider-ai/" class="card">
       <div class="card-compare"><input type="checkbox" value="aider-ai" onchange="toggleCompare(this)" aria-label="Compare"></div>
       <button class="bookmark-btn" data-slug="aider-ai" onclick="toggleSave(this,'aider-ai')" title="Save">☆</button>
       <div class="card-top">
-        <div class="card-icon">🤖</div>
+        <div class="card-icon"><img src="/images/aider-ai.png" alt="" loading="lazy"></div>
         <span class="card-badge badge-agent">Agent</span>
       </div>
       <div class="card-title">Aider — AI-парный программист в терминале</div>
@@ -471,7 +472,7 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
       <div class="card-compare"><input type="checkbox" value="smolagents-huggingface" onchange="toggleCompare(this)" aria-label="Compare"></div>
       <button class="bookmark-btn" data-slug="smolagents-huggingface" onclick="toggleSave(this,'smolagents-huggingface')" title="Save">☆</button>
       <div class="card-top">
-        <div class="card-icon">🔧</div>
+        <div class="card-icon"><img src="/images/smolagents-huggingface.png" alt="" loading="lazy"></div>
         <span class="card-badge badge-framework">Framework</span>
       </div>
       <div class="card-title">SmolAgents — минималистичные агенты от Hugging Face</div>
@@ -482,7 +483,7 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
       <div class="card-compare"><input type="checkbox" value="mistral-ai" onchange="toggleCompare(this)" aria-label="Compare"></div>
       <button class="bookmark-btn" data-slug="mistral-ai" onclick="toggleSave(this,'mistral-ai')" title="Save">☆</button>
       <div class="card-top">
-        <div class="card-icon">🧠</div>
+        <div class="card-icon"><img src="/images/mistral-ai.png" alt="" loading="lazy"></div>
         <span class="card-badge badge-model">Model</span>
       </div>
       <div class="card-title">Mistral AI — европейский лидер открытых LLM</div>
@@ -493,7 +494,7 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
       <div class="card-compare"><input type="checkbox" value="vercel-v0" onchange="toggleCompare(this)" aria-label="Compare"></div>
       <button class="bookmark-btn" data-slug="vercel-v0" onclick="toggleSave(this,'vercel-v0')" title="Save">☆</button>
       <div class="card-top">
-        <div class="card-icon">🤖</div>
+        <div class="card-icon"><img src="/images/vercel-v0.png" alt="" loading="lazy"></div>
         <span class="card-badge badge-agent">Agent</span>
       </div>
       <div class="card-title">v0 by Vercel — генерация UI компонентов текстом</div>
@@ -504,7 +505,7 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
       <div class="card-compare"><input type="checkbox" value="anthropic-mcp" onchange="toggleCompare(this)" aria-label="Compare"></div>
       <button class="bookmark-btn" data-slug="anthropic-mcp" onclick="toggleSave(this,'anthropic-mcp')" title="Save">☆</button>
       <div class="card-top">
-        <div class="card-icon">⚡</div>
+        <div class="card-icon"><img src="/images/anthropic-mcp.png" alt="" loading="lazy"></div>
         <span class="card-badge badge-infra">Infra</span>
       </div>
       <div class="card-title">Anthropic MCP — протокол для подключения AI к данным</div>
@@ -515,73 +516,73 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
       <div class="card-compare"><input type="checkbox" value="codex-cli" onchange="toggleCompare(this)" aria-label="Compare"></div>
       <button class="bookmark-btn" data-slug="codex-cli" onclick="toggleSave(this,'codex-cli')" title="Save">☆</button>
       <div class="card-top">
-        <div class="card-icon">🤖</div>
+        <div class="card-icon"><img src="/images/codex-cli.png" alt="" loading="lazy"></div>
         <span class="card-badge badge-agent">Agent</span>
       </div>
       <div class="card-title">OpenAI Codex CLI — лёгкий агент для кода в терминале</div>
       <div class="card-desc">AI-агент, который живёт в вашем терминале</div>
       <div class="card-panel"><div class="panel-item"><div class="pv amber">4.7 ★</div><div class="pl">Rating</div></div><div class="panel-item"><div class="pv green">Open Source</div><div class="pl">Pricing</div></div><div class="panel-item"><div class="pv">☁️ Cloud</div><div class="pl">Deployment</div></div><div class="panel-item"><div class="pv">Enterprise</div><div class="pl">Maturity</div></div></div>
-      <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T09:17:39.496455+00:00">🕐 27m ago</span><span>📊 1800 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
+      <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T06:54:41.534104+00:00">🕐 3h ago</span><span>📊 1800 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
     </a><a href="/product/anythingllm/" class="card">
       <div class="card-compare"><input type="checkbox" value="anythingllm" onchange="toggleCompare(this)" aria-label="Compare"></div>
       <button class="bookmark-btn" data-slug="anythingllm" onclick="toggleSave(this,'anythingllm')" title="Save">☆</button>
       <div class="card-top">
-        <div class="card-icon">🤖</div>
+        <div class="card-icon"><img src="/images/anythingllm.png" alt="" loading="lazy"></div>
         <span class="card-badge badge-agent">Agent</span>
       </div>
       <div class="card-title">AnythingLLM — универсальный AI-ускоритель продуктивности</div>
       <div class="card-desc">Всё-в-одном: RAG, агенты, MCP и кастомные модели — без настройки</div>
       <div class="card-panel"><div class="panel-item"><div class="pv amber">4.7 ★</div><div class="pl">Rating</div></div><div class="panel-item"><div class="pv green">Open Source</div><div class="pl">Pricing</div></div><div class="panel-item"><div class="pv">☁️ Cloud</div><div class="pl">Deployment</div></div><div class="panel-item"><div class="pv">Enterprise</div><div class="pl">Maturity</div></div></div>
-      <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T09:17:39.508773+00:00">🕐 27m ago</span><span>📊 1500 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
+      <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T06:54:41.551561+00:00">🕐 3h ago</span><span>📊 1500 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
     </a><a href="/product/lm-studio/" class="card">
       <div class="card-compare"><input type="checkbox" value="lm-studio" onchange="toggleCompare(this)" aria-label="Compare"></div>
       <button class="bookmark-btn" data-slug="lm-studio" onclick="toggleSave(this,'lm-studio')" title="Save">☆</button>
       <div class="card-top">
-        <div class="card-icon">🤖</div>
+        <div class="card-icon"><img src="/images/lm-studio.png" alt="" loading="lazy"></div>
         <span class="card-badge badge-agent">Agent</span>
       </div>
       <div class="card-title">LM Studio — десктопное приложение для локальных LLM</div>
       <div class="card-desc">Запускайте любые модели локально с удобным UI и GPU-ускорением</div>
       <div class="card-panel"><div class="panel-item"><div class="pv amber">4.7 ★</div><div class="pl">Rating</div></div><div class="panel-item"><div class="pv green">Freemium</div><div class="pl">Pricing</div></div><div class="panel-item"><div class="pv">☁️ Cloud</div><div class="pl">Deployment</div></div><div class="panel-item"><div class="pv">Enterprise</div><div class="pl">Maturity</div></div></div>
-      <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T09:17:39.513832+00:00">🕐 27m ago</span><span>📊 2800 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
+      <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T06:54:41.558495+00:00">🕐 3h ago</span><span>📊 2800 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
     </a><a href="/product/claude-code/" class="card">
       <div class="card-compare"><input type="checkbox" value="claude-code" onchange="toggleCompare(this)" aria-label="Compare"></div>
       <button class="bookmark-btn" data-slug="claude-code" onclick="toggleSave(this,'claude-code')" title="Save">☆</button>
       <div class="card-top">
-        <div class="card-icon">🤖</div>
+        <div class="card-icon"><img src="/images/claude-code.png" alt="" loading="lazy"></div>
         <span class="card-badge badge-agent">Agent</span>
       </div>
       <div class="card-title">Claude Code — агентное программирование от Anthropic</div>
       <div class="card-desc">AI-агент, который читает кодовую базу и пишет PR</div>
       <div class="card-panel"><div class="panel-item"><div class="pv amber">4.6 ★</div><div class="pl">Rating</div></div><div class="panel-item"><div class="pv green">Usage-based</div><div class="pl">Pricing</div></div><div class="panel-item"><div class="pv">🏠 Local</div><div class="pl">Deployment</div></div><div class="panel-item"><div class="pv">Enterprise</div><div class="pl">Maturity</div></div></div>
-      <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T09:17:36.311329+00:00">🕐 27m ago</span><span>📊 890 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
+      <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T06:54:38.452029+00:00">🕐 3h ago</span><span>📊 890 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
     </a><a href="/product/n8n-automation/" class="card">
       <div class="card-compare"><input type="checkbox" value="n8n-automation" onchange="toggleCompare(this)" aria-label="Compare"></div>
       <button class="bookmark-btn" data-slug="n8n-automation" onclick="toggleSave(this,'n8n-automation')" title="Save">☆</button>
       <div class="card-top">
-        <div class="card-icon">🌐</div>
+        <div class="card-icon"><img src="/images/n8n-automation.png" alt="" loading="lazy"></div>
         <span class="card-badge badge-platform">Platform</span>
       </div>
       <div class="card-title">n8n — автоматизация рабочих процессов с AI</div>
       <div class="card-desc">Open-source альтернатива Zapier с AI-нодами</div>
       <div class="card-panel"><div class="panel-item"><div class="pv amber">4.6 ★</div><div class="pl">Rating</div></div><div class="panel-item"><div class="pv green">Freemium</div><div class="pl">Pricing</div></div><div class="panel-item"><div class="pv">☁️ Cloud</div><div class="pl">Deployment</div></div><div class="panel-item"><div class="pv">Enterprise</div><div class="pl">Maturity</div></div></div>
-      <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T09:17:36.331608+00:00">🕐 27m ago</span><span>📊 1200 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
+      <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T06:54:38.471456+00:00">🕐 3h ago</span><span>📊 1200 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
     </a><a href="/product/chatgpt-openai/" class="card">
       <div class="card-compare"><input type="checkbox" value="chatgpt-openai" onchange="toggleCompare(this)" aria-label="Compare"></div>
       <button class="bookmark-btn" data-slug="chatgpt-openai" onclick="toggleSave(this,'chatgpt-openai')" title="Save">☆</button>
       <div class="card-top">
-        <div class="card-icon">🤖</div>
+        <div class="card-icon"><img src="/images/chatgpt-openai.png" alt="" loading="lazy"></div>
         <span class="card-badge badge-agent">Agent</span>
       </div>
       <div class="card-title">ChatGPT — универсальный AI-ассистент от OpenAI</div>
       <div class="card-desc">Самый популярный AI-чат с агентными возможностями</div>
       <div class="card-panel"><div class="panel-item"><div class="pv amber">4.6 ★</div><div class="pl">Rating</div></div><div class="panel-item"><div class="pv green">Freemium</div><div class="pl">Pricing</div></div><div class="panel-item"><div class="pv">🏠 Local</div><div class="pl">Deployment</div></div><div class="panel-item"><div class="pv">Enterprise</div><div class="pl">Maturity</div></div></div>
-      <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T09:17:36.339230+00:00">🕐 27m ago</span><span>📊 25000 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
+      <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T06:54:38.475236+00:00">🕐 3h ago</span><span>📊 25000 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
     </a><a href="/product/metagpt-framework/" class="card">
       <div class="card-compare"><input type="checkbox" value="metagpt-framework" onchange="toggleCompare(this)" aria-label="Compare"></div>
       <button class="bookmark-btn" data-slug="metagpt-framework" onclick="toggleSave(this,'metagpt-framework')" title="Save">☆</button>
       <div class="card-top">
-        <div class="card-icon">🔧</div>
+        <div class="card-icon"><img src="/images/metagpt-framework.png" alt="" loading="lazy"></div>
         <span class="card-badge badge-framework">Framework</span>
       </div>
       <div class="card-title">MetaGPT — multi-agent фреймворк с ролями как в компании</div>
@@ -592,7 +593,7 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
       <div class="card-compare"><input type="checkbox" value="openai-swarm" onchange="toggleCompare(this)" aria-label="Compare"></div>
       <button class="bookmark-btn" data-slug="openai-swarm" onclick="toggleSave(this,'openai-swarm')" title="Save">☆</button>
       <div class="card-top">
-        <div class="card-icon">🔧</div>
+        <div class="card-icon"><img src="/images/openai-swarm.png" alt="" loading="lazy"></div>
         <span class="card-badge badge-framework">Framework</span>
       </div>
       <div class="card-title">OpenAI Swarm — минималистичная оркестрация агентов</div>
@@ -603,7 +604,7 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
       <div class="card-compare"><input type="checkbox" value="phind-ai" onchange="toggleCompare(this)" aria-label="Compare"></div>
       <button class="bookmark-btn" data-slug="phind-ai" onclick="toggleSave(this,'phind-ai')" title="Save">☆</button>
       <div class="card-top">
-        <div class="card-icon">🤖</div>
+        <div class="card-icon"><img src="/images/phind-ai.png" alt="" loading="lazy"></div>
         <span class="card-badge badge-agent">Agent</span>
       </div>
       <div class="card-title">Phind — AI-поисковик для разработчиков</div>
@@ -614,7 +615,7 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
       <div class="card-compare"><input type="checkbox" value="lovable-dev" onchange="toggleCompare(this)" aria-label="Compare"></div>
       <button class="bookmark-btn" data-slug="lovable-dev" onclick="toggleSave(this,'lovable-dev')" title="Save">☆</button>
       <div class="card-top">
-        <div class="card-icon">🤖</div>
+        <div class="card-icon"><img src="/images/lovable-dev.png" alt="" loading="lazy"></div>
         <span class="card-badge badge-agent">Agent</span>
       </div>
       <div class="card-title">Lovable — AI-разработка приложений без кода</div>
@@ -625,7 +626,7 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
       <div class="card-compare"><input type="checkbox" value="composio-tools" onchange="toggleCompare(this)" aria-label="Compare"></div>
       <button class="bookmark-btn" data-slug="composio-tools" onclick="toggleSave(this,'composio-tools')" title="Save">☆</button>
       <div class="card-top">
-        <div class="card-icon">⚡</div>
+        <div class="card-icon"><img src="/images/composio-tools.png" alt="" loading="lazy"></div>
         <span class="card-badge badge-infra">Infra</span>
       </div>
       <div class="card-title">Composio — платформа интеграций для AI-агентов</div>
@@ -636,51 +637,51 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
       <div class="card-compare"><input type="checkbox" value="continue-dev" onchange="toggleCompare(this)" aria-label="Compare"></div>
       <button class="bookmark-btn" data-slug="continue-dev" onclick="toggleSave(this,'continue-dev')" title="Save">☆</button>
       <div class="card-top">
-        <div class="card-icon">🤖</div>
+        <div class="card-icon"><img src="/images/continue-dev.png" alt="" loading="lazy"></div>
         <span class="card-badge badge-agent">Agent</span>
       </div>
       <div class="card-title">Continue — AI-расширение для IDE с открытым кодом</div>
       <div class="card-desc">AI-проверки кода, enforceable в CI</div>
       <div class="card-panel"><div class="panel-item"><div class="pv amber">4.6 ★</div><div class="pl">Rating</div></div><div class="panel-item"><div class="pv green">Open Source</div><div class="pl">Pricing</div></div><div class="panel-item"><div class="pv">☁️ Cloud</div><div class="pl">Deployment</div></div><div class="panel-item"><div class="pv">Enterprise</div><div class="pl">Maturity</div></div></div>
-      <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T09:17:39.503269+00:00">🕐 27m ago</span><span>📊 950 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
+      <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T06:54:41.541897+00:00">🕐 3h ago</span><span>📊 950 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
     </a><a href="/product/github-copilot/" class="card">
       <div class="card-compare"><input type="checkbox" value="github-copilot" onchange="toggleCompare(this)" aria-label="Compare"></div>
       <button class="bookmark-btn" data-slug="github-copilot" onclick="toggleSave(this,'github-copilot')" title="Save">☆</button>
       <div class="card-top">
-        <div class="card-icon">🤖</div>
+        <div class="card-icon"><img src="/images/github-copilot.png" alt="" loading="lazy"></div>
         <span class="card-badge badge-agent">Agent</span>
       </div>
       <div class="card-title">GitHub Copilot — AI-парный программист</div>
       <div class="card-desc">AI-помощник, встроенный в ваш редактор</div>
       <div class="card-panel"><div class="panel-item"><div class="pv amber">4.5 ★</div><div class="pl">Rating</div></div><div class="panel-item"><div class="pv green">Paid</div><div class="pl">Pricing</div></div><div class="panel-item"><div class="pv">☁️ Cloud</div><div class="pl">Deployment</div></div><div class="panel-item"><div class="pv">Enterprise</div><div class="pl">Maturity</div></div></div>
-      <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T09:17:36.307984+00:00">🕐 27m ago</span><span>📊 5200 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
+      <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T06:54:38.447978+00:00">🕐 3h ago</span><span>📊 5200 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
     </a><a href="/product/dify-platform/" class="card">
       <div class="card-compare"><input type="checkbox" value="dify-platform" onchange="toggleCompare(this)" aria-label="Compare"></div>
       <button class="bookmark-btn" data-slug="dify-platform" onclick="toggleSave(this,'dify-platform')" title="Save">☆</button>
       <div class="card-top">
-        <div class="card-icon">🌐</div>
+        <div class="card-icon"><img src="/images/dify-platform.png" alt="" loading="lazy"></div>
         <span class="card-badge badge-platform">Platform</span>
       </div>
       <div class="card-title">Dify — платформа для LLM-приложений</div>
       <div class="card-desc">Open-source платформа для создания AI-приложений</div>
       <div class="card-panel"><div class="panel-item"><div class="pv amber">4.5 ★</div><div class="pl">Rating</div></div><div class="panel-item"><div class="pv green">Freemium</div><div class="pl">Pricing</div></div><div class="panel-item"><div class="pv">🏠 Local</div><div class="pl">Deployment</div></div><div class="panel-item"><div class="pv">Enterprise</div><div class="pl">Maturity</div></div></div>
-      <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T09:17:36.327564+00:00">🕐 27m ago</span><span>📊 780 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
+      <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T06:54:38.467672+00:00">🕐 3h ago</span><span>📊 780 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
     </a><a href="/product/deepseek-llm/" class="card">
       <div class="card-compare"><input type="checkbox" value="deepseek-llm" onchange="toggleCompare(this)" aria-label="Compare"></div>
       <button class="bookmark-btn" data-slug="deepseek-llm" onclick="toggleSave(this,'deepseek-llm')" title="Save">☆</button>
       <div class="card-top">
-        <div class="card-icon">🧠</div>
+        <div class="card-icon"><img src="/images/deepseek-llm.png" alt="" loading="lazy"></div>
         <span class="card-badge badge-model">Model</span>
       </div>
       <div class="card-title">DeepSeek — китайский LLM нового поколения</div>
       <div class="card-desc">Открытая модель, сравнимая с GPT-4</div>
       <div class="card-panel"><div class="panel-item"><div class="pv amber">4.5 ★</div><div class="pl">Rating</div></div><div class="panel-item"><div class="pv green">Usage-based</div><div class="pl">Pricing</div></div><div class="panel-item"><div class="pv">🏠 Local</div><div class="pl">Deployment</div></div><div class="panel-item"><div class="pv">Enterprise</div><div class="pl">Maturity</div></div></div>
-      <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T09:17:36.343835+00:00">🕐 27m ago</span><span>📊 1800 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
+      <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T06:54:38.479937+00:00">🕐 3h ago</span><span>📊 1800 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
     </a><a href="/product/swe-agent/" class="card">
       <div class="card-compare"><input type="checkbox" value="swe-agent" onchange="toggleCompare(this)" aria-label="Compare"></div>
       <button class="bookmark-btn" data-slug="swe-agent" onclick="toggleSave(this,'swe-agent')" title="Save">☆</button>
       <div class="card-top">
-        <div class="card-icon">🤖</div>
+        <div class="card-icon"><img src="/images/swe-agent.png" alt="" loading="lazy"></div>
         <span class="card-badge badge-agent">Agent</span>
       </div>
       <div class="card-title">SWE-Agent — AI для решения GitHub issues</div>
@@ -691,7 +692,7 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
       <div class="card-compare"><input type="checkbox" value="phidata-framework" onchange="toggleCompare(this)" aria-label="Compare"></div>
       <button class="bookmark-btn" data-slug="phidata-framework" onclick="toggleSave(this,'phidata-framework')" title="Save">☆</button>
       <div class="card-top">
-        <div class="card-icon">🔧</div>
+        <div class="card-icon"><img src="/images/phidata-framework.png" alt="" loading="lazy"></div>
         <span class="card-badge badge-framework">Framework</span>
       </div>
       <div class="card-title">Phidata — фреймворк для AI-агентов с долговременной памятью</div>
@@ -702,7 +703,7 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
       <div class="card-compare"><input type="checkbox" value="bolt-new" onchange="toggleCompare(this)" aria-label="Compare"></div>
       <button class="bookmark-btn" data-slug="bolt-new" onclick="toggleSave(this,'bolt-new')" title="Save">☆</button>
       <div class="card-top">
-        <div class="card-icon">🤖</div>
+        <div class="card-icon"><img src="/images/bolt-new.png" alt="" loading="lazy"></div>
         <span class="card-badge badge-agent">Agent</span>
       </div>
       <div class="card-title">Bolt.new — full-stack приложения в браузере с AI</div>
@@ -713,7 +714,7 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
       <div class="card-compare"><input type="checkbox" value="e2b-sandbox" onchange="toggleCompare(this)" aria-label="Compare"></div>
       <button class="bookmark-btn" data-slug="e2b-sandbox" onclick="toggleSave(this,'e2b-sandbox')" title="Save">☆</button>
       <div class="card-top">
-        <div class="card-icon">⚡</div>
+        <div class="card-icon"><img src="/images/e2b-sandbox.png" alt="" loading="lazy"></div>
         <span class="card-badge badge-infra">Infra</span>
       </div>
       <div class="card-title">E2B — песочницы для AI-агентов</div>
@@ -724,40 +725,40 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
       <div class="card-compare"><input type="checkbox" value="jan-ai" onchange="toggleCompare(this)" aria-label="Compare"></div>
       <button class="bookmark-btn" data-slug="jan-ai" onclick="toggleSave(this,'jan-ai')" title="Save">☆</button>
       <div class="card-top">
-        <div class="card-icon">🤖</div>
+        <div class="card-icon"><img src="/images/jan-ai.png" alt="" loading="lazy"></div>
         <span class="card-badge badge-agent">Agent</span>
       </div>
       <div class="card-title">Jan — опенсорсная альтернатива ChatGPT с локальным запуском</div>
       <div class="card-desc">ChatGPT с открытым кодом, работающий 100% офлайн</div>
       <div class="card-panel"><div class="panel-item"><div class="pv amber">4.5 ★</div><div class="pl">Rating</div></div><div class="panel-item"><div class="pv green">Open Source</div><div class="pl">Pricing</div></div><div class="panel-item"><div class="pv">☁️ Cloud</div><div class="pl">Deployment</div></div><div class="panel-item"><div class="pv">Enterprise</div><div class="pl">Maturity</div></div></div>
-      <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T09:17:39.505962+00:00">🕐 27m ago</span><span>📊 1100 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
+      <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T06:54:41.548512+00:00">🕐 3h ago</span><span>📊 1100 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
     </a><a href="/product/windsurf-ide/" class="card">
       <div class="card-compare"><input type="checkbox" value="windsurf-ide" onchange="toggleCompare(this)" aria-label="Compare"></div>
       <button class="bookmark-btn" data-slug="windsurf-ide" onclick="toggleSave(this,'windsurf-ide')" title="Save">☆</button>
       <div class="card-top">
-        <div class="card-icon">🤖</div>
+        <div class="card-icon"><img src="/images/windsurf-ide.png" alt="" loading="lazy"></div>
         <span class="card-badge badge-agent">Agent</span>
       </div>
       <div class="card-title">Windsurf — AI IDE от Codeium</div>
       <div class="card-desc">Первый AI Flow IDE с каскадным контекстом</div>
       <div class="card-panel"><div class="panel-item"><div class="pv amber">4.4 ★</div><div class="pl">Rating</div></div><div class="panel-item"><div class="pv green">Freemium</div><div class="pl">Pricing</div></div><div class="panel-item"><div class="pv">☁️ Cloud</div><div class="pl">Deployment</div></div><div class="panel-item"><div class="pv">Production</div><div class="pl">Maturity</div></div></div>
-      <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T09:17:36.315977+00:00">🕐 27m ago</span><span>📊 1200 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
+      <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T06:54:38.457238+00:00">🕐 3h ago</span><span>📊 1200 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
     </a><a href="/product/langgraph-framework/" class="card">
       <div class="card-compare"><input type="checkbox" value="langgraph-framework" onchange="toggleCompare(this)" aria-label="Compare"></div>
       <button class="bookmark-btn" data-slug="langgraph-framework" onclick="toggleSave(this,'langgraph-framework')" title="Save">☆</button>
       <div class="card-top">
-        <div class="card-icon">🔧</div>
+        <div class="card-icon"><img src="/images/langgraph-framework.png" alt="" loading="lazy"></div>
         <span class="card-badge badge-framework">Framework</span>
       </div>
       <div class="card-title">LangGraph — оркестрация агентов как граф состояний</div>
       <div class="card-desc">Stateful multi-actor приложения от создателей LangChain</div>
       <div class="card-panel"><div class="panel-item"><div class="pv amber">4.4 ★</div><div class="pl">Rating</div></div><div class="panel-item"><div class="pv green">Open Source</div><div class="pl">Pricing</div></div><div class="panel-item"><div class="pv">🏠 Local</div><div class="pl">Deployment</div></div><div class="panel-item"><div class="pv">Production</div><div class="pl">Maturity</div></div></div>
-      <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T09:17:36.322706+00:00">🕐 27m ago</span><span>📊 190 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
+      <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T06:54:38.463588+00:00">🕐 3h ago</span><span>📊 190 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
     </a><a href="/product/codeium-windsurf/" class="card">
       <div class="card-compare"><input type="checkbox" value="codeium-windsurf" onchange="toggleCompare(this)" aria-label="Compare"></div>
       <button class="bookmark-btn" data-slug="codeium-windsurf" onclick="toggleSave(this,'codeium-windsurf')" title="Save">☆</button>
       <div class="card-top">
-        <div class="card-icon">🤖</div>
+        <div class="card-icon"><img src="/images/codeium-windsurf.png" alt="" loading="lazy"></div>
         <span class="card-badge badge-agent">Agent</span>
       </div>
       <div class="card-title">Codeium — AI-автодополнение и поиск по кодовой базе</div>
@@ -768,7 +769,7 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
       <div class="card-compare"><input type="checkbox" value="chatdev-agent" onchange="toggleCompare(this)" aria-label="Compare"></div>
       <button class="bookmark-btn" data-slug="chatdev-agent" onclick="toggleSave(this,'chatdev-agent')" title="Save">☆</button>
       <div class="card-top">
-        <div class="card-icon">🔧</div>
+        <div class="card-icon"><img src="/images/chatdev-agent.png" alt="" loading="lazy"></div>
         <span class="card-badge badge-framework">Framework</span>
       </div>
       <div class="card-title">ChatDev — виртуальная софтверная компания из AI-агентов</div>
@@ -779,7 +780,7 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
       <div class="card-compare"><input type="checkbox" value="you-com" onchange="toggleCompare(this)" aria-label="Compare"></div>
       <button class="bookmark-btn" data-slug="you-com" onclick="toggleSave(this,'you-com')" title="Save">☆</button>
       <div class="card-top">
-        <div class="card-icon">🤖</div>
+        <div class="card-icon"><img src="/images/you-com.png" alt="" loading="lazy"></div>
         <span class="card-badge badge-agent">Agent</span>
       </div>
       <div class="card-title">You.com — AI-поисковик с агентными режимами</div>
@@ -790,7 +791,7 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
       <div class="card-compare"><input type="checkbox" value="google-gemini" onchange="toggleCompare(this)" aria-label="Compare"></div>
       <button class="bookmark-btn" data-slug="google-gemini" onclick="toggleSave(this,'google-gemini')" title="Save">☆</button>
       <div class="card-top">
-        <div class="card-icon">🤖</div>
+        <div class="card-icon"><img src="/images/google-gemini.png" alt="" loading="lazy"></div>
         <span class="card-badge badge-agent">Agent</span>
       </div>
       <div class="card-title">Google Gemini — мультимодальный AI для бизнеса и разработки</div>
@@ -801,7 +802,7 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
       <div class="card-compare"><input type="checkbox" value="langsmith-langchain" onchange="toggleCompare(this)" aria-label="Compare"></div>
       <button class="bookmark-btn" data-slug="langsmith-langchain" onclick="toggleSave(this,'langsmith-langchain')" title="Save">☆</button>
       <div class="card-top">
-        <div class="card-icon">⚡</div>
+        <div class="card-icon"><img src="/images/langsmith-langchain.png" alt="" loading="lazy"></div>
         <span class="card-badge badge-infra">Infra</span>
       </div>
       <div class="card-title">LangSmith — observability и тестирование LLM-приложений</div>
@@ -812,7 +813,7 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
       <div class="card-compare"><input type="checkbox" value="zapier-ai" onchange="toggleCompare(this)" aria-label="Compare"></div>
       <button class="bookmark-btn" data-slug="zapier-ai" onclick="toggleSave(this,'zapier-ai')" title="Save">☆</button>
       <div class="card-top">
-        <div class="card-icon">🤖</div>
+        <div class="card-icon"><img src="/images/zapier-ai.png" alt="" loading="lazy"></div>
         <span class="card-badge badge-agent">Agent</span>
       </div>
       <div class="card-title">Zapier AI — автоматизация с AI без кода</div>
@@ -823,29 +824,29 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
       <div class="card-compare"><input type="checkbox" value="crewai-framework" onchange="toggleCompare(this)" aria-label="Compare"></div>
       <button class="bookmark-btn" data-slug="crewai-framework" onclick="toggleSave(this,'crewai-framework')" title="Save">☆</button>
       <div class="card-top">
-        <div class="card-icon">🔧</div>
+        <div class="card-icon"><img src="/images/crewai-framework.png" alt="" loading="lazy"></div>
         <span class="card-badge badge-framework">Framework</span>
       </div>
       <div class="card-title">CrewAI — фреймворк для multi-agent систем</div>
       <div class="card-desc">Оркестрация AI-агентов с ролями и задачами</div>
       <div class="card-panel"><div class="panel-item"><div class="pv amber">4.3 ★</div><div class="pl">Rating</div></div><div class="panel-item"><div class="pv green">Open Source</div><div class="pl">Pricing</div></div><div class="panel-item"><div class="pv">🏠 Local</div><div class="pl">Deployment</div></div><div class="panel-item"><div class="pv">Production</div><div class="pl">Maturity</div></div></div>
-      <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T09:17:36.318418+00:00">🕐 27m ago</span><span>📊 340 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
+      <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T06:54:38.459666+00:00">🕐 3h ago</span><span>📊 340 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
     </a><a href="/product/flowise-lowcode/" class="card">
       <div class="card-compare"><input type="checkbox" value="flowise-lowcode" onchange="toggleCompare(this)" aria-label="Compare"></div>
       <button class="bookmark-btn" data-slug="flowise-lowcode" onclick="toggleSave(this,'flowise-lowcode')" title="Save">☆</button>
       <div class="card-top">
-        <div class="card-icon">🌐</div>
+        <div class="card-icon"><img src="/images/flowise-lowcode.png" alt="" loading="lazy"></div>
         <span class="card-badge badge-platform">Platform</span>
       </div>
       <div class="card-title">Flowise — low-code конструктор LLM-потоков</div>
       <div class="card-desc">Визуальное построение AI-пайплайнов drag-and-drop</div>
       <div class="card-panel"><div class="panel-item"><div class="pv amber">4.3 ★</div><div class="pl">Rating</div></div><div class="panel-item"><div class="pv green">Open Source</div><div class="pl">Pricing</div></div><div class="panel-item"><div class="pv">☁️ Cloud</div><div class="pl">Deployment</div></div><div class="panel-item"><div class="pv">Production</div><div class="pl">Maturity</div></div></div>
-      <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T09:17:36.329539+00:00">🕐 27m ago</span><span>📊 440 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
+      <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T06:54:38.469720+00:00">🕐 3h ago</span><span>📊 440 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
     </a><a href="/product/replit-ai/" class="card">
       <div class="card-compare"><input type="checkbox" value="replit-ai" onchange="toggleCompare(this)" aria-label="Compare"></div>
       <button class="bookmark-btn" data-slug="replit-ai" onclick="toggleSave(this,'replit-ai')" title="Save">☆</button>
       <div class="card-top">
-        <div class="card-icon">🤖</div>
+        <div class="card-icon"><img src="/images/replit-ai.png" alt="" loading="lazy"></div>
         <span class="card-badge badge-agent">Agent</span>
       </div>
       <div class="card-title">Replit AI — облачная IDE со встроенным AI-агентом</div>
@@ -856,7 +857,7 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
       <div class="card-compare"><input type="checkbox" value="sourcegraph-cody" onchange="toggleCompare(this)" aria-label="Compare"></div>
       <button class="bookmark-btn" data-slug="sourcegraph-cody" onclick="toggleSave(this,'sourcegraph-cody')" title="Save">☆</button>
       <div class="card-top">
-        <div class="card-icon">🤖</div>
+        <div class="card-icon"><img src="/images/sourcegraph-cody.png" alt="" loading="lazy"></div>
         <span class="card-badge badge-agent">Agent</span>
       </div>
       <div class="card-title">Sourcegraph Cody — AI с пониманием всей кодовой базы</div>
@@ -867,7 +868,7 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
       <div class="card-compare"><input type="checkbox" value="superagi-agent" onchange="toggleCompare(this)" aria-label="Compare"></div>
       <button class="bookmark-btn" data-slug="superagi-agent" onclick="toggleSave(this,'superagi-agent')" title="Save">☆</button>
       <div class="card-top">
-        <div class="card-icon">🔧</div>
+        <div class="card-icon"><img src="/images/superagi-agent.png" alt="" loading="lazy"></div>
         <span class="card-badge badge-framework">Framework</span>
       </div>
       <div class="card-title">SuperAGI — открытая платформа автономных агентов</div>
@@ -878,7 +879,7 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
       <div class="card-compare"><input type="checkbox" value="copy-ai" onchange="toggleCompare(this)" aria-label="Compare"></div>
       <button class="bookmark-btn" data-slug="copy-ai" onclick="toggleSave(this,'copy-ai')" title="Save">☆</button>
       <div class="card-top">
-        <div class="card-icon">🤖</div>
+        <div class="card-icon"><img src="/images/copy-ai.png" alt="" loading="lazy"></div>
         <span class="card-badge badge-agent">Agent</span>
       </div>
       <div class="card-title">Copy.ai — GTM-платформа с AI-воркфлоу</div>
@@ -889,7 +890,7 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
       <div class="card-compare"><input type="checkbox" value="notion-ai" onchange="toggleCompare(this)" aria-label="Compare"></div>
       <button class="bookmark-btn" data-slug="notion-ai" onclick="toggleSave(this,'notion-ai')" title="Save">☆</button>
       <div class="card-top">
-        <div class="card-icon">🤖</div>
+        <div class="card-icon"><img src="/images/notion-ai.png" alt="" loading="lazy"></div>
         <span class="card-badge badge-agent">Agent</span>
       </div>
       <div class="card-title">Notion AI — AI-помощник в рабочем пространстве</div>
@@ -900,29 +901,29 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
       <div class="card-compare"><input type="checkbox" value="autogen-microsoft" onchange="toggleCompare(this)" aria-label="Compare"></div>
       <button class="bookmark-btn" data-slug="autogen-microsoft" onclick="toggleSave(this,'autogen-microsoft')" title="Save">☆</button>
       <div class="card-top">
-        <div class="card-icon">🔧</div>
+        <div class="card-icon"><img src="/images/autogen-microsoft.png" alt="" loading="lazy"></div>
         <span class="card-badge badge-framework">Framework</span>
       </div>
       <div class="card-title">AutoGen — multi-agent фреймворк от Microsoft</div>
       <div class="card-desc">Создание conversable агентов от Microsoft Research</div>
       <div class="card-panel"><div class="panel-item"><div class="pv amber">4.2 ★</div><div class="pl">Rating</div></div><div class="panel-item"><div class="pv green">Open Source</div><div class="pl">Pricing</div></div><div class="panel-item"><div class="pv">🏠 Local</div><div class="pl">Deployment</div></div><div class="panel-item"><div class="pv">Production</div><div class="pl">Maturity</div></div></div>
-      <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T09:17:36.320568+00:00">🕐 27m ago</span><span>📊 280 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
+      <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T06:54:38.461634+00:00">🕐 3h ago</span><span>📊 280 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
     </a><a href="/product/taskade-ai/" class="card">
       <div class="card-compare"><input type="checkbox" value="taskade-ai" onchange="toggleCompare(this)" aria-label="Compare"></div>
       <button class="bookmark-btn" data-slug="taskade-ai" onclick="toggleSave(this,'taskade-ai')" title="Save">☆</button>
       <div class="card-top">
-        <div class="card-icon">🤖</div>
+        <div class="card-icon"><img src="/images/taskade-ai.png" alt="" loading="lazy"></div>
         <span class="card-badge badge-agent">Agent</span>
       </div>
       <div class="card-title">Taskade — AI-продуктивность для команд</div>
       <div class="card-desc">Единое рабочее пространство с AI-агентами</div>
       <div class="card-panel"><div class="panel-item"><div class="pv amber">4.2 ★</div><div class="pl">Rating</div></div><div class="panel-item"><div class="pv green">Freemium</div><div class="pl">Pricing</div></div><div class="panel-item"><div class="pv">☁️ Cloud</div><div class="pl">Deployment</div></div><div class="panel-item"><div class="pv">Production</div><div class="pl">Maturity</div></div></div>
-      <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T09:17:36.349886+00:00">🕐 27m ago</span><span>📊 650 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
+      <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T06:54:38.486078+00:00">🕐 3h ago</span><span>📊 650 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
     </a><a href="/product/amazon-q-developer/" class="card">
       <div class="card-compare"><input type="checkbox" value="amazon-q-developer" onchange="toggleCompare(this)" aria-label="Compare"></div>
       <button class="bookmark-btn" data-slug="amazon-q-developer" onclick="toggleSave(this,'amazon-q-developer')" title="Save">☆</button>
       <div class="card-top">
-        <div class="card-icon">🤖</div>
+        <div class="card-icon"><img src="/images/amazon-q-developer.png" alt="" loading="lazy"></div>
         <span class="card-badge badge-agent">Agent</span>
       </div>
       <div class="card-title">Amazon Q Developer — AI-помощник от AWS</div>
@@ -933,7 +934,7 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
       <div class="card-compare"><input type="checkbox" value="semantic-kernel" onchange="toggleCompare(this)" aria-label="Compare"></div>
       <button class="bookmark-btn" data-slug="semantic-kernel" onclick="toggleSave(this,'semantic-kernel')" title="Save">☆</button>
       <div class="card-top">
-        <div class="card-icon">🔧</div>
+        <div class="card-icon"><img src="/images/semantic-kernel.png" alt="" loading="lazy"></div>
         <span class="card-badge badge-framework">Framework</span>
       </div>
       <div class="card-title">Microsoft Semantic Kernel — оркестрация AI в enterprise</div>
@@ -944,7 +945,7 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
       <div class="card-compare"><input type="checkbox" value="jasper-ai" onchange="toggleCompare(this)" aria-label="Compare"></div>
       <button class="bookmark-btn" data-slug="jasper-ai" onclick="toggleSave(this,'jasper-ai')" title="Save">☆</button>
       <div class="card-top">
-        <div class="card-icon">🤖</div>
+        <div class="card-icon"><img src="/images/jasper-ai.png" alt="" loading="lazy"></div>
         <span class="card-badge badge-agent">Agent</span>
       </div>
       <div class="card-title">Jasper AI — платформа для AI-контента в enterprise</div>
@@ -955,18 +956,18 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
       <div class="card-compare"><input type="checkbox" value="langchain-framework" onchange="toggleCompare(this)" aria-label="Compare"></div>
       <button class="bookmark-btn" data-slug="langchain-framework" onclick="toggleSave(this,'langchain-framework')" title="Save">☆</button>
       <div class="card-top">
-        <div class="card-icon">🔧</div>
+        <div class="card-icon"><img src="/images/langchain-framework.png" alt="" loading="lazy"></div>
         <span class="card-badge badge-framework">Framework</span>
       </div>
       <div class="card-title">LangChain — главный фреймворк для LLM-приложений</div>
       <div class="card-desc">Стандарт индустрии для построения AI-пайплайнов</div>
       <div class="card-panel"><div class="panel-item"><div class="pv amber">4.1 ★</div><div class="pl">Rating</div></div><div class="panel-item"><div class="pv green">Open Source</div><div class="pl">Pricing</div></div><div class="panel-item"><div class="pv">🏠 Local</div><div class="pl">Deployment</div></div><div class="panel-item"><div class="pv">Production</div><div class="pl">Maturity</div></div></div>
-      <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T09:17:36.347968+00:00">🕐 27m ago</span><span>📊 1600 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
+      <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T06:54:38.484118+00:00">🕐 3h ago</span><span>📊 1600 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
     </a><a href="/product/tabnine-ai/" class="card">
       <div class="card-compare"><input type="checkbox" value="tabnine-ai" onchange="toggleCompare(this)" aria-label="Compare"></div>
       <button class="bookmark-btn" data-slug="tabnine-ai" onclick="toggleSave(this,'tabnine-ai')" title="Save">☆</button>
       <div class="card-top">
-        <div class="card-icon">🤖</div>
+        <div class="card-icon"><img src="/images/tabnine-ai.png" alt="" loading="lazy"></div>
         <span class="card-badge badge-agent">Agent</span>
       </div>
       <div class="card-title">Tabnine — AI-автодополнение с локальными моделями</div>
@@ -977,7 +978,7 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
       <div class="card-compare"><input type="checkbox" value="microsoft-copilot" onchange="toggleCompare(this)" aria-label="Compare"></div>
       <button class="bookmark-btn" data-slug="microsoft-copilot" onclick="toggleSave(this,'microsoft-copilot')" title="Save">☆</button>
       <div class="card-top">
-        <div class="card-icon">🤖</div>
+        <div class="card-icon"><img src="/images/microsoft-copilot.png" alt="" loading="lazy"></div>
         <span class="card-badge badge-agent">Agent</span>
       </div>
       <div class="card-title">Microsoft 365 Copilot — AI в Office и бизнес-процессах</div>
@@ -988,35 +989,35 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
       <div class="card-compare"><input type="checkbox" value="devin-agent" onchange="toggleCompare(this)" aria-label="Compare"></div>
       <button class="bookmark-btn" data-slug="devin-agent" onclick="toggleSave(this,'devin-agent')" title="Save">☆</button>
       <div class="card-top">
-        <div class="card-icon">🤖</div>
+        <div class="card-icon"><img src="/images/devin-agent.png" alt="" loading="lazy"></div>
         <span class="card-badge badge-agent">Agent</span>
       </div>
       <div class="card-title">Devin — автономный AI-разработчик от Cognition</div>
       <div class="card-desc">Первый AI software engineer с полным циклом разработки</div>
       <div class="card-panel"><div class="panel-item"><div class="pv amber">4.0 ★</div><div class="pl">Rating</div></div><div class="panel-item"><div class="pv green">Paid</div><div class="pl">Pricing</div></div><div class="panel-item"><div class="pv">☁️ Cloud</div><div class="pl">Deployment</div></div><div class="panel-item"><div class="pv">Production</div><div class="pl">Maturity</div></div></div>
-      <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T09:17:36.325090+00:00">🕐 27m ago</span><span>📊 460 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
+      <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T06:54:38.465670+00:00">🕐 3h ago</span><span>📊 460 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
     </a><a href="/product/autogpt-agent/" class="card">
       <div class="card-compare"><input type="checkbox" value="autogpt-agent" onchange="toggleCompare(this)" aria-label="Compare"></div>
       <button class="bookmark-btn" data-slug="autogpt-agent" onclick="toggleSave(this,'autogpt-agent')" title="Save">☆</button>
       <div class="card-top">
-        <div class="card-icon">🤖</div>
+        <div class="card-icon"><img src="/images/autogpt-agent.png" alt="" loading="lazy"></div>
         <span class="card-badge badge-agent">Agent</span>
       </div>
       <div class="card-title">AutoGPT — пионер автономных AI-агентов</div>
       <div class="card-desc">Автономный агент с цепочками задач и памятью</div>
       <div class="card-panel"><div class="panel-item"><div class="pv amber">3.8 ★</div><div class="pl">Rating</div></div><div class="panel-item"><div class="pv green">Open Source</div><div class="pl">Pricing</div></div><div class="panel-item"><div class="pv">🏠 Local</div><div class="pl">Deployment</div></div><div class="panel-item"><div class="pv">Growing</div><div class="pl">Maturity</div></div></div>
-      <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T09:17:36.345946+00:00">🕐 27m ago</span><span>📊 2200 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
+      <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T06:54:38.481974+00:00">🕐 3h ago</span><span>📊 2200 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
     </a><a href="/product/babyagi-agent/" class="card">
       <div class="card-compare"><input type="checkbox" value="babyagi-agent" onchange="toggleCompare(this)" aria-label="Compare"></div>
       <button class="bookmark-btn" data-slug="babyagi-agent" onclick="toggleSave(this,'babyagi-agent')" title="Save">☆</button>
       <div class="card-top">
-        <div class="card-icon">🤖</div>
+        <div class="card-icon"><img src="/images/babyagi-agent.png" alt="" loading="lazy"></div>
         <span class="card-badge badge-agent">Agent</span>
       </div>
       <div class="card-title">BabyAGI — минималистичный автономный агент</div>
       <div class="card-desc">Task-driven AI агент в 140 строках кода</div>
       <div class="card-panel"><div class="panel-item"><div class="pv amber">3.5 ★</div><div class="pl">Rating</div></div><div class="panel-item"><div class="pv green">Open Source</div><div class="pl">Pricing</div></div><div class="panel-item"><div class="pv">🏠 Local</div><div class="pl">Deployment</div></div><div class="panel-item"><div class="pv">Growing</div><div class="pl">Maturity</div></div></div>
-      <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T09:17:36.352611+00:00">🕐 27m ago</span><span>📊 980 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
+      <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T06:54:38.488263+00:00">🕐 3h ago</span><span>📊 980 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
     </a></div>
   <div class="compare-bar active" id="compare-bar">
     <span class="sel"><strong id="compare-count">0</strong> selected</span>
