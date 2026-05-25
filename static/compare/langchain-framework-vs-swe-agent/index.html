@@ -3,9 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>LangChain vs SWE-Agent | Qantcore — AI Agents Intelligence</title>
+<title>LangChain vs SWE-Agent | Qantcore — Аналитика AI-агентов</title>
 <meta name="description" content="Детальное сравнение Стандарт индустрии для построения AI-пайплайнов vs Автономный агент: от баг-репорта до Pull Request. Таблица, вердикт, сценарии использовани">
 <link rel="icon" type="image/svg+xml" href="/images/favicon.svg">
+
 <meta property="og:title" content="LangChain vs SWE-Agent">
 <meta property="og:description" content="Детальное сравнение Стандарт индустрии для построения AI-пайплайнов vs Автономный агент: от баг-репорта до Pull Request. Таблица, вердикт, сценарии использования.">
 <meta property="og:type" content="article">
@@ -88,6 +89,14 @@ header{position:sticky;top:0;z-index:100;backdrop-filter:blur(20px) saturate(180
   background:transparent;color:var(--text);border:1px solid var(--border);cursor:pointer;
   transition:all .2s}
 .cta-secondary:hover{border-color:var(--green);color:var(--green)}
+
+/* ─── Enterprise CTA Banner ─── */
+.enterprise-cta{background:linear-gradient(135deg,rgba(16,185,129,.08) 0%,rgba(59,130,246,.04) 100%);
+  border:1px solid rgba(16,185,129,.15);border-radius:var(--radius);margin:40px 0 32px;padding:0}
+.ec-inner{display:flex;align-items:center;justify-content:space-between;gap:32px;padding:32px 36px;flex-wrap:wrap}
+.ec-text h3{font-size:20px;font-weight:700;color:var(--text);margin-bottom:8px}
+.ec-text p{font-size:14px;color:var(--muted);line-height:1.6;max-width:480px}
+.ec-actions{display:flex;gap:12px;flex-shrink:0;flex-wrap:wrap}
 
 /* ─── Authority Bar ─── */
 .auth-bar{max-width:1320px;margin:0 auto 0;padding:0 24px 32px}
@@ -348,31 +357,31 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
   <div class="header-inner">
     <a href="/" class="logo"><span class="logo-dot"></span>Qantcore</a>
     <div class="mega-nav">
-      <a href="/" class="">Frameworks</a>
+      <a href="/" class="">Каталог</a>
       <span class="nav-sep"></span>
-      <a href="/catalog/comparison/" class="active">Compare</a>
+      <a href="/catalog/comparison/" class="active">Сравнения</a>
       <span class="nav-sep"></span>
-      <a href="/benchmarks/">Benchmarks</a>
+      <a href="/benchmarks/">Бенчмарки</a>
       <span class="nav-sep"></span>
-      <a href="/catalog/review/" class="">Reviews</a>
+      <a href="/catalog/review/" class="">Обзоры</a>
       <span class="nav-sep"></span>
-      <a href="#rankings">Rankings</a>
+      <a href="#rankings">Рейтинг</a>
       <span class="nav-sep"></span>
-      <a href="#local-ai">Local AI</a>
+      <a href="#local-ai">Локальный AI</a>
       <span class="nav-sep"></span>
-      <a href="#coding-agents">Coding</a>
+      <a href="#coding-agents">Разработка</a>
       <span class="nav-sep"></span>
-      <a href="#multi-agent">Multi-Agent</a>
+      <a href="#multi-agent">Мульти-агенты</a>
       <span class="nav-sep"></span>
-      <a href="#guides">Guides</a>
+      <a href="#guides">Гайды</a>
       <span class="nav-sep"></span>
-      <a href="/methodology/" class="">Methodology</a>
+      <a href="/methodology/" class="">Методология</a>
       <span class="nav-sep"></span>
-      <a href="/workspace/" class="">Workspace</a>
+      <a href="/workspace/" class="">Кабинет</a>
       <span class="nav-sep"></span>
-      <a href="/company/">Companies</a>
+      <a href="/company/">Компании</a>
       <span class="nav-sep"></span>
-      <a href="#saved" class="saved-nav" style="display:none">★ Saved</a>
+      <a href="#saved" class="saved-nav" style="display:none">★ Избранное</a>
     </div>
   </div>
 </header>
@@ -383,15 +392,15 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
       <div class="detail-header">
         <h1>LangChain vs SWE-Agent</h1>
         <div style="display:flex;gap:32px;align-items:center;justify-content:center;margin:24px 0">
-          <div style="text-align:center"><div class="card-icon"><img src="/images/langchain-framework.png" alt="" loading="lazy"></div><div style="font-size:12px;color:var(--muted);margin-top:6px">LangChain — главный фреймворк </div></div><div style="text-align:center"><div class="card-icon"><img src="/images/swe-agent.png" alt="" loading="lazy"></div><div style="font-size:12px;color:var(--muted);margin-top:6px">SWE-Agent — AI для решения Git</div></div>
+          <div style="text-align:center"><div class="card-icon"><img src="/images/langchain-framework.png" alt="LangChain — главный фреймворк для LLM-приложений" loading="lazy"></div><div style="font-size:12px;color:var(--muted);margin-top:6px">LangChain — главный фреймворк </div></div><div style="text-align:center"><div class="card-icon"><img src="/images/swe-agent.png" alt="SWE-Agent — AI для решения GitHub issues" loading="lazy"></div><div style="font-size:12px;color:var(--muted);margin-top:6px">SWE-Agent — AI для решения Git</div></div>
         </div>
         <div class="detail-meta"><a href="/product/langchain-framework/" class="meta-item">🔗 LangChain — главный фреймворк для LLM-пр</a><a href="/product/swe-agent/" class="meta-item">🔗 SWE-Agent — AI для решения GitHub issues</a></div>
       </div>
       <div class="detail-body"><h2>Краткий вердикт</h2><br><p>LangChain — это фреймворк для разработчиков, которым нужно гибко строить цепочки LLM-вызовов, RAG-системы и агентов с кастомной логикой. SWE-Agent — готовое решение для автоматизации задач разработки, которое самостоятельно находит и исправляет баги в коде, создавая Pull Request. Если ваша цель — построить сложный AI-пайплайн с нуля, выбирайте LangChain; если нужно автоматизировать рутинные задачи в репозиториях — SWE-Agent.</p><br><br><h2>Таблица сравнения</h2><br><table><br><tr><th>Критерий</th><th>LangChain</th><th>SWE-Agent</th></tr><br><tr><td>Цена</td><td>Бесплатно (Open Source), платные облачные сервисы (LangSmith, LangServe) от $99/мес</td><td>Бесплатно (Open Source), требуется оплата API LLM (GPT-4, Claude) — ~$0.5–2 за задачу</td></tr><br><tr><td>Функциональность</td><td>Сборка цепочек, RAG, агенты, память, интеграция с 100+ LLM и инструментами</td><td>Автономный поиск багов, чтение кода, генерация патчей, создание PR</td></tr><br><tr><td>Простота использования</td><td>Средняя: требует понимания промпт-инжиниринга и архитектуры цепочек</td><td>Высокая: достаточно передать ссылку на issue и токен GitHub</td></tr><br><tr><td>Интеграции</td><td>OpenAI, Anthropic, Hugging Face, Pinecone, Chroma, SQL, Google, Slack и др.</td><td>GitHub, GitLab (через API), LLM-провайдеры (OpenAI, Anthropic)</td></tr><br><tr><td>Производительность</td><td>Зависит от реализации: накладные расходы на абстракции (10–30% latency)</td><td>Высокая для конкретных задач: решает 12–15% реальных багов (SWE-bench)</td></tr><br></table><br><br><h2>Детальный разбор</h2><br><h3>LangChain</h3><br><p>LangChain доминирует в сценариях, где требуется кастомизация: от простых чат-ботов до сложных мультиагентных систем с памятью и инструментами. Сильная сторона — экосистема: 100+ интеграций, готовые шаблоны (RAG, цепочки QA) и поддержка сообщества. Ограничения: высокая сложность отладки (промпты, цепочки), нестабильность при частых изменениях API LLM, и overhead на абстракции, что может замедлить работу в продакшене.</p><br><h3>SWE-Agent</h3><br><p>SWE-Agent специализируется на автономном решении задач разработки: он анализирует код, находит ошибки, генерирует исправления и отправляет Pull Request. Сильные стороны: минимальная настройка (достаточно issue), прозрачность действий (логи каждого шага), и высокая точность в рамках SWE-bench (12–15% решённых задач). Ограничения: узкая специализация (только код), зависимость от качества LLM (GPT-4 даёт лучшие результаты), и невозможность работы с неструктурированными задачами (например, дизайн или документация).</p><br><br><h2>Для кого что выбрать</h2><br><ul><br><li><strong>LangChain:</strong> команды, строящие AI-продукты с нуля (чат-боты, RAG-системы, агенты для анализа данных); разработчики, которым нужна гибкость в интеграции с разными LLM и базами данных; проекты, где требуется кастомная логика обработки запросов.</li><br><li><strong>SWE-Agent:</strong> DevOps и разработчики, автоматизирующие исправление багов в репозиториях; команды, которые хотят сократить время code review; проекты с открытым кодом, где нужно быстро обрабатывать issue.</li><br></ul><br><br><h2>Итог</h2><br><p>Если ваша задача — построить сложный AI-пайплайн с интеграцией в бизнес-процессы (например, обработка документов, поддержка клиентов), выбирайте LangChain. Если вам нужно автоматизировать рутинные задачи в коде (исправление багов, рефакторинг), SWE-Agent будет эффективнее. Для максимальной гибкости можно комбинировать: использовать LangChain для оркестрации, а SWE-Agent — как один из инструментов для работы с кодом.</p></div>
     </div>
 <footer>
-  Qantcore &copy; 2026 &mdash; AI Agents Intelligence Platform &mdash;
-  Updated daily &mdash; <a href="https://t.me/nousresearch">@nousresearch</a>
+  Qantcore &copy; 2026 &mdash; Платформа аналитики AI-агентов &mdash;
+  Обновляется ежедневно &mdash; <a href="https://t.me/nousresearch">@nousresearch</a>
 </footer>
 
 </body>

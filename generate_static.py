@@ -86,6 +86,14 @@ header{position:sticky;top:0;z-index:100;backdrop-filter:blur(20px) saturate(180
   transition:all .2s}
 .cta-secondary:hover{border-color:var(--green);color:var(--green)}
 
+/* ─── Enterprise CTA Banner ─── */
+.enterprise-cta{background:linear-gradient(135deg,rgba(16,185,129,.08) 0%,rgba(59,130,246,.04) 100%);
+  border:1px solid rgba(16,185,129,.15);border-radius:var(--radius);margin:40px 0 32px;padding:0}
+.ec-inner{display:flex;align-items:center;justify-content:space-between;gap:32px;padding:32px 36px;flex-wrap:wrap}
+.ec-text h3{font-size:20px;font-weight:700;color:var(--text);margin-bottom:8px}
+.ec-text p{font-size:14px;color:var(--muted);line-height:1.6;max-width:480px}
+.ec-actions{display:flex;gap:12px;flex-shrink:0;flex-wrap:wrap}
+
 /* ─── Authority Bar ─── */
 .auth-bar{max-width:1320px;margin:0 auto 0;padding:0 24px 32px}
 .auth-inner{display:flex;gap:0;background:var(--card-bg);border:1px solid var(--border);
@@ -350,7 +358,7 @@ def product_image(p, size="icon"):
         elif size == "detail":
             return f'<div class="detail-image"><img src="{img_url}" alt="{esc(p.get("title",""))}"></div>'
         else:
-            return f'<div class="card-icon"><img src="{img_url}" alt="" loading="lazy"></div>'
+            return f'<div class="card-icon"><img src="{img_url}" alt="{esc(p.get("title",""))}" loading="lazy"></div>'
     return f'<div class="card-icon">{icon_for(p.get("product_type",""))}</div>'
 
 def rating_stars(rating):
@@ -428,8 +436,8 @@ def panel_data(p):
     if rating:
         items.append(f'<div class="panel-item"><div class="pv amber">{rating} ★</div><div class="pl">Rating</div></div>')
     if pricing:
-        items.append(f'<div class="panel-item"><div class="pv green">{esc(pricing)}</div><div class="pl">Pricing</div></div>')
-    items.append(f'<div class="panel-item"><div class="pv">{depl}</div><div class="pl">Deployment</div></div>')
+        items.append(f'<div class="panel-item"><div class="pv green">{esc(pricing)}</div><div class="pl">Цена</div></div>')
+    items.append(f'<div class="panel-item"><div class="pv">{depl}</div><div class="pl">Развёртывание</div></div>')
     items.append(f'<div class="panel-item"><div class="pv">{mat_score}</div><div class="pl">Maturity /10</div></div>')
     items.append(f'<div class="panel-item"><div class="pv cyan">{trend} {vel_sign}{comm_vel}%</div><div class="pl">Velocity</div></div>')
     items.append(f'<div class="panel-item"><div class="pv">{dep_score}</div><div class="pl">Deploy /10</div></div>')
@@ -456,9 +464,10 @@ PAGE = """<!DOCTYPE html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>{title} | Qantcore — AI Agents Intelligence</title>
+<title>{title} | Qantcore — Аналитика AI-агентов</title>
 <meta name="description" content="{description}">
 <link rel="icon" type="image/svg+xml" href="/images/favicon.svg">
+{canonical_url}
 {open_graph}
 <style>{css}</style>
 <script type="application/ld+json">
@@ -482,38 +491,38 @@ ym(109327472,'init',{{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer"
   <div class="header-inner">
     <a href="/" class="logo"><span class="logo-dot"></span>Qantcore</a>
     <div class="mega-nav">
-      <a href="/" class="{active_home}">Frameworks</a>
+      <a href="/" class="{active_home}">Каталог</a>
       <span class="nav-sep"></span>
-      <a href="/catalog/comparison/" class="{active_compare}">Compare</a>
+      <a href="/catalog/comparison/" class="{active_compare}">Сравнения</a>
       <span class="nav-sep"></span>
-      <a href="/benchmarks/">Benchmarks</a>
+      <a href="/benchmarks/">Бенчмарки</a>
       <span class="nav-sep"></span>
-      <a href="/catalog/review/" class="{active_review}">Reviews</a>
+      <a href="/catalog/review/" class="{active_review}">Обзоры</a>
       <span class="nav-sep"></span>
-      <a href="#rankings">Rankings</a>
+      <a href="#rankings">Рейтинг</a>
       <span class="nav-sep"></span>
-      <a href="#local-ai">Local AI</a>
+      <a href="#local-ai">Локальный AI</a>
       <span class="nav-sep"></span>
-      <a href="#coding-agents">Coding</a>
+      <a href="#coding-agents">Разработка</a>
       <span class="nav-sep"></span>
-      <a href="#multi-agent">Multi-Agent</a>
+      <a href="#multi-agent">Мульти-агенты</a>
       <span class="nav-sep"></span>
-      <a href="#guides">Guides</a>
+      <a href="#guides">Гайды</a>
       <span class="nav-sep"></span>
-      <a href="/methodology/" class="{active_method}">Methodology</a>
+      <a href="/methodology/" class="{active_method}">Методология</a>
       <span class="nav-sep"></span>
-      <a href="/workspace/" class="{active_ws}">Workspace</a>
+      <a href="/workspace/" class="{active_ws}">Кабинет</a>
       <span class="nav-sep"></span>
-      <a href="/company/">Companies</a>
+      <a href="/company/">Компании</a>
       <span class="nav-sep"></span>
-      <a href="#saved" class="saved-nav" style="display:none">★ Saved</a>
+      <a href="#saved" class="saved-nav" style="display:none">★ Избранное</a>
     </div>
   </div>
 </header>
 {content}
 <footer>
-  Qantcore &copy; 2026 &mdash; AI Agents Intelligence Platform &mdash;
-  Updated daily &mdash; <a href="https://t.me/nousresearch">@nousresearch</a>
+  Qantcore &copy; 2026 &mdash; Платформа аналитики AI-агентов &mdash;
+  Обновляется ежедневно &mdash; <a href="https://t.me/nousresearch">@nousresearch</a>
 </footer>
 {scripts}
 </body>
@@ -526,7 +535,7 @@ def build_search_index():
     for p in products:
         img = ""
         if p.get("image_url"):
-            img = f'<div class="card-icon"><img src="{p["image_url"]}" alt="" loading="lazy"></div>'
+            img = f'<div class="card-icon"><img src="{p["image_url"]}" alt="{esc(p.get("title",""))}" loading="lazy"></div>'
         else:
             img = f'<div class="card-icon">{icon_for(p.get("product_type",""))}</div>'
         entries.append({
@@ -545,15 +554,49 @@ def build_search_index():
         })
     return json.dumps(entries)
 
+# ─── OG Meta Helper ──────────────────────────────────────────────
+def make_og(title, description, url, image_url="/images/favicon.svg"):
+    """Generate Open Graph + Twitter Card + canonical meta tags."""
+    desc = esc(description)[:200]
+    t = esc(title)
+    return f'''<link rel="canonical" href="https://qantcore.space{url}">
+<meta property="og:title" content="{t}">
+<meta property="og:description" content="{desc}">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://qantcore.space{url}">
+<meta property="og:image" content="https://qantcore.space{image_url}">
+<meta property="og:site_name" content="QantCore">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{t}">
+<meta name="twitter:description" content="{desc}">
+<meta name="twitter:image" content="https://qantcore.space{image_url}">'''
+
+def make_og_article(title, description, url, image_url="/images/favicon.svg"):
+    """Generate OG + Twitter for article-type pages (products, reviews, comparisons)."""
+    desc = esc(description)[:200]
+    t = esc(title)
+    return f'''<link rel="canonical" href="https://qantcore.space{url}">
+<meta property="og:title" content="{t}">
+<meta property="og:description" content="{desc}">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://qantcore.space{url}">
+<meta property="og:image" content="https://qantcore.space{image_url}">
+<meta property="og:site_name" content="QantCore">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{t}">
+<meta name="twitter:description" content="{desc}">
+<meta name="twitter:image" content="https://qantcore.space{image_url}">'''
+
+
 def render_page(title, description, content, scripts="", total=0, search_val="", search_json="[]",
                 active_home="", active_compare="", active_review="", active_method="", active_ws="",
-                open_graph="", schema_org="{}"):
+                open_graph="", schema_org="{}", canonical_url=""):
     return PAGE.format(
         title=esc(title), description=esc(description),
         css=CSS, content=content, scripts=scripts, total=str(total),
         search_val=esc(search_val), search_json=search_json,
         active_home=active_home, active_compare=active_compare, active_review=active_review, active_method=active_method, active_ws=active_ws,
-        open_graph=open_graph, schema_org=schema_org)
+        open_graph=open_graph, schema_org=schema_org, canonical_url=canonical_url)
 
 
 # ─── Card Generator ───────────────────────────────────────────────
@@ -610,32 +653,32 @@ def generate_home():
 
     hero = f"""<section class="hero">
   <div class="terminal-grid"></div>
-  <div class="tagline">AI AGENT INTELLIGENCE PLATFORM</div>
-  <h1>Compare, Benchmark &amp; Deploy<br><span class="accent">AI Agents</span></h1>
-  <p class="sub">The definitive catalog of AI agent frameworks —
-  deep technical reviews, live benchmarks, and deployment intelligence. {last_update}.</p>
+  <div class="tagline">ПЛАТФОРМА АНАЛИТИКИ AI-АГЕНТОВ</div>
+  <h1>Сравнивайте, тестируйте и внедряйте<br><span class="accent">AI-агентов</span></h1>
+  <p class="sub">Полный каталог AI-агентов и фреймворков —
+  глубокие технические обзоры, живые бенчмарки, аналитика внедрения. {last_update}.</p>
   <div class="hero-metrics">
-    <div class="hero-metric"><div class="val">{tp}+</div><div class="lbl">Frameworks</div></div>
-    <div class="hero-metric"><div class="val">{tc}+</div><div class="lbl">Comparisons</div></div>
-    <div class="hero-metric"><div class="val">{tr}+</div><div class="lbl">Reviews</div></div>
-    <div class="hero-metric"><div class="val" style="color:var(--green)">●</div><div class="lbl">Daily Updates</div></div>
+    <div class="hero-metric"><div class="val">{tp}+</div><div class="lbl">Агентов</div></div>
+    <div class="hero-metric"><div class="val">{tc}+</div><div class="lbl">Сравнений</div></div>
+    <div class="hero-metric"><div class="val">{tr}+</div><div class="lbl">Обзоров</div></div>
+    <div class="hero-metric"><div class="val" style="color:var(--green)">●</div><div class="lbl">Ежедневно</div></div>
   </div>
   <div class="hero-cta">
-    <a href="#catalog" class="cta-primary">Explore Frameworks</a>
-    <a href="/catalog/comparison/" class="cta-secondary">Compare AI Agents</a>
-    <a href="#guides" class="cta-secondary">Deployment Guides</a>
+    <a href="/compare/" class="cta-primary">Сравнить свой AI-стек</a>
+    <a href="/media-kit/" class="cta-secondary">Запросить обзор вендора</a>
+    <a href="/benchmarks/" class="cta-secondary">Получить отчёт</a>
   </div>
 </section>"""
 
     # ─── Authority Bar ───
     auth = f"""<div class="auth-bar" id="catalog">
   <div class="auth-inner">
-    <div class="auth-stat"><div class="n">{tp}</div><div class="l">Agents tracked</div></div>
-    <div class="auth-stat"><div class="n">{tc}</div><div class="l">Head-to-head comparisons</div></div>
-    <div class="auth-stat"><div class="n amber">{type_counts.get('agent',0)}</div><div class="l">AI Agents</div></div>
-    <div class="auth-stat"><div class="n">{type_counts.get('framework',0)}</div><div class="l">Frameworks</div></div>
-    <div class="auth-stat"><div class="n">{type_counts.get('platform',0)}</div><div class="l">Platforms</div></div>
-    <div class="auth-stat"><div class="n"><span class="dot"></span>Live</div><div class="l">Updated today</div></div>
+    <div class="auth-stat"><div class="n">{tp}</div><div class="l">Агентов отслежено</div></div>
+    <div class="auth-stat"><div class="n">{tc}</div><div class="l">Прямых сравнений</div></div>
+    <div class="auth-stat"><div class="n amber">{type_counts.get('agent',0)}</div><div class="l">AI-агентов</div></div>
+    <div class="auth-stat"><div class="n">{type_counts.get('framework',0)}</div><div class="l">Фреймворков</div></div>
+    <div class="auth-stat"><div class="n">{type_counts.get('platform',0)}</div><div class="l">Платформ</div></div>
+    <div class="auth-stat"><div class="n"><span class="dot"></span>Live</div><div class="l">Обновлено сегодня</div></div>
   </div>
 </div>"""
 
@@ -643,8 +686,22 @@ def generate_home():
     feat_cards = ""
     for p in featured:
         feat_cards += make_product_card(p)
-    featured_html = f"""<div class="section-hd"><h2>★ Featured Frameworks</h2><a href="/catalog/product/" class="see-all">See all {tp} →</a></div>
+    featured_html = f"""<div class="section-hd"><h2>★ Лучшие фреймворки</h2><a href="/catalog/product/" class="see-all">Все {tp} →</a></div>
 <div class="grid">{feat_cards}</div>"""
+
+    # ─── Enterprise CTA ───
+    enterprise_cta = f"""<div class="enterprise-cta">
+  <div class="ec-inner">
+    <div class="ec-text">
+      <h3>Собираете AI-стек для команды?</h3>
+      <p>Получите сравнение под ваш кейс — модель развёртывания, бюджет, compliance.</p>
+    </div>
+    <div class="ec-actions">
+      <a href="/compare/" class="cta-primary">Сравнить свой стек</a>
+      <a href="/media-kit/" class="cta-secondary">Заказать отчёт</a>
+    </div>
+  </div>
+</div>"""
 
     # ─── Trending Comparisons (Level 2) ───
     comps = list(DB.articles.find({"category": "comparison"}).limit(4))
@@ -662,7 +719,7 @@ def generate_home():
 
     trending_html = ""
     if comp_cards:
-        trending_html = f"""<div class="section-hd"><h2>⚡ Trending Comparisons</h2><a href="/catalog/comparison/" class="see-all">All {tc} →</a></div>
+        trending_html = f"""<div class="section-hd"><h2>⚡ Популярные сравнения</h2><a href="/catalog/comparison/" class="see-all">Все {tc} →</a></div>
 <div class="grid">{comp_cards}</div>"""
 
     # ─── New Releases (Level 2.5: latest 6 by date) ───
@@ -684,8 +741,8 @@ def generate_home():
     bench_html = f"""<div class="section-hd" id="rankings"><h2>📊 Benchmark Intelligence</h2></div>
 <div class="auth-bar">
   <div class="auth-inner">
-    <div class="auth-stat"><div class="n amber">{tp}</div><div class="l">Total Ranked</div></div>
-    <div class="auth-stat"><div class="n">{tc}</div><div class="l">Side-by-Side Tests</div></div>
+    <div class="auth-stat"><div class="n amber">{tp}</div><div class="l">В рейтинге</div></div>
+    <div class="auth-stat"><div class="n">{tc}</div><div class="l">Прямых тестов</div></div>
     {bench_rows}
   </div>
 </div>"""
@@ -719,9 +776,9 @@ def generate_home():
         ago = time_ago(u.get("updated_at", ""))
         feed_items += f'<div class="feed-item"><span class="fi-time">{ago}</span><span class="fi-icon">📡</span><div class="fi-text"><strong>{esc(u.get("title","")[:35])}</strong> — updated</div></div>'
     # Add some synthetic events
-    feed_items += f'<div class="feed-item"><span class="fi-time">Today</span><span class="fi-icon">🔬</span><div class="fi-text"><strong>Benchmark refresh</strong> — {tc} comparisons re-evaluated</div></div>'
-    feed_items += f'<div class="feed-item"><span class="fi-time">Today</span><span class="fi-icon">📊</span><div class="fi-text"><strong>Catalog update</strong> — {tp} agents tracked, {tc} head-to-head tests</div></div>'
-    live_html = f"""<div class="section-hd" id="activity"><h2><span class="live-dot"></span>Live Activity</h2></div>
+    feed_items += f'<div class="feed-item"><span class="fi-time">Today</span><span class="fi-icon">🔬</span><div class="fi-text"><strong>Обновление бенчмарков</strong> — {tc} сравнений пересчитано</div></div>'
+    feed_items += f'<div class="feed-item"><span class="fi-time">Today</span><span class="fi-icon">📊</span><div class="fi-text"><strong>Обновление каталога</strong> — {tp} агентов отслежено, {tc} прямых сравнений</div></div>'
+    live_html = f"""<div class="section-hd" id="activity"><h2><span class="live-dot"></span>Живая лента</h2></div>
 <div class="auth-bar">
   <div class="feed-list" style="padding:12px 16px">{feed_items}</div>
 </div>"""
@@ -739,7 +796,7 @@ def generate_home():
     for p in products:
         all_cards += make_product_card(p, with_compare=True)
 
-    catalog_html = f"""<div class="section-hd"><h2>📋 Full Catalog</h2></div>
+    catalog_html = f"""<div class="section-hd"><h2>📋 Полный каталог</h2></div>
 <div class="filters-bar">{filters_html}</div>
 <div class="grid" id="catalog-grid">{all_cards}</div>"""
 
@@ -750,7 +807,7 @@ def generate_home():
   <button class="compare-clear" onclick="clearCompare()">Clear</button>
 </div>"""
 
-    content = hero + auth + featured_html + trending_html + new_html + bench_html + live_html + guides_html + catalog_html + compare_bar
+    content = hero + auth + featured_html + enterprise_cta + trending_html + new_html + bench_html + live_html + guides_html + catalog_html + compare_bar
 
     # Scripts
     scripts = """<script>
@@ -775,7 +832,7 @@ function updateCompareBar() {
 function doCompare() {
   if (selected.length >= 2) {
     var slugs = selected.join(',');
-    // Save to comparison history
+Нет истории сравнений
     var comps = JSON.parse(localStorage.getItem('qantcore_comparisons') || '[]');
     comps.push({slugs: selected.slice(), date: new Date().toISOString().substring(0,10)});
     if (comps.length > 20) comps = comps.slice(-20);
@@ -893,8 +950,10 @@ if(getSaved().length>0){var nav=document.querySelector('.saved-nav');if(nav)nav.
     search_json = build_search_index()
     scripts = scripts.replace("{search_json}", json.dumps(search_json))
 
-    html = render_page("AI Agents Catalog", "Discover, compare and deploy AI agents. {}+ frameworks tracked, deep technical reviews, live benchmarks.".format(tp),
-                       content, scripts=scripts, total=tp, active_home="active")
+    html = render_page("Каталог AI-агентов", "Каталог AI-агентов: {}+ отслеживается, глубокие обзоры, живые бенчмарки.".format(tp),
+                       content, scripts=scripts, total=tp, active_home="active",
+                       open_graph=make_og("Каталог AI-агентов — QantCore", "Каталог AI-агентов: 60+ отслеживается, глубокие обзоры, живые бенчмарки.", "/"),
+                       canonical_url='<link rel="canonical" href="https://qantcore.space/">')
 
     write_html(f"{OUT}/index.html", html)
     print(f"  /index.html")
@@ -1057,11 +1116,11 @@ function renderComparison(slugs) {{
     rows += '</tr>';
   }});
   
-  var html = '<div class=\"breadcrumbs\"><a href=\"/\">Catalog</a> &rsaquo; <a href=\"/compare/\" onclick=\"resetCompare();return false\">Compare</a> &rsaquo; <span>Result</span></div>';
+  var html = '<div class=\"breadcrumbs\"><a href=\"/\">Catalog</a> &rsaquo; <a href=\"/compare/\" onclick=\"resetCompare();return false\">Compare</a> &rsaquo; <span>Результат</span></div>';
   html += '<h1 style=\"font-size:24px;font-weight:800;color:#f1f5f9;margin-bottom:24px\">' + prods.map(function(p) {{ return p.title.substring(0,25); }}).join(' vs ') + '</h1>';
   html += '<div class=\"compare-table-wrap\"><table class=\"compare-table\">' + header + rows + '</table></div>';
-  html += '<p style=\"color:var(--muted);font-size:12px;margin-top:16px\"><span class=\"compare-check\">✓</span> Green = best-in-class. <a href=\"/methodology/\" style=\"color:var(--green)\">How we score →</a></p>';
-  html += '<button onclick=\"resetCompare()\" style=\"margin-top:20px;padding:10px 20px;border-radius:6px;background:var(--card-bg);color:var(--text);border:1px solid var(--border);cursor:pointer;font-size:13px\">← Back to selection</button>';
+  html += '<p style=\"color:var(--muted);font-size:12px;margin-top:16px\"><span class=\"compare-check\">✓</span> Зелёный = лучший в классе. <a href=\"/methodology/\" style=\"color:var(--green)\">Как мы оцениваем →</a></p>';
+  html += '<button onclick=\"resetCompare()\" style=\"margin-top:20px;padding:10px 20px;border-radius:6px;background:var(--card-bg);color:var(--text);border:1px solid var(--border);cursor:pointer;font-size:13px\">← Назад к выбору</button>';
   result.innerHTML = html;
   window.scrollTo(0, 0);
 }}
@@ -1084,22 +1143,24 @@ function filterCards(type) {{
 }}
 </script>"""
     
-    html = render_page("Compare AI Agents", "Select and compare AI agents side-by-side — ratings, pricing, deployment, maturity, and more.",
-                       body, scripts=scripts, total=tp, active_compare="active")
+    html = render_page("Сравнение AI-агентов", "Select and compare AI agents side-by-side — ratings, pricing, deployment, maturity, and more.",
+                       body, scripts=scripts, total=tp, active_compare="active",
+                       open_graph=make_og("Сравнение AI-агентов — QantCore", "Select and compare AI agents side-by-side — ratings, pricing, deployment, maturity, and more.", "/compare/"),
+                       canonical_url='<link rel="canonical" href="https://qantcore.space/compare/">')
     write_html(f"{OUT}/compare/index.html", html)
     print(f"  /compare/index.html (client-side, {len(all_prods)} products)")
 
 
 def generate_catalog(category):
     """Generate /catalog/{category}/index.html"""
-    labels = {"product": "Products", "comparison": "Comparisons", "review": "Reviews"}
+    labels = {"product": "Продукты", "comparison": "Сравнения", "review": "Обзоры"}
     label = labels.get(category, category)
 
     items = list(DB.articles.find({"category": category}))
     tp = DB.articles.count_documents({"category": "product"})
 
     if not items:
-        cards = f'<div class="empty"><h2>Nothing here yet</h2><p>Category «{esc(label)}» is empty</p></div>'
+        cards = f'<div class="empty"><h2>Пока ничего нет</h2><p>Категория «{esc(label)}» пуста</p></div>'
     else:
         cards = '<div class="grid">'
         for item in items:
@@ -1135,9 +1196,11 @@ def generate_catalog(category):
 </div>"""
 
     search_json = build_search_index() if category == "product" else "[]"
-    html = render_page(label, f"Qantcore — {label} of AI agents", body,
+    html = render_page(label, f"Qantcore — {label} AI-агентов", body,
                        total=tp, search_json=search_json,
-                       active_home=active_home, active_compare=active_compare, active_review=active_review)
+                       active_home=active_home, active_compare=active_compare, active_review=active_review,
+                       open_graph=make_og(f"{label} — Qantcore", f"Каталог {label.lower()} AI-агентов на Qantcore. Рейтинги, бенчмарки, аналитика внедрения.", f"/catalog/{category}/"),
+                       canonical_url=f'<link rel="canonical" href="https://qantcore.space/catalog/{category}/">')
 
     write_html(f"{OUT}/catalog/{category}/index.html", html)
     print(f"  /catalog/{category}/index.html")
@@ -1365,7 +1428,7 @@ def generate_stack_builder():
       <div class="stack-result" id="stack-result">
         <h3>Stack Analysis</h3>
         <div class="stack-metrics" id="stack-metrics"></div>
-        <button onclick="saveStack()" style="margin-top:16px;padding:8px 18px;border-radius:6px;background:var(--green);color:#000;border:none;cursor:pointer;font-size:13px;font-weight:600;display:none" id="save-stack-btn">Save to Workspace</button>
+        <button onclick="saveStack()" style="margin-top:16px;padding:8px 18px;border-radius:6px;background:var(--green);color:#000;border:none;cursor:pointer;font-size:13px;font-weight:600;display:none" id="save-stack-btn">Сохранить в кабинет</button>
       </div>
     </div>
   </div>
@@ -1443,8 +1506,10 @@ function saveStack() {
 })();
 </script>"""
 
-    html = render_page("AI Stack Builder", "Assemble your AI agent stack — LLM, memory, tools, orchestration. Estimate cost and complexity.",
-                       body, scripts=scripts, total=tp)
+    html = render_page("Конструктор AI-стека", "Assemble your AI agent stack — LLM, memory, tools, orchestration. Estimate cost and complexity.",
+                       body, scripts=scripts, total=tp,
+                       open_graph=make_og("Конструктор AI-стека — QantCore", "Assemble your AI agent stack — LLM, memory, tools, orchestration. Estimate cost and complexity.", "/stack-builder/"),
+                       canonical_url='<link rel="canonical" href="https://qantcore.space/stack-builder/">')
     write_html(f"{OUT}/stack-builder/index.html", html)
     print(f"  /stack-builder/index.html")
 
@@ -1525,9 +1590,11 @@ def generate_methodology():
 .method-card p{font-size:13px;color:var(--muted);line-height:1.7}
 </style>"""
     
-    html = render_page("Methodology — How We Score AI Agents", 
+    html = render_page("Методология — Как мы оцениваем AI-агентов", 
                        "Transparent evaluation framework: how Qantcore rates, ranks, and compares AI agents. No black-box scores.",
-                       body, total=tp)
+                       body, total=tp, active_method="active",
+                       open_graph=make_og("Методология — QantCore", "Transparent evaluation framework: how Qantcore rates, ranks, and compares AI agents. No black-box scores.", "/methodology/"),
+                       canonical_url='<link rel="canonical" href="https://qantcore.space/methodology/">')
     write_html(f"{OUT}/methodology/index.html", html)
     print(f"  /methodology/index.html")
 
@@ -1617,7 +1684,7 @@ function initWorkspace() {{
     grid.innerHTML = html;
   }}
   
-  // Release watches
+Нет отслеживаемых релизов
   if (watches.length) {{
     document.getElementById('ws-watches').style.display = '';
     var list = document.getElementById('ws-watches-list');
@@ -1635,7 +1702,7 @@ function initWorkspace() {{
     list.innerHTML = html;
   }}
   
-  // Stack drafts
+Нет черновиков стеков
   if (stacks.length) {{
     document.getElementById('ws-stacks').style.display = '';
     var list = document.getElementById('ws-stacks-list');
@@ -1703,9 +1770,11 @@ function escapeHTML(str) {{
 initWorkspace();
 </script>"""
     
-    html = render_page("Workspace — Saved Agents & Release Alerts",
+    html = render_page("Кабинет — Сохранённые агенты и уведомления",
                        "Your personal AI agent workspace: saved agents, release watches, stack drafts, comparison history.",
-                       body, scripts=scripts, total=tp)
+                       body, scripts=scripts, total=tp, active_ws="active",
+                       open_graph=make_og("Кабинет — QantCore", "Your personal AI agent workspace: saved agents, release watches, stack drafts, comparison history.", "/workspace/"),
+                       canonical_url='<link rel="canonical" href="https://qantcore.space/workspace/">')
     write_html(f"{OUT}/workspace/index.html", html)
     print(f"  /workspace/index.html")
 
@@ -1762,9 +1831,11 @@ def generate_benchmarks():
   </div>
 </div>"""
     
-    html = render_page("Benchmarks — AI Agent Performance Data", 
+    html = render_page("Бенчмарки — Данные производительности AI-агентов", 
                        f"Quantitative benchmarks for {tp} AI agents: QantScore, freshness, ratings, deployment readiness.",
-                       body, total=tp)
+                       body, total=tp,
+                       open_graph=make_og("Бенчмарки — QantCore", f"Quantitative benchmarks for {tp} AI agents: QantScore, freshness, ratings, deployment readiness.", "/benchmarks/"),
+                       canonical_url='<link rel="canonical" href="https://qantcore.space/benchmarks/">')
     write_html(f"{OUT}/benchmarks/index.html", html)
     print(f"  /benchmarks/index.html")
 
@@ -1791,19 +1862,19 @@ def generate_media_kit():
   <div style="margin-top:32px;display:grid;gap:20px">
     
     <div class="method-card">
-      <h2>🎯 Sponsored Benchmark Inclusion</h2>
+      <h2>🎯 Спонсорский бенчмарк Inclusion</h2>
       <p>Your product appears in benchmark comparisons with verified performance data. Native placement — not a banner.</p>
       <p style="color:var(--green);font-size:13px;margin-top:8px">Best for: products seeking objective third-party validation</p>
     </div>
     
     <div class="method-card">
-      <h2>📊 Featured Comparison Placement</h2>
+      <h2>📊 Продвигаемое сравнение Placement</h2>
       <p>Priority ranking in head-to-head comparisons. Your product is highlighted when users compare relevant categories.</p>
       <p style="color:var(--green);font-size:13px;margin-top:8px">Best for: capturing decision-intent traffic at comparison moment</p>
     </div>
     
     <div class="method-card">
-      <h2>⭐ Sponsored Framework Spotlight</h2>
+      <h2>⭐ Sponsored Обзор фреймворка</h2>
       <p>Featured placement in "Featured Frameworks" section. Category exclusivity available.</p>
       <p style="color:var(--green);font-size:13px;margin-top:8px">Best for: new launches, category awareness, enterprise visibility</p>
     </div>
@@ -1815,7 +1886,7 @@ def generate_media_kit():
     </div>
     
     <div class="method-card">
-      <h2>📬 Newsletter Feature</h2>
+      <h2>📬 Рассылка Feature</h2>
       <p>Dedicated placement in our weekly AI agent intelligence briefing. Direct to inbox of active evaluators.</p>
       <p style="color:var(--green);font-size:13px;margin-top:8px">Best for: time-sensitive launches, event promotion, regular touchpoints</p>
     </div>
@@ -1838,9 +1909,11 @@ def generate_media_kit():
 .method-card p{font-size:13px;color:var(--muted);line-height:1.7}
 </style>"""
     
-    html = render_page("Media Kit — Advertise on Qantcore",
+    html = render_page("Медиа-кит — Реклама на Qantcore",
                        "Reach AI decision-makers at the moment of product selection. Sponsored benchmarks, featured comparisons, native reviews.",
-                       body, total=tp)
+                       body, total=tp,
+                       open_graph=make_og("Media Kit — Qantcore", "Reach AI decision-makers at the moment of product selection. Sponsored benchmarks, featured comparisons, native reviews.", "/media-kit/"),
+                       canonical_url='<link rel="canonical" href="https://qantcore.space/media-kit/">')
     write_html(f"{OUT}/media-kit/index.html", html)
     print(f"  /media-kit/index.html")
 
@@ -1951,24 +2024,26 @@ def generate_company_pages():
     </div>
     <div style="display:flex;gap:12px;flex-wrap:wrap">
       <div class="hero-metric"><div class="val">{len(prods)}</div><div class="lbl">Products</div></div>
-      <div class="hero-metric"><div class="val amber">{avg_rating} ★</div><div class="lbl">Avg Rating</div></div>
+      <div class="hero-metric"><div class="val amber">{avg_rating} ★</div><div class="lbl">Ср. рейтинг</div></div>
       <div class="hero-metric"><div class="val">{avg_freshness}%</div><div class="lbl">Freshness</div></div>
       <div class="hero-metric"><div class="val">{total_reviews}</div><div class="lbl">Reviews</div></div>
     </div>
   </div>
   
-  <div class="section-hd"><h2>Ecosystem Map</h2></div>
+  <div class="section-hd"><h2>Карта экосистемы</h2></div>
   <div style="padding:16px 20px;background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);margin-bottom:32px">
     {eco}
   </div>
   
-  <div class="section-hd"><h2>Products ({len(prods)})</h2></div>
+  <div class="section-hd"><h2>Продукты ({len(prods)})</h2></div>
   <div class="grid">{pcards}</div>
 </div>"""
         
         html = render_page(f"{info['name']} — AI Products & Ecosystem", 
                            f"{info['name']}: {len(prods)} AI products tracked. Ratings, benchmarks, ecosystem map.",
-                           body, total=tp)
+                           body, total=tp,
+                           open_graph=make_og(f"{info['name']} — QantCore", f"{info['name']}: {len(prods)} AI products tracked. Ratings, benchmarks, ecosystem map.", f"/company/{comp_slug}/"),
+                           canonical_url=f'<link rel="canonical" href="https://qantcore.space/company/{comp_slug}/">')
         write_html(f"{OUT}/company/{comp_slug}/index.html", html)
     
     # Generate company index page
@@ -1988,15 +2063,17 @@ def generate_company_pages():
     </a>"""
     
     index_body = f"""<div class="container">
-  <div class="breadcrumbs"><a href="/">Catalog</a> &rsaquo; <span>Companies</span></div>
-  <h1 style="font-size:28px;font-weight:800;color:#f1f5f9;margin:24px 0 8px">AI Company Profiles</h1>
+  <div class="breadcrumbs"><a href="/">Catalog</a> &rsaquo; <span>Компании</span></div>
+  <h1 style="font-size:28px;font-weight:800;color:#f1f5f9;margin:24px 0 8px">Профили AI-компаний</h1>
   <p style="color:var(--muted);font-size:15px;margin-bottom:24px">Explore AI agent ecosystems by company. Track products, benchmark scores, and release activity for each organization.</p>
   <div class="featured-grid">{index_rows}</div>
 </div>"""
     
-    html = render_page("AI Companies — Ecosystem Profiles", 
+    html = render_page("AI-компании — Профили экосистем", 
                        f"Company profiles for {len(companies)} AI organizations. Products, benchmarks, ecosystem maps.",
-                       index_body, total=tp)
+                       index_body, total=tp,
+                       open_graph=make_og("AI-компании — QantCore", f"Company profiles for {len(companies)} AI organizations. Products, benchmarks, ecosystem maps.", "/company/"),
+                       canonical_url='<link rel="canonical" href="https://qantcore.space/company/">')
     write_html(f"{OUT}/company/index.html", html)
     print(f"  /company/index.html + {len(companies)} company pages")
 
@@ -2025,7 +2102,7 @@ if __name__ == "__main__":
     # Multi-compare page
     generate_compare_page()
 
-    # Methodology
+# Методология
     generate_methodology()
 
     # Workspace

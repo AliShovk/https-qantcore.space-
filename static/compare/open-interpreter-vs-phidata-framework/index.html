@@ -3,9 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Open Interpreter vs Phidata | Qantcore — AI Agents Intelligence</title>
+<title>Open Interpreter vs Phidata | Qantcore — Аналитика AI-агентов</title>
 <meta name="description" content="Детальное сравнение AI, который исполняет код на вашем компьютере vs Строительные блоки для агентов: память, знания, инструменты. Таблица, вердикт, сценарии исп">
 <link rel="icon" type="image/svg+xml" href="/images/favicon.svg">
+
 <meta property="og:title" content="Open Interpreter vs Phidata">
 <meta property="og:description" content="Детальное сравнение AI, который исполняет код на вашем компьютере vs Строительные блоки для агентов: память, знания, инструменты. Таблица, вердикт, сценарии использования.">
 <meta property="og:type" content="article">
@@ -88,6 +89,14 @@ header{position:sticky;top:0;z-index:100;backdrop-filter:blur(20px) saturate(180
   background:transparent;color:var(--text);border:1px solid var(--border);cursor:pointer;
   transition:all .2s}
 .cta-secondary:hover{border-color:var(--green);color:var(--green)}
+
+/* ─── Enterprise CTA Banner ─── */
+.enterprise-cta{background:linear-gradient(135deg,rgba(16,185,129,.08) 0%,rgba(59,130,246,.04) 100%);
+  border:1px solid rgba(16,185,129,.15);border-radius:var(--radius);margin:40px 0 32px;padding:0}
+.ec-inner{display:flex;align-items:center;justify-content:space-between;gap:32px;padding:32px 36px;flex-wrap:wrap}
+.ec-text h3{font-size:20px;font-weight:700;color:var(--text);margin-bottom:8px}
+.ec-text p{font-size:14px;color:var(--muted);line-height:1.6;max-width:480px}
+.ec-actions{display:flex;gap:12px;flex-shrink:0;flex-wrap:wrap}
 
 /* ─── Authority Bar ─── */
 .auth-bar{max-width:1320px;margin:0 auto 0;padding:0 24px 32px}
@@ -348,31 +357,31 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
   <div class="header-inner">
     <a href="/" class="logo"><span class="logo-dot"></span>Qantcore</a>
     <div class="mega-nav">
-      <a href="/" class="">Frameworks</a>
+      <a href="/" class="">Каталог</a>
       <span class="nav-sep"></span>
-      <a href="/catalog/comparison/" class="active">Compare</a>
+      <a href="/catalog/comparison/" class="active">Сравнения</a>
       <span class="nav-sep"></span>
-      <a href="/benchmarks/">Benchmarks</a>
+      <a href="/benchmarks/">Бенчмарки</a>
       <span class="nav-sep"></span>
-      <a href="/catalog/review/" class="">Reviews</a>
+      <a href="/catalog/review/" class="">Обзоры</a>
       <span class="nav-sep"></span>
-      <a href="#rankings">Rankings</a>
+      <a href="#rankings">Рейтинг</a>
       <span class="nav-sep"></span>
-      <a href="#local-ai">Local AI</a>
+      <a href="#local-ai">Локальный AI</a>
       <span class="nav-sep"></span>
-      <a href="#coding-agents">Coding</a>
+      <a href="#coding-agents">Разработка</a>
       <span class="nav-sep"></span>
-      <a href="#multi-agent">Multi-Agent</a>
+      <a href="#multi-agent">Мульти-агенты</a>
       <span class="nav-sep"></span>
-      <a href="#guides">Guides</a>
+      <a href="#guides">Гайды</a>
       <span class="nav-sep"></span>
-      <a href="/methodology/" class="">Methodology</a>
+      <a href="/methodology/" class="">Методология</a>
       <span class="nav-sep"></span>
-      <a href="/workspace/" class="">Workspace</a>
+      <a href="/workspace/" class="">Кабинет</a>
       <span class="nav-sep"></span>
-      <a href="/company/">Companies</a>
+      <a href="/company/">Компании</a>
       <span class="nav-sep"></span>
-      <a href="#saved" class="saved-nav" style="display:none">★ Saved</a>
+      <a href="#saved" class="saved-nav" style="display:none">★ Избранное</a>
     </div>
   </div>
 </header>
@@ -383,15 +392,15 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
       <div class="detail-header">
         <h1>Open Interpreter vs Phidata</h1>
         <div style="display:flex;gap:32px;align-items:center;justify-content:center;margin:24px 0">
-          <div style="text-align:center"><div class="card-icon"><img src="/images/open-interpreter.png" alt="" loading="lazy"></div><div style="font-size:12px;color:var(--muted);margin-top:6px">Open Interpreter — AI-агент с </div></div><div style="text-align:center"><div class="card-icon"><img src="/images/phidata-framework.png" alt="" loading="lazy"></div><div style="font-size:12px;color:var(--muted);margin-top:6px">Phidata — фреймворк для AI-аге</div></div>
+          <div style="text-align:center"><div class="card-icon"><img src="/images/open-interpreter.png" alt="Open Interpreter — AI-агент с доступом к компьютеру" loading="lazy"></div><div style="font-size:12px;color:var(--muted);margin-top:6px">Open Interpreter — AI-агент с </div></div><div style="text-align:center"><div class="card-icon"><img src="/images/phidata-framework.png" alt="Phidata — фреймворк для AI-агентов с долговременной памятью" loading="lazy"></div><div style="font-size:12px;color:var(--muted);margin-top:6px">Phidata — фреймворк для AI-аге</div></div>
         </div>
         <div class="detail-meta"><a href="/product/open-interpreter/" class="meta-item">🔗 Open Interpreter — AI-агент с доступом к</a><a href="/product/phidata-framework/" class="meta-item">🔗 Phidata — фреймворк для AI-агентов с дол</a></div>
       </div>
       <div class="detail-body"><h2>Краткий вердикт</h2><br><p>Open Interpreter лучше подходит для разработчиков и технических специалистов, которым нужен локальный AI-ассистент для выполнения кода, управления файлами и автоматизации задач на своем компьютере. Phidata — выбор для команд, создающих сложные AI-агенты с долговременной памятью, доступом к базам знаний и интеграцией с внешними инструментами (Slack, Salesforce, базы данных). Если вам нужен «AI-помощник на ПК» — берите Open Interpreter; если строите production-агентов для бизнеса — Phidata.</p><br><br><h2>Таблица сравнения</h2><br><table><br><tr><th>Критерий</th><th>Open Interpreter</th><th>Phidata</th></tr><br><tr><td>Цена</td><td>Бесплатно (open-source). Требуется API-ключ OpenAI (плата за токены) или локальная модель (бесплатно, но медленнее).</td><td>Бесплатно (open-source). Плата за сторонние API (OpenAI, Pinecone, PostgreSQL) при использовании в production.</td></tr><br><tr><td>Функциональность</td><td>Выполнение Python/Shell/SQL-кода, чтение/запись файлов, работа с браузером, управление приложениями (через AppleScript).</td><td>Создание агентов с памятью (векторные БД), RAG-знаниями (PDF, веб-страницы), инструментами (API, DuckDuckGo, SQL). Поддержка мультимодальных агентов.</td></tr><br><tr><td>Простота использования</td><td>Установка одной командой (pip install open-interpreter). Интерфейс — терминал. Требует навыков командной строки.</td><td>Установка через pip. Требуется настройка YAML-конфигов и Python-скриптов. Выше порог входа для новичков.</td></tr><br><tr><td>Интеграции</td><td>Локальные: файловая система, терминал, браузер (Playwright), AppleScript (macOS). Нет встроенных облачных интеграций.</td><td>Облачные: Slack, Salesforce, HubSpot, PostgreSQL, Pinecone, ChromaDB, OpenAI, Anthropic, Ollama. Поддержка кастомных инструментов через Python.</td></tr><br><tr><td>Производительность</td><td>Зависит от модели: GPT-4 — быстрый ответ, локальные модели (CodeLlama) — медленнее. Выполнение кода на локальной машине — мгновенно.</td><td>Зависит от модели и задержек API. Векторный поиск (Pinecone) — <100ms. Агенты могут выполняться асинхронно.</td></tr><br></table><br><br><h2>Детальный разбор</h2><br><h3>Open Interpreter</h3><br><p>Сильная сторона — выполнение кода в реальном времени на вашем компьютере: AI может редактировать файлы, запускать скрипты, управлять Docker-контейнерами и даже отправлять email через терминал. Ограничение — отсутствие встроенной памяти: каждый сеанс начинается «с чистого листа», нет долговременного хранения контекста. Также нет поддержки мультиагентных архитектур — только один поток команд. Безопасность: по умолчанию код выполняется без песочницы, что требует осторожности.</p><br><h3>Phidata</h3><br><p>Phidata предоставляет готовые строительные блоки для агентов: память (векторные БД), знания (RAG из документов/веб-страниц) и инструменты (API, базы данных, поиск). Позволяет создавать агентов, которые помнят историю диалога между сессиями и могут обращаться к внешним источникам данных. Ограничение — сложность настройки: требуется развертывание PostgreSQL, векторных БД и написание Python-кода для кастомных инструментов. Не подходит для простых задач «выполни код на моем ПК» — избыточен.</p><br><br><h2>Для кого что выбрать</h2><br><ul><br><li><strong>Open Interpreter:</strong> Разработчикам, которым нужен AI-ассистент для написания и отладки кода, системным администраторам для автоматизации рутинных задач (бэкапы, мониторинг), аналитикам данных для выполнения SQL-запросов и генерации отчетов прямо в терминале.</li><br><li><strong>Phidata:</strong> Командам, строящим AI-чатботов для поддержки клиентов (с памятью о предыдущих обращениях), RAG-системы для поиска по корпоративным документам, мультиагентные системы для автоматизации бизнес-процессов (например, агент, который проверяет заказы в Salesforce и отправляет уведомления в Slack).</li><br></ul><br><br><h2>Итог</h2><br><p>Если ваша задача — получить AI, который работает как ваш личный ассистент на локальной машине (редактирует код, запускает скрипты, управляет файлами), выбирайте Open Interpreter. Если вы создаете production-агентов для бизнеса, которым нужна память, доступ к внешним данным и интеграция с корпоративными сервисами — Phidata. Для простых экспериментов с AI-агентами начните с Open Interpreter, для масштабируемых решений — Phidata.</p></div>
     </div>
 <footer>
-  Qantcore &copy; 2026 &mdash; AI Agents Intelligence Platform &mdash;
-  Updated daily &mdash; <a href="https://t.me/nousresearch">@nousresearch</a>
+  Qantcore &copy; 2026 &mdash; Платформа аналитики AI-агентов &mdash;
+  Обновляется ежедневно &mdash; <a href="https://t.me/nousresearch">@nousresearch</a>
 </footer>
 
 </body>

@@ -3,9 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Microsoft Semantic Kernel vs Composio | Qantcore — AI Agents Intelligence</title>
+<title>Microsoft Semantic Kernel vs Composio | Qantcore — Аналитика AI-агентов</title>
 <meta name="description" content="Детальное сравнение Корпоративный SDK для AI-оркестрации от Microsoft vs 200+ инструментов и интеграций для агентов: Gmail, GitHub, Jira.... Таблица, вердикт, с">
 <link rel="icon" type="image/svg+xml" href="/images/favicon.svg">
+
 <meta property="og:title" content="Microsoft Semantic Kernel vs Composio">
 <meta property="og:description" content="Детальное сравнение Корпоративный SDK для AI-оркестрации от Microsoft vs 200+ инструментов и интеграций для агентов: Gmail, GitHub, Jira.... Таблица, вердикт, сценарии использования.">
 <meta property="og:type" content="article">
@@ -88,6 +89,14 @@ header{position:sticky;top:0;z-index:100;backdrop-filter:blur(20px) saturate(180
   background:transparent;color:var(--text);border:1px solid var(--border);cursor:pointer;
   transition:all .2s}
 .cta-secondary:hover{border-color:var(--green);color:var(--green)}
+
+/* ─── Enterprise CTA Banner ─── */
+.enterprise-cta{background:linear-gradient(135deg,rgba(16,185,129,.08) 0%,rgba(59,130,246,.04) 100%);
+  border:1px solid rgba(16,185,129,.15);border-radius:var(--radius);margin:40px 0 32px;padding:0}
+.ec-inner{display:flex;align-items:center;justify-content:space-between;gap:32px;padding:32px 36px;flex-wrap:wrap}
+.ec-text h3{font-size:20px;font-weight:700;color:var(--text);margin-bottom:8px}
+.ec-text p{font-size:14px;color:var(--muted);line-height:1.6;max-width:480px}
+.ec-actions{display:flex;gap:12px;flex-shrink:0;flex-wrap:wrap}
 
 /* ─── Authority Bar ─── */
 .auth-bar{max-width:1320px;margin:0 auto 0;padding:0 24px 32px}
@@ -348,31 +357,31 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
   <div class="header-inner">
     <a href="/" class="logo"><span class="logo-dot"></span>Qantcore</a>
     <div class="mega-nav">
-      <a href="/" class="">Frameworks</a>
+      <a href="/" class="">Каталог</a>
       <span class="nav-sep"></span>
-      <a href="/catalog/comparison/" class="active">Compare</a>
+      <a href="/catalog/comparison/" class="active">Сравнения</a>
       <span class="nav-sep"></span>
-      <a href="/benchmarks/">Benchmarks</a>
+      <a href="/benchmarks/">Бенчмарки</a>
       <span class="nav-sep"></span>
-      <a href="/catalog/review/" class="">Reviews</a>
+      <a href="/catalog/review/" class="">Обзоры</a>
       <span class="nav-sep"></span>
-      <a href="#rankings">Rankings</a>
+      <a href="#rankings">Рейтинг</a>
       <span class="nav-sep"></span>
-      <a href="#local-ai">Local AI</a>
+      <a href="#local-ai">Локальный AI</a>
       <span class="nav-sep"></span>
-      <a href="#coding-agents">Coding</a>
+      <a href="#coding-agents">Разработка</a>
       <span class="nav-sep"></span>
-      <a href="#multi-agent">Multi-Agent</a>
+      <a href="#multi-agent">Мульти-агенты</a>
       <span class="nav-sep"></span>
-      <a href="#guides">Guides</a>
+      <a href="#guides">Гайды</a>
       <span class="nav-sep"></span>
-      <a href="/methodology/" class="">Methodology</a>
+      <a href="/methodology/" class="">Методология</a>
       <span class="nav-sep"></span>
-      <a href="/workspace/" class="">Workspace</a>
+      <a href="/workspace/" class="">Кабинет</a>
       <span class="nav-sep"></span>
-      <a href="/company/">Companies</a>
+      <a href="/company/">Компании</a>
       <span class="nav-sep"></span>
-      <a href="#saved" class="saved-nav" style="display:none">★ Saved</a>
+      <a href="#saved" class="saved-nav" style="display:none">★ Избранное</a>
     </div>
   </div>
 </header>
@@ -383,15 +392,15 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
       <div class="detail-header">
         <h1>Microsoft Semantic Kernel vs Composio</h1>
         <div style="display:flex;gap:32px;align-items:center;justify-content:center;margin:24px 0">
-          <div style="text-align:center"><div class="card-icon"><img src="/images/semantic-kernel.png" alt="" loading="lazy"></div><div style="font-size:12px;color:var(--muted);margin-top:6px">Microsoft Semantic Kernel — ор</div></div><div style="text-align:center"><div class="card-icon"><img src="/images/composio-tools.png" alt="" loading="lazy"></div><div style="font-size:12px;color:var(--muted);margin-top:6px">Composio — платформа интеграци</div></div>
+          <div style="text-align:center"><div class="card-icon"><img src="/images/semantic-kernel.png" alt="Microsoft Semantic Kernel — оркестрация AI в enterprise" loading="lazy"></div><div style="font-size:12px;color:var(--muted);margin-top:6px">Microsoft Semantic Kernel — ор</div></div><div style="text-align:center"><div class="card-icon"><img src="/images/composio-tools.png" alt="Composio — платформа интеграций для AI-агентов" loading="lazy"></div><div style="font-size:12px;color:var(--muted);margin-top:6px">Composio — платформа интеграци</div></div>
         </div>
         <div class="detail-meta"><a href="/product/semantic-kernel/" class="meta-item">🔗 Microsoft Semantic Kernel — оркестрация </a><a href="/product/composio-tools/" class="meta-item">🔗 Composio — платформа интеграций для AI-а</a></div>
       </div>
       <div class="detail-body"><h2>Краткий вердикт</h2><br><p>Microsoft Semantic Kernel — выбор для крупных корпораций, уже использующих экосистему Microsoft (Azure, Office 365, Dynamics 365) и нуждающихся в кастомизации AI-оркестрации на уровне кода. Composio — оптимальное решение для команд, которым требуется быстрая интеграция AI-агентов с десятками внешних сервисов (Gmail, GitHub, Jira, Slack) без написания собственных коннекторов. Semantic Kernel даёт контроль, Composio — скорость и готовые интеграции.</p><br><br><h2>Таблица сравнения</h2><br><table><br><tr><th>Критерий</th><th>Microsoft Semantic Kernel</th><th>Composio</th></tr><br><tr><td>Цена</td><td>Бесплатный SDK (open-source). Затраты: инфраструктура Azure (оплата по факту), лицензии на Azure OpenAI или другие модели.</td><td>Freemium: бесплатный тариф (до 5 агентов, 1000 вызовов API/мес). Платные тарифы от $49/мес (Pro) и $199/мес (Team). Enterprise — индивидуально.</td></tr><br><tr><td>Функциональность</td><td>Оркестрация AI-пайплайнов, планировщики (Stepwise, Handlebars), память (семантическая, краткосрочная), фильтрация контента, поддержка мультимодальных моделей.</td><td>200+ готовых интеграций (Gmail, GitHub, Jira, Notion, Salesforce, Slack, Google Drive, HubSpot и др.), управление аутентификацией (OAuth, API-ключи), мониторинг вызовов, ретраи, кэширование.</td></tr><br><tr><td>Простота использования</td><td>Требует навыков C# или Python, понимания архитектуры AI-агентов и настройки Azure. Кривая обучения средняя/высокая.</td><td>Низкий порог входа: SDK для Python и JavaScript, документация с примерами для 5 популярных сценариев. Интеграция через 3 строки кода.</td></tr><br><tr><td>Интеграции</td><td>Нативные: Azure Cognitive Services, Azure OpenAI, Bing Search, Microsoft Graph. Сторонние — через кастомные плагины (требуется разработка).</td><td>200+ предсобранных инструментов (Gmail, GitHub, Jira, Slack, Notion, Salesforce, HubSpot, Google Drive, Asana, Trello, Discord, Telegram, Shopify и др.). Поддержка OAuth 2.0, API-ключей, Basic Auth.</td></tr><br><tr><td>Производительность</td><td>Высокая при развёртывании в Azure (низкая задержка, масштабирование). При локальном запуске — зависит от ресурсов сервера.</td><td>Средняя: задержка на уровне 200–500 мс на вызов API (включая аутентификацию и ретраи). Оптимизировано для облачных сред (AWS, GCP, Azure).</td></tr><br></table><br><br><h2>Детальный разбор</h2><br><h3>Microsoft Semantic Kernel</h3><br><p>Сильная сторона — глубокая интеграция с экосистемой Microsoft: вы можете подключать Azure OpenAI, Azure Cognitive Search, Bing Search и Microsoft Graph из коробки. SDK поддерживает сложные сценарии оркестрации: цепочки вызовов, условные переходы, параллельное выполнение и встроенную память (семантическую и краткосрочную). Ограничения: для подключения внешних сервисов (Gmail, Jira, Slack) требуется писать кастомные плагины на C# или Python, что увеличивает время разработки. Semantic Kernel не предоставляет готовых коннекторов к популярным SaaS-продуктам — это фреймворк, а не платформа интеграций.</p><br><br><h3>Composio</h3><br><p>Сильная сторона — 200+ готовых интеграций с популярными сервисами (Gmail, GitHub, Jira, Notion, Slack, Salesforce, HubSpot, Google Drive, Asana, Trello, Discord, Telegram, Shopify и др.). Подключение занимает 3 строки кода: вы указываете имя инструмента и передаёте учётные данные. Composio автоматически управляет аутентификацией (OAuth, API-ключи), ретраями и кэшированием. Ограничения: нет встроенной оркестрации AI-пайплайнов — вы используете Composio только как слой интеграций, а логику агента пишете отдельно (например, на LangChain или AutoGPT). Производительность ниже, чем у нативных Azure-решений, из-за дополнительного сетевого hop-а.</p><br><br><h2>Для кого что выбрать</h2><br><ul><br><li><strong>Microsoft Semantic Kernel:</strong> для корпоративных разработчиков, создающих кастомные AI-решения на базе Azure (например, внутренний AI-ассистент для поиска по документам Office 365 с использованием Azure Cognitive Search). Подходит, если нужен полный контроль над пайплайном и вы готовы писать интеграции самостоятельно.</li><br><li><strong>Composio:</strong> для стартапов и средних команд, которые быстро внедряют AI-агентов в существующие бизнес-процессы (например, AI-агент для автоматизации ответов на тикеты Jira, отправки писем через Gmail и создания задач в Asana). Идеально, если нужно подключить 5–10 внешних сервисов за день без написания кода интеграций.</li><br></ul><br><br><h2>Итог</h2><br><p>Если ваша инфраструктура завязана на Microsoft (Azure, Office 365, Dynamics 365) и вам нужна кастомная оркестрация AI-пайплайнов — выбирайте Microsoft Semantic Kernel. Если приоритет — скорость подключения десятков внешних сервисов (Gmail, GitHub, Jira, Slack, Notion, Salesforce) и вы не хотите тратить время на написание коннекторов — выбирайте Composio. Для максимальной гибкости можно комбинировать: использовать Semantic Kernel для оркестрации, а Composio — как</div>
     </div>
 <footer>
-  Qantcore &copy; 2026 &mdash; AI Agents Intelligence Platform &mdash;
-  Updated daily &mdash; <a href="https://t.me/nousresearch">@nousresearch</a>
+  Qantcore &copy; 2026 &mdash; Платформа аналитики AI-агентов &mdash;
+  Обновляется ежедневно &mdash; <a href="https://t.me/nousresearch">@nousresearch</a>
 </footer>
 
 </body>

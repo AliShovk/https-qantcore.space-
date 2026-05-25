@@ -3,9 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Perplexity AI vs Mistral AI | Qantcore — AI Agents Intelligence</title>
+<title>Perplexity AI vs Mistral AI | Qantcore — Аналитика AI-агентов</title>
 <meta name="description" content="Детальное сравнение AI-поисковик с цитированием источников vs SoTA открытые модели от французского стартапа. Таблица, вердикт, сценарии использования.">
 <link rel="icon" type="image/svg+xml" href="/images/favicon.svg">
+
 <meta property="og:title" content="Perplexity AI vs Mistral AI">
 <meta property="og:description" content="Детальное сравнение AI-поисковик с цитированием источников vs SoTA открытые модели от французского стартапа. Таблица, вердикт, сценарии использования.">
 <meta property="og:type" content="article">
@@ -88,6 +89,14 @@ header{position:sticky;top:0;z-index:100;backdrop-filter:blur(20px) saturate(180
   background:transparent;color:var(--text);border:1px solid var(--border);cursor:pointer;
   transition:all .2s}
 .cta-secondary:hover{border-color:var(--green);color:var(--green)}
+
+/* ─── Enterprise CTA Banner ─── */
+.enterprise-cta{background:linear-gradient(135deg,rgba(16,185,129,.08) 0%,rgba(59,130,246,.04) 100%);
+  border:1px solid rgba(16,185,129,.15);border-radius:var(--radius);margin:40px 0 32px;padding:0}
+.ec-inner{display:flex;align-items:center;justify-content:space-between;gap:32px;padding:32px 36px;flex-wrap:wrap}
+.ec-text h3{font-size:20px;font-weight:700;color:var(--text);margin-bottom:8px}
+.ec-text p{font-size:14px;color:var(--muted);line-height:1.6;max-width:480px}
+.ec-actions{display:flex;gap:12px;flex-shrink:0;flex-wrap:wrap}
 
 /* ─── Authority Bar ─── */
 .auth-bar{max-width:1320px;margin:0 auto 0;padding:0 24px 32px}
@@ -348,31 +357,31 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
   <div class="header-inner">
     <a href="/" class="logo"><span class="logo-dot"></span>Qantcore</a>
     <div class="mega-nav">
-      <a href="/" class="">Frameworks</a>
+      <a href="/" class="">Каталог</a>
       <span class="nav-sep"></span>
-      <a href="/catalog/comparison/" class="active">Compare</a>
+      <a href="/catalog/comparison/" class="active">Сравнения</a>
       <span class="nav-sep"></span>
-      <a href="/benchmarks/">Benchmarks</a>
+      <a href="/benchmarks/">Бенчмарки</a>
       <span class="nav-sep"></span>
-      <a href="/catalog/review/" class="">Reviews</a>
+      <a href="/catalog/review/" class="">Обзоры</a>
       <span class="nav-sep"></span>
-      <a href="#rankings">Rankings</a>
+      <a href="#rankings">Рейтинг</a>
       <span class="nav-sep"></span>
-      <a href="#local-ai">Local AI</a>
+      <a href="#local-ai">Локальный AI</a>
       <span class="nav-sep"></span>
-      <a href="#coding-agents">Coding</a>
+      <a href="#coding-agents">Разработка</a>
       <span class="nav-sep"></span>
-      <a href="#multi-agent">Multi-Agent</a>
+      <a href="#multi-agent">Мульти-агенты</a>
       <span class="nav-sep"></span>
-      <a href="#guides">Guides</a>
+      <a href="#guides">Гайды</a>
       <span class="nav-sep"></span>
-      <a href="/methodology/" class="">Methodology</a>
+      <a href="/methodology/" class="">Методология</a>
       <span class="nav-sep"></span>
-      <a href="/workspace/" class="">Workspace</a>
+      <a href="/workspace/" class="">Кабинет</a>
       <span class="nav-sep"></span>
-      <a href="/company/">Companies</a>
+      <a href="/company/">Компании</a>
       <span class="nav-sep"></span>
-      <a href="#saved" class="saved-nav" style="display:none">★ Saved</a>
+      <a href="#saved" class="saved-nav" style="display:none">★ Избранное</a>
     </div>
   </div>
 </header>
@@ -383,15 +392,15 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
       <div class="detail-header">
         <h1>Perplexity AI vs Mistral AI</h1>
         <div style="display:flex;gap:32px;align-items:center;justify-content:center;margin:24px 0">
-          <div style="text-align:center"><div class="card-icon"><img src="/images/perplexity-ai.png" alt="" loading="lazy"></div><div style="font-size:12px;color:var(--muted);margin-top:6px">Perplexity AI — поисковая сист</div></div><div style="text-align:center"><div class="card-icon"><img src="/images/mistral-ai.png" alt="" loading="lazy"></div><div style="font-size:12px;color:var(--muted);margin-top:6px">Mistral AI — европейский лидер</div></div>
+          <div style="text-align:center"><div class="card-icon"><img src="/images/perplexity-ai.png" alt="Perplexity AI — поисковая система с искусственным интеллектом" loading="lazy"></div><div style="font-size:12px;color:var(--muted);margin-top:6px">Perplexity AI — поисковая сист</div></div><div style="text-align:center"><div class="card-icon"><img src="/images/mistral-ai.png" alt="Mistral AI — европейский лидер открытых LLM" loading="lazy"></div><div style="font-size:12px;color:var(--muted);margin-top:6px">Mistral AI — европейский лидер</div></div>
         </div>
         <div class="detail-meta"><a href="/product/perplexity-ai/" class="meta-item">🔗 Perplexity AI — поисковая система с иску</a><a href="/product/mistral-ai/" class="meta-item">🔗 Mistral AI — европейский лидер открытых </a></div>
       </div>
       <div class="detail-body"><h2>Краткий вердикт</h2><br><p>Perplexity AI лучше подходит для исследователей, аналитиков и всех, кому нужен быстрый доступ к проверенной информации с прозрачными источниками. Mistral AI — выбор разработчиков и инженеров, которым требуются мощные, настраиваемые языковые модели для встраивания в собственные продукты или обработки конфиденциальных данных на локальных серверах.</p><br><br><h2>Таблица сравнения</h2><br><table><br><tr><th>Критерий</th><th>Perplexity AI</th><th>Mistral AI</th></tr><br><tr><td>Цена</td><td>Бесплатный тариф с ограничениями; Pro ($20/мес.) с неограниченным поиском и загрузкой файлов.</td><td>Бесплатные открытые модели (Mistral 7B, Mixtral 8x7B); платный API (Mistral Large) от $2.5 за 1M токенов.</td></tr><br><tr><td>Функциональность</td><td>AI-поисковик с цитированием, анализ PDF/изображений, генерация текста, создание коллекций.</td><td>Генерация текста, программирование, анализ данных, поддержка RAG, тонкая настройка (fine-tuning).</td></tr><br><tr><td>Простота использования</td><td>Высокая: интерфейс как у поисковика, не требует навыков программирования.</td><td>Средняя: требует технических знаний для развертывания и интеграции через API.</td></tr><br><tr><td>Интеграции</td><td>Веб-интерфейс, расширение для браузера, мобильное приложение.</td><td>API для Python, Hugging Face, облачные платформы (AWS, GCP, Azure), локальный запуск.</td></tr><br><tr><td>Производительность</td><td>Высокая скорость ответа (2-5 секунд), точность цитирования 85-90% по тестам авторов.</td><td>SoTA на бенчмарках (Mistral Large превосходит GPT-3.5 по MMLU), низкая задержка API (200-500 мс).</td></tr><br></table><br><br><h2>Детальный разбор</h2><br><h3>Perplexity AI</h3><br><p>Сильная сторона — интеграция поиска в реальном времени с обязательным указанием источников, что делает его идеальным для фактчекинга и исследований. Ограничение: модель не предназначена для сложных задач программирования или тонкой настройки под специфические бизнес-задачи. Бесплатная версия ограничена 5 запросами каждые 4 часа, что может быть недостаточно для активного использования.</p><br><h3>Mistral AI</h3><br><p>Ключевое преимущество — открытые веса моделей, позволяющие развернуть их на собственных серверах для полного контроля над данными. Mistral Large демонстрирует результаты, сопоставимые с GPT-4, на тестах по математике и кодингу (HumanEval). Ограничение: для эффективного использования требуются инженерные ресурсы, а готовые решения для конечных пользователей (как чат-бот) менее развиты, чем у Perplexity.</p><br><br><h2>Для кого что выбрать</h2><br><ul><br><li><strong>Perplexity AI:</strong> для журналистов, проверяющих факты; для студентов и ученых, пишущих рефераты с цитатами; для маркетологов, анализирующих конкурентов в реальном времени.</li><br><li><strong>Mistral AI:</strong> для стартапов, создающих AI-ассистентов с конфиденциальными данными; для разработчиков, интегрирующих NLP в свои приложения; для компаний, которым нужна кастомная модель для специфических доменов (юриспруденция, медицина).</li><br></ul><br><br><h2>Итог</h2><br><p>Если ваша задача — получать ответы с подтвержденными источниками без технических сложностей, выбирайте Perplexity AI. Если вам нужна гибкость, контроль над моделью и возможность встраивания AI в собственный продукт — Mistral AI станет более мощным и экономически эффективным решением в долгосрочной перспективе.</p></div>
     </div>
 <footer>
-  Qantcore &copy; 2026 &mdash; AI Agents Intelligence Platform &mdash;
-  Updated daily &mdash; <a href="https://t.me/nousresearch">@nousresearch</a>
+  Qantcore &copy; 2026 &mdash; Платформа аналитики AI-агентов &mdash;
+  Обновляется ежедневно &mdash; <a href="https://t.me/nousresearch">@nousresearch</a>
 </footer>
 
 </body>

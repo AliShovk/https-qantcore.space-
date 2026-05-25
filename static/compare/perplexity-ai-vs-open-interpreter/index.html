@@ -3,9 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Perplexity AI vs Open Interpreter | Qantcore — AI Agents Intelligence</title>
+<title>Perplexity AI vs Open Interpreter | Qantcore — Аналитика AI-агентов</title>
 <meta name="description" content="Детальное сравнение AI-поисковик с цитированием источников vs AI, который исполняет код на вашем компьютере. Таблица, вердикт, сценарии использования.">
 <link rel="icon" type="image/svg+xml" href="/images/favicon.svg">
+
 <meta property="og:title" content="Perplexity AI vs Open Interpreter">
 <meta property="og:description" content="Детальное сравнение AI-поисковик с цитированием источников vs AI, который исполняет код на вашем компьютере. Таблица, вердикт, сценарии использования.">
 <meta property="og:type" content="article">
@@ -88,6 +89,14 @@ header{position:sticky;top:0;z-index:100;backdrop-filter:blur(20px) saturate(180
   background:transparent;color:var(--text);border:1px solid var(--border);cursor:pointer;
   transition:all .2s}
 .cta-secondary:hover{border-color:var(--green);color:var(--green)}
+
+/* ─── Enterprise CTA Banner ─── */
+.enterprise-cta{background:linear-gradient(135deg,rgba(16,185,129,.08) 0%,rgba(59,130,246,.04) 100%);
+  border:1px solid rgba(16,185,129,.15);border-radius:var(--radius);margin:40px 0 32px;padding:0}
+.ec-inner{display:flex;align-items:center;justify-content:space-between;gap:32px;padding:32px 36px;flex-wrap:wrap}
+.ec-text h3{font-size:20px;font-weight:700;color:var(--text);margin-bottom:8px}
+.ec-text p{font-size:14px;color:var(--muted);line-height:1.6;max-width:480px}
+.ec-actions{display:flex;gap:12px;flex-shrink:0;flex-wrap:wrap}
 
 /* ─── Authority Bar ─── */
 .auth-bar{max-width:1320px;margin:0 auto 0;padding:0 24px 32px}
@@ -348,31 +357,31 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
   <div class="header-inner">
     <a href="/" class="logo"><span class="logo-dot"></span>Qantcore</a>
     <div class="mega-nav">
-      <a href="/" class="">Frameworks</a>
+      <a href="/" class="">Каталог</a>
       <span class="nav-sep"></span>
-      <a href="/catalog/comparison/" class="active">Compare</a>
+      <a href="/catalog/comparison/" class="active">Сравнения</a>
       <span class="nav-sep"></span>
-      <a href="/benchmarks/">Benchmarks</a>
+      <a href="/benchmarks/">Бенчмарки</a>
       <span class="nav-sep"></span>
-      <a href="/catalog/review/" class="">Reviews</a>
+      <a href="/catalog/review/" class="">Обзоры</a>
       <span class="nav-sep"></span>
-      <a href="#rankings">Rankings</a>
+      <a href="#rankings">Рейтинг</a>
       <span class="nav-sep"></span>
-      <a href="#local-ai">Local AI</a>
+      <a href="#local-ai">Локальный AI</a>
       <span class="nav-sep"></span>
-      <a href="#coding-agents">Coding</a>
+      <a href="#coding-agents">Разработка</a>
       <span class="nav-sep"></span>
-      <a href="#multi-agent">Multi-Agent</a>
+      <a href="#multi-agent">Мульти-агенты</a>
       <span class="nav-sep"></span>
-      <a href="#guides">Guides</a>
+      <a href="#guides">Гайды</a>
       <span class="nav-sep"></span>
-      <a href="/methodology/" class="">Methodology</a>
+      <a href="/methodology/" class="">Методология</a>
       <span class="nav-sep"></span>
-      <a href="/workspace/" class="">Workspace</a>
+      <a href="/workspace/" class="">Кабинет</a>
       <span class="nav-sep"></span>
-      <a href="/company/">Companies</a>
+      <a href="/company/">Компании</a>
       <span class="nav-sep"></span>
-      <a href="#saved" class="saved-nav" style="display:none">★ Saved</a>
+      <a href="#saved" class="saved-nav" style="display:none">★ Избранное</a>
     </div>
   </div>
 </header>
@@ -383,15 +392,15 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
       <div class="detail-header">
         <h1>Perplexity AI vs Open Interpreter</h1>
         <div style="display:flex;gap:32px;align-items:center;justify-content:center;margin:24px 0">
-          <div style="text-align:center"><div class="card-icon"><img src="/images/perplexity-ai.png" alt="" loading="lazy"></div><div style="font-size:12px;color:var(--muted);margin-top:6px">Perplexity AI — поисковая сист</div></div><div style="text-align:center"><div class="card-icon"><img src="/images/open-interpreter.png" alt="" loading="lazy"></div><div style="font-size:12px;color:var(--muted);margin-top:6px">Open Interpreter — AI-агент с </div></div>
+          <div style="text-align:center"><div class="card-icon"><img src="/images/perplexity-ai.png" alt="Perplexity AI — поисковая система с искусственным интеллектом" loading="lazy"></div><div style="font-size:12px;color:var(--muted);margin-top:6px">Perplexity AI — поисковая сист</div></div><div style="text-align:center"><div class="card-icon"><img src="/images/open-interpreter.png" alt="Open Interpreter — AI-агент с доступом к компьютеру" loading="lazy"></div><div style="font-size:12px;color:var(--muted);margin-top:6px">Open Interpreter — AI-агент с </div></div>
         </div>
         <div class="detail-meta"><a href="/product/perplexity-ai/" class="meta-item">🔗 Perplexity AI — поисковая система с иску</a><a href="/product/open-interpreter/" class="meta-item">🔗 Open Interpreter — AI-агент с доступом к</a></div>
       </div>
       <div class="detail-body"><h2>Краткий вердикт</h2><br><p>Perplexity AI лучше подходит для исследователей, аналитиков и всех, кому нужен быстрый доступ к проверенной информации с прозрачными источниками. Open Interpreter — выбор разработчиков, DevOps-инженеров и специалистов по автоматизации, которым требуется выполнять код, управлять файлами и взаимодействовать с системой через естественный язык. Если вам нужен ответ на вопрос — выбирайте Perplexity; если нужно действие на компьютере — Open Interpreter.</p><br><br><h2>Таблица сравнения</h2><br><table><br><tr><th>Критерий</th><th>Perplexity AI</th><th>Open Interpreter</th></tr><br><tr><td>Цена</td><td>Бесплатный базовый доступ; Pro-подписка — $20/мес (GPT-4, Claude 3, неограниченные запросы)</td><td>Бесплатный, с открытым исходным кодом (требуется API-ключ к LLM, например, OpenAI — оплата по токенам)</td></tr><br><tr><td>Функциональность</td><td>Поиск в интернете с цитированием источников, анализ PDF, генерация текста, создание коллекций</td><td>Выполнение Python, Bash, JavaScript, работа с файловой системой, управление браузером, установка пакетов</td></tr><br><tr><td>Простота использования</td><td>Веб-интерфейс и мобильное приложение, не требует установки</td><td>Требует установки Python и настройки API-ключа, работа через терминал</td></tr><br><tr><td>Интеграции</td><td>Браузерное расширение, API для разработчиков, экспорт в Markdown</td><td>Интеграция с локальной средой (файлы, процессы, Docker), поддержка моделей OpenAI, Anthropic, Ollama</td></tr><br><tr><td>Производительность</td><td>Высокая скорость ответа (2–5 секунд), поддержка контекста до 200k токенов</td><td>Зависит от модели и мощности ПК; выполнение кода может занимать от секунд до минут</td></tr><br></table><br><br><h2>Детальный разбор</h2><br><h3>Perplexity AI</h3><br><p>Сильная сторона — мгновенный доступ к актуальной информации с обязательным указанием источников (ссылки на сайты, статьи, документы). Поддерживает загрузку и анализ PDF-файлов до 100 МБ, что удобно для работы с отчётами и научными статьями. Ограничение: не может выполнять код или взаимодействовать с операционной системой пользователя — это чисто информационный инструмент. Pro-версия даёт доступ к GPT-4 и Claude 3, но для большинства задач хватает бесплатного режима.</p><br><h3>Open Interpreter</h3><br><p>Позволяет отдавать команды на естественном языке, которые преобразуются в исполняемый код: от переименования файлов до запуска скриптов машинного обучения. Поддерживает локальные модели (через Ollama), что критично для работы с конфиденциальными данными. Ограничение: требует базовых навыков работы с командной строкой и понимания, что AI может выполнить опасные команды (удаление файлов, изменение конфигурации). Без интернета работает только с локальными моделями, которые уступают по качеству облачным.</p><br><br><h2>Для кого что выбрать</h2><br><ul><br><li><strong>Perplexity AI:</strong> для маркетологов, готовящих обзоры рынка; для студентов и учёных, проверяющих факты; для юристов, изучающих судебную практику; для журналистов, ищущих первоисточники.</li><br><li><strong>Open Interpreter:</strong> для разработчиков, автоматизирующих рутинные задачи (форматирование кода, деплой); для аналитиков данных, обрабатывающих CSV/Excel; для системных администраторов, управляющих серверами; для тестировщиков, запускающих скрипты.</li><br></ul><br><br><h2>Итог</h2><br><p>Если ваша задача — получить точный ответ с подтверждением из авторитетных источников, выбирайте Perplexity AI. Если вам нужно, чтобы AI выполнил практическое действие на вашем компьютере (отредактировал файл, запустил скрипт, установил программу) — Open Interpreter незаменим. Для максимальной эффективности можно использовать оба инструмента: Perplexity для поиска решений и Open Interpreter для их реализации.</p></div>
     </div>
 <footer>
-  Qantcore &copy; 2026 &mdash; AI Agents Intelligence Platform &mdash;
-  Updated daily &mdash; <a href="https://t.me/nousresearch">@nousresearch</a>
+  Qantcore &copy; 2026 &mdash; Платформа аналитики AI-агентов &mdash;
+  Обновляется ежедневно &mdash; <a href="https://t.me/nousresearch">@nousresearch</a>
 </footer>
 
 </body>

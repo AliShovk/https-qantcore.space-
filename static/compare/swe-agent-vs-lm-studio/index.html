@@ -3,9 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>SWE-Agent vs LM Studio | Qantcore — AI Agents Intelligence</title>
+<title>SWE-Agent vs LM Studio | Qantcore — Аналитика AI-агентов</title>
 <meta name="description" content="Детальное сравнение Автономный агент: от баг-репорта до Pull Request vs Запускайте любые модели локально с удобным UI и GPU-ускорением. Таблица, вердикт, сценар">
 <link rel="icon" type="image/svg+xml" href="/images/favicon.svg">
+
 <meta property="og:title" content="SWE-Agent vs LM Studio">
 <meta property="og:description" content="Детальное сравнение Автономный агент: от баг-репорта до Pull Request vs Запускайте любые модели локально с удобным UI и GPU-ускорением. Таблица, вердикт, сценарии использования.">
 <meta property="og:type" content="article">
@@ -88,6 +89,14 @@ header{position:sticky;top:0;z-index:100;backdrop-filter:blur(20px) saturate(180
   background:transparent;color:var(--text);border:1px solid var(--border);cursor:pointer;
   transition:all .2s}
 .cta-secondary:hover{border-color:var(--green);color:var(--green)}
+
+/* ─── Enterprise CTA Banner ─── */
+.enterprise-cta{background:linear-gradient(135deg,rgba(16,185,129,.08) 0%,rgba(59,130,246,.04) 100%);
+  border:1px solid rgba(16,185,129,.15);border-radius:var(--radius);margin:40px 0 32px;padding:0}
+.ec-inner{display:flex;align-items:center;justify-content:space-between;gap:32px;padding:32px 36px;flex-wrap:wrap}
+.ec-text h3{font-size:20px;font-weight:700;color:var(--text);margin-bottom:8px}
+.ec-text p{font-size:14px;color:var(--muted);line-height:1.6;max-width:480px}
+.ec-actions{display:flex;gap:12px;flex-shrink:0;flex-wrap:wrap}
 
 /* ─── Authority Bar ─── */
 .auth-bar{max-width:1320px;margin:0 auto 0;padding:0 24px 32px}
@@ -348,31 +357,31 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
   <div class="header-inner">
     <a href="/" class="logo"><span class="logo-dot"></span>Qantcore</a>
     <div class="mega-nav">
-      <a href="/" class="">Frameworks</a>
+      <a href="/" class="">Каталог</a>
       <span class="nav-sep"></span>
-      <a href="/catalog/comparison/" class="active">Compare</a>
+      <a href="/catalog/comparison/" class="active">Сравнения</a>
       <span class="nav-sep"></span>
-      <a href="/benchmarks/">Benchmarks</a>
+      <a href="/benchmarks/">Бенчмарки</a>
       <span class="nav-sep"></span>
-      <a href="/catalog/review/" class="">Reviews</a>
+      <a href="/catalog/review/" class="">Обзоры</a>
       <span class="nav-sep"></span>
-      <a href="#rankings">Rankings</a>
+      <a href="#rankings">Рейтинг</a>
       <span class="nav-sep"></span>
-      <a href="#local-ai">Local AI</a>
+      <a href="#local-ai">Локальный AI</a>
       <span class="nav-sep"></span>
-      <a href="#coding-agents">Coding</a>
+      <a href="#coding-agents">Разработка</a>
       <span class="nav-sep"></span>
-      <a href="#multi-agent">Multi-Agent</a>
+      <a href="#multi-agent">Мульти-агенты</a>
       <span class="nav-sep"></span>
-      <a href="#guides">Guides</a>
+      <a href="#guides">Гайды</a>
       <span class="nav-sep"></span>
-      <a href="/methodology/" class="">Methodology</a>
+      <a href="/methodology/" class="">Методология</a>
       <span class="nav-sep"></span>
-      <a href="/workspace/" class="">Workspace</a>
+      <a href="/workspace/" class="">Кабинет</a>
       <span class="nav-sep"></span>
-      <a href="/company/">Companies</a>
+      <a href="/company/">Компании</a>
       <span class="nav-sep"></span>
-      <a href="#saved" class="saved-nav" style="display:none">★ Saved</a>
+      <a href="#saved" class="saved-nav" style="display:none">★ Избранное</a>
     </div>
   </div>
 </header>
@@ -383,15 +392,15 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
       <div class="detail-header">
         <h1>SWE-Agent vs LM Studio</h1>
         <div style="display:flex;gap:32px;align-items:center;justify-content:center;margin:24px 0">
-          <div style="text-align:center"><div class="card-icon"><img src="/images/swe-agent.png" alt="" loading="lazy"></div><div style="font-size:12px;color:var(--muted);margin-top:6px">SWE-Agent — AI для решения Git</div></div><div style="text-align:center"><div class="card-icon"><img src="/images/lm-studio.png" alt="" loading="lazy"></div><div style="font-size:12px;color:var(--muted);margin-top:6px">LM Studio — десктопное приложе</div></div>
+          <div style="text-align:center"><div class="card-icon"><img src="/images/swe-agent.png" alt="SWE-Agent — AI для решения GitHub issues" loading="lazy"></div><div style="font-size:12px;color:var(--muted);margin-top:6px">SWE-Agent — AI для решения Git</div></div><div style="text-align:center"><div class="card-icon"><img src="/images/lm-studio.png" alt="LM Studio — десктопное приложение для локальных LLM" loading="lazy"></div><div style="font-size:12px;color:var(--muted);margin-top:6px">LM Studio — десктопное приложе</div></div>
         </div>
         <div class="detail-meta"><a href="/product/swe-agent/" class="meta-item">🔗 SWE-Agent — AI для решения GitHub issues</a><a href="/product/lm-studio/" class="meta-item">🔗 LM Studio — десктопное приложение для ло</a></div>
       </div>
       <div class="detail-body"><h2>Краткий вердикт</h2><br><p>SWE-Agent и LM Studio решают принципиально разные задачи. SWE-Agent — это инструмент для автоматизации разработки, который самостоятельно исправляет баги и создает pull request'ы, идеально подходя для команд, стремящихся ускорить цикл разработки. LM Studio — это среда для запуска LLM на локальном оборудовании, необходимая специалистам по безопасности, работающим с конфиденциальными данными, и разработчикам, тестирующим модели без отправки данных в облако. Выбор зависит от того, что вам нужно: автоматизировать написание кода или получить приватный и контролируемый доступ к языковым моделям.</p><br><br><h2>Таблица сравнения</h2><br><table><br><tr><th>Критерий</th><th>SWE-Agent</th><th>LM Studio</th></tr><br><tr><td>Цена</td><td>Бесплатный (Open Source), требует оплаты за API (например, Claude Sonnet 3.5) при использовании облачных моделей.</td><td>Бесплатный (Open Source), все затраты — на электроэнергию и оборудование (GPU).</td></tr><br><tr><td>Функциональность</td><td>Автономное исправление багов, написание кода, создание и коммит Pull Request'ов, работа с Git-репозиториями.</td><td>Загрузка, запуск и тестирование тысяч моделей (GGUF), локальный инференс, встроенный чат, API-сервер для сторонних приложений.</td></tr><br><tr><td>Простота использования</td><td>Средняя. Требует настройки окружения, токенов API и понимания работы с Git.</td><td>Высокая. Интуитивно понятный GUI, установка в один клик, поиск и загрузка моделей из интерфейса.</td></tr><br><tr><td>Интеграции</td><td>GitHub, GitLab (через API), CI/CD пайплайны (через CLI).</td><td>Любые приложения, поддерживающие OpenAI-совместимый API (через локальный сервер).</td></tr><br><tr><td>Производительность</td><td>Зависит от используемой модели (обычно GPT-4 или Claude). Время выполнения задачи — от 30 секунд до нескольких минут.</td><td>Зависит от мощности GPU (VRAM) и размера модели. На современном GPU (RTX 4090) модели 7B работают со скоростью 50+ токенов/сек.</td></tr><br></table><br><br><h2>Детальный разбор</h2><br><h3>SWE-Agent</h3><br><p>Сильная сторона SWE-Agent — полная автономность в рамках задачи по исправлению кода. Он способен самостоятельно найти баг в репозитории, написать исправление, протестировать его и оформить Pull Request. Это позволяет разработчикам делегировать рутинную работу по исправлению мелких ошибок и рефакторингу. Основное ограничение — агент не всегда корректно понимает контекст большой кодовой базы и может генерировать неоптимальные решения, требуя проверки человеком. Кроме того, он полностью зависит от внешних API, что влечет за собой затраты на каждый запуск.</p><br><h3>LM Studio</h3><br><p>LM Studio предоставляет максимальный контроль над средой выполнения LLM. Вы можете скачать любую открытую модель (например, Llama 3, Mistral, Qwen) и запустить её локально, обеспечив полную конфиденциальность данных. Встроенный UI позволяет быстро прототипировать промпты и сравнивать выводы разных моделей. Ограничение — для работы с большими моделями (70B+) требуется дорогостоящее оборудование (минимум 48 ГБ VRAM), и скорость инференса на consumer-grade GPU может быть недостаточной для production-нагрузок. Инструмент не предназначен для автоматизации задач, а лишь для запуска моделей.</p><br><br><h2>Для кого что выбрать</h2><br><ul><br><li><strong>SWE-Agent:</strong> Команды разработчиков, желающие автоматизировать процесс исправления багов и рефакторинга. Разработчики, которые хотят ускорить код-ревью за счет автоматически сгенерированных PR. Инженеры, интегрирующие AI в CI/CD пайплайн для автоматического фикса простых ошибок.</li><br><li><strong>LM Studio:</strong> Специалисты по безопасности и юристы, работающие с конфиденциальными данными, которые нельзя отправлять в облачные API. Исследователи и хоббисты, тестирующие различные open-source модели. Разработчики, создающие локальные AI-ассистенты для работы с кодом без интернета.</li><br></ul><br><br><h2>Итог</h2><br><p>Выбор между SWE-Agent и LM Studio — это выбор между автоматизацией действия и контролем над средой. Если ваша цель — сократить время на рутинные задачи по кодингу и вы готовы платить за API, выбирайте SWE-Agent. Если для вас критична приватность данных, вы хотите экспериментировать с разными моделями без ограничений облачных провайдеров и имеете мощное железо — ваш выбор LM Studio. В большинстве B2B-сценариев эти инструменты не конкурируют, а дополняют друг друга: команда может использовать LM Studio для приватного тестирования промптов, а SWE-Agent — для автоматической генерации кода на основе утвержденных решений.</p></div>
     </div>
 <footer>
-  Qantcore &copy; 2026 &mdash; AI Agents Intelligence Platform &mdash;
-  Updated daily &mdash; <a href="https://t.me/nousresearch">@nousresearch</a>
+  Qantcore &copy; 2026 &mdash; Платформа аналитики AI-агентов &mdash;
+  Обновляется ежедневно &mdash; <a href="https://t.me/nousresearch">@nousresearch</a>
 </footer>
 
 </body>

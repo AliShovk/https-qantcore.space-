@@ -3,9 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>You.com vs Llama 3 | Qantcore — AI Agents Intelligence</title>
+<title>You.com vs Llama 3 | Qantcore — Аналитика AI-агентов</title>
 <meta name="description" content="Детальное сравнение Поисковая система с AI-агентом: research, creative, genius vs Лучшая open source LLM: 8B и 70B параметров. Таблица, вердикт, сценарии исполь">
 <link rel="icon" type="image/svg+xml" href="/images/favicon.svg">
+
 <meta property="og:title" content="You.com vs Llama 3">
 <meta property="og:description" content="Детальное сравнение Поисковая система с AI-агентом: research, creative, genius vs Лучшая open source LLM: 8B и 70B параметров. Таблица, вердикт, сценарии использования.">
 <meta property="og:type" content="article">
@@ -88,6 +89,14 @@ header{position:sticky;top:0;z-index:100;backdrop-filter:blur(20px) saturate(180
   background:transparent;color:var(--text);border:1px solid var(--border);cursor:pointer;
   transition:all .2s}
 .cta-secondary:hover{border-color:var(--green);color:var(--green)}
+
+/* ─── Enterprise CTA Banner ─── */
+.enterprise-cta{background:linear-gradient(135deg,rgba(16,185,129,.08) 0%,rgba(59,130,246,.04) 100%);
+  border:1px solid rgba(16,185,129,.15);border-radius:var(--radius);margin:40px 0 32px;padding:0}
+.ec-inner{display:flex;align-items:center;justify-content:space-between;gap:32px;padding:32px 36px;flex-wrap:wrap}
+.ec-text h3{font-size:20px;font-weight:700;color:var(--text);margin-bottom:8px}
+.ec-text p{font-size:14px;color:var(--muted);line-height:1.6;max-width:480px}
+.ec-actions{display:flex;gap:12px;flex-shrink:0;flex-wrap:wrap}
 
 /* ─── Authority Bar ─── */
 .auth-bar{max-width:1320px;margin:0 auto 0;padding:0 24px 32px}
@@ -348,31 +357,31 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
   <div class="header-inner">
     <a href="/" class="logo"><span class="logo-dot"></span>Qantcore</a>
     <div class="mega-nav">
-      <a href="/" class="">Frameworks</a>
+      <a href="/" class="">Каталог</a>
       <span class="nav-sep"></span>
-      <a href="/catalog/comparison/" class="active">Compare</a>
+      <a href="/catalog/comparison/" class="active">Сравнения</a>
       <span class="nav-sep"></span>
-      <a href="/benchmarks/">Benchmarks</a>
+      <a href="/benchmarks/">Бенчмарки</a>
       <span class="nav-sep"></span>
-      <a href="/catalog/review/" class="">Reviews</a>
+      <a href="/catalog/review/" class="">Обзоры</a>
       <span class="nav-sep"></span>
-      <a href="#rankings">Rankings</a>
+      <a href="#rankings">Рейтинг</a>
       <span class="nav-sep"></span>
-      <a href="#local-ai">Local AI</a>
+      <a href="#local-ai">Локальный AI</a>
       <span class="nav-sep"></span>
-      <a href="#coding-agents">Coding</a>
+      <a href="#coding-agents">Разработка</a>
       <span class="nav-sep"></span>
-      <a href="#multi-agent">Multi-Agent</a>
+      <a href="#multi-agent">Мульти-агенты</a>
       <span class="nav-sep"></span>
-      <a href="#guides">Guides</a>
+      <a href="#guides">Гайды</a>
       <span class="nav-sep"></span>
-      <a href="/methodology/" class="">Methodology</a>
+      <a href="/methodology/" class="">Методология</a>
       <span class="nav-sep"></span>
-      <a href="/workspace/" class="">Workspace</a>
+      <a href="/workspace/" class="">Кабинет</a>
       <span class="nav-sep"></span>
-      <a href="/company/">Companies</a>
+      <a href="/company/">Компании</a>
       <span class="nav-sep"></span>
-      <a href="#saved" class="saved-nav" style="display:none">★ Saved</a>
+      <a href="#saved" class="saved-nav" style="display:none">★ Избранное</a>
     </div>
   </div>
 </header>
@@ -383,15 +392,15 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
       <div class="detail-header">
         <h1>You.com vs Llama 3</h1>
         <div style="display:flex;gap:32px;align-items:center;justify-content:center;margin:24px 0">
-          <div style="text-align:center"><div class="card-icon"><img src="/images/you-com.png" alt="" loading="lazy"></div><div style="font-size:12px;color:var(--muted);margin-top:6px">You.com — AI-поисковик с агент</div></div><div style="text-align:center"><div class="card-icon"><img src="/images/llama-meta.png" alt="" loading="lazy"></div><div style="font-size:12px;color:var(--muted);margin-top:6px">Llama 3 — открытая модель от M</div></div>
+          <div style="text-align:center"><div class="card-icon"><img src="/images/you-com.png" alt="You.com — AI-поисковик с агентными режимами" loading="lazy"></div><div style="font-size:12px;color:var(--muted);margin-top:6px">You.com — AI-поисковик с агент</div></div><div style="text-align:center"><div class="card-icon"><img src="/images/llama-meta.png" alt="Llama 3 — открытая модель от Meta" loading="lazy"></div><div style="font-size:12px;color:var(--muted);margin-top:6px">Llama 3 — открытая модель от M</div></div>
         </div>
         <div class="detail-meta"><a href="/product/you-com/" class="meta-item">🔗 You.com — AI-поисковик с агентными режим</a><a href="/product/llama-meta/" class="meta-item">🔗 Llama 3 — открытая модель от Meta</a></div>
       </div>
       <div class="detail-body"><h2>Краткий вердикт</h2><br><p>You.com — лучший выбор для B2B-команд, которым нужна готовая AI-поисковая система с агентами для исследований и креативной работы без необходимости развёртывания. Llama 3 — оптимальное решение для разработчиков и компаний, требующих полного контроля над моделью, кастомизации и работы с конфиденциальными данными на собственной инфраструктуре.</p><br><br><h2>Таблица сравнения</h2><br><table><br><tr><th>Критерий</th><th>You.com</th><th>Llama 3</th></tr><br><tr><td>Цена</td><td>Бесплатный тариф с ограничениями; Pro-подписка от $20/мес; Enterprise — по запросу</td><td>Полностью бесплатно (open source); затраты только на инфраструктуру (серверы, GPU)</td></tr><br><tr><td>Функциональность</td><td>Три режима AI-агента: Research (поиск с цитированием), Creative (генерация текста), Genius (сложные задачи); поддержка изображений и кода</td><td>Генерация текста, кода, перевод, суммаризация; поддержка RAG (Retrieval-Augmented Generation); 8B и 70B параметров</td></tr><br><tr><td>Простота использования</td><td>Готовый веб-интерфейс и API; не требует настройки; интуитивно понятно</td><td>Требует технических навыков: установка, настройка, развёртывание; доступен через Hugging Face и API-провайдеров</td></tr><br><tr><td>Интеграции</td><td>Встроенные интеграции с поисковыми системами, веб-браузером; API для разработчиков; плагины</td><td>Интеграция с любыми фреймворками (LangChain, LlamaIndex); совместимость с облачными платформами (AWS, GCP, Azure)</td></tr><br><tr><td>Производительность</td><td>Высокая скорость ответа (1–3 секунды); точность цитирования источников; ограничение контекста — 32K токенов</td><td>70B модель сопоставима с GPT-4 по качеству; 8B — быстрая и лёгкая; контекст — 8K токенов; требует мощного GPU для 70B</td></tr><br></table><br><br><h2>Детальный разбор</h2><br><h3>You.com</h3><br><p>You.com предлагает готовое решение для бизнеса, где AI-агент автоматически выбирает режим работы в зависимости от задачи: Research — для поиска фактов с проверенными источниками, Creative — для генерации маркетинговых текстов, Genius — для сложных аналитических запросов. Сильная сторона — встроенная верификация информации через поиск в реальном времени, что критично для B2B-аналитики. Ограничения: зависимость от интернет-соединения, невозможность тонкой настройки модели под специфические корпоративные данные, а также риск утечки данных при использовании облачного сервиса без Enterprise-контракта.</p><br><h3>Llama 3</h3><br><p>Llama 3 от Meta — это open source модель с открытым весом, доступная в двух размерах: 8B параметров (для быстрых задач на слабом железе) и 70B параметров (для глубокого анализа, сопоставимого с GPT-4). Главное преимущество — полный контроль: вы можете дообучать модель на своих данных, развернуть локально для соблюдения GDPR и других регуляций, а также интегрировать в любую архитектуру. Ограничения: для работы с 70B требуется как минимум 2 GPU с 80 ГБ памяти (например, A100), а для новичков порог входа высок из-за необходимости настройки окружения и управления инфраструктурой.</p><br><br><h2>Для кого что выбрать</h2><br><ul><br><li><strong>You.com:</strong> для маркетинговых отделов, аналитиков и менеджеров, которым нужен быстрый доступ к проверенной информации и генерация контента без участия разработчиков; для стартапов, не желающих тратить время на развёртывание AI-инфраструктуры.</li><br><li><strong>Llama 3:</strong> для IT-отделов и data science-команд, разрабатывающих кастомные AI-решения для обработки конфиденциальных данных (медицина, финансы, юриспруденция); для компаний, которым важна полная независимость от сторонних API и возможность масштабирования на собственных серверах.</li><br></ul><br><br><h2>Итог</h2><br><p>Если ваша B2B-команда ценит скорость внедрения и не хочет заниматься инфраструктурой — выбирайте You.com: он даст готовый AI-поиск и генерацию текста с минимальными усилиями. Если же приоритет — безопасность данных, кастомизация и долгосрочная экономия на API-запросах, Llama 3 станет более выгодным решением, несмотря на первоначальные затраты на настройку. Для гибридного подхода можно использовать You.com для повседневных задач, а Llama 3 — для критичных процессов с конфиденциальными данными.</p></div>
     </div>
 <footer>
-  Qantcore &copy; 2026 &mdash; AI Agents Intelligence Platform &mdash;
-  Updated daily &mdash; <a href="https://t.me/nousresearch">@nousresearch</a>
+  Qantcore &copy; 2026 &mdash; Платформа аналитики AI-агентов &mdash;
+  Обновляется ежедневно &mdash; <a href="https://t.me/nousresearch">@nousresearch</a>
 </footer>
 
 </body>

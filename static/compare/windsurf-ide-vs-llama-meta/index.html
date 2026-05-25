@@ -3,9 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Windsurf vs Llama 3 | Qantcore — AI Agents Intelligence</title>
+<title>Windsurf vs Llama 3 | Qantcore — Аналитика AI-агентов</title>
 <meta name="description" content="Детальное сравнение Первый AI Flow IDE с каскадным контекстом vs Лучшая open source LLM: 8B и 70B параметров. Таблица, вердикт, сценарии использования.">
 <link rel="icon" type="image/svg+xml" href="/images/favicon.svg">
+
 <meta property="og:title" content="Windsurf vs Llama 3">
 <meta property="og:description" content="Детальное сравнение Первый AI Flow IDE с каскадным контекстом vs Лучшая open source LLM: 8B и 70B параметров. Таблица, вердикт, сценарии использования.">
 <meta property="og:type" content="article">
@@ -88,6 +89,14 @@ header{position:sticky;top:0;z-index:100;backdrop-filter:blur(20px) saturate(180
   background:transparent;color:var(--text);border:1px solid var(--border);cursor:pointer;
   transition:all .2s}
 .cta-secondary:hover{border-color:var(--green);color:var(--green)}
+
+/* ─── Enterprise CTA Banner ─── */
+.enterprise-cta{background:linear-gradient(135deg,rgba(16,185,129,.08) 0%,rgba(59,130,246,.04) 100%);
+  border:1px solid rgba(16,185,129,.15);border-radius:var(--radius);margin:40px 0 32px;padding:0}
+.ec-inner{display:flex;align-items:center;justify-content:space-between;gap:32px;padding:32px 36px;flex-wrap:wrap}
+.ec-text h3{font-size:20px;font-weight:700;color:var(--text);margin-bottom:8px}
+.ec-text p{font-size:14px;color:var(--muted);line-height:1.6;max-width:480px}
+.ec-actions{display:flex;gap:12px;flex-shrink:0;flex-wrap:wrap}
 
 /* ─── Authority Bar ─── */
 .auth-bar{max-width:1320px;margin:0 auto 0;padding:0 24px 32px}
@@ -348,31 +357,31 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
   <div class="header-inner">
     <a href="/" class="logo"><span class="logo-dot"></span>Qantcore</a>
     <div class="mega-nav">
-      <a href="/" class="">Frameworks</a>
+      <a href="/" class="">Каталог</a>
       <span class="nav-sep"></span>
-      <a href="/catalog/comparison/" class="active">Compare</a>
+      <a href="/catalog/comparison/" class="active">Сравнения</a>
       <span class="nav-sep"></span>
-      <a href="/benchmarks/">Benchmarks</a>
+      <a href="/benchmarks/">Бенчмарки</a>
       <span class="nav-sep"></span>
-      <a href="/catalog/review/" class="">Reviews</a>
+      <a href="/catalog/review/" class="">Обзоры</a>
       <span class="nav-sep"></span>
-      <a href="#rankings">Rankings</a>
+      <a href="#rankings">Рейтинг</a>
       <span class="nav-sep"></span>
-      <a href="#local-ai">Local AI</a>
+      <a href="#local-ai">Локальный AI</a>
       <span class="nav-sep"></span>
-      <a href="#coding-agents">Coding</a>
+      <a href="#coding-agents">Разработка</a>
       <span class="nav-sep"></span>
-      <a href="#multi-agent">Multi-Agent</a>
+      <a href="#multi-agent">Мульти-агенты</a>
       <span class="nav-sep"></span>
-      <a href="#guides">Guides</a>
+      <a href="#guides">Гайды</a>
       <span class="nav-sep"></span>
-      <a href="/methodology/" class="">Methodology</a>
+      <a href="/methodology/" class="">Методология</a>
       <span class="nav-sep"></span>
-      <a href="/workspace/" class="">Workspace</a>
+      <a href="/workspace/" class="">Кабинет</a>
       <span class="nav-sep"></span>
-      <a href="/company/">Companies</a>
+      <a href="/company/">Компании</a>
       <span class="nav-sep"></span>
-      <a href="#saved" class="saved-nav" style="display:none">★ Saved</a>
+      <a href="#saved" class="saved-nav" style="display:none">★ Избранное</a>
     </div>
   </div>
 </header>
@@ -383,15 +392,15 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
       <div class="detail-header">
         <h1>Windsurf vs Llama 3</h1>
         <div style="display:flex;gap:32px;align-items:center;justify-content:center;margin:24px 0">
-          <div style="text-align:center"><div class="card-icon"><img src="/images/windsurf-ide.png" alt="" loading="lazy"></div><div style="font-size:12px;color:var(--muted);margin-top:6px">Windsurf — AI IDE от Codeium</div></div><div style="text-align:center"><div class="card-icon"><img src="/images/llama-meta.png" alt="" loading="lazy"></div><div style="font-size:12px;color:var(--muted);margin-top:6px">Llama 3 — открытая модель от M</div></div>
+          <div style="text-align:center"><div class="card-icon"><img src="/images/windsurf-ide.png" alt="Windsurf — AI IDE от Codeium" loading="lazy"></div><div style="font-size:12px;color:var(--muted);margin-top:6px">Windsurf — AI IDE от Codeium</div></div><div style="text-align:center"><div class="card-icon"><img src="/images/llama-meta.png" alt="Llama 3 — открытая модель от Meta" loading="lazy"></div><div style="font-size:12px;color:var(--muted);margin-top:6px">Llama 3 — открытая модель от M</div></div>
         </div>
         <div class="detail-meta"><a href="/product/windsurf-ide/" class="meta-item">🔗 Windsurf — AI IDE от Codeium</a><a href="/product/llama-meta/" class="meta-item">🔗 Llama 3 — открытая модель от Meta</a></div>
       </div>
       <div class="detail-body"><h2>Краткий вердикт</h2><br><p>Windsurf — это готовое решение для разработчиков, которые хотят ускорить написание кода за счёт AI-ассистента с глубоким пониманием контекста проекта. Llama 3 — это универсальная языковая модель для команд, которым нужен полный контроль над AI: от кастомизации до развёртывания на собственных серверах. Windsurf лучше для быстрой разработки в IDE, Llama 3 — для создания собственных AI-продуктов и интеграций.</p><br><br><h2>Таблица сравнения</h2><br><table><br><tr><th>Критерий</th><th>Windsurf</th><th>Llama 3</th></tr><br><tr><td>Цена</td><td>Бесплатно (ограниченный доступ) + Pro $15/мес. за неограниченные запросы и приоритет</td><td>Бесплатно (open source). Затраты только на инфраструктуру (GPU, хостинг)</td></tr><br><tr><td>Функциональность</td><td>Автодополнение кода, генерация функций, рефакторинг, объяснение кода, поиск багов. Каскадный контекст (анализ всей кодовой базы)</td><td>Генерация текста, ответы на вопросы, написание кода, перевод, суммаризация. Требуется дообучение или промпт-инжиниринг для специфических задач</td></tr><br><tr><td>Простота использования</td><td>Устанавливается как плагин в VS Code. Работает сразу после установки. Не требует настройки модели</td><td>Требует технической подготовки: загрузка модели, настройка окружения, оптимизация под железо. Есть готовые API (через провайдеров)</td></tr><br><tr><td>Интеграции</td><td>Встроен в VS Code. Поддержка Python, JavaScript, TypeScript, Java, C++, Go и других языков. Нет API для внешних систем</td><td>API через Hugging Face, Replicate, Groq. Интеграция с любым приложением через HTTP-запросы. Поддержка Python, LangChain, LlamaIndex</td></tr><br><tr><td>Производительность</td><td>Мгновенные подсказки в IDE. Зависит от скорости интернета (облачная обработка). Каскадный контекст до 100К токенов</td><td>Зависит от железа: на A100 80GB — 50+ токенов/сек для 70B модели. 8B модель работает на потребительских GPU (RTX 3090). Латентность от 200 мс до 2 секунд</td></tr><br></table><br><br><h2>Детальный разбор</h2><br><h3>Windsurf</h3><br><p>Windsurf выделяется каскадным контекстом: AI анализирует не только текущий файл, но и связанные модули, импорты и структуру проекта. Это позволяет генерировать код, который сразу согласован с архитектурой. Инструмент автоматически предлагает рефакторинг и исправляет ошибки на лету. Ограничение: Windsurf работает только в VS Code и не подходит для задач вне разработки ПО (например, анализ документов или чат-боты).</p><br><br><h3>Llama 3</h3><br><p>Llama 3 от Meta доступна в двух размерах: 8B (для быстрых задач на слабом железе) и 70B (для сложных рассуждений и генерации кода). Модель показывает результаты на уровне GPT-4 в бенчмарках (MMLU: 82% для 70B). Главное преимущество — полная кастомизация: можно дообучить на своих данных, развернуть локально и не платить за API. Ограничение: требует инженерных ресурсов для настройки, а 70B версия нуждается в дорогих GPU (минимум 48GB VRAM).</p><br><br><h2>Для кого что выбрать</h2><br><ul><br><li><strong>Windsurf:</strong> Инди-разработчики и небольшие команды, которые пишут код в VS Code и хотят AI-ассистента без настройки. Подходит для веб-разработки, написания скриптов, рефакторинга legacy-кода. Не подходит, если нужно AI для не-кодовых задач или работа в другой IDE.</li><br><li><strong>Llama 3:</strong> Команды, создающие собственные AI-продукты (чат-боты, анализаторы кода, генераторы контента). Компании с требованиями к приватности данных (локальный сервер). Исследователи и энтузиасты, которым нужна полная прозрачность модели. Не подходит, если нет GPU или инженера для развёртывания.</li><br></ul><br><br><h2>Итог</h2><br><p>Выбирайте Windsurf, если ваша основная задача — ускорить разработку в VS Code без лишних хлопот. Выбирайте Llama 3, если вам нужна гибкая, контролируемая модель для встраивания в собственные продукты или обработки конфиденциальных данных. Для большинства B2B-команд оптимальная стратегия — использовать Windsurf для повседневной разработки и Llama 3 для создания специализированных AI-решений.</p></div>
     </div>
 <footer>
-  Qantcore &copy; 2026 &mdash; AI Agents Intelligence Platform &mdash;
-  Updated daily &mdash; <a href="https://t.me/nousresearch">@nousresearch</a>
+  Qantcore &copy; 2026 &mdash; Платформа аналитики AI-агентов &mdash;
+  Обновляется ежедневно &mdash; <a href="https://t.me/nousresearch">@nousresearch</a>
 </footer>
 
 </body>

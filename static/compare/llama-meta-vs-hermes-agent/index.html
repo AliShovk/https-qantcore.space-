@@ -3,9 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Llama 3 vs Hermes Agent | Qantcore — AI Agents Intelligence</title>
+<title>Llama 3 vs Hermes Agent | Qantcore — Аналитика AI-агентов</title>
 <meta name="description" content="Детальное сравнение Лучшая open source LLM: 8B и 70B параметров vs Агент с памятью, навыками и полным доступом к системе. Таблица, вердикт, сценарии использован">
 <link rel="icon" type="image/svg+xml" href="/images/favicon.svg">
+
 <meta property="og:title" content="Llama 3 vs Hermes Agent">
 <meta property="og:description" content="Детальное сравнение Лучшая open source LLM: 8B и 70B параметров vs Агент с памятью, навыками и полным доступом к системе. Таблица, вердикт, сценарии использования.">
 <meta property="og:type" content="article">
@@ -88,6 +89,14 @@ header{position:sticky;top:0;z-index:100;backdrop-filter:blur(20px) saturate(180
   background:transparent;color:var(--text);border:1px solid var(--border);cursor:pointer;
   transition:all .2s}
 .cta-secondary:hover{border-color:var(--green);color:var(--green)}
+
+/* ─── Enterprise CTA Banner ─── */
+.enterprise-cta{background:linear-gradient(135deg,rgba(16,185,129,.08) 0%,rgba(59,130,246,.04) 100%);
+  border:1px solid rgba(16,185,129,.15);border-radius:var(--radius);margin:40px 0 32px;padding:0}
+.ec-inner{display:flex;align-items:center;justify-content:space-between;gap:32px;padding:32px 36px;flex-wrap:wrap}
+.ec-text h3{font-size:20px;font-weight:700;color:var(--text);margin-bottom:8px}
+.ec-text p{font-size:14px;color:var(--muted);line-height:1.6;max-width:480px}
+.ec-actions{display:flex;gap:12px;flex-shrink:0;flex-wrap:wrap}
 
 /* ─── Authority Bar ─── */
 .auth-bar{max-width:1320px;margin:0 auto 0;padding:0 24px 32px}
@@ -348,31 +357,31 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
   <div class="header-inner">
     <a href="/" class="logo"><span class="logo-dot"></span>Qantcore</a>
     <div class="mega-nav">
-      <a href="/" class="">Frameworks</a>
+      <a href="/" class="">Каталог</a>
       <span class="nav-sep"></span>
-      <a href="/catalog/comparison/" class="active">Compare</a>
+      <a href="/catalog/comparison/" class="active">Сравнения</a>
       <span class="nav-sep"></span>
-      <a href="/benchmarks/">Benchmarks</a>
+      <a href="/benchmarks/">Бенчмарки</a>
       <span class="nav-sep"></span>
-      <a href="/catalog/review/" class="">Reviews</a>
+      <a href="/catalog/review/" class="">Обзоры</a>
       <span class="nav-sep"></span>
-      <a href="#rankings">Rankings</a>
+      <a href="#rankings">Рейтинг</a>
       <span class="nav-sep"></span>
-      <a href="#local-ai">Local AI</a>
+      <a href="#local-ai">Локальный AI</a>
       <span class="nav-sep"></span>
-      <a href="#coding-agents">Coding</a>
+      <a href="#coding-agents">Разработка</a>
       <span class="nav-sep"></span>
-      <a href="#multi-agent">Multi-Agent</a>
+      <a href="#multi-agent">Мульти-агенты</a>
       <span class="nav-sep"></span>
-      <a href="#guides">Guides</a>
+      <a href="#guides">Гайды</a>
       <span class="nav-sep"></span>
-      <a href="/methodology/" class="">Methodology</a>
+      <a href="/methodology/" class="">Методология</a>
       <span class="nav-sep"></span>
-      <a href="/workspace/" class="">Workspace</a>
+      <a href="/workspace/" class="">Кабинет</a>
       <span class="nav-sep"></span>
-      <a href="/company/">Companies</a>
+      <a href="/company/">Компании</a>
       <span class="nav-sep"></span>
-      <a href="#saved" class="saved-nav" style="display:none">★ Saved</a>
+      <a href="#saved" class="saved-nav" style="display:none">★ Избранное</a>
     </div>
   </div>
 </header>
@@ -383,15 +392,15 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
       <div class="detail-header">
         <h1>Llama 3 vs Hermes Agent</h1>
         <div style="display:flex;gap:32px;align-items:center;justify-content:center;margin:24px 0">
-          <div style="text-align:center"><div class="card-icon"><img src="/images/llama-meta.png" alt="" loading="lazy"></div><div style="font-size:12px;color:var(--muted);margin-top:6px">Llama 3 — открытая модель от M</div></div><div style="text-align:center"><div class="card-icon"><img src="/images/hermes-agent.png" alt="" loading="lazy"></div><div style="font-size:12px;color:var(--muted);margin-top:6px">Hermes Agent — AI-агент, котор</div></div>
+          <div style="text-align:center"><div class="card-icon"><img src="/images/llama-meta.png" alt="Llama 3 — открытая модель от Meta" loading="lazy"></div><div style="font-size:12px;color:var(--muted);margin-top:6px">Llama 3 — открытая модель от M</div></div><div style="text-align:center"><div class="card-icon"><img src="/images/hermes-agent.png" alt="Hermes Agent — AI-агент, который растёт вместе с вами" loading="lazy"></div><div style="font-size:12px;color:var(--muted);margin-top:6px">Hermes Agent — AI-агент, котор</div></div>
         </div>
         <div class="detail-meta"><a href="/product/llama-meta/" class="meta-item">🔗 Llama 3 — открытая модель от Meta</a><a href="/product/hermes-agent/" class="meta-item">🔗 Hermes Agent — AI-агент, который растёт </a></div>
       </div>
       <div class="detail-body"><h2>Краткий вердикт</h2><br><p>Llama 3 — лучший выбор для команд, которым нужна мощная, настраиваемая open source LLM для генерации текста, анализа данных и чат-ботов с контролем над инфраструктурой. Hermes Agent — идеальное решение для автоматизации сложных, многошаговых задач на уровне операционной системы, где требуется автономный агент с памятью и доступом к файлам, приложениям и API. Если вам нужна «голая» языковая модель — выбирайте Llama 3; если готовый агент-исполнитель — Hermes Agent.</p><br><br><h2>Таблица сравнения</h2><br><table><br><tr><th>Критерий</th><th>Llama 3</th><th>Hermes Agent</th></tr><br><tr><td>Цена</td><td>Бесплатно (open source). Затраты только на инфраструктуру (GPU/облако).</td><td>Бесплатно (open source). Затраты на инфраструктуру + API ключи для инструментов (браузер, терминал).</td></tr><br><tr><td>Функциональность</td><td>Генерация текста, суммаризация, перевод, написание кода, ответы на вопросы. Нет встроенного доступа к системе.</td><td>Выполнение bash-команд, управление файлами, работа с браузером, чтение/запись данных, вызов API. Встроенная память о предыдущих действиях.</td></tr><br><tr><td>Простота использования</td><td>Средняя. Требуется настройка окружения (Python, Transformers, Ollama). Запуск через API или локально.</td><td>Высокая. Готовый агент с предустановленными навыками. Запуск через Docker или pip install.</td></tr><br><tr><td>Интеграции</td><td>Через API (REST, gRPC) с любыми приложениями. Поддержка Hugging Face, vLLM, Ollama.</td><td>Встроенные интеграции с терминалом, файловой системой, браузером (Playwright). Возможность добавлять кастомные инструменты.</td></tr><br><tr><td>Производительность</td><td>Высокая (8B — для быстрых задач, 70B — для сложных). Зависит от GPU. Latency ~100-500 мс на токен.</td><td>Средняя. Зависит от сложности цепочки действий. Каждый шаг требует вызова LLM (обычно Llama 3 или GPT-4). Latency ~2-10 секунд на задачу.</td></tr><br></table><br><br><h2>Детальный разбор</h2><br><h3>Llama 3</h3><br><p>Сильная сторона Llama 3 — это качество генерации текста, сравнимое с проприетарными моделями (GPT-4, Claude), при полном контроле над данными и отсутствии затрат на API. Модель доступна в двух размерах: 8B параметров для быстрых инференсов на одном GPU (например, RTX 3090) и 70B для максимальной точности (требуется 2-4 GPU A100). Ограничения: Llama 3 не умеет самостоятельно выполнять действия в системе — она только генерирует текст. Для интеграции с внешними инструментами требуется дополнительная разработка (фреймворки LangChain, AutoGPT).</p><br><h3>Hermes Agent</h3><br><p>Hermes Agent — это готовый AI-агент, который использует LLM (по умолчанию Llama 3 или GPT-4) для планирования и выполнения действий. Он обладает долговременной памятью (сохраняет контекст между сессиями) и набором навыков: работа с терминалом, браузером, файлами. Сильная сторона — автономность: агент может самостоятельно установить софт, прочитать документацию, написать скрипт и выполнить его. Ограничения: высокая стоимость выполнения сложных задач (каждый шаг — запрос к LLM), возможные ошибки в цепочках действий (требуется валидация), а также риски безопасности при полном доступе к системе.</p><br><br><h2>Для кого что выбрать</h2><br><ul><br><li><strong>Llama 3:</strong> Разработчикам чат-ботов и систем генерации контента. Командам, которым нужна кастомная LLM для специфических задач (например, юридический анализ, медицинская диагностика). Исследователям, которые хотят дообучать модель на своих данных.</li><br><li><strong>Hermes Agent:</strong> DevOps-инженерам для автоматизации рутинных операций (деплой, мониторинг, работа с логами). QA-специалистам для автотестирования веб-интерфейсов. Аналитикам данных, которым нужно автоматически собирать, обрабатывать и визуализировать информацию из разных источников.</li><br></ul><br><br><h2>Итог</h2><br><p>Если ваша задача — генерация качественного текста или создание интеллектуального ассистента с нуля, выбирайте Llama 3. Если вам нужен готовый «цифровой сотрудник», который может самостоятельно выполнять команды в операционной системе, работать с файлами и браузером — Hermes Agent станет более эффективным решением. Для максимальной производительности можно комбинировать оба продукта: использовать Llama 3 как «мозг» внутри Hermes Agent для принятия решений.</p></div>
     </div>
 <footer>
-  Qantcore &copy; 2026 &mdash; AI Agents Intelligence Platform &mdash;
-  Updated daily &mdash; <a href="https://t.me/nousresearch">@nousresearch</a>
+  Qantcore &copy; 2026 &mdash; Платформа аналитики AI-агентов &mdash;
+  Обновляется ежедневно &mdash; <a href="https://t.me/nousresearch">@nousresearch</a>
 </footer>
 
 </body>

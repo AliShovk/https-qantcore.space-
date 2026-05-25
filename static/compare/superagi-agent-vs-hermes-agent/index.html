@@ -3,9 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>SuperAGI vs Hermes Agent | Qantcore — AI Agents Intelligence</title>
+<title>SuperAGI vs Hermes Agent | Qantcore — Аналитика AI-агентов</title>
 <meta name="description" content="Детальное сравнение Инфраструктура для создания и деплоя автономных AI-агентов vs Агент с памятью, навыками и полным доступом к системе. Таблица, вердикт, сцена">
 <link rel="icon" type="image/svg+xml" href="/images/favicon.svg">
+
 <meta property="og:title" content="SuperAGI vs Hermes Agent">
 <meta property="og:description" content="Детальное сравнение Инфраструктура для создания и деплоя автономных AI-агентов vs Агент с памятью, навыками и полным доступом к системе. Таблица, вердикт, сценарии использования.">
 <meta property="og:type" content="article">
@@ -88,6 +89,14 @@ header{position:sticky;top:0;z-index:100;backdrop-filter:blur(20px) saturate(180
   background:transparent;color:var(--text);border:1px solid var(--border);cursor:pointer;
   transition:all .2s}
 .cta-secondary:hover{border-color:var(--green);color:var(--green)}
+
+/* ─── Enterprise CTA Banner ─── */
+.enterprise-cta{background:linear-gradient(135deg,rgba(16,185,129,.08) 0%,rgba(59,130,246,.04) 100%);
+  border:1px solid rgba(16,185,129,.15);border-radius:var(--radius);margin:40px 0 32px;padding:0}
+.ec-inner{display:flex;align-items:center;justify-content:space-between;gap:32px;padding:32px 36px;flex-wrap:wrap}
+.ec-text h3{font-size:20px;font-weight:700;color:var(--text);margin-bottom:8px}
+.ec-text p{font-size:14px;color:var(--muted);line-height:1.6;max-width:480px}
+.ec-actions{display:flex;gap:12px;flex-shrink:0;flex-wrap:wrap}
 
 /* ─── Authority Bar ─── */
 .auth-bar{max-width:1320px;margin:0 auto 0;padding:0 24px 32px}
@@ -348,31 +357,31 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
   <div class="header-inner">
     <a href="/" class="logo"><span class="logo-dot"></span>Qantcore</a>
     <div class="mega-nav">
-      <a href="/" class="">Frameworks</a>
+      <a href="/" class="">Каталог</a>
       <span class="nav-sep"></span>
-      <a href="/catalog/comparison/" class="active">Compare</a>
+      <a href="/catalog/comparison/" class="active">Сравнения</a>
       <span class="nav-sep"></span>
-      <a href="/benchmarks/">Benchmarks</a>
+      <a href="/benchmarks/">Бенчмарки</a>
       <span class="nav-sep"></span>
-      <a href="/catalog/review/" class="">Reviews</a>
+      <a href="/catalog/review/" class="">Обзоры</a>
       <span class="nav-sep"></span>
-      <a href="#rankings">Rankings</a>
+      <a href="#rankings">Рейтинг</a>
       <span class="nav-sep"></span>
-      <a href="#local-ai">Local AI</a>
+      <a href="#local-ai">Локальный AI</a>
       <span class="nav-sep"></span>
-      <a href="#coding-agents">Coding</a>
+      <a href="#coding-agents">Разработка</a>
       <span class="nav-sep"></span>
-      <a href="#multi-agent">Multi-Agent</a>
+      <a href="#multi-agent">Мульти-агенты</a>
       <span class="nav-sep"></span>
-      <a href="#guides">Guides</a>
+      <a href="#guides">Гайды</a>
       <span class="nav-sep"></span>
-      <a href="/methodology/" class="">Methodology</a>
+      <a href="/methodology/" class="">Методология</a>
       <span class="nav-sep"></span>
-      <a href="/workspace/" class="">Workspace</a>
+      <a href="/workspace/" class="">Кабинет</a>
       <span class="nav-sep"></span>
-      <a href="/company/">Companies</a>
+      <a href="/company/">Компании</a>
       <span class="nav-sep"></span>
-      <a href="#saved" class="saved-nav" style="display:none">★ Saved</a>
+      <a href="#saved" class="saved-nav" style="display:none">★ Избранное</a>
     </div>
   </div>
 </header>
@@ -383,15 +392,15 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
       <div class="detail-header">
         <h1>SuperAGI vs Hermes Agent</h1>
         <div style="display:flex;gap:32px;align-items:center;justify-content:center;margin:24px 0">
-          <div style="text-align:center"><div class="card-icon"><img src="/images/superagi-agent.png" alt="" loading="lazy"></div><div style="font-size:12px;color:var(--muted);margin-top:6px">SuperAGI — открытая платформа </div></div><div style="text-align:center"><div class="card-icon"><img src="/images/hermes-agent.png" alt="" loading="lazy"></div><div style="font-size:12px;color:var(--muted);margin-top:6px">Hermes Agent — AI-агент, котор</div></div>
+          <div style="text-align:center"><div class="card-icon"><img src="/images/superagi-agent.png" alt="SuperAGI — открытая платформа автономных агентов" loading="lazy"></div><div style="font-size:12px;color:var(--muted);margin-top:6px">SuperAGI — открытая платформа </div></div><div style="text-align:center"><div class="card-icon"><img src="/images/hermes-agent.png" alt="Hermes Agent — AI-агент, который растёт вместе с вами" loading="lazy"></div><div style="font-size:12px;color:var(--muted);margin-top:6px">Hermes Agent — AI-агент, котор</div></div>
         </div>
         <div class="detail-meta"><a href="/product/superagi-agent/" class="meta-item">🔗 SuperAGI — открытая платформа автономных</a><a href="/product/hermes-agent/" class="meta-item">🔗 Hermes Agent — AI-агент, который растёт </a></div>
       </div>
       <div class="detail-body"><h2>Краткий вердикт</h2><br><p>SuperAGI — это платформа для разработчиков, которым нужна гибкая инфраструктура для создания, тестирования и масштабирования множества автономных AI-агентов. Hermes Agent — это готовый к использованию агент с глубокой интеграцией в операционную систему, предназначенный для выполнения сложных, многошаговых задач на локальной машине пользователя. Если ваша цель — построить собственную экосистему агентов, выбирайте SuperAGI; если вам нужен мощный «цифровой ассистент» с полным контролем над компьютером — Hermes Agent.</p><br><br><h2>Таблица сравнения</h2><br><table><br><tr><th>Критерий</th><th>SuperAGI</th><th>Hermes Agent</th></tr><br><tr><td>Цена</td><td>Бесплатный open-source (MIT лицензия). Затраты только на собственные вычислительные ресурсы и API ключи LLM (GPT-4, Claude и др.).</td><td>Бесплатный open-source (Apache 2.0 лицензия). Требует мощное локальное железо (GPU 24GB+ VRAM) для запуска модели Hermes 2 Pro, либо оплату API провайдера.</td></tr><br><tr><td>Функциональность</td><td>Создание, деплой и мониторинг неограниченного количества агентов. Встроенный магазин инструментов, поддержка RAG, векторные базы данных, планировщик задач, веб-интерфейс для управления.</td><td>Полный доступ к файловой системе, браузеру, терминалу и GUI ОС. Долговременная память, обучение новым навыкам через примеры, выполнение сложных скриптов и работа с любыми приложениями.</td></tr><br><tr><td>Простота использования</td><td>Средняя. Требует навыков работы с командной строкой, Docker и понимания архитектуры AI-агентов. Веб-интерфейс упрощает мониторинг, но настройка сложна.</td><td>Низкая для новичков. Установка и запуск требуют опыта работы с Python, CUDA и настройкой окружения. После установки взаимодействие происходит через терминал.</td></tr><br><tr><td>Интеграции</td><td>Широкие. Интеграция с любыми LLM через API, Slack, Email, GitHub, Google Drive, Notion, базы данных (Pinecone, Weaviate), и кастомные инструменты через SDK.</td><td>Глубокие, но специфичные. Прямая интеграция с операционной системой (Windows, macOS, Linux). Поддержка браузеров, терминала, файлового менеджера. Нет встроенных облачных интеграций.</td></tr><br><tr><td>Производительность</td><td>Зависит от используемой LLM и инфраструктуры. Может масштабироваться горизонтально для обработки тысяч задач параллельно. Оптимизирован для пакетной обработки.</td><td>Высокая для локальных задач. Использует собственную модель Hermes 2 Pro (Mixtral-based), оптимизированную для инструментов. Скорость ограничена мощностью GPU пользователя.</td></tr><br></table><br><br><h2>Детальный разбор</h2><br><h3>SuperAGI</h3><br><p>Сильная сторона SuperAGI — это гибкость и масштабируемость. Платформа предоставляет готовую инфраструктуру для управления жизненным циклом агентов: от создания и назначения инструментов до мониторинга логов и производительности. Встроенный магазин инструментов позволяет быстро подключать готовые функции, а поддержка RAG дает агентам доступ к корпоративным базам знаний. Основное ограничение — сложность настройки и отсутствие готовых агентов «из коробки» для конкретных бизнес-задач; требуется разработка и тонкая настройка каждого агента.</p><br><h3>Hermes Agent</h3><br><p>Hermes Agent выделяется своей способностью действовать как полноценный оператор компьютера. Он может не просто отвечать на вопросы, а реально выполнять действия: редактировать файлы, устанавливать программы, управлять окнами и даже играть в игры. Ключевая особенность — долговременная память и возможность обучать агента новым навыкам, просто показывая последовательность действий. Ограничения: высокая требовательность к ресурсам (необходим мощный GPU для локального запуска), отсутствие веб-интерфейса и ограниченная поддержка облачных сервисов без дополнительной настройки.</p><br><br><h2>Для кого что выбрать</h2><br><ul><br><li><strong>SuperAGI:</strong> Команды разработчиков, создающие внутренние инструменты автоматизации (например, агент для обработки заявок в CRM и автоматического ответа на email). Компании, которым нужно запустить 10+ разных агентов для мониторинга соцсетей, анализа данных и генерации отчетов. Исследователи, экспериментирующие с архитектурами мультиагентных систем.</li><br><li><strong>Hermes Agent:</strong> Разработчики и DevOps-инженеры, желающие автоматизировать рутинные задачи на своем рабочем ПК (например, деплой кода, настройка окружения, тестирование GUI). Специалисты по автоматизации тестирования, которым нужен агент, способный взаимодействовать с интерфейсом приложения. Пользователи, которым нужен локальный AI-ассистент с полным доступом к системе без отправки данных в облако.</li><br></ul><br><br><h2>Итог</h2><br><p>Выбор между SuperAGI и Hermes Agent — это выбор между платформой для создания агентов и готовым агентом-оператором. SuperAGI — правильный выбор для B2B-сценариев, где требуется централизованное управление множеством агентов, интеграция с корпоративными сервисами и масштабирование. Hermes Agent незаменим, когда задача требует прямого взаимодействия с операционной системой и приложениями на локальной машине, особенно в сценариях, чувствительных к конфиден</div>
     </div>
 <footer>
-  Qantcore &copy; 2026 &mdash; AI Agents Intelligence Platform &mdash;
-  Updated daily &mdash; <a href="https://t.me/nousresearch">@nousresearch</a>
+  Qantcore &copy; 2026 &mdash; Платформа аналитики AI-агентов &mdash;
+  Обновляется ежедневно &mdash; <a href="https://t.me/nousresearch">@nousresearch</a>
 </footer>
 
 </body>

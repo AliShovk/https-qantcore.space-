@@ -3,9 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>n8n vs Claude | Qantcore — AI Agents Intelligence</title>
+<title>n8n vs Claude | Qantcore — Аналитика AI-агентов</title>
 <meta name="description" content="Детальное сравнение Open-source альтернатива Zapier с AI-нодами vs Этичный AI с длинным контекстом и agentic режимом. Таблица, вердикт, сценарии использования.">
 <link rel="icon" type="image/svg+xml" href="/images/favicon.svg">
+
 <meta property="og:title" content="n8n vs Claude">
 <meta property="og:description" content="Детальное сравнение Open-source альтернатива Zapier с AI-нодами vs Этичный AI с длинным контекстом и agentic режимом. Таблица, вердикт, сценарии использования.">
 <meta property="og:type" content="article">
@@ -88,6 +89,14 @@ header{position:sticky;top:0;z-index:100;backdrop-filter:blur(20px) saturate(180
   background:transparent;color:var(--text);border:1px solid var(--border);cursor:pointer;
   transition:all .2s}
 .cta-secondary:hover{border-color:var(--green);color:var(--green)}
+
+/* ─── Enterprise CTA Banner ─── */
+.enterprise-cta{background:linear-gradient(135deg,rgba(16,185,129,.08) 0%,rgba(59,130,246,.04) 100%);
+  border:1px solid rgba(16,185,129,.15);border-radius:var(--radius);margin:40px 0 32px;padding:0}
+.ec-inner{display:flex;align-items:center;justify-content:space-between;gap:32px;padding:32px 36px;flex-wrap:wrap}
+.ec-text h3{font-size:20px;font-weight:700;color:var(--text);margin-bottom:8px}
+.ec-text p{font-size:14px;color:var(--muted);line-height:1.6;max-width:480px}
+.ec-actions{display:flex;gap:12px;flex-shrink:0;flex-wrap:wrap}
 
 /* ─── Authority Bar ─── */
 .auth-bar{max-width:1320px;margin:0 auto 0;padding:0 24px 32px}
@@ -348,31 +357,31 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
   <div class="header-inner">
     <a href="/" class="logo"><span class="logo-dot"></span>Qantcore</a>
     <div class="mega-nav">
-      <a href="/" class="">Frameworks</a>
+      <a href="/" class="">Каталог</a>
       <span class="nav-sep"></span>
-      <a href="/catalog/comparison/" class="active">Compare</a>
+      <a href="/catalog/comparison/" class="active">Сравнения</a>
       <span class="nav-sep"></span>
-      <a href="/benchmarks/">Benchmarks</a>
+      <a href="/benchmarks/">Бенчмарки</a>
       <span class="nav-sep"></span>
-      <a href="/catalog/review/" class="">Reviews</a>
+      <a href="/catalog/review/" class="">Обзоры</a>
       <span class="nav-sep"></span>
-      <a href="#rankings">Rankings</a>
+      <a href="#rankings">Рейтинг</a>
       <span class="nav-sep"></span>
-      <a href="#local-ai">Local AI</a>
+      <a href="#local-ai">Локальный AI</a>
       <span class="nav-sep"></span>
-      <a href="#coding-agents">Coding</a>
+      <a href="#coding-agents">Разработка</a>
       <span class="nav-sep"></span>
-      <a href="#multi-agent">Multi-Agent</a>
+      <a href="#multi-agent">Мульти-агенты</a>
       <span class="nav-sep"></span>
-      <a href="#guides">Guides</a>
+      <a href="#guides">Гайды</a>
       <span class="nav-sep"></span>
-      <a href="/methodology/" class="">Methodology</a>
+      <a href="/methodology/" class="">Методология</a>
       <span class="nav-sep"></span>
-      <a href="/workspace/" class="">Workspace</a>
+      <a href="/workspace/" class="">Кабинет</a>
       <span class="nav-sep"></span>
-      <a href="/company/">Companies</a>
+      <a href="/company/">Компании</a>
       <span class="nav-sep"></span>
-      <a href="#saved" class="saved-nav" style="display:none">★ Saved</a>
+      <a href="#saved" class="saved-nav" style="display:none">★ Избранное</a>
     </div>
   </div>
 </header>
@@ -383,15 +392,15 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
       <div class="detail-header">
         <h1>n8n vs Claude</h1>
         <div style="display:flex;gap:32px;align-items:center;justify-content:center;margin:24px 0">
-          <div style="text-align:center"><div class="card-icon"><img src="/images/n8n-automation.png" alt="" loading="lazy"></div><div style="font-size:12px;color:var(--muted);margin-top:6px">n8n — автоматизация рабочих пр</div></div><div style="text-align:center"><div class="card-icon"><img src="/images/claude-anthropic.png" alt="" loading="lazy"></div><div style="font-size:12px;color:var(--muted);margin-top:6px">Claude — AI-ассистент от Anthr</div></div>
+          <div style="text-align:center"><div class="card-icon"><img src="/images/n8n-automation.png" alt="n8n — автоматизация рабочих процессов с AI" loading="lazy"></div><div style="font-size:12px;color:var(--muted);margin-top:6px">n8n — автоматизация рабочих пр</div></div><div style="text-align:center"><div class="card-icon"><img src="/images/claude-anthropic.png" alt="Claude — AI-ассистент от Anthropic" loading="lazy"></div><div style="font-size:12px;color:var(--muted);margin-top:6px">Claude — AI-ассистент от Anthr</div></div>
         </div>
         <div class="detail-meta"><a href="/product/n8n-automation/" class="meta-item">🔗 n8n — автоматизация рабочих процессов с </a><a href="/product/claude-anthropic/" class="meta-item">🔗 Claude — AI-ассистент от Anthropic</a></div>
       </div>
       <div class="detail-body"><h2>Краткий вердикт</h2><br><p>n8n — лучший выбор для автоматизации бизнес-процессов и интеграции AI в существующие рабочие потоки, особенно если вам нужен контроль над данными и кастомизация. Claude — идеальный инструмент для глубокого анализа документов, работы с длинным контекстом и задач, требующих этичного и безопасного AI-агента. Если ваша цель — построить сложную цепочку действий с участием AI, выбирайте n8n; если вам нужен мощный "мозг" для обработки информации и генерации контента — Claude.</p><br><br><h2>Таблица сравнения</h2><br><table><br><tr><th>Критерий</th><th>n8n</th><th>Claude</th></tr><br><tr><td>Цена</td><td>Бесплатно (self-hosted) или от $20/мес за облачную версию (до 5k рабочих процессов).</td><td>Бесплатный лимит (сообщения/день). Pro — $20/мес, Team — $25/мес/чел, Enterprise — индивидуально.</td></tr><br><tr><td>Функциональность</td><td>Визуальный конструктор рабочих процессов (workflows), 400+ интеграций, AI-ноды (LLM, векторные БД), условная логика, вебхуки, выполнение кода (Python, JavaScript).</td><td>Генерация текста, анализ документов (до 200k токенов), агентный режим (использование инструментов), программирование, перевод, суммаризация.</td></tr><br><tr><td>Простота использования</td><td>Средняя. Требует понимания логики автоматизации. Визуальный интерфейс упрощает создание цепочек, но настройка нод может быть сложной для новичков.</td><td>Высокая. Чат-интерфейс, понятный любому пользователю. Сложность возникает только при настройке агентного режима через API.</td></tr><br><tr><td>Интеграции</td><td>400+ готовых интеграций (Google, Slack, Notion, Salesforce, базы данных, HTTP-запросы). Возможность создавать свои через API.</td><td>Ограниченные нативные интеграции (через API). Основная интеграция — через сторонние сервисы (Zapier, n8n) или прямое API.</td></tr><br><tr><td>Производительность</td><td>Зависит от хостинга. Self-hosted — полный контроль. Облачная версия — стабильна, но есть лимиты на выполнение. Высокая скорость выполнения простых задач.</td><td>Высокая скорость генерации текста. Обработка больших документов (100k+ токенов) занимает 10–30 секунд. Агентный режим может быть медленнее из-за цепочки рассуждений.</td></tr><br></table><br><br><h2>Детальный разбор</h2><br><h3>n8n</h3><br><p>Сильная сторона n8n — это визуальное программирование рабочих процессов с возможностью встраивать AI-модели (OpenAI, Anthropic, локальные LLM) как обычные ноды. Вы можете создать цепочку: "Получить email → Извлечь вложение → Отправить в Claude на анализ → Сохранить результат в Google Sheets". Главное ограничение — n8n не является генеративным AI сам по себе; он лишь оркестратор. Для сложной логики с AI требуется настройка промптов и понимание работы моделей. Self-hosted версия даёт полный контроль над данными, что критично для B2B с высокими требованиями к безопасности.</p><br><br><h3>Claude</h3><br><p>Claude от Anthropic выделяется самым длинным контекстным окном (200k токенов — это ~150 000 слов или 500 страниц текста), что позволяет анализировать целые книги, кодовые базы или юридические документы за один запрос. Агентный режим (Computer Use) позволяет Claude самостоятельно выполнять действия в браузере: заполнять формы, кликать, скроллить. Ограничения: Claude не умеет запускать свои рабочие процессы по расписанию или интегрироваться напрямую с CRM без посредников. Также есть риск "галлюцинаций" при работе с фактами, хотя модель считается одной из самых точных.</p><br><br><h2>Для кого что выбрать</h2><br><ul><br><li><strong>n8n:</strong> Для DevOps и IT-отделов, которым нужно автоматизировать рутину с участием AI (обработка заявок, модерация контента, ETL-процессы). Для компаний, которые хотят заменить Zapier, сохранив данные на своих серверах. Для создания сложных мульти-агентных систем, где Claude — лишь один из инструментов.</li><br><li><strong>Claude:</strong> Для юристов, аналитиков и редакторов, которым нужно быстро обработать большой объём текста (контракты, отчёты, исследования). Для разработчиков, которым нужен AI-ассистент для написания и ревью кода. Для команд, которые хотят внедрить AI-агента для выполнения задач в браузере (например, автоматизация тестирования веб-интерфейсов).</li><br></ul><br><br><h2>Итог</h2><br><p>Если ваша задача — построить надёжную, кастомизируемую систему автоматизации, где AI является одним из компонентов, выбирайте n8n. Если вам нужен мощный, этичный и безопасный AI для анализа, генерации и агентных действий, который можно использовать как "мозг" для других систем — выбирайте Claude. Оптимальная стратегия для B2B: использовать n8n как платформу-оркестратор, а Claude — как одну из AI-нод внутри неё, получая лучшее от обоих продуктов.</p></div>
     </div>
 <footer>
-  Qantcore &copy; 2026 &mdash; AI Agents Intelligence Platform &mdash;
-  Updated daily &mdash; <a href="https://t.me/nousresearch">@nousresearch</a>
+  Qantcore &copy; 2026 &mdash; Платформа аналитики AI-агентов &mdash;
+  Обновляется ежедневно &mdash; <a href="https://t.me/nousresearch">@nousresearch</a>
 </footer>
 
 </body>

@@ -3,9 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Replit AI vs Bolt.new | Qantcore — AI Agents Intelligence</title>
+<title>Replit AI vs Bolt.new | Qantcore — Аналитика AI-агентов</title>
 <meta name="description" content="Детальное сравнение Облачная среда разработки с AI-агентом и деплоем в один клик vs Пишите промпт — получайте full-stack приложение с деплоем. Таблица, вердикт,">
 <link rel="icon" type="image/svg+xml" href="/images/favicon.svg">
+
 <meta property="og:title" content="Replit AI vs Bolt.new">
 <meta property="og:description" content="Детальное сравнение Облачная среда разработки с AI-агентом и деплоем в один клик vs Пишите промпт — получайте full-stack приложение с деплоем. Таблица, вердикт, сценарии использования.">
 <meta property="og:type" content="article">
@@ -88,6 +89,14 @@ header{position:sticky;top:0;z-index:100;backdrop-filter:blur(20px) saturate(180
   background:transparent;color:var(--text);border:1px solid var(--border);cursor:pointer;
   transition:all .2s}
 .cta-secondary:hover{border-color:var(--green);color:var(--green)}
+
+/* ─── Enterprise CTA Banner ─── */
+.enterprise-cta{background:linear-gradient(135deg,rgba(16,185,129,.08) 0%,rgba(59,130,246,.04) 100%);
+  border:1px solid rgba(16,185,129,.15);border-radius:var(--radius);margin:40px 0 32px;padding:0}
+.ec-inner{display:flex;align-items:center;justify-content:space-between;gap:32px;padding:32px 36px;flex-wrap:wrap}
+.ec-text h3{font-size:20px;font-weight:700;color:var(--text);margin-bottom:8px}
+.ec-text p{font-size:14px;color:var(--muted);line-height:1.6;max-width:480px}
+.ec-actions{display:flex;gap:12px;flex-shrink:0;flex-wrap:wrap}
 
 /* ─── Authority Bar ─── */
 .auth-bar{max-width:1320px;margin:0 auto 0;padding:0 24px 32px}
@@ -348,31 +357,31 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
   <div class="header-inner">
     <a href="/" class="logo"><span class="logo-dot"></span>Qantcore</a>
     <div class="mega-nav">
-      <a href="/" class="">Frameworks</a>
+      <a href="/" class="">Каталог</a>
       <span class="nav-sep"></span>
-      <a href="/catalog/comparison/" class="active">Compare</a>
+      <a href="/catalog/comparison/" class="active">Сравнения</a>
       <span class="nav-sep"></span>
-      <a href="/benchmarks/">Benchmarks</a>
+      <a href="/benchmarks/">Бенчмарки</a>
       <span class="nav-sep"></span>
-      <a href="/catalog/review/" class="">Reviews</a>
+      <a href="/catalog/review/" class="">Обзоры</a>
       <span class="nav-sep"></span>
-      <a href="#rankings">Rankings</a>
+      <a href="#rankings">Рейтинг</a>
       <span class="nav-sep"></span>
-      <a href="#local-ai">Local AI</a>
+      <a href="#local-ai">Локальный AI</a>
       <span class="nav-sep"></span>
-      <a href="#coding-agents">Coding</a>
+      <a href="#coding-agents">Разработка</a>
       <span class="nav-sep"></span>
-      <a href="#multi-agent">Multi-Agent</a>
+      <a href="#multi-agent">Мульти-агенты</a>
       <span class="nav-sep"></span>
-      <a href="#guides">Guides</a>
+      <a href="#guides">Гайды</a>
       <span class="nav-sep"></span>
-      <a href="/methodology/" class="">Methodology</a>
+      <a href="/methodology/" class="">Методология</a>
       <span class="nav-sep"></span>
-      <a href="/workspace/" class="">Workspace</a>
+      <a href="/workspace/" class="">Кабинет</a>
       <span class="nav-sep"></span>
-      <a href="/company/">Companies</a>
+      <a href="/company/">Компании</a>
       <span class="nav-sep"></span>
-      <a href="#saved" class="saved-nav" style="display:none">★ Saved</a>
+      <a href="#saved" class="saved-nav" style="display:none">★ Избранное</a>
     </div>
   </div>
 </header>
@@ -383,15 +392,15 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
       <div class="detail-header">
         <h1>Replit AI vs Bolt.new</h1>
         <div style="display:flex;gap:32px;align-items:center;justify-content:center;margin:24px 0">
-          <div style="text-align:center"><div class="card-icon"><img src="/images/replit-ai.png" alt="" loading="lazy"></div><div style="font-size:12px;color:var(--muted);margin-top:6px">Replit AI — облачная IDE со вс</div></div><div style="text-align:center"><div class="card-icon"><img src="/images/bolt-new.png" alt="" loading="lazy"></div><div style="font-size:12px;color:var(--muted);margin-top:6px">Bolt.new — full-stack приложен</div></div>
+          <div style="text-align:center"><div class="card-icon"><img src="/images/replit-ai.png" alt="Replit AI — облачная IDE со встроенным AI-агентом" loading="lazy"></div><div style="font-size:12px;color:var(--muted);margin-top:6px">Replit AI — облачная IDE со вс</div></div><div style="text-align:center"><div class="card-icon"><img src="/images/bolt-new.png" alt="Bolt.new — full-stack приложения в браузере с AI" loading="lazy"></div><div style="font-size:12px;color:var(--muted);margin-top:6px">Bolt.new — full-stack приложен</div></div>
         </div>
         <div class="detail-meta"><a href="/product/replit-ai/" class="meta-item">🔗 Replit AI — облачная IDE со встроенным A</a><a href="/product/bolt-new/" class="meta-item">🔗 Bolt.new — full-stack приложения в брауз</a></div>
       </div>
       <div class="detail-body"><h2>Краткий вердикт</h2><br><p>Replit AI лучше подходит для разработчиков, которым нужна полноценная среда разработки (IDE) с возможностью тонкой настройки кода, отладки и работы в команде. Bolt.new — идеальный выбор для быстрого прототипирования и создания MVP без глубоких знаний в программировании, когда нужно получить работающее full-stack приложение из одного промпта.</p><br><br><h2>Таблица сравнения</h2><br><table><br><tr><th>Критерий</th><th>Replit AI</th><th>Bolt.new</th></tr><br><tr><td>Цена</td><td>Бесплатный тариф (ограниченные ресурсы CPU/RAM). Платные от $25/мес (Core) до $200/мес (Teams).</td><td>Бесплатный тариф (ограниченное количество промптов и токенов). Платные от $20/мес (Starter) до $100/мес (Team).</td></tr><br><tr><td>Функциональность</td><td>AI-агент для написания и рефакторинга кода, встроенный терминал, отладчик, поддержка 50+ языков, деплой в один клик на Replit URL.</td><td>Генерация полного стека (фронтенд + бэкенд) по текстовому описанию, автоматический деплой на Bolt.new URL, поддержка React, Node.js, базы данных.</td></tr><br><tr><td>Простота использования</td><td>Требует базовых навыков работы с IDE и понимания структуры проекта. AI-агент ускоряет написание кода, но не заменяет его понимание.</td><td>Максимально простой интерфейс: ввёл промпт — получил приложение. Не требует установки или настройки окружения.</td></tr><br><tr><td>Интеграции</td><td>GitHub, GitLab, Bitbucket, базы данных (PostgreSQL, MySQL, SQLite), API через встроенный пакетный менеджер.</td><td>GitHub (экспорт кода), интеграция с Supabase для базы данных, ограниченные возможности подключения внешних API через код.</td></tr><br><tr><td>Производительность</td><td>Зависит от тарифа: на бесплатном тарифе медленная работа с большими проектами. Платные тарифы дают выделенные ресурсы.</td><td>Быстрая генерация кода, но сложные приложения могут работать медленнее из-за ограничений серверной части Bolt.new.</td></tr><br></table><br><br><h2>Детальный разбор</h2><br><h3>Replit AI</h3><br><p>Сильная сторона Replit AI — это полноценная облачная IDE с AI-агентом, который пишет код, объясняет ошибки и рефакторит проект. Платформа поддерживает десятки языков программирования, что делает её универсальным инструментом для разработки от скриптов до веб-приложений. Ограничение — необходимость понимать код: AI генерирует основу, но для кастомизации и отладки требуются навыки разработчика. Бесплатный тариф сильно ограничен по ресурсам, что замедляет работу с большими проектами.</p><br><h3>Bolt.new</h3><br><p>Bolt.new ориентирован на скорость: вы пишете промпт на естественном языке, и он сразу генерирует full-stack приложение с фронтендом, бэкендом и деплоем. Это идеальный инструмент для дизайнеров, продакт-менеджеров или предпринимателей, которые хотят быстро проверить гипотезу. Ограничение — Bolt.new работает в основном с JavaScript/TypeScript стеком (React, Node.js), и сложно модифицировать сгенерированный код без понимания его структуры. При попытке внести изменения через новые промпты можно потерять часть функциональности.</p><br><br><h2>Для кого что выбрать</h2><br><ul><br><li><strong>Replit AI:</strong> Опытные разработчики, которые хотят ускорить рутинные задачи (написание шаблонного кода, рефакторинг). Команды, работающие над долгосрочными проектами с контролем версий. Обучение программированию — AI-агент объясняет код и помогает новичкам.</li><br><li><strong>Bolt.new:</strong> Нетехнические специалисты (маркетологи, дизайнеры), которым нужно быстро создать лендинг, прототип или MVP. Стартапы на этапе идеи для демонстрации инвесторам. Разработчики, которые хотят быстро сгенерировать каркас приложения, а затем доработать его вручную.</li><br></ul><br><br><h2>Итог</h2><br><p>Если ваша цель — получить работающий прототип за 5 минут без написания кода, выбирайте Bolt.new. Если вам нужен инструмент для профессиональной разработки с возможностью глубокой кастомизации, отладки и работы в команде — Replit AI. Для максимальной эффективности комбинируйте оба продукта: используйте Bolt.new для быстрого прототипирования, а затем переносите код в Replit AI для доработки и деплоя.</p></div>
     </div>
 <footer>
-  Qantcore &copy; 2026 &mdash; AI Agents Intelligence Platform &mdash;
-  Updated daily &mdash; <a href="https://t.me/nousresearch">@nousresearch</a>
+  Qantcore &copy; 2026 &mdash; Платформа аналитики AI-агентов &mdash;
+  Обновляется ежедневно &mdash; <a href="https://t.me/nousresearch">@nousresearch</a>
 </footer>
 
 </body>

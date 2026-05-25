@@ -3,9 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>SWE-Agent vs SmolAgents | Qantcore — AI Agents Intelligence</title>
+<title>SWE-Agent vs SmolAgents | Qantcore — Аналитика AI-агентов</title>
 <meta name="description" content="Детальное сравнение Автономный агент: от баг-репорта до Pull Request vs Агенты в 100 строк кода: code agents и tool-calling agents. Таблица, вердикт, сценарии и">
 <link rel="icon" type="image/svg+xml" href="/images/favicon.svg">
+
 <meta property="og:title" content="SWE-Agent vs SmolAgents">
 <meta property="og:description" content="Детальное сравнение Автономный агент: от баг-репорта до Pull Request vs Агенты в 100 строк кода: code agents и tool-calling agents. Таблица, вердикт, сценарии использования.">
 <meta property="og:type" content="article">
@@ -88,6 +89,14 @@ header{position:sticky;top:0;z-index:100;backdrop-filter:blur(20px) saturate(180
   background:transparent;color:var(--text);border:1px solid var(--border);cursor:pointer;
   transition:all .2s}
 .cta-secondary:hover{border-color:var(--green);color:var(--green)}
+
+/* ─── Enterprise CTA Banner ─── */
+.enterprise-cta{background:linear-gradient(135deg,rgba(16,185,129,.08) 0%,rgba(59,130,246,.04) 100%);
+  border:1px solid rgba(16,185,129,.15);border-radius:var(--radius);margin:40px 0 32px;padding:0}
+.ec-inner{display:flex;align-items:center;justify-content:space-between;gap:32px;padding:32px 36px;flex-wrap:wrap}
+.ec-text h3{font-size:20px;font-weight:700;color:var(--text);margin-bottom:8px}
+.ec-text p{font-size:14px;color:var(--muted);line-height:1.6;max-width:480px}
+.ec-actions{display:flex;gap:12px;flex-shrink:0;flex-wrap:wrap}
 
 /* ─── Authority Bar ─── */
 .auth-bar{max-width:1320px;margin:0 auto 0;padding:0 24px 32px}
@@ -348,31 +357,31 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
   <div class="header-inner">
     <a href="/" class="logo"><span class="logo-dot"></span>Qantcore</a>
     <div class="mega-nav">
-      <a href="/" class="">Frameworks</a>
+      <a href="/" class="">Каталог</a>
       <span class="nav-sep"></span>
-      <a href="/catalog/comparison/" class="active">Compare</a>
+      <a href="/catalog/comparison/" class="active">Сравнения</a>
       <span class="nav-sep"></span>
-      <a href="/benchmarks/">Benchmarks</a>
+      <a href="/benchmarks/">Бенчмарки</a>
       <span class="nav-sep"></span>
-      <a href="/catalog/review/" class="">Reviews</a>
+      <a href="/catalog/review/" class="">Обзоры</a>
       <span class="nav-sep"></span>
-      <a href="#rankings">Rankings</a>
+      <a href="#rankings">Рейтинг</a>
       <span class="nav-sep"></span>
-      <a href="#local-ai">Local AI</a>
+      <a href="#local-ai">Локальный AI</a>
       <span class="nav-sep"></span>
-      <a href="#coding-agents">Coding</a>
+      <a href="#coding-agents">Разработка</a>
       <span class="nav-sep"></span>
-      <a href="#multi-agent">Multi-Agent</a>
+      <a href="#multi-agent">Мульти-агенты</a>
       <span class="nav-sep"></span>
-      <a href="#guides">Guides</a>
+      <a href="#guides">Гайды</a>
       <span class="nav-sep"></span>
-      <a href="/methodology/" class="">Methodology</a>
+      <a href="/methodology/" class="">Методология</a>
       <span class="nav-sep"></span>
-      <a href="/workspace/" class="">Workspace</a>
+      <a href="/workspace/" class="">Кабинет</a>
       <span class="nav-sep"></span>
-      <a href="/company/">Companies</a>
+      <a href="/company/">Компании</a>
       <span class="nav-sep"></span>
-      <a href="#saved" class="saved-nav" style="display:none">★ Saved</a>
+      <a href="#saved" class="saved-nav" style="display:none">★ Избранное</a>
     </div>
   </div>
 </header>
@@ -383,15 +392,15 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
       <div class="detail-header">
         <h1>SWE-Agent vs SmolAgents</h1>
         <div style="display:flex;gap:32px;align-items:center;justify-content:center;margin:24px 0">
-          <div style="text-align:center"><div class="card-icon"><img src="/images/swe-agent.png" alt="" loading="lazy"></div><div style="font-size:12px;color:var(--muted);margin-top:6px">SWE-Agent — AI для решения Git</div></div><div style="text-align:center"><div class="card-icon"><img src="/images/smolagents-huggingface.png" alt="" loading="lazy"></div><div style="font-size:12px;color:var(--muted);margin-top:6px">SmolAgents — минималистичные а</div></div>
+          <div style="text-align:center"><div class="card-icon"><img src="/images/swe-agent.png" alt="SWE-Agent — AI для решения GitHub issues" loading="lazy"></div><div style="font-size:12px;color:var(--muted);margin-top:6px">SWE-Agent — AI для решения Git</div></div><div style="text-align:center"><div class="card-icon"><img src="/images/smolagents-huggingface.png" alt="SmolAgents — минималистичные агенты от Hugging Face" loading="lazy"></div><div style="font-size:12px;color:var(--muted);margin-top:6px">SmolAgents — минималистичные а</div></div>
         </div>
         <div class="detail-meta"><a href="/product/swe-agent/" class="meta-item">🔗 SWE-Agent — AI для решения GitHub issues</a><a href="/product/smolagents-huggingface/" class="meta-item">🔗 SmolAgents — минималистичные агенты от H</a></div>
       </div>
       <div class="detail-body"><h2>Краткий вердикт</h2><br><p>SWE-Agent — это узкоспециализированный инструмент для автоматизации полного цикла исправления багов в коде, от воспроизведения ошибки до создания Pull Request. SmolAgents — это гибкий фреймворк для быстрого создания кастомных AI-агентов, выполняющих произвольные задачи через вызов инструментов и написание кода. Если ваша цель — автоматизировать фикс багов в репозиториях, выбирайте SWE-Agent. Если вам нужно встроить агента в свой продукт или рабочий процесс с уникальной логикой — выбирайте SmolAgents.</p><br><br><h2>Таблица сравнения</h2><br><table><br><tr><th>Критерий</th><th>SWE-Agent</th><th>SmolAgents</th></tr><br><tr><td>Цена</td><td>Бесплатный (Open Source). Требует оплаты за API (GPT-4, Claude) и вычислительные ресурсы.</td><td>Бесплатный (Open Source). Требует оплаты за API (любая LLM) и вычислительные ресурсы.</td></tr><br><tr><td>Функциональность</td><td>Автономный поиск бага, редактирование кода, запуск тестов, создание PR. Работает только с Git-репозиториями.</td><td>Создание агентов с tool-calling и code-writing. Поддержка мульти-агентных систем, RAG, кастомных инструментов. Не привязан к Git.</td></tr><br><tr><td>Простота использования</td><td>Средняя. Требуется настройка окружения, токенов Git и API. Запуск одной командой после настройки.</td><td>Высокая. Библиотека устанавливается через pip. Создание агента в 10-20 строк кода. Требует базовых навыков Python.</td></tr><br><tr><td>Интеграции</td><td>GitHub/GitLab, CI/CD (через PR), Docker. Ограничен экосистемой разработки.</td><td>Любые API, базы данных, файловые системы, веб-сервисы. Интегрируется с LangChain, Hugging Face, Gradio.</td></tr><br><tr><td>Производительность</td><td>Высокая на задаче фикса багов (SWE-bench: ~30-50% решённых задач). Медленный на сложных, многошаговых багах.</td><td>Зависит от LLM и архитектуры агента. Может быть быстрее для простых задач, но требует оптимизации для сложных сценариев.</td></tr><br></table><br><br><h2>Детальный разбор</h2><br><h3>SWE-Agent</h3><br><p>Сильная сторона SWE-Agent — это его способность автономно проходить полный цикл разработки: локализовать баг, предложить исправление, запустить тесты и оформить Pull Request. Он использует специальный протокол (Agent-Computer Interface), который позволяет агенту выполнять команды в терминале и редактировать файлы, что даёт ему прямой доступ к среде разработки. Ограничение — узкая специализация: инструмент бесполезен для задач, не связанных с Git-репозиториями и написанием кода. Кроме того, он требует значительных вычислительных ресурсов и времени на сложные баги, а также зависит от качества LLM.</p><br><h3>SmolAgents</h3><br><p>SmolAgents предлагает минималистичный, но мощный API для создания агентов, которые могут писать и выполнять код, вызывать произвольные функции и работать в мульти-агентной конфигурации. Ключевое преимущество — гибкость: вы можете быстро прототипировать агента для любой задачи, от парсинга данных до управления API. Ограничение — отсутствие встроенной логики для конкретных доменов (например, для разработки ПО). Вам придётся самостоятельно реализовывать цикл "поиск-исправление-тестирование", если вы захотите повторить функционал SWE-Agent. Также требуется написание кода на Python.</p><br><br><h2>Для кого что выбрать</h2><br><ul><br><li><strong>SWE-Agent:</strong> Команды разработки, которые хотят автоматизировать обработку баг-репортов. Open Source проекты, принимающие много issue. DevOps-инженеры, интегрирующие AI в CI/CD пайплайн для автоматического фикса мелких багов.</li><br><li><strong>SmolAgents:</strong> Разработчики, создающие кастомных AI-ассистентов для внутренних инструментов. Исследователи, экспериментирующие с архитектурами агентов. Команды, которым нужен агент для работы с нестандартными API, базами данных или файлами (например, автоматический сбор данных, генерация отчётов).</li><br></ul><br><br><h2>Итог</h2><br><p>Выбор между SWE-Agent и SmolAgents — это выбор между готовым решением для конкретной задачи и универсальным конструктором. Если ваша единственная боль — это ручное исправление багов в коде, SWE-Agent даст вам готовый пайплайн "из коробки". Если же вам нужен AI-агент для более широкого круга задач, или вы хотите контролировать каждый шаг его работы, SmolAgents предоставит необходимую гибкость. Для большинства B2B-сценариев, не связанных с разработкой ПО, SmolAgents будет более практичным выбором. Для команд разработки, страдающих от потока баг-репортов, SWE-Agent — это узконаправленный, но мощный инструмент.</p></div>
     </div>
 <footer>
-  Qantcore &copy; 2026 &mdash; AI Agents Intelligence Platform &mdash;
-  Updated daily &mdash; <a href="https://t.me/nousresearch">@nousresearch</a>
+  Qantcore &copy; 2026 &mdash; Платформа аналитики AI-агентов &mdash;
+  Обновляется ежедневно &mdash; <a href="https://t.me/nousresearch">@nousresearch</a>
 </footer>
 
 </body>

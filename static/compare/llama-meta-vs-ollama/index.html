@@ -3,9 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Llama 3 vs Ollama | Qantcore — AI Agents Intelligence</title>
+<title>Llama 3 vs Ollama | Qantcore — Аналитика AI-агентов</title>
 <meta name="description" content="Детальное сравнение Лучшая open source LLM: 8B и 70B параметров vs Запустите Kimi-K2.5, DeepSeek, Qwen, Gemma и сотни других локально. Таблица, вердикт, сценари">
 <link rel="icon" type="image/svg+xml" href="/images/favicon.svg">
+
 <meta property="og:title" content="Llama 3 vs Ollama">
 <meta property="og:description" content="Детальное сравнение Лучшая open source LLM: 8B и 70B параметров vs Запустите Kimi-K2.5, DeepSeek, Qwen, Gemma и сотни других локально. Таблица, вердикт, сценарии использования.">
 <meta property="og:type" content="article">
@@ -88,6 +89,14 @@ header{position:sticky;top:0;z-index:100;backdrop-filter:blur(20px) saturate(180
   background:transparent;color:var(--text);border:1px solid var(--border);cursor:pointer;
   transition:all .2s}
 .cta-secondary:hover{border-color:var(--green);color:var(--green)}
+
+/* ─── Enterprise CTA Banner ─── */
+.enterprise-cta{background:linear-gradient(135deg,rgba(16,185,129,.08) 0%,rgba(59,130,246,.04) 100%);
+  border:1px solid rgba(16,185,129,.15);border-radius:var(--radius);margin:40px 0 32px;padding:0}
+.ec-inner{display:flex;align-items:center;justify-content:space-between;gap:32px;padding:32px 36px;flex-wrap:wrap}
+.ec-text h3{font-size:20px;font-weight:700;color:var(--text);margin-bottom:8px}
+.ec-text p{font-size:14px;color:var(--muted);line-height:1.6;max-width:480px}
+.ec-actions{display:flex;gap:12px;flex-shrink:0;flex-wrap:wrap}
 
 /* ─── Authority Bar ─── */
 .auth-bar{max-width:1320px;margin:0 auto 0;padding:0 24px 32px}
@@ -348,31 +357,31 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
   <div class="header-inner">
     <a href="/" class="logo"><span class="logo-dot"></span>Qantcore</a>
     <div class="mega-nav">
-      <a href="/" class="">Frameworks</a>
+      <a href="/" class="">Каталог</a>
       <span class="nav-sep"></span>
-      <a href="/catalog/comparison/" class="active">Compare</a>
+      <a href="/catalog/comparison/" class="active">Сравнения</a>
       <span class="nav-sep"></span>
-      <a href="/benchmarks/">Benchmarks</a>
+      <a href="/benchmarks/">Бенчмарки</a>
       <span class="nav-sep"></span>
-      <a href="/catalog/review/" class="">Reviews</a>
+      <a href="/catalog/review/" class="">Обзоры</a>
       <span class="nav-sep"></span>
-      <a href="#rankings">Rankings</a>
+      <a href="#rankings">Рейтинг</a>
       <span class="nav-sep"></span>
-      <a href="#local-ai">Local AI</a>
+      <a href="#local-ai">Локальный AI</a>
       <span class="nav-sep"></span>
-      <a href="#coding-agents">Coding</a>
+      <a href="#coding-agents">Разработка</a>
       <span class="nav-sep"></span>
-      <a href="#multi-agent">Multi-Agent</a>
+      <a href="#multi-agent">Мульти-агенты</a>
       <span class="nav-sep"></span>
-      <a href="#guides">Guides</a>
+      <a href="#guides">Гайды</a>
       <span class="nav-sep"></span>
-      <a href="/methodology/" class="">Methodology</a>
+      <a href="/methodology/" class="">Методология</a>
       <span class="nav-sep"></span>
-      <a href="/workspace/" class="">Workspace</a>
+      <a href="/workspace/" class="">Кабинет</a>
       <span class="nav-sep"></span>
-      <a href="/company/">Companies</a>
+      <a href="/company/">Компании</a>
       <span class="nav-sep"></span>
-      <a href="#saved" class="saved-nav" style="display:none">★ Saved</a>
+      <a href="#saved" class="saved-nav" style="display:none">★ Избранное</a>
     </div>
   </div>
 </header>
@@ -383,15 +392,15 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
       <div class="detail-header">
         <h1>Llama 3 vs Ollama</h1>
         <div style="display:flex;gap:32px;align-items:center;justify-content:center;margin:24px 0">
-          <div style="text-align:center"><div class="card-icon"><img src="/images/llama-meta.png" alt="" loading="lazy"></div><div style="font-size:12px;color:var(--muted);margin-top:6px">Llama 3 — открытая модель от M</div></div><div style="text-align:center"><div class="card-icon"><img src="/images/ollama.png" alt="" loading="lazy"></div><div style="font-size:12px;color:var(--muted);margin-top:6px">Ollama — локальный запуск LLM </div></div>
+          <div style="text-align:center"><div class="card-icon"><img src="/images/llama-meta.png" alt="Llama 3 — открытая модель от Meta" loading="lazy"></div><div style="font-size:12px;color:var(--muted);margin-top:6px">Llama 3 — открытая модель от M</div></div><div style="text-align:center"><div class="card-icon"><img src="/images/ollama.png" alt="Ollama — локальный запуск LLM одной командой" loading="lazy"></div><div style="font-size:12px;color:var(--muted);margin-top:6px">Ollama — локальный запуск LLM </div></div>
         </div>
         <div class="detail-meta"><a href="/product/llama-meta/" class="meta-item">🔗 Llama 3 — открытая модель от Meta</a><a href="/product/ollama/" class="meta-item">🔗 Ollama — локальный запуск LLM одной кома</a></div>
       </div>
       <div class="detail-body">```html<br><h2>Краткий вердикт</h2><br><p>Llama 3 — лучший выбор для B2B-команд, которым нужна максимальная производительность и контроль над моделью (8B или 70B параметров) для кастомных NLP-задач. Ollama — идеальный инструмент для быстрого прототипирования и запуска десятков разных open-source моделей (включая DeepSeek, Qwen, Gemma) без сложной настройки инфраструктуры. Если вам нужна одна мощная модель «из коробки» — выбирайте Llama 3; если требуется гибкость и эксперименты с разными LLM — Ollama.</p><br><br><h2>Таблица сравнения</h2><br><table><br><tr><th>Критерий</th><th>Llama 3</th><th>Ollama</th></tr><br><tr><td>Цена</td><td>Бесплатно (open source), но требуются GPU-ресурсы для 70B (от $1.5/час на облачных GPU)</td><td>Бесплатно (open source), затраты только на железо (CPU/GPU) или облачные инстансы</td></tr><br><tr><td>Функциональность</td><td>Две предобученные модели (8B и 70B) с поддержкой fine-tuning, RoPE, группового query attention</td><td>Единый интерфейс для загрузки и запуска 100+ моделей (DeepSeek, Qwen, Gemma, Mistral и др.)</td></tr><br><tr><td>Простота использования</td><td>Требует базовых знаний Python и работы с Hugging Face Transformers; для 70B нужна настройка распределённого вывода</td><td>Установка одной командой (curl), запуск модели через `ollama run <model>`, встроенная поддержка OpenAI-совместимого API</td></tr><br><tr><td>Интеграции</td><td>Нативная интеграция с Hugging Face, PyTorch, LangChain, LlamaIndex; кастомные пайплайны через transformers</td><td>Готовые интеграции с LangChain, LlamaIndex, OpenAI SDK (через эмуляцию API), Docker, REST API</td></tr><br><tr><td>Производительность</td><td>8B — 120+ токенов/с на A100; 70B — 30-40 токенов/с на 4x A100; лидирует в бенчмарках (MMLU, HumanEval) среди open-source моделей аналогичного размера</td><td>Зависит от выбранной модели: DeepSeek-R1 (7B) — 80-100 токенов/с на A100; Qwen2.5 (72B) — 25-35 токенов/с; на CPU — в 5-10 раз медленнее</td></tr><br></table><br><br><h2>Детальный разбор</h2><br><h3>Llama 3</h3><br><p>Llama 3 от Meta — это семейство моделей с 8B и 70B параметров, которые показывают лучшие результаты в бенчмарках среди open-source LLM (MMLU: 82% для 70B). Сильные стороны: возможность fine-tuning под специфические B2B-задачи (анализ контрактов, генерация кода, классификация), поддержка контекста до 8K токенов и продвинутые архитектурные решения (групповой query attention). Ограничения: для запуска 70B требуется минимум 4 GPU с 80GB памяти, нет встроенного API-сервера (нужно писать обёртку), а 8B-версия уступает специализированным моделям в задачах с длинным контекстом.</p><br><br><h3>Ollama</h3><br><p>Ollama — это не модель, а инструмент для локального запуска LLM, который поддерживает более 100 моделей (включая DeepSeek, Qwen, Gemma, Mistral, Llama 3). Сильные стороны: установка за 2 минуты, автоматическая загрузка моделей из библиотеки, встроенный REST API (совместимый с OpenAI), работа на CPU (с оптимизациями через llama.cpp). Ограничения: нет возможности fine-tuning через интерфейс, производительность на CPU в 3-5 раз ниже GPU, для больших моделей (70B+) требуется ручная настройка памяти и квантование.</p><br><br><h2>Для кого что выбрать</h2><br><ul><br><li><strong>Llama 3:</strong> B2B-команды, разрабатывающие кастомные NLP-решения (юридические ассистенты, генерация отчётов, анализ кода), где важны точность и контроль над моделью; компании с доступом к GPU-кластерам.</li><br><li><strong>Ollama:</strong> Разработчики и DevOps, которым нужно быстро протестировать разные модели (DeepSeek для математики, Qwen для китайского языка, Gemma для лёгких задач); стартапы, работающие на CPU-серверах или ноутбуках; команды, которым нужен готовый API-сервер без написания кода.</li><br></ul><br><br><h2>Итог</h2><br><p>Если ваш приоритет — максимальная производительность и кастомизация под конкретную B2B-задачу, выбирайте Llama 3 (особенно версию 70B) с дообучением на ваших данных. Если вам нужна гибкость, скорость развёртывания и возможность переключаться между десятками моделей (DeepSeek, Qwen, Gemma) без изменения инфраструктуры — Ollama станет оптимальным инструментом. Для большинства команд идеальна комбинация: используйте Ollama для прототипирования и выбора модели, а затем разворачивайте Llama 3 в продакшене.</p><br>```</div>
     </div>
 <footer>
-  Qantcore &copy; 2026 &mdash; AI Agents Intelligence Platform &mdash;
-  Updated daily &mdash; <a href="https://t.me/nousresearch">@nousresearch</a>
+  Qantcore &copy; 2026 &mdash; Платформа аналитики AI-агентов &mdash;
+  Обновляется ежедневно &mdash; <a href="https://t.me/nousresearch">@nousresearch</a>
 </footer>
 
 </body>

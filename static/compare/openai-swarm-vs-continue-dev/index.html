@@ -3,9 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>OpenAI Swarm vs Continue | Qantcore — AI Agents Intelligence</title>
+<title>OpenAI Swarm vs Continue | Qantcore — Аналитика AI-агентов</title>
 <meta name="description" content="Детальное сравнение Лёгкий фреймворк для multi-agent систем от OpenAI vs AI-проверки кода, enforceable в CI. Таблица, вердикт, сценарии использования.">
 <link rel="icon" type="image/svg+xml" href="/images/favicon.svg">
+
 <meta property="og:title" content="OpenAI Swarm vs Continue">
 <meta property="og:description" content="Детальное сравнение Лёгкий фреймворк для multi-agent систем от OpenAI vs AI-проверки кода, enforceable в CI. Таблица, вердикт, сценарии использования.">
 <meta property="og:type" content="article">
@@ -88,6 +89,14 @@ header{position:sticky;top:0;z-index:100;backdrop-filter:blur(20px) saturate(180
   background:transparent;color:var(--text);border:1px solid var(--border);cursor:pointer;
   transition:all .2s}
 .cta-secondary:hover{border-color:var(--green);color:var(--green)}
+
+/* ─── Enterprise CTA Banner ─── */
+.enterprise-cta{background:linear-gradient(135deg,rgba(16,185,129,.08) 0%,rgba(59,130,246,.04) 100%);
+  border:1px solid rgba(16,185,129,.15);border-radius:var(--radius);margin:40px 0 32px;padding:0}
+.ec-inner{display:flex;align-items:center;justify-content:space-between;gap:32px;padding:32px 36px;flex-wrap:wrap}
+.ec-text h3{font-size:20px;font-weight:700;color:var(--text);margin-bottom:8px}
+.ec-text p{font-size:14px;color:var(--muted);line-height:1.6;max-width:480px}
+.ec-actions{display:flex;gap:12px;flex-shrink:0;flex-wrap:wrap}
 
 /* ─── Authority Bar ─── */
 .auth-bar{max-width:1320px;margin:0 auto 0;padding:0 24px 32px}
@@ -348,31 +357,31 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
   <div class="header-inner">
     <a href="/" class="logo"><span class="logo-dot"></span>Qantcore</a>
     <div class="mega-nav">
-      <a href="/" class="">Frameworks</a>
+      <a href="/" class="">Каталог</a>
       <span class="nav-sep"></span>
-      <a href="/catalog/comparison/" class="active">Compare</a>
+      <a href="/catalog/comparison/" class="active">Сравнения</a>
       <span class="nav-sep"></span>
-      <a href="/benchmarks/">Benchmarks</a>
+      <a href="/benchmarks/">Бенчмарки</a>
       <span class="nav-sep"></span>
-      <a href="/catalog/review/" class="">Reviews</a>
+      <a href="/catalog/review/" class="">Обзоры</a>
       <span class="nav-sep"></span>
-      <a href="#rankings">Rankings</a>
+      <a href="#rankings">Рейтинг</a>
       <span class="nav-sep"></span>
-      <a href="#local-ai">Local AI</a>
+      <a href="#local-ai">Локальный AI</a>
       <span class="nav-sep"></span>
-      <a href="#coding-agents">Coding</a>
+      <a href="#coding-agents">Разработка</a>
       <span class="nav-sep"></span>
-      <a href="#multi-agent">Multi-Agent</a>
+      <a href="#multi-agent">Мульти-агенты</a>
       <span class="nav-sep"></span>
-      <a href="#guides">Guides</a>
+      <a href="#guides">Гайды</a>
       <span class="nav-sep"></span>
-      <a href="/methodology/" class="">Methodology</a>
+      <a href="/methodology/" class="">Методология</a>
       <span class="nav-sep"></span>
-      <a href="/workspace/" class="">Workspace</a>
+      <a href="/workspace/" class="">Кабинет</a>
       <span class="nav-sep"></span>
-      <a href="/company/">Companies</a>
+      <a href="/company/">Компании</a>
       <span class="nav-sep"></span>
-      <a href="#saved" class="saved-nav" style="display:none">★ Saved</a>
+      <a href="#saved" class="saved-nav" style="display:none">★ Избранное</a>
     </div>
   </div>
 </header>
@@ -383,15 +392,15 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
       <div class="detail-header">
         <h1>OpenAI Swarm vs Continue</h1>
         <div style="display:flex;gap:32px;align-items:center;justify-content:center;margin:24px 0">
-          <div style="text-align:center"><div class="card-icon"><img src="/images/openai-swarm.png" alt="" loading="lazy"></div><div style="font-size:12px;color:var(--muted);margin-top:6px">OpenAI Swarm — минималистичная</div></div><div style="text-align:center"><div class="card-icon"><img src="/images/continue-dev.png" alt="" loading="lazy"></div><div style="font-size:12px;color:var(--muted);margin-top:6px">Continue — AI-расширение для I</div></div>
+          <div style="text-align:center"><div class="card-icon"><img src="/images/openai-swarm.png" alt="OpenAI Swarm — минималистичная оркестрация агентов" loading="lazy"></div><div style="font-size:12px;color:var(--muted);margin-top:6px">OpenAI Swarm — минималистичная</div></div><div style="text-align:center"><div class="card-icon"><img src="/images/continue-dev.png" alt="Continue — AI-расширение для IDE с открытым кодом" loading="lazy"></div><div style="font-size:12px;color:var(--muted);margin-top:6px">Continue — AI-расширение для I</div></div>
         </div>
         <div class="detail-meta"><a href="/product/openai-swarm/" class="meta-item">🔗 OpenAI Swarm — минималистичная оркестрац</a><a href="/product/continue-dev/" class="meta-item">🔗 Continue — AI-расширение для IDE с откры</a></div>
       </div>
       <div class="detail-body"><h2>Краткий вердикт</h2><br><p>OpenAI Swarm — это экспериментальный фреймворк для разработчиков, создающих сложные multi-agent системы на Python, где агенты общаются и делегируют задачи друг другу. Continue — это готовое решение для команд разработчиков, желающих внедрить автоматизированные AI-проверки кода (code review) прямо в CI/CD пайплайн. Если вам нужно оркестрировать агентов для исследования данных или автоматизации бизнес-процессов — выбирайте Swarm. Если ваша цель — повысить качество кода и автоматизировать ревью без написания инфраструктуры — выбирайте Continue.</p><br><br><h2>Таблица сравнения</h2><br><table><br><tr><th>Критерий</th><th>OpenAI Swarm</th><th>Continue</th></tr><br><tr><td>Цена</td><td>Бесплатно (открытый исходный код). Требует оплаты API OpenAI для работы агентов (стоимость зависит от модели и количества токенов).</td><td>Бесплатно для базового использования (open-source). Платные тарифы для командных функций и расширенной поддержки (от $20/мес за пользователя).</td></tr><br><tr><td>Функциональность</td><td>Создание multi-agent систем: маршрутизация задач, передача контекста между агентами, выполнение функций (function calling). Нет встроенных проверок кода.</td><td>AI-ревью кода в реальном времени, автоматические проверки в CI (GitHub Actions, GitLab CI), исправление ошибок, генерация тестов, анализ безопасности.</td></tr><br><tr><td>Простота использования</td><td>Средняя. Требует навыков Python и понимания архитектуры агентов. Нет GUI, только код.</td><td>Высокая. Интеграция через плагины в IDE (VS Code, JetBrains) и настройка CI за 10 минут. Есть веб-интерфейс для управления правилами.</td></tr><br><tr><td>Интеграции</td><td>Любые Python-библиотеки, OpenAI API, внешние API через function calling. Нет готовых интеграций с CI/CD.</td><td>GitHub, GitLab, Bitbucket, VS Code, JetBrains, Slack, Jira. Нативная поддержка CI/CD пайплайнов.</td></tr><br><tr><td>Производительность</td><td>Зависит от модели OpenAI (GPT-4o, o1). Латентность высокая при сложных цепочках агентов (2-5 секунд на шаг).</td><td>Проверки выполняются за 10-30 секунд на PR среднего размера (200-500 строк). Работает на локальных моделях (Llama 3, CodeQwen) для офлайн-режима.</td></tr><br></table><br><br><h2>Детальный разбор</h2><br><h3>OpenAI Swarm</h3><br><p>Сильная сторона Swarm — гибкость в построении архитектуры агентов: вы можете создавать иерархии, где один агент передаёт задачу другому, делегировать подзадачи и агрегировать результаты. Фреймворк использует нативные function calling от OpenAI, что позволяет агентам выполнять реальные действия (парсинг сайтов, запросы к БД). Ограничение: Swarm не предназначен для анализа кода — это чистый инструмент оркестрации. Также он требует ручного управления контекстом и памятью, что усложняет поддержку больших систем.</p><br><h3>Continue</h3><br><p>Continue фокусируется на автоматизации code review: он находит баги, уязвимости, несоответствия стилю кода и предлагает исправления прямо в PR. Продукт поддерживает enforce-правила (например, запрет на использование eval() или требование тестов для новых функций), которые проверяются в CI. Ограничение: Continue не умеет создавать multi-agent системы и не предназначен для задач, выходящих за рамки анализа кода. Для сложной бизнес-логики или автоматизации процессов он бесполезен.</p><br><br><h2>Для кого что выбрать</h2><br><ul><br><li><strong>OpenAI Swarm:</strong> Исследователи и инженеры, создающие прототипы multi-agent систем (например, автоматический сбор данных из 10 источников с последующей аналитикой). Команды, которым нужно оркестрировать AI-агентов для внутренних бизнес-процессов (обработка заявок, генерация отчётов).</li><br><li><strong>Continue:</strong> DevOps-инженеры и тимлиды, желающие внедрить обязательные AI-проверки кода в CI (например, блокировка PR, если覆盖率 тестов ниже 80%). Разработчики, которые хотят получать автоматические ревью без участия senior-разработчиков.</li><br></ul><br><br><h2>Итог</h2><br><p>OpenAI Swarm и Continue решают принципиально разные задачи. Если вам нужен «мозг» для координации нескольких AI-агентов — берите Swarm. Если вам нужен «контролёр качества» для кода, работающий в CI — берите Continue. Для большинства B2B-команд, не занимающихся исследованиями multi-agent систем, Continue будет практичнее: он решает конкретную проблему (качество кода) с измеримым результатом (снижение багов на 30-50% по данным пользователей). Swarm оправдан только в сценариях, где требуется сложная логика взаимодействия агентов, которую невозможно реализовать через обычные API-вызовы.</p></div>
     </div>
 <footer>
-  Qantcore &copy; 2026 &mdash; AI Agents Intelligence Platform &mdash;
-  Updated daily &mdash; <a href="https://t.me/nousresearch">@nousresearch</a>
+  Qantcore &copy; 2026 &mdash; Платформа аналитики AI-агентов &mdash;
+  Обновляется ежедневно &mdash; <a href="https://t.me/nousresearch">@nousresearch</a>
 </footer>
 
 </body>

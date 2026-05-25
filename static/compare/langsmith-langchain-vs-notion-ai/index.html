@@ -3,9 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>LangSmith vs Notion AI | Qantcore — AI Agents Intelligence</title>
+<title>LangSmith vs Notion AI | Qantcore — Аналитика AI-агентов</title>
 <meta name="description" content="Детальное сравнение DevOps для LLM: трейсинг, оценка, эксперименты vs AI, встроенный в Notion: пишет, редактирует, анализирует. Таблица, вердикт, сценарии испол">
 <link rel="icon" type="image/svg+xml" href="/images/favicon.svg">
+
 <meta property="og:title" content="LangSmith vs Notion AI">
 <meta property="og:description" content="Детальное сравнение DevOps для LLM: трейсинг, оценка, эксперименты vs AI, встроенный в Notion: пишет, редактирует, анализирует. Таблица, вердикт, сценарии использования.">
 <meta property="og:type" content="article">
@@ -88,6 +89,14 @@ header{position:sticky;top:0;z-index:100;backdrop-filter:blur(20px) saturate(180
   background:transparent;color:var(--text);border:1px solid var(--border);cursor:pointer;
   transition:all .2s}
 .cta-secondary:hover{border-color:var(--green);color:var(--green)}
+
+/* ─── Enterprise CTA Banner ─── */
+.enterprise-cta{background:linear-gradient(135deg,rgba(16,185,129,.08) 0%,rgba(59,130,246,.04) 100%);
+  border:1px solid rgba(16,185,129,.15);border-radius:var(--radius);margin:40px 0 32px;padding:0}
+.ec-inner{display:flex;align-items:center;justify-content:space-between;gap:32px;padding:32px 36px;flex-wrap:wrap}
+.ec-text h3{font-size:20px;font-weight:700;color:var(--text);margin-bottom:8px}
+.ec-text p{font-size:14px;color:var(--muted);line-height:1.6;max-width:480px}
+.ec-actions{display:flex;gap:12px;flex-shrink:0;flex-wrap:wrap}
 
 /* ─── Authority Bar ─── */
 .auth-bar{max-width:1320px;margin:0 auto 0;padding:0 24px 32px}
@@ -348,31 +357,31 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
   <div class="header-inner">
     <a href="/" class="logo"><span class="logo-dot"></span>Qantcore</a>
     <div class="mega-nav">
-      <a href="/" class="">Frameworks</a>
+      <a href="/" class="">Каталог</a>
       <span class="nav-sep"></span>
-      <a href="/catalog/comparison/" class="active">Compare</a>
+      <a href="/catalog/comparison/" class="active">Сравнения</a>
       <span class="nav-sep"></span>
-      <a href="/benchmarks/">Benchmarks</a>
+      <a href="/benchmarks/">Бенчмарки</a>
       <span class="nav-sep"></span>
-      <a href="/catalog/review/" class="">Reviews</a>
+      <a href="/catalog/review/" class="">Обзоры</a>
       <span class="nav-sep"></span>
-      <a href="#rankings">Rankings</a>
+      <a href="#rankings">Рейтинг</a>
       <span class="nav-sep"></span>
-      <a href="#local-ai">Local AI</a>
+      <a href="#local-ai">Локальный AI</a>
       <span class="nav-sep"></span>
-      <a href="#coding-agents">Coding</a>
+      <a href="#coding-agents">Разработка</a>
       <span class="nav-sep"></span>
-      <a href="#multi-agent">Multi-Agent</a>
+      <a href="#multi-agent">Мульти-агенты</a>
       <span class="nav-sep"></span>
-      <a href="#guides">Guides</a>
+      <a href="#guides">Гайды</a>
       <span class="nav-sep"></span>
-      <a href="/methodology/" class="">Methodology</a>
+      <a href="/methodology/" class="">Методология</a>
       <span class="nav-sep"></span>
-      <a href="/workspace/" class="">Workspace</a>
+      <a href="/workspace/" class="">Кабинет</a>
       <span class="nav-sep"></span>
-      <a href="/company/">Companies</a>
+      <a href="/company/">Компании</a>
       <span class="nav-sep"></span>
-      <a href="#saved" class="saved-nav" style="display:none">★ Saved</a>
+      <a href="#saved" class="saved-nav" style="display:none">★ Избранное</a>
     </div>
   </div>
 </header>
@@ -383,15 +392,15 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
       <div class="detail-header">
         <h1>LangSmith vs Notion AI</h1>
         <div style="display:flex;gap:32px;align-items:center;justify-content:center;margin:24px 0">
-          <div style="text-align:center"><div class="card-icon"><img src="/images/langsmith-langchain.png" alt="" loading="lazy"></div><div style="font-size:12px;color:var(--muted);margin-top:6px">LangSmith — observability и те</div></div><div style="text-align:center"><div class="card-icon"><img src="/images/notion-ai.png" alt="" loading="lazy"></div><div style="font-size:12px;color:var(--muted);margin-top:6px">Notion AI — AI-помощник в рабо</div></div>
+          <div style="text-align:center"><div class="card-icon"><img src="/images/langsmith-langchain.png" alt="LangSmith — observability и тестирование LLM-приложений" loading="lazy"></div><div style="font-size:12px;color:var(--muted);margin-top:6px">LangSmith — observability и те</div></div><div style="text-align:center"><div class="card-icon"><img src="/images/notion-ai.png" alt="Notion AI — AI-помощник в рабочем пространстве" loading="lazy"></div><div style="font-size:12px;color:var(--muted);margin-top:6px">Notion AI — AI-помощник в рабо</div></div>
         </div>
         <div class="detail-meta"><a href="/product/langsmith-langchain/" class="meta-item">🔗 LangSmith — observability и тестирование</a><a href="/product/notion-ai/" class="meta-item">🔗 Notion AI — AI-помощник в рабочем простр</a></div>
       </div>
       <div class="detail-body"><h2>Краткий вердикт</h2><br><p>LangSmith — это инструмент для разработчиков и инженеров, работающих с большими языковыми моделями (LLM). Он незаменим для отладки, тестирования и мониторинга AI-приложений. Notion AI — это помощник для конечных пользователей, встроенный в платформу для заметок и управления знаниями, который автоматизирует рутинные задачи с текстом. Выбор зависит от вашей роли: если вы строите AI-продукты — выбирайте LangSmith, если вы используете AI для повышения личной продуктивности — выбирайте Notion AI.</p><br><br><h2>Таблица сравнения</h2><br><table><br><tr><th>Критерий</th><th>LangSmith</th><th>Notion AI</th></tr><br><tr><td>Цена</td><td>Бесплатный старт (до 10 000 трассировок/мес). Платные тарифы от $99/мес за команду.</td><td>Дополнительная подписка $10/мес (при наличии плана Notion Plus, Business или Enterprise).</td></tr><br><tr><td>Функциональность</td><td>Трассировка цепочек LLM, A/B-тестирование промптов, датасеты для оценки, мониторинг latency и токенов.</td><td>Генерация текста, резюмирование, перевод, изменение тона, поиск ответов по базе знаний Notion.</td></tr><br><tr><td>Простота использования</td><td>Требует навыков программирования (Python/JS) и понимания архитектуры LLM. Крутая кривая обучения.</td><td>Интуитивно понятный интерфейс, работает как обычный текст внутри Notion. Не требует навыков кода.</td></tr><br><tr><td>Интеграции</td><td>Глубокая интеграция с LangChain, Hugging Face, OpenAI, Anthropic. Поддержка API для кастомных решений.</td><td>Ограничен экосистемой Notion: интеграции с Slack, Google Drive, Figma, но без прямого доступа к внешним AI-моделям.</td></tr><br><tr><td>Производительность</td><td>Оптимизирован для работы с большими объемами данных (миллионы трассировок). Влияние на скорость работы LLM минимально.</td><td>Зависит от серверов Notion. При обработке больших документов возможны задержки до 5-10 секунд.</td></tr><br></table><br><br><h2>Детальный разбор</h2><br><h3>LangSmith</h3><br><p>Сильная сторона LangSmith — это полный контроль над жизненным циклом LLM-приложения. Вы можете отследить каждый шаг работы модели, увидеть, какой промпт был отправлен и какой ответ получен, а затем сравнить разные версии промптов на одном датасете. Это незаменимо для продакшн-релизов, где критична каждая ошибка. Ограничение: продукт бесполезен для нетехнических пользователей, так как требует написания кода и настройки SDK. Также он не предоставляет готовых решений для конечного пользователя — это инструмент разработчика, а не пользовательский AI-ассистент.</p><br><h3>Notion AI</h3><br><p>Notion AI решает конкретную задачу: ускорить работу с текстом внутри корпоративной базы знаний. Он умеет находить ответы на вопросы по вашим документам, переписывать абзацы в нужном стиле и генерировать черновики статей. Главное преимущество — бесшовная интеграция: не нужно переключаться между окнами. Ограничение: AI не обучается на ваших данных (используется общая модель), не умеет выполнять сложные цепочки действий и не подходит для задач, выходящих за рамки текстового редактора. Например, он не сможет проанализировать лог ошибок или провести A/B-тест промпта.</p><br><br><h2>Для кого что выбрать</h2><br><ul><br><li><strong>LangSmith:</strong> Команды разработчиков, создающие чат-ботов, AI-агентов или RAG-системы. Инженеры, которым нужно отлаживать работу GPT-4, Claude или Llama в продакшне. Специалисты по ML, проводящие эксперименты с промптами и датасетами.</li><br><li><strong>Notion AI:</strong> Менеджеры, маркетологи и аналитики, которые ведут документацию в Notion. Команды, которым нужно быстро резюмировать встречи, генерировать отчеты или переводить тексты. Любой сотрудник, который хочет сократить время на написание и редактирование текстов.</li><br></ul><br><br><h2>Итог</h2><br><p>Если ваша цель — построить надежное и контролируемое AI-приложение, LangSmith — единственный правильный выбор среди этих двух продуктов. Если ваша цель — повысить эффективность работы с текстами и документами в рамках Notion, то Notion AI — это простое и доступное решение. Эти инструменты не конкурируют напрямую: LangSmith — для создания AI, Notion AI — для использования AI. Для максимальной эффективности в B2B-среде можно использовать оба продукта: разрабатывать AI-функции с LangSmith, а внедрять их в пользовательский опыт через Notion AI.</p></div>
     </div>
 <footer>
-  Qantcore &copy; 2026 &mdash; AI Agents Intelligence Platform &mdash;
-  Updated daily &mdash; <a href="https://t.me/nousresearch">@nousresearch</a>
+  Qantcore &copy; 2026 &mdash; Платформа аналитики AI-агентов &mdash;
+  Обновляется ежедневно &mdash; <a href="https://t.me/nousresearch">@nousresearch</a>
 </footer>
 
 </body>

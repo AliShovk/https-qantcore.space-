@@ -3,9 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>LangSmith vs OpenClaw | Qantcore — AI Agents Intelligence</title>
+<title>LangSmith vs OpenClaw | Qantcore — Аналитика AI-агентов</title>
 <meta name="description" content="Детальное сравнение DevOps для LLM: трейсинг, оценка, эксперименты vs Ваш личный AI. Любая ОС. Любая платформа. 🦞. Таблица, вердикт, сценарии использования.">
 <link rel="icon" type="image/svg+xml" href="/images/favicon.svg">
+
 <meta property="og:title" content="LangSmith vs OpenClaw">
 <meta property="og:description" content="Детальное сравнение DevOps для LLM: трейсинг, оценка, эксперименты vs Ваш личный AI. Любая ОС. Любая платформа. 🦞. Таблица, вердикт, сценарии использования.">
 <meta property="og:type" content="article">
@@ -88,6 +89,14 @@ header{position:sticky;top:0;z-index:100;backdrop-filter:blur(20px) saturate(180
   background:transparent;color:var(--text);border:1px solid var(--border);cursor:pointer;
   transition:all .2s}
 .cta-secondary:hover{border-color:var(--green);color:var(--green)}
+
+/* ─── Enterprise CTA Banner ─── */
+.enterprise-cta{background:linear-gradient(135deg,rgba(16,185,129,.08) 0%,rgba(59,130,246,.04) 100%);
+  border:1px solid rgba(16,185,129,.15);border-radius:var(--radius);margin:40px 0 32px;padding:0}
+.ec-inner{display:flex;align-items:center;justify-content:space-between;gap:32px;padding:32px 36px;flex-wrap:wrap}
+.ec-text h3{font-size:20px;font-weight:700;color:var(--text);margin-bottom:8px}
+.ec-text p{font-size:14px;color:var(--muted);line-height:1.6;max-width:480px}
+.ec-actions{display:flex;gap:12px;flex-shrink:0;flex-wrap:wrap}
 
 /* ─── Authority Bar ─── */
 .auth-bar{max-width:1320px;margin:0 auto 0;padding:0 24px 32px}
@@ -348,31 +357,31 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
   <div class="header-inner">
     <a href="/" class="logo"><span class="logo-dot"></span>Qantcore</a>
     <div class="mega-nav">
-      <a href="/" class="">Frameworks</a>
+      <a href="/" class="">Каталог</a>
       <span class="nav-sep"></span>
-      <a href="/catalog/comparison/" class="active">Compare</a>
+      <a href="/catalog/comparison/" class="active">Сравнения</a>
       <span class="nav-sep"></span>
-      <a href="/benchmarks/">Benchmarks</a>
+      <a href="/benchmarks/">Бенчмарки</a>
       <span class="nav-sep"></span>
-      <a href="/catalog/review/" class="">Reviews</a>
+      <a href="/catalog/review/" class="">Обзоры</a>
       <span class="nav-sep"></span>
-      <a href="#rankings">Rankings</a>
+      <a href="#rankings">Рейтинг</a>
       <span class="nav-sep"></span>
-      <a href="#local-ai">Local AI</a>
+      <a href="#local-ai">Локальный AI</a>
       <span class="nav-sep"></span>
-      <a href="#coding-agents">Coding</a>
+      <a href="#coding-agents">Разработка</a>
       <span class="nav-sep"></span>
-      <a href="#multi-agent">Multi-Agent</a>
+      <a href="#multi-agent">Мульти-агенты</a>
       <span class="nav-sep"></span>
-      <a href="#guides">Guides</a>
+      <a href="#guides">Гайды</a>
       <span class="nav-sep"></span>
-      <a href="/methodology/" class="">Methodology</a>
+      <a href="/methodology/" class="">Методология</a>
       <span class="nav-sep"></span>
-      <a href="/workspace/" class="">Workspace</a>
+      <a href="/workspace/" class="">Кабинет</a>
       <span class="nav-sep"></span>
-      <a href="/company/">Companies</a>
+      <a href="/company/">Компании</a>
       <span class="nav-sep"></span>
-      <a href="#saved" class="saved-nav" style="display:none">★ Saved</a>
+      <a href="#saved" class="saved-nav" style="display:none">★ Избранное</a>
     </div>
   </div>
 </header>
@@ -383,15 +392,15 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
       <div class="detail-header">
         <h1>LangSmith vs OpenClaw</h1>
         <div style="display:flex;gap:32px;align-items:center;justify-content:center;margin:24px 0">
-          <div style="text-align:center"><div class="card-icon"><img src="/images/langsmith-langchain.png" alt="" loading="lazy"></div><div style="font-size:12px;color:var(--muted);margin-top:6px">LangSmith — observability и те</div></div><div style="text-align:center"><div class="card-icon"><img src="/images/openclaw-agent.png" alt="" loading="lazy"></div><div style="font-size:12px;color:var(--muted);margin-top:6px">OpenClaw — персональный AI-асс</div></div>
+          <div style="text-align:center"><div class="card-icon"><img src="/images/langsmith-langchain.png" alt="LangSmith — observability и тестирование LLM-приложений" loading="lazy"></div><div style="font-size:12px;color:var(--muted);margin-top:6px">LangSmith — observability и те</div></div><div style="text-align:center"><div class="card-icon"><img src="/images/openclaw-agent.png" alt="OpenClaw — персональный AI-ассистент с открытым кодом" loading="lazy"></div><div style="font-size:12px;color:var(--muted);margin-top:6px">OpenClaw — персональный AI-асс</div></div>
         </div>
         <div class="detail-meta"><a href="/product/langsmith-langchain/" class="meta-item">🔗 LangSmith — observability и тестирование</a><a href="/product/openclaw-agent/" class="meta-item">🔗 OpenClaw — персональный AI-ассистент с о</a></div>
       </div>
       <div class="detail-body"><h2>Краткий вердикт</h2><br><p>LangSmith — это профессиональный инструмент для команд разработчиков, которым нужна отладка, мониторинг и оценка LLM-приложений в production. OpenClaw — это универсальный AI-ассистент для конечных пользователей, работающий локально на любой ОС. Выбирайте LangSmith, если вы строите сложные AI-продукты и нуждаетесь в DevOps-инфраструктуре; выбирайте OpenClaw, если вам нужен персональный AI-помощник без привязки к облаку.</p><br><br><h2>Таблица сравнения</h2><br><table><br><tr><th>Критерий</th><th>LangSmith</th><th>OpenClaw</th></tr><br><tr><td>Цена</td><td>Freemium: бесплатно до 10 000 трассировок/мес. Платные тарифы от $99/мес за команду.</td><td>Бесплатно (Open Source). Возможны платные подписки на облачные версии или поддержку.</td></tr><br><tr><td>Функциональность</td><td>Трейсинг цепочек LLM, A/B-тестирование промптов, датасеты для оценки, мониторинг latency и токенов.</td><td>Локальный запуск моделей (LLaMA, Mistral, GPT4All), работа с файлами (PDF, DOCX), веб-поиск, голосовой ввод/вывод.</td></tr><br><tr><td>Простота использования</td><td>Требует навыков работы с API и Python. Настройка трейсинга через SDK (LangChain, OpenAI, Anthropic).</td><td>Графический интерфейс (GUI) для чата и загрузки файлов. Установка в 1 клик через установщик для Windows/macOS/Linux.</td></tr><br><tr><td>Интеграции</td><td>Нативная интеграция с LangChain, OpenAI, Anthropic, Hugging Face, а также REST API для любых LLM.</td><td>Интеграция с локальными файловыми системами, браузером (через плагины), API для кастомных моделей.</td></tr><br><tr><td>Производительность</td><td>Облачная инфраструктура — высокая скорость обработки трассировок. Задержка зависит от API LLM.</td><td>Локальный запуск — скорость зависит от GPU/CPU пользователя. Для больших моделей (70B) требуется мощное железо.</td></tr><br></table><br><br><h2>Детальный разбор</h2><br><h3>LangSmith</h3><br><p>LangSmith — это платформа для DevOps LLM, созданная для инженеров, работающих с production-системами. Сильная сторона — детальный трейсинг каждого шага цепочки (промпт, ответ LLM, вызов инструмента), что позволяет быстро находить ошибки и узкие места. Встроенные датасеты и оценка (evaluation) позволяют автоматизировать регрессионное тестирование промптов. Ограничение: продукт не предназначен для конечных пользователей — это инструмент разработчика, требующий программирования и понимания архитектуры LLM.</p><br><h3>OpenClaw</h3><br><p>OpenClaw — это персональный AI-ассистент, который работает полностью локально, обеспечивая конфиденциальность данных. Сильная сторона — универсальность: поддерживает любые ОС (Windows, macOS, Linux) и может запускать модели от 7B до 70B параметров. Встроенные функции работы с файлами и веб-поиском делают его заменой ChatGPT для офлайн-сценариев. Ограничение: отсутствие инструментов для разработки — нет трейсинга, A/B-тестов или мониторинга. Это готовое решение для пользователя, а не платформа для инженера.</p><br><br><h2>Для кого что выбрать</h2><br><ul><br><li><strong>LangSmith:</strong> Команды разработчиков, которые строят RAG-системы, чат-боты или AI-агентов и нуждаются в отладке, мониторинге и оценке качества. Подходит для стартапов и enterprise, где важна наблюдаемость (observability) LLM.</li><br><li><strong>OpenClaw:</strong> Индивидуальные пользователи и малые компании, которым нужен локальный AI-ассистент для работы с документами, поиска информации и генерации текста без отправки данных в облако. Идеален для юристов, врачей, исследователей, работающих с конфиденциальными данными.</li><br></ul><br><br><h2>Итог</h2><br><p>LangSmith и OpenClaw решают разные задачи. Если ваша цель — разработка и эксплуатация AI-продуктов, выбирайте LangSmith: он даст вам инструменты для контроля качества и производительности. Если ваша цель — использование AI для повседневных задач с гарантией приватности, выбирайте OpenClaw: он работает везде, бесплатен и не требует навыков программирования. Для B2B-команды, которая одновременно разрабатывает AI-решения и использует их внутри, оптимальна комбинация: LangSmith для разработки и OpenClaw для внутреннего использования сотрудниками.</p></div>
     </div>
 <footer>
-  Qantcore &copy; 2026 &mdash; AI Agents Intelligence Platform &mdash;
-  Updated daily &mdash; <a href="https://t.me/nousresearch">@nousresearch</a>
+  Qantcore &copy; 2026 &mdash; Платформа аналитики AI-агентов &mdash;
+  Обновляется ежедневно &mdash; <a href="https://t.me/nousresearch">@nousresearch</a>
 </footer>
 
 </body>

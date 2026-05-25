@@ -3,9 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Devin vs MetaGPT | Qantcore — AI Agents Intelligence</title>
+<title>Devin vs MetaGPT | Qantcore — Аналитика AI-агентов</title>
 <meta name="description" content="Детальное сравнение Первый AI software engineer с полным циклом разработки vs Симуляция IT-компании: агенты-архитекторы, разработчики, тестировщики. Таблица, ве">
 <link rel="icon" type="image/svg+xml" href="/images/favicon.svg">
+
 <meta property="og:title" content="Devin vs MetaGPT">
 <meta property="og:description" content="Детальное сравнение Первый AI software engineer с полным циклом разработки vs Симуляция IT-компании: агенты-архитекторы, разработчики, тестировщики. Таблица, вердикт, сценарии использования.">
 <meta property="og:type" content="article">
@@ -88,6 +89,14 @@ header{position:sticky;top:0;z-index:100;backdrop-filter:blur(20px) saturate(180
   background:transparent;color:var(--text);border:1px solid var(--border);cursor:pointer;
   transition:all .2s}
 .cta-secondary:hover{border-color:var(--green);color:var(--green)}
+
+/* ─── Enterprise CTA Banner ─── */
+.enterprise-cta{background:linear-gradient(135deg,rgba(16,185,129,.08) 0%,rgba(59,130,246,.04) 100%);
+  border:1px solid rgba(16,185,129,.15);border-radius:var(--radius);margin:40px 0 32px;padding:0}
+.ec-inner{display:flex;align-items:center;justify-content:space-between;gap:32px;padding:32px 36px;flex-wrap:wrap}
+.ec-text h3{font-size:20px;font-weight:700;color:var(--text);margin-bottom:8px}
+.ec-text p{font-size:14px;color:var(--muted);line-height:1.6;max-width:480px}
+.ec-actions{display:flex;gap:12px;flex-shrink:0;flex-wrap:wrap}
 
 /* ─── Authority Bar ─── */
 .auth-bar{max-width:1320px;margin:0 auto 0;padding:0 24px 32px}
@@ -348,31 +357,31 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
   <div class="header-inner">
     <a href="/" class="logo"><span class="logo-dot"></span>Qantcore</a>
     <div class="mega-nav">
-      <a href="/" class="">Frameworks</a>
+      <a href="/" class="">Каталог</a>
       <span class="nav-sep"></span>
-      <a href="/catalog/comparison/" class="active">Compare</a>
+      <a href="/catalog/comparison/" class="active">Сравнения</a>
       <span class="nav-sep"></span>
-      <a href="/benchmarks/">Benchmarks</a>
+      <a href="/benchmarks/">Бенчмарки</a>
       <span class="nav-sep"></span>
-      <a href="/catalog/review/" class="">Reviews</a>
+      <a href="/catalog/review/" class="">Обзоры</a>
       <span class="nav-sep"></span>
-      <a href="#rankings">Rankings</a>
+      <a href="#rankings">Рейтинг</a>
       <span class="nav-sep"></span>
-      <a href="#local-ai">Local AI</a>
+      <a href="#local-ai">Локальный AI</a>
       <span class="nav-sep"></span>
-      <a href="#coding-agents">Coding</a>
+      <a href="#coding-agents">Разработка</a>
       <span class="nav-sep"></span>
-      <a href="#multi-agent">Multi-Agent</a>
+      <a href="#multi-agent">Мульти-агенты</a>
       <span class="nav-sep"></span>
-      <a href="#guides">Guides</a>
+      <a href="#guides">Гайды</a>
       <span class="nav-sep"></span>
-      <a href="/methodology/" class="">Methodology</a>
+      <a href="/methodology/" class="">Методология</a>
       <span class="nav-sep"></span>
-      <a href="/workspace/" class="">Workspace</a>
+      <a href="/workspace/" class="">Кабинет</a>
       <span class="nav-sep"></span>
-      <a href="/company/">Companies</a>
+      <a href="/company/">Компании</a>
       <span class="nav-sep"></span>
-      <a href="#saved" class="saved-nav" style="display:none">★ Saved</a>
+      <a href="#saved" class="saved-nav" style="display:none">★ Избранное</a>
     </div>
   </div>
 </header>
@@ -383,15 +392,15 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
       <div class="detail-header">
         <h1>Devin vs MetaGPT</h1>
         <div style="display:flex;gap:32px;align-items:center;justify-content:center;margin:24px 0">
-          <div style="text-align:center"><div class="card-icon"><img src="/images/devin-agent.png" alt="" loading="lazy"></div><div style="font-size:12px;color:var(--muted);margin-top:6px">Devin — автономный AI-разработ</div></div><div style="text-align:center"><div class="card-icon"><img src="/images/metagpt-framework.png" alt="" loading="lazy"></div><div style="font-size:12px;color:var(--muted);margin-top:6px">MetaGPT — multi-agent фреймвор</div></div>
+          <div style="text-align:center"><div class="card-icon"><img src="/images/devin-agent.png" alt="Devin — автономный AI-разработчик от Cognition" loading="lazy"></div><div style="font-size:12px;color:var(--muted);margin-top:6px">Devin — автономный AI-разработ</div></div><div style="text-align:center"><div class="card-icon"><img src="/images/metagpt-framework.png" alt="MetaGPT — multi-agent фреймворк с ролями как в компании" loading="lazy"></div><div style="font-size:12px;color:var(--muted);margin-top:6px">MetaGPT — multi-agent фреймвор</div></div>
         </div>
         <div class="detail-meta"><a href="/product/devin-agent/" class="meta-item">🔗 Devin — автономный AI-разработчик от Cog</a><a href="/product/metagpt-framework/" class="meta-item">🔗 MetaGPT — multi-agent фреймворк с ролями</a></div>
       </div>
       <div class="detail-body"><h2>Краткий вердикт</h2><br><p>Devin подходит командам, которым нужен законченный продукт с нуля: от проектирования до деплоя, с минимальным участием человека. MetaGPT — инструмент для исследования и прототипирования: он моделирует работу IT-компании, генерируя код, документацию и тесты, но не выполняет деплой. Если ваша цель — получить работающее приложение «под ключ», выбирайте Devin. Если нужно быстро оценить архитектуру и сгенерировать черновик проекта — MetaGPT.</p><br><br><h2>Таблица сравнения</h2><br><table><br><tr><th>Критерий</th><th>Devin</th><th>MetaGPT</th></tr><br><tr><td>Цена</td><td>Бесплатный доступ в бета-версии (ожидается платная подписка ~$500/мес)</td><td>Бесплатный (открытый исходный код, требуется оплата API-ключей OpenAI/Claude)</td></tr><br><tr><td>Функциональность</td><td>Полный цикл: написание кода, отладка, деплой, работа с терминалом, браузером и IDE</td><td>Генерация кода, документации, тестов, диаграмм; симуляция ролей (PM, архитектор, разработчик, QA)</td></tr><br><tr><td>Простота использования</td><td>Низкая: требуется настройка окружения, понимание CI/CD и Git</td><td>Средняя: установка через pip, запуск одной командой, но нужны навыки работы с API LLM</td></tr><br><tr><td>Интеграции</td><td>GitHub, Slack, VS Code, терминал, браузер</td><td>Git (через скрипты), файловая система, API OpenAI/Claude</td></tr><br><tr><td>Производительность</td><td>Высокая: решает 13,86% задач из SWE-bench (реальные GitHub issues)</td><td>Средняя: генерирует до 2000 строк кода за сессию, но часто требует ручной доработки</td></tr><br></table><br><br><h2>Детальный разбор</h2><br><h3>Devin</h3><br><p>Devin — первый AI-агент, способный автономно выполнять задачи полного цикла разработки: он пишет код, запускает тесты, исправляет ошибки, коммитит в Git и деплоит на сервер. Сильная сторона — работа с реальными проектами: Devin может разобраться в чужом коде, добавить фичу и создать pull request. Ограничение — высокая стоимость (ожидается подписка) и зависимость от качества промпта: при нечётком ТЗ результат может быть нестабильным. Также Devin пока не умеет работать с большими монорепозиториями и сложными микросервисными архитектурами.</p><br><br><h3>MetaGPT</h3><br><p>MetaGPT симулирует полный цикл разработки через ролевых агентов: Product Manager пишет PRD, Architect создаёт дизайн-документ, Developer пишет код, QA генерирует тесты. Это позволяет получить структурированный проект с документацией и диаграммами за одну сессию. Сильная сторона — скорость прототипирования: для простого CRUD-приложения MetaGPT выдаёт работающий код за 5–10 минут. Ограничение — отсутствие деплоя и реального выполнения: код часто содержит логические ошибки, требует ручной отладки и не интегрируется с CI/CD. MetaGPT лучше всего подходит для генерации черновиков и обучения, а не для production-решений.</p><br><br><h2>Для кого что выбрать</h2><br><ul><br><li><strong>Devin:</strong> стартапы и малые команды, которым нужно быстро запустить MVP без найма дополнительных разработчиков; продакшн-проекты с чёткими требованиями; автоматизация рутинных задач (рефакторинг, багфикс, добавление простых фич).</li><br><li><strong>MetaGPT:</strong> исследователи и преподаватели, изучающие архитектуру AI-агентов; команды на этапе пресейла, которым нужно быстро сгенерировать прототип для демонстрации; разработчики, желающие получить черновик документации и тестов перед написанием кода вручную.</li><br></ul><br><br><h2>Итог</h2><br><p>Если вам нужен готовый продукт с деплоем и минимальным участием человека — выбирайте Devin. Если вы хотите быстро смоделировать процесс разработки, получить структуру проекта и документацию, а затем доработать код вручную — используйте MetaGPT. Для production-задач с высокой надёжностью Devin предпочтительнее, для исследовательских и образовательных целей — MetaGPT. Оптимальная стратегия: использовать MetaGPT для генерации архитектуры и Devin для реализации и деплоя.</p></div>
     </div>
 <footer>
-  Qantcore &copy; 2026 &mdash; AI Agents Intelligence Platform &mdash;
-  Updated daily &mdash; <a href="https://t.me/nousresearch">@nousresearch</a>
+  Qantcore &copy; 2026 &mdash; Платформа аналитики AI-агентов &mdash;
+  Обновляется ежедневно &mdash; <a href="https://t.me/nousresearch">@nousresearch</a>
 </footer>
 
 </body>

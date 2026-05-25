@@ -3,9 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Mistral AI vs Lovable | Qantcore — AI Agents Intelligence</title>
+<title>Mistral AI vs Lovable | Qantcore — Аналитика AI-агентов</title>
 <meta name="description" content="Детальное сравнение SoTA открытые модели от французского стартапа vs Опишите идею — получите работающее приложение. Таблица, вердикт, сценарии использования.">
 <link rel="icon" type="image/svg+xml" href="/images/favicon.svg">
+
 <meta property="og:title" content="Mistral AI vs Lovable">
 <meta property="og:description" content="Детальное сравнение SoTA открытые модели от французского стартапа vs Опишите идею — получите работающее приложение. Таблица, вердикт, сценарии использования.">
 <meta property="og:type" content="article">
@@ -88,6 +89,14 @@ header{position:sticky;top:0;z-index:100;backdrop-filter:blur(20px) saturate(180
   background:transparent;color:var(--text);border:1px solid var(--border);cursor:pointer;
   transition:all .2s}
 .cta-secondary:hover{border-color:var(--green);color:var(--green)}
+
+/* ─── Enterprise CTA Banner ─── */
+.enterprise-cta{background:linear-gradient(135deg,rgba(16,185,129,.08) 0%,rgba(59,130,246,.04) 100%);
+  border:1px solid rgba(16,185,129,.15);border-radius:var(--radius);margin:40px 0 32px;padding:0}
+.ec-inner{display:flex;align-items:center;justify-content:space-between;gap:32px;padding:32px 36px;flex-wrap:wrap}
+.ec-text h3{font-size:20px;font-weight:700;color:var(--text);margin-bottom:8px}
+.ec-text p{font-size:14px;color:var(--muted);line-height:1.6;max-width:480px}
+.ec-actions{display:flex;gap:12px;flex-shrink:0;flex-wrap:wrap}
 
 /* ─── Authority Bar ─── */
 .auth-bar{max-width:1320px;margin:0 auto 0;padding:0 24px 32px}
@@ -348,31 +357,31 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
   <div class="header-inner">
     <a href="/" class="logo"><span class="logo-dot"></span>Qantcore</a>
     <div class="mega-nav">
-      <a href="/" class="">Frameworks</a>
+      <a href="/" class="">Каталог</a>
       <span class="nav-sep"></span>
-      <a href="/catalog/comparison/" class="active">Compare</a>
+      <a href="/catalog/comparison/" class="active">Сравнения</a>
       <span class="nav-sep"></span>
-      <a href="/benchmarks/">Benchmarks</a>
+      <a href="/benchmarks/">Бенчмарки</a>
       <span class="nav-sep"></span>
-      <a href="/catalog/review/" class="">Reviews</a>
+      <a href="/catalog/review/" class="">Обзоры</a>
       <span class="nav-sep"></span>
-      <a href="#rankings">Rankings</a>
+      <a href="#rankings">Рейтинг</a>
       <span class="nav-sep"></span>
-      <a href="#local-ai">Local AI</a>
+      <a href="#local-ai">Локальный AI</a>
       <span class="nav-sep"></span>
-      <a href="#coding-agents">Coding</a>
+      <a href="#coding-agents">Разработка</a>
       <span class="nav-sep"></span>
-      <a href="#multi-agent">Multi-Agent</a>
+      <a href="#multi-agent">Мульти-агенты</a>
       <span class="nav-sep"></span>
-      <a href="#guides">Guides</a>
+      <a href="#guides">Гайды</a>
       <span class="nav-sep"></span>
-      <a href="/methodology/" class="">Methodology</a>
+      <a href="/methodology/" class="">Методология</a>
       <span class="nav-sep"></span>
-      <a href="/workspace/" class="">Workspace</a>
+      <a href="/workspace/" class="">Кабинет</a>
       <span class="nav-sep"></span>
-      <a href="/company/">Companies</a>
+      <a href="/company/">Компании</a>
       <span class="nav-sep"></span>
-      <a href="#saved" class="saved-nav" style="display:none">★ Saved</a>
+      <a href="#saved" class="saved-nav" style="display:none">★ Избранное</a>
     </div>
   </div>
 </header>
@@ -383,15 +392,15 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
       <div class="detail-header">
         <h1>Mistral AI vs Lovable</h1>
         <div style="display:flex;gap:32px;align-items:center;justify-content:center;margin:24px 0">
-          <div style="text-align:center"><div class="card-icon"><img src="/images/mistral-ai.png" alt="" loading="lazy"></div><div style="font-size:12px;color:var(--muted);margin-top:6px">Mistral AI — европейский лидер</div></div><div style="text-align:center"><div class="card-icon"><img src="/images/lovable-dev.png" alt="" loading="lazy"></div><div style="font-size:12px;color:var(--muted);margin-top:6px">Lovable — AI-разработка прилож</div></div>
+          <div style="text-align:center"><div class="card-icon"><img src="/images/mistral-ai.png" alt="Mistral AI — европейский лидер открытых LLM" loading="lazy"></div><div style="font-size:12px;color:var(--muted);margin-top:6px">Mistral AI — европейский лидер</div></div><div style="text-align:center"><div class="card-icon"><img src="/images/lovable-dev.png" alt="Lovable — AI-разработка приложений без кода" loading="lazy"></div><div style="font-size:12px;color:var(--muted);margin-top:6px">Lovable — AI-разработка прилож</div></div>
         </div>
         <div class="detail-meta"><a href="/product/mistral-ai/" class="meta-item">🔗 Mistral AI — европейский лидер открытых </a><a href="/product/lovable-dev/" class="meta-item">🔗 Lovable — AI-разработка приложений без к</a></div>
       </div>
       <div class="detail-body"><h2>Краткий вердикт</h2><br><p>Mistral AI — это выбор для разработчиков и инженеров, которым нужны мощные, открытые языковые модели для кастомизации, тонкой настройки и интеграции в собственные продукты. Lovable — это инструмент для нетехнических специалистов и предпринимателей, желающих быстро превратить текстовое описание идеи в работающее веб-приложение без написания кода. Mistral AI решает задачи генерации текста и анализа данных, а Lovable — задачи прототипирования и создания MVP.</p><br><br><h2>Таблица сравнения</h2><br><table><br><tr><th>Критерий</th><th>Mistral AI</th><th>Lovable</th></tr><br><tr><td>Цена</td><td>Бесплатные открытые модели (Mistral 7B, Mixtral 8x7B) с возможностью самостоятельного хостинга. Платные API (le Chat, API для enterprise) от $0.1 за 1M токенов.</td><td>Freemium: бесплатный план с ограничением по времени и функционалу. Платные подписки от $20/мес (Starter) до $100/мес (Business) за расширенные лимиты и приватность.</td></tr><br><tr><td>Функциональность</td><td>Генерация текста, перевод, суммаризация, написание кода, анализ данных, RAG (Retrieval-Augmented Generation). Поддержка функций (function calling) и мультиязычность.</td><td>Генерация полноценных веб-приложений (React, Tailwind, Node.js) по текстовому описанию. Визуальный редактор, деплой одним кликом, интеграция с Supabase и Stripe.</td></tr><br><tr><td>Простота использования</td><td>Требует навыков программирования (Python, API), понимания архитектуры LLM и опыта развертывания моделей. Для базового использования через API — средний порог входа.</td><td>Низкий порог входа. Достаточно описать задачу на естественном языке. Не требует знания кода, но для сложной кастомизации потребуется понимание основ React.</td></tr><br><tr><td>Интеграции</td><td>Интеграция через API с любыми сервисами (Python, LangChain, Hugging Face). Возможность развертывания на собственных серверах (on-premise) или в облаке (AWS, GCP, Azure).</td><td>Встроенные интеграции с Supabase (база данных, аутентификация), Stripe (платежи), GitHub (синхронизация кода). Экспорт кода для самостоятельного хостинга.</td></tr><br><tr><td>Производительность</td><td>SoTA-результаты в бенчмарках (MMLU, GSM8K) для своего размера. Mixtral 8x22B конкурирует с GPT-4. Высокая скорость инференса при локальном развертывании на GPU.</td><td>Скорость генерации приложения зависит от сложности описания (от 30 секунд до 2 минут). Качество кода высокое для MVP, но может требовать доработки для production-grade приложений.</td></tr><br></table><br><br><h2>Детальный разбор</h2><br><h3>Mistral AI</h3><br><p>Сильная сторона Mistral AI — это открытые модели с производительностью, сопоставимой с проприетарными решениями (GPT-4, Claude 3). Компания предлагает как компактные модели (Mistral 7B) для edge-устройств, так и мощные (Mixtral 8x22B) для серверных задач. Ограничения включают необходимость технической экспертизы для развертывания и тонкой настройки, а также отсутствие встроенного GUI для нетехнических пользователей. Модели требуют значительных вычислительных ресурсов для локального запуска (GPU с 24+ ГБ VRAM для Mixtral).</p><br><h3>Lovable</h3><br><p>Lovable позволяет превратить текстовое описание в полноценное веб-приложение за минуты, что идеально для быстрого прототипирования и проверки гипотез. Платформа генерирует код на React и Tailwind, предоставляет визуальный редактор для правок и автоматический деплой. Ограничения включают зависимость от шаблонов генерации (сложная бизнес-логика может быть реализована некорректно), а также ограниченную кастомизацию backend-части. Для сложных проектов с нестандартной архитектурой потребуется ручная доработка кода.</p><br><br><h2>Для кого что выбрать</h2><br><ul><br><li><strong>Mistral AI:</strong> Разработчикам AI-продуктов, инженерам, создающим чат-ботов, системы анализа документов или генерации контента. Компаниям, которым нужен полный контроль над моделью (on-premise, кастомизация, приватность данных). Исследователям и data scientist для экспериментов с LLM.</li><br><li><strong>Lovable:</strong> Предпринимателям и стартапам для быстрого создания MVP и прототипов. Маркетологам и дизайнерам, желающим реализовать идею приложения без найма разработчиков. Фрилансерам для быстрой сборки лендингов, дашбордов и простых SaaS-продуктов.</li><br></ul><br><br><h2>Итог</h2><br><p>Если ваша задача — встроить мощный языковой движок в существующий продукт или создать собственный AI-сервис с контролем над данными — выбирайте Mistral AI. Если вам нужно быстро превратить идею в работающее приложение без погружения в код — Lovable станет лучшим выбором. Для максимальной эффективности эти инструменты можно комбинировать: использовать Lovable для создания интерфейса и Mistral AI для backend-логики генерации текста.</p></div>
     </div>
 <footer>
-  Qantcore &copy; 2026 &mdash; AI Agents Intelligence Platform &mdash;
-  Updated daily &mdash; <a href="https://t.me/nousresearch">@nousresearch</a>
+  Qantcore &copy; 2026 &mdash; Платформа аналитики AI-агентов &mdash;
+  Обновляется ежедневно &mdash; <a href="https://t.me/nousresearch">@nousresearch</a>
 </footer>
 
 </body>
