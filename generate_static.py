@@ -635,8 +635,6 @@ ym(109327472,'init',{{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer"
       <span class="nav-sep"></span>
       <a href="/guides/" class="nav-featured {active_guides}">📖 Гайды</a>
       <span class="nav-sep"></span>
-      <a href="/benchmarks/">Бенчмарки</a>
-      <span class="nav-sep"></span>
       <a href="/benchmarks/">Рейтинг</a>
       <span class="nav-sep"></span>
       <a href="/catalog/product/">Локальный AI</a>
@@ -746,15 +744,14 @@ def make_product_card(p, with_compare=True):
     watch_html = f'<button class="watch-btn" data-slug="{p["slug"]}" onclick="event.preventDefault();toggleWatch(this,&#39;{p["slug"]}&#39;)" title="Track releases">🔔</button>'
     panel = panel_data(p)
     trust = trust_indicators(p)
+    img_url = p.get("image_url", "")
+    logo_html = f'<img src="{img_url}" alt="{esc(p.get("title",""))}" style="width:64px;height:64px;object-fit:contain;border-radius:10px;background:rgba(255,255,255,.03);padding:4px;margin:0 auto 10px;display:block">' if img_url else f'<div style="width:64px;height:64px;border-radius:10px;background:rgba(255,255,255,.03);display:flex;align-items:center;justify-content:center;font-size:28px;margin:0 auto 10px">{agent_icon(p["slug"])}</div>'
     return f"""<a href="/product/{p['slug']}/" class="card">
       {compare_html}
       {bookmark_html}
       {watch_html}
-      <div class="card-top">
-        {product_image(p)}
-        {product_type_badge(p.get('product_type',''))}
-      </div>
-      <div class="card-title"><span class="agent-icon">{agent_icon(p['slug'])}</span> {esc(p.get('title',''))}</div>
+      {logo_html}
+      <div class="card-title">{esc(p.get('title',''))}</div>
       <div class="card-desc">{esc(p.get('tagline','') or p.get('description',''))}</div>
       <div class="card-panel">{panel}</div>
       <div class="card-trust">{trust}</div>
@@ -1499,6 +1496,7 @@ def generate_compare_page(slugs=None):
             "velocity": vel_sign + str(comm_vel) + "%",
             "docs_quality": str(docs_score) + "/10",
             "description": (p.get("tagline","") or p.get("description",""))[:150],
+            "iu": p.get("image_url",""),
         })
     compare_json = json.dumps(compare_entries)
     
@@ -1625,7 +1623,8 @@ function renderComparison(slugs) {{
   // Build thead
   var thead = '<thead><tr><th>Metric</th>';
   prods.forEach(function(p) {{
-    thead += '<th><span class=\"th-icon\">' + getIcon(p) + '</span><span class=\"th-name\">' + p.title.substring(0,22) + '</span></th>';
+    var img = p.iu ? '<img src=\"' + p.iu + '\" class=\"th-logo\" style=\"width:36px;height:36px;object-fit:contain;border-radius:8px;display:block;margin:0 auto 6px\">' : '<span class=\"th-icon\">' + getIcon(p) + '</span>';
+    thead += '<th>' + img + '<span class=\"th-name\">' + p.title.substring(0,22) + '</span></th>';
   }});
   thead += '</tr></thead>';
   
@@ -1710,11 +1709,23 @@ def generate_catalog(category):
             if category == "product":
                 cards += make_product_card(item, with_compare=False)
             elif category == "comparison":
+                # Fetch product logos for VS display
+                pa_slug = item.get('product_a', '')
+                pb_slug = item.get('product_b', '')
+                pa_img = ''; pb_img = ''
+                if pa_slug:
+                    pa = DB.articles.find_one({"slug": pa_slug, "category": "product"})
+                    if pa:
+                        iu = pa.get("image_url", "")
+                        pa_img = f'<img src="{iu}" alt="" style="width:40px;height:40px;object-fit:contain;border-radius:6px;background:rgba(255,255,255,.03);padding:2px">' if iu else f'<span style="font-size:24px">{icon_for(pa.get("product_type",""))}</span>'
+                if pb_slug:
+                    pb = DB.articles.find_one({"slug": pb_slug, "category": "product"})
+                    if pb:
+                        iu = pb.get("image_url", "")
+                        pb_img = f'<img src="{iu}" alt="" style="width:40px;height:40px;object-fit:contain;border-radius:6px;background:rgba(255,255,255,.03);padding:2px">' if iu else f'<span style="font-size:24px">{icon_for(pb.get("product_type",""))}</span>'
+                vs_block = f'<div style="display:flex;align-items:center;gap:6px;margin-bottom:10px">{pa_img}<span style="font-size:12px;font-weight:800;color:var(--green);background:var(--green-dim);padding:2px 6px;border-radius:4px">VS</span>{pb_img}</div>' if pa_img and pb_img else '<div class="card-icon">⚖️</div>'
                 cards += f"""<a href="/compare/{item['slug']}/" class="card">
-                  <div class="card-top">
-                    <div class="card-icon">⚖️</div>
-                    <span class="card-badge badge-framework">VS</span>
-                  </div>
+                  {vs_block}
                   <div class="card-title">{esc(item.get('title',''))}</div>
                   <div class="card-desc">{esc(str(item.get('description',''))[:120])}</div>
                 </a>"""
@@ -1912,15 +1923,18 @@ def generate_compare(slug, c):
     """Generate /compare/{slug}/index.html"""
     body_html = c.get("body", "").replace("\n", "<br>") if c.get("body") else c.get("description", "")
     links = ""
-    prod_images = ""
-    for pa in ["product_a", "product_b"]:
+    prod_blocks = ""
+    for i, pa in enumerate(["product_a", "product_b"]):
         sv = c.get(pa, "")
         if sv:
             prod = DB.articles.find_one({"slug": sv, "category": "product"})
             if prod:
                 links += f'<a href="/product/{sv}/" class="meta-item">🔗 {esc(prod.get("title","")[:40])}</a>'
-                pi = product_image(prod, "icon")
-                prod_images += f'<div style="text-align:center">{pi}<div style="font-size:12px;color:var(--muted);margin-top:6px">{esc(prod.get("title","")[:30])}</div></div>'
+                img_url = prod.get("image_url", "")
+                img_html = f'<img src="{img_url}" alt="{esc(prod.get("title",""))}" style="width:80px;height:80px;object-fit:contain;border-radius:12px;background:rgba(255,255,255,.04);padding:8px">' if img_url else f'<span style="font-size:48px">{icon_for(prod.get("product_type",""))}</span>'
+                prod_blocks += f'<div style="text-align:center">{img_html}<div style="font-size:14px;font-weight:600;color:var(--text);margin-top:8px">{esc(prod.get("title","")[:30])}</div></div>'
+                if i == 0:
+                    prod_blocks += '<div style="display:flex;align-items:center;justify-content:center"><div style="width:48px;height:48px;border-radius:50%;background:var(--green-dim);display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:800;color:var(--green);flex-shrink:0">VS</div></div>'
 
     body = f"""<div class="container detail">
       <div class="breadcrumbs">
@@ -1928,8 +1942,8 @@ def generate_compare(slug, c):
       </div>
       <div class="detail-header">
         <h1>{esc(c.get('title',''))}</h1>
-        <div style="display:flex;gap:32px;align-items:center;justify-content:center;margin:24px 0">
-          {prod_images}
+        <div style="display:flex;gap:24px;align-items:center;justify-content:center;margin:32px 0">
+          {prod_blocks}
         </div>
         <div class="detail-meta">{links}</div>
       </div>
@@ -3006,19 +3020,19 @@ def generate_development():
         <div style="font-size:13px;color:var(--green);font-weight:600;margin-bottom:8px">\U0001F3C6 \u041b\u0443\u0447\u0448\u0438\u0439 \u0434\u043b\u044f \u0441\u043e\u043b\u043e</div>
         <div style="font-size:15px;font-weight:700;color:var(--text);margin-bottom:4px">{esc(best_ide.get('title','')) if best_ide else 'Cursor IDE'}</div>
         <div style="font-size:12px;color:var(--muted);line-height:1.6">{'\u041c\u0433\u043d\u043e\u0432\u0435\u043d\u043d\u043e\u0435 \u0430\u0432\u0442\u043e\u0434\u043e\u043f\u043e\u043b\u043d\u0435\u043d\u0438\u0435, \u043f\u043e\u043d\u0438\u043c\u0430\u043d\u0438\u0435 \u0432\u0441\u0435\u0439 \u043a\u043e\u0434\u043e\u0432\u043e\u0439 \u0431\u0430\u0437\u044b, AI-first IDE.' if best_ide else ''}</div>
-        <a href="/product/{best_ide['slug']}/" style="display:inline-block;margin-top:12px;color:var(--green);font-size:12px;font-weight:600">\u0421\u043c\u043e\u0442\u0440\u0435\u0442\u044c &rarr;</a>
+        <a href="/product/{best_ide['slug'] if best_ide else 'cursor-ide'}/" style="display:inline-block;margin-top:12px;color:var(--green);font-size:12px;font-weight:600">\u0421\u043c\u043e\u0442\u0440\u0435\u0442\u044c &rarr;</a>
       </div>
       <div style="background:var(--card-bg);border:1px solid var(--blue);border-radius:var(--radius);padding:20px">
         <div style="font-size:13px;color:var(--blue);font-weight:600;margin-bottom:8px">\U0001F680 \u041b\u0443\u0447\u0448\u0438\u0439 \u0434\u043b\u044f PR</div>
         <div style="font-size:15px;font-weight:700;color:var(--text);margin-bottom:4px">{esc(best_pr.get('title','')) if best_pr else 'Claude Code'}</div>
         <div style="font-size:12px;color:var(--muted);line-height:1.6">{'\u041f\u0438\u0448\u0435\u0442 PR \u0430\u0432\u0442\u043e\u043d\u043e\u043c\u043d\u043e, \u0447\u0438\u0442\u0430\u0435\u0442 \u0432\u0441\u044e \u043a\u043e\u0434\u043e\u0432\u0443\u044e \u0431\u0430\u0437\u0443, \u0440\u0435\u0444\u0430\u043a\u0442\u043e\u0440\u0438\u0442 \u0441\u043b\u043e\u0436\u043d\u044b\u0435 \u0441\u0438\u0441\u0442\u0435\u043c\u044b.' if best_pr else ''}</div>
-        <a href="/product/{best_pr['slug']}/" style="display:inline-block;margin-top:12px;color:var(--blue);font-size:12px;font-weight:600">\u0421\u043c\u043e\u0442\u0440\u0435\u0442\u044c &rarr;</a>
+        <a href="/product/{best_pr['slug'] if best_pr else 'claude-code'}/" style="display:inline-block;margin-top:12px;color:var(--blue);font-size:12px;font-weight:600">\u0421\u043c\u043e\u0442\u0440\u0435\u0442\u044c &rarr;</a>
       </div>
       <div style="background:var(--card-bg);border:1px solid var(--amber);border-radius:var(--radius);padding:20px">
         <div style="font-size:13px;color:var(--amber);font-weight:600;margin-bottom:8px">\U0001F1EB \u041b\u0443\u0447\u0448\u0438\u0439 \u0431\u0435\u0441\u043f\u043b\u0430\u0442\u043d\u044b\u0439</div>
         <div style="font-size:15px;font-weight:700;color:var(--text);margin-bottom:4px">{esc(best_free.get('title','')) if best_free else 'Continue'}</div>
         <div style="font-size:12px;color:var(--muted);line-height:1.6">{'Open source, \u0441\u0432\u043e\u0439 API-\u043a\u043b\u044e\u0447, \u043f\u043e\u043b\u043d\u044b\u0439 \u043a\u043e\u043d\u0442\u0440\u043e\u043b\u044c \u043d\u0430\u0434 \u0434\u0430\u043d\u043d\u044b\u043c\u0438.' if best_free else ''}</div>
-        <a href="/product/{best_free['slug']}/" style="display:inline-block;margin-top:12px;color:var(--amber);font-size:12px;font-weight:600">\u0421\u043c\u043e\u0442\u0440\u0435\u0442\u044c &rarr;</a>
+        <a href="/product/{best_free['slug'] if best_free else 'continue-dev'}/" style="display:inline-block;margin-top:12px;color:var(--amber);font-size:12px;font-weight:600">\u0421\u043c\u043e\u0442\u0440\u0435\u0442\u044c &rarr;</a>
       </div>
     </div>
   </div>
@@ -3689,19 +3703,19 @@ graph.set_entry_point(<span style="color:#a5d6ff">"think"</span>)<br>
         <div style="font-size:13px;color:var(--green);font-weight:600;margin-bottom:8px">\U0001F393 \u0414\u043b\u044f \u043e\u0431\u0443\u0447\u0435\u043d\u0438\u044f</div>
         <div style="font-size:15px;font-weight:700;color:var(--text);margin-bottom:4px">{esc(best_beginner.get('title','')) if best_beginner else 'CrewAI'}</div>
         <div style="font-size:12px;color:var(--muted);line-height:1.6">\u0421\u0430\u043c\u044b\u0439 \u043f\u0440\u043e\u0441\u0442\u043e\u0439 \u0432\u0445\u043e\u0434: \u0440\u043e\u043b\u0438, \u0437\u0430\u0434\u0430\u0447\u0438, \u0438\u043d\u0441\u0442\u0440\u0443\u043c\u0435\u043d\u0442\u044b. \u041e\u0433\u0440\u043e\u043c\u043d\u043e\u0435 \u0441\u043e\u043e\u0431\u0449\u0435\u0441\u0442\u0432\u043e.</div>
-        <a href="/product/{best_beginner['slug']}/" style="display:inline-block;margin-top:12px;color:var(--green);font-size:12px;font-weight:600">\u0421\u043c\u043e\u0442\u0440\u0435\u0442\u044c &rarr;</a>
+        <a href="/product/{best_beginner['slug'] if best_beginner else 'crewai'}/" style="display:inline-block;margin-top:12px;color:var(--green);font-size:12px;font-weight:600">\u0421\u043c\u043e\u0442\u0440\u0435\u0442\u044c &rarr;</a>
       </div>
       <div style="background:var(--card-bg);border:1px solid var(--blue);border-radius:var(--radius);padding:20px">
         <div style="font-size:13px;color:var(--blue);font-weight:600;margin-bottom:8px">\U0001F3E2 Enterprise</div>
         <div style="font-size:15px;font-weight:700;color:var(--text);margin-bottom:4px">{esc(best_enterprise.get('title','')) if best_enterprise else 'AutoGen'}</div>
         <div style="font-size:12px;color:var(--muted);line-height:1.6">Microsoft-\u044d\u043a\u043e\u0441\u0438\u0441\u0442\u0435\u043c\u0430, \u0440\u0430\u0441\u043f\u0440\u0435\u0434\u0435\u043b\u0451\u043d\u043d\u044b\u0435 \u0430\u0433\u0435\u043d\u0442\u044b, human-in-the-loop.</div>
-        <a href="/product/{best_enterprise['slug']}/" style="display:inline-block;margin-top:12px;color:var(--blue);font-size:12px;font-weight:600">\u0421\u043c\u043e\u0442\u0440\u0435\u0442\u044c &rarr;</a>
+        <a href="/product/{best_enterprise['slug'] if best_enterprise else 'autogen'}/" style="display:inline-block;margin-top:12px;color:var(--blue);font-size:12px;font-weight:600">\u0421\u043c\u043e\u0442\u0440\u0435\u0442\u044c &rarr;</a>
       </div>
       <div style="background:var(--card-bg);border:1px solid var(--amber);border-radius:var(--radius);padding:20px">
         <div style="font-size:13px;color:var(--amber);font-weight:600;margin-bottom:8px">\U0001F500 \u0421\u043b\u043e\u0436\u043d\u0430\u044f \u043b\u043e\u0433\u0438\u043a\u0430</div>
         <div style="font-size:15px;font-weight:700;color:var(--text);margin-bottom:4px">{esc(best_graph.get('title','')) if best_graph else 'LangGraph'}</div>
         <div style="font-size:12px;color:var(--muted);line-height:1.6">\u0413\u0440\u0430\u0444 \u0441\u043e\u0441\u0442\u043e\u044f\u043d\u0438\u0439, \u0446\u0438\u043a\u043b\u044b, conditional routing + persistence.</div>
-        <a href="/product/{best_graph['slug']}/" style="display:inline-block;margin-top:12px;color:var(--amber);font-size:12px;font-weight:600">\u0421\u043c\u043e\u0442\u0440\u0435\u0442\u044c &rarr;</a>
+        <a href="/product/{best_graph['slug'] if best_graph else 'langgraph'}/" style="display:inline-block;margin-top:12px;color:var(--amber);font-size:12px;font-weight:600">\u0421\u043c\u043e\u0442\u0440\u0435\u0442\u044c &rarr;</a>
       </div>
     </div>
   </div>
