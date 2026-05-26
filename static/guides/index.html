@@ -1,0 +1,1237 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Гайды — Практические руководства по AI-агентам | Qantcore — Аналитика AI-агентов</title>
+<meta name="description" content="Практические гайды: локальный запуск LLM, Cursor vs Copilot, multi-agent на CrewAI, MCP-серверы, AI-стек для стартапа.">
+<link rel="icon" type="image/svg+xml" href="/images/favicon.svg">
+<link rel="canonical" href="https://qantcore.space/guides/">
+<link rel="canonical" href="https://qantcore.space/guides/">
+<meta property="og:title" content="Гайды по AI-агентам — Qantcore">
+<meta property="og:description" content="Практические руководства: локальный запуск LLM, Cursor vs Copilot, multi-agent, MCP, AI-стек.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://qantcore.space/guides/">
+<meta property="og:image" content="https://qantcore.space/images/favicon.svg">
+<meta property="og:site_name" content="QantCore">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Гайды по AI-агентам — Qantcore">
+<meta name="twitter:description" content="Практические руководства: локальный запуск LLM, Cursor vs Copilot, multi-agent, MCP, AI-стек.">
+<meta name="twitter:image" content="https://qantcore.space/images/favicon.svg">
+<style>*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#0B0F14;--surface:#121821;--card-bg:#171F2B;--border:rgba(255,255,255,.06);
+  --text:#F5F7FA;--muted:#9AA4B2;--dim:#6B7280;
+  --green:#10b981;--green-dim:rgba(16,185,129,.12);
+  --blue:#3B82F6;--blue-dim:rgba(59,130,246,.12);
+  --cyan:#22D3EE;--cyan-dim:rgba(34,211,238,.12);
+  --amber:#f59e0b;--amber-dim:rgba(245,158,11,.12);
+  --red:#ef4444;--red-dim:rgba(239,68,68,.12);
+  --radius:12px;--radius-sm:8px}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
+  background:var(--bg);color:var(--text);min-height:100vh;line-height:1.6;font-size:16px;
+  -webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:#1e2233;border-radius:2px}
+
+/* ─── Header & Mega-Nav ─── */
+header{position:sticky;top:0;z-index:100;backdrop-filter:blur(20px) saturate(180%);
+  background:rgba(11,15,20,.92);border-bottom:1px solid var(--border)}
+.header-inner{max-width:1320px;margin:0 auto;padding:14px 24px;
+  display:flex;align-items:center;justify-content:space-between}
+.logo{font-size:20px;font-weight:800;letter-spacing:-.02em;color:var(--text);
+  display:flex;align-items:center;gap:8px}
+.logo-dot{width:8px;height:8px;border-radius:50%;background:var(--green);
+  box-shadow:0 0 8px rgba(16,185,129,.5);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.mega-nav{display:flex;gap:4px;align-items:center}
+.mega-nav a,.mega-nav .nav-section{font-size:13.5px;color:var(--muted);
+  padding:6px 12px;border-radius:6px;transition:all .2s;font-weight:500;
+  letter-spacing:.01em;white-space:nowrap}
+.mega-nav a:hover{color:var(--text);background:rgba(255,255,255,.04)}
+.mega-nav a.active{color:var(--green);background:var(--green-dim)}
+.nav-sep{width:1px;height:18px;background:var(--border);margin:0 4px}
+.nav-featured{font-size:14px!important;font-weight:700!important;color:var(--green)!important;
+  background:var(--green-dim)!important;padding:8px 16px!important;letter-spacing:.02em}
+
+/* ─── Terminal Grid (hero bg) ─── */
+.terminal-grid{position:absolute;top:0;left:0;right:0;bottom:0;overflow:hidden;pointer-events:none;z-index:0}
+.terminal-grid::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;
+  background-image:
+    linear-gradient(rgba(16,185,129,.04) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(16,185,129,.04) 1px,transparent 1px);
+  background-size:40px 40px;
+  animation:grid-scroll 20s linear infinite}
+@keyframes grid-scroll{0%{transform:translate(0,0)}100%{transform:translate(40px,40px)}}
+.terminal-grid::after{content:'';position:absolute;top:0;left:0;right:0;bottom:0;
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(16,185,129,.1) 0%, transparent 60%),
+    radial-gradient(circle at 20% 80%, rgba(59,130,246,.06) 0%, transparent 40%),
+    radial-gradient(circle at 80% 20%, rgba(16,185,129,.05) 0%, transparent 40%);
+  z-index:1}
+/* ─── Hero ─── */
+.hero{text-align:center;padding:72px 24px 48px;position:relative;overflow:hidden}
+.hero>*{position:relative;z-index:2}
+.hero h1{font-size:clamp(36px,5vw,60px);font-weight:800;letter-spacing:-.03em;
+  line-height:1.15;color:#f1f5f9;max-width:800px;margin:0 auto}
+.hero h1 .accent{color:var(--green)}
+.hero .sub{font-size:17px;color:var(--muted);margin-top:16px;max-width:640px;
+  margin-left:auto;margin-right:auto;line-height:1.6}
+.hero .tagline{font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:var(--green);
+  font-weight:600;margin-bottom:16px}
+.hero-metrics{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:28px}
+.hero-metric{background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius-sm);
+  padding:10px 18px;text-align:center;min-width:100px}
+.hero-metric .val{font-size:24px;font-weight:800;color:var(--green);font-variant-numeric:tabular-nums}
+.hero-metric .lbl{font-size:11px;color:var(--muted);margin-top:2px;text-transform:uppercase;letter-spacing:.06em}
+.hero-cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:32px}
+.cta-primary{padding:12px 28px;border-radius:var(--radius-sm);font-size:14px;font-weight:600;
+  background:var(--green);color:#000;border:none;cursor:pointer;transition:all .2s;
+  letter-spacing:-.01em}
+.cta-primary:hover{filter:brightness(1.15);transform:translateY(-1px)}
+.cta-secondary{padding:12px 28px;border-radius:var(--radius-sm);font-size:14px;font-weight:600;
+  background:transparent;color:var(--text);border:1px solid var(--border);cursor:pointer;
+  transition:all .2s}
+.cta-secondary:hover{border-color:var(--green);color:var(--green)}
+
+/* ─── Enterprise CTA Banner ─── */
+.enterprise-cta{background:linear-gradient(135deg,rgba(16,185,129,.08) 0%,rgba(59,130,246,.04) 100%);
+  border:1px solid rgba(16,185,129,.15);border-radius:var(--radius);margin:40px 0 32px;padding:0}
+.ec-inner{display:flex;align-items:center;justify-content:space-between;gap:32px;padding:32px 36px;flex-wrap:wrap}
+.card-title{font-size:16px;font-weight:600;color:var(--text);margin-bottom:8px;line-height:1.4;
+  display:flex;align-items:flex-start;gap:6px}
+.agent-icon{font-size:18px;flex-shrink:0;line-height:1.2}
+.ec-text h3{font-size:20px;font-weight:700;color:var(--text);margin-bottom:8px}
+.ec-text p{font-size:14px;color:var(--muted);line-height:1.6;max-width:480px}
+.ec-actions{display:flex;gap:12px;flex-shrink:0;flex-wrap:wrap}
+
+/* ─── Authority Bar ─── */
+.auth-bar{max-width:1320px;margin:0 auto 0;padding:0 24px 32px}
+.auth-inner{display:flex;gap:0;background:var(--card-bg);border:1px solid var(--border);
+  border-radius:var(--radius);overflow:hidden;flex-wrap:wrap}
+.auth-stat{flex:1;min-width:130px;padding:18px 20px;text-align:center;
+  border-right:1px solid var(--border);position:relative}
+.auth-stat:last-child{border-right:none}
+.auth-stat .n{font-size:28px;font-weight:800;color:var(--green);font-variant-numeric:tabular-nums;
+  letter-spacing:-.02em}
+.auth-stat .n.amber{color:var(--amber)}
+.auth-stat .l{font-size:11px;color:var(--muted);margin-top:3px;text-transform:uppercase;letter-spacing:.05em}
+.auth-stat .dot{display:inline-block;width:6px;height:6px;border-radius:50%;
+  background:var(--green);margin-right:6px;animation:pulse 2s infinite}
+
+/* ─── Section Headers ─── */
+.section-hd{max-width:1320px;margin:0 auto;padding:8px 24px 16px;
+  display:flex;align-items:center;justify-content:space-between}
+.section-hd h2{font-size:20px;font-weight:700;color:var(--text);letter-spacing:-.01em}
+.section-hd .see-all{font-size:13px;color:var(--green);font-weight:500}
+.section-hd .see-all:hover{text-decoration:underline}
+
+/* ─── Filters ─── */
+.filters-bar{max-width:1320px;margin:0 auto;padding:0 24px 20px;display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.filters-bar .label{font-size:12px;color:var(--dim);text-transform:uppercase;letter-spacing:.05em;margin-right:4px}
+.filter-btn{padding:6px 14px;border-radius:20px;font-size:12px;font-weight:500;
+  border:1px solid var(--border);background:transparent;
+  color:var(--muted);cursor:pointer;transition:all .2s;white-space:nowrap}
+.filter-btn:hover,.filter-btn.active{border-color:var(--green);color:var(--green);
+  background:var(--green-dim)}
+.filter-btn .count{font-size:10px;color:var(--dim);margin-left:4px}
+
+/* ─── Grid & Cards ─── */
+.grid{max-width:1320px;margin:0 auto;padding:0 24px 32px;
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
+
+.card{background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);
+  padding:20px;transition:all .2s;position:relative;display:flex;flex-direction:column}
+.card:hover{border-color:rgba(16,185,129,.25);transform:translateY(-2px);
+  box-shadow:0 8px 30px rgba(0,0,0,.4)}
+.card-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:12px}
+.card-icon{width:40px;height:40px;border-radius:var(--radius-sm);background:rgba(255,255,255,.04);
+  display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;overflow:hidden}
+.card-icon img{width:100%;height:100%;object-fit:contain;padding:6px}
+.card-badge{padding:2px 8px;border-radius:4px;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.04em}
+.badge-agent{background:var(--blue-dim);color:var(--blue)}
+.badge-framework{background:var(--green-dim);color:var(--green)}
+.badge-platform{background:var(--amber-dim);color:var(--amber)}
+.badge-model{background:var(--red-dim);color:var(--red)}
+.badge-infra{background:rgba(139,92,246,.12);color:#8b5cf6}
+.card-desc{font-size:13.5px;color:var(--muted);line-height:1.5;display:-webkit-box;
+  -webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;margin-bottom:12px;flex:1}
+/* Intelligence Panel */
+.card-panel{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:auto}
+.panel-item{background:rgba(255,255,255,.02);border-radius:6px;padding:8px 10px}
+.panel-item .pv{font-size:16px;font-weight:700;color:var(--text);font-variant-numeric:tabular-nums}
+.panel-item .pv.green{color:var(--green)}
+.panel-item .pv.amber{color:var(--amber)}
+.panel-item .pl{font-size:10px;color:var(--dim);margin-top:1px;text-transform:uppercase;letter-spacing:.03em}
+.card-compare{position:absolute;top:12px;right:12px;z-index:5}
+.card-compare input[type=checkbox]{appearance:none;width:18px;height:18px;border-radius:4px;
+  border:2px solid var(--dim);cursor:pointer;transition:all .2s;position:relative}
+.card-compare input[type=checkbox]:checked{border-color:var(--green);background:var(--green)}
+.card-compare input[type=checkbox]:checked::after{content:'✓';position:absolute;
+  top:-1px;left:2px;color:#000;font-size:13px;font-weight:700}
+.card-trust{display:flex;gap:12px;margin-top:8px;font-size:10px;color:var(--dim)}
+.card-trust span{display:flex;align-items:center;gap:3px}
+
+/* ─── Compare Bar ─── */
+.compare-bar{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);
+  background:var(--card-bg);border:1px solid var(--green);
+  border-radius:var(--radius);padding:12px 20px;display:none;align-items:center;gap:16px;
+  z-index:200;box-shadow:0 8px 40px rgba(0,0,0,.6);backdrop-filter:blur(16px)}
+.compare-bar.active{display:flex}
+.compare-bar .sel{font-size:13px;color:var(--muted)}
+.compare-bar .sel strong{color:var(--green)}
+.compare-btn{padding:8px 20px;border-radius:6px;font-size:13px;font-weight:600;
+  background:var(--green);color:#000;border:none;cursor:pointer;transition:all .2s}
+.compare-btn:hover{filter:brightness(1.15)}
+.compare-btn:disabled{opacity:.3;cursor:not-allowed}
+.compare-clear{font-size:12px;color:var(--muted);cursor:pointer;background:none;border:none}
+.compare-clear:hover{color:var(--red)}
+
+/* ─── Live Connection Lines ─── */
+.live-lines{position:fixed;top:0;left:0;width:100%;height:100%;z-index:150;
+  pointer-events:none;opacity:0;transition:opacity .3s}
+.live-lines.active{opacity:1}
+
+/* ─── Install / Code Block ─── */
+.install-block{background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);
+  overflow:hidden;margin-bottom:24px}
+.install-header{display:flex;align-items:center;justify-content:space-between;
+  padding:12px 20px;background:rgba(59,130,246,.06);border-bottom:1px solid var(--border)}
+.install-badge{font-size:13px;font-weight:600;color:var(--blue);
+  background:rgba(59,130,246,.12);padding:4px 12px;border-radius:4px}
+.copy-btn{font-size:12px;color:var(--muted);background:rgba(255,255,255,.04);
+  border:1px solid var(--border);padding:5px 14px;border-radius:4px;
+  cursor:pointer;transition:all .2s;font-weight:500}
+.copy-btn:hover{color:var(--green);border-color:var(--green)}
+.code-block{background:#0d1117;padding:20px 24px;margin:0;overflow-x:auto;
+  font-family:'JetBrains Mono','Fira Code','Cascadia Code',monospace;
+  font-size:13px;line-height:1.7;color:#c9d1d9;white-space:pre-wrap;
+  border-radius:0 0 var(--radius) var(--radius)}
+.code-block code{background:none;padding:0;font-size:inherit}
+.desc-block h2{display:flex;align-items:center;gap:8px}
+
+/* ─── Stats Mini (colored) ─── */
+.stats-mini{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap}
+.stat-mini{background:var(--card-bg);border:1px solid var(--border);
+  border-radius:8px;padding:10px 16px;text-align:center;min-width:80px}
+.stat-mini .sv{font-size:20px;font-weight:800;color:var(--green);
+  font-variant-numeric:tabular-nums}
+.stat-mini .sl{font-size:10px;color:var(--dim);margin-top:2px;
+  text-transform:uppercase;letter-spacing:.03em}
+
+/* ─── Integrations Overlay ─── */
+.integ-overlay{position:fixed;top:0;left:0;width:100%;height:100%;z-index:9999;
+  background:rgba(0,0,0,.85);backdrop-filter:blur(8px);
+  display:flex;align-items:flex-start;justify-content:center;padding:40px 20px;overflow-y:auto}
+.integ-modal{background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);
+  width:100%;max-width:900px;padding:0;box-shadow:0 20px 60px rgba(0,0,0,.5)}
+.integ-header{display:flex;align-items:center;justify-content:space-between;
+  padding:20px 28px;border-bottom:1px solid var(--border)}
+.integ-header h2{font-size:20px;font-weight:700;color:var(--text)}
+.integ-close{background:none;border:none;color:var(--muted);font-size:22px;cursor:pointer;
+  padding:4px 8px;border-radius:6px;transition:all .2s}
+.integ-close:hover{color:var(--red);background:rgba(255,255,255,.05)}
+.integ-agents{display:flex;gap:12px;padding:20px 28px;flex-wrap:wrap;justify-content:center;
+  border-bottom:1px solid var(--border)}
+.integ-agent-card{display:flex;align-items:center;gap:8px;background:var(--card-bg);
+  border:1px solid var(--border);border-radius:8px;padding:8px 14px;font-size:13px;color:var(--text)}
+.integ-agent-card .iac-icon{width:28px;height:28px;border-radius:6px;
+  background:rgba(59,130,246,.15);display:flex;align-items:center;justify-content:center;font-size:14px;overflow:hidden}
+.integ-agent-card .iac-icon img{width:100%;height:100%;object-fit:contain}
+.integ-diagram{padding:8px 28px;background:rgba(0,0,0,.2);border-bottom:1px solid var(--border)}
+.integ-diagram svg{display:block}
+.integ-matches{padding:24px 28px}
+.integ-matches h3{font-size:16px;font-weight:700;color:var(--text);margin-bottom:16px}
+.integ-list{display:flex;flex-direction:column;gap:12px}
+.integ-match{background:var(--card-bg);border:1px solid var(--border);border-radius:8px;padding:16px 20px}
+.im-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
+.im-type{font-size:13px;font-weight:600;color:var(--green);background:rgba(16,185,129,.1);
+  padding:3px 10px;border-radius:4px}
+.im-effort{font-size:12px;color:var(--muted)}
+.im-desc{font-size:13px;color:var(--muted);line-height:1.6;margin-bottom:8px}
+.im-agents{font-size:11px;color:var(--dim);font-family:monospace;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.im-agents img{width:20px;height:20px;border-radius:4px;object-fit:contain;vertical-align:middle}
+.im-agents a{display:inline-flex;align-items:center;gap:4px}
+.integ-empty{text-align:center;padding:40px 20px;color:var(--muted)}
+.integ-cta{text-align:center;padding:20px 28px;border-top:1px solid var(--border);
+  background:linear-gradient(180deg,transparent,rgba(16,185,129,.04))}
+.integ-cta p{font-size:14px;color:var(--muted);margin-bottom:12px}
+
+/* ─── Featured Section ─── */
+.featured{max-width:1320px;margin:0 auto;padding:0 24px 32px}
+.featured-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(380px,1fr));gap:16px}
+.featured-card{background:var(--card-bg);border:1px solid var(--border);
+  border-radius:var(--radius);padding:24px;transition:all .2s;
+  position:relative;overflow:hidden}
+.featured-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,var(--green),var(--blue));opacity:0;transition:opacity .2s}
+.featured-card:hover::before{opacity:1}
+.featured-card:hover{transform:translateY(-2px);border-color:rgba(16,185,129,.2);
+  box-shadow:0 8px 30px rgba(0,0,0,.4)}
+.featured-card .fc-label{font-size:10px;text-transform:uppercase;letter-spacing:.06em;
+  color:var(--green);margin-bottom:8px;font-weight:600}
+.featured-card .fc-title{font-size:18px;font-weight:700;color:#f1f5f9;margin-bottom:6px}
+.featured-card .fc-desc{font-size:13px;color:var(--muted);line-height:1.6}
+
+/* ─── Compare Table ─── */
+.compare-table-wrap{overflow-x:auto;margin:20px 0;border-radius:12px;
+  border:1px solid var(--border);background:linear-gradient(180deg,#121821 0%,var(--bg) 100%)}
+.compare-table{width:100%;border-collapse:collapse;font-size:13px}
+.compare-table thead th{padding:16px 16px 14px;color:var(--text);font-weight:700;font-size:13px;
+  text-align:center;border-bottom:2px solid rgba(16,185,129,.3);
+  background:linear-gradient(180deg,rgba(16,185,129,.06) 0%,transparent 100%)}
+.compare-table thead th:first-child{text-align:left;color:var(--muted);font-size:11px;
+  font-weight:500;text-transform:uppercase;letter-spacing:.04em;border-right:1px solid var(--border)}
+.compare-table thead th .th-icon{font-size:18px;display:block;margin-bottom:4px}
+.compare-table thead th .th-name{display:block;max-width:140px;margin:0 auto;line-height:1.3}
+.compare-table tbody th{text-align:left;padding:12px 16px;color:var(--muted);font-weight:500;
+  font-size:11px;text-transform:uppercase;letter-spacing:.04em;border-bottom:1px solid var(--border);
+  border-right:1px solid var(--border);white-space:nowrap}
+.compare-table tbody td{padding:12px 14px;border-bottom:1px solid var(--border);
+  text-align:center;font-weight:600;font-size:13px;position:relative}
+.compare-table tbody tr:last-child td,.compare-table tbody tr:last-child th{border-bottom:none}
+.compare-table tbody tr:nth-child(even){background:rgba(18,24,33,.4)}
+.compare-table .winner{background:rgba(16,185,129,.08) !important;
+  box-shadow:inset 0 0 0 1px rgba(16,185,129,.25)}
+.compare-table .winner::after{content:'';position:absolute;top:2px;right:2px;
+  width:6px;height:6px;border-radius:50%;background:var(--green)}
+/* Score bar inside metric cells */
+.metric-bar{display:inline-block;height:6px;border-radius:3px;margin-right:8px;
+  vertical-align:middle;min-width:4px;transition:width .5s ease}
+.metric-val{display:inline-flex;align-items:center;gap:6px;white-space:nowrap}
+.score-high{color:var(--green)}
+.score-mid{color:var(--cyan)}
+.score-low{color:var(--amber)}
+.compare-header-bar{display:flex;align-items:center;gap:8px;margin-bottom:24px}
+.compare-header-bar h1{font-size:24px;font-weight:800;color:var(--text);margin:0}
+.compare-badge{display:inline-block;padding:3px 10px;border-radius:20px;
+  font-size:11px;font-weight:600;letter-spacing:.03em;
+  background:rgba(34,211,238,.1);color:var(--cyan);border:1px solid rgba(34,211,238,.2)}
+.result-actions{display:flex;gap:10px;margin-top:20px}
+.btn-back{padding:10px 20px;border-radius:8px;font-size:13px;font-weight:600;
+  background:var(--card-bg);color:var(--text);border:1px solid var(--border);
+  cursor:pointer;transition:all .2s}
+.btn-back:hover{background:var(--surface);border-color:var(--muted)}
+.btn-share{padding:10px 20px;border-radius:8px;font-size:13px;font-weight:600;
+  background:rgba(59,130,246,.12);color:var(--blue);border:1px solid rgba(59,130,246,.2);
+  cursor:pointer;transition:all .2s}
+.btn-share:hover{background:rgba(59,130,246,.2)}
+.compare-legend{display:flex;align-items:center;gap:16px;margin-top:16px;flex-wrap:wrap}
+.compare-legend .dot{display:inline-block;width:8px;height:8px;border-radius:50%}
+.compare-legend .dot.green{background:var(--green)}
+.compare-legend span{font-size:12px;color:var(--muted)}
+.compare-check{color:var(--green)}
+
+/* ─── Live Feed ─── */
+.live-dot{display:inline-block;width:8px;height:8px;border-radius:50%;
+  background:var(--green);margin-right:8px;animation:pulse 2s infinite}
+
+/* ─── Bookmark ─── */
+.bookmark-btn{position:absolute;top:12px;left:12px;z-index:5;background:none;border:none;
+  font-size:16px;cursor:pointer;color:var(--dim);transition:all .2s;padding:4px}
+.bookmark-btn:hover{color:var(--amber);transform:scale(1.2)}
+.bookmark-btn.saved{color:var(--amber)}
+.watch-btn{position:absolute;top:36px;left:12px;z-index:5;background:none;border:none;
+  font-size:12px;cursor:pointer;color:var(--dim);transition:all .2s;padding:4px}
+.watch-btn:hover{color:var(--cyan);transform:scale(1.2)}
+.watch-btn.watching{color:var(--cyan)}
+.saved-section{margin-top:24px}
+/* ─── Feed ─── */
+.feed-list{display:flex;flex-direction:column;gap:8px}
+.feed-item{display:flex;align-items:flex-start;gap:12px;padding:12px 16px;
+  background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius-sm);
+  transition:all .2s;font-size:13px}
+.feed-item:hover{border-color:rgba(16,185,129,.2)}
+.feed-item .fi-time{font-size:10px;color:var(--dim);white-space:nowrap;min-width:55px;padding-top:2px}
+.feed-item .fi-icon{font-size:14px;flex-shrink:0}
+.feed-item .fi-text{color:var(--muted);line-height:1.5}
+.feed-item .fi-text strong{color:var(--text)}
+
+/* ─── Trust Badges ─── */
+.trust-badge{display:inline-flex;align-items:center;gap:4px;font-size:10px;
+  padding:3px 8px;border-radius:4px;font-weight:500}
+.trust-verified{background:var(--green-dim);color:var(--green)}
+.trust-fresh{background:rgba(16,185,129,.06);color:var(--green)}
+.trust-stale{background:var(--amber-dim);color:var(--amber)}
+
+/* ─── Stack Builder ─── */
+.stack-builder{max-width:1320px;margin:0 auto;padding:32px 24px}
+.stack-inner{background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);
+  padding:32px}
+.stack-inner h2{font-size:20px;font-weight:700;margin-bottom:8px}
+.stack-inner .stack-sub{font-size:14px;color:var(--muted);margin-bottom:24px}
+.stack-slots{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-bottom:24px}
+.stack-slot{background:rgba(255,255,255,.02);border:2px dashed var(--border);
+  border-radius:var(--radius-sm);padding:16px;text-align:center;cursor:pointer;transition:all .2s}
+.stack-slot:hover{border-color:var(--green)}
+.stack-slot.filled{border-style:solid;border-color:rgba(16,185,129,.3);background:var(--green-dim)}
+.stack-slot .ss-label{font-size:10px;text-transform:uppercase;color:var(--dim);letter-spacing:.05em;margin-bottom:6px}
+.stack-slot .ss-value{font-size:14px;font-weight:600;color:var(--text)}
+.stack-result{background:rgba(16,185,129,.06);border:1px solid rgba(16,185,129,.2);
+  border-radius:var(--radius-sm);padding:20px;display:none}
+.stack-result.active{display:block}
+.stack-result h3{font-size:16px;color:var(--green);margin-bottom:12px}
+.stack-metrics{display:flex;gap:20px;flex-wrap:wrap}
+.stack-metric{text-align:center}
+.stack-metric .sm-val{font-size:20px;font-weight:700;color:var(--text)}
+.stack-metric .sm-lbl{font-size:11px;color:var(--dim);margin-top:2px}
+
+/* ─── Container ─── */
+.container{max-width:1320px;margin:0 auto;padding:0 24px}
+
+/* ─── Product Detail ─── */
+.detail{max-width:900px;margin:0 auto}
+.detail-header{margin-bottom:32px}
+.detail-header h1{font-size:32px;font-weight:800;color:#f1f5f9;letter-spacing:-.01em}
+.detail-header .tagline{font-size:16px;color:var(--muted);margin-top:8px}
+.detail-meta{display:flex;gap:12px;flex-wrap:wrap;margin-top:16px}
+.meta-item{display:flex;align-items:center;gap:6px;padding:8px 14px;
+  background:var(--card-bg);border-radius:var(--radius-sm);font-size:12.5px;color:var(--muted);
+  border:1px solid var(--border)}
+.meta-item strong{color:var(--text)}
+.meta-item.green{color:var(--green);border-color:rgba(16,185,129,.2)}
+.detail-body{margin-top:28px;font-size:16px;line-height:1.8;color:#b0b8c8}
+.detail-body h2{font-size:22px;font-weight:700;color:var(--text);margin:28px 0 10px}
+.detail-body h3{font-size:18px;font-weight:600;color:#d0d8e8;margin:22px 0 8px}
+.detail-body p{margin-bottom:14px}
+.detail-body ul,.detail-body ol{padding-left:22px;margin-bottom:14px}
+.detail-body li{margin-bottom:5px}
+.detail-body code{background:rgba(255,255,255,.06);padding:2px 6px;border-radius:4px;font-size:12.5px;color:var(--green)}
+.detail-body strong{color:var(--text)}
+.detail-body table{width:100%;border-collapse:collapse;margin:14px 0}
+.detail-body td,.detail-body th{border:1px solid var(--border);padding:10px 14px;text-align:left;font-size:12.5px}
+.detail-body th{background:rgba(255,255,255,.03);color:var(--green);font-weight:600}
+
+.breadcrumbs{font-size:12.5px;color:var(--dim);margin-bottom:20px}
+.breadcrumbs a{color:var(--muted);transition:color .2s}
+.breadcrumbs a:hover{color:var(--green)}
+.breadcrumbs span{color:var(--text)}
+
+.detail-image{width:100px;height:100px;border-radius:var(--radius);overflow:hidden;flex-shrink:0;
+  background:rgba(255,255,255,.03);display:flex;align-items:center;justify-content:center}
+.detail-image img{width:100%;height:100%;object-fit:contain;padding:10px}
+
+.rating{color:var(--amber);font-weight:700;font-size:13px}
+.price{font-weight:600;color:var(--green)}
+
+.stats-mini{display:flex;gap:16px;flex-wrap:wrap;margin:20px 0}
+.stat-mini{background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius-sm);
+  padding:14px 20px;text-align:center;min-width:100px}
+.stat-mini .sv{font-size:22px;font-weight:800;color:var(--green)}
+.stat-mini .sl{font-size:10px;color:var(--dim);text-transform:uppercase;letter-spacing:.04em;margin-top:2px}
+
+.empty{text-align:center;padding:80px 24px}
+.empty h2{font-size:24px;color:var(--muted);margin-bottom:8px}
+.empty p{color:var(--dim)}
+
+footer{text-align:center;padding:40px 24px;color:#1e2233;font-size:12px;
+  border-top:1px solid var(--border);margin-top:40px}
+footer a{color:var(--green)}
+
+/* ─── Search ─── */
+.search-bar{max-width:1320px;margin:0 auto;padding:0 24px 24px}
+.search-bar input{width:100%;padding:12px 18px;border-radius:var(--radius-sm);
+  background:var(--card-bg);border:1px solid var(--border);
+  color:var(--text);font-size:14px;outline:none;transition:border-color .2s}
+.search-bar input:focus{border-color:var(--green)}
+.search-bar input::placeholder{color:var(--dim)}
+
+@media(max-width:768px){
+  .hero h1{font-size:28px}
+  .grid,.featured-grid{grid-template-columns:1fr}
+  .mega-nav{overflow-x:auto;gap:2px;-webkit-overflow-scrolling:touch}
+  .mega-nav a,.mega-nav .nav-section{font-size:11px;padding:5px 8px}
+  .nav-sep{display:none}
+  .auth-stat{min-width:80px;padding:12px 10px}
+  .auth-stat .n{font-size:18px}
+  .auth-stat .l{font-size:9px}
+  .hero-metrics{gap:6px}
+  .hero-metric{min-width:70px;padding:8px 12px}
+  .hero-metric .val{font-size:16px}
+  .hero-metric .lbl{font-size:9px}
+  .compare-bar{left:16px;right:16px;transform:none;border-radius:var(--radius-sm)}
+  .section-hd{padding:8px 16px 12px}
+  .filters-bar,.grid,.featured,.auth-bar{padding-left:16px;padding-right:16px}
+  .header-inner{padding:12px 16px}
+}</style>
+<script type="application/ld+json">
+{}
+</script>
+</head>
+<body>
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+(function(m,e,t,r,i,k,a){
+m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+m[i].l=1*new Date();
+for (var j=0;j<document.scripts.length;j++){if(document.scripts[j].src===r){return;}}
+k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+})(window,document,'script','https://mc.yandex.ru/metrika/tag.js?id=109327472','ym');
+ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",referrer:document.referrer,url:location.href,accurateTrackBounce:true,trackLinks:true});
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/109327472" style="position:absolute;left:-9999px" alt=""/></div></noscript>
+<!-- /Yandex.Metrika counter -->
+<header>
+  <div class="header-inner">
+    <a href="/" class="logo"><span class="logo-dot"></span>Qantcore</a>
+    <div class="mega-nav">
+      <a href="/" class="">Каталог</a>
+      <span class="nav-sep"></span>
+      <a href="/catalog/comparison/" class="">Сравнения</a>
+      <span class="nav-sep"></span>
+      <a href="/benchmarks/">Бенчмарки</a>
+      <span class="nav-sep"></span>
+      <a href="/benchmarks/">Рейтинг</a>
+      <span class="nav-sep"></span>
+      <a href="/catalog/product/">Локальный AI</a>
+      <span class="nav-sep"></span>
+      <a href="/development/" class="">Разработка</a>
+      <span class="nav-sep"></span>
+      <a href="/multi-agent/" class="">Мульти-агенты</a>
+      <span class="nav-sep"></span>
+      <a href="/guides/" class="nav-featured active">📖 Гайды</a>
+      <span class="nav-sep"></span>
+      <a href="/catalog/review/" class="">Обзоры</a>
+      <span class="nav-sep"></span>
+      <a href="/methodology/" class="">Методология</a>
+      <span class="nav-sep"></span>
+      <a href="/workspace/" class="">Кабинет</a>
+      <span class="nav-sep"></span>
+      <a href="/company/">Компании</a>
+      <span class="nav-sep"></span>
+      <a href="#saved" class="saved-nav" style="display:none">★ Избранное</a>
+    </div>
+  </div>
+</header>
+<div class="hero" style="padding:48px 24px 36px">
+  <div class="terminal-grid"></div>
+  <div class="tagline">DEPLOYMENT GUIDES</div>
+  <h1>Гайды по <span class="accent">AI-агентам</span></h1>
+  <p class="sub">Практические руководства: от локального запуска LLM до построения multi-agent систем. С кодом, схемами и сравнениями.</p>
+  <div class="hero-metrics">
+    <div class="hero-metric"><div class="val">30</div><div class="lbl">Гайдов</div></div>
+    <div class="hero-metric"><div class="val">62</div><div class="lbl">Продуктов</div></div>
+    <div class="hero-metric"><div class="val">RU</div><div class="lbl">Язык</div></div>
+    <div class="hero-metric"><div class="val">⚡</div><div class="lbl">С кодом</div></div>
+  </div>
+</div>
+
+<div class="container detail">
+  <div style="display:grid;gap:20px;margin-bottom:40px">
+    <div class="guide-card" id="local-llm">
+      <div style="display:flex;align-items:flex-start;gap:16px">
+        <div style="font-size:32px;flex-shrink:0;width:48px;text-align:center">🦙</div>
+        <div style="flex:1">
+          <h3>Как запустить мощную LLM локально</h3>
+          <p style="color:var(--cyan);font-size:12px;margin-bottom:4px">Ollama + Open WebUI + GPU за 15 минут</p>
+          <p>Локальный запуск Llama 4, DeepSeek, Qwen и других моделей. Без облака, без API-ключей, полный контроль над данными.</p>
+          <div style="margin-top:8px">
+            <span class="tag tag-beginner">Базовый</span>
+            <span style="font-size:11px;color:var(--dim);margin-left:8px">⏱ 10 мин</span>
+          </div>
+          <details style="margin-top:12px">
+            <summary style="color:var(--green);font-size:12px;cursor:pointer;font-weight:600">📋 Показать код / инструкцию</summary>
+            <div style="background:#0d1117;border-radius:8px;padding:14px;margin-top:8px;overflow-x:auto;font-family:'SF Mono',Monaco,monospace;font-size:11px;line-height:1.7" class="code-block">
+              <span style="color:var(--dim)"># 1. Установка Ollama</span>
+<span style="color:#79c0ff">curl</span> -fsSL https://ollama.com/install.sh | sh
+
+<span style="color:var(--dim)"># 2. Загрузка модели</span>
+ollama pull deepseek-r1:8b    <span style="color:var(--dim)"># ~5 ГБ, работает на CPU</span>
+ollama pull llama3.2:latest   <span style="color:var(--dim)"># ~2 ГБ, легковесная</span>
+
+<span style="color:var(--dim)"># 3. Проверка</span>
+ollama run deepseek-r1:8b <span style="color:#a5d6ff">"Объясни принцип attention в трансформерах"</span>
+
+<span style="color:var(--dim)"># 4. Веб-интерфейс (опционально)</span>
+docker run -d -p 3000:8080 \
+  -v open-webui:/app/backend/data \
+  --name open-webui \
+  ghcr.io/open-webui/open-webui:main
+
+<span style="color:var(--dim)"># Готово! http://localhost:3000</span>
+            </div>
+            <button onclick="navigator.clipboard.writeText(this.parentElement.querySelector('.code-block').textContent)" style="margin-top:8px;background:var(--card-bg);border:1px solid var(--border);color:var(--muted);padding:4px 12px;border-radius:4px;font-size:10px;cursor:pointer">📋 Копировать</button>
+          </details>
+        </div>
+      </div>
+    </div><div class="guide-card" id="cursor-vs-copilot">
+      <div style="display:flex;align-items:flex-start;gap:16px">
+        <div style="font-size:32px;flex-shrink:0;width:48px;text-align:center">⚔️</div>
+        <div style="flex:1">
+          <h3>Cursor vs Copilot: что выбрать в 2026</h3>
+          <p style="color:var(--cyan);font-size:12px;margin-bottom:4px">Сравнение двух лидеров AI-разработки</p>
+          <p>Практическое сравнение: скорость автодополнения, понимание кодовой базы, работа с PR, цена.</p>
+          <div style="margin-top:8px">
+            <span class="tag tag-beginner">Базовый</span>
+            <span style="font-size:11px;color:var(--dim);margin-left:8px">⏱ 7 мин</span>
+          </div>
+          <details style="margin-top:12px">
+            <summary style="color:var(--green);font-size:12px;cursor:pointer;font-weight:600">📋 Показать код / инструкцию</summary>
+            <div style="background:#0d1117;border-radius:8px;padding:14px;margin-top:8px;overflow-x:auto;font-family:'SF Mono',Monaco,monospace;font-size:11px;line-height:1.7" class="code-block">
+              <span style="color:var(--dim)"># Критерии сравнения</span>
+<span style="color:#79c0ff">| Критерий            | Cursor          | GitHub Copilot    |</span>
+<span style="color:#79c0ff">|---------------------|-----------------|-------------------|</span>
+<span style="color:#79c0ff">| Автодополнение      | Tab (мгновенно) | Ghost text        |</span>
+<span style="color:#79c0ff">| Понимание базы      | Вся кодобаза    | Открытые файлы    |</span>
+<span style="color:#79c0ff">| PR / рефакторинг    | Composer (beta) | Copilot Workspace |</span>
+<span style="color:#79c0ff">| Цена                | $20/мес         | $10-39/мес        |</span>
+<span style="color:#79c0ff">| Вердикт соло        | 🏆 Cursor       |                   |</span>
+<span style="color:#79c0ff">| Вердикт команда     |                 | 🏆 Copilot        |</span>
+
+<span style="color:var(--dim)"># Соло-разработчик &rarr; Cursor</span>
+<span style="color:var(--dim)"># Команда с GitHub &rarr; Copilot</span>
+<span style="color:var(--dim)"># Бюджетный &rarr; Continue (бесплатно)</span>
+            </div>
+            <button onclick="navigator.clipboard.writeText(this.parentElement.querySelector('.code-block').textContent)" style="margin-top:8px;background:var(--card-bg);border:1px solid var(--border);color:var(--muted);padding:4px 12px;border-radius:4px;font-size:10px;cursor:pointer">📋 Копировать</button>
+          </details>
+        </div>
+      </div>
+    </div><div class="guide-card" id="crewai-quickstart">
+      <div style="display:flex;align-items:flex-start;gap:16px">
+        <div style="font-size:32px;flex-shrink:0;width:48px;text-align:center">👥</div>
+        <div style="flex:1">
+          <h3>Multi-agent система на CrewAI за 10 минут</h3>
+          <p style="color:var(--cyan);font-size:12px;margin-bottom:4px">От идеи до работающей команды агентов</p>
+          <p>Создайте команду из трёх AI-агентов: Researcher ищет данные, Analyst обрабатывает, Writer пишет статью.</p>
+          <div style="margin-top:8px">
+            <span class="tag tag-intermediate">Средний</span>
+            <span style="font-size:11px;color:var(--dim);margin-left:8px">⏱ 10 мин</span>
+          </div>
+          <details style="margin-top:12px">
+            <summary style="color:var(--green);font-size:12px;cursor:pointer;font-weight:600">📋 Показать код / инструкцию</summary>
+            <div style="background:#0d1117;border-radius:8px;padding:14px;margin-top:8px;overflow-x:auto;font-family:'SF Mono',Monaco,monospace;font-size:11px;line-height:1.7" class="code-block">
+              <span style="color:var(--dim)"># pip install crewai crewai-tools</span>
+<span style="color:#ff7b72">from</span> <span style="color:#d2a8ff">crewai</span> <span style="color:#ff7b72">import</span> Agent, Task, Crew, Process
+<span style="color:#ff7b72">from</span> <span style="color:#d2a8ff">crewai_tools</span> <span style="color:#ff7b72">import</span> SerperDevTool
+
+<span style="color:var(--dim)"># Инструмент для поиска</span>
+<span style="color:#79c0ff">search_tool</span> = SerperDevTool()
+
+<span style="color:var(--dim)"># Агент-исследователь</span>
+<span style="color:#79c0ff">researcher</span> = Agent(
+    role=<span style="color:#a5d6ff">"Senior Researcher"</span>,
+    goal=<span style="color:#a5d6ff">"Find latest AI agent benchmarks"</span>,
+    tools=[search_tool],
+    verbose=<span style="color:#ff7b72">True</span>
+)
+
+<span style="color:var(--dim)"># Агент-аналитик</span>
+<span style="color:#79c0ff">analyst</span> = Agent(
+    role=<span style="color:#a5d6ff">"Data Analyst"</span>,
+    goal=<span style="color:#a5d6ff">"Extract key metrics from research"</span>,
+    verbose=<span style="color:#ff7b72">True</span>
+)
+
+<span style="color:var(--dim)"># Задачи</span>
+<span style="color:#79c0ff">task1</span> = Task(description=<span style="color:#a5d6ff">"Find top 5 AI coding agents"</span>, agent=researcher)
+<span style="color:#79c0ff">task2</span> = Task(description=<span style="color:#a5d6ff">"Compare their QantScores"</span>, agent=analyst)
+
+<span style="color:var(--dim)"># Запуск!</span>
+<span style="color:#79c0ff">crew</span> = Crew(agents=[researcher, analyst], tasks=[task1, task2])
+<span style="color:#79c0ff">result</span> = crew.kickoff()
+<span style="color:#7ee787">print</span>(result)
+            </div>
+            <button onclick="navigator.clipboard.writeText(this.parentElement.querySelector('.code-block').textContent)" style="margin-top:8px;background:var(--card-bg);border:1px solid var(--border);color:var(--muted);padding:4px 12px;border-radius:4px;font-size:10px;cursor:pointer">📋 Копировать</button>
+          </details>
+        </div>
+      </div>
+    </div><div class="guide-card" id="mcp-claude">
+      <div style="display:flex;align-items:flex-start;gap:16px">
+        <div style="font-size:32px;flex-shrink:0;width:48px;text-align:center">🔌</div>
+        <div style="flex:1">
+          <h3>Как подключить MCP-сервер к Claude Desktop</h3>
+          <p style="color:var(--cyan);font-size:12px;margin-bottom:4px">Расширяем Claude инструментами через Model Context Protocol</p>
+          <p>Настройка MCP-сервера для файловой системы, браузера и GitHub. Claude получает доступ к инструментам через открытый протокол Anthropic.</p>
+          <div style="margin-top:8px">
+            <span class="tag tag-intermediate">Средний</span>
+            <span style="font-size:11px;color:var(--dim);margin-left:8px">⏱ 8 мин</span>
+          </div>
+          <details style="margin-top:12px">
+            <summary style="color:var(--green);font-size:12px;cursor:pointer;font-weight:600">📋 Показать код / инструкцию</summary>
+            <div style="background:#0d1117;border-radius:8px;padding:14px;margin-top:8px;overflow-x:auto;font-family:'SF Mono',Monaco,monospace;font-size:11px;line-height:1.7" class="code-block">
+              <span style="color:var(--dim)"># claude_desktop_config.json</span>
+<span style="color:#79c0ff">{{</span>
+  <span style="color:#a5d6ff">"mcpServers"</span>: <span style="color:#79c0ff">{{</span>
+    <span style="color:#a5d6ff">"filesystem"</span>: <span style="color:#79c0ff">{{</span>
+      <span style="color:#a5d6ff">"command"</span>: <span style="color:#a5d6ff">"npx"</span>,
+      <span style="color:#a5d6ff">"args"</span>: [<span style="color:#a5d6ff">"-y"</span>, <span style="color:#a5d6ff">"@modelcontextprotocol/server-filesystem"</span>,
+             <span style="color:#a5d6ff">"/Users/you/projects"</span>]
+    <span style="color:#79c0ff">}}</span>,
+    <span style="color:#a5d6ff">"github"</span>: <span style="color:#79c0ff">{{</span>
+      <span style="color:#a5d6ff">"command"</span>: <span style="color:#a5d6ff">"npx"</span>,
+      <span style="color:#a5d6ff">"args"</span>: [<span style="color:#a5d6ff">"-y"</span>, <span style="color:#a5d6ff">"@modelcontextprotocol/server-github"</span>],
+      <span style="color:#a5d6ff">"env"</span>: <span style="color:#79c0ff">{{</span>
+        <span style="color:#a5d6ff">"GITHUB_PERSONAL_ACCESS_TOKEN"</span>: <span style="color:#a5d6ff">"ghp_..."</span>
+      <span style="color:#79c0ff">}}</span>
+    <span style="color:#79c0ff">}}</span>
+  <span style="color:#79c0ff">}}</span>
+<span style="color:#79c0ff">}}</span>
+
+<span style="color:var(--dim)"># После перезапуска Claude Desktop:</span>
+<span style="color:var(--dim)"># Claude видит файлы проекта и GitHub issues как инструменты</span>
+            </div>
+            <button onclick="navigator.clipboard.writeText(this.parentElement.querySelector('.code-block').textContent)" style="margin-top:8px;background:var(--card-bg);border:1px solid var(--border);color:var(--muted);padding:4px 12px;border-radius:4px;font-size:10px;cursor:pointer">📋 Копировать</button>
+          </details>
+        </div>
+      </div>
+    </div><div class="guide-card" id="ai-stack-startup">
+      <div style="display:flex;align-items:flex-start;gap:16px">
+        <div style="font-size:32px;flex-shrink:0;width:48px;text-align:center">🚀</div>
+        <div style="flex:1">
+          <h3>AI-стек для стартапа: минимальный набор</h3>
+          <p style="color:var(--cyan);font-size:12px;margin-bottom:4px">Какие AI-инструменты реально нужны на старте</p>
+          <p>Практичный гайд: что купить, что запустить локально, а что не нужно вообще. Бюджетная сборка для команды 3-5 разработчиков.</p>
+          <div style="margin-top:8px">
+            <span class="tag tag-beginner">Базовый</span>
+            <span style="font-size:11px;color:var(--dim);margin-left:8px">⏱ 6 мин</span>
+          </div>
+          <details style="margin-top:12px">
+            <summary style="color:var(--green);font-size:12px;cursor:pointer;font-weight:600">📋 Показать код / инструкцию</summary>
+            <div style="background:#0d1117;border-radius:8px;padding:14px;margin-top:8px;overflow-x:auto;font-family:'SF Mono',Monaco,monospace;font-size:11px;line-height:1.7" class="code-block">
+              <span style="color:var(--dim)"># Минимальный AI-стек (~$60/мес на человека)</span>
+
+<span style="color:#79c0ff">🖱️ IDE:</span> Cursor Pro <span style="color:var(--dim)">($20/мес)</span>
+<span style="color:#79c0ff">🦙 Локальные LLM:</span> Ollama <span style="color:var(--green)">Бесплатно</span>
+<span style="color:#79c0ff">🤖 Автономные задачи:</span> Claude Code <span style="color:var(--dim)">(API, ~$10/мес)</span>
+<span style="color:#79c0ff">🔍 Код-ревью:</span> Continue + свой ключ <span style="color:var(--green)">Бесплатно</span>
+<span style="color:#79c0ff">👥 Оркестрация:</span> CrewAI <span style="color:var(--green)">Open Source</span>
+<span style="color:#79c0ff">📊 Мониторинг:</span> LangSmith <span style="color:var(--dim)">(Free tier)</span>
+
+<span style="color:var(--dim)"># Не нужно на старте:</span>
+<span style="color:var(--dim)">❌ Devin ($500/мес) — избыточно</span>
+<span style="color:var(--dim)">❌ GitHub Copilot Enterprise ($39/чел)</span>
+<span style="color:var(--dim)">❌ LangGraph — пока нет сложной логики</span>
+
+<span style="color:var(--dim)"># Итого: $60/мес x 5 = $300/мес на команду</span>
+            </div>
+            <button onclick="navigator.clipboard.writeText(this.parentElement.querySelector('.code-block').textContent)" style="margin-top:8px;background:var(--card-bg);border:1px solid var(--border);color:var(--muted);padding:4px 12px;border-radius:4px;font-size:10px;cursor:pointer">📋 Копировать</button>
+          </details>
+        </div>
+      </div>
+    </div><div class="guide-card" id="advanced-claude-code">
+      <div style="display:flex;align-items:flex-start;gap:16px">
+        <div style="font-size:32px;flex-shrink:0;width:48px;text-align:center">🧠</div>
+        <div style="flex:1">
+          <h3>Продвинутый Claude Code</h3>
+          <p style="color:var(--cyan);font-size:12px;margin-bottom:4px">CLAUDE.md, хуки, многофайловый рефакторинг</p>
+          <p>Продвинутые приёмы: CLAUDE.md для контекста проекта, хуки для автопроверок, multi-file рефакторинг.</p>
+          <div style="margin-top:8px">
+            <span class="tag tag-advanced">Продвинутый</span>
+            <span style="font-size:11px;color:var(--dim);margin-left:8px">⏱ 12 мин</span>
+          </div>
+          <details style="margin-top:12px">
+            <summary style="color:var(--green);font-size:12px;cursor:pointer;font-weight:600">📋 Показать код / инструкцию</summary>
+            <div style="background:#0d1117;border-radius:8px;padding:14px;margin-top:8px;overflow-x:auto;font-family:'SF Mono',Monaco,monospace;font-size:11px;line-height:1.7" class="code-block">
+              <span><b>CLAUDE.md</b> — контекст проекта, который Claude читает автоматически. Хуки: .claude/hooks/on-save.sh для автопроверок после каждого сохранения. Интеграция с GitHub Actions.</span>
+            </div>
+            <button onclick="navigator.clipboard.writeText(this.parentElement.querySelector('.code-block').textContent)" style="margin-top:8px;background:var(--card-bg);border:1px solid var(--border);color:var(--muted);padding:4px 12px;border-radius:4px;font-size:10px;cursor:pointer">📋 Копировать</button>
+          </details>
+        </div>
+      </div>
+    </div><div class="guide-card" id="agentic-rag">
+      <div style="display:flex;align-items:flex-start;gap:16px">
+        <div style="font-size:32px;flex-shrink:0;width:48px;text-align:center">📚</div>
+        <div style="flex:1">
+          <h3>Agentic RAG: поиск с агентной логикой</h3>
+          <p style="color:var(--cyan);font-size:12px;margin-bottom:4px">Агент планирует поиск, переформулирует запросы и итерирует</p>
+          <p>Обычный RAG отвечает на один запрос. Agentic RAG планирует поиск, переформулирует запросы, проверяет результаты и итерирует. Хайп #1 в AI-твитере.</p>
+          <div style="margin-top:8px">
+            <span class="tag tag-advanced">Продвинутый</span>
+            <span style="font-size:11px;color:var(--dim);margin-left:8px">⏱ 14 мин</span>
+          </div>
+          <details style="margin-top:12px">
+            <summary style="color:var(--green);font-size:12px;cursor:pointer;font-weight:600">📋 Показать код / инструкцию</summary>
+            <div style="background:#0d1117;border-radius:8px;padding:14px;margin-top:8px;overflow-x:auto;font-family:'SF Mono',Monaco,monospace;font-size:11px;line-height:1.7" class="code-block">
+              <span><b>LangGraph Agentic RAG:</b> агент сам решает что искать. plan_search() → multi_search() → evaluate(). Если уверенность < 0.7 — возврат на plan_search() для повторного поиска с новыми запросами.</span>
+            </div>
+            <button onclick="navigator.clipboard.writeText(this.parentElement.querySelector('.code-block').textContent)" style="margin-top:8px;background:var(--card-bg);border:1px solid var(--border);color:var(--muted);padding:4px 12px;border-radius:4px;font-size:10px;cursor:pointer">📋 Копировать</button>
+          </details>
+        </div>
+      </div>
+    </div><div class="guide-card" id="agent-evaluation">
+      <div style="display:flex;align-items:flex-start;gap:16px">
+        <div style="font-size:32px;flex-shrink:0;width:48px;text-align:center">📊</div>
+        <div style="flex:1">
+          <h3>Как оценивать AI-агентов</h3>
+          <p style="color:var(--cyan);font-size:12px;margin-bottom:4px">Метрики, бенчмарки и чек-лист</p>
+          <p>Что измерять: точность кода, скорость, стоимость на задачу, качество PR. Практическая система оценки.</p>
+          <div style="margin-top:8px">
+            <span class="tag tag-intermediate">Средний</span>
+            <span style="font-size:11px;color:var(--dim);margin-left:8px">⏱ 10 мин</span>
+          </div>
+          <details style="margin-top:12px">
+            <summary style="color:var(--green);font-size:12px;cursor:pointer;font-weight:600">📋 Показать код / инструкцию</summary>
+            <div style="background:#0d1117;border-radius:8px;padding:14px;margin-top:8px;overflow-x:auto;font-family:'SF Mono',Monaco,monospace;font-size:11px;line-height:1.7" class="code-block">
+              <span><b>3 критерия:</b> Точность (pass@1 на 10 задачах), Скорость (сек/задачу), Стоимость ($/задачу). Сравнение: Claude Code (87%, $0.12), Cursor (82%, $0), Aider+o3 (84%, $0.45). Качество PR оценивает человек.</span>
+            </div>
+            <button onclick="navigator.clipboard.writeText(this.parentElement.querySelector('.code-block').textContent)" style="margin-top:8px;background:var(--card-bg);border:1px solid var(--border);color:var(--muted);padding:4px 12px;border-radius:4px;font-size:10px;cursor:pointer">📋 Копировать</button>
+          </details>
+        </div>
+      </div>
+    </div><div class="guide-card" id="agent-memory">
+      <div style="display:flex;align-items:flex-start;gap:16px">
+        <div style="font-size:32px;flex-shrink:0;width:48px;text-align:center">🧠</div>
+        <div style="flex:1">
+          <h3>Память AI-агентов: архитектура</h3>
+          <p style="color:var(--cyan);font-size:12px;margin-bottom:4px">3 типа памяти: рабочая, сессионная, долгосрочная</p>
+          <p>Разбор трёх типов памяти: Working (контекстное окно LLM), Short-term (сессия агента), Long-term (векторная БД с ChromaDB).</p>
+          <div style="margin-top:8px">
+            <span class="tag tag-advanced">Продвинутый</span>
+            <span style="font-size:11px;color:var(--dim);margin-left:8px">⏱ 11 мин</span>
+          </div>
+          <details style="margin-top:12px">
+            <summary style="color:var(--green);font-size:12px;cursor:pointer;font-weight:600">📋 Показать код / инструкцию</summary>
+            <div style="background:#0d1117;border-radius:8px;padding:14px;margin-top:8px;overflow-x:auto;font-family:'SF Mono',Monaco,monospace;font-size:11px;line-height:1.7" class="code-block">
+              <span><b>3 уровня:</b> 1) Working Memory — контекстное окно LLM (последние N сообщений). 2) Session Memory — dict с фактами текущей сессии (files_modified, errors_seen). 3) Long-term Memory — ChromaDB с векторным поиском, автоматически ищет релевантные факты перед каждым запросом.</span>
+            </div>
+            <button onclick="navigator.clipboard.writeText(this.parentElement.querySelector('.code-block').textContent)" style="margin-top:8px;background:var(--card-bg);border:1px solid var(--border);color:var(--muted);padding:4px 12px;border-radius:4px;font-size:10px;cursor:pointer">📋 Копировать</button>
+          </details>
+        </div>
+      </div>
+    </div><div class="guide-card" id="build-mcp-server">
+      <div style="display:flex;align-items:flex-start;gap:16px">
+        <div style="font-size:32px;flex-shrink:0;width:48px;text-align:center">🔧</div>
+        <div style="flex:1">
+          <h3>Создаём свой MCP-сервер за 20 минут</h3>
+          <p style="color:var(--cyan);font-size:12px;margin-bottom:4px">Python MCP-сервер с инструментами для БД и API</p>
+          <p>Хайповая тема в AI-твитере: все пишут MCP-серверы. Создайте свой сервер на Python с инструментами для базы данных. Работает с Claude Desktop, Cursor, Continue.</p>
+          <div style="margin-top:8px">
+            <span class="tag tag-intermediate">Средний</span>
+            <span style="font-size:11px;color:var(--dim);margin-left:8px">⏱ 20 мин</span>
+          </div>
+          <details style="margin-top:12px">
+            <summary style="color:var(--green);font-size:12px;cursor:pointer;font-weight:600">📋 Показать код / инструкцию</summary>
+            <div style="background:#0d1117;border-radius:8px;padding:14px;margin-top:8px;overflow-x:auto;font-family:'SF Mono',Monaco,monospace;font-size:11px;line-height:1.7" class="code-block">
+              <span><b>mcp SDK:</b> Server("my-tools"), @server.list_tools() возвращает [types.Tool(...)], @server.call_tool() обрабатывает вызовы. Запуск через stdio. Добавить в claude_desktop_config.json: {"my-tools": {"command": "python", "args": ["server.py"]}}</span>
+            </div>
+            <button onclick="navigator.clipboard.writeText(this.parentElement.querySelector('.code-block').textContent)" style="margin-top:8px;background:var(--card-bg);border:1px solid var(--border);color:var(--muted);padding:4px 12px;border-radius:4px;font-size:10px;cursor:pointer">📋 Копировать</button>
+          </details>
+        </div>
+      </div>
+    </div><div class="guide-card" id="agent-observability">
+      <div style="display:flex;align-items:flex-start;gap:16px">
+        <div style="font-size:32px;flex-shrink:0;width:48px;text-align:center">🔬</div>
+        <div style="flex:1">
+          <h3>Observability для AI-агентов</h3>
+          <p style="color:var(--cyan);font-size:12px;margin-bottom:4px">LangSmith: трассировка, отладка, мониторинг</p>
+          <p>Агенты недетерминированы — нужно видеть что они делают. @traceable для каждого шага агента.</p>
+          <div style="margin-top:8px">
+            <span class="tag tag-intermediate">Средний</span>
+            <span style="font-size:11px;color:var(--dim);margin-left:8px">⏱ 9 мин</span>
+          </div>
+          <details style="margin-top:12px">
+            <summary style="color:var(--green);font-size:12px;cursor:pointer;font-weight:600">📋 Показать код / инструкцию</summary>
+            <div style="background:#0d1117;border-radius:8px;padding:14px;margin-top:8px;overflow-x:auto;font-family:'SF Mono',Monaco,monospace;font-size:11px;line-height:1.7" class="code-block">
+              <span><b>LangSmith @traceable:</b> оборачиваем каждый шаг агента. Виден полный трейс: каждый вызов LLM, запуск инструмента, время выполнения. Токены и стоимость. Обнаружение петель. LANGCHAIN_TRACING_V2=true</span>
+            </div>
+            <button onclick="navigator.clipboard.writeText(this.parentElement.querySelector('.code-block').textContent)" style="margin-top:8px;background:var(--card-bg);border:1px solid var(--border);color:var(--muted);padding:4px 12px;border-radius:4px;font-size:10px;cursor:pointer">📋 Копировать</button>
+          </details>
+        </div>
+      </div>
+    </div><div class="guide-card" id="opensource-agent-stack">
+      <div style="display:flex;align-items:flex-start;gap:16px">
+        <div style="font-size:32px;flex-shrink:0;width:48px;text-align:center">🏗️</div>
+        <div style="flex:1">
+          <h3>Полностью опенсорсный AI-стек</h3>
+          <p style="color:var(--cyan);font-size:12px;margin-bottom:4px">Ollama + Continue + Aider — ноль подписок</p>
+          <p>Тренд в опенсорс-твитере: полностью локальный стек без подписок. Ollama локально, Continue вместо Cursor Pro, Aider вместо Claude Code.</p>
+          <div style="margin-top:8px">
+            <span class="tag tag-intermediate">Средний</span>
+            <span style="font-size:11px;color:var(--dim);margin-left:8px">⏱ 8 мин</span>
+          </div>
+          <details style="margin-top:12px">
+            <summary style="color:var(--green);font-size:12px;cursor:pointer;font-weight:600">📋 Показать код / инструкцию</summary>
+            <div style="background:#0d1117;border-radius:8px;padding:14px;margin-top:8px;overflow-x:auto;font-family:'SF Mono',Monaco,monospace;font-size:11px;line-height:1.7" class="code-block">
+              <span><b>$0/мес стек:</b> Ollama + Qwen 2.5 Coder 32B (локально), Continue (IDE-агент, бесплатно), Aider (PR-агент, бесплатно), Langfuse (мониторинг, бесплатно). Требует GPU 24+ GB VRAM. Полный контроль над данными.</span>
+            </div>
+            <button onclick="navigator.clipboard.writeText(this.parentElement.querySelector('.code-block').textContent)" style="margin-top:8px;background:var(--card-bg);border:1px solid var(--border);color:var(--muted);padding:4px 12px;border-radius:4px;font-size:10px;cursor:pointer">📋 Копировать</button>
+          </details>
+        </div>
+      </div>
+    </div><div class="guide-card" id="fine-tuning-vs-prompt">
+      <div style="display:flex;align-items:flex-start;gap:16px">
+        <div style="font-size:32px;flex-shrink:0;width:48px;text-align:center">🎯</div>
+        <div style="flex:1">
+          <h3>Fine-tuning vs Prompt Engineering: что выбрать</h3>
+          <p style="color:var(--cyan);font-size:12px;margin-bottom:4px">Когда учить модель, а когда писать промпты</p>
+          <p>Сравнение двух подходов к адаптации LLM: дообучение на своих данных против цепочек промптов. С кодом на Unsloth и DSPy.</p>
+          <div style="margin-top:8px">
+            <span class="tag tag-intermediate">Средний</span>
+            <span style="font-size:11px;color:var(--dim);margin-left:8px">⏱ 10 мин</span>
+          </div>
+          <details style="margin-top:12px">
+            <summary style="color:var(--green);font-size:12px;cursor:pointer;font-weight:600">📋 Показать код / инструкцию</summary>
+            <div style="background:#0d1117;border-radius:8px;padding:14px;margin-top:8px;overflow-x:auto;font-family:'SF Mono',Monaco,monospace;font-size:11px;line-height:1.7" class="code-block">
+              <span><b>Fine-tuning (Unsloth):</b> QLoRA 4-bit, 500 примеров, 30 мин на T4 GPU. 92% точность на доменных задачах. <b>Prompt Engineering (DSPy):</b> автооптимизация промптов, 0 GPU, 85% точность. <b>Вывод:</b> до 1000 примеров — DSPy. >5000 примеров — fine-tuning. Для юридических/медицинских — только FT.</span>
+            </div>
+            <button onclick="navigator.clipboard.writeText(this.parentElement.querySelector('.code-block').textContent)" style="margin-top:8px;background:var(--card-bg);border:1px solid var(--border);color:var(--muted);padding:4px 12px;border-radius:4px;font-size:10px;cursor:pointer">📋 Копировать</button>
+          </details>
+        </div>
+      </div>
+    </div><div class="guide-card" id="agent-security">
+      <div style="display:flex;align-items:flex-start;gap:16px">
+        <div style="font-size:32px;flex-shrink:0;width:48px;text-align:center">🛡️</div>
+        <div style="flex:1">
+          <h3>Безопасность AI-агентов: гайд</h3>
+          <p style="color:var(--cyan);font-size:12px;margin-bottom:4px">Prompt injection, sandboxing, аудит действий</p>
+          <p>Агенты с доступом к файловой системе и сети — вектор атаки. Защита: sandbox-контейнеры, валидация вывода, human-in-the-loop для опасных операций.</p>
+          <div style="margin-top:8px">
+            <span class="tag tag-advanced">Продвинутый</span>
+            <span style="font-size:11px;color:var(--dim);margin-left:8px">⏱ 12 мин</span>
+          </div>
+          <details style="margin-top:12px">
+            <summary style="color:var(--green);font-size:12px;cursor:pointer;font-weight:600">📋 Показать код / инструкцию</summary>
+            <div style="background:#0d1117;border-radius:8px;padding:14px;margin-top:8px;overflow-x:auto;font-family:'SF Mono',Monaco,monospace;font-size:11px;line-height:1.7" class="code-block">
+              <span><b>3 уровня защиты:</b> 1) Песочница — Docker контейнер с read-only FS, no network. 2) Валидация — проверка вывода агента перед записью (regex, schema). 3) Аудит — лог всех действий агента, алерт на rm -rf / drop table. <b>Инструменты:</b> Guardrails AI (output validation), Invariant (anomaly detection), Docker SDK (sandbox). Правило: любой агент с shell-доступом → Docker sandbox.</span>
+            </div>
+            <button onclick="navigator.clipboard.writeText(this.parentElement.querySelector('.code-block').textContent)" style="margin-top:8px;background:var(--card-bg);border:1px solid var(--border);color:var(--muted);padding:4px 12px;border-radius:4px;font-size:10px;cursor:pointer">📋 Копировать</button>
+          </details>
+        </div>
+      </div>
+    </div><div class="guide-card" id="telegram-agent-bot">
+      <div style="display:flex;align-items:flex-start;gap:16px">
+        <div style="font-size:32px;flex-shrink:0;width:48px;text-align:center">🤖</div>
+        <div style="flex:1">
+          <h3>AI-агент как Telegram-бот за час</h3>
+          <p style="color:var(--cyan);font-size:12px;margin-bottom:4px">FastAPI + python-telegram-bot + Claude API</p>
+          <p>Деплой AI-агента в продакшен через Telegram. Пользователь пишет задачу → агент выполняет в Docker-песочнице → присылает результат.</p>
+          <div style="margin-top:8px">
+            <span class="tag tag-intermediate">Средний</span>
+            <span style="font-size:11px;color:var(--dim);margin-left:8px">⏱ 15 мин</span>
+          </div>
+          <details style="margin-top:12px">
+            <summary style="color:var(--green);font-size:12px;cursor:pointer;font-weight:600">📋 Показать код / инструкцию</summary>
+            <div style="background:#0d1117;border-radius:8px;padding:14px;margin-top:8px;overflow-x:auto;font-family:'SF Mono',Monaco,monospace;font-size:11px;line-height:1.7" class="code-block">
+              <span><b>Архитектура:</b> Telegram Bot API → FastAPI webhook → Agent (Claude API + tools) → Docker sandbox. <b>python-telegram-bot</b> — асинхронный хендлер. <b>Tools:</b> read_file, write_file, run_bash (в контейнере). <b>Деплой:</b> systemd-сервис на VPS за $5/мес. <b>Безопасность:</b> каждый пользователь → свой Docker контейнер с memory limit 512MB и timeout 60s.</span>
+            </div>
+            <button onclick="navigator.clipboard.writeText(this.parentElement.querySelector('.code-block').textContent)" style="margin-top:8px;background:var(--card-bg);border:1px solid var(--border);color:var(--muted);padding:4px 12px;border-radius:4px;font-size:10px;cursor:pointer">📋 Копировать</button>
+          </details>
+        </div>
+      </div>
+    </div><div class="guide-card" id="langchain-vs-llamaindex">
+      <div style="display:flex;align-items:flex-start;gap:16px">
+        <div style="font-size:32px;flex-shrink:0;width:48px;text-align:center">⚖️</div>
+        <div style="flex:1">
+          <h3>LangChain vs LlamaIndex vs CrewAI</h3>
+          <p style="color:var(--cyan);font-size:12px;margin-bottom:4px">Сравнение трёх фреймворков для AI-приложений</p>
+          <p>LangChain — универсальный конструктор, LlamaIndex — для RAG и поиска, CrewAI — для multi-agent систем. Что выбрать под задачу.</p>
+          <div style="margin-top:8px">
+            <span class="tag tag-intermediate">Средний</span>
+            <span style="font-size:11px;color:var(--dim);margin-left:8px">⏱ 9 мин</span>
+          </div>
+          <details style="margin-top:12px">
+            <summary style="color:var(--green);font-size:12px;cursor:pointer;font-weight:600">📋 Показать код / инструкцию</summary>
+            <div style="background:#0d1117;border-radius:8px;padding:14px;margin-top:8px;overflow-x:auto;font-family:'SF Mono',Monaco,monospace;font-size:11px;line-height:1.7" class="code-block">
+              <span><b>LangChain:</b> 95K ⭐, универсальный (chains, agents, tools). Минус: сложный, breaking changes. <b>LlamaIndex:</b> 38K ⭐, лучший для RAG (ингestion, парсинг, индексы). Минус: только поиск. <b>CrewAI:</b> 22K ⭐, multi-agent оркестрация. Минус: молодой, мало интеграций. <b>Вывод:</b> RAG → LlamaIndex. Сложный пайплайн → LangChain. Команда агентов → CrewAI. Можно комбинировать: LlamaIndex для retrieval + CrewAI для оркестрации.</span>
+            </div>
+            <button onclick="navigator.clipboard.writeText(this.parentElement.querySelector('.code-block').textContent)" style="margin-top:8px;background:var(--card-bg);border:1px solid var(--border);color:var(--muted);padding:4px 12px;border-radius:4px;font-size:10px;cursor:pointer">📋 Копировать</button>
+          </details>
+        </div>
+      </div>
+    </div><div class="guide-card" id="agent-code-review">
+      <div style="display:flex;align-items:flex-start;gap:16px">
+        <div style="font-size:32px;flex-shrink:0;width:48px;text-align:center">🔍</div>
+        <div style="flex:1">
+          <h3>Автоматическое код-ревью с AI-агентом</h3>
+          <p style="color:var(--cyan);font-size:12px;margin-bottom:4px">Continue + локальная модель для ревью PR</p>
+          <p>Настройка AI-ревьюера для GitHub PR. Бесплатно, локально, без отправки кода в облако. Интеграция с GitHub Actions.</p>
+          <div style="margin-top:8px">
+            <span class="tag tag-beginner">Базовый</span>
+            <span style="font-size:11px;color:var(--dim);margin-left:8px">⏱ 8 мин</span>
+          </div>
+          <details style="margin-top:12px">
+            <summary style="color:var(--green);font-size:12px;cursor:pointer;font-weight:600">📋 Показать код / инструкцию</summary>
+            <div style="background:#0d1117;border-radius:8px;padding:14px;margin-top:8px;overflow-x:auto;font-family:'SF Mono',Monaco,monospace;font-size:11px;line-height:1.7" class="code-block">
+              <span><b>Стек:</b> Continue (IDE-агент) + Ollama (локальная LLM) + GitHub Actions. <b>Настройка Continue config.json:</b> модель deepseek-coder-v2, system prompt с чек-листом ревью (безопасность, читаемость, тесты, перформанс). <b>GitHub Action:</b> триггер на PR, запускает continue review, постит комментарий. <b>Стоимость:</b> $0 (всё локально). <b>Точность:</b> 78% detection rate на баги, 85% на style violations. Лучше CodeRabbit для приватных проектов (данные не уходят в облако).</span>
+            </div>
+            <button onclick="navigator.clipboard.writeText(this.parentElement.querySelector('.code-block').textContent)" style="margin-top:8px;background:var(--card-bg);border:1px solid var(--border);color:var(--muted);padding:4px 12px;border-radius:4px;font-size:10px;cursor:pointer">📋 Копировать</button>
+          </details>
+        </div>
+      </div>
+    </div><div class="guide-card" id="agent-data-science">
+      <div style="display:flex;align-items:flex-start;gap:16px">
+        <div style="font-size:32px;flex-shrink:0;width:48px;text-align:center">📈</div>
+        <div style="flex:1">
+          <h3>AI-агенты для Data Science</h3>
+          <p style="color:var(--cyan);font-size:12px;margin-bottom:4px">Jupyter AI, Copilot для pandas, автодашборды</p>
+          <p>Как AI-агенты ускоряют работу с данными: генерация кода pandas/matplotlib, автокорреляция, дашборды одной командой.</p>
+          <div style="margin-top:8px">
+            <span class="tag tag-intermediate">Средний</span>
+            <span style="font-size:11px;color:var(--dim);margin-left:8px">⏱ 11 мин</span>
+          </div>
+          <details style="margin-top:12px">
+            <summary style="color:var(--green);font-size:12px;cursor:pointer;font-weight:600">📋 Показать код / инструкцию</summary>
+            <div style="background:#0d1117;border-radius:8px;padding:14px;margin-top:8px;overflow-x:auto;font-family:'SF Mono',Monaco,monospace;font-size:11px;line-height:1.7" class="code-block">
+              <span><b>Инструменты:</b> Jupyter AI (%%ai магия — SQL, viz, stats), Cursor (pandas автодополнение), Vizro (auto-dashboards). <b>Пример:</b> загрузили CSV → агент строит корреляционную матрицу, находит аномалии, генерирует дашборд с графиками. <b>Prompt:</b> «Проанализируй sales.csv: выбросы, тренды, топ-5 инсайтов. Выведи как дашборд». <b>Время:</b> с часа до 5 минут. <b>Риски:</b> галлюцинации в статистике — всегда проверять p-values и доверительные интервалы вручную.</span>
+            </div>
+            <button onclick="navigator.clipboard.writeText(this.parentElement.querySelector('.code-block').textContent)" style="margin-top:8px;background:var(--card-bg);border:1px solid var(--border);color:var(--muted);padding:4px 12px;border-radius:4px;font-size:10px;cursor:pointer">📋 Копировать</button>
+          </details>
+        </div>
+      </div>
+    </div><div class="guide-card" id="agent-safety">
+      <div style="display:flex;align-items:flex-start;gap:16px">
+        <div style="font-size:32px;flex-shrink:0;width:48px;text-align:center">🛡️</div>
+        <div style="flex:1">
+          <h3>Безопасность AI-агентов: полный гайд</h3>
+          <p style="color:var(--cyan);font-size:12px;margin-bottom:4px">Sandbox-контейнеры, валидация вывода, HITL</p>
+          <p>Агенты с доступом к файловой системе и сети — вектор атаки. Защита: Docker-песочницы, валидация вывода, human-in-the-loop для опасных операций. Практические примеры.</p>
+          <div style="margin-top:8px">
+            <span class="tag tag-advanced">Продвинутый</span>
+            <span style="font-size:11px;color:var(--dim);margin-left:8px">⏱ 14 мин</span>
+          </div>
+          <details style="margin-top:12px">
+            <summary style="color:var(--green);font-size:12px;cursor:pointer;font-weight:600">📋 Показать код / инструкцию</summary>
+            <div style="background:#0d1117;border-radius:8px;padding:14px;margin-top:8px;overflow-x:auto;font-family:'SF Mono',Monaco,monospace;font-size:11px;line-height:1.7" class="code-block">
+              <span><b>4 уровня защиты:</b> 1) Docker sandbox: <code>--read-only --network=none --tmpfs /tmp</code>, 2) Валидация вывода через Pydantic схему перед исполнением, 3) Бюджет токенов: max 500K/задача, 4) HITL для delete/deploy/payment. <b>Prompt injection защита:</b> системный промпт выше пользовательского, разделители ###USER###, валидация-агентом после каждого шага. <b>Пример:</b> агент не может выполнить <code>rm -rf /</code> — Docker overlay fs защищает хост.</span>
+            </div>
+            <button onclick="navigator.clipboard.writeText(this.parentElement.querySelector('.code-block').textContent)" style="margin-top:8px;background:var(--card-bg);border:1px solid var(--border);color:var(--muted);padding:4px 12px;border-radius:4px;font-size:10px;cursor:pointer">📋 Копировать</button>
+          </details>
+        </div>
+      </div>
+    </div><div class="guide-card" id="agent-telegram-bot">
+      <div style="display:flex;align-items:flex-start;gap:16px">
+        <div style="font-size:32px;flex-shrink:0;width:48px;text-align:center">🤖</div>
+        <div style="flex:1">
+          <h3>AI-агент как Telegram-бот за час</h3>
+          <p style="color:var(--cyan);font-size:12px;margin-bottom:4px">Деплой агента в продакшен через Telegram</p>
+          <p>Деплой AI-агента в продакшен через Telegram. Пользователь пишет задачу → агент выполняет в Docker-песочнице → присылает результат в чат. Полный код на Python.</p>
+          <div style="margin-top:8px">
+            <span class="tag tag-intermediate">Средний</span>
+            <span style="font-size:11px;color:var(--dim);margin-left:8px">⏱ 20 мин</span>
+          </div>
+          <details style="margin-top:12px">
+            <summary style="color:var(--green);font-size:12px;cursor:pointer;font-weight:600">📋 Показать код / инструкцию</summary>
+            <div style="background:#0d1117;border-radius:8px;padding:14px;margin-top:8px;overflow-x:auto;font-family:'SF Mono',Monaco,monospace;font-size:11px;line-height:1.7" class="code-block">
+              <span><b>Стек:</b> python-telegram-bot + CrewAI + Docker SDK. <b>Архитектура:</b> Telegram webhook → handler создаёт задачу → Orchestrator запускает агентов в Docker-контейнерах → результат возвращается в чат. <b>Код:</b> <code>bot = Application.builder().token(TOKEN).build(); bot.add_handler(MessageHandler(callback))</code>. Каждый запрос пользователя — изолированный Docker-контейнер с лимитом по CPU/RAM.</span>
+            </div>
+            <button onclick="navigator.clipboard.writeText(this.parentElement.querySelector('.code-block').textContent)" style="margin-top:8px;background:var(--card-bg);border:1px solid var(--border);color:var(--muted);padding:4px 12px;border-radius:4px;font-size:10px;cursor:pointer">📋 Копировать</button>
+          </details>
+        </div>
+      </div>
+    </div><div class="guide-card" id="agent-memory-system">
+      <div style="display:flex;align-items:flex-start;gap:16px">
+        <div style="font-size:32px;flex-shrink:0;width:48px;text-align:center">🧠</div>
+        <div style="flex:1">
+          <h3>Память AI-агентов: от контекста до долговременной</h3>
+          <p style="color:var(--cyan);font-size:12px;margin-bottom:4px">Working → Short-term → Long-term память</p>
+          <p>Три уровня памяти: Working (контекстное окно), Short-term (Redis/Postgres), Long-term (ChromaDB + эмбеддинги). Практическая архитектура с кодом.</p>
+          <div style="margin-top:8px">
+            <span class="tag tag-advanced">Продвинутый</span>
+            <span style="font-size:11px;color:var(--dim);margin-left:8px">⏱ 15 мин</span>
+          </div>
+          <details style="margin-top:12px">
+            <summary style="color:var(--green);font-size:12px;cursor:pointer;font-weight:600">📋 Показать код / инструкцию</summary>
+            <div style="background:#0d1117;border-radius:8px;padding:14px;margin-top:8px;overflow-x:auto;font-family:'SF Mono',Monaco,monospace;font-size:11px;line-height:1.7" class="code-block">
+              <span><b>Level 1 — Working:</b> промпт-инжиниринг, <code>messages[-20:]</code> для удержания релевантного контекста. <b>Level 2 — Short-term:</b> Redis для текущей сессии: <code>r.set(f'agent:{agent_id}:state', json.dumps(state), ex=3600)</code>. <b>Level 3 — Long-term:</b> ChromaDB с эмбеддингами: <code>collection.add(documents=[result], metadatas=[{'task': task}])</code> → при новом запросе ищем похожие: <code>collection.query(query_texts=[query], n_results=5)</code>.</span>
+            </div>
+            <button onclick="navigator.clipboard.writeText(this.parentElement.querySelector('.code-block').textContent)" style="margin-top:8px;background:var(--card-bg);border:1px solid var(--border);color:var(--muted);padding:4px 12px;border-radius:4px;font-size:10px;cursor:pointer">📋 Копировать</button>
+          </details>
+        </div>
+      </div>
+    </div><div class="guide-card" id="langchain-vs-llamaindex">
+      <div style="display:flex;align-items:flex-start;gap:16px">
+        <div style="font-size:32px;flex-shrink:0;width:48px;text-align:center">🦜</div>
+        <div style="flex:1">
+          <h3>LangChain vs LlamaIndex vs CrewAI: что выбрать</h3>
+          <p style="color:var(--cyan);font-size:12px;margin-bottom:4px">Сравнение трёх фреймворков для AI-приложений</p>
+          <p>LangChain — универсальный конструктор, LlamaIndex — для RAG и поиска, CrewAI — для multi-agent систем. Матрица выбора по задаче.</p>
+          <div style="margin-top:8px">
+            <span class="tag tag-beginner">Базовый</span>
+            <span style="font-size:11px;color:var(--dim);margin-left:8px">⏱ 9 мин</span>
+          </div>
+          <details style="margin-top:12px">
+            <summary style="color:var(--green);font-size:12px;cursor:pointer;font-weight:600">📋 Показать код / инструкцию</summary>
+            <div style="background:#0d1117;border-radius:8px;padding:14px;margin-top:8px;overflow-x:auto;font-family:'SF Mono',Monaco,monospace;font-size:11px;line-height:1.7" class="code-block">
+              <span><b>LangChain:</b> универсальный фреймворк. Тысячи интеграций (LLM, векторы, тулы). Подходит: сложные цепочки, продакшен-приложения. Минус: много абстракций. <b>LlamaIndex:</b> заточен под RAG. Индексация документов, гибридный поиск, agentic RAG. Подходит: вопрос-ответ по документам, knowledge base. <b>CrewAI:</b> multi-agent orchestration. Роли, задачи, последовательное выполнение. Подходит: автоматизация рабочих процессов. <b>Правило:</b> RAG над документами → LlamaIndex. Multi-agent workflow → CrewAI. Сложное кастомное приложение → LangChain.</span>
+            </div>
+            <button onclick="navigator.clipboard.writeText(this.parentElement.querySelector('.code-block').textContent)" style="margin-top:8px;background:var(--card-bg);border:1px solid var(--border);color:var(--muted);padding:4px 12px;border-radius:4px;font-size:10px;cursor:pointer">📋 Копировать</button>
+          </details>
+        </div>
+      </div>
+    </div><div class="guide-card" id="fine-tuning-vs-prompt">
+      <div style="display:flex;align-items:flex-start;gap:16px">
+        <div style="font-size:32px;flex-shrink:0;width:48px;text-align:center">🎯</div>
+        <div style="flex:1">
+          <h3>Fine-tuning vs Prompt Engineering: что выбрать</h3>
+          <p style="color:var(--cyan);font-size:12px;margin-bottom:4px">Дообучение модели против цепочек промптов</p>
+          <p>Сравнение двух подходов к адаптации LLM: дообучение на своих данных против цепочек промптов. Практические примеры с Unsloth и DSPy.</p>
+          <div style="margin-top:8px">
+            <span class="tag tag-advanced">Продвинутый</span>
+            <span style="font-size:11px;color:var(--dim);margin-left:8px">⏱ 12 мин</span>
+          </div>
+          <details style="margin-top:12px">
+            <summary style="color:var(--green);font-size:12px;cursor:pointer;font-weight:600">📋 Показать код / инструкцию</summary>
+            <div style="background:#0d1117;border-radius:8px;padding:14px;margin-top:8px;overflow-x:auto;font-family:'SF Mono',Monaco,monospace;font-size:11px;line-height:1.7" class="code-block">
+              <span><b>Fine-tuning (Unsloth):</b> <code>model = FastLanguageModel.from_pretrained('unsloth/llama-3-8b'); model = FastLanguageModel.get_peft_model(model, r=16)</code>. Нужно: 50-1000 примеров, 1-4 часа на A100. Даёт: стиль, формат, domain knowledge. Минус: модель устаревает. <b>Prompt Engineering (DSPy):</b> <code>dspy.ChainOfThought('context, question → answer')</code>. Нужно: 10-50 примеров, оптимизация промптов. Даёт: гибкость, быстрые итерации. <b>Когда что:</b> стабильный домен → fine-tuning. Быстрые эксперименты → промпты. Идеально: fine-tuned модель + DSPy промпты.</span>
+            </div>
+            <button onclick="navigator.clipboard.writeText(this.parentElement.querySelector('.code-block').textContent)" style="margin-top:8px;background:var(--card-bg);border:1px solid var(--border);color:var(--muted);padding:4px 12px;border-radius:4px;font-size:10px;cursor:pointer">📋 Копировать</button>
+          </details>
+        </div>
+      </div>
+    </div><div class="guide-card" id="agent-framework-comparison">
+      <div style="display:flex;align-items:flex-start;gap:16px">
+        <div style="font-size:32px;flex-shrink:0;width:48px;text-align:center">⚖️</div>
+        <div style="flex:1">
+          <h3>Фреймворки для агентов: полное сравнение 2026</h3>
+          <p style="color:var(--cyan);font-size:12px;margin-bottom:4px">CrewAI, AutoGen, LangGraph, Swarm, MetaGPT, ChatDev</p>
+          <p>Детальное сравнение 6 фреймворков для создания AI-агентов: архитектура, сложность, latency, экосистема. С примерами кода для каждого.</p>
+          <div style="margin-top:8px">
+            <span class="tag tag-intermediate">Средний</span>
+            <span style="font-size:11px;color:var(--dim);margin-left:8px">⏱ 13 мин</span>
+          </div>
+          <details style="margin-top:12px">
+            <summary style="color:var(--green);font-size:12px;cursor:pointer;font-weight:600">📋 Показать код / инструкцию</summary>
+            <div style="background:#0d1117;border-radius:8px;padding:14px;margin-top:8px;overflow-x:auto;font-family:'SF Mono',Monaco,monospace;font-size:11px;line-height:1.7" class="code-block">
+              <span><b>CrewAI (⭐14K):</b> Ролевая модель. YAML-конфигурация. Идеален для прототипов. <code>Agent(role='Researcher', goal='Find data', tools=[search_tool])</code>. <b>AutoGen (⭐32K):</b> Диалоговая модель. Supervisor LLM маршрутизирует. Native HITL. <b>LangGraph (⭐6K):</b> Graph state machine. Циклы, branching, checkpointing. Самый гибкий. <b>OpenAI Swarm (⭐18K):</b> Лёгкий handoff. Stateless. Быстрый старт. <b>MetaGPT (⭐48K):</b> Имитация компании с ролями CEO/CTO. Генерирует документацию. <b>ChatDev (⭐26K):</b> Виртуальная софтверная компания. Полный цикл разработки.</span>
+            </div>
+            <button onclick="navigator.clipboard.writeText(this.parentElement.querySelector('.code-block').textContent)" style="margin-top:8px;background:var(--card-bg);border:1px solid var(--border);color:var(--muted);padding:4px 12px;border-radius:4px;font-size:10px;cursor:pointer">📋 Копировать</button>
+          </details>
+        </div>
+      </div>
+    </div><div class="guide-card" id="agent-evaluation">
+      <div style="display:flex;align-items:flex-start;gap:16px">
+        <div style="font-size:32px;flex-shrink:0;width:48px;text-align:center">📊</div>
+        <div style="flex:1">
+          <h3>Как оценивать AI-агентов: метрики и бенчмарки</h3>
+          <p style="color:var(--cyan);font-size:12px;margin-bottom:4px">Точность кода, скорость, стоимость, качество PR</p>
+          <p>Что измерять: точность кода (pass@k), скорость ответа, стоимость на задачу, качество PR. Практическая система оценки с примерами.</p>
+          <div style="margin-top:8px">
+            <span class="tag tag-advanced">Продвинутый</span>
+            <span style="font-size:11px;color:var(--dim);margin-left:8px">⏱ 11 мин</span>
+          </div>
+          <details style="margin-top:12px">
+            <summary style="color:var(--green);font-size:12px;cursor:pointer;font-weight:600">📋 Показать код / инструкцию</summary>
+            <div style="background:#0d1117;border-radius:8px;padding:14px;margin-top:8px;overflow-x:auto;font-family:'SF Mono',Monaco,monospace;font-size:11px;line-height:1.7" class="code-block">
+              <span><b>5 ключевых метрик:</b> 1) Code Correctness: pass@1 на SWE-bench/HumanEval. 2) Task Success Rate: % задач, решённых с первой попытки без вмешательства. 3) Latency: P50/P95 время до первого токена + общая длительность. 4) Cost per Task: суммарный расход токенов × цена. 5) PR Quality: merge rate, количество правок ревьюера. <b>Формула:</b> <code>QantScore = 0.3×Correctness + 0.2×Success + 0.15×Latency + 0.15×Cost + 0.2×PRQuality</code>. Все метрики нормализованы 0-100.</span>
+            </div>
+            <button onclick="navigator.clipboard.writeText(this.parentElement.querySelector('.code-block').textContent)" style="margin-top:8px;background:var(--card-bg);border:1px solid var(--border);color:var(--muted);padding:4px 12px;border-radius:4px;font-size:10px;cursor:pointer">📋 Копировать</button>
+          </details>
+        </div>
+      </div>
+    </div><div class="guide-card" id="opensource-agent-stack">
+      <div style="display:flex;align-items:flex-start;gap:16px">
+        <div style="font-size:32px;flex-shrink:0;width:48px;text-align:center">🔓</div>
+        <div style="flex:1">
+          <h3>Полностью опенсорсный AI-стек разработчика</h3>
+          <p style="color:var(--cyan);font-size:12px;margin-bottom:4px">Ollama, Continue, Aider, Open WebUI — без подписок</p>
+          <p>Локальный стек без подписок: Ollama для моделей, Continue вместо Cursor Pro, Aider вместо Claude Code. Полный контроль над данными.</p>
+          <div style="margin-top:8px">
+            <span class="tag tag-beginner">Базовый</span>
+            <span style="font-size:11px;color:var(--dim);margin-left:8px">⏱ 10 мин</span>
+          </div>
+          <details style="margin-top:12px">
+            <summary style="color:var(--green);font-size:12px;cursor:pointer;font-weight:600">📋 Показать код / инструкцию</summary>
+            <div style="background:#0d1117;border-radius:8px;padding:14px;margin-top:8px;overflow-x:auto;font-family:'SF Mono',Monaco,monospace;font-size:11px;line-height:1.7" class="code-block">
+              <span><b>Компоненты стека:</b> 1) Ollama — запуск моделей локально: llama3.2, deepseek-r1, qwen2.5-coder. 2) Continue.dev — IDE-агент (VS Code/JetBrains), автодополнение + чат. 3) Aider — CLI-агент для автономных задач. 4) Open WebUI — веб-интерфейс для чата. 5) n8n — автоматизация без кода. <b>Стоимость:</b> $0/мес (безлимитно). Нужен только GPU (RTX 3060+ для 7B моделей). <b>Настройка Continue:</b> в config.json указать <code>"provider": "ollama", "model": "qwen2.5-coder:7b"</code>.</span>
+            </div>
+            <button onclick="navigator.clipboard.writeText(this.parentElement.querySelector('.code-block').textContent)" style="margin-top:8px;background:var(--card-bg);border:1px solid var(--border);color:var(--muted);padding:4px 12px;border-radius:4px;font-size:10px;cursor:pointer">📋 Копировать</button>
+          </details>
+        </div>
+      </div>
+    </div><div class="guide-card" id="agentic-rag-deep">
+      <div style="display:flex;align-items:flex-start;gap:16px">
+        <div style="font-size:32px;flex-shrink:0;width:48px;text-align:center">🔗</div>
+        <div style="flex:1">
+          <h3>Agentic RAG: глубокое погружение</h3>
+          <p style="color:var(--cyan);font-size:12px;margin-bottom:4px">Поиск с агентной логикой: план → поиск → проверка → итерация</p>
+          <p>Обычный RAG отвечает на один запрос. Agentic RAG планирует поиск, переформулирует запросы, проверяет результаты и итерирует. Полный туториал с LangGraph.</p>
+          <div style="margin-top:8px">
+            <span class="tag tag-advanced">Продвинутый</span>
+            <span style="font-size:11px;color:var(--dim);margin-left:8px">⏱ 16 мин</span>
+          </div>
+          <details style="margin-top:12px">
+            <summary style="color:var(--green);font-size:12px;cursor:pointer;font-weight:600">📋 Показать код / инструкцию</summary>
+            <div style="background:#0d1117;border-radius:8px;padding:14px;margin-top:8px;overflow-x:auto;font-family:'SF Mono',Monaco,monospace;font-size:11px;line-height:1.7" class="code-block">
+              <span><b>Архитектура Agentic RAG:</b> граф из 5 узлов: Plan (анализирует вопрос → составляет план поиска), Retrieve (ищет в векторной БД + web search), Grade (оценивает релевантность каждого документа), Generate (пишет ответ на основе отфильтрованных документов), Reflect (проверяет полноту → если недостаточно → возврат к Plan). <b>Код LangGraph:</b> <code>graph = StateGraph(AgentState); graph.add_node('plan', plan_node); graph.add_node('retrieve', retrieve_node); graph.add_conditional_edges('grade', should_continue, {'yes': 'generate', 'no': 'plan'})</code>.</span>
+            </div>
+            <button onclick="navigator.clipboard.writeText(this.parentElement.querySelector('.code-block').textContent)" style="margin-top:8px;background:var(--card-bg);border:1px solid var(--border);color:var(--muted);padding:4px 12px;border-radius:4px;font-size:10px;cursor:pointer">📋 Копировать</button>
+          </details>
+        </div>
+      </div>
+    </div><div class="guide-card" id="mcp-server-build">
+      <div style="display:flex;align-items:flex-start;gap:16px">
+        <div style="font-size:32px;flex-shrink:0;width:48px;text-align:center">🔌</div>
+        <div style="flex:1">
+          <h3>Создаём свой MCP-сервер за 20 минут</h3>
+          <p style="color:var(--cyan);font-size:12px;margin-bottom:4px">Python MCP-сервер с инструментами для базы данных</p>
+          <p>Создайте свой MCP-сервер на Python с инструментами для БД. Работает с Claude Desktop, Cursor, Continue. Полный код и деплой.</p>
+          <div style="margin-top:8px">
+            <span class="tag tag-intermediate">Средний</span>
+            <span style="font-size:11px;color:var(--dim);margin-left:8px">⏱ 20 мин</span>
+          </div>
+          <details style="margin-top:12px">
+            <summary style="color:var(--green);font-size:12px;cursor:pointer;font-weight:600">📋 Показать код / инструкцию</summary>
+            <div style="background:#0d1117;border-radius:8px;padding:14px;margin-top:8px;overflow-x:auto;font-family:'SF Mono',Monaco,monospace;font-size:11px;line-height:1.7" class="code-block">
+              <span><b>Шаг 1 — установка:</b> <code>pip install mcp</code>. <b>Шаг 2 — сервер:</b> <code>from mcp.server import Server; server = Server('db-tools'); @server.list_tools() → [Tool('query', 'Run SQL query', {'sql': str})]; @server.call_tool() → execute_query(args['sql'])</code>. <b>Шаг 3 — конфиг Claude Desktop:</b> добавить в <code>claude_desktop_config.json: {'mcpServers': {'db-tools': {'command': 'python', 'args': ['server.py']}}}</code>. <b>Результат:</b> Claude может выполнять SQL-запросы к вашей БД прямо из чата.</span>
+            </div>
+            <button onclick="navigator.clipboard.writeText(this.parentElement.querySelector('.code-block').textContent)" style="margin-top:8px;background:var(--card-bg);border:1px solid var(--border);color:var(--muted);padding:4px 12px;border-radius:4px;font-size:10px;cursor:pointer">📋 Копировать</button>
+          </details>
+        </div>
+      </div>
+    </div><div class="guide-card" id="agent-observability">
+      <div style="display:flex;align-items:flex-start;gap:16px">
+        <div style="font-size:32px;flex-shrink:0;width:48px;text-align:center">🔬</div>
+        <div style="flex:1">
+          <h3>Observability для AI-агентов: tracing и метрики</h3>
+          <p style="color:var(--cyan);font-size:12px;margin-bottom:4px">LangSmith, Arize Phoenix, OpenTelemetry для агентов</p>
+          <p>Агенты недетерминированы — нужно видеть что они делают. Трассировка каждого шага, метрики, алерты. Production-уровень observability.</p>
+          <div style="margin-top:8px">
+            <span class="tag tag-advanced">Продвинутый</span>
+            <span style="font-size:11px;color:var(--dim);margin-left:8px">⏱ 14 мин</span>
+          </div>
+          <details style="margin-top:12px">
+            <summary style="color:var(--green);font-size:12px;cursor:pointer;font-weight:600">📋 Показать код / инструкцию</summary>
+            <div style="background:#0d1117;border-radius:8px;padding:14px;margin-top:8px;overflow-x:auto;font-family:'SF Mono',Monaco,monospace;font-size:11px;line-height:1.7" class="code-block">
+              <span><b>Стек observability:</b> 1) LangSmith — tracing для LangChain/LangGraph. <code>os.environ['LANGCHAIN_TRACING_V2']='true'</code> и все вызовы автоматически трассируются. 2) Arize Phoenix — OpenTelemetry-native. <code>from phoenix.otel import register; register(project_name='my-agents')</code>. 3) Кастомные метрики: <code>@traceable(name='agent_step')</code> декоратор для каждого шага агента. <b>Ключевые алерты:</b> latency > 3× baseline, success rate < 80%, cost per task > бюджет. <b>Дашборд:</b> Grafana + Prometheus для реального времени.</span>
+            </div>
+            <button onclick="navigator.clipboard.writeText(this.parentElement.querySelector('.code-block').textContent)" style="margin-top:8px;background:var(--card-bg);border:1px solid var(--border);color:var(--muted);padding:4px 12px;border-radius:4px;font-size:10px;cursor:pointer">📋 Копировать</button>
+          </details>
+        </div>
+      </div>
+    </div><div class="guide-card" id="agent-deployment-models">
+      <div style="display:flex;align-items:flex-start;gap:16px">
+        <div style="font-size:32px;flex-shrink:0;width:48px;text-align:center">🚢</div>
+        <div style="flex:1">
+          <h3>Модели деплоя AI-агентов: сравнительный обзор</h3>
+          <p style="color:var(--cyan);font-size:12px;margin-bottom:4px">Lambda, EC2, K8s, Modal, Fly.io — что выбрать</p>
+          <p>Сравнение 5 моделей деплоя для AI-агентов: холодный старт, масштабирование, стоимость. Практические рекомендации для каждого сценария.</p>
+          <div style="margin-top:8px">
+            <span class="tag tag-intermediate">Средний</span>
+            <span style="font-size:11px;color:var(--dim);margin-left:8px">⏱ 13 мин</span>
+          </div>
+          <details style="margin-top:12px">
+            <summary style="color:var(--green);font-size:12px;cursor:pointer;font-weight:600">📋 Показать код / инструкцию</summary>
+            <div style="background:#0d1117;border-radius:8px;padding:14px;margin-top:8px;overflow-x:auto;font-family:'SF Mono',Monaco,monospace;font-size:11px;line-height:1.7" class="code-block">
+              <span><b>1) Serverless (Lambda/Cloud Run):</b> холодный старт 500ms-3s, pay-per-use. Идеально: редкие задачи, event-driven. <b>2) EC2/VM:</b> холодный старт 0 (always-on), от $20/мес. Идеально: постоянная нагрузка, GPU-модели. <b>3) Kubernetes:</b> автоскейлинг, canary deploy, от $50/мес (минимальный кластер). Идеально: сложные multi-agent системы. <b>4) Modal:</b> Python-native serverless с GPU. <code>@app.function(gpu='A10G')</code>. Идеально: ML-задачи. <b>5) Fly.io:</b> edge deployment, автоскейлинг. Идеально: low-latency агенты. <b>Правило:</b> прототип → Modal/Fly. Продакшен → K8s. Бюджетно → EC2.</span>
+            </div>
+            <button onclick="navigator.clipboard.writeText(this.parentElement.querySelector('.code-block').textContent)" style="margin-top:8px;background:var(--card-bg);border:1px solid var(--border);color:var(--muted);padding:4px 12px;border-radius:4px;font-size:10px;cursor:pointer">📋 Копировать</button>
+          </details>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div style="margin-top:32px;padding:24px;background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);text-align:center">
+    <h3 style="color:var(--green);font-size:16px;margin-bottom:8px">📬 Хотите больше гайдов?</h3>
+    <p style="color:var(--muted);font-size:13px;margin-bottom:8px">Следите за обновлениями — добавляем новые руководства еженедельно.</p>
+    <p style="color:var(--text);font-size:14px">partners@qantcore.space</p>
+  </div>
+</div>
+
+<style>
+.guide-card{background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);padding:20px 24px;transition:border-color .2s}
+.guide-card:hover{border-color:var(--green)}
+.guide-card h3{font-size:15px;font-weight:700;color:var(--text);margin-bottom:6px}
+.guide-card p{font-size:12px;color:var(--muted);line-height:1.6}
+.guide-card .tag{display:inline-block;padding:2px 8px;border-radius:4px;font-size:10px;font-weight:600;margin-right:4px;margin-top:8px}
+.tag-beginner{background:var(--green-dim);color:var(--green)}
+.tag-intermediate{background:var(--amber-dim);color:var(--amber)}
+.tag-advanced{background:var(--red-dim);color:var(--red)}
+</style>
+<footer>
+  Qantcore &copy; 2026 &mdash; Платформа аналитики AI-агентов &mdash;
+  Обновляется ежедневно &mdash; <a href="https://t.me/nousresearch">@nousresearch</a>
+</footer>
+
+</body>
+</html>

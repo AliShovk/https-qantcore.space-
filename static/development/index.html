@@ -1,0 +1,1428 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Агенты для разработки — Рейтинг coding agents | Qantcore — Аналитика AI-агентов</title>
+<meta name="description" content="Сравнение 20 AI-агентов для кода: категории, матрица выбора, архитектура.">
+<link rel="icon" type="image/svg+xml" href="/images/favicon.svg">
+<link rel="canonical" href="https://qantcore.space/development/">
+<link rel="canonical" href="https://qantcore.space/development/">
+<meta property="og:title" content="AI-агенты для разработки — Qantcore">
+<meta property="og:description" content="Сравнение 20 AI coding agents: рейтинг, категории, воркфлоу.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://qantcore.space/development/">
+<meta property="og:image" content="https://qantcore.space/images/favicon.svg">
+<meta property="og:site_name" content="QantCore">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="AI-агенты для разработки — Qantcore">
+<meta name="twitter:description" content="Сравнение 20 AI coding agents: рейтинг, категории, воркфлоу.">
+<meta name="twitter:image" content="https://qantcore.space/images/favicon.svg">
+<style>*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#0B0F14;--surface:#121821;--card-bg:#171F2B;--border:rgba(255,255,255,.06);
+  --text:#F5F7FA;--muted:#9AA4B2;--dim:#6B7280;
+  --green:#10b981;--green-dim:rgba(16,185,129,.12);
+  --blue:#3B82F6;--blue-dim:rgba(59,130,246,.12);
+  --cyan:#22D3EE;--cyan-dim:rgba(34,211,238,.12);
+  --amber:#f59e0b;--amber-dim:rgba(245,158,11,.12);
+  --red:#ef4444;--red-dim:rgba(239,68,68,.12);
+  --radius:12px;--radius-sm:8px}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
+  background:var(--bg);color:var(--text);min-height:100vh;line-height:1.6;font-size:16px;
+  -webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:#1e2233;border-radius:2px}
+
+/* ─── Header & Mega-Nav ─── */
+header{position:sticky;top:0;z-index:100;backdrop-filter:blur(20px) saturate(180%);
+  background:rgba(11,15,20,.92);border-bottom:1px solid var(--border)}
+.header-inner{max-width:1320px;margin:0 auto;padding:14px 24px;
+  display:flex;align-items:center;justify-content:space-between}
+.logo{font-size:20px;font-weight:800;letter-spacing:-.02em;color:var(--text);
+  display:flex;align-items:center;gap:8px}
+.logo-dot{width:8px;height:8px;border-radius:50%;background:var(--green);
+  box-shadow:0 0 8px rgba(16,185,129,.5);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.mega-nav{display:flex;gap:4px;align-items:center}
+.mega-nav a,.mega-nav .nav-section{font-size:13.5px;color:var(--muted);
+  padding:6px 12px;border-radius:6px;transition:all .2s;font-weight:500;
+  letter-spacing:.01em;white-space:nowrap}
+.mega-nav a:hover{color:var(--text);background:rgba(255,255,255,.04)}
+.mega-nav a.active{color:var(--green);background:var(--green-dim)}
+.nav-sep{width:1px;height:18px;background:var(--border);margin:0 4px}
+.nav-featured{font-size:14px!important;font-weight:700!important;color:var(--green)!important;
+  background:var(--green-dim)!important;padding:8px 16px!important;letter-spacing:.02em}
+
+/* ─── Terminal Grid (hero bg) ─── */
+.terminal-grid{position:absolute;top:0;left:0;right:0;bottom:0;overflow:hidden;pointer-events:none;z-index:0}
+.terminal-grid::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;
+  background-image:
+    linear-gradient(rgba(16,185,129,.04) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(16,185,129,.04) 1px,transparent 1px);
+  background-size:40px 40px;
+  animation:grid-scroll 20s linear infinite}
+@keyframes grid-scroll{0%{transform:translate(0,0)}100%{transform:translate(40px,40px)}}
+.terminal-grid::after{content:'';position:absolute;top:0;left:0;right:0;bottom:0;
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(16,185,129,.1) 0%, transparent 60%),
+    radial-gradient(circle at 20% 80%, rgba(59,130,246,.06) 0%, transparent 40%),
+    radial-gradient(circle at 80% 20%, rgba(16,185,129,.05) 0%, transparent 40%);
+  z-index:1}
+/* ─── Hero ─── */
+.hero{text-align:center;padding:72px 24px 48px;position:relative;overflow:hidden}
+.hero>*{position:relative;z-index:2}
+.hero h1{font-size:clamp(36px,5vw,60px);font-weight:800;letter-spacing:-.03em;
+  line-height:1.15;color:#f1f5f9;max-width:800px;margin:0 auto}
+.hero h1 .accent{color:var(--green)}
+.hero .sub{font-size:17px;color:var(--muted);margin-top:16px;max-width:640px;
+  margin-left:auto;margin-right:auto;line-height:1.6}
+.hero .tagline{font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:var(--green);
+  font-weight:600;margin-bottom:16px}
+.hero-metrics{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:28px}
+.hero-metric{background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius-sm);
+  padding:10px 18px;text-align:center;min-width:100px}
+.hero-metric .val{font-size:24px;font-weight:800;color:var(--green);font-variant-numeric:tabular-nums}
+.hero-metric .lbl{font-size:11px;color:var(--muted);margin-top:2px;text-transform:uppercase;letter-spacing:.06em}
+.hero-cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:32px}
+.cta-primary{padding:12px 28px;border-radius:var(--radius-sm);font-size:14px;font-weight:600;
+  background:var(--green);color:#000;border:none;cursor:pointer;transition:all .2s;
+  letter-spacing:-.01em}
+.cta-primary:hover{filter:brightness(1.15);transform:translateY(-1px)}
+.cta-secondary{padding:12px 28px;border-radius:var(--radius-sm);font-size:14px;font-weight:600;
+  background:transparent;color:var(--text);border:1px solid var(--border);cursor:pointer;
+  transition:all .2s}
+.cta-secondary:hover{border-color:var(--green);color:var(--green)}
+
+/* ─── Enterprise CTA Banner ─── */
+.enterprise-cta{background:linear-gradient(135deg,rgba(16,185,129,.08) 0%,rgba(59,130,246,.04) 100%);
+  border:1px solid rgba(16,185,129,.15);border-radius:var(--radius);margin:40px 0 32px;padding:0}
+.ec-inner{display:flex;align-items:center;justify-content:space-between;gap:32px;padding:32px 36px;flex-wrap:wrap}
+.card-title{font-size:16px;font-weight:600;color:var(--text);margin-bottom:8px;line-height:1.4;
+  display:flex;align-items:flex-start;gap:6px}
+.agent-icon{font-size:18px;flex-shrink:0;line-height:1.2}
+.ec-text h3{font-size:20px;font-weight:700;color:var(--text);margin-bottom:8px}
+.ec-text p{font-size:14px;color:var(--muted);line-height:1.6;max-width:480px}
+.ec-actions{display:flex;gap:12px;flex-shrink:0;flex-wrap:wrap}
+
+/* ─── Authority Bar ─── */
+.auth-bar{max-width:1320px;margin:0 auto 0;padding:0 24px 32px}
+.auth-inner{display:flex;gap:0;background:var(--card-bg);border:1px solid var(--border);
+  border-radius:var(--radius);overflow:hidden;flex-wrap:wrap}
+.auth-stat{flex:1;min-width:130px;padding:18px 20px;text-align:center;
+  border-right:1px solid var(--border);position:relative}
+.auth-stat:last-child{border-right:none}
+.auth-stat .n{font-size:28px;font-weight:800;color:var(--green);font-variant-numeric:tabular-nums;
+  letter-spacing:-.02em}
+.auth-stat .n.amber{color:var(--amber)}
+.auth-stat .l{font-size:11px;color:var(--muted);margin-top:3px;text-transform:uppercase;letter-spacing:.05em}
+.auth-stat .dot{display:inline-block;width:6px;height:6px;border-radius:50%;
+  background:var(--green);margin-right:6px;animation:pulse 2s infinite}
+
+/* ─── Section Headers ─── */
+.section-hd{max-width:1320px;margin:0 auto;padding:8px 24px 16px;
+  display:flex;align-items:center;justify-content:space-between}
+.section-hd h2{font-size:20px;font-weight:700;color:var(--text);letter-spacing:-.01em}
+.section-hd .see-all{font-size:13px;color:var(--green);font-weight:500}
+.section-hd .see-all:hover{text-decoration:underline}
+
+/* ─── Filters ─── */
+.filters-bar{max-width:1320px;margin:0 auto;padding:0 24px 20px;display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.filters-bar .label{font-size:12px;color:var(--dim);text-transform:uppercase;letter-spacing:.05em;margin-right:4px}
+.filter-btn{padding:6px 14px;border-radius:20px;font-size:12px;font-weight:500;
+  border:1px solid var(--border);background:transparent;
+  color:var(--muted);cursor:pointer;transition:all .2s;white-space:nowrap}
+.filter-btn:hover,.filter-btn.active{border-color:var(--green);color:var(--green);
+  background:var(--green-dim)}
+.filter-btn .count{font-size:10px;color:var(--dim);margin-left:4px}
+
+/* ─── Grid & Cards ─── */
+.grid{max-width:1320px;margin:0 auto;padding:0 24px 32px;
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
+
+.card{background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);
+  padding:20px;transition:all .2s;position:relative;display:flex;flex-direction:column}
+.card:hover{border-color:rgba(16,185,129,.25);transform:translateY(-2px);
+  box-shadow:0 8px 30px rgba(0,0,0,.4)}
+.card-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:12px}
+.card-icon{width:40px;height:40px;border-radius:var(--radius-sm);background:rgba(255,255,255,.04);
+  display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;overflow:hidden}
+.card-icon img{width:100%;height:100%;object-fit:contain;padding:6px}
+.card-badge{padding:2px 8px;border-radius:4px;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.04em}
+.badge-agent{background:var(--blue-dim);color:var(--blue)}
+.badge-framework{background:var(--green-dim);color:var(--green)}
+.badge-platform{background:var(--amber-dim);color:var(--amber)}
+.badge-model{background:var(--red-dim);color:var(--red)}
+.badge-infra{background:rgba(139,92,246,.12);color:#8b5cf6}
+.card-desc{font-size:13.5px;color:var(--muted);line-height:1.5;display:-webkit-box;
+  -webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;margin-bottom:12px;flex:1}
+/* Intelligence Panel */
+.card-panel{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:auto}
+.panel-item{background:rgba(255,255,255,.02);border-radius:6px;padding:8px 10px}
+.panel-item .pv{font-size:16px;font-weight:700;color:var(--text);font-variant-numeric:tabular-nums}
+.panel-item .pv.green{color:var(--green)}
+.panel-item .pv.amber{color:var(--amber)}
+.panel-item .pl{font-size:10px;color:var(--dim);margin-top:1px;text-transform:uppercase;letter-spacing:.03em}
+.card-compare{position:absolute;top:12px;right:12px;z-index:5}
+.card-compare input[type=checkbox]{appearance:none;width:18px;height:18px;border-radius:4px;
+  border:2px solid var(--dim);cursor:pointer;transition:all .2s;position:relative}
+.card-compare input[type=checkbox]:checked{border-color:var(--green);background:var(--green)}
+.card-compare input[type=checkbox]:checked::after{content:'✓';position:absolute;
+  top:-1px;left:2px;color:#000;font-size:13px;font-weight:700}
+.card-trust{display:flex;gap:12px;margin-top:8px;font-size:10px;color:var(--dim)}
+.card-trust span{display:flex;align-items:center;gap:3px}
+
+/* ─── Compare Bar ─── */
+.compare-bar{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);
+  background:var(--card-bg);border:1px solid var(--green);
+  border-radius:var(--radius);padding:12px 20px;display:none;align-items:center;gap:16px;
+  z-index:200;box-shadow:0 8px 40px rgba(0,0,0,.6);backdrop-filter:blur(16px)}
+.compare-bar.active{display:flex}
+.compare-bar .sel{font-size:13px;color:var(--muted)}
+.compare-bar .sel strong{color:var(--green)}
+.compare-btn{padding:8px 20px;border-radius:6px;font-size:13px;font-weight:600;
+  background:var(--green);color:#000;border:none;cursor:pointer;transition:all .2s}
+.compare-btn:hover{filter:brightness(1.15)}
+.compare-btn:disabled{opacity:.3;cursor:not-allowed}
+.compare-clear{font-size:12px;color:var(--muted);cursor:pointer;background:none;border:none}
+.compare-clear:hover{color:var(--red)}
+
+/* ─── Live Connection Lines ─── */
+.live-lines{position:fixed;top:0;left:0;width:100%;height:100%;z-index:150;
+  pointer-events:none;opacity:0;transition:opacity .3s}
+.live-lines.active{opacity:1}
+
+/* ─── Install / Code Block ─── */
+.install-block{background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);
+  overflow:hidden;margin-bottom:24px}
+.install-header{display:flex;align-items:center;justify-content:space-between;
+  padding:12px 20px;background:rgba(59,130,246,.06);border-bottom:1px solid var(--border)}
+.install-badge{font-size:13px;font-weight:600;color:var(--blue);
+  background:rgba(59,130,246,.12);padding:4px 12px;border-radius:4px}
+.copy-btn{font-size:12px;color:var(--muted);background:rgba(255,255,255,.04);
+  border:1px solid var(--border);padding:5px 14px;border-radius:4px;
+  cursor:pointer;transition:all .2s;font-weight:500}
+.copy-btn:hover{color:var(--green);border-color:var(--green)}
+.code-block{background:#0d1117;padding:20px 24px;margin:0;overflow-x:auto;
+  font-family:'JetBrains Mono','Fira Code','Cascadia Code',monospace;
+  font-size:13px;line-height:1.7;color:#c9d1d9;white-space:pre-wrap;
+  border-radius:0 0 var(--radius) var(--radius)}
+.code-block code{background:none;padding:0;font-size:inherit}
+.desc-block h2{display:flex;align-items:center;gap:8px}
+
+/* ─── Stats Mini (colored) ─── */
+.stats-mini{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap}
+.stat-mini{background:var(--card-bg);border:1px solid var(--border);
+  border-radius:8px;padding:10px 16px;text-align:center;min-width:80px}
+.stat-mini .sv{font-size:20px;font-weight:800;color:var(--green);
+  font-variant-numeric:tabular-nums}
+.stat-mini .sl{font-size:10px;color:var(--dim);margin-top:2px;
+  text-transform:uppercase;letter-spacing:.03em}
+
+/* ─── Integrations Overlay ─── */
+.integ-overlay{position:fixed;top:0;left:0;width:100%;height:100%;z-index:9999;
+  background:rgba(0,0,0,.85);backdrop-filter:blur(8px);
+  display:flex;align-items:flex-start;justify-content:center;padding:40px 20px;overflow-y:auto}
+.integ-modal{background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);
+  width:100%;max-width:900px;padding:0;box-shadow:0 20px 60px rgba(0,0,0,.5)}
+.integ-header{display:flex;align-items:center;justify-content:space-between;
+  padding:20px 28px;border-bottom:1px solid var(--border)}
+.integ-header h2{font-size:20px;font-weight:700;color:var(--text)}
+.integ-close{background:none;border:none;color:var(--muted);font-size:22px;cursor:pointer;
+  padding:4px 8px;border-radius:6px;transition:all .2s}
+.integ-close:hover{color:var(--red);background:rgba(255,255,255,.05)}
+.integ-agents{display:flex;gap:12px;padding:20px 28px;flex-wrap:wrap;justify-content:center;
+  border-bottom:1px solid var(--border)}
+.integ-agent-card{display:flex;align-items:center;gap:8px;background:var(--card-bg);
+  border:1px solid var(--border);border-radius:8px;padding:8px 14px;font-size:13px;color:var(--text)}
+.integ-agent-card .iac-icon{width:28px;height:28px;border-radius:6px;
+  background:rgba(59,130,246,.15);display:flex;align-items:center;justify-content:center;font-size:14px;overflow:hidden}
+.integ-agent-card .iac-icon img{width:100%;height:100%;object-fit:contain}
+.integ-diagram{padding:8px 28px;background:rgba(0,0,0,.2);border-bottom:1px solid var(--border)}
+.integ-diagram svg{display:block}
+.integ-matches{padding:24px 28px}
+.integ-matches h3{font-size:16px;font-weight:700;color:var(--text);margin-bottom:16px}
+.integ-list{display:flex;flex-direction:column;gap:12px}
+.integ-match{background:var(--card-bg);border:1px solid var(--border);border-radius:8px;padding:16px 20px}
+.im-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
+.im-type{font-size:13px;font-weight:600;color:var(--green);background:rgba(16,185,129,.1);
+  padding:3px 10px;border-radius:4px}
+.im-effort{font-size:12px;color:var(--muted)}
+.im-desc{font-size:13px;color:var(--muted);line-height:1.6;margin-bottom:8px}
+.im-agents{font-size:11px;color:var(--dim);font-family:monospace;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.im-agents img{width:20px;height:20px;border-radius:4px;object-fit:contain;vertical-align:middle}
+.im-agents a{display:inline-flex;align-items:center;gap:4px}
+.integ-empty{text-align:center;padding:40px 20px;color:var(--muted)}
+.integ-cta{text-align:center;padding:20px 28px;border-top:1px solid var(--border);
+  background:linear-gradient(180deg,transparent,rgba(16,185,129,.04))}
+.integ-cta p{font-size:14px;color:var(--muted);margin-bottom:12px}
+
+/* ─── Featured Section ─── */
+.featured{max-width:1320px;margin:0 auto;padding:0 24px 32px}
+.featured-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(380px,1fr));gap:16px}
+.featured-card{background:var(--card-bg);border:1px solid var(--border);
+  border-radius:var(--radius);padding:24px;transition:all .2s;
+  position:relative;overflow:hidden}
+.featured-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,var(--green),var(--blue));opacity:0;transition:opacity .2s}
+.featured-card:hover::before{opacity:1}
+.featured-card:hover{transform:translateY(-2px);border-color:rgba(16,185,129,.2);
+  box-shadow:0 8px 30px rgba(0,0,0,.4)}
+.featured-card .fc-label{font-size:10px;text-transform:uppercase;letter-spacing:.06em;
+  color:var(--green);margin-bottom:8px;font-weight:600}
+.featured-card .fc-title{font-size:18px;font-weight:700;color:#f1f5f9;margin-bottom:6px}
+.featured-card .fc-desc{font-size:13px;color:var(--muted);line-height:1.6}
+
+/* ─── Compare Table ─── */
+.compare-table-wrap{overflow-x:auto;margin:20px 0;border-radius:12px;
+  border:1px solid var(--border);background:linear-gradient(180deg,#121821 0%,var(--bg) 100%)}
+.compare-table{width:100%;border-collapse:collapse;font-size:13px}
+.compare-table thead th{padding:16px 16px 14px;color:var(--text);font-weight:700;font-size:13px;
+  text-align:center;border-bottom:2px solid rgba(16,185,129,.3);
+  background:linear-gradient(180deg,rgba(16,185,129,.06) 0%,transparent 100%)}
+.compare-table thead th:first-child{text-align:left;color:var(--muted);font-size:11px;
+  font-weight:500;text-transform:uppercase;letter-spacing:.04em;border-right:1px solid var(--border)}
+.compare-table thead th .th-icon{font-size:18px;display:block;margin-bottom:4px}
+.compare-table thead th .th-name{display:block;max-width:140px;margin:0 auto;line-height:1.3}
+.compare-table tbody th{text-align:left;padding:12px 16px;color:var(--muted);font-weight:500;
+  font-size:11px;text-transform:uppercase;letter-spacing:.04em;border-bottom:1px solid var(--border);
+  border-right:1px solid var(--border);white-space:nowrap}
+.compare-table tbody td{padding:12px 14px;border-bottom:1px solid var(--border);
+  text-align:center;font-weight:600;font-size:13px;position:relative}
+.compare-table tbody tr:last-child td,.compare-table tbody tr:last-child th{border-bottom:none}
+.compare-table tbody tr:nth-child(even){background:rgba(18,24,33,.4)}
+.compare-table .winner{background:rgba(16,185,129,.08) !important;
+  box-shadow:inset 0 0 0 1px rgba(16,185,129,.25)}
+.compare-table .winner::after{content:'';position:absolute;top:2px;right:2px;
+  width:6px;height:6px;border-radius:50%;background:var(--green)}
+/* Score bar inside metric cells */
+.metric-bar{display:inline-block;height:6px;border-radius:3px;margin-right:8px;
+  vertical-align:middle;min-width:4px;transition:width .5s ease}
+.metric-val{display:inline-flex;align-items:center;gap:6px;white-space:nowrap}
+.score-high{color:var(--green)}
+.score-mid{color:var(--cyan)}
+.score-low{color:var(--amber)}
+.compare-header-bar{display:flex;align-items:center;gap:8px;margin-bottom:24px}
+.compare-header-bar h1{font-size:24px;font-weight:800;color:var(--text);margin:0}
+.compare-badge{display:inline-block;padding:3px 10px;border-radius:20px;
+  font-size:11px;font-weight:600;letter-spacing:.03em;
+  background:rgba(34,211,238,.1);color:var(--cyan);border:1px solid rgba(34,211,238,.2)}
+.result-actions{display:flex;gap:10px;margin-top:20px}
+.btn-back{padding:10px 20px;border-radius:8px;font-size:13px;font-weight:600;
+  background:var(--card-bg);color:var(--text);border:1px solid var(--border);
+  cursor:pointer;transition:all .2s}
+.btn-back:hover{background:var(--surface);border-color:var(--muted)}
+.btn-share{padding:10px 20px;border-radius:8px;font-size:13px;font-weight:600;
+  background:rgba(59,130,246,.12);color:var(--blue);border:1px solid rgba(59,130,246,.2);
+  cursor:pointer;transition:all .2s}
+.btn-share:hover{background:rgba(59,130,246,.2)}
+.compare-legend{display:flex;align-items:center;gap:16px;margin-top:16px;flex-wrap:wrap}
+.compare-legend .dot{display:inline-block;width:8px;height:8px;border-radius:50%}
+.compare-legend .dot.green{background:var(--green)}
+.compare-legend span{font-size:12px;color:var(--muted)}
+.compare-check{color:var(--green)}
+
+/* ─── Live Feed ─── */
+.live-dot{display:inline-block;width:8px;height:8px;border-radius:50%;
+  background:var(--green);margin-right:8px;animation:pulse 2s infinite}
+
+/* ─── Bookmark ─── */
+.bookmark-btn{position:absolute;top:12px;left:12px;z-index:5;background:none;border:none;
+  font-size:16px;cursor:pointer;color:var(--dim);transition:all .2s;padding:4px}
+.bookmark-btn:hover{color:var(--amber);transform:scale(1.2)}
+.bookmark-btn.saved{color:var(--amber)}
+.watch-btn{position:absolute;top:36px;left:12px;z-index:5;background:none;border:none;
+  font-size:12px;cursor:pointer;color:var(--dim);transition:all .2s;padding:4px}
+.watch-btn:hover{color:var(--cyan);transform:scale(1.2)}
+.watch-btn.watching{color:var(--cyan)}
+.saved-section{margin-top:24px}
+/* ─── Feed ─── */
+.feed-list{display:flex;flex-direction:column;gap:8px}
+.feed-item{display:flex;align-items:flex-start;gap:12px;padding:12px 16px;
+  background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius-sm);
+  transition:all .2s;font-size:13px}
+.feed-item:hover{border-color:rgba(16,185,129,.2)}
+.feed-item .fi-time{font-size:10px;color:var(--dim);white-space:nowrap;min-width:55px;padding-top:2px}
+.feed-item .fi-icon{font-size:14px;flex-shrink:0}
+.feed-item .fi-text{color:var(--muted);line-height:1.5}
+.feed-item .fi-text strong{color:var(--text)}
+
+/* ─── Trust Badges ─── */
+.trust-badge{display:inline-flex;align-items:center;gap:4px;font-size:10px;
+  padding:3px 8px;border-radius:4px;font-weight:500}
+.trust-verified{background:var(--green-dim);color:var(--green)}
+.trust-fresh{background:rgba(16,185,129,.06);color:var(--green)}
+.trust-stale{background:var(--amber-dim);color:var(--amber)}
+
+/* ─── Stack Builder ─── */
+.stack-builder{max-width:1320px;margin:0 auto;padding:32px 24px}
+.stack-inner{background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);
+  padding:32px}
+.stack-inner h2{font-size:20px;font-weight:700;margin-bottom:8px}
+.stack-inner .stack-sub{font-size:14px;color:var(--muted);margin-bottom:24px}
+.stack-slots{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-bottom:24px}
+.stack-slot{background:rgba(255,255,255,.02);border:2px dashed var(--border);
+  border-radius:var(--radius-sm);padding:16px;text-align:center;cursor:pointer;transition:all .2s}
+.stack-slot:hover{border-color:var(--green)}
+.stack-slot.filled{border-style:solid;border-color:rgba(16,185,129,.3);background:var(--green-dim)}
+.stack-slot .ss-label{font-size:10px;text-transform:uppercase;color:var(--dim);letter-spacing:.05em;margin-bottom:6px}
+.stack-slot .ss-value{font-size:14px;font-weight:600;color:var(--text)}
+.stack-result{background:rgba(16,185,129,.06);border:1px solid rgba(16,185,129,.2);
+  border-radius:var(--radius-sm);padding:20px;display:none}
+.stack-result.active{display:block}
+.stack-result h3{font-size:16px;color:var(--green);margin-bottom:12px}
+.stack-metrics{display:flex;gap:20px;flex-wrap:wrap}
+.stack-metric{text-align:center}
+.stack-metric .sm-val{font-size:20px;font-weight:700;color:var(--text)}
+.stack-metric .sm-lbl{font-size:11px;color:var(--dim);margin-top:2px}
+
+/* ─── Container ─── */
+.container{max-width:1320px;margin:0 auto;padding:0 24px}
+
+/* ─── Product Detail ─── */
+.detail{max-width:900px;margin:0 auto}
+.detail-header{margin-bottom:32px}
+.detail-header h1{font-size:32px;font-weight:800;color:#f1f5f9;letter-spacing:-.01em}
+.detail-header .tagline{font-size:16px;color:var(--muted);margin-top:8px}
+.detail-meta{display:flex;gap:12px;flex-wrap:wrap;margin-top:16px}
+.meta-item{display:flex;align-items:center;gap:6px;padding:8px 14px;
+  background:var(--card-bg);border-radius:var(--radius-sm);font-size:12.5px;color:var(--muted);
+  border:1px solid var(--border)}
+.meta-item strong{color:var(--text)}
+.meta-item.green{color:var(--green);border-color:rgba(16,185,129,.2)}
+.detail-body{margin-top:28px;font-size:16px;line-height:1.8;color:#b0b8c8}
+.detail-body h2{font-size:22px;font-weight:700;color:var(--text);margin:28px 0 10px}
+.detail-body h3{font-size:18px;font-weight:600;color:#d0d8e8;margin:22px 0 8px}
+.detail-body p{margin-bottom:14px}
+.detail-body ul,.detail-body ol{padding-left:22px;margin-bottom:14px}
+.detail-body li{margin-bottom:5px}
+.detail-body code{background:rgba(255,255,255,.06);padding:2px 6px;border-radius:4px;font-size:12.5px;color:var(--green)}
+.detail-body strong{color:var(--text)}
+.detail-body table{width:100%;border-collapse:collapse;margin:14px 0}
+.detail-body td,.detail-body th{border:1px solid var(--border);padding:10px 14px;text-align:left;font-size:12.5px}
+.detail-body th{background:rgba(255,255,255,.03);color:var(--green);font-weight:600}
+
+.breadcrumbs{font-size:12.5px;color:var(--dim);margin-bottom:20px}
+.breadcrumbs a{color:var(--muted);transition:color .2s}
+.breadcrumbs a:hover{color:var(--green)}
+.breadcrumbs span{color:var(--text)}
+
+.detail-image{width:100px;height:100px;border-radius:var(--radius);overflow:hidden;flex-shrink:0;
+  background:rgba(255,255,255,.03);display:flex;align-items:center;justify-content:center}
+.detail-image img{width:100%;height:100%;object-fit:contain;padding:10px}
+
+.rating{color:var(--amber);font-weight:700;font-size:13px}
+.price{font-weight:600;color:var(--green)}
+
+.stats-mini{display:flex;gap:16px;flex-wrap:wrap;margin:20px 0}
+.stat-mini{background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius-sm);
+  padding:14px 20px;text-align:center;min-width:100px}
+.stat-mini .sv{font-size:22px;font-weight:800;color:var(--green)}
+.stat-mini .sl{font-size:10px;color:var(--dim);text-transform:uppercase;letter-spacing:.04em;margin-top:2px}
+
+.empty{text-align:center;padding:80px 24px}
+.empty h2{font-size:24px;color:var(--muted);margin-bottom:8px}
+.empty p{color:var(--dim)}
+
+footer{text-align:center;padding:40px 24px;color:#1e2233;font-size:12px;
+  border-top:1px solid var(--border);margin-top:40px}
+footer a{color:var(--green)}
+
+/* ─── Search ─── */
+.search-bar{max-width:1320px;margin:0 auto;padding:0 24px 24px}
+.search-bar input{width:100%;padding:12px 18px;border-radius:var(--radius-sm);
+  background:var(--card-bg);border:1px solid var(--border);
+  color:var(--text);font-size:14px;outline:none;transition:border-color .2s}
+.search-bar input:focus{border-color:var(--green)}
+.search-bar input::placeholder{color:var(--dim)}
+
+@media(max-width:768px){
+  .hero h1{font-size:28px}
+  .grid,.featured-grid{grid-template-columns:1fr}
+  .mega-nav{overflow-x:auto;gap:2px;-webkit-overflow-scrolling:touch}
+  .mega-nav a,.mega-nav .nav-section{font-size:11px;padding:5px 8px}
+  .nav-sep{display:none}
+  .auth-stat{min-width:80px;padding:12px 10px}
+  .auth-stat .n{font-size:18px}
+  .auth-stat .l{font-size:9px}
+  .hero-metrics{gap:6px}
+  .hero-metric{min-width:70px;padding:8px 12px}
+  .hero-metric .val{font-size:16px}
+  .hero-metric .lbl{font-size:9px}
+  .compare-bar{left:16px;right:16px;transform:none;border-radius:var(--radius-sm)}
+  .section-hd{padding:8px 16px 12px}
+  .filters-bar,.grid,.featured,.auth-bar{padding-left:16px;padding-right:16px}
+  .header-inner{padding:12px 16px}
+}</style>
+<script type="application/ld+json">
+{}
+</script>
+</head>
+<body>
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+(function(m,e,t,r,i,k,a){
+m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+m[i].l=1*new Date();
+for (var j=0;j<document.scripts.length;j++){if(document.scripts[j].src===r){return;}}
+k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+})(window,document,'script','https://mc.yandex.ru/metrika/tag.js?id=109327472','ym');
+ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",referrer:document.referrer,url:location.href,accurateTrackBounce:true,trackLinks:true});
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/109327472" style="position:absolute;left:-9999px" alt=""/></div></noscript>
+<!-- /Yandex.Metrika counter -->
+<header>
+  <div class="header-inner">
+    <a href="/" class="logo"><span class="logo-dot"></span>Qantcore</a>
+    <div class="mega-nav">
+      <a href="/" class="">Каталог</a>
+      <span class="nav-sep"></span>
+      <a href="/catalog/comparison/" class="">Сравнения</a>
+      <span class="nav-sep"></span>
+      <a href="/benchmarks/">Бенчмарки</a>
+      <span class="nav-sep"></span>
+      <a href="/benchmarks/">Рейтинг</a>
+      <span class="nav-sep"></span>
+      <a href="/catalog/product/">Локальный AI</a>
+      <span class="nav-sep"></span>
+      <a href="/development/" class="active">Разработка</a>
+      <span class="nav-sep"></span>
+      <a href="/multi-agent/" class="">Мульти-агенты</a>
+      <span class="nav-sep"></span>
+      <a href="/guides/" class="nav-featured ">📖 Гайды</a>
+      <span class="nav-sep"></span>
+      <a href="/catalog/review/" class="">Обзоры</a>
+      <span class="nav-sep"></span>
+      <a href="/methodology/" class="">Методология</a>
+      <span class="nav-sep"></span>
+      <a href="/workspace/" class="">Кабинет</a>
+      <span class="nav-sep"></span>
+      <a href="/company/">Компании</a>
+      <span class="nav-sep"></span>
+      <a href="#saved" class="saved-nav" style="display:none">★ Избранное</a>
+    </div>
+  </div>
+</header>
+<div class="hero" style="padding:48px 24px 36px">
+  <div class="terminal-grid"></div>
+  <div class="tagline">AI CODING AGENTS</div>
+  <h1>AI-агенты для <span class="accent">разработки</span></h1>
+  <p class="sub">Полный гайд по 20+ AI-инструментам для кода: автодополнение, автономные PR, рефакторинг, прототипирование. Выберите агента под ваш стек и задачи.</p>
+  <div class="hero-metrics">
+    <div class="hero-metric"><div class="val">20</div><div class="lbl">Агентов</div></div>
+    <div class="hero-metric"><div class="val">4</div><div class="lbl">Категории</div></div>
+    <div class="hero-metric"><div class="val">100+</div><div class="lbl">Сравнений</div></div>
+    <div class="hero-metric"><div class="val"><span class="dot"></span>Live</div><div class="lbl">Данные</div></div>
+  </div>
+</div>
+
+<div class="container detail">
+
+  <div style="margin:32px 0;background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);padding:24px 16px 12px;text-align:center;overflow-x:auto">
+    <h3 style="color:var(--green);font-size:15px;margin-bottom:20px">🏗️ Архитектура: как AI-агент работает с вашим кодом</h3>
+    <svg viewBox="0 0 900 420" style="max-width:900px;width:100%;height:auto">
+      <defs>
+        <marker id="aDev" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 Z" fill="#3B82F6"/></marker>
+        <marker id="aDevG" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 Z" fill="#10b981"/></marker>
+        <marker id="aDevA" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 Z" fill="#f59e0b"/></marker>
+        <marker id="aDevC" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 Z" fill="#22D3EE"/></marker>
+        <filter id="glD"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+        <linearGradient id="grdCore" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#3B82F6" stop-opacity="0.3"/><stop offset="100%" stop-color="#10b981" stop-opacity="0.3"/></linearGradient>
+      </defs>
+      
+      <rect x="0" y="0" width="200" height="420" rx="12" fill="url(#grdCore)" stroke="#3B82F6" stroke-width="1" stroke-opacity="0.5"/>
+      <text x="100" y="28" text-anchor="middle" fill="#3B82F6" font-size="13" font-weight="700">📥 Контекст кодовой базы</text>
+      
+      <rect x="15" y="45" width="170" height="36" rx="8" fill="var(--card-bg)" stroke="var(--muted)" stroke-width="1"/>
+      <text x="100" y="60" text-anchor="middle" fill="#F5F7FA" font-size="10">📁 Filesystem Scanner</text>
+      <text x="100" y="73" text-anchor="middle" fill="var(--dim)" font-size="9">.gitignore-aware</text>
+      <line x1="100" y1="81" x2="100" y2="98" stroke="var(--muted)" stroke-width="1" marker-end="url(#aDev)"/>
+      
+      <rect x="15" y="100" width="170" height="36" rx="8" fill="var(--card-bg)" stroke="var(--muted)" stroke-width="1"/>
+      <text x="100" y="115" text-anchor="middle" fill="#F5F7FA" font-size="10">🌲 AST Parser</text>
+      <text x="100" y="128" text-anchor="middle" fill="var(--dim)" font-size="9">Tree-sitter, LSP</text>
+      <line x1="100" y1="136" x2="100" y2="153" stroke="var(--muted)" stroke-width="1" marker-end="url(#aDev)"/>
+      
+      <rect x="15" y="155" width="170" height="36" rx="8" fill="var(--card-bg)" stroke="var(--muted)" stroke-width="1"/>
+      <text x="100" y="170" text-anchor="middle" fill="#F5F7FA" font-size="10">🧬 Embedding Index</text>
+      <text x="100" y="183" text-anchor="middle" fill="var(--dim)" font-size="9">CodeBERT, Voyage, OpenAI</text>
+      <line x1="100" y1="191" x2="100" y2="208" stroke="var(--muted)" stroke-width="1" marker-end="url(#aDev)"/>
+      
+      <rect x="15" y="210" width="170" height="36" rx="8" fill="var(--card-bg)" stroke="var(--muted)" stroke-width="1"/>
+      <text x="100" y="225" text-anchor="middle" fill="#F5F7FA" font-size="10">📋 Dependency Graph</text>
+      <text x="100" y="238" text-anchor="middle" fill="var(--dim)" font-size="9">imports, вызовы, типы</text>
+      <line x1="100" y1="246" x2="100" y2="263" stroke="var(--muted)" stroke-width="1" marker-end="url(#aDev)"/>
+      
+      <rect x="15" y="265" width="170" height="50" rx="8" fill="var(--card-bg)" stroke="#10b981" stroke-width="1.5"/>
+      <text x="100" y="282" text-anchor="middle" fill="#10b981" font-size="10">📤 Context Window</text>
+      <text x="100" y="297" text-anchor="middle" fill="var(--dim)" font-size="9">✔ Релевантные файлы</text>
+      <text x="100" y="310" text-anchor="middle" fill="var(--dim)" font-size="9">✔ Текущий курсор</text>
+      
+      <line x1="185" y1="180" x2="230" y2="180" stroke="#10b981" stroke-width="2.5" marker-end="url(#aDevG)"/>
+      
+      <rect x="235" y="0" width="320" height="420" rx="12" fill="#0d1520" stroke="#10b981" stroke-width="1.5" filter="url(#glD)"/>
+      <text x="395" y="28" text-anchor="middle" fill="#10b981" font-size="13" font-weight="700">🤖 Agent Core Loop</text>
+      
+      <rect x="255" y="45" width="130" height="70" rx="10" fill="var(--card-bg)" stroke="#3B82F6" stroke-width="1.5"/>
+      <text x="320" y="67" text-anchor="middle" fill="#3B82F6" font-size="11" font-weight="600">1. Planning</text>
+      <text x="320" y="84" text-anchor="middle" fill="var(--dim)" font-size="9">Разбивка задачи</text>
+      <text x="320" y="98" text-anchor="middle" fill="var(--dim)" font-size="9">Выбор файлов</text>
+      <text x="320" y="111" text-anchor="middle" fill="var(--dim)" font-size="9">Оценка рисков</text>
+      
+      <line x1="385" y1="80" x2="415" y2="80" stroke="#3B82F6" stroke-width="1.5" marker-end="url(#aDev)"/>
+      
+      <rect x="420" y="45" width="120" height="70" rx="10" fill="var(--card-bg)" stroke="#10b981" stroke-width="1.5"/>
+      <text x="480" y="67" text-anchor="middle" fill="#10b981" font-size="11" font-weight="600">2. Code Gen</text>
+      <text x="480" y="84" text-anchor="middle" fill="var(--dim)" font-size="9">LLM генерация</text>
+      <text x="480" y="98" text-anchor="middle" fill="var(--dim)" font-size="9">Многофайловые</text>
+      <text x="480" y="111" text-anchor="middle" fill="var(--dim)" font-size="9">правки</text>
+      
+      <line x1="395" y1="115" x2="395" y2="145" stroke="var(--muted)" stroke-width="1.5" marker-end="url(#aDev)"/>
+      
+      <rect x="255" y="150" width="130" height="70" rx="10" fill="var(--card-bg)" stroke="#22D3EE" stroke-width="1.5"/>
+      <text x="320" y="172" text-anchor="middle" fill="#22D3EE" font-size="11" font-weight="600">3. Tool Use</text>
+      <text x="320" y="189" text-anchor="middle" fill="var(--dim)" font-size="9">🔍 grep/read files</text>
+      <text x="320" y="203" text-anchor="middle" fill="var(--dim)" font-size="9">🛠️ запуск тестов</text>
+      <text x="320" y="217" text-anchor="middle" fill="var(--dim)" font-size="9">🌐 web search</text>
+      
+      <line x1="385" y1="185" x2="415" y2="185" stroke="#22D3EE" stroke-width="1.5" marker-end="url(#aDevC)"/>
+      
+      <rect x="420" y="150" width="120" height="70" rx="10" fill="var(--card-bg)" stroke="#f59e0b" stroke-width="1.5"/>
+      <text x="480" y="172" text-anchor="middle" fill="#f59e0b" font-size="11" font-weight="600">4. Reflection</text>
+      <text x="480" y="189" text-anchor="middle" fill="var(--dim)" font-size="9">Проверка</text>
+      <text x="480" y="203" text-anchor="middle" fill="var(--dim)" font-size="9">Запуск lint</text>
+      <text x="480" y="217" text-anchor="middle" fill="var(--dim)" font-size="9">Исправление</text>
+      
+      <path d="M480,220 Q480,255 395,255 Q320,255 320,235" fill="none" stroke="#f59e0b" stroke-width="1" stroke-dasharray="4,3" marker-end="url(#aDevA)"/>
+      <text x="440" y="250" fill="var(--amber)" font-size="9">повтор до качества</text>
+      
+      <line x1="395" y1="280" x2="395" y2="318" stroke="#10b981" stroke-width="2" marker-end="url(#aDevG)"/>
+      
+      <rect x="265" y="320" width="260" height="50" rx="10" fill="var(--card-bg)" stroke="#10b981" stroke-width="1.5"/>
+      <text x="395" y="340" text-anchor="middle" fill="#10b981" font-size="11" font-weight="600">✔ Diff + Lint + Tests</text>
+      <text x="395" y="358" text-anchor="middle" fill="var(--dim)" font-size="9">Агент отдаёт готовый изменённый код</text>
+      
+      <line x1="555" y1="180" x2="605" y2="180" stroke="#3B82F6" stroke-width="2.5" marker-end="url(#aDev)"/>
+      
+      <rect x="610" y="0" width="290" height="420" rx="12" fill="url(#grdCore)" stroke="#22D3EE" stroke-width="1" stroke-opacity="0.5"/>
+      <text x="755" y="28" text-anchor="middle" fill="#22D3EE" font-size="13" font-weight="700">📤 Интеграция</text>
+      
+      <rect x="630" y="50" width="115" height="85" rx="10" fill="var(--card-bg)" stroke="#3B82F6" stroke-width="1.5"/>
+      <text x="687" y="72" text-anchor="middle" fill="#3B82F6" font-size="11" font-weight="600">🔀 Git</text>
+      <text x="687" y="90" text-anchor="middle" fill="var(--dim)" font-size="9">commit</text>
+      <text x="687" y="105" text-anchor="middle" fill="var(--dim)" font-size="9">push</text>
+      <text x="687" y="120" text-anchor="middle" fill="var(--dim)" font-size="9">PR create</text>
+      
+      <rect x="760" y="50" width="125" height="85" rx="10" fill="var(--card-bg)" stroke="#22D3EE" stroke-width="1.5"/>
+      <text x="822" y="72" text-anchor="middle" fill="#22D3EE" font-size="11" font-weight="600">⚙️ CI/CD</text>
+      <text x="822" y="90" text-anchor="middle" fill="var(--dim)" font-size="9">GitHub Actions</text>
+      <text x="822" y="105" text-anchor="middle" fill="var(--dim)" font-size="9">Tests run</text>
+      <text x="822" y="120" text-anchor="middle" fill="var(--dim)" font-size="9">Deploy</text>
+      
+      <line x1="745" y1="92" x2="760" y2="92" stroke="var(--muted)" stroke-width="1" marker-end="url(#aDev)"/>
+      
+      <rect x="630" y="160" width="255" height="60" rx="10" fill="var(--card-bg)" stroke="var(--amber)" stroke-width="1"/>
+      <text x="757" y="182" text-anchor="middle" fill="var(--amber)" font-size="11">📋 Code Review</text>
+      <text x="757" y="199" text-anchor="middle" fill="var(--dim)" font-size="9">Автоматическое ревью изменений в PR</text>
+      <text x="757" y="213" text-anchor="middle" fill="var(--dim)" font-size="9">Проверка безопасности + стиля</text>
+      
+      <rect x="630" y="250" width="125" height="70" rx="10" fill="var(--card-bg)" stroke="#10b981" stroke-width="1.5"/>
+      <text x="692" y="272" text-anchor="middle" fill="#10b981" font-size="11" font-weight="600">💻 IDE Diff</text>
+      <text x="692" y="291" text-anchor="middle" fill="var(--dim)" font-size="9">apply в редакторе</text>
+      <text x="692" y="306" text-anchor="middle" fill="var(--dim)" font-size="9">inline отображение</text>
+      
+      <rect x="765" y="250" width="120" height="70" rx="10" fill="var(--card-bg)" stroke="#f59e0b" stroke-width="1.5"/>
+      <text x="825" y="272" text-anchor="middle" fill="#f59e0b" font-size="11" font-weight="600">💻 Terminal</text>
+      <text x="825" y="291" text-anchor="middle" fill="var(--dim)" font-size="9">прямая</text>
+      <text x="825" y="306" text-anchor="middle" fill="var(--dim)" font-size="9">запись</text>
+      
+      <line x1="755" y1="340" x2="755" y2="380" stroke="#22D3EE" stroke-width="1.5" marker-end="url(#aDev)"/>
+      <rect x="665" y="383" width="180" height="28" rx="6" fill="#0d1520" stroke="#22D3EE" stroke-width="1"/>
+      <text x="755" y="401" text-anchor="middle" fill="#22D3EE" font-size="10">🔄 Feedback Loop: учится на ошибках</text>
+    </svg>
+  </div>
+
+  <div style="margin:32px 0">
+    <div class="section-hd"><h2>📦 Четыре категории AI-агентов</h2></div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px">
+      <div style="background:var(--card-bg);border:1px solid #10b98133;border-radius:var(--radius);padding:20px">
+        <div style="font-size:28px;margin-bottom:8px">💻</div>
+        <div style="font-size:14px;font-weight:700;color:#10b981;margin-bottom:6px">IDE-интегрированные</div>
+        <div style="font-size:12px;color:var(--muted);line-height:1.6;margin-bottom:10px">Автодополнение прямо в редакторе. Видят ваш курсор, вкладки, буфер обмена. Мгновенная обратная связь.</div>
+        <div style="font-size:10px;color:var(--dim)">9 агентов: Cursor, Copilot, Cline, Continue, Codeium, Cody, Tabnine, Windsurf, Amazon Q</div>
+      </div>
+      <div style="background:var(--card-bg);border:1px solid #3B82F633;border-radius:var(--radius);padding:20px">
+        <div style="font-size:28px;margin-bottom:8px">📟</div>
+        <div style="font-size:14px;font-weight:700;color:#3B82F6;margin-bottom:6px">Терминальные</div>
+        <div style="font-size:12px;color:var(--muted);line-height:1.6;margin-bottom:10px">CLI-инструменты для автономной работы: читают всю кодовую базу, пишут код, делают PR. Максимальный контроль.</div>
+        <div style="font-size:10px;color:var(--dim)">5 агентов: Claude Code, Aider, Codex CLI, Open Interpreter</div>
+      </div>
+      <div style="background:var(--card-bg);border:1px solid #f59e0b33;border-radius:var(--radius);padding:20px">
+        <div style="font-size:28px;margin-bottom:8px">🎢</div>
+        <div style="font-size:14px;font-weight:700;color:#f59e0b;margin-bottom:6px">Автономные</div>
+        <div style="font-size:12px;color:var(--muted);line-height:1.6;margin-bottom:10px">Полностью самостоятельно решают задачи: баг-фикс, рефакторинг, feature development. Минимальное участие человека.</div>
+        <div style="font-size:10px;color:var(--dim)">2 агента: Devin, SWE-Agent</div>
+      </div>
+      <div style="background:var(--card-bg);border:1px solid #22D3EE33;border-radius:var(--radius);padding:20px">
+        <div style="font-size:28px;margin-bottom:8px">🎨</div>
+        <div style="font-size:14px;font-weight:700;color:#22D3EE;margin-bottom:6px">Прототипирование</div>
+        <div style="font-size:12px;color:var(--muted);line-height:1.6;margin-bottom:10px">Генерация полноценных приложений из описания. Web-интерфейс, full-stack, быстрый MVP.</div>
+        <div style="font-size:10px;color:var(--dim)">4 агента: Bolt, Lovable, v0, Replit AI</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin:32px 0">
+    <div class="section-hd"><h2>🧩 Матрица выбора: какой агент для какой задачи</h2></div>
+    <div class="compare-table-wrap" style="margin-bottom:16px">
+      <table class="compare-table">
+        <thead><tr><th>Задача</th><th>🏆 Лучший</th><th>🥇 Альтернатива</th><th>Почему</th></tr></thead>
+        <tr><td>Автодополнение на лету</td><td style="color:#10b981;font-weight:600">Cursor IDE</td><td>Copilot, Cline</td><td style="font-size:12px">Мгновенная генерация, понимание контекста проекта</td></tr>
+        <tr><td>Автономный PR</td><td style="color:#3B82F6;font-weight:600">Claude Code</td><td>Aider, Codex CLI</td><td style="font-size:12px">Видит всю кодовую базу, автономная работа</td></tr>
+        <tr><td>Code Review</td><td style="color:#22D3EE;font-weight:600">Codex CLI</td><td>Claude Code, Copilot</td><td style="font-size:12px">Специально заточен на ревью</td></tr>
+        <tr><td>Командная разработка</td><td style="color:#f59e0b;font-weight:600">GitHub Copilot</td><td>Cody, Codeium</td><td style="font-size:12px">Лицензии на команду, админка</td></tr>
+        <tr><td>Open Source / Стартап</td><td style="color:#10b981;font-weight:600">Continue + Aider</td><td>Cline, Ollama</td><td style="font-size:12px">Бесплатно, выбираешь модель, локально</td></tr>
+        <tr><td>Быстрый MVP</td><td style="color:#22D3EE;font-weight:600">Bolt.new / v0</td><td>Lovable, Replit</td><td style="font-size:12px">Полное приложение из описания</td></tr>
+        <tr><td>Сложный баг-фикс</td><td style="color:#f59e0b;font-weight:600">Devin / SWE-Agent</td><td>Claude Code</td><td style="font-size:12px">Полностью автономная отладка</td></tr>
+        <tr><td>Интерактивная работа</td><td style="color:#3B82F6;font-weight:600">Open Interpreter</td><td>Claude Code</td><td style="font-size:12px">Исполнение кода в живую</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div style="margin:32px 0;background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);padding:24px">
+    <h3 style="color:var(--green);font-size:16px;margin-bottom:12px">🤝 Multi-Agent стек: как объединить несколько агентов</h3>
+    <p style="color:var(--muted);font-size:13px;margin-bottom:16px">Реальный стек современного AI-разработчика: не один агент, а комбинация инструментов на разных этапах разработки.</p>
+    <svg viewBox="0 0 800 220" style="max-width:800px;width:100%;height:auto">
+      <defs>
+        <marker id="aS" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 Z" fill="#3B82F6"/></marker>
+        <filter id="glMM"><feGaussianBlur stdDeviation="2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+      </defs>
+      
+      <rect x="10" y="10" width="170" height="85" rx="10" fill="var(--card-bg)" stroke="#10b981" stroke-width="1.5"/>
+      <text x="95" y="35" text-anchor="middle" fill="#10b981" font-size="11" font-weight="700">💻 Написание кода</text>
+      <text x="95" y="55" text-anchor="middle" fill="#F5F7FA" font-size="10">Cursor IDE / Copilot</text>
+      <text x="95" y="72" text-anchor="middle" fill="var(--dim)" font-size="9">автодополнение</text>
+      <text x="95" y="87" text-anchor="middle" fill="var(--dim)" font-size="9">inline правки</text>
+      
+      <line x1="180" y1="52" x2="225" y2="52" stroke="#3B82F6" stroke-width="1.5" marker-end="url(#aS)"/>
+      <text x="202" y="42" fill="var(--dim)" font-size="9">commit</text>
+      
+      <rect x="230" y="10" width="170" height="85" rx="10" fill="var(--card-bg)" stroke="#3B82F6" stroke-width="1.5"/>
+      <text x="315" y="35" text-anchor="middle" fill="#3B82F6" font-size="11" font-weight="700">💡 Code Review</text>
+      <text x="315" y="55" text-anchor="middle" fill="#F5F7FA" font-size="10">Claude Code / Codex CLI</text>
+      <text x="315" y="72" text-anchor="middle" fill="var(--dim)" font-size="9">проверка PR</text>
+      <text x="315" y="87" text-anchor="middle" fill="var(--dim)" font-size="9">security + style</text>
+      
+      <line x1="400" y1="52" x2="445" y2="52" stroke="#3B82F6" stroke-width="1.5" marker-end="url(#aS)"/>
+      
+      <rect x="450" y="10" width="160" height="85" rx="10" fill="var(--card-bg)" stroke="#22D3EE" stroke-width="1.5"/>
+      <text x="530" y="35" text-anchor="middle" fill="#22D3EE" font-size="11" font-weight="700">⚙️ CI Pipeline</text>
+      <text x="530" y="55" text-anchor="middle" fill="#F5F7FA" font-size="10">GitHub Actions</text>
+      <text x="530" y="72" text-anchor="middle" fill="var(--dim)" font-size="9">tests + lint</text>
+      <text x="530" y="87" text-anchor="middle" fill="var(--dim)" font-size="9">+ AI ревью</text>
+      
+      <line x1="610" y1="52" x2="655" y2="52" stroke="#3B82F6" stroke-width="1.5" marker-end="url(#aS)"/>
+      
+      <rect x="660" y="10" width="130" height="85" rx="10" fill="var(--card-bg)" stroke="#10b981" stroke-width="1.5" filter="url(#glMM)"/>
+      <text x="725" y="35" text-anchor="middle" fill="#10b981" font-size="11" font-weight="700">✅ Merge</text>
+      <text x="725" y="55" text-anchor="middle" fill="#F5F7FA" font-size="10">Deploy</text>
+      <text x="725" y="72" text-anchor="middle" fill="var(--dim)" font-size="9">все чеки</text>
+      <text x="725" y="87" text-anchor="middle" fill="var(--dim)" font-size="9">пройдены</text>
+      
+      <rect x="60" y="120" width="140" height="60" rx="8" fill="#0d1520" stroke="var(--amber)" stroke-width="1"/>
+      <text x="130" y="142" text-anchor="middle" fill="var(--amber)" font-size="10">📖 Документация</text>
+      <text x="130" y="158" text-anchor="middle" fill="var(--dim)" font-size="9">Mintlify / Doc agents</text>
+      <text x="130" y="173" text-anchor="middle" fill="var(--dim)" font-size="9">авто-генерация</text>
+      
+      <rect x="240" y="120" width="140" height="60" rx="8" fill="#0d1520" stroke="#22D3EE" stroke-width="1"/>
+      <text x="310" y="142" text-anchor="middle" fill="#22D3EE" font-size="10">🐛 Баг-фикс</text>
+      <text x="310" y="158" text-anchor="middle" fill="var(--dim)" font-size="9">SWE-Agent / Devin</text>
+      <text x="310" y="173" text-anchor="middle" fill="var(--dim)" font-size="9">автономный</text>
+      
+      <rect x="420" y="120" width="140" height="60" rx="8" fill="#0d1520" stroke="#10b981" stroke-width="1"/>
+      <text x="490" y="142" text-anchor="middle" fill="#10b981" font-size="10">🧪 Тесты</text>
+      <text x="490" y="158" text-anchor="middle" fill="var(--dim)" font-size="9">Авто-генерация</text>
+      <text x="490" y="173" text-anchor="middle" fill="var(--dim)" font-size="9">+ мутационное</text>
+      
+      <rect x="600" y="120" width="140" height="60" rx="8" fill="#0d1520" stroke="#3B82F6" stroke-width="1"/>
+      <text x="670" y="142" text-anchor="middle" fill="#3B82F6" font-size="10">🔧 Рефакторинг</text>
+      <text x="670" y="158" text-anchor="middle" fill="var(--dim)" font-size="9">Claude Code / Aider</text>
+      <text x="670" y="173" text-anchor="middle" fill="var(--dim)" font-size="9">полная кодовая база</text>
+    </svg>
+  </div>
+
+  <div style="margin:32px 0">
+    <div class="section-hd"><h2>⚡ Быстрый выбор</h2></div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px">
+      <div style="background:var(--card-bg);border:1px solid var(--green);border-radius:var(--radius);padding:20px">
+        <div style="font-size:13px;color:var(--green);font-weight:600;margin-bottom:8px">🏆 Лучший для соло</div>
+        <div style="font-size:15px;font-weight:700;color:var(--text);margin-bottom:4px">Cursor IDE — AI-среда разработки нового поколения</div>
+        <div style="font-size:12px;color:var(--muted);line-height:1.6">Мгновенное автодополнение, понимание всей кодовой базы, AI-first IDE.</div>
+        <a href="/product/cursor-ide/" style="display:inline-block;margin-top:12px;color:var(--green);font-size:12px;font-weight:600">Смотреть &rarr;</a>
+      </div>
+      <div style="background:var(--card-bg);border:1px solid var(--blue);border-radius:var(--radius);padding:20px">
+        <div style="font-size:13px;color:var(--blue);font-weight:600;margin-bottom:8px">🚀 Лучший для PR</div>
+        <div style="font-size:15px;font-weight:700;color:var(--text);margin-bottom:4px">Claude Code — агентное программирование от Anthropic</div>
+        <div style="font-size:12px;color:var(--muted);line-height:1.6">Пишет PR автономно, читает всю кодовую базу, рефакторит сложные системы.</div>
+        <a href="/product/claude-code/" style="display:inline-block;margin-top:12px;color:var(--blue);font-size:12px;font-weight:600">Смотреть &rarr;</a>
+      </div>
+      <div style="background:var(--card-bg);border:1px solid var(--amber);border-radius:var(--radius);padding:20px">
+        <div style="font-size:13px;color:var(--amber);font-weight:600;margin-bottom:8px">🇫 Лучший бесплатный</div>
+        <div style="font-size:15px;font-weight:700;color:var(--text);margin-bottom:4px">Cursor IDE — AI-среда разработки нового поколения</div>
+        <div style="font-size:12px;color:var(--muted);line-height:1.6">Open source, свой API-ключ, полный контроль над данными.</div>
+        <a href="/product/cursor-ide/" style="display:inline-block;margin-top:12px;color:var(--amber);font-size:12px;font-weight:600">Смотреть &rarr;</a>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin:32px 0">
+    <div class="section-hd"><h2>📋 Реальный воркфлоу: от issue до merge</h2></div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px">
+      <div style="background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);padding:20px">
+        <div style="font-size:12px;color:var(--green);font-weight:600;margin-bottom:12px">💡 Воркфлоу с терминальным агентом</div>
+        <div style="font-family:monospace;font-size:11px;color:var(--muted);line-height:2.2;background:#0d1117;padding:14px;border-radius:8px">
+          <div style="color:var(--dim)"># 1. Открываем issue</div>
+          <div style="color:#79c0ff">gh issue create</div>
+          <div style="color:var(--dim);margin-top:6px"># 2. Агент читает issue + кодовую базу</div>
+          <div style="color:#79c0ff">claude "Реши #42: добавить кэш"</div>
+          <div style="color:var(--dim);margin-top:6px"># 3. Результат:</div>
+          <div style="color:var(--dim)">→ 3 файла изменено</div>
+          <div style="color:var(--dim)">→ tests пройдены</div>
+          <div style="color:var(--dim)">→ PR создан автоматически</div>
+        </div>
+      </div>
+      <div style="background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);padding:20px">
+        <div style="font-size:12px;color:#3B82F6;font-weight:600;margin-bottom:12px">🤝 Воркфлоу с IDE + агентом</div>
+        <div style="font-family:monospace;font-size:11px;color:var(--muted);line-height:2.2;background:#0d1117;padding:14px;border-radius:8px">
+          <div style="color:var(--dim)"># 1. Пишем код в IDE</div>
+          <div style="color:var(--dim)">Cursor: autocomplete + правки</div>
+          <div style="color:var(--dim);margin-top:6px"># 2. Коммитим</div>
+          <div style="color:#79c0ff">git commit -m "feat: ..."</div>
+          <div style="color:var(--dim);margin-top:6px"># 3. Запускаем агента на ревью</div>
+          <div style="color:#79c0ff">codex review HEAD~1</div>
+          <div style="color:var(--dim)">→ нашёл 2 security issues</div>
+          <div style="color:var(--dim)">→ предложил фикс</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-hd" style="margin-top:32px"><h2>🔧 Все AI Coding Agents (20)</h2></div>
+  <div class="grid" style="margin-bottom:32px">
+    <a href="/product/cursor-ide/" class="card">
+      <div class="card-compare"><input type="checkbox" value="cursor-ide" onchange="toggleCompare(this)" aria-label="Compare"></div>
+      <button class="bookmark-btn" data-slug="cursor-ide" onclick="toggleSave(this,&#39;cursor-ide&#39;)" title="Save">☆</button>
+      <button class="watch-btn" data-slug="cursor-ide" onclick="event.preventDefault();toggleWatch(this,&#39;cursor-ide&#39;)" title="Track releases">🔔</button>
+      <div class="card-top">
+        <div class="card-icon"><img src="/images/cursor-ide.png" alt="Cursor IDE — AI-среда разработки нового поколения" loading="lazy"></div>
+        <span class="card-badge badge-agent">Agent</span>
+      </div>
+      <div class="card-title"><span class="agent-icon">🖱️</span> Cursor IDE — AI-среда разработки нового поколения</div>
+      <div class="card-desc">AI-first IDE, которое понимает ваш код</div>
+      <div class="card-panel"><div class="panel-item qs-badge"><div class="pv" style="color:var(--cyan);font-size:16px">76</div><div class="pl">QantScore™</div></div><div class="panel-item"><div class="pv amber">4.8 ★</div><div class="pl">Rating</div></div><div class="panel-item"><div class="pv green">Freemium</div><div class="pl">Цена</div></div><div class="panel-item"><div class="pv">☁️ Cloud</div><div class="pl">Развёртывание</div></div><div class="panel-item"><div class="pv">10</div><div class="pl">Maturity /10</div></div><div class="panel-item"><div class="pv cyan">↑↑ +23.0%</div><div class="pl">Velocity</div></div><div class="panel-item"><div class="pv">3.8</div><div class="pl">Deploy /10</div></div></div>
+      <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T06:54:38.434828+00:00">🕐 1d ago</span><span>📊 2340 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
+    </a><a href="/product/open-interpreter/" class="card">
+      <div class="card-compare"><input type="checkbox" value="open-interpreter" onchange="toggleCompare(this)" aria-label="Compare"></div>
+      <button class="bookmark-btn" data-slug="open-interpreter" onclick="toggleSave(this,&#39;open-interpreter&#39;)" title="Save">☆</button>
+      <button class="watch-btn" data-slug="open-interpreter" onclick="event.preventDefault();toggleWatch(this,&#39;open-interpreter&#39;)" title="Track releases">🔔</button>
+      <div class="card-top">
+        <div class="card-icon"><img src="/images/open-interpreter.png" alt="Open Interpreter — AI-агент с доступом к компьютеру" loading="lazy"></div>
+        <span class="card-badge badge-agent">Agent</span>
+      </div>
+      <div class="card-title"><span class="agent-icon">💻</span> Open Interpreter — AI-агент с доступом к компьютеру</div>
+      <div class="card-desc">AI, который исполняет код на вашем компьютере</div>
+      <div class="card-panel"><div class="panel-item qs-badge"><div class="pv" style="color:var(--cyan);font-size:16px">84</div><div class="pl">QantScore™</div></div><div class="panel-item"><div class="pv amber">4.8 ★</div><div class="pl">Rating</div></div><div class="panel-item"><div class="pv green">Open Source</div><div class="pl">Цена</div></div><div class="panel-item"><div class="pv">🏠 Local</div><div class="pl">Развёртывание</div></div><div class="panel-item"><div class="pv">10</div><div class="pl">Maturity /10</div></div><div class="panel-item"><div class="pv cyan">↑↑ +23.0%</div><div class="pl">Velocity</div></div><div class="panel-item"><div class="pv">8.1</div><div class="pl">Deploy /10</div></div></div>
+      <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span>📊 3200 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
+    </a><a href="/product/cline-vscode/" class="card">
+      <div class="card-compare"><input type="checkbox" value="cline-vscode" onchange="toggleCompare(this)" aria-label="Compare"></div>
+      <button class="bookmark-btn" data-slug="cline-vscode" onclick="toggleSave(this,&#39;cline-vscode&#39;)" title="Save">☆</button>
+      <button class="watch-btn" data-slug="cline-vscode" onclick="event.preventDefault();toggleWatch(this,&#39;cline-vscode&#39;)" title="Track releases">🔔</button>
+      <div class="card-top">
+        <div class="card-icon"><img src="/images/cline-vscode.png" alt="Cline — автономный AI-агент для VS Code" loading="lazy"></div>
+        <span class="card-badge badge-agent">Agent</span>
+      </div>
+      <div class="card-title"><span class="agent-icon">🤖</span> Cline — автономный AI-агент для VS Code</div>
+      <div class="card-desc">AI-агент с доступом к файлам и терминалу</div>
+      <div class="card-panel"><div class="panel-item qs-badge"><div class="pv" style="color:var(--cyan);font-size:16px">74</div><div class="pl">QantScore™</div></div><div class="panel-item"><div class="pv amber">4.7 ★</div><div class="pl">Rating</div></div><div class="panel-item"><div class="pv green">Open Source</div><div class="pl">Цена</div></div><div class="panel-item"><div class="pv">☁️ Cloud</div><div class="pl">Развёртывание</div></div><div class="panel-item"><div class="pv">10</div><div class="pl">Maturity /10</div></div><div class="panel-item"><div class="pv cyan">↑↑ +17.8%</div><div class="pl">Velocity</div></div><div class="panel-item"><div class="pv">3.8</div><div class="pl">Deploy /10</div></div></div>
+      <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T06:54:38.454650+00:00">🕐 1d ago</span><span>📊 560 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
+    </a><a href="/product/aider-ai/" class="card">
+      <div class="card-compare"><input type="checkbox" value="aider-ai" onchange="toggleCompare(this)" aria-label="Compare"></div>
+      <button class="bookmark-btn" data-slug="aider-ai" onclick="toggleSave(this,&#39;aider-ai&#39;)" title="Save">☆</button>
+      <button class="watch-btn" data-slug="aider-ai" onclick="event.preventDefault();toggleWatch(this,&#39;aider-ai&#39;)" title="Track releases">🔔</button>
+      <div class="card-top">
+        <div class="card-icon"><img src="/images/aider-ai.png" alt="Aider — AI-парный программист в терминале" loading="lazy"></div>
+        <span class="card-badge badge-agent">Agent</span>
+      </div>
+      <div class="card-title"><span class="agent-icon">🅰️</span> Aider — AI-парный программист в терминале</div>
+      <div class="card-desc">Open source AI-агент для терминала: пишет и правит код в Git</div>
+      <div class="card-panel"><div class="panel-item qs-badge"><div class="pv" style="color:var(--cyan);font-size:16px">82</div><div class="pl">QantScore™</div></div><div class="panel-item"><div class="pv amber">4.7 ★</div><div class="pl">Rating</div></div><div class="panel-item"><div class="pv green">Open Source</div><div class="pl">Цена</div></div><div class="panel-item"><div class="pv">🏠 Local</div><div class="pl">Развёртывание</div></div><div class="panel-item"><div class="pv">10</div><div class="pl">Maturity /10</div></div><div class="panel-item"><div class="pv cyan">↑↑ +17.7%</div><div class="pl">Velocity</div></div><div class="panel-item"><div class="pv">8.1</div><div class="pl">Deploy /10</div></div></div>
+      <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span>📊 540 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
+    </a><a href="/product/vercel-v0/" class="card">
+      <div class="card-compare"><input type="checkbox" value="vercel-v0" onchange="toggleCompare(this)" aria-label="Compare"></div>
+      <button class="bookmark-btn" data-slug="vercel-v0" onclick="toggleSave(this,&#39;vercel-v0&#39;)" title="Save">☆</button>
+      <button class="watch-btn" data-slug="vercel-v0" onclick="event.preventDefault();toggleWatch(this,&#39;vercel-v0&#39;)" title="Track releases">🔔</button>
+      <div class="card-top">
+        <div class="card-icon"><img src="/images/vercel-v0.png" alt="v0 by Vercel — генерация UI компонентов текстом" loading="lazy"></div>
+        <span class="card-badge badge-agent">Agent</span>
+      </div>
+      <div class="card-title"><span class="agent-icon">▲</span> v0 by Vercel — генерация UI компонентов текстом</div>
+      <div class="card-desc">Промпт → React-компонент с Tailwind: дизайн за секунды</div>
+      <div class="card-panel"><div class="panel-item qs-badge"><div class="pv" style="color:var(--cyan);font-size:16px">75</div><div class="pl">QantScore™</div></div><div class="panel-item"><div class="pv amber">4.7 ★</div><div class="pl">Rating</div></div><div class="panel-item"><div class="pv green">Freemium</div><div class="pl">Цена</div></div><div class="panel-item"><div class="pv">☁️ Cloud</div><div class="pl">Развёртывание</div></div><div class="panel-item"><div class="pv">10</div><div class="pl">Maturity /10</div></div><div class="panel-item"><div class="pv cyan">↑↑ +23.0%</div><div class="pl">Velocity</div></div><div class="panel-item"><div class="pv">3.8</div><div class="pl">Deploy /10</div></div></div>
+      <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span>📊 3400 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
+    </a><a href="/product/codex-cli/" class="card">
+      <div class="card-compare"><input type="checkbox" value="codex-cli" onchange="toggleCompare(this)" aria-label="Compare"></div>
+      <button class="bookmark-btn" data-slug="codex-cli" onclick="toggleSave(this,&#39;codex-cli&#39;)" title="Save">☆</button>
+      <button class="watch-btn" data-slug="codex-cli" onclick="event.preventDefault();toggleWatch(this,&#39;codex-cli&#39;)" title="Track releases">🔔</button>
+      <div class="card-top">
+        <div class="card-icon"><img src="/images/codex-cli.png" alt="OpenAI Codex CLI — лёгкий агент для кода в терминале" loading="lazy"></div>
+        <span class="card-badge badge-agent">Agent</span>
+      </div>
+      <div class="card-title"><span class="agent-icon">⌨️</span> OpenAI Codex CLI — лёгкий агент для кода в терминале</div>
+      <div class="card-desc">AI-агент, который живёт в вашем терминале</div>
+      <div class="card-panel"><div class="panel-item qs-badge"><div class="pv" style="color:var(--cyan);font-size:16px">76</div><div class="pl">QantScore™</div></div><div class="panel-item"><div class="pv amber">4.7 ★</div><div class="pl">Rating</div></div><div class="panel-item"><div class="pv green">Open Source</div><div class="pl">Цена</div></div><div class="panel-item"><div class="pv">☁️ Cloud</div><div class="pl">Развёртывание</div></div><div class="panel-item"><div class="pv">10</div><div class="pl">Maturity /10</div></div><div class="panel-item"><div class="pv cyan">↑↑ +23.0%</div><div class="pl">Velocity</div></div><div class="panel-item"><div class="pv">4.4</div><div class="pl">Deploy /10</div></div></div>
+      <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T06:54:41.534104+00:00">🕐 1d ago</span><span>📊 1800 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
+    </a><a href="/product/claude-code/" class="card">
+      <div class="card-compare"><input type="checkbox" value="claude-code" onchange="toggleCompare(this)" aria-label="Compare"></div>
+      <button class="bookmark-btn" data-slug="claude-code" onclick="toggleSave(this,&#39;claude-code&#39;)" title="Save">☆</button>
+      <button class="watch-btn" data-slug="claude-code" onclick="event.preventDefault();toggleWatch(this,&#39;claude-code&#39;)" title="Track releases">🔔</button>
+      <div class="card-top">
+        <div class="card-icon"><img src="/images/claude-code.png" alt="Claude Code — агентное программирование от Anthropic" loading="lazy"></div>
+        <span class="card-badge badge-agent">Agent</span>
+      </div>
+      <div class="card-title"><span class="agent-icon">🧑‍💻</span> Claude Code — агентное программирование от Anthropic</div>
+      <div class="card-desc">AI-агент, который читает кодовую базу и пишет PR</div>
+      <div class="card-panel"><div class="panel-item qs-badge"><div class="pv" style="color:var(--cyan);font-size:16px">82</div><div class="pl">QantScore™</div></div><div class="panel-item"><div class="pv amber">4.6 ★</div><div class="pl">Rating</div></div><div class="panel-item"><div class="pv green">Usage-based</div><div class="pl">Цена</div></div><div class="panel-item"><div class="pv">🏠 Local</div><div class="pl">Развёртывание</div></div><div class="panel-item"><div class="pv">10</div><div class="pl">Maturity /10</div></div><div class="panel-item"><div class="pv cyan">↑↑ +19.4%</div><div class="pl">Velocity</div></div><div class="panel-item"><div class="pv">8.1</div><div class="pl">Deploy /10</div></div></div>
+      <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T06:54:38.452029+00:00">🕐 1d ago</span><span>📊 890 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
+    </a><a href="/product/lovable-dev/" class="card">
+      <div class="card-compare"><input type="checkbox" value="lovable-dev" onchange="toggleCompare(this)" aria-label="Compare"></div>
+      <button class="bookmark-btn" data-slug="lovable-dev" onclick="toggleSave(this,&#39;lovable-dev&#39;)" title="Save">☆</button>
+      <button class="watch-btn" data-slug="lovable-dev" onclick="event.preventDefault();toggleWatch(this,&#39;lovable-dev&#39;)" title="Track releases">🔔</button>
+      <div class="card-top">
+        <div class="card-icon"><img src="/images/lovable-dev.png" alt="Lovable — AI-разработка приложений без кода" loading="lazy"></div>
+        <span class="card-badge badge-agent">Agent</span>
+      </div>
+      <div class="card-title"><span class="agent-icon">❤️</span> Lovable — AI-разработка приложений без кода</div>
+      <div class="card-desc">Опишите идею — получите работающее приложение</div>
+      <div class="card-panel"><div class="panel-item qs-badge"><div class="pv" style="color:var(--cyan);font-size:16px">75</div><div class="pl">QantScore™</div></div><div class="panel-item"><div class="pv amber">4.6 ★</div><div class="pl">Rating</div></div><div class="panel-item"><div class="pv green">Freemium</div><div class="pl">Цена</div></div><div class="panel-item"><div class="pv">☁️ Cloud</div><div class="pl">Развёртывание</div></div><div class="panel-item"><div class="pv">10</div><div class="pl">Maturity /10</div></div><div class="panel-item"><div class="pv cyan">↑↑ +23.0%</div><div class="pl">Velocity</div></div><div class="panel-item"><div class="pv">4.1</div><div class="pl">Deploy /10</div></div></div>
+      <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span>📊 1800 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
+    </a><a href="/product/continue-dev/" class="card">
+      <div class="card-compare"><input type="checkbox" value="continue-dev" onchange="toggleCompare(this)" aria-label="Compare"></div>
+      <button class="bookmark-btn" data-slug="continue-dev" onclick="toggleSave(this,&#39;continue-dev&#39;)" title="Save">☆</button>
+      <button class="watch-btn" data-slug="continue-dev" onclick="event.preventDefault();toggleWatch(this,&#39;continue-dev&#39;)" title="Track releases">🔔</button>
+      <div class="card-top">
+        <div class="card-icon"><img src="/images/continue-dev.png" alt="Continue — AI-расширение для IDE с открытым кодом" loading="lazy"></div>
+        <span class="card-badge badge-agent">Agent</span>
+      </div>
+      <div class="card-title"><span class="agent-icon">▶️</span> Continue — AI-расширение для IDE с открытым кодом</div>
+      <div class="card-desc">AI-проверки кода, enforceable в CI</div>
+      <div class="card-panel"><div class="panel-item qs-badge"><div class="pv" style="color:var(--cyan);font-size:16px">74</div><div class="pl">QantScore™</div></div><div class="panel-item"><div class="pv amber">4.6 ★</div><div class="pl">Rating</div></div><div class="panel-item"><div class="pv green">Open Source</div><div class="pl">Цена</div></div><div class="panel-item"><div class="pv">☁️ Cloud</div><div class="pl">Развёртывание</div></div><div class="panel-item"><div class="pv">10</div><div class="pl">Maturity /10</div></div><div class="panel-item"><div class="pv cyan">↑↑ +19.8%</div><div class="pl">Velocity</div></div><div class="panel-item"><div class="pv">3.8</div><div class="pl">Deploy /10</div></div></div>
+      <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T06:54:41.541897+00:00">🕐 1d ago</span><span>📊 950 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
+    </a><a href="/product/github-copilot/" class="card">
+      <div class="card-compare"><input type="checkbox" value="github-copilot" onchange="toggleCompare(this)" aria-label="Compare"></div>
+      <button class="bookmark-btn" data-slug="github-copilot" onclick="toggleSave(this,&#39;github-copilot&#39;)" title="Save">☆</button>
+      <button class="watch-btn" data-slug="github-copilot" onclick="event.preventDefault();toggleWatch(this,&#39;github-copilot&#39;)" title="Track releases">🔔</button>
+      <div class="card-top">
+        <div class="card-icon"><img src="/images/github-copilot.png" alt="GitHub Copilot — AI-парный программист" loading="lazy"></div>
+        <span class="card-badge badge-agent">Agent</span>
+      </div>
+      <div class="card-title"><span class="agent-icon">🐙</span> GitHub Copilot — AI-парный программист</div>
+      <div class="card-desc">AI-помощник, встроенный в ваш редактор</div>
+      <div class="card-panel"><div class="panel-item qs-badge"><div class="pv" style="color:var(--cyan);font-size:16px">75</div><div class="pl">QantScore™</div></div><div class="panel-item"><div class="pv amber">4.5 ★</div><div class="pl">Rating</div></div><div class="panel-item"><div class="pv green">Paid</div><div class="pl">Цена</div></div><div class="panel-item"><div class="pv">☁️ Cloud</div><div class="pl">Развёртывание</div></div><div class="panel-item"><div class="pv">10</div><div class="pl">Maturity /10</div></div><div class="panel-item"><div class="pv cyan">↑↑ +23.0%</div><div class="pl">Velocity</div></div><div class="panel-item"><div class="pv">4.4</div><div class="pl">Deploy /10</div></div></div>
+      <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T06:54:38.447978+00:00">🕐 1d ago</span><span>📊 5200 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
+    </a><a href="/product/swe-agent/" class="card">
+      <div class="card-compare"><input type="checkbox" value="swe-agent" onchange="toggleCompare(this)" aria-label="Compare"></div>
+      <button class="bookmark-btn" data-slug="swe-agent" onclick="toggleSave(this,&#39;swe-agent&#39;)" title="Save">☆</button>
+      <button class="watch-btn" data-slug="swe-agent" onclick="event.preventDefault();toggleWatch(this,&#39;swe-agent&#39;)" title="Track releases">🔔</button>
+      <div class="card-top">
+        <div class="card-icon"><img src="/images/swe-agent.png" alt="SWE-Agent — AI для решения GitHub issues" loading="lazy"></div>
+        <span class="card-badge badge-agent">Agent</span>
+      </div>
+      <div class="card-title"><span class="agent-icon">🔧</span> SWE-Agent — AI для решения GitHub issues</div>
+      <div class="card-desc">Автономный агент: от баг-репорта до Pull Request</div>
+      <div class="card-panel"><div class="panel-item qs-badge"><div class="pv" style="color:var(--cyan);font-size:16px">75</div><div class="pl">QantScore™</div></div><div class="panel-item"><div class="pv amber">4.5 ★</div><div class="pl">Rating</div></div><div class="panel-item"><div class="pv green">Open Source</div><div class="pl">Цена</div></div><div class="panel-item"><div class="pv">☁️ Cloud</div><div class="pl">Развёртывание</div></div><div class="panel-item"><div class="pv">10</div><div class="pl">Maturity /10</div></div><div class="panel-item"><div class="pv cyan">↑↑ +17.1%</div><div class="pl">Velocity</div></div><div class="panel-item"><div class="pv">5.0</div><div class="pl">Deploy /10</div></div></div>
+      <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span>📊 430 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
+    </a><a href="/product/bolt-new/" class="card">
+      <div class="card-compare"><input type="checkbox" value="bolt-new" onchange="toggleCompare(this)" aria-label="Compare"></div>
+      <button class="bookmark-btn" data-slug="bolt-new" onclick="toggleSave(this,&#39;bolt-new&#39;)" title="Save">☆</button>
+      <button class="watch-btn" data-slug="bolt-new" onclick="event.preventDefault();toggleWatch(this,&#39;bolt-new&#39;)" title="Track releases">🔔</button>
+      <div class="card-top">
+        <div class="card-icon"><img src="/images/bolt-new.png" alt="Bolt.new — full-stack приложения в браузере с AI" loading="lazy"></div>
+        <span class="card-badge badge-agent">Agent</span>
+      </div>
+      <div class="card-title"><span class="agent-icon">⚡</span> Bolt.new — full-stack приложения в браузере с AI</div>
+      <div class="card-desc">Пишите промпт — получайте full-stack приложение с деплоем</div>
+      <div class="card-panel"><div class="panel-item qs-badge"><div class="pv" style="color:var(--cyan);font-size:16px">74</div><div class="pl">QantScore™</div></div><div class="panel-item"><div class="pv amber">4.5 ★</div><div class="pl">Rating</div></div><div class="panel-item"><div class="pv green">Freemium</div><div class="pl">Цена</div></div><div class="panel-item"><div class="pv">☁️ Cloud</div><div class="pl">Развёртывание</div></div><div class="panel-item"><div class="pv">10</div><div class="pl">Maturity /10</div></div><div class="panel-item"><div class="pv cyan">↑↑ +23.0%</div><div class="pl">Velocity</div></div><div class="panel-item"><div class="pv">3.8</div><div class="pl">Deploy /10</div></div></div>
+      <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span>📊 2200 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
+    </a><a href="/product/codex-desktop/" class="card">
+      <div class="card-compare"><input type="checkbox" value="codex-desktop" onchange="toggleCompare(this)" aria-label="Compare"></div>
+      <button class="bookmark-btn" data-slug="codex-desktop" onclick="toggleSave(this,&#39;codex-desktop&#39;)" title="Save">☆</button>
+      <button class="watch-btn" data-slug="codex-desktop" onclick="event.preventDefault();toggleWatch(this,&#39;codex-desktop&#39;)" title="Track releases">🔔</button>
+      <div class="card-top">
+        <div class="card-icon">🤖</div>
+        <span class="card-badge badge-agent">Agent</span>
+      </div>
+      <div class="card-title"><span class="agent-icon">🖥️</span> OpenAI Codex Desktop — терминальный AI-агент для разработки</div>
+      <div class="card-desc">Десктопный Codex CLI: автономная разработка, рефакторинг и код-ревью в терминале</div>
+      <div class="card-panel"><div class="panel-item qs-badge"><div class="pv" style="color:var(--cyan);font-size:16px">80</div><div class="pl">QantScore™</div></div><div class="panel-item"><div class="pv amber">4.5 ★</div><div class="pl">Rating</div></div><div class="panel-item"><div class="pv green">Usage-based</div><div class="pl">Цена</div></div><div class="panel-item"><div class="pv">🏠 Local</div><div class="pl">Развёртывание</div></div><div class="panel-item"><div class="pv">10</div><div class="pl">Maturity /10</div></div><div class="panel-item"><div class="pv cyan">↑↑ +21.5%</div><div class="pl">Velocity</div></div><div class="panel-item"><div class="pv">7.5</div><div class="pl">Deploy /10</div></div></div>
+      <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T10:40:24.875554+00:00">🕐 1d ago</span><span>📊 2100 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
+    </a><a href="/product/windsurf-ide/" class="card">
+      <div class="card-compare"><input type="checkbox" value="windsurf-ide" onchange="toggleCompare(this)" aria-label="Compare"></div>
+      <button class="bookmark-btn" data-slug="windsurf-ide" onclick="toggleSave(this,&#39;windsurf-ide&#39;)" title="Save">☆</button>
+      <button class="watch-btn" data-slug="windsurf-ide" onclick="event.preventDefault();toggleWatch(this,&#39;windsurf-ide&#39;)" title="Track releases">🔔</button>
+      <div class="card-top">
+        <div class="card-icon"><img src="/images/windsurf-ide.png" alt="Windsurf — AI IDE от Codeium" loading="lazy"></div>
+        <span class="card-badge badge-agent">Agent</span>
+      </div>
+      <div class="card-title"><span class="agent-icon">🌊</span> Windsurf — AI IDE от Codeium</div>
+      <div class="card-desc">Первый AI Flow IDE с каскадным контекстом</div>
+      <div class="card-panel"><div class="panel-item qs-badge"><div class="pv" style="color:var(--cyan);font-size:16px">73</div><div class="pl">QantScore™</div></div><div class="panel-item"><div class="pv amber">4.4 ★</div><div class="pl">Rating</div></div><div class="panel-item"><div class="pv green">Freemium</div><div class="pl">Цена</div></div><div class="panel-item"><div class="pv">☁️ Cloud</div><div class="pl">Развёртывание</div></div><div class="panel-item"><div class="pv">10</div><div class="pl">Maturity /10</div></div><div class="panel-item"><div class="pv cyan">↑↑ +21.0%</div><div class="pl">Velocity</div></div><div class="panel-item"><div class="pv">4.1</div><div class="pl">Deploy /10</div></div></div>
+      <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T06:54:38.457238+00:00">🕐 1d ago</span><span>📊 1200 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
+    </a><a href="/product/codeium-windsurf/" class="card">
+      <div class="card-compare"><input type="checkbox" value="codeium-windsurf" onchange="toggleCompare(this)" aria-label="Compare"></div>
+      <button class="bookmark-btn" data-slug="codeium-windsurf" onclick="toggleSave(this,&#39;codeium-windsurf&#39;)" title="Save">☆</button>
+      <button class="watch-btn" data-slug="codeium-windsurf" onclick="event.preventDefault();toggleWatch(this,&#39;codeium-windsurf&#39;)" title="Track releases">🔔</button>
+      <div class="card-top">
+        <div class="card-icon"><img src="/images/codeium-windsurf.png" alt="Codeium — AI-автодополнение и поиск по кодовой базе" loading="lazy"></div>
+        <span class="card-badge badge-agent">Agent</span>
+      </div>
+      <div class="card-title"><span class="agent-icon">💨</span> Codeium — AI-автодополнение и поиск по кодовой базе</div>
+      <div class="card-desc">Бесплатное AI-дополнение кода с контекстным поиском</div>
+      <div class="card-panel"><div class="panel-item qs-badge"><div class="pv" style="color:var(--cyan);font-size:16px">73</div><div class="pl">QantScore™</div></div><div class="panel-item"><div class="pv amber">4.4 ★</div><div class="pl">Rating</div></div><div class="panel-item"><div class="pv green">Freemium</div><div class="pl">Цена</div></div><div class="panel-item"><div class="pv">☁️ Cloud</div><div class="pl">Развёртывание</div></div><div class="panel-item"><div class="pv">10</div><div class="pl">Maturity /10</div></div><div class="panel-item"><div class="pv cyan">↑↑ +21.0%</div><div class="pl">Velocity</div></div><div class="panel-item"><div class="pv">4.1</div><div class="pl">Deploy /10</div></div></div>
+      <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span>📊 1200 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
+    </a><a href="/product/replit-ai/" class="card">
+      <div class="card-compare"><input type="checkbox" value="replit-ai" onchange="toggleCompare(this)" aria-label="Compare"></div>
+      <button class="bookmark-btn" data-slug="replit-ai" onclick="toggleSave(this,&#39;replit-ai&#39;)" title="Save">☆</button>
+      <button class="watch-btn" data-slug="replit-ai" onclick="event.preventDefault();toggleWatch(this,&#39;replit-ai&#39;)" title="Track releases">🔔</button>
+      <div class="card-top">
+        <div class="card-icon"><img src="/images/replit-ai.png" alt="Replit AI — облачная IDE со встроенным AI-агентом" loading="lazy"></div>
+        <span class="card-badge badge-agent">Agent</span>
+      </div>
+      <div class="card-title"><span class="agent-icon">🔄</span> Replit AI — облачная IDE со встроенным AI-агентом</div>
+      <div class="card-desc">Облачная среда разработки с AI-агентом и деплоем в один клик</div>
+      <div class="card-panel"><div class="panel-item qs-badge"><div class="pv" style="color:var(--cyan);font-size:16px">80</div><div class="pl">QantScore™</div></div><div class="panel-item"><div class="pv amber">4.3 ★</div><div class="pl">Rating</div></div><div class="panel-item"><div class="pv green">Freemium</div><div class="pl">Цена</div></div><div class="panel-item"><div class="pv">🏠 Local</div><div class="pl">Развёртывание</div></div><div class="panel-item"><div class="pv">10</div><div class="pl">Maturity /10</div></div><div class="panel-item"><div class="pv cyan">↑↑ +23.0%</div><div class="pl">Velocity</div></div><div class="panel-item"><div class="pv">7.8</div><div class="pl">Deploy /10</div></div></div>
+      <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span>📊 3400 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
+    </a><a href="/product/sourcegraph-cody/" class="card">
+      <div class="card-compare"><input type="checkbox" value="sourcegraph-cody" onchange="toggleCompare(this)" aria-label="Compare"></div>
+      <button class="bookmark-btn" data-slug="sourcegraph-cody" onclick="toggleSave(this,&#39;sourcegraph-cody&#39;)" title="Save">☆</button>
+      <button class="watch-btn" data-slug="sourcegraph-cody" onclick="event.preventDefault();toggleWatch(this,&#39;sourcegraph-cody&#39;)" title="Track releases">🔔</button>
+      <div class="card-top">
+        <div class="card-icon"><img src="/images/sourcegraph-cody.png" alt="Sourcegraph Cody — AI с пониманием всей кодовой базы" loading="lazy"></div>
+        <span class="card-badge badge-agent">Agent</span>
+      </div>
+      <div class="card-title"><span class="agent-icon">🔍</span> Sourcegraph Cody — AI с пониманием всей кодовой базы</div>
+      <div class="card-desc">AI-помощник, который читает и понимает весь ваш репозиторий</div>
+      <div class="card-panel"><div class="panel-item qs-badge"><div class="pv" style="color:var(--cyan);font-size:16px">72</div><div class="pl">QantScore™</div></div><div class="panel-item"><div class="pv amber">4.3 ★</div><div class="pl">Rating</div></div><div class="panel-item"><div class="pv green">Freemium</div><div class="pl">Цена</div></div><div class="panel-item"><div class="pv">☁️ Cloud</div><div class="pl">Развёртывание</div></div><div class="panel-item"><div class="pv">10</div><div class="pl">Maturity /10</div></div><div class="panel-item"><div class="pv cyan">↑↑ +18.4%</div><div class="pl">Velocity</div></div><div class="panel-item"><div class="pv">4.1</div><div class="pl">Deploy /10</div></div></div>
+      <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span>📊 670 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
+    </a><a href="/product/amazon-q-developer/" class="card">
+      <div class="card-compare"><input type="checkbox" value="amazon-q-developer" onchange="toggleCompare(this)" aria-label="Compare"></div>
+      <button class="bookmark-btn" data-slug="amazon-q-developer" onclick="toggleSave(this,&#39;amazon-q-developer&#39;)" title="Save">☆</button>
+      <button class="watch-btn" data-slug="amazon-q-developer" onclick="event.preventDefault();toggleWatch(this,&#39;amazon-q-developer&#39;)" title="Track releases">🔔</button>
+      <div class="card-top">
+        <div class="card-icon"><img src="/images/amazon-q-developer.png" alt="Amazon Q Developer — AI-помощник от AWS" loading="lazy"></div>
+        <span class="card-badge badge-agent">Agent</span>
+      </div>
+      <div class="card-title"><span class="agent-icon">☁️</span> Amazon Q Developer — AI-помощник от AWS</div>
+      <div class="card-desc">AI-разработчик для AWS-экосистемы: код, деплой, диагностика</div>
+      <div class="card-panel"><div class="panel-item qs-badge"><div class="pv" style="color:var(--cyan);font-size:16px">79</div><div class="pl">QantScore™</div></div><div class="panel-item"><div class="pv amber">4.2 ★</div><div class="pl">Rating</div></div><div class="panel-item"><div class="pv green">Freemium</div><div class="pl">Цена</div></div><div class="panel-item"><div class="pv">🏠 Local</div><div class="pl">Развёртывание</div></div><div class="panel-item"><div class="pv">10</div><div class="pl">Maturity /10</div></div><div class="panel-item"><div class="pv cyan">↑↑ +19.9%</div><div class="pl">Velocity</div></div><div class="panel-item"><div class="pv">7.8</div><div class="pl">Deploy /10</div></div></div>
+      <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span>📊 980 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
+    </a><a href="/product/tabnine-ai/" class="card">
+      <div class="card-compare"><input type="checkbox" value="tabnine-ai" onchange="toggleCompare(this)" aria-label="Compare"></div>
+      <button class="bookmark-btn" data-slug="tabnine-ai" onclick="toggleSave(this,&#39;tabnine-ai&#39;)" title="Save">☆</button>
+      <button class="watch-btn" data-slug="tabnine-ai" onclick="event.preventDefault();toggleWatch(this,&#39;tabnine-ai&#39;)" title="Track releases">🔔</button>
+      <div class="card-top">
+        <div class="card-icon"><img src="/images/tabnine-ai.png" alt="Tabnine — AI-автодополнение с локальными моделями" loading="lazy"></div>
+        <span class="card-badge badge-agent">Agent</span>
+      </div>
+      <div class="card-title"><span class="agent-icon">9️⃣</span> Tabnine — AI-автодополнение с локальными моделями</div>
+      <div class="card-desc">AI-дополнение кода с on-premise развёртыванием</div>
+      <div class="card-panel"><div class="panel-item qs-badge"><div class="pv" style="color:var(--cyan);font-size:16px">71</div><div class="pl">QantScore™</div></div><div class="panel-item"><div class="pv amber">4.1 ★</div><div class="pl">Rating</div></div><div class="panel-item"><div class="pv green">Paid</div><div class="pl">Цена</div></div><div class="panel-item"><div class="pv">☁️ Cloud</div><div class="pl">Развёртывание</div></div><div class="panel-item"><div class="pv">10</div><div class="pl">Maturity /10</div></div><div class="panel-item"><div class="pv cyan">↑↑ +23.0%</div><div class="pl">Velocity</div></div><div class="panel-item"><div class="pv">4.1</div><div class="pl">Deploy /10</div></div></div>
+      <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span>📊 2100 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
+    </a><a href="/product/devin-agent/" class="card">
+      <div class="card-compare"><input type="checkbox" value="devin-agent" onchange="toggleCompare(this)" aria-label="Compare"></div>
+      <button class="bookmark-btn" data-slug="devin-agent" onclick="toggleSave(this,&#39;devin-agent&#39;)" title="Save">☆</button>
+      <button class="watch-btn" data-slug="devin-agent" onclick="event.preventDefault();toggleWatch(this,&#39;devin-agent&#39;)" title="Track releases">🔔</button>
+      <div class="card-top">
+        <div class="card-icon"><img src="/images/devin-agent.png" alt="Devin — автономный AI-разработчик от Cognition" loading="lazy"></div>
+        <span class="card-badge badge-agent">Agent</span>
+      </div>
+      <div class="card-title"><span class="agent-icon">🛠️</span> Devin — автономный AI-разработчик от Cognition</div>
+      <div class="card-desc">Первый AI software engineer с полным циклом разработки</div>
+      <div class="card-panel"><div class="panel-item qs-badge"><div class="pv" style="color:var(--amber);font-size:16px">68</div><div class="pl">QantScore™</div></div><div class="panel-item"><div class="pv amber">4.0 ★</div><div class="pl">Rating</div></div><div class="panel-item"><div class="pv green">Paid</div><div class="pl">Цена</div></div><div class="panel-item"><div class="pv">☁️ Cloud</div><div class="pl">Развёртывание</div></div><div class="panel-item"><div class="pv">9.6</div><div class="pl">Maturity /10</div></div><div class="panel-item"><div class="pv cyan">↑↑ +17.3%</div><div class="pl">Velocity</div></div><div class="panel-item"><div class="pv">4.1</div><div class="pl">Deploy /10</div></div></div>
+      <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T06:54:38.465670+00:00">🕐 1d ago</span><span>📊 460 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
+    </a>
+  </div>
+
+  <div class="section-hd"><h2>📊 Сравнительная таблица</h2></div>
+  <div class="compare-table-wrap" style="margin-bottom:32px">
+    <table class="compare-table">
+      <tr><th>Агент</th><th>QantScore</th><th>Рейтинг</th><th>Цена</th><th>Тип</th><th>Взаимодействие</th><th>Развёртывание</th></tr>
+      <tr>
+          <td><a href="/product/cursor-ide/" style="color:var(--green);font-weight:600">Cursor IDE — AI-среда разработки но</a></td>
+          <td><strong style="color:var(--cyan)">76</strong></td>
+          <td>4.8 ★</td>
+          <td style="color:var(--green)">Freemium</td>
+          <td style="font-size:12px;color:var(--muted)">🤖 Agent</td>
+          <td style="font-size:12px">💻 IDE</td>
+          <td>☁️ Cloud</td>
+        </tr><tr>
+          <td><a href="/product/open-interpreter/" style="color:var(--green);font-weight:600">Open Interpreter — AI-агент с досту</a></td>
+          <td><strong style="color:var(--cyan)">76</strong></td>
+          <td>4.8 ★</td>
+          <td style="color:var(--green)">Open Source</td>
+          <td style="font-size:12px;color:var(--muted)">🤖 Agent</td>
+          <td style="font-size:12px">📟 CLI</td>
+          <td>🏠 Local</td>
+        </tr><tr>
+          <td><a href="/product/cline-vscode/" style="color:var(--green);font-weight:600">Cline — автономный AI-агент для VS </a></td>
+          <td><strong style="color:var(--cyan)">75</strong></td>
+          <td>4.7 ★</td>
+          <td style="color:var(--green)">Open Source</td>
+          <td style="font-size:12px;color:var(--muted)">🤖 Agent</td>
+          <td style="font-size:12px">💻 IDE</td>
+          <td>☁️ Cloud</td>
+        </tr><tr>
+          <td><a href="/product/aider-ai/" style="color:var(--green);font-weight:600">Aider — AI-парный программист в тер</a></td>
+          <td><strong style="color:var(--cyan)">75</strong></td>
+          <td>4.7 ★</td>
+          <td style="color:var(--green)">Open Source</td>
+          <td style="font-size:12px;color:var(--muted)">🤖 Agent</td>
+          <td style="font-size:12px">📟 CLI</td>
+          <td>🏠 Local</td>
+        </tr><tr>
+          <td><a href="/product/vercel-v0/" style="color:var(--green);font-weight:600">v0 by Vercel — генерация UI компоне</a></td>
+          <td><strong style="color:var(--cyan)">75</strong></td>
+          <td>4.7 ★</td>
+          <td style="color:var(--green)">Freemium</td>
+          <td style="font-size:12px;color:var(--muted)">🤖 Agent</td>
+          <td style="font-size:12px">🌐 Web</td>
+          <td>☁️ Cloud</td>
+        </tr><tr>
+          <td><a href="/product/codex-cli/" style="color:var(--green);font-weight:600">OpenAI Codex CLI — лёгкий агент для</a></td>
+          <td><strong style="color:var(--cyan)">75</strong></td>
+          <td>4.7 ★</td>
+          <td style="color:var(--green)">Open Source</td>
+          <td style="font-size:12px;color:var(--muted)">🤖 Agent</td>
+          <td style="font-size:12px">📟 CLI</td>
+          <td>☁️ Cloud</td>
+        </tr><tr>
+          <td><a href="/product/claude-code/" style="color:var(--green);font-weight:600">Claude Code — агентное программиров</a></td>
+          <td><strong style="color:var(--cyan)">74</strong></td>
+          <td>4.6 ★</td>
+          <td style="color:var(--green)">Usage-based</td>
+          <td style="font-size:12px;color:var(--muted)">🤖 Agent</td>
+          <td style="font-size:12px">📟 CLI</td>
+          <td>🏠 Local</td>
+        </tr><tr>
+          <td><a href="/product/lovable-dev/" style="color:var(--green);font-weight:600">Lovable — AI-разработка приложений </a></td>
+          <td><strong style="color:var(--cyan)">74</strong></td>
+          <td>4.6 ★</td>
+          <td style="color:var(--green)">Freemium</td>
+          <td style="font-size:12px;color:var(--muted)">🤖 Agent</td>
+          <td style="font-size:12px">🌐 Web</td>
+          <td>☁️ Cloud</td>
+        </tr><tr>
+          <td><a href="/product/continue-dev/" style="color:var(--green);font-weight:600">Continue — AI-расширение для IDE с </a></td>
+          <td><strong style="color:var(--cyan)">74</strong></td>
+          <td>4.6 ★</td>
+          <td style="color:var(--green)">Open Source</td>
+          <td style="font-size:12px;color:var(--muted)">🤖 Agent</td>
+          <td style="font-size:12px">💻 IDE</td>
+          <td>☁️ Cloud</td>
+        </tr><tr>
+          <td><a href="/product/github-copilot/" style="color:var(--green);font-weight:600">GitHub Copilot — AI-парный программ</a></td>
+          <td><strong style="color:var(--cyan)">72</strong></td>
+          <td>4.5 ★</td>
+          <td style="color:var(--green)">Paid</td>
+          <td style="font-size:12px;color:var(--muted)">🤖 Agent</td>
+          <td style="font-size:12px">💻 IDE</td>
+          <td>☁️ Cloud</td>
+        </tr><tr>
+          <td><a href="/product/swe-agent/" style="color:var(--green);font-weight:600">SWE-Agent — AI для решения GitHub i</a></td>
+          <td><strong style="color:var(--cyan)">72</strong></td>
+          <td>4.5 ★</td>
+          <td style="color:var(--green)">Open Source</td>
+          <td style="font-size:12px;color:var(--muted)">🤖 Agent</td>
+          <td style="font-size:12px">💻 CLI</td>
+          <td>☁️ Cloud</td>
+        </tr><tr>
+          <td><a href="/product/bolt-new/" style="color:var(--green);font-weight:600">Bolt.new — full-stack приложения в </a></td>
+          <td><strong style="color:var(--cyan)">72</strong></td>
+          <td>4.5 ★</td>
+          <td style="color:var(--green)">Freemium</td>
+          <td style="font-size:12px;color:var(--muted)">🤖 Agent</td>
+          <td style="font-size:12px">🌐 Web</td>
+          <td>☁️ Cloud</td>
+        </tr><tr>
+          <td><a href="/product/codex-desktop/" style="color:var(--green);font-weight:600">OpenAI Codex Desktop — терминальный</a></td>
+          <td><strong style="color:var(--cyan)">72</strong></td>
+          <td>4.5 ★</td>
+          <td style="color:var(--green)">Usage-based</td>
+          <td style="font-size:12px;color:var(--muted)">🤖 Agent</td>
+          <td style="font-size:12px">📟 CLI</td>
+          <td>🏠 Local</td>
+        </tr><tr>
+          <td><a href="/product/windsurf-ide/" style="color:var(--green);font-weight:600">Windsurf — AI IDE от Codeium</a></td>
+          <td><strong style="color:var(--cyan)">71</strong></td>
+          <td>4.4 ★</td>
+          <td style="color:var(--green)">Freemium</td>
+          <td style="font-size:12px;color:var(--muted)">🤖 Agent</td>
+          <td style="font-size:12px">💻 IDE</td>
+          <td>☁️ Cloud</td>
+        </tr><tr>
+          <td><a href="/product/codeium-windsurf/" style="color:var(--green);font-weight:600">Codeium — AI-автодополнение и поиск</a></td>
+          <td><strong style="color:var(--cyan)">71</strong></td>
+          <td>4.4 ★</td>
+          <td style="color:var(--green)">Freemium</td>
+          <td style="font-size:12px;color:var(--muted)">🤖 Agent</td>
+          <td style="font-size:12px">💻 IDE</td>
+          <td>☁️ Cloud</td>
+        </tr><tr>
+          <td><a href="/product/replit-ai/" style="color:var(--green);font-weight:600">Replit AI — облачная IDE со встроен</a></td>
+          <td><strong style="color:var(--cyan)">70</strong></td>
+          <td>4.3 ★</td>
+          <td style="color:var(--green)">Freemium</td>
+          <td style="font-size:12px;color:var(--muted)">🤖 Agent</td>
+          <td style="font-size:12px">🌐 Web</td>
+          <td>🏠 Local</td>
+        </tr><tr>
+          <td><a href="/product/sourcegraph-cody/" style="color:var(--green);font-weight:600">Sourcegraph Cody — AI с пониманием </a></td>
+          <td><strong style="color:var(--cyan)">70</strong></td>
+          <td>4.3 ★</td>
+          <td style="color:var(--green)">Freemium</td>
+          <td style="font-size:12px;color:var(--muted)">🤖 Agent</td>
+          <td style="font-size:12px">💻 IDE</td>
+          <td>☁️ Cloud</td>
+        </tr><tr>
+          <td><a href="/product/amazon-q-developer/" style="color:var(--green);font-weight:600">Amazon Q Developer — AI-помощник от</a></td>
+          <td><strong style="color:var(--amber)">69</strong></td>
+          <td>4.2 ★</td>
+          <td style="color:var(--green)">Freemium</td>
+          <td style="font-size:12px;color:var(--muted)">🤖 Agent</td>
+          <td style="font-size:12px">💻 IDE</td>
+          <td>🏠 Local</td>
+        </tr><tr>
+          <td><a href="/product/tabnine-ai/" style="color:var(--green);font-weight:600">Tabnine — AI-автодополнение с локал</a></td>
+          <td><strong style="color:var(--amber)">68</strong></td>
+          <td>4.1 ★</td>
+          <td style="color:var(--green)">Paid</td>
+          <td style="font-size:12px;color:var(--muted)">🤖 Agent</td>
+          <td style="font-size:12px">💻 IDE</td>
+          <td>☁️ Cloud</td>
+        </tr><tr>
+          <td><a href="/product/devin-agent/" style="color:var(--green);font-weight:600">Devin — автономный AI-разработчик о</a></td>
+          <td><strong style="color:var(--amber)">66</strong></td>
+          <td>4.0 ★</td>
+          <td style="color:var(--green)">Paid</td>
+          <td style="font-size:12px;color:var(--muted)">🤖 Agent</td>
+          <td style="font-size:12px">🌐 Web</td>
+          <td>☁️ Cloud</td>
+        </tr>
+    </table>
+  </div>
+
+  <div style="margin:40px 0">
+    <div class="section-hd"><h2>💰 Стоимость: полное сравнение тарифов</h2></div>
+    <div class="compare-table-wrap" style="margin-bottom:16px">
+      <table class="compare-table">
+        <thead><tr><th>Агент</th><th>Бесплатный тариф</th><th>Pro / Team</th><th>Enterprise</th><th>Модель</th></tr></thead>
+        <tr><td style="color:var(--green);font-weight:600">Cursor IDE</td><td>Hobby (2000 comp/mo)</td><td>$20/мес</td><td>$40/мес</td><td>Подписка + usage</td></tr>
+        <tr><td style="color:var(--green);font-weight:600">GitHub Copilot</td><td>Free (2000 comp/mo)</td><td>$10/мес</td><td>$39/мес Business</td><td>Подписка</td></tr>
+        <tr><td style="color:var(--green);font-weight:600">Claude Code</td><td>—</td><td>API pay-per-token</td><td>Max/Enterprise</td><td>Pay-as-you-go</td></tr>
+        <tr><td style="color:var(--green);font-weight:600">Aider</td><td>Open Source ✅</td><td>Свой API-ключ</td><td>Свой API-ключ</td><td>Бесплатно + LLM</td></tr>
+        <tr><td>Codeium Windsurf</td><td>Free (unlimited)</td><td>$15/мес</td><td>$35/мес</td><td>Freemium</td></tr>
+        <tr><td>Continue.dev</td><td>Open Source ✅</td><td>Свой ключ / $10</td><td>Свой ключ</td><td>Бесплатно + опции</td></tr>
+        <tr><td>Cline (VS Code)</td><td>Open Source ✅</td><td>Свой API-ключ</td><td>Свой API-ключ</td><td>Бесплатно + LLM</td></tr>
+        <tr><td>Devin</td><td>—</td><td>$500/мес</td><td>Кастом</td><td>Подписка</td></tr>
+        <tr><td>Bolt.new</td><td>Free (ограничено)</td><td>$20/мес</td><td>$50/мес</td><td>Freemium</td></tr>
+        <tr><td>v0 (Vercel)</td><td>Free (ограничено)</td><td>$20/мес</td><td>Кастом</td><td>Freemium</td></tr>
+      </table>
+    </div>
+    <p style="font-size:12px;color:var(--dim);margin-top:8px">Цены на май 2026. Бесплатные Open Source агенты требуют своего API-ключа к LLM. Средняя стоимость токенов: $0.50–$5/час активного кодинга.</p>
+  </div>
+
+  <div style="margin:40px 0">
+    <div class="section-hd"><h2>🔒 Безопасность и приватность кода</h2></div>
+    <p style="font-size:13px;color:var(--muted);line-height:1.8;margin-bottom:16px">Главный вопрос при выборе AI-агента: куда уходит ваш код? Разные агенты имеют принципиально разную модель доступа — от нулевого (всё локально) до полного (код на сторонних серверах).</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px">
+      <div style="background:var(--card-bg);border:1px solid #10b98133;border-radius:var(--radius);padding:20px">
+        <div style="font-size:13px;font-weight:700;color:#10b981;margin-bottom:8px">🟢 Локальные (код не покидает машину)</div>
+        <div style="font-size:12px;color:var(--muted);line-height:1.6">Continue.dev, Aider, Cline, Open Interpreter — работают с локальными LLM (Ollama) или вашим API-ключом. Вы контролируете, куда идут данные.</div>
+        <div style="font-size:10px;color:var(--dim);margin-top:8px">Рекомендуется: fintech, healthcare, enterprise с NDA</div>
+      </div>
+      <div style="background:var(--card-bg);border:1px solid #f59e0b33;border-radius:var(--radius);padding:20px">
+        <div style="font-size:13px;font-weight:700;color:#f59e0b;margin-bottom:8px">🟡 Гибридные (часть кода — в облако)</div>
+        <div style="font-size:12px;color:var(--muted);line-height:1.6">Cursor, Copilot, Codeium — отправляют контекст (текущий файл, буфер) на серверы. Не отправляют всю кодовую базу. SOC 2 сертифицированы.</div>
+        <div style="font-size:10px;color:var(--dim);margin-top:8px">Рекомендуется: большинство коммерческих проектов</div>
+      </div>
+      <div style="background:var(--card-bg);border:1px solid #ef444433;border-radius:var(--radius);padding:20px">
+        <div style="font-size:13px;font-weight:700;color:#ef4444;margin-bottom:8px">🔴 Облачные (вся база на сервере)</div>
+        <div style="font-size:12px;color:var(--muted);line-height:1.6">Devin, Bolt.new, v0 — код уходит на облачные серверы для обработки. Удобно, но требует доверия к провайдеру.</div>
+        <div style="font-size:10px;color:var(--dim);margin-top:8px">Рекомендуется: прототипы, open source, non-critical</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin:40px 0">
+    <div class="section-hd"><h2>⚡ Производительность: latency, контекст и токены</h2></div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px">
+      <div style="background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);padding:20px">
+        <div style="font-size:13px;font-weight:700;color:var(--green);margin-bottom:10px">⏱️ Задержка автодополнения</div>
+        <div style="font-size:12px;color:var(--muted);line-height:1.8">
+          <div>🖱️ Cursor: <b style="color:var(--green)">200-400ms</b> — мгновенное</div>
+          <div>📝 Copilot: <b style="color:var(--green)">300-600ms</b> — быстрое</div>
+          <div>🔧 Cline: <b style="color:var(--amber)">800-2000ms</b> — зависит от модели</div>
+          <div>🤖 Claude Code: <b style="color:var(--amber)">1-5s</b> — думает над задачей</div>
+          <div style="margin-top:8px;font-size:11px;color:var(--dim)">Меньше = лучше. IDE-агенты быстрее терминальных.</div>
+        </div>
+      </div>
+      <div style="background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);padding:20px">
+        <div style="font-size:13px;font-weight:700;color:var(--blue);margin-bottom:10px">📐 Размер контекстного окна</div>
+        <div style="font-size:12px;color:var(--muted);line-height:1.8">
+          <div>Claude Code: <b style="color:var(--green)">200K токенов</b> (вся база)</div>
+          <div>Aider: <b style="color:var(--green)">128-200K</b> зависит от модели</div>
+          <div>Cursor: <b style="color:var(--blue)">~10K токенов</b> (релевантные файлы)</div>
+          <div>Copilot: <b style="color:var(--blue)">~8K токенов</b> (текущий файл + соседи)</div>
+          <div style="margin-top:8px;font-size:11px;color:var(--dim)">Больше контекст = лучше понимание проекта, но выше цена и latency.</div>
+        </div>
+      </div>
+      <div style="background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);padding:20px">
+        <div style="font-size:13px;font-weight:700;color:var(--cyan);margin-bottom:10px">💸 Расход токенов в час</div>
+        <div style="font-size:12px;color:var(--muted);line-height:1.8">
+          <div>IDE agent: <b style="color:var(--green)">5-15K</b> токенов/час</div>
+          <div>CLI agent (активный): <b style="color:var(--amber)">50-200K</b> токенов/час</div>
+          <div>Автономный PR: <b style="color:var(--amber)">100-500K</b> токенов/задача</div>
+          <div style="margin-top:8px;font-size:11px;color:var(--dim)">Средняя стоимость: $1-10/день активной разработки.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin:40px 0">
+    <div class="section-hd"><h2>🔌 Совместимость с IDE и платформами</h2></div>
+    <div class="compare-table-wrap" style="margin-bottom:16px">
+      <table class="compare-table">
+        <thead><tr><th>Агент</th><th>VS Code</th><th>JetBrains</th><th>Neovim</th><th>Терминал</th><th>Web</th></tr></thead>
+        <tr><td style="color:var(--green);font-weight:600">Cursor IDE</td><td>— (свой редактор)</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+        <tr><td style="color:var(--green);font-weight:600">Copilot</td><td>✅</td><td>✅</td><td>✅</td><td>✅ CLI</td><td>✅</td></tr>
+        <tr><td style="color:var(--green);font-weight:600">Claude Code</td><td>✅ терминал</td><td>✅ терминал</td><td>✅</td><td>✅</td><td>—</td></tr>
+        <tr><td style="color:var(--green);font-weight:600">Aider</td><td>✅ терминал</td><td>✅ терминал</td><td>✅</td><td>✅</td><td>—</td></tr>
+        <tr><td>Cline</td><td>✅</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+        <tr><td>Continue.dev</td><td>✅</td><td>✅</td><td>—</td><td>—</td><td>—</td></tr>
+        <tr><td>Codeium</td><td>✅</td><td>✅</td><td>✅</td><td>—</td><td>✅</td></tr>
+        <tr><td>Codex CLI</td><td>—</td><td>—</td><td>—</td><td>✅</td><td>—</td></tr>
+      </table>
+    </div>
+    <p style="font-size:12px;color:var(--dim);margin-top:4px">* Cursor — самостоятельная IDE (форк VS Code). Агенты с пометкой «терминал» работают в любом редакторе через встроенный терминал.</p>
+  </div>
+
+  <div style="margin:40px 0">
+    <div class="section-hd"><h2>📋 Дерево решений: как выбрать AI-агента</h2></div>
+    <div style="background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);padding:24px;font-size:13px;color:var(--muted);line-height:2">
+      <div style="margin-bottom:16px"><b style="color:var(--text)">1. Ваш бюджет?</b></div>
+      <div style="margin-left:20px">→ <b style="color:var(--green)">$0</b> (бесплатно): Continue.dev + Aider + своя LLM (Ollama/DeepSeek). Либо Cline + OpenRouter.</div>
+      <div style="margin-left:20px">→ <b style="color:var(--blue)">$10-20/мес</b>: Cursor Pro или Copilot — наилучшее соотношение цена/качество.</div>
+      <div style="margin-left:20px">→ <b style="color:var(--amber)">$500+/мес</b>: Devin для автономных задач + Copilot для IDE.</div>
+      <div style="margin:20px 0 8px"><b style="color:var(--text)">2. Где вы пишете код?</b></div>
+      <div style="margin-left:20px">→ <b style="color:var(--green)">В IDE</b>: Cursor (лучший AI-native редактор) или Copilot (если привязаны к JetBrains).</div>
+      <div style="margin-left:20px">→ <b style="color:var(--blue)">В терминале</b>: Claude Code для сложных задач, Aider для простых правок.</div>
+      <div style="margin:20px 0 8px"><b style="color:var(--text)">3. Требования к безопасности?</b></div>
+      <div style="margin-left:20px">→ <b style="color:var(--green)">NDA / fintech</b>: Continue.dev + Ollama (100% локально, код не покидает машину).</div>
+      <div style="margin-left:20px">→ <b style="color:var(--blue)">SOC 2 ок</b>: Cursor или Copilot (сертифицированы, код в облаке).</div>
+      <div style="margin:20px 0 8px"><b style="color:var(--text)">4. Тип задач?</b></div>
+      <div style="margin-left:20px">→ <b style="color:var(--green)">Потоковое кодирование</b>: Cursor / Copilot — автодополнение на лету.</div>
+      <div style="margin-left:20px">→ <b style="color:var(--blue)">Feature / PR</b>: Claude Code — читает всю базу, пишет код, создаёт PR.</div>
+      <div style="margin-left:20px">→ <b style="color:var(--cyan)">MVP / прототип</b>: Bolt.new или v0 — приложение из описания за минуты.</div>
+      <div style="margin-left:20px">→ <b style="color:var(--amber)">Сложный баг-фикс</b>: Devin или SWE-Agent — автономная отладка.</div>
+    </div>
+  </div>
+
+  <div style="margin:40px 0">
+    <div class="section-hd"><h2>👥 Командные сценарии использования</h2></div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px">
+      <div style="background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);padding:20px">
+        <div style="font-size:14px;font-weight:700;color:var(--green);margin-bottom:10px">🚀 Стартап (3-5 чел)</div>
+        <div style="font-size:12px;color:var(--muted);line-height:1.8">
+          <div>• Cursor Pro для всех разработчиков</div>
+          <div>• Claude Code для ревью PR</div>
+          <div>• Bolt.new для прототипов</div>
+          <div style="margin-top:8px;font-size:11px;color:var(--dim)">Бюджет: ~$60-100/мес на команду</div>
+        </div>
+      </div>
+      <div style="background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);padding:20px">
+        <div style="font-size:14px;font-weight:700;color:var(--blue);margin-bottom:10px">🏢 Enterprise (20-100+)</div>
+        <div style="font-size:12px;color:var(--muted);line-height:1.8">
+          <div>• GitHub Copilot Business ($39/чел)</div>
+          <div>• Code review automation (Codex CLI)</div>
+          <div>• Индивидуально: Claude Code для синьоров</div>
+          <div style="margin-top:8px;font-size:11px;color:var(--dim)">Бюджет: ~$800-4000/мес</div>
+        </div>
+      </div>
+      <div style="background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);padding:20px">
+        <div style="font-size:14px;font-weight:700;color:var(--amber);margin-bottom:10px">🔓 Open Source проект</div>
+        <div style="font-size:12px;color:var(--muted);line-height:1.8">
+          <div>• Continue.dev + DeepSeek/Claude API</div>
+          <div>• Aider для контрибьюторов</div>
+          <div>• Copilot Free для casual участников</div>
+          <div style="margin-top:8px;font-size:11px;color:var(--dim)">Бюджет: $0-20/мес на человека</div>
+        </div>
+      </div>
+      <div style="background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);padding:20px">
+        <div style="font-size:14px;font-weight:700;color:var(--cyan);margin-bottom:10px">🎓 Обучение / Pet-project</div>
+        <div style="font-size:12px;color:var(--muted);line-height:1.8">
+          <div>• Copilot Free (2000 comp/мес)</div>
+          <div>• Codeium Free (безлимитный)</div>
+          <div>• Cline + OpenRouter ($5 кредита)</div>
+          <div style="margin-top:8px;font-size:11px;color:var(--dim)">Бюджет: $0-5/мес</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin:40px 0">
+    <div class="section-hd"><h2>🔄 CI/CD интеграция AI-агентов</h2></div>
+    <p style="font-size:13px;color:var(--muted);line-height:1.8;margin-bottom:16px">AI-агенты всё глубже интегрируются в пайплайны Continuous Integration. Вот как разные агенты встраиваются в процесс от коммита до деплоя:</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px">
+      <div style="background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);padding:20px">
+        <div style="font-size:13px;font-weight:700;color:var(--green);margin-bottom:8px">📝 Pre-commit хук</div>
+        <div style="font-size:12px;color:var(--muted);line-height:1.6">Claude Code, Aider, Codex CLI — запускаются как git hook. Проверяют код перед коммитом: lint, типы, тесты, безопасность.</div>
+        <div style="font-family:monospace;font-size:10px;color:var(--dim);margin-top:8px;background:#0d1117;padding:8px;border-radius:4px"># .git/hooks/pre-commit<br/>claude "review staged changes"</div>
+      </div>
+      <div style="background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);padding:20px">
+        <div style="font-size:13px;font-weight:700;color:var(--blue);margin-bottom:8px">🔍 PR Review Automation</div>
+        <div style="font-size:12px;color:var(--muted);line-height:1.6">GitHub Actions + Claude Code/Codex CLI. Автоматически проверяет каждый PR: security scan, style guide, architecture review.</div>
+        <div style="font-family:monospace;font-size:10px;color:var(--dim);margin-top:8px;background:#0d1117;padding:8px;border-radius:4px"># .github/workflows/review.yml<br/>codex review PR-${ PR_NUMBER }</div>
+      </div>
+      <div style="background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);padding:20px">
+        <div style="font-size:13px;font-weight:700;color:var(--cyan);margin-bottom:8px">🐛 Авто-фикс багов</div>
+        <div style="font-size:12px;color:var(--muted);line-height:1.6">Devin, SWE-Agent — получают issue из трекера, автономно исправляют баг, создают PR с фиксом и тестами. Минимальное участие человека.</div>
+        <div style="font-family:monospace;font-size:10px;color:var(--dim);margin-top:8px;background:#0d1117;padding:8px;border-radius:4px"># Полностью автономно<br/>devin solve "Fix #342: NPE in auth"</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin:40px 0">
+    <div class="section-hd"><h2>📊 Сравнение моделей: какие LLM используют агенты</h2></div>
+    <div class="compare-table-wrap" style="margin-bottom:16px">
+      <table class="compare-table">
+        <thead><tr><th>Агент</th><th>Модель по умолчанию</th><th>Выбор модели</th><th>Локальные модели</th><th>Провайдеры</th></tr></thead>
+        <tr><td style="color:var(--green);font-weight:600">Cursor</td><td>GPT-4o / Claude 4</td><td>✅ Встроенный выбор</td><td>—</td><td>OpenAI, Anthropic</td></tr>
+        <tr><td style="color:var(--green);font-weight:600">Copilot</td><td>GPT-4o-mini</td><td>⚠️ Ограничен</td><td>—</td><td>OpenAI</td></tr>
+        <tr><td style="color:var(--green);font-weight:600">Claude Code</td><td>Claude Sonnet 4</td><td>✅ Любая модель</td><td>—</td><td>Anthropic</td></tr>
+        <tr><td style="color:var(--green);font-weight:600">Aider</td><td>Claude 4 / GPT-4o</td><td>✅ Любая модель</td><td>✅ Ollama</td><td>OpenAI, Anthropic, OpenRouter, DeepSeek</td></tr>
+        <tr><td>Cline</td><td>Выбор пользователя</td><td>✅ Любая модель</td><td>✅ Ollama, LM Studio</td><td>OpenRouter, OpenAI, Anthropic</td></tr>
+        <tr><td>Continue.dev</td><td>Выбор пользователя</td><td>✅ Любая модель</td><td>✅ Ollama, LM Studio</td><td>OpenAI, Anthropic, Mistral, DeepSeek, OpenRouter</td></tr>
+        <tr><td>Codeium</td><td>Своя модель</td><td>❌ Только своя</td><td>—</td><td>Proprietary</td></tr>
+        <tr><td>Devin</td><td>GPT-4o + Claude</td><td>❌ Только своя</td><td>—</td><td>Proprietary</td></tr>
+      </table>
+    </div>
+  </div>
+
+
+</div>
+<footer>
+  Qantcore &copy; 2026 &mdash; Платформа аналитики AI-агентов &mdash;
+  Обновляется ежедневно &mdash; <a href="https://t.me/nousresearch">@nousresearch</a>
+</footer>
+
+</body>
+</html>

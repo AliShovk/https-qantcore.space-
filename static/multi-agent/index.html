@@ -1,0 +1,1355 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Мульти-агентные фреймворки — Рейтинг и сравнение | Qantcore — Аналитика AI-агентов</title>
+<meta name="description" content="Сравнение 11 multi-agent фреймворков: 5 архитектурных паттернов, матрица выбора, примеры кода.">
+<link rel="icon" type="image/svg+xml" href="/images/favicon.svg">
+<link rel="canonical" href="https://qantcore.space/multi-agent/">
+<link rel="canonical" href="https://qantcore.space/multi-agent/">
+<meta property="og:title" content="Мульти-агентные фреймворки — Qantcore">
+<meta property="og:description" content="Сравнение 11 multi-agent orchestration frameworks: архитектура, паттерны, код.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://qantcore.space/multi-agent/">
+<meta property="og:image" content="https://qantcore.space/images/favicon.svg">
+<meta property="og:site_name" content="QantCore">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Мульти-агентные фреймворки — Qantcore">
+<meta name="twitter:description" content="Сравнение 11 multi-agent orchestration frameworks: архитектура, паттерны, код.">
+<meta name="twitter:image" content="https://qantcore.space/images/favicon.svg">
+<style>*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#0B0F14;--surface:#121821;--card-bg:#171F2B;--border:rgba(255,255,255,.06);
+  --text:#F5F7FA;--muted:#9AA4B2;--dim:#6B7280;
+  --green:#10b981;--green-dim:rgba(16,185,129,.12);
+  --blue:#3B82F6;--blue-dim:rgba(59,130,246,.12);
+  --cyan:#22D3EE;--cyan-dim:rgba(34,211,238,.12);
+  --amber:#f59e0b;--amber-dim:rgba(245,158,11,.12);
+  --red:#ef4444;--red-dim:rgba(239,68,68,.12);
+  --radius:12px;--radius-sm:8px}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
+  background:var(--bg);color:var(--text);min-height:100vh;line-height:1.6;font-size:16px;
+  -webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:#1e2233;border-radius:2px}
+
+/* ─── Header & Mega-Nav ─── */
+header{position:sticky;top:0;z-index:100;backdrop-filter:blur(20px) saturate(180%);
+  background:rgba(11,15,20,.92);border-bottom:1px solid var(--border)}
+.header-inner{max-width:1320px;margin:0 auto;padding:14px 24px;
+  display:flex;align-items:center;justify-content:space-between}
+.logo{font-size:20px;font-weight:800;letter-spacing:-.02em;color:var(--text);
+  display:flex;align-items:center;gap:8px}
+.logo-dot{width:8px;height:8px;border-radius:50%;background:var(--green);
+  box-shadow:0 0 8px rgba(16,185,129,.5);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.mega-nav{display:flex;gap:4px;align-items:center}
+.mega-nav a,.mega-nav .nav-section{font-size:13.5px;color:var(--muted);
+  padding:6px 12px;border-radius:6px;transition:all .2s;font-weight:500;
+  letter-spacing:.01em;white-space:nowrap}
+.mega-nav a:hover{color:var(--text);background:rgba(255,255,255,.04)}
+.mega-nav a.active{color:var(--green);background:var(--green-dim)}
+.nav-sep{width:1px;height:18px;background:var(--border);margin:0 4px}
+.nav-featured{font-size:14px!important;font-weight:700!important;color:var(--green)!important;
+  background:var(--green-dim)!important;padding:8px 16px!important;letter-spacing:.02em}
+
+/* ─── Terminal Grid (hero bg) ─── */
+.terminal-grid{position:absolute;top:0;left:0;right:0;bottom:0;overflow:hidden;pointer-events:none;z-index:0}
+.terminal-grid::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;
+  background-image:
+    linear-gradient(rgba(16,185,129,.04) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(16,185,129,.04) 1px,transparent 1px);
+  background-size:40px 40px;
+  animation:grid-scroll 20s linear infinite}
+@keyframes grid-scroll{0%{transform:translate(0,0)}100%{transform:translate(40px,40px)}}
+.terminal-grid::after{content:'';position:absolute;top:0;left:0;right:0;bottom:0;
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(16,185,129,.1) 0%, transparent 60%),
+    radial-gradient(circle at 20% 80%, rgba(59,130,246,.06) 0%, transparent 40%),
+    radial-gradient(circle at 80% 20%, rgba(16,185,129,.05) 0%, transparent 40%);
+  z-index:1}
+/* ─── Hero ─── */
+.hero{text-align:center;padding:72px 24px 48px;position:relative;overflow:hidden}
+.hero>*{position:relative;z-index:2}
+.hero h1{font-size:clamp(36px,5vw,60px);font-weight:800;letter-spacing:-.03em;
+  line-height:1.15;color:#f1f5f9;max-width:800px;margin:0 auto}
+.hero h1 .accent{color:var(--green)}
+.hero .sub{font-size:17px;color:var(--muted);margin-top:16px;max-width:640px;
+  margin-left:auto;margin-right:auto;line-height:1.6}
+.hero .tagline{font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:var(--green);
+  font-weight:600;margin-bottom:16px}
+.hero-metrics{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:28px}
+.hero-metric{background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius-sm);
+  padding:10px 18px;text-align:center;min-width:100px}
+.hero-metric .val{font-size:24px;font-weight:800;color:var(--green);font-variant-numeric:tabular-nums}
+.hero-metric .lbl{font-size:11px;color:var(--muted);margin-top:2px;text-transform:uppercase;letter-spacing:.06em}
+.hero-cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:32px}
+.cta-primary{padding:12px 28px;border-radius:var(--radius-sm);font-size:14px;font-weight:600;
+  background:var(--green);color:#000;border:none;cursor:pointer;transition:all .2s;
+  letter-spacing:-.01em}
+.cta-primary:hover{filter:brightness(1.15);transform:translateY(-1px)}
+.cta-secondary{padding:12px 28px;border-radius:var(--radius-sm);font-size:14px;font-weight:600;
+  background:transparent;color:var(--text);border:1px solid var(--border);cursor:pointer;
+  transition:all .2s}
+.cta-secondary:hover{border-color:var(--green);color:var(--green)}
+
+/* ─── Enterprise CTA Banner ─── */
+.enterprise-cta{background:linear-gradient(135deg,rgba(16,185,129,.08) 0%,rgba(59,130,246,.04) 100%);
+  border:1px solid rgba(16,185,129,.15);border-radius:var(--radius);margin:40px 0 32px;padding:0}
+.ec-inner{display:flex;align-items:center;justify-content:space-between;gap:32px;padding:32px 36px;flex-wrap:wrap}
+.card-title{font-size:16px;font-weight:600;color:var(--text);margin-bottom:8px;line-height:1.4;
+  display:flex;align-items:flex-start;gap:6px}
+.agent-icon{font-size:18px;flex-shrink:0;line-height:1.2}
+.ec-text h3{font-size:20px;font-weight:700;color:var(--text);margin-bottom:8px}
+.ec-text p{font-size:14px;color:var(--muted);line-height:1.6;max-width:480px}
+.ec-actions{display:flex;gap:12px;flex-shrink:0;flex-wrap:wrap}
+
+/* ─── Authority Bar ─── */
+.auth-bar{max-width:1320px;margin:0 auto 0;padding:0 24px 32px}
+.auth-inner{display:flex;gap:0;background:var(--card-bg);border:1px solid var(--border);
+  border-radius:var(--radius);overflow:hidden;flex-wrap:wrap}
+.auth-stat{flex:1;min-width:130px;padding:18px 20px;text-align:center;
+  border-right:1px solid var(--border);position:relative}
+.auth-stat:last-child{border-right:none}
+.auth-stat .n{font-size:28px;font-weight:800;color:var(--green);font-variant-numeric:tabular-nums;
+  letter-spacing:-.02em}
+.auth-stat .n.amber{color:var(--amber)}
+.auth-stat .l{font-size:11px;color:var(--muted);margin-top:3px;text-transform:uppercase;letter-spacing:.05em}
+.auth-stat .dot{display:inline-block;width:6px;height:6px;border-radius:50%;
+  background:var(--green);margin-right:6px;animation:pulse 2s infinite}
+
+/* ─── Section Headers ─── */
+.section-hd{max-width:1320px;margin:0 auto;padding:8px 24px 16px;
+  display:flex;align-items:center;justify-content:space-between}
+.section-hd h2{font-size:20px;font-weight:700;color:var(--text);letter-spacing:-.01em}
+.section-hd .see-all{font-size:13px;color:var(--green);font-weight:500}
+.section-hd .see-all:hover{text-decoration:underline}
+
+/* ─── Filters ─── */
+.filters-bar{max-width:1320px;margin:0 auto;padding:0 24px 20px;display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.filters-bar .label{font-size:12px;color:var(--dim);text-transform:uppercase;letter-spacing:.05em;margin-right:4px}
+.filter-btn{padding:6px 14px;border-radius:20px;font-size:12px;font-weight:500;
+  border:1px solid var(--border);background:transparent;
+  color:var(--muted);cursor:pointer;transition:all .2s;white-space:nowrap}
+.filter-btn:hover,.filter-btn.active{border-color:var(--green);color:var(--green);
+  background:var(--green-dim)}
+.filter-btn .count{font-size:10px;color:var(--dim);margin-left:4px}
+
+/* ─── Grid & Cards ─── */
+.grid{max-width:1320px;margin:0 auto;padding:0 24px 32px;
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
+
+.card{background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);
+  padding:20px;transition:all .2s;position:relative;display:flex;flex-direction:column}
+.card:hover{border-color:rgba(16,185,129,.25);transform:translateY(-2px);
+  box-shadow:0 8px 30px rgba(0,0,0,.4)}
+.card-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:12px}
+.card-icon{width:40px;height:40px;border-radius:var(--radius-sm);background:rgba(255,255,255,.04);
+  display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;overflow:hidden}
+.card-icon img{width:100%;height:100%;object-fit:contain;padding:6px}
+.card-badge{padding:2px 8px;border-radius:4px;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.04em}
+.badge-agent{background:var(--blue-dim);color:var(--blue)}
+.badge-framework{background:var(--green-dim);color:var(--green)}
+.badge-platform{background:var(--amber-dim);color:var(--amber)}
+.badge-model{background:var(--red-dim);color:var(--red)}
+.badge-infra{background:rgba(139,92,246,.12);color:#8b5cf6}
+.card-desc{font-size:13.5px;color:var(--muted);line-height:1.5;display:-webkit-box;
+  -webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;margin-bottom:12px;flex:1}
+/* Intelligence Panel */
+.card-panel{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:auto}
+.panel-item{background:rgba(255,255,255,.02);border-radius:6px;padding:8px 10px}
+.panel-item .pv{font-size:16px;font-weight:700;color:var(--text);font-variant-numeric:tabular-nums}
+.panel-item .pv.green{color:var(--green)}
+.panel-item .pv.amber{color:var(--amber)}
+.panel-item .pl{font-size:10px;color:var(--dim);margin-top:1px;text-transform:uppercase;letter-spacing:.03em}
+.card-compare{position:absolute;top:12px;right:12px;z-index:5}
+.card-compare input[type=checkbox]{appearance:none;width:18px;height:18px;border-radius:4px;
+  border:2px solid var(--dim);cursor:pointer;transition:all .2s;position:relative}
+.card-compare input[type=checkbox]:checked{border-color:var(--green);background:var(--green)}
+.card-compare input[type=checkbox]:checked::after{content:'✓';position:absolute;
+  top:-1px;left:2px;color:#000;font-size:13px;font-weight:700}
+.card-trust{display:flex;gap:12px;margin-top:8px;font-size:10px;color:var(--dim)}
+.card-trust span{display:flex;align-items:center;gap:3px}
+
+/* ─── Compare Bar ─── */
+.compare-bar{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);
+  background:var(--card-bg);border:1px solid var(--green);
+  border-radius:var(--radius);padding:12px 20px;display:none;align-items:center;gap:16px;
+  z-index:200;box-shadow:0 8px 40px rgba(0,0,0,.6);backdrop-filter:blur(16px)}
+.compare-bar.active{display:flex}
+.compare-bar .sel{font-size:13px;color:var(--muted)}
+.compare-bar .sel strong{color:var(--green)}
+.compare-btn{padding:8px 20px;border-radius:6px;font-size:13px;font-weight:600;
+  background:var(--green);color:#000;border:none;cursor:pointer;transition:all .2s}
+.compare-btn:hover{filter:brightness(1.15)}
+.compare-btn:disabled{opacity:.3;cursor:not-allowed}
+.compare-clear{font-size:12px;color:var(--muted);cursor:pointer;background:none;border:none}
+.compare-clear:hover{color:var(--red)}
+
+/* ─── Live Connection Lines ─── */
+.live-lines{position:fixed;top:0;left:0;width:100%;height:100%;z-index:150;
+  pointer-events:none;opacity:0;transition:opacity .3s}
+.live-lines.active{opacity:1}
+
+/* ─── Install / Code Block ─── */
+.install-block{background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);
+  overflow:hidden;margin-bottom:24px}
+.install-header{display:flex;align-items:center;justify-content:space-between;
+  padding:12px 20px;background:rgba(59,130,246,.06);border-bottom:1px solid var(--border)}
+.install-badge{font-size:13px;font-weight:600;color:var(--blue);
+  background:rgba(59,130,246,.12);padding:4px 12px;border-radius:4px}
+.copy-btn{font-size:12px;color:var(--muted);background:rgba(255,255,255,.04);
+  border:1px solid var(--border);padding:5px 14px;border-radius:4px;
+  cursor:pointer;transition:all .2s;font-weight:500}
+.copy-btn:hover{color:var(--green);border-color:var(--green)}
+.code-block{background:#0d1117;padding:20px 24px;margin:0;overflow-x:auto;
+  font-family:'JetBrains Mono','Fira Code','Cascadia Code',monospace;
+  font-size:13px;line-height:1.7;color:#c9d1d9;white-space:pre-wrap;
+  border-radius:0 0 var(--radius) var(--radius)}
+.code-block code{background:none;padding:0;font-size:inherit}
+.desc-block h2{display:flex;align-items:center;gap:8px}
+
+/* ─── Stats Mini (colored) ─── */
+.stats-mini{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap}
+.stat-mini{background:var(--card-bg);border:1px solid var(--border);
+  border-radius:8px;padding:10px 16px;text-align:center;min-width:80px}
+.stat-mini .sv{font-size:20px;font-weight:800;color:var(--green);
+  font-variant-numeric:tabular-nums}
+.stat-mini .sl{font-size:10px;color:var(--dim);margin-top:2px;
+  text-transform:uppercase;letter-spacing:.03em}
+
+/* ─── Integrations Overlay ─── */
+.integ-overlay{position:fixed;top:0;left:0;width:100%;height:100%;z-index:9999;
+  background:rgba(0,0,0,.85);backdrop-filter:blur(8px);
+  display:flex;align-items:flex-start;justify-content:center;padding:40px 20px;overflow-y:auto}
+.integ-modal{background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);
+  width:100%;max-width:900px;padding:0;box-shadow:0 20px 60px rgba(0,0,0,.5)}
+.integ-header{display:flex;align-items:center;justify-content:space-between;
+  padding:20px 28px;border-bottom:1px solid var(--border)}
+.integ-header h2{font-size:20px;font-weight:700;color:var(--text)}
+.integ-close{background:none;border:none;color:var(--muted);font-size:22px;cursor:pointer;
+  padding:4px 8px;border-radius:6px;transition:all .2s}
+.integ-close:hover{color:var(--red);background:rgba(255,255,255,.05)}
+.integ-agents{display:flex;gap:12px;padding:20px 28px;flex-wrap:wrap;justify-content:center;
+  border-bottom:1px solid var(--border)}
+.integ-agent-card{display:flex;align-items:center;gap:8px;background:var(--card-bg);
+  border:1px solid var(--border);border-radius:8px;padding:8px 14px;font-size:13px;color:var(--text)}
+.integ-agent-card .iac-icon{width:28px;height:28px;border-radius:6px;
+  background:rgba(59,130,246,.15);display:flex;align-items:center;justify-content:center;font-size:14px;overflow:hidden}
+.integ-agent-card .iac-icon img{width:100%;height:100%;object-fit:contain}
+.integ-diagram{padding:8px 28px;background:rgba(0,0,0,.2);border-bottom:1px solid var(--border)}
+.integ-diagram svg{display:block}
+.integ-matches{padding:24px 28px}
+.integ-matches h3{font-size:16px;font-weight:700;color:var(--text);margin-bottom:16px}
+.integ-list{display:flex;flex-direction:column;gap:12px}
+.integ-match{background:var(--card-bg);border:1px solid var(--border);border-radius:8px;padding:16px 20px}
+.im-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
+.im-type{font-size:13px;font-weight:600;color:var(--green);background:rgba(16,185,129,.1);
+  padding:3px 10px;border-radius:4px}
+.im-effort{font-size:12px;color:var(--muted)}
+.im-desc{font-size:13px;color:var(--muted);line-height:1.6;margin-bottom:8px}
+.im-agents{font-size:11px;color:var(--dim);font-family:monospace;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.im-agents img{width:20px;height:20px;border-radius:4px;object-fit:contain;vertical-align:middle}
+.im-agents a{display:inline-flex;align-items:center;gap:4px}
+.integ-empty{text-align:center;padding:40px 20px;color:var(--muted)}
+.integ-cta{text-align:center;padding:20px 28px;border-top:1px solid var(--border);
+  background:linear-gradient(180deg,transparent,rgba(16,185,129,.04))}
+.integ-cta p{font-size:14px;color:var(--muted);margin-bottom:12px}
+
+/* ─── Featured Section ─── */
+.featured{max-width:1320px;margin:0 auto;padding:0 24px 32px}
+.featured-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(380px,1fr));gap:16px}
+.featured-card{background:var(--card-bg);border:1px solid var(--border);
+  border-radius:var(--radius);padding:24px;transition:all .2s;
+  position:relative;overflow:hidden}
+.featured-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,var(--green),var(--blue));opacity:0;transition:opacity .2s}
+.featured-card:hover::before{opacity:1}
+.featured-card:hover{transform:translateY(-2px);border-color:rgba(16,185,129,.2);
+  box-shadow:0 8px 30px rgba(0,0,0,.4)}
+.featured-card .fc-label{font-size:10px;text-transform:uppercase;letter-spacing:.06em;
+  color:var(--green);margin-bottom:8px;font-weight:600}
+.featured-card .fc-title{font-size:18px;font-weight:700;color:#f1f5f9;margin-bottom:6px}
+.featured-card .fc-desc{font-size:13px;color:var(--muted);line-height:1.6}
+
+/* ─── Compare Table ─── */
+.compare-table-wrap{overflow-x:auto;margin:20px 0;border-radius:12px;
+  border:1px solid var(--border);background:linear-gradient(180deg,#121821 0%,var(--bg) 100%)}
+.compare-table{width:100%;border-collapse:collapse;font-size:13px}
+.compare-table thead th{padding:16px 16px 14px;color:var(--text);font-weight:700;font-size:13px;
+  text-align:center;border-bottom:2px solid rgba(16,185,129,.3);
+  background:linear-gradient(180deg,rgba(16,185,129,.06) 0%,transparent 100%)}
+.compare-table thead th:first-child{text-align:left;color:var(--muted);font-size:11px;
+  font-weight:500;text-transform:uppercase;letter-spacing:.04em;border-right:1px solid var(--border)}
+.compare-table thead th .th-icon{font-size:18px;display:block;margin-bottom:4px}
+.compare-table thead th .th-name{display:block;max-width:140px;margin:0 auto;line-height:1.3}
+.compare-table tbody th{text-align:left;padding:12px 16px;color:var(--muted);font-weight:500;
+  font-size:11px;text-transform:uppercase;letter-spacing:.04em;border-bottom:1px solid var(--border);
+  border-right:1px solid var(--border);white-space:nowrap}
+.compare-table tbody td{padding:12px 14px;border-bottom:1px solid var(--border);
+  text-align:center;font-weight:600;font-size:13px;position:relative}
+.compare-table tbody tr:last-child td,.compare-table tbody tr:last-child th{border-bottom:none}
+.compare-table tbody tr:nth-child(even){background:rgba(18,24,33,.4)}
+.compare-table .winner{background:rgba(16,185,129,.08) !important;
+  box-shadow:inset 0 0 0 1px rgba(16,185,129,.25)}
+.compare-table .winner::after{content:'';position:absolute;top:2px;right:2px;
+  width:6px;height:6px;border-radius:50%;background:var(--green)}
+/* Score bar inside metric cells */
+.metric-bar{display:inline-block;height:6px;border-radius:3px;margin-right:8px;
+  vertical-align:middle;min-width:4px;transition:width .5s ease}
+.metric-val{display:inline-flex;align-items:center;gap:6px;white-space:nowrap}
+.score-high{color:var(--green)}
+.score-mid{color:var(--cyan)}
+.score-low{color:var(--amber)}
+.compare-header-bar{display:flex;align-items:center;gap:8px;margin-bottom:24px}
+.compare-header-bar h1{font-size:24px;font-weight:800;color:var(--text);margin:0}
+.compare-badge{display:inline-block;padding:3px 10px;border-radius:20px;
+  font-size:11px;font-weight:600;letter-spacing:.03em;
+  background:rgba(34,211,238,.1);color:var(--cyan);border:1px solid rgba(34,211,238,.2)}
+.result-actions{display:flex;gap:10px;margin-top:20px}
+.btn-back{padding:10px 20px;border-radius:8px;font-size:13px;font-weight:600;
+  background:var(--card-bg);color:var(--text);border:1px solid var(--border);
+  cursor:pointer;transition:all .2s}
+.btn-back:hover{background:var(--surface);border-color:var(--muted)}
+.btn-share{padding:10px 20px;border-radius:8px;font-size:13px;font-weight:600;
+  background:rgba(59,130,246,.12);color:var(--blue);border:1px solid rgba(59,130,246,.2);
+  cursor:pointer;transition:all .2s}
+.btn-share:hover{background:rgba(59,130,246,.2)}
+.compare-legend{display:flex;align-items:center;gap:16px;margin-top:16px;flex-wrap:wrap}
+.compare-legend .dot{display:inline-block;width:8px;height:8px;border-radius:50%}
+.compare-legend .dot.green{background:var(--green)}
+.compare-legend span{font-size:12px;color:var(--muted)}
+.compare-check{color:var(--green)}
+
+/* ─── Live Feed ─── */
+.live-dot{display:inline-block;width:8px;height:8px;border-radius:50%;
+  background:var(--green);margin-right:8px;animation:pulse 2s infinite}
+
+/* ─── Bookmark ─── */
+.bookmark-btn{position:absolute;top:12px;left:12px;z-index:5;background:none;border:none;
+  font-size:16px;cursor:pointer;color:var(--dim);transition:all .2s;padding:4px}
+.bookmark-btn:hover{color:var(--amber);transform:scale(1.2)}
+.bookmark-btn.saved{color:var(--amber)}
+.watch-btn{position:absolute;top:36px;left:12px;z-index:5;background:none;border:none;
+  font-size:12px;cursor:pointer;color:var(--dim);transition:all .2s;padding:4px}
+.watch-btn:hover{color:var(--cyan);transform:scale(1.2)}
+.watch-btn.watching{color:var(--cyan)}
+.saved-section{margin-top:24px}
+/* ─── Feed ─── */
+.feed-list{display:flex;flex-direction:column;gap:8px}
+.feed-item{display:flex;align-items:flex-start;gap:12px;padding:12px 16px;
+  background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius-sm);
+  transition:all .2s;font-size:13px}
+.feed-item:hover{border-color:rgba(16,185,129,.2)}
+.feed-item .fi-time{font-size:10px;color:var(--dim);white-space:nowrap;min-width:55px;padding-top:2px}
+.feed-item .fi-icon{font-size:14px;flex-shrink:0}
+.feed-item .fi-text{color:var(--muted);line-height:1.5}
+.feed-item .fi-text strong{color:var(--text)}
+
+/* ─── Trust Badges ─── */
+.trust-badge{display:inline-flex;align-items:center;gap:4px;font-size:10px;
+  padding:3px 8px;border-radius:4px;font-weight:500}
+.trust-verified{background:var(--green-dim);color:var(--green)}
+.trust-fresh{background:rgba(16,185,129,.06);color:var(--green)}
+.trust-stale{background:var(--amber-dim);color:var(--amber)}
+
+/* ─── Stack Builder ─── */
+.stack-builder{max-width:1320px;margin:0 auto;padding:32px 24px}
+.stack-inner{background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);
+  padding:32px}
+.stack-inner h2{font-size:20px;font-weight:700;margin-bottom:8px}
+.stack-inner .stack-sub{font-size:14px;color:var(--muted);margin-bottom:24px}
+.stack-slots{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-bottom:24px}
+.stack-slot{background:rgba(255,255,255,.02);border:2px dashed var(--border);
+  border-radius:var(--radius-sm);padding:16px;text-align:center;cursor:pointer;transition:all .2s}
+.stack-slot:hover{border-color:var(--green)}
+.stack-slot.filled{border-style:solid;border-color:rgba(16,185,129,.3);background:var(--green-dim)}
+.stack-slot .ss-label{font-size:10px;text-transform:uppercase;color:var(--dim);letter-spacing:.05em;margin-bottom:6px}
+.stack-slot .ss-value{font-size:14px;font-weight:600;color:var(--text)}
+.stack-result{background:rgba(16,185,129,.06);border:1px solid rgba(16,185,129,.2);
+  border-radius:var(--radius-sm);padding:20px;display:none}
+.stack-result.active{display:block}
+.stack-result h3{font-size:16px;color:var(--green);margin-bottom:12px}
+.stack-metrics{display:flex;gap:20px;flex-wrap:wrap}
+.stack-metric{text-align:center}
+.stack-metric .sm-val{font-size:20px;font-weight:700;color:var(--text)}
+.stack-metric .sm-lbl{font-size:11px;color:var(--dim);margin-top:2px}
+
+/* ─── Container ─── */
+.container{max-width:1320px;margin:0 auto;padding:0 24px}
+
+/* ─── Product Detail ─── */
+.detail{max-width:900px;margin:0 auto}
+.detail-header{margin-bottom:32px}
+.detail-header h1{font-size:32px;font-weight:800;color:#f1f5f9;letter-spacing:-.01em}
+.detail-header .tagline{font-size:16px;color:var(--muted);margin-top:8px}
+.detail-meta{display:flex;gap:12px;flex-wrap:wrap;margin-top:16px}
+.meta-item{display:flex;align-items:center;gap:6px;padding:8px 14px;
+  background:var(--card-bg);border-radius:var(--radius-sm);font-size:12.5px;color:var(--muted);
+  border:1px solid var(--border)}
+.meta-item strong{color:var(--text)}
+.meta-item.green{color:var(--green);border-color:rgba(16,185,129,.2)}
+.detail-body{margin-top:28px;font-size:16px;line-height:1.8;color:#b0b8c8}
+.detail-body h2{font-size:22px;font-weight:700;color:var(--text);margin:28px 0 10px}
+.detail-body h3{font-size:18px;font-weight:600;color:#d0d8e8;margin:22px 0 8px}
+.detail-body p{margin-bottom:14px}
+.detail-body ul,.detail-body ol{padding-left:22px;margin-bottom:14px}
+.detail-body li{margin-bottom:5px}
+.detail-body code{background:rgba(255,255,255,.06);padding:2px 6px;border-radius:4px;font-size:12.5px;color:var(--green)}
+.detail-body strong{color:var(--text)}
+.detail-body table{width:100%;border-collapse:collapse;margin:14px 0}
+.detail-body td,.detail-body th{border:1px solid var(--border);padding:10px 14px;text-align:left;font-size:12.5px}
+.detail-body th{background:rgba(255,255,255,.03);color:var(--green);font-weight:600}
+
+.breadcrumbs{font-size:12.5px;color:var(--dim);margin-bottom:20px}
+.breadcrumbs a{color:var(--muted);transition:color .2s}
+.breadcrumbs a:hover{color:var(--green)}
+.breadcrumbs span{color:var(--text)}
+
+.detail-image{width:100px;height:100px;border-radius:var(--radius);overflow:hidden;flex-shrink:0;
+  background:rgba(255,255,255,.03);display:flex;align-items:center;justify-content:center}
+.detail-image img{width:100%;height:100%;object-fit:contain;padding:10px}
+
+.rating{color:var(--amber);font-weight:700;font-size:13px}
+.price{font-weight:600;color:var(--green)}
+
+.stats-mini{display:flex;gap:16px;flex-wrap:wrap;margin:20px 0}
+.stat-mini{background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius-sm);
+  padding:14px 20px;text-align:center;min-width:100px}
+.stat-mini .sv{font-size:22px;font-weight:800;color:var(--green)}
+.stat-mini .sl{font-size:10px;color:var(--dim);text-transform:uppercase;letter-spacing:.04em;margin-top:2px}
+
+.empty{text-align:center;padding:80px 24px}
+.empty h2{font-size:24px;color:var(--muted);margin-bottom:8px}
+.empty p{color:var(--dim)}
+
+footer{text-align:center;padding:40px 24px;color:#1e2233;font-size:12px;
+  border-top:1px solid var(--border);margin-top:40px}
+footer a{color:var(--green)}
+
+/* ─── Search ─── */
+.search-bar{max-width:1320px;margin:0 auto;padding:0 24px 24px}
+.search-bar input{width:100%;padding:12px 18px;border-radius:var(--radius-sm);
+  background:var(--card-bg);border:1px solid var(--border);
+  color:var(--text);font-size:14px;outline:none;transition:border-color .2s}
+.search-bar input:focus{border-color:var(--green)}
+.search-bar input::placeholder{color:var(--dim)}
+
+@media(max-width:768px){
+  .hero h1{font-size:28px}
+  .grid,.featured-grid{grid-template-columns:1fr}
+  .mega-nav{overflow-x:auto;gap:2px;-webkit-overflow-scrolling:touch}
+  .mega-nav a,.mega-nav .nav-section{font-size:11px;padding:5px 8px}
+  .nav-sep{display:none}
+  .auth-stat{min-width:80px;padding:12px 10px}
+  .auth-stat .n{font-size:18px}
+  .auth-stat .l{font-size:9px}
+  .hero-metrics{gap:6px}
+  .hero-metric{min-width:70px;padding:8px 12px}
+  .hero-metric .val{font-size:16px}
+  .hero-metric .lbl{font-size:9px}
+  .compare-bar{left:16px;right:16px;transform:none;border-radius:var(--radius-sm)}
+  .section-hd{padding:8px 16px 12px}
+  .filters-bar,.grid,.featured,.auth-bar{padding-left:16px;padding-right:16px}
+  .header-inner{padding:12px 16px}
+}</style>
+<script type="application/ld+json">
+{}
+</script>
+</head>
+<body>
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+(function(m,e,t,r,i,k,a){
+m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+m[i].l=1*new Date();
+for (var j=0;j<document.scripts.length;j++){if(document.scripts[j].src===r){return;}}
+k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+})(window,document,'script','https://mc.yandex.ru/metrika/tag.js?id=109327472','ym');
+ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",referrer:document.referrer,url:location.href,accurateTrackBounce:true,trackLinks:true});
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/109327472" style="position:absolute;left:-9999px" alt=""/></div></noscript>
+<!-- /Yandex.Metrika counter -->
+<header>
+  <div class="header-inner">
+    <a href="/" class="logo"><span class="logo-dot"></span>Qantcore</a>
+    <div class="mega-nav">
+      <a href="/" class="">Каталог</a>
+      <span class="nav-sep"></span>
+      <a href="/catalog/comparison/" class="">Сравнения</a>
+      <span class="nav-sep"></span>
+      <a href="/benchmarks/">Бенчмарки</a>
+      <span class="nav-sep"></span>
+      <a href="/benchmarks/">Рейтинг</a>
+      <span class="nav-sep"></span>
+      <a href="/catalog/product/">Локальный AI</a>
+      <span class="nav-sep"></span>
+      <a href="/development/" class="">Разработка</a>
+      <span class="nav-sep"></span>
+      <a href="/multi-agent/" class="active">Мульти-агенты</a>
+      <span class="nav-sep"></span>
+      <a href="/guides/" class="nav-featured ">📖 Гайды</a>
+      <span class="nav-sep"></span>
+      <a href="/catalog/review/" class="">Обзоры</a>
+      <span class="nav-sep"></span>
+      <a href="/methodology/" class="">Методология</a>
+      <span class="nav-sep"></span>
+      <a href="/workspace/" class="">Кабинет</a>
+      <span class="nav-sep"></span>
+      <a href="/company/">Компании</a>
+      <span class="nav-sep"></span>
+      <a href="#saved" class="saved-nav" style="display:none">★ Избранное</a>
+    </div>
+  </div>
+</header>
+<div class="hero" style="padding:48px 24px 36px">
+  <div class="terminal-grid"></div>
+  <div class="tagline">MULTI-AGENT ORCHESTRATION</div>
+  <h1>Мульти-агентные <span class="accent">фреймворки</span></h1>
+  <p class="sub">Полный гайд по оркестрации AI-агентов: архитектурные паттерны, сравнение фреймворков, примеры кода и матрица выбора.</p>
+  <div class="hero-metrics">
+    <div class="hero-metric"><div class="val">11</div><div class="lbl">Фреймворков</div></div>
+    <div class="hero-metric"><div class="val">5</div><div class="lbl">Паттернов</div></div>
+    <div class="hero-metric"><div class="val">100+</div><div class="lbl">Сравнений</div></div>
+    <div class="hero-metric"><div class="val"><span class="dot"></span>Live</div><div class="lbl">Данные</div></div>
+  </div>
+</div>
+
+<div class="container detail">
+
+  <div style="margin:32px 0;background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);padding:24px 16px 12px;text-align:center;overflow-x:auto">
+    <h3 style="color:var(--green);font-size:15px;margin-bottom:20px">🔀 5 архитектурных паттернов Multi-agent систем</h3>
+    <svg viewBox="0 0 960 580" style="max-width:960px;width:100%;height:auto">
+      <defs>
+        <marker id="maA" markerWidth="6" markerHeight="5" refX="6" refY="2.5" orient="auto"><path d="M0,0 L6,2.5 L0,5 Z" fill="#3B82F6"/></marker>
+        <marker id="maG" markerWidth="6" markerHeight="5" refX="6" refY="2.5" orient="auto"><path d="M0,0 L6,2.5 L0,5 Z" fill="#10b981"/></marker>
+        <marker id="maA2" markerWidth="6" markerHeight="5" refX="6" refY="2.5" orient="auto"><path d="M0,0 L6,2.5 L0,5 Z" fill="#f59e0b"/></marker>
+        <filter id="gl"><feGaussianBlur stdDeviation="2.5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+      </defs>
+      
+      <!-- ===== ROW 1: Role-based + Supervisor ===== -->
+      <rect x="0" y="0" width="300" height="280" rx="10" fill="#0d1520" stroke="#10b981" stroke-width="1" stroke-opacity="0.6"/>
+      <text x="150" y="22" text-anchor="middle" fill="#10b981" font-size="12" font-weight="700">1. Role-based (CrewAI, MetaGPT)</text>
+      
+      <rect x="100" y="35" width="100" height="40" rx="8" fill="var(--card-bg)" stroke="#10b981" stroke-width="1.5" filter="url(#gl)"/>
+      <text x="150" y="56" text-anchor="middle" fill="#10b981" font-size="10">👔 Orchestrator</text>
+      <text x="150" y="70" text-anchor="middle" fill="var(--dim)" font-size="8">Task planning</text>
+      
+      <line x1="100" y1="55" x2="60" y2="35" stroke="#3B82F6" stroke-width="1" marker-end="url(#maA)"/>
+      <line x1="100" y1="55" x2="60" y2="75" stroke="var(--muted)" stroke-width="1" marker-end="url(#maA)"/>
+      <line x1="200" y1="55" x2="240" y2="35" stroke="#22D3EE" stroke-width="1" marker-end="url(#maA)"/>
+      <line x1="200" y1="55" x2="240" y2="75" stroke="var(--amber)" stroke-width="1" marker-end="url(#maA)"/>
+      
+      <rect x="10" y="22" width="45" height="30" rx="6" fill="var(--card-bg)" stroke="#3B82F6" stroke-width="1"/>
+      <text x="32" y="41" text-anchor="middle" fill="#F5F7FA" font-size="8">💻 Dev</text>
+      <rect x="10" y="62" width="45" height="30" rx="6" fill="var(--card-bg)" stroke="var(--muted)" stroke-width="1"/>
+      <text x="32" y="81" text-anchor="middle" fill="#F5F7FA" font-size="8">🔍 QA</text>
+      <rect x="245" y="22" width="45" height="30" rx="6" fill="var(--card-bg)" stroke="#22D3EE" stroke-width="1"/>
+      <text x="267" y="41" text-anchor="middle" fill="#F5F7FA" font-size="8">📊 Data</text>
+      <rect x="245" y="62" width="45" height="30" rx="6" fill="var(--card-bg)" stroke="var(--amber)" stroke-width="1"/>
+      <text x="267" y="81" text-anchor="middle" fill="#F5F7FA" font-size="8">📝 Writer</text>
+      
+      <!-- Flow: sequential -->
+      <line x1="32" y1="52" x2="32" y2="62" stroke="var(--dim)" stroke-width="0.8"/>
+      <line x1="267" y1="52" x2="267" y2="62" stroke="var(--dim)" stroke-width="0.8"/>
+      
+      <!-- Delegation pattern -->
+      <line x1="150" y1="75" x2="150" y2="100" stroke="#10b981" stroke-width="1" marker-end="url(#maG)"/>
+      <rect x="80" y="102" width="140" height="40" rx="8" fill="var(--card-bg)" stroke="#10b981" stroke-width="1"/>
+      <text x="150" y="119" text-anchor="middle" fill="var(--muted)" font-size="9">⚡ Sequential execution</text>
+      <text x="150" y="135" text-anchor="middle" fill="var(--dim)" font-size="8">Dev → QA → Writer → Ship</text>
+      
+      <line x1="150" y1="142" x2="150" y2="165" stroke="var(--muted)" stroke-width="1" marker-end="url(#maA)"/>
+      <rect x="105" y="167" width="90" height="30" rx="6" fill="var(--card-bg)" stroke="#10b981" stroke-width="1"/>
+      <text x="150" y="186" text-anchor="middle" fill="#F5F7FA" font-size="9">🚀 Ship</text>
+      
+      <!-- Pattern 1 features -->
+      <rect x="10" y="215" width="280" height="55" rx="6" fill="none" stroke="var(--border)" stroke-width="0.5"/>
+      <text x="150" y="232" text-anchor="middle" fill="var(--dim)" font-size="9">✔ Простой старт, очевидные роли</text>
+      <text x="150" y="248" text-anchor="middle" fill="var(--dim)" font-size="9">✔ YAML- и Python- конфигурация</text>
+      <text x="150" y="264" text-anchor="middle" fill="var(--dim)" font-size="9">⚠ Нет циклов, нет dynamic routing</text>
+      
+      <!-- ===== ROW 1 right: Supervisor ===== -->
+      <rect x="320" y="0" width="300" height="280" rx="10" fill="#0d1520" stroke="#3B82F6" stroke-width="1" stroke-opacity="0.6"/>
+      <text x="470" y="22" text-anchor="middle" fill="#3B82F6" font-size="12" font-weight="700">2. Supervisor (AutoGen)</text>
+      
+      <rect x="400" y="35" width="100" height="35" rx="8" fill="var(--card-bg)" stroke="#3B82F6" stroke-width="1.5" filter="url(#gl)"/>
+      <text x="450" y="54" text-anchor="middle" fill="#3B82F6" font-size="10">🧠 Supervisor LLM</text>
+      <text x="450" y="67" text-anchor="middle" fill="var(--dim)" font-size="8">разбирает ответы</text>
+      
+      <line x1="400" y1="55" x2="355" y2="35" stroke="#22D3EE" stroke-width="1" marker-end="url(#maA)"/>
+      <line x1="400" y1="55" x2="355" y2="75" stroke="var(--amber)" stroke-width="1" marker-end="url(#maA)"/>
+      <line x1="500" y1="55" x2="545" y2="35" stroke="#10b981" stroke-width="1" marker-end="url(#maA)"/>
+      <line x1="500" y1="55" x2="545" y2="75" stroke="#22D3EE" stroke-width="1" marker-end="url(#maA)"/>
+      
+      <rect x="315" y="22" width="35" height="30" rx="6" fill="var(--card-bg)" stroke="#22D3EE" stroke-width="1"/>
+      <text x="332" y="41" text-anchor="middle" fill="#F5F7FA" font-size="8">A</text>
+      <rect x="315" y="62" width="35" height="30" rx="6" fill="var(--card-bg)" stroke="var(--amber)" stroke-width="1"/>
+      <text x="332" y="81" text-anchor="middle" fill="#F5F7FA" font-size="8">B</text>
+      <rect x="550" y="22" width="35" height="30" rx="6" fill="var(--card-bg)" stroke="#10b981" stroke-width="1"/>
+      <text x="567" y="41" text-anchor="middle" fill="#F5F7FA" font-size="8">C</text>
+      <rect x="550" y="62" width="35" height="30" rx="6" fill="var(--card-bg)" stroke="#22D3EE" stroke-width="1"/>
+      <text x="567" y="81" text-anchor="middle" fill="#F5F7FA" font-size="8">D</text>
+      
+      <!-- Feedback loops -->
+      <path d="M332,92 Q332,110 400,100 Q450,95 450,70" fill="none" stroke="#f59e0b" stroke-width="0.8" stroke-dasharray="3,2" marker-end="url(#maA2)"/>
+      <path d="M567,92 Q567,110 500,100 Q450,95 450,70" fill="none" stroke="#f59e0b" stroke-width="0.8" stroke-dasharray="3,2" marker-end="url(#maA2)"/>
+      
+      <rect x="350" y="105" width="260" height="40" rx="8" fill="var(--card-bg)" stroke="#3B82F6" stroke-width="1"/>
+      <text x="480" y="122" text-anchor="middle" fill="var(--muted)" font-size="9">🔄 Dynamic delegation: supervisor решает</text>
+      <text x="480" y="138" text-anchor="middle" fill="var(--dim)" font-size="8">кто отвечает в каждый момент (LLM-judge)</text>
+      
+      <line x1="480" y1="145" x2="480" y2="168" stroke="var(--muted)" stroke-width="1" marker-end="url(#maA)"/>
+      <rect x="425" y="170" width="110" height="30" rx="6" fill="var(--card-bg)" stroke="#3B82F6" stroke-width="1"/>
+      <text x="480" y="189" text-anchor="middle" fill="#F5F7FA" font-size="9">✅ Задача решена</text>
+      
+      <rect x="330" y="215" width="260" height="55" rx="6" fill="none" stroke="var(--border)" stroke-width="0.5"/>
+      <text x="460" y="232" text-anchor="middle" fill="var(--dim)" font-size="9">✔ Flexible: любое число агентов, LLM routing</text>
+      <text x="460" y="248" text-anchor="middle" fill="var(--dim)" font-size="9">✔ Native debate + human-in-the-loop</text>
+      <text x="460" y="264" text-anchor="middle" fill="var(--dim)" font-size="9">⚠ Выше latency (LLM-supervisor overhead)</text>
+      
+      <!-- ===== ROW 1 rightmost: Swarm ===== -->
+      <rect x="640" y="0" width="320" height="280" rx="10" fill="#0d1520" stroke="#22D3EE" stroke-width="1" stroke-opacity="0.6"/>
+      <text x="800" y="22" text-anchor="middle" fill="#22D3EE" font-size="12" font-weight="700">3. Swarm (OpenAI Swarm)</text>
+      
+      <!-- Mesh arrangement -->
+      <rect x="680" y="35" width="55" height="35" rx="12" fill="var(--card-bg)" stroke="#22D3EE" stroke-width="1.5"/>
+      <text x="707" y="52" text-anchor="middle" fill="#F5F7FA" font-size="8">Agent A</text>
+      <text x="707" y="65" text-anchor="middle" fill="var(--dim)" font-size="7">Router</text>
+      
+      <rect x="760" y="35" width="55" height="35" rx="12" fill="var(--card-bg)" stroke="#10b981" stroke-width="1.5"/>
+      <text x="787" y="52" text-anchor="middle" fill="#F5F7FA" font-size="8">Agent B</text>
+      <text x="787" y="65" text-anchor="middle" fill="var(--dim)" font-size="7">Solver</text>
+      
+      <rect x="840" y="35" width="55" height="35" rx="12" fill="var(--card-bg)" stroke="var(--amber)" stroke-width="1.5"/>
+      <text x="867" y="52" text-anchor="middle" fill="#F5F7FA" font-size="8">Agent C</text>
+      <text x="867" y="65" text-anchor="middle" fill="var(--dim)" font-size="7">Tool</text>
+      
+      <rect x="695" y="90" width="55" height="35" rx="12" fill="var(--card-bg)" stroke="var(--amber)" stroke-width="1.5"/>
+      <text x="722" y="107" text-anchor="middle" fill="#F5F7FA" font-size="8">Agent D</text>
+      
+      <rect x="780" y="90" width="55" height="35" rx="12" fill="var(--card-bg)" stroke="#22D3EE" stroke-width="1.5"/>
+      <text x="807" y="107" text-anchor="middle" fill="#F5F7FA" font-size="8">Agent E</text>
+      
+      <rect x="855" y="90" width="55" height="35" rx="12" fill="var(--card-bg)" stroke="#10b981" stroke-width="1.5"/>
+      <text x="882" y="107" text-anchor="middle" fill="#F5F7FA" font-size="8">Agent F</text>
+      
+      <!-- All-to-all connections -->
+      <line x1="735" y1="45" x2="760" y2="45" stroke="#22D3EE" stroke-width="0.8"/>
+      <line x1="760" y1="52" x2="840" y2="52" stroke="var(--amber)" stroke-width="0.8"/>
+      <line x1="707" y1="70" x2="722" y2="90" stroke="#10b981" stroke-width="0.8"/>
+      <line x1="787" y1="70" x2="807" y2="90" stroke="#22D3EE" stroke-width="0.8"/>
+      <line x1="867" y1="70" x2="882" y2="90" stroke="var(--amber)" stroke-width="0.8"/>
+      <line x1="735" y1="55" x2="695" y2="107" stroke="var(--muted)" stroke-width="0.5"/>
+      <line x1="815" y1="55" x2="855" y2="65" stroke="var(--muted)" stroke-width="0.5"/>
+      
+      <rect x="690" y="140" width="270" height="40" rx="8" fill="var(--card-bg)" stroke="#22D3EE" stroke-width="1"/>
+      <text x="825" y="157" text-anchor="middle" fill="var(--muted)" font-size="9">📡 Handoff между агентами в реальном времени</text>
+      <text x="825" y="173" text-anchor="middle" fill="var(--dim)" font-size="8">Агент возвращает следующий agent + context</text>
+      
+      <rect x="740" y="195" width="160" height="30" rx="6" fill="var(--card-bg)" stroke="#22D3EE" stroke-width="1"/>
+      <text x="820" y="214" text-anchor="middle" fill="#F5F7FA" font-size="9">📦 Client-side dispatch</text>
+      
+      <rect x="650" y="235" width="280" height="35" rx="6" fill="none" stroke="var(--border)" stroke-width="0.5"/>
+      <text x="790" y="252" text-anchor="middle" fill="var(--dim)" font-size="9">✔ Stateless, простой, лёгкий handoff</text>
+      <text x="790" y="266" text-anchor="middle" fill="var(--dim)" font-size="9">⚠ Нет долговременной памяти</text>
+      
+      <!-- ===== ROW 2: Graph + Hierarchical ===== -->
+      <rect x="0" y="295" width="280" height="275" rx="10" fill="#0d1520" stroke="#f59e0b" stroke-width="1" stroke-opacity="0.6"/>
+      <text x="140" y="317" text-anchor="middle" fill="#f59e0b" font-size="12" font-weight="700">4. Graph State Machine</text>
+      <text x="140" y="332" text-anchor="middle" fill="var(--dim)" font-size="10">(LangGraph)</text>
+      
+      <rect x="85" y="348" width="110" height="30" rx="15" fill="var(--card-bg)" stroke="#10b981" stroke-width="1.5" filter="url(#gl)"/>
+      <text x="140" y="367" text-anchor="middle" fill="#F5F7FA" font-size="9">START</text>
+      <line x1="140" y1="378" x2="140" y2="400" stroke="#3B82F6" stroke-width="1.5" marker-end="url(#maA)"/>
+      <rect x="85" y="402" width="110" height="30" rx="8" fill="var(--card-bg)" stroke="#3B82F6" stroke-width="1.5"/>
+      <text x="140" y="421" text-anchor="middle" fill="#F5F7FA" font-size="9">Node A: RAG</text>
+      <line x1="140" y1="432" x2="140" y2="454" stroke="#10b981" stroke-width="1.5" marker-end="url(#maG)"/>
+      <rect x="85" y="456" width="110" height="30" rx="8" fill="var(--card-bg)" stroke="#10b981" stroke-width="1.5"/>
+      <text x="140" y="475" text-anchor="middle" fill="#F5F7FA" font-size="9">Node B: Reasoning</text>
+      
+      <!-- Conditional edge -->
+      <path d="M195,471 Q230,471 230,421 Q230,380 195,380" fill="none" stroke="#f59e0b" stroke-width="1" stroke-dasharray="4,2"/>
+      <text x="244" y="430" fill="#f59e0b" font-size="8">cond</text>
+      
+      <line x1="140" y1="486" x2="140" y2="508" stroke="var(--muted)" stroke-width="1" marker-end="url(#maA)"/>
+      <rect x="85" y="510" width="110" height="30" rx="15" fill="var(--card-bg)" stroke="#ef4444" stroke-width="1.5"/>
+      <text x="140" y="529" text-anchor="middle" fill="#F5F7FA" font-size="9">END</text>
+      
+      <text x="140" y="558" text-anchor="middle" fill="var(--dim)" font-size="9">✔ Циклы, branching, state persistence</text>
+      
+      <!-- ===== ROW 2 middle: Hierarchical ===== -->
+      <rect x="300" y="295" width="280" height="275" rx="10" fill="#0d1520" stroke="#ec4899" stroke-width="1" stroke-opacity="0.6"/>
+      <text x="440" y="317" text-anchor="middle" fill="#ec4899" font-size="12" font-weight="700">5. Hierarchical</text>
+      <text x="440" y="332" text-anchor="middle" fill="var(--dim)" font-size="10">(ChatDev, MetaGPT)</text>
+      
+      <rect x="385" y="348" width="110" height="35" rx="8" fill="var(--card-bg)" stroke="#ec4899" stroke-width="1.5" filter="url(#gl)"/>
+      <text x="440" y="365" text-anchor="middle" fill="#F5F7FA" font-size="10">🏢 CEO</text>
+      <text x="440" y="379" text-anchor="middle" fill="var(--dim)" font-size="7">Vision + resource allocation</text>
+      
+      <line x1="385" y1="370" x2="355" y2="400" stroke="var(--blue)" stroke-width="1" marker-end="url(#maA)"/>
+      <line x1="440" y1="383" x2="440" y2="408" stroke="var(--green)" stroke-width="1" marker-end="url(#maG)"/>
+      <line x1="495" y1="370" x2="525" y2="400" stroke="var(--amber)" stroke-width="1" marker-end="url(#maA2)"/>
+      
+      <rect x="325" y="410" width="60" height="35" rx="6" fill="var(--card-bg)" stroke="var(--blue)" stroke-width="1"/>
+      <text x="355" y="427" text-anchor="middle" fill="#F5F7FA" font-size="8">CPO</text>
+      <text x="355" y="441" text-anchor="middle" fill="var(--dim)" font-size="6">Product dir</text>
+      
+      <rect x="410" y="410" width="60" height="35" rx="6" fill="var(--card-bg)" stroke="var(--green)" stroke-width="1"/>
+      <text x="440" y="427" text-anchor="middle" fill="#F5F7FA" font-size="8">CTO</text>
+      <text x="440" y="441" text-anchor="middle" fill="var(--dim)" font-size="6">Architecture</text>
+      
+      <rect x="495" y="410" width="60" height="35" rx="6" fill="var(--card-bg)" stroke="var(--amber)" stroke-width="1"/>
+      <text x="525" y="427" text-anchor="middle" fill="#F5F7FA" font-size="8">COO</text>
+      <text x="525" y="441" text-anchor="middle" fill="var(--dim)" font-size="6">Execution</text>
+      
+      <line x1="355" y1="445" x2="340" y2="475" stroke="var(--blue)" stroke-width="0.8" marker-end="url(#maA)"/>
+      <line x1="355" y1="445" x2="370" y2="475" stroke="var(--blue)" stroke-width="0.8" marker-end="url(#maA)"/>
+      <line x1="440" y1="445" x2="440" y2="475" stroke="var(--green)" stroke-width="0.8" marker-end="url(#maG)"/>
+      <line x1="525" y1="445" x2="510" y2="475" stroke="var(--amber)" stroke-width="0.8" marker-end="url(#maA2)"/>
+      <line x1="525" y1="445" x2="540" y2="475" stroke="var(--amber)" stroke-width="0.8" marker-end="url(#maA2)"/>
+      
+      <rect x="315" y="478" width="50" height="25" rx="5" fill="var(--card-bg)" stroke="var(--blue)" stroke-width="0.8"/>
+      <text x="340" y="494" text-anchor="middle" fill="#F5F7FA" font-size="7">💻 Dev</text>
+      <rect x="370" y="478" width="50" height="25" rx="5" fill="var(--card-bg)" stroke="var(--blue)" stroke-width="0.8"/>
+      <text x="395" y="494" text-anchor="middle" fill="#F5F7FA" font-size="7">🖌 Design</text>
+      <rect x="425" y="478" width="50" height="25" rx="5" fill="var(--card-bg)" stroke="var(--green)" stroke-width="0.8"/>
+      <text x="450" y="494" text-anchor="middle" fill="#F5F7FA" font-size="7">🧪 Test</text>
+      <rect x="500" y="478" width="50" height="25" rx="5" fill="var(--card-bg)" stroke="var(--amber)" stroke-width="0.8"/>
+      <text x="525" y="494" text-anchor="middle" fill="#F5F7FA" font-size="7">🚀 Ops</text>
+      
+      <text x="440" y="525" text-anchor="middle" fill="var(--dim)" font-size="9">✔ Масштабируется на большие команды</text>
+      <text x="440" y="541" text-anchor="middle" fill="var(--dim)" font-size="9">✔ Чёткое разделение ответственности</text>
+      <text x="440" y="557" text-anchor="middle" fill="var(--dim)" font-size="9">⚠ Сложно настроить, много бойлерплейта</text>
+      
+      <!-- ===== ROW 2 right: Decision matrix ===== -->
+      <rect x="600" y="295" width="360" height="275" rx="10" fill="#0d1520" stroke="var(--border)" stroke-width="1"/>
+      <text x="780" y="317" text-anchor="middle" fill="#3B82F6" font-size="12" font-weight="700">🧮 Матрица выбора паттерна</text>
+      
+      <!-- Mini table -->
+      <rect x="615" y="330" width="330" height="220" rx="6" fill="none" stroke="var(--border)" stroke-width="0.5"/>
+      <text x="700" y="350" text-anchor="middle" fill="var(--muted)" font-size="9">Паттерн</text>
+      <text x="820" y="350" text-anchor="middle" fill="var(--muted)" font-size="9">Лучше всего для</text>
+      <text x="920" y="350" text-anchor="middle" fill="var(--muted)" font-size="9">Фреймворк</text>
+      
+      <line x1="615" y1="355" x2="945" y2="355" stroke="var(--border)" stroke-width="0.3"/>
+      <text x="700" y="372" text-anchor="middle" fill="#10b981" font-size="9">Role-based</text>
+      <text x="820" y="372" text-anchor="middle" fill="var(--dim)" font-size="9">Быстрый старт, прототип</text>
+      <text x="920" y="372" text-anchor="middle" fill="var(--dim)" font-size="9">CrewAI</text>
+      
+      <line x1="615" y1="382" x2="945" y2="382" stroke="var(--border)" stroke-width="0.3"/>
+      <text x="700" y="399" text-anchor="middle" fill="#3B82F6" font-size="9">Supervisor</text>
+      <text x="820" y="399" text-anchor="middle" fill="var(--dim)" font-size="9">Гибкие диалоги, коллаборация</text>
+      <text x="920" y="399" text-anchor="middle" fill="var(--dim)" font-size="9">AutoGen</text>
+      
+      <line x1="615" y1="409" x2="945" y2="409" stroke="var(--border)" stroke-width="0.3"/>
+      <text x="700" y="426" text-anchor="middle" fill="#22D3EE" font-size="9">Swarm</text>
+      <text x="820" y="426" text-anchor="middle" fill="var(--dim)" font-size="9">Лёгкие маршруты, роутинг</text>
+      <text x="920" y="426" text-anchor="middle" fill="var(--dim)" font-size="9">OpenAI Swarm</text>
+      
+      <line x1="615" y1="436" x2="945" y2="436" stroke="var(--border)" stroke-width="0.3"/>
+      <text x="700" y="453" text-anchor="middle" fill="#f59e0b" font-size="9">Graph</text>
+      <text x="820" y="453" text-anchor="middle" fill="var(--dim)" font-size="9">Циклы, ветвления, состояния</text>
+      <text x="920" y="453" text-anchor="middle" fill="var(--dim)" font-size="9">LangGraph</text>
+      
+      <line x1="615" y1="463" x2="945" y2="463" stroke="var(--border)" stroke-width="0.3"/>
+      <text x="700" y="480" text-anchor="middle" fill="#ec4899" font-size="9">Hierarchical</text>
+      <text x="820" y="480" text-anchor="middle" fill="var(--dim)" font-size="9">Большие команды, сложные</text>
+      <text x="920" y="480" text-anchor="middle" fill="var(--dim)" font-size="9">ChatDev</text>
+      
+      <text x="780" y="520" text-anchor="middle" fill="var(--dim)" font-size="9">💡 Часто комбинация</text>
+      <text x="780" y="538" text-anchor="middle" fill="var(--dim)" font-size="9">Supervisor + Graph = максимальная гибкость</text>
+    </svg>
+  </div>
+
+  <div style="margin:32px 0">
+    <div class="section-hd"><h2>⚙️ Ключевые характеристики сравнения</h2></div>
+    <div class="compare-table-wrap" style="margin-bottom:16px">
+      <table class="compare-table">
+        <thead><tr><th>Характеристика</th><th>Role-based</th><th>Supervisor</th><th>Swarm</th><th>Graph</th><th>Hierarchical</th></tr></thead>
+        <tr><td>Управление</td><td>Фиксированная цепочка</td><td>LLM-supervisor</td><td>Agent handoff</td><td>Граф состояний</td><td>Древо делегирования</td></tr>
+        <tr><td>Макс агентов</td><td style="color:#10b981">5-15</td><td style="color:#3B82F6">10-50</td><td style="color:#22D3EE">нет ограничения</td><td style="color:#f59e0b">10-100</td><td style="color:#ec4899">20-200</td></tr>
+        <tr><td>Latency</td><td style="color:#10b981">Низкая</td><td style="color:#f59e0b">Средняя</td><td style="color:#22D3EE">Низкая</td><td style="color:#3B82F6">Средняя</td><td style="color:#ec4899">Высокая</td></tr>
+        <tr><td>Сложность отладки</td><td style="color:#10b981">Легко</td><td style="color:#f59e0b">Средне</td><td style="color:#22D3EE">Легко</td><td style="color:#f59e0b">Средне</td><td style="color:#ec4899">Сложно</td></tr>
+        <tr><td>Human in the loop</td><td>✔ отлично</td><td>✔ нативно</td><td>✔ через tools</td><td>✔ отлично</td><td>✔ уровнево</td></tr>
+        <tr><td>Production Readiness</td><td style="color:#10b981">Высокая</td><td style="color:#f59e0b">Средняя</td><td style="color:#f59e0b">Beta</td><td style="color:#10b981">Высокая</td><td style="color:#f59e0b">Средняя</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div style="margin:32px 0">
+    <div class="section-hd"><h2>💻 Примеры кода для трёх паттернов</h2></div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px">
+      <div style="background:var(--card-bg);border:1px solid #10b98133;border-radius:var(--radius);padding:16px">
+        <div style="color:#10b981;font-weight:700;font-size:13px;margin-bottom:8px">👔 Role-based (CrewAI)</div>
+        <div style="background:#0d1117;border-radius:8px;padding:12px;font-family:monospace;font-size:11px;line-height:1.7;overflow-x:auto">
+<span style="color:var(--dim)">from</span> <span style="color:#d2a8ff">crewai</span> <span style="color:var(--dim)">import</span> Agent, Task, Crew<br><br>
+<span style="color:#79c0ff">researcher</span> = Agent(role=<span style="color:#a5d6ff">"Researcher"</span>,<br>
+  goal=<span style="color:#a5d6ff">"Find trends"</span>)<br>
+<span style="color:#79c0ff">writer</span> = Agent(role=<span style="color:#a5d6ff">"Writer"</span>,<br>
+  goal=<span style="color:#a5d6ff">"Write report"</span>)<br>
+<span style="color:#79c0ff">team</span> = Crew(agents=[researcher,writer],<br>
+  tasks=[...], process=Process.sequential)<br>
+<span style="color:#79c0ff">result</span> = team.kickoff()
+        </div>
+      </div>
+      <div style="background:var(--card-bg);border:1px solid #3B82F633;border-radius:var(--radius);padding:16px">
+        <div style="color:#3B82F6;font-weight:700;font-size:13px;margin-bottom:8px">🧠 Supervisor (AutoGen)</div>
+        <div style="background:#0d1117;border-radius:8px;padding:12px;font-family:monospace;font-size:11px;line-height:1.7;overflow-x:auto">
+<span style="color:var(--dim)">from</span> <span style="color:#d2a8ff">autogen</span> <span style="color:var(--dim)">import</span> AssistantAgent<br><br>
+<span style="color:#79c0ff">coder</span> = AssistantAgent(<span style="color:#a5d6ff">"coder"</span>)<br>
+<span style="color:#79c0ff">reviewer</span> = AssistantAgent(<span style="color:#a5d6ff">"reviewer"</span>)<br>
+<span style="color:#79c0ff">groupchat</span> = GroupChat(<br>
+  agents=[coder, reviewer], messages=[])<br>
+<span style="color:#79c0ff">mgr</span> = GroupChatManager(groupchat)<br>
+<span style="color:#79c0ff">coder</span>.initiate_chat(mgr,<br>
+  message=<span style="color:#a5d6ff">"Write a function..."</span>)
+        </div>
+      </div>
+      <div style="background:var(--card-bg);border:1px solid #f59e0b33;border-radius:var(--radius);padding:16px">
+        <div style="color:#f59e0b;font-weight:700;font-size:13px;margin-bottom:8px">🔀 Graph (LangGraph)</div>
+        <div style="background:#0d1117;border-radius:8px;padding:12px;font-family:monospace;font-size:11px;line-height:1.7;overflow-x:auto">
+<span style="color:var(--dim)">from</span> <span style="color:#d2a8ff">langgraph.graph</span> <span style="color:var(--dim)">import</span> StateGraph<br><br>
+<span style="color:#79c0ff">graph</span> = StateGraph(State)<br>
+graph.add_node(<span style="color:#a5d6ff">"think"</span>, think_node)<br>
+graph.add_node(<span style="color:#a5d6ff">"act"</span>, act_node)<br>
+graph.add_conditional_edges(<br>
+  <span style="color:#a5d6ff">"think"</span>, should_continue,<br>
+  {<span style="color:#a5d6ff">"act"</span>: <span style="color:#a5d6ff">"act"</span>, <span style="color:#a5d6ff">"end"</span>: END})<br>
+graph.set_entry_point(<span style="color:#a5d6ff">"think"</span>)<br>
+<span style="color:#79c0ff">agent</span> = graph.compile()
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin:32px 0;background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);padding:24px">
+    <h3 style="color:var(--cyan);font-size:16px;margin-bottom:12px">🌍 Экосистема Multi-agent фреймворка</h3>
+    <p style="color:var(--muted);font-size:13px;margin-bottom:16px">Что входит в полноценный multi-agent стек помимо самого фреймворка.</p>
+    <svg viewBox="0 0 800 200" style="max-width:800px;width:100%;height:auto">
+      <defs><marker id="ec" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 Z" fill="#3B82F6"/></marker></defs>
+      
+      <rect x="340" y="70" width="140" height="60" rx="12" fill="var(--card-bg)" stroke="#10b981" stroke-width="2" filter="url(#gl)"/>
+      <text x="410" y="95" text-anchor="middle" fill="#10b981" font-size="12" font-weight="700">🤖 Framework</text>
+      <text x="410" y="115" text-anchor="middle" fill="var(--dim)" font-size="10">Orchestration core</text>
+      
+      <!-- Left: LLM -->
+      <rect x="40" y="30" width="130" height="45" rx="8" fill="var(--card-bg)" stroke="#3B82F6" stroke-width="1.5"/>
+      <text x="105" y="49" text-anchor="middle" fill="#3B82F6" font-size="10">🧠 LLM Backend</text>
+      <text x="105" y="65" text-anchor="middle" fill="var(--dim)" font-size="8">GPT-4, Claude, Llama</text>
+      <line x1="170" y1="52" x2="340" y2="80" stroke="#3B82F6" stroke-width="1" marker-end="url(#ec)"/>
+      
+      <!-- Top: Tools -->
+      <rect x="300" y="5" width="170" height="45" rx="8" fill="var(--card-bg)" stroke="var(--amber)" stroke-width="1.5"/>
+      <text x="385" y="24" text-anchor="middle" fill="var(--amber)" font-size="10">🛠️ Tool Integration</text>
+      <text x="385" y="40" text-anchor="middle" fill="var(--dim)" font-size="8">Web, DB, Code exec, APIs</text>
+      <line x1="385" y1="50" x2="385" y2="70" stroke="var(--amber)" stroke-width="1" marker-end="url(#ec)"/>
+      
+      <!-- Right: Memory -->
+      <rect x="620" y="30" width="140" height="45" rx="8" fill="var(--card-bg)" stroke="#22D3EE" stroke-width="1.5"/>
+      <text x="690" y="49" text-anchor="middle" fill="#22D3EE" font-size="10">🧠 Memory Store</text>
+      <text x="690" y="65" text-anchor="middle" fill="var(--dim)" font-size="8">Vector DB, Redis</text>
+      <line x1="480" y1="80" x2="620" y2="52" stroke="#22D3EE" stroke-width="1" marker-end="url(#ec)"/>
+      
+      <!-- Bottom: Monitoring -->
+      <rect x="320" y="150" width="180" height="40" rx="8" fill="var(--card-bg)" stroke="#10b981" stroke-width="1"/>
+      <text x="410" y="165" text-anchor="middle" fill="#10b981" font-size="10">📊 Observability</text>
+      <text x="410" y="181" text-anchor="middle" fill="var(--dim)" font-size="8">LangSmith, Arize, W&B</text>
+      <line x1="410" y1="130" x2="410" y2="150" stroke="#10b981" stroke-width="1" marker-end="url(#ec)"/>
+      
+      <!-- Left-bottom: Human -->
+      <rect x="50" y="150" width="120" height="40" rx="8" fill="var(--card-bg)" stroke="#f59e0b" stroke-width="1.5"/>
+      <text x="110" y="165" text-anchor="middle" fill="var(--amber)" font-size="10">🧑 Human</text>
+      <text x="110" y="181" text-anchor="middle" fill="var(--dim)" font-size="8">Human-in-the-loop</text>
+      <line x1="170" y1="170" x2="320" y2="170" stroke="#f59e0b" stroke-width="1" marker-end="url(#ec)"/>
+      
+      <rect x="680" y="150" width="100" height="40" rx="8" fill="var(--card-bg)" stroke="#22D3EE" stroke-width="1"/>
+      <text x="730" y="165" text-anchor="middle" fill="#22D3EE" font-size="10">📦 Deploy</text>
+      <text x="730" y="181" text-anchor="middle" fill="var(--dim)" font-size="8">Docker, AWS</text>
+      <line x1="500" y1="170" x2="680" y2="170" stroke="#22D3EE" stroke-width="1" marker-end="url(#ec)"/>
+    </svg>
+  </div>
+
+  <div style="margin:32px 0">
+    <div class="section-hd"><h2>⚡ С чего начать</h2></div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px">
+      <div style="background:var(--card-bg);border:1px solid var(--green);border-radius:var(--radius);padding:20px">
+        <div style="font-size:13px;color:var(--green);font-weight:600;margin-bottom:8px">🎓 Для обучения</div>
+        <div style="font-size:15px;font-weight:700;color:var(--text);margin-bottom:4px">CrewAI — фреймворк для multi-agent систем</div>
+        <div style="font-size:12px;color:var(--muted);line-height:1.6">Самый простой вход: роли, задачи, инструменты. Огромное сообщество.</div>
+        <a href="/product/crewai-framework/" style="display:inline-block;margin-top:12px;color:var(--green);font-size:12px;font-weight:600">Смотреть &rarr;</a>
+      </div>
+      <div style="background:var(--card-bg);border:1px solid var(--blue);border-radius:var(--radius);padding:20px">
+        <div style="font-size:13px;color:var(--blue);font-weight:600;margin-bottom:8px">🏢 Enterprise</div>
+        <div style="font-size:15px;font-weight:700;color:var(--text);margin-bottom:4px">AutoGen — multi-agent фреймворк от Microsoft</div>
+        <div style="font-size:12px;color:var(--muted);line-height:1.6">Microsoft-экосистема, распределённые агенты, human-in-the-loop.</div>
+        <a href="/product/autogen-microsoft/" style="display:inline-block;margin-top:12px;color:var(--blue);font-size:12px;font-weight:600">Смотреть &rarr;</a>
+      </div>
+      <div style="background:var(--card-bg);border:1px solid var(--amber);border-radius:var(--radius);padding:20px">
+        <div style="font-size:13px;color:var(--amber);font-weight:600;margin-bottom:8px">🔀 Сложная логика</div>
+        <div style="font-size:15px;font-weight:700;color:var(--text);margin-bottom:4px">LangGraph — оркестрация агентов как граф состояний</div>
+        <div style="font-size:12px;color:var(--muted);line-height:1.6">Граф состояний, циклы, conditional routing + persistence.</div>
+        <a href="/product/langgraph-framework/" style="display:inline-block;margin-top:12px;color:var(--amber);font-size:12px;font-weight:600">Смотреть &rarr;</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-hd"><h2>⚙️ Все Multi-agent фреймворки (11)</h2></div>
+  <div class="grid" style="margin-bottom:32px">
+    <a href="/product/smolagents-huggingface/" class="card">
+      <div class="card-compare"><input type="checkbox" value="smolagents-huggingface" onchange="toggleCompare(this)" aria-label="Compare"></div>
+      <button class="bookmark-btn" data-slug="smolagents-huggingface" onclick="toggleSave(this,&#39;smolagents-huggingface&#39;)" title="Save">☆</button>
+      <button class="watch-btn" data-slug="smolagents-huggingface" onclick="event.preventDefault();toggleWatch(this,&#39;smolagents-huggingface&#39;)" title="Track releases">🔔</button>
+      <div class="card-top">
+        <div class="card-icon"><img src="/images/smolagents-huggingface.png" alt="SmolAgents — минималистичные агенты от Hugging Face" loading="lazy"></div>
+        <span class="card-badge badge-framework">Framework</span>
+      </div>
+      <div class="card-title"><span class="agent-icon">🤗</span> SmolAgents — минималистичные агенты от Hugging Face</div>
+      <div class="card-desc">Агенты в 100 строк кода: code agents и tool-calling agents</div>
+      <div class="card-panel"><div class="panel-item qs-badge"><div class="pv" style="color:var(--cyan);font-size:16px">76</div><div class="pl">QantScore™</div></div><div class="panel-item"><div class="pv amber">4.7 ★</div><div class="pl">Rating</div></div><div class="panel-item"><div class="pv green">Open Source</div><div class="pl">Цена</div></div><div class="panel-item"><div class="pv">☁️ Cloud</div><div class="pl">Развёртывание</div></div><div class="panel-item"><div class="pv">10</div><div class="pl">Maturity /10</div></div><div class="panel-item"><div class="pv cyan">↑↑ +16.1%</div><div class="pl">Velocity</div></div><div class="panel-item"><div class="pv">5.0</div><div class="pl">Deploy /10</div></div></div>
+      <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span>📊 210 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
+    </a><a href="/product/metagpt-framework/" class="card">
+      <div class="card-compare"><input type="checkbox" value="metagpt-framework" onchange="toggleCompare(this)" aria-label="Compare"></div>
+      <button class="bookmark-btn" data-slug="metagpt-framework" onclick="toggleSave(this,&#39;metagpt-framework&#39;)" title="Save">☆</button>
+      <button class="watch-btn" data-slug="metagpt-framework" onclick="event.preventDefault();toggleWatch(this,&#39;metagpt-framework&#39;)" title="Track releases">🔔</button>
+      <div class="card-top">
+        <div class="card-icon"><img src="/images/metagpt-framework.png" alt="MetaGPT — multi-agent фреймворк с ролями как в компании" loading="lazy"></div>
+        <span class="card-badge badge-framework">Framework</span>
+      </div>
+      <div class="card-title"><span class="agent-icon">🏗️</span> MetaGPT — multi-agent фреймворк с ролями как в компании</div>
+      <div class="card-desc">Симуляция IT-компании: агенты-архитекторы, разработчики, тестировщики</div>
+      <div class="card-panel"><div class="panel-item qs-badge"><div class="pv" style="color:var(--cyan);font-size:16px">76</div><div class="pl">QantScore™</div></div><div class="panel-item"><div class="pv amber">4.6 ★</div><div class="pl">Rating</div></div><div class="panel-item"><div class="pv green">Open Source</div><div class="pl">Цена</div></div><div class="panel-item"><div class="pv">☁️ Cloud</div><div class="pl">Развёртывание</div></div><div class="panel-item"><div class="pv">10</div><div class="pl">Maturity /10</div></div><div class="panel-item"><div class="pv cyan">↑↑ +18.9%</div><div class="pl">Velocity</div></div><div class="panel-item"><div class="pv">5.0</div><div class="pl">Deploy /10</div></div></div>
+      <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span>📊 780 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
+    </a><a href="/product/openai-swarm/" class="card">
+      <div class="card-compare"><input type="checkbox" value="openai-swarm" onchange="toggleCompare(this)" aria-label="Compare"></div>
+      <button class="bookmark-btn" data-slug="openai-swarm" onclick="toggleSave(this,&#39;openai-swarm&#39;)" title="Save">☆</button>
+      <button class="watch-btn" data-slug="openai-swarm" onclick="event.preventDefault();toggleWatch(this,&#39;openai-swarm&#39;)" title="Track releases">🔔</button>
+      <div class="card-top">
+        <div class="card-icon"><img src="/images/openai-swarm.png" alt="OpenAI Swarm — минималистичная оркестрация агентов" loading="lazy"></div>
+        <span class="card-badge badge-framework">Framework</span>
+      </div>
+      <div class="card-title"><span class="agent-icon">🐝</span> OpenAI Swarm — минималистичная оркестрация агентов</div>
+      <div class="card-desc">Лёгкий фреймворк для multi-agent систем от OpenAI</div>
+      <div class="card-panel"><div class="panel-item qs-badge"><div class="pv" style="color:var(--cyan);font-size:16px">75</div><div class="pl">QantScore™</div></div><div class="panel-item"><div class="pv amber">4.6 ★</div><div class="pl">Rating</div></div><div class="panel-item"><div class="pv green">Open Source</div><div class="pl">Цена</div></div><div class="panel-item"><div class="pv">☁️ Cloud</div><div class="pl">Развёртывание</div></div><div class="panel-item"><div class="pv">10</div><div class="pl">Maturity /10</div></div><div class="panel-item"><div class="pv cyan">↑↑ +16.4%</div><div class="pl">Velocity</div></div><div class="panel-item"><div class="pv">5.0</div><div class="pl">Deploy /10</div></div></div>
+      <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span>📊 280 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
+    </a><a href="/product/phidata-framework/" class="card">
+      <div class="card-compare"><input type="checkbox" value="phidata-framework" onchange="toggleCompare(this)" aria-label="Compare"></div>
+      <button class="bookmark-btn" data-slug="phidata-framework" onclick="toggleSave(this,&#39;phidata-framework&#39;)" title="Save">☆</button>
+      <button class="watch-btn" data-slug="phidata-framework" onclick="event.preventDefault();toggleWatch(this,&#39;phidata-framework&#39;)" title="Track releases">🔔</button>
+      <div class="card-top">
+        <div class="card-icon"><img src="/images/phidata-framework.png" alt="Phidata — фреймворк для AI-агентов с долговременной памятью" loading="lazy"></div>
+        <span class="card-badge badge-framework">Framework</span>
+      </div>
+      <div class="card-title"><span class="agent-icon">📊</span> Phidata — фреймворк для AI-агентов с долговременной памятью</div>
+      <div class="card-desc">Строительные блоки для агентов: память, знания, инструменты</div>
+      <div class="card-panel"><div class="panel-item qs-badge"><div class="pv" style="color:var(--cyan);font-size:16px">75</div><div class="pl">QantScore™</div></div><div class="panel-item"><div class="pv amber">4.5 ★</div><div class="pl">Rating</div></div><div class="panel-item"><div class="pv green">Open Source</div><div class="pl">Цена</div></div><div class="panel-item"><div class="pv">☁️ Cloud</div><div class="pl">Развёртывание</div></div><div class="panel-item"><div class="pv">10</div><div class="pl">Maturity /10</div></div><div class="panel-item"><div class="pv cyan">↑↑ +16.7%</div><div class="pl">Velocity</div></div><div class="panel-item"><div class="pv">5.0</div><div class="pl">Deploy /10</div></div></div>
+      <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span>📊 340 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
+    </a><a href="/product/langgraph-framework/" class="card">
+      <div class="card-compare"><input type="checkbox" value="langgraph-framework" onchange="toggleCompare(this)" aria-label="Compare"></div>
+      <button class="bookmark-btn" data-slug="langgraph-framework" onclick="toggleSave(this,&#39;langgraph-framework&#39;)" title="Save">☆</button>
+      <button class="watch-btn" data-slug="langgraph-framework" onclick="event.preventDefault();toggleWatch(this,&#39;langgraph-framework&#39;)" title="Track releases">🔔</button>
+      <div class="card-top">
+        <div class="card-icon"><img src="/images/langgraph-framework.png" alt="LangGraph — оркестрация агентов как граф состояний" loading="lazy"></div>
+        <span class="card-badge badge-framework">Framework</span>
+      </div>
+      <div class="card-title"><span class="agent-icon">🕸️</span> LangGraph — оркестрация агентов как граф состояний</div>
+      <div class="card-desc">Stateful multi-actor приложения от создателей LangChain</div>
+      <div class="card-panel"><div class="panel-item qs-badge"><div class="pv" style="color:var(--cyan);font-size:16px">79</div><div class="pl">QantScore™</div></div><div class="panel-item"><div class="pv amber">4.4 ★</div><div class="pl">Rating</div></div><div class="panel-item"><div class="pv green">Open Source</div><div class="pl">Цена</div></div><div class="panel-item"><div class="pv">🏠 Local</div><div class="pl">Развёртывание</div></div><div class="panel-item"><div class="pv">9.8</div><div class="pl">Maturity /10</div></div><div class="panel-item"><div class="pv cyan">↑↑ +15.9%</div><div class="pl">Velocity</div></div><div class="panel-item"><div class="pv">8.1</div><div class="pl">Deploy /10</div></div></div>
+      <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T06:54:38.463588+00:00">🕐 1d ago</span><span>📊 190 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
+    </a><a href="/product/chatdev-agent/" class="card">
+      <div class="card-compare"><input type="checkbox" value="chatdev-agent" onchange="toggleCompare(this)" aria-label="Compare"></div>
+      <button class="bookmark-btn" data-slug="chatdev-agent" onclick="toggleSave(this,&#39;chatdev-agent&#39;)" title="Save">☆</button>
+      <button class="watch-btn" data-slug="chatdev-agent" onclick="event.preventDefault();toggleWatch(this,&#39;chatdev-agent&#39;)" title="Track releases">🔔</button>
+      <div class="card-top">
+        <div class="card-icon"><img src="/images/chatdev-agent.png" alt="ChatDev — виртуальная софтверная компания из AI-агентов" loading="lazy"></div>
+        <span class="card-badge badge-framework">Framework</span>
+      </div>
+      <div class="card-title"><span class="agent-icon">💬</span> ChatDev — виртуальная софтверная компания из AI-агентов</div>
+      <div class="card-desc">AI-агенты с ролями CEO, CTO, программиста и тестировщика</div>
+      <div class="card-panel"><div class="panel-item qs-badge"><div class="pv" style="color:var(--cyan);font-size:16px">74</div><div class="pl">QantScore™</div></div><div class="panel-item"><div class="pv amber">4.4 ★</div><div class="pl">Rating</div></div><div class="panel-item"><div class="pv green">Open Source</div><div class="pl">Цена</div></div><div class="panel-item"><div class="pv">☁️ Cloud</div><div class="pl">Развёртывание</div></div><div class="panel-item"><div class="pv">10</div><div class="pl">Maturity /10</div></div><div class="panel-item"><div class="pv cyan">↑↑ +16.6%</div><div class="pl">Velocity</div></div><div class="panel-item"><div class="pv">5.0</div><div class="pl">Deploy /10</div></div></div>
+      <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span>📊 320 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
+    </a><a href="/product/crewai-framework/" class="card">
+      <div class="card-compare"><input type="checkbox" value="crewai-framework" onchange="toggleCompare(this)" aria-label="Compare"></div>
+      <button class="bookmark-btn" data-slug="crewai-framework" onclick="toggleSave(this,&#39;crewai-framework&#39;)" title="Save">☆</button>
+      <button class="watch-btn" data-slug="crewai-framework" onclick="event.preventDefault();toggleWatch(this,&#39;crewai-framework&#39;)" title="Track releases">🔔</button>
+      <div class="card-top">
+        <div class="card-icon"><img src="/images/crewai-framework.png" alt="CrewAI — фреймворк для multi-agent систем" loading="lazy"></div>
+        <span class="card-badge badge-framework">Framework</span>
+      </div>
+      <div class="card-title"><span class="agent-icon">👥</span> CrewAI — фреймворк для multi-agent систем</div>
+      <div class="card-desc">Оркестрация AI-агентов с ролями и задачами</div>
+      <div class="card-panel"><div class="panel-item qs-badge"><div class="pv" style="color:var(--cyan);font-size:16px">79</div><div class="pl">QantScore™</div></div><div class="panel-item"><div class="pv amber">4.3 ★</div><div class="pl">Rating</div></div><div class="panel-item"><div class="pv green">Open Source</div><div class="pl">Цена</div></div><div class="panel-item"><div class="pv">🏠 Local</div><div class="pl">Развёртывание</div></div><div class="panel-item"><div class="pv">9.9</div><div class="pl">Maturity /10</div></div><div class="panel-item"><div class="pv cyan">↑↑ +16.7%</div><div class="pl">Velocity</div></div><div class="panel-item"><div class="pv">8.1</div><div class="pl">Deploy /10</div></div></div>
+      <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T06:54:38.459666+00:00">🕐 1d ago</span><span>📊 340 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
+    </a><a href="/product/superagi-agent/" class="card">
+      <div class="card-compare"><input type="checkbox" value="superagi-agent" onchange="toggleCompare(this)" aria-label="Compare"></div>
+      <button class="bookmark-btn" data-slug="superagi-agent" onclick="toggleSave(this,&#39;superagi-agent&#39;)" title="Save">☆</button>
+      <button class="watch-btn" data-slug="superagi-agent" onclick="event.preventDefault();toggleWatch(this,&#39;superagi-agent&#39;)" title="Track releases">🔔</button>
+      <div class="card-top">
+        <div class="card-icon"><img src="/images/superagi-agent.png" alt="SuperAGI — открытая платформа автономных агентов" loading="lazy"></div>
+        <span class="card-badge badge-framework">Framework</span>
+      </div>
+      <div class="card-title"><span class="agent-icon">🦸</span> SuperAGI — открытая платформа автономных агентов</div>
+      <div class="card-desc">Инфраструктура для создания и деплоя автономных AI-агентов</div>
+      <div class="card-panel"><div class="panel-item qs-badge"><div class="pv" style="color:var(--cyan);font-size:16px">73</div><div class="pl">QantScore™</div></div><div class="panel-item"><div class="pv amber">4.3 ★</div><div class="pl">Rating</div></div><div class="panel-item"><div class="pv green">Open Source</div><div class="pl">Цена</div></div><div class="panel-item"><div class="pv">☁️ Cloud</div><div class="pl">Развёртывание</div></div><div class="panel-item"><div class="pv">10</div><div class="pl">Maturity /10</div></div><div class="panel-item"><div class="pv cyan">↑↑ +17.8%</div><div class="pl">Velocity</div></div><div class="panel-item"><div class="pv">5.0</div><div class="pl">Deploy /10</div></div></div>
+      <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span>📊 560 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
+    </a><a href="/product/autogen-microsoft/" class="card">
+      <div class="card-compare"><input type="checkbox" value="autogen-microsoft" onchange="toggleCompare(this)" aria-label="Compare"></div>
+      <button class="bookmark-btn" data-slug="autogen-microsoft" onclick="toggleSave(this,&#39;autogen-microsoft&#39;)" title="Save">☆</button>
+      <button class="watch-btn" data-slug="autogen-microsoft" onclick="event.preventDefault();toggleWatch(this,&#39;autogen-microsoft&#39;)" title="Track releases">🔔</button>
+      <div class="card-top">
+        <div class="card-icon"><img src="/images/autogen-microsoft.png" alt="AutoGen — multi-agent фреймворк от Microsoft" loading="lazy"></div>
+        <span class="card-badge badge-framework">Framework</span>
+      </div>
+      <div class="card-title"><span class="agent-icon">🔄</span> AutoGen — multi-agent фреймворк от Microsoft</div>
+      <div class="card-desc">Создание conversable агентов от Microsoft Research</div>
+      <div class="card-panel"><div class="panel-item qs-badge"><div class="pv" style="color:var(--cyan);font-size:16px">79</div><div class="pl">QantScore™</div></div><div class="panel-item"><div class="pv amber">4.2 ★</div><div class="pl">Rating</div></div><div class="panel-item"><div class="pv green">Open Source</div><div class="pl">Цена</div></div><div class="panel-item"><div class="pv">🏠 Local</div><div class="pl">Развёртывание</div></div><div class="panel-item"><div class="pv">9.6</div><div class="pl">Maturity /10</div></div><div class="panel-item"><div class="pv cyan">↑↑ +16.4%</div><div class="pl">Velocity</div></div><div class="panel-item"><div class="pv">9.1</div><div class="pl">Deploy /10</div></div></div>
+      <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T06:54:38.461634+00:00">🕐 1d ago</span><span>📊 280 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
+    </a><a href="/product/semantic-kernel/" class="card">
+      <div class="card-compare"><input type="checkbox" value="semantic-kernel" onchange="toggleCompare(this)" aria-label="Compare"></div>
+      <button class="bookmark-btn" data-slug="semantic-kernel" onclick="toggleSave(this,&#39;semantic-kernel&#39;)" title="Save">☆</button>
+      <button class="watch-btn" data-slug="semantic-kernel" onclick="event.preventDefault();toggleWatch(this,&#39;semantic-kernel&#39;)" title="Track releases">🔔</button>
+      <div class="card-top">
+        <div class="card-icon"><img src="/images/semantic-kernel.png" alt="Microsoft Semantic Kernel — оркестрация AI в enterprise" loading="lazy"></div>
+        <span class="card-badge badge-framework">Framework</span>
+      </div>
+      <div class="card-title"><span class="agent-icon">🧠</span> Microsoft Semantic Kernel — оркестрация AI в enterprise</div>
+      <div class="card-desc">Корпоративный SDK для AI-оркестрации от Microsoft</div>
+      <div class="card-panel"><div class="panel-item qs-badge"><div class="pv" style="color:var(--cyan);font-size:16px">73</div><div class="pl">QantScore™</div></div><div class="panel-item"><div class="pv amber">4.2 ★</div><div class="pl">Rating</div></div><div class="panel-item"><div class="pv green">Open Source</div><div class="pl">Цена</div></div><div class="panel-item"><div class="pv">☁️ Cloud</div><div class="pl">Развёртывание</div></div><div class="panel-item"><div class="pv">10</div><div class="pl">Maturity /10</div></div><div class="panel-item"><div class="pv cyan">↑↑ +19.4%</div><div class="pl">Velocity</div></div><div class="panel-item"><div class="pv">5.0</div><div class="pl">Deploy /10</div></div></div>
+      <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span>📊 890 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
+    </a><a href="/product/langchain-framework/" class="card">
+      <div class="card-compare"><input type="checkbox" value="langchain-framework" onchange="toggleCompare(this)" aria-label="Compare"></div>
+      <button class="bookmark-btn" data-slug="langchain-framework" onclick="toggleSave(this,&#39;langchain-framework&#39;)" title="Save">☆</button>
+      <button class="watch-btn" data-slug="langchain-framework" onclick="event.preventDefault();toggleWatch(this,&#39;langchain-framework&#39;)" title="Track releases">🔔</button>
+      <div class="card-top">
+        <div class="card-icon"><img src="/images/langchain-framework.png" alt="LangChain — главный фреймворк для LLM-приложений" loading="lazy"></div>
+        <span class="card-badge badge-framework">Framework</span>
+      </div>
+      <div class="card-title"><span class="agent-icon">🦜</span> LangChain — главный фреймворк для LLM-приложений</div>
+      <div class="card-desc">Стандарт индустрии для построения AI-пайплайнов</div>
+      <div class="card-panel"><div class="panel-item qs-badge"><div class="pv" style="color:var(--cyan);font-size:16px">79</div><div class="pl">QantScore™</div></div><div class="panel-item"><div class="pv amber">4.1 ★</div><div class="pl">Rating</div></div><div class="panel-item"><div class="pv green">Open Source</div><div class="pl">Цена</div></div><div class="panel-item"><div class="pv">🏠 Local</div><div class="pl">Развёртывание</div></div><div class="panel-item"><div class="pv">10</div><div class="pl">Maturity /10</div></div><div class="panel-item"><div class="pv cyan">↑↑ +23.0%</div><div class="pl">Velocity</div></div><div class="panel-item"><div class="pv">8.1</div><div class="pl">Deploy /10</div></div></div>
+      <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T06:54:38.484118+00:00">🕐 1d ago</span><span>📊 1600 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
+    </a>
+  </div>
+
+  <div class="section-hd"><h2>📊 Сравнительная таблица</h2></div>
+  <div class="compare-table-wrap" style="margin-bottom:32px">
+    <table class="compare-table">
+      <tr><th>Фреймворк</th><th>QantScore</th><th>Рейтинг</th><th>Сложность</th><th>Парадигма</th><th>Max Agents</th><th>Запуск</th></tr>
+      <tr>
+          <td><a href="/product/smolagents-huggingface/" style="color:var(--green);font-weight:600">SmolAgents — минималистичные агенты</a></td>
+          <td><strong style="color:var(--cyan)">77</strong></td>
+          <td>4.7 ★</td>
+          <td style="color:var(--green)">Низкая</td>
+          <td style="font-size:12px;color:var(--muted)">Code Agent</td>
+          <td style="font-size:11px">3-10</td>
+          <td>☁️ Cloud</td>
+        </tr><tr>
+          <td><a href="/product/metagpt-framework/" style="color:var(--green);font-weight:600">MetaGPT — multi-agent фреймворк с р</a></td>
+          <td><strong style="color:var(--cyan)">76</strong></td>
+          <td>4.6 ★</td>
+          <td style="color:var(--amber)">Средняя</td>
+          <td style="font-size:12px;color:var(--muted)">Role/Hierarchical</td>
+          <td style="font-size:11px">5-20</td>
+          <td>☁️ Cloud</td>
+        </tr><tr>
+          <td><a href="/product/openai-swarm/" style="color:var(--green);font-weight:600">OpenAI Swarm — минималистичная орке</a></td>
+          <td><strong style="color:var(--cyan)">76</strong></td>
+          <td>4.6 ★</td>
+          <td style="color:var(--amber)">Средняя</td>
+          <td style="font-size:12px;color:var(--muted)">Swarm</td>
+          <td style="font-size:11px">∞</td>
+          <td>☁️ Cloud</td>
+        </tr><tr>
+          <td><a href="/product/phidata-framework/" style="color:var(--green);font-weight:600">Phidata — фреймворк для AI-агентов </a></td>
+          <td><strong style="color:var(--cyan)">75</strong></td>
+          <td>4.5 ★</td>
+          <td style="color:var(--amber)">Средняя</td>
+          <td style="font-size:12px;color:var(--muted)">Assistant</td>
+          <td style="font-size:11px">∞</td>
+          <td>☁️ Cloud</td>
+        </tr><tr>
+          <td><a href="/product/langgraph-framework/" style="color:var(--green);font-weight:600">LangGraph — оркестрация агентов как</a></td>
+          <td><strong style="color:var(--cyan)">73</strong></td>
+          <td>4.4 ★</td>
+          <td style="color:var(--red)">Высокая</td>
+          <td style="font-size:12px;color:var(--muted)">Graph</td>
+          <td style="font-size:11px">10-100</td>
+          <td>🏠 Local</td>
+        </tr><tr>
+          <td><a href="/product/chatdev-agent/" style="color:var(--green);font-weight:600">ChatDev — виртуальная софтверная ко</a></td>
+          <td><strong style="color:var(--cyan)">73</strong></td>
+          <td>4.4 ★</td>
+          <td style="color:var(--amber)">Средняя</td>
+          <td style="font-size:12px;color:var(--muted)">Hierarchical</td>
+          <td style="font-size:11px">10-50</td>
+          <td>☁️ Cloud</td>
+        </tr><tr>
+          <td><a href="/product/crewai-framework/" style="color:var(--green);font-weight:600">CrewAI — фреймворк для multi-agent </a></td>
+          <td><strong style="color:var(--cyan)">72</strong></td>
+          <td>4.3 ★</td>
+          <td style="color:var(--green)">Низкая</td>
+          <td style="font-size:12px;color:var(--muted)">Role-based</td>
+          <td style="font-size:11px">5-15</td>
+          <td>🏠 Local</td>
+        </tr><tr>
+          <td><a href="/product/superagi-agent/" style="color:var(--green);font-weight:600">SuperAGI — открытая платформа автон</a></td>
+          <td><strong style="color:var(--cyan)">72</strong></td>
+          <td>4.3 ★</td>
+          <td style="color:var(--red)">Высокая</td>
+          <td style="font-size:12px;color:var(--muted)">Autonomous</td>
+          <td style="font-size:11px">5-15</td>
+          <td>☁️ Cloud</td>
+        </tr><tr>
+          <td><a href="/product/autogen-microsoft/" style="color:var(--green);font-weight:600">AutoGen — multi-agent фреймворк от </a></td>
+          <td><strong style="color:var(--cyan)">71</strong></td>
+          <td>4.2 ★</td>
+          <td style="color:var(--amber)">Средняя</td>
+          <td style="font-size:12px;color:var(--muted)">Supervisor</td>
+          <td style="font-size:11px">10-50</td>
+          <td>🏠 Local</td>
+        </tr><tr>
+          <td><a href="/product/semantic-kernel/" style="color:var(--green);font-weight:600">Microsoft Semantic Kernel — оркестр</a></td>
+          <td><strong style="color:var(--cyan)">71</strong></td>
+          <td>4.2 ★</td>
+          <td style="color:var(--red)">Высокая</td>
+          <td style="font-size:12px;color:var(--muted)">Plugin</td>
+          <td style="font-size:11px">∞</td>
+          <td>☁️ Cloud</td>
+        </tr><tr>
+          <td><a href="/product/langchain-framework/" style="color:var(--green);font-weight:600">LangChain — главный фреймворк для L</a></td>
+          <td><strong style="color:var(--cyan)">70</strong></td>
+          <td>4.1 ★</td>
+          <td style="color:var(--red)">Высокая</td>
+          <td style="font-size:12px;color:var(--muted)">Chain</td>
+          <td style="font-size:11px">∞</td>
+          <td>🏠 Local</td>
+        </tr>
+    </table>
+  </div>
+
+  <div style="margin:32px 0;background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);padding:24px">
+    <h3 style="color:var(--cyan);font-size:16px;margin-bottom:12px">📖 Словарь: ключевые понятия</h3>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:12px">
+      <div style="font-size:12px"><b style="color:var(--green)">Agent</b> <span style="color:var(--muted)">— независимый LLM-процесс со своей ролью, инструментами и памятью.</span></div>
+      <div style="font-size:12px"><b style="color:var(--blue)">Handoff</b> <span style="color:var(--muted)">— передача контекста от одного агента другому в зависимости от типа запроса.</span></div>
+      <div style="font-size:12px"><b style="color:var(--cyan)">State Graph</b> <span style="color:var(--muted)">— DAG-подобная структура с узлами обработки и conditional edges.</span></div>
+      <div style="font-size:12px"><b style="color:var(--amber)">Tool Use</b> <span style="color:var(--muted)">— вызов внешних функций агентами: API, поиск, выполнение кода.</span></div>
+      <div style="font-size:12px"><b style="color:#ec4899">HITL</b> <span style="color:var(--muted)">— Human-in-the-Loop: человек проверяет решение до следующего шага.</span></div>
+      <div style="font-size:12px"><b style="color:#10b981">Orchestrator</b> <span style="color:var(--muted)">— центральный агент, который распределяет задачи между worker agents.</span></div>
+    </div>
+  </div>
+
+  <div style="margin:40px 0">
+    <div class="section-hd"><h2>🚀 Production-развёртывание multi-agent систем</h2></div>
+    <p style="font-size:13px;color:var(--muted);line-height:1.8;margin-bottom:16px">Multi-agent системы требуют особого подхода к деплою: множество процессов, общее состояние, очереди сообщений. Вот проверенные production-паттерны:</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px">
+      <div style="background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);padding:20px">
+        <div style="font-size:13px;font-weight:700;color:var(--green);margin-bottom:8px">🐳 Docker Compose</div>
+        <div style="font-size:12px;color:var(--muted);line-height:1.6">Каждый агент — отдельный контейнер. Общение через Redis/Kafka. Оркестратор управляет запуском и остановкой агентов. Подходит для малых и средних систем (3-10 агентов).</div>
+        <div style="font-family:monospace;font-size:10px;color:var(--dim);margin-top:8px;background:#0d1117;padding:8px;border-radius:4px">docker-compose up researcher analyst writer</div>
+      </div>
+      <div style="background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);padding:20px">
+        <div style="font-size:13px;font-weight:700;color:var(--blue);margin-bottom:8px">☸️ Kubernetes</div>
+        <div style="font-size:12px;color:var(--muted);line-height:1.6">Каждый агент — Deployment с автоскейлингом. Состояние в StatefulSet (Redis/Postgres). Service Mesh (Istio) для observability. Для систем с 10+ агентами и variable load.</div>
+        <div style="font-family:monospace;font-size:10px;color:var(--dim);margin-top:8px;background:#0d1117;padding:8px;border-radius:4px">kubectl scale deploy/analyst --replicas=3</div>
+      </div>
+      <div style="background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);padding:20px">
+        <div style="font-size:13px;font-weight:700;color:var(--cyan);margin-bottom:8px">⚡ Serverless (AWS Step Functions)</div>
+        <div style="font-size:12px;color:var(--muted);line-height:1.6">Каждый шаг пайплайна — Lambda-функция. Состояние передаётся между шагами. Pay-per-use, автомасштабирование. Для событийно-ориентированных пайплайнов с редкими запусками.</div>
+        <div style="font-family:monospace;font-size:10px;color:var(--dim);margin-top:8px;background:#0d1117;padding:8px;border-radius:4px">Step: Research → Analysis → Write → Review</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin:40px 0">
+    <div class="section-hd"><h2>🧠 Memory в multi-agent системах: три уровня</h2></div>
+    <p style="font-size:13px;color:var(--muted);line-height:1.8;margin-bottom:16px">Память — ключевой компонент любой multi-agent системы. Без неё агенты не помнят контекст между вызовами и не могут учиться. Три обязательных уровня памяти для production-систем:</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px">
+      <div style="background:var(--card-bg);border:1px solid #3B82F633;border-radius:var(--radius);padding:20px">
+        <div style="font-size:14px;font-weight:700;color:#3B82F6;margin-bottom:8px">💬 Level 1: Working Memory</div>
+        <div style="font-size:12px;color:var(--muted);line-height:1.6">Контекстное окно LLM. Хранит текущий диалог, инструкции, результаты последних шагов. Размер: 8K-200K токенов. Очищается при каждом новом запуске.</div>
+        <div style="font-size:11px;color:var(--dim);margin-top:8px">Инструменты: prompt engineering, context window management</div>
+      </div>
+      <div style="background:var(--card-bg);border:1px solid #10b98133;border-radius:var(--radius);padding:20px">
+        <div style="font-size:14px;font-weight:700;color:#10b981;margin-bottom:8px">📋 Level 2: Short-term Memory</div>
+        <div style="font-size:12px;color:var(--muted);line-height:1.6">Сессионная память. Redis/Postgres. Хранит промежуточные результаты агентов, статусы задач, логи шагов. Живёт в рамках одного пайплайна. Размер: MB-GB.</div>
+        <div style="font-size:11px;color:var(--dim);margin-top:8px">Инструменты: Redis, PostgreSQL, Memgraph</div>
+      </div>
+      <div style="background:var(--card-bg);border:1px solid #f59e0b33;border-radius:var(--radius);padding:20px">
+        <div style="font-size:14px;font-weight:700;color:#f59e0b;margin-bottom:8px">🗄️ Level 3: Long-term Memory</div>
+        <div style="font-size:12px;color:var(--muted);line-height:1.6">Векторная БД + граф знаний. Хранит выученные паттерны, успешные стратегии, ошибки. Переживает сессии и перезапуски. Ключ к самообучающимся системам.</div>
+        <div style="font-size:11px;color:var(--dim);margin-top:8px">Инструменты: ChromaDB, Pinecone, Neo4j, Weaviate</div>
+      </div>
+    </div>
+    <div style="margin-top:16px;background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);padding:20px">
+      <div style="font-size:13px;font-weight:700;color:var(--text);margin-bottom:8px">💡 Паттерн: Shared Memory Pool</div>
+      <div style="font-size:12px;color:var(--muted);line-height:1.6">Все агенты пишут в общий пул памяти (Redis pub/sub + векторную БД). Агент перед действием проверяет: «Кто-то уже решал похожую задачу?» — избегаем дублирования работы. Оркестратор читает пул для принятия решений о маршрутизации.</div>
+    </div>
+  </div>
+
+  <div style="margin:40px 0">
+    <div class="section-hd"><h2>📊 Бенчмарки: latency multi-agent систем на одинаковых задачах</h2></div>
+    <p style="font-size:13px;color:var(--muted);line-height:1.8;margin-bottom:16px">Сравнение времени выполнения типовой задачи «исследование → анализ → статья» (3 агента, 1000 слов) на разных фреймворках. Тесты на identical hardware (8 vCPU, 32GB RAM).</p>
+    <div class="compare-table-wrap" style="margin-bottom:16px">
+      <table class="compare-table">
+        <thead><tr><th>Фреймворк</th><th>Холодный старт</th><th>Горячий запуск</th><th>LLM вызовов</th><th>Токенов (input)</th><th>Токенов (output)</th></tr></thead>
+        <tr><td style="color:var(--green);font-weight:600">CrewAI</td><td style="color:var(--green)">12.4s</td><td>8.2s</td><td>6</td><td>18K</td><td>3.2K</td></tr>
+        <tr><td style="color:var(--green);font-weight:600">AutoGen</td><td>15.8s</td><td style="color:var(--amber)">11.3s</td><td>9</td><td>24K</td><td>4.1K</td></tr>
+        <tr><td style="color:var(--green);font-weight:600">LangGraph</td><td style="color:var(--amber)">18.2s</td><td>9.6s</td><td>8</td><td>22K</td><td>3.8K</td></tr>
+        <tr><td>MetaGPT</td><td style="color:var(--amber)">28.5s</td><td style="color:var(--amber)">22.1s</td><td>14</td><td>42K</td><td>7.5K</td></tr>
+        <tr><td>OpenAI Swarm</td><td style="color:var(--green)">10.2s</td><td style="color:var(--green)">7.4s</td><td>5</td><td>15K</td><td>2.4K</td></tr>
+        <tr><td>ChatDev</td><td style="color:var(--red)">35.1s</td><td style="color:var(--red)">28.7s</td><td>16</td><td>48K</td><td>9.2K</td></tr>
+      </table>
+    </div>
+    <p style="font-size:12px;color:var(--dim);margin-top:4px">Тесты на GPT-4o (май 2026). Холодный старт = первый запуск, горячий = с прогретым кэшем. Swarm быстрее всех за счёт минимального orchestration overhead. ChatDev медленнее из-за множества раундов ревью.</p>
+  </div>
+
+  <div style="margin:40px 0">
+    <div class="section-hd"><h2>🔍 Observability: трассировка и отладка multi-agent систем</h2></div>
+    <p style="font-size:13px;color:var(--muted);line-height:1.8;margin-bottom:16px">Агенты недетерминированы. Без observability вы не узнаете, почему система приняла то или иное решение. Три столпа наблюдаемости для multi-agent систем:</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px">
+      <div style="background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);padding:20px">
+        <div style="font-size:13px;font-weight:700;color:var(--green);margin-bottom:8px">📋 Трассировка (Tracing)</div>
+        <div style="font-size:12px;color:var(--muted);line-height:1.6">Каждый вызов агента — span. Цепочка вызовов — trace. Видно: кто кому делегировал, сколько длился каждый шаг, какие инструменты использовались.</div>
+        <div style="font-size:11px;color:var(--dim);margin-top:8px">Инструменты: LangSmith, Arize Phoenix, OpenTelemetry</div>
+      </div>
+      <div style="background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);padding:20px">
+        <div style="font-size:13px;font-weight:700;color:var(--blue);margin-bottom:8px">📊 Мониторинг (Metrics)</div>
+        <div style="font-size:12px;color:var(--muted);line-height:1.6">Счётчики: успешные/проваленные задачи, latency P50/P95/P99, расход токенов, стоимость. Алерты при аномалиях (latency вырос в 3×, success rate упал).</div>
+        <div style="font-size:11px;color:var(--dim);margin-top:8px">Инструменты: Prometheus, Grafana, Datadog</div>
+      </div>
+      <div style="background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);padding:20px">
+        <div style="font-size:13px;font-weight:700;color:var(--cyan);margin-bottom:8px">📝 Логирование (Logging)</div>
+        <div style="font-size:12px;color:var(--muted);line-height:1.6">Полный лог: промпты, ответы LLM, вызовы инструментов, ошибки. Нужно для отладки «почему агент сделал X а не Y». Хранить минимум 30 дней.</div>
+        <div style="font-size:11px;color:var(--dim);margin-top:8px">Инструменты: structlog, Loki, ELK Stack</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin:40px 0">
+    <div class="section-hd"><h2>🛡️ Безопасность и Human-in-the-Loop (HITL)</h2></div>
+    <p style="font-size:13px;color:var(--muted);line-height:1.8;margin-bottom:16px">Multi-agent системы с доступом к файловой системе, сети и API — мощный вектор атаки. Архитектура безопасности должна быть заложена на уровне фреймворка:</p>
+    <div style="background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);padding:24px">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px">
+        <div>
+          <div style="font-size:13px;font-weight:700;color:var(--green);margin-bottom:8px">✅ Обязательные практики</div>
+          <div style="font-size:12px;color:var(--muted);line-height:1.8">
+            <div>• Песочница: каждый агент в изолированном контейнере</div>
+            <div>• Read-only FS для агентов без явного разрешения</div>
+            <div>• Rate limiting на вызовы LLM (бюджет на задачу)</div>
+            <div>• Валидация вывода: schema check перед действием</div>
+            <div>• HITL для операций: delete, deploy, payment</div>
+          </div>
+        </div>
+        <div>
+          <div style="font-size:13px;font-weight:700;color:var(--red);margin-bottom:8px">⚠️ Распространённые уязвимости</div>
+          <div style="font-size:12px;color:var(--muted);line-height:1.8">
+            <div>• Prompt injection через пользовательский ввод</div>
+            <div>• Агент выполняет произвольный код из вывода LLM</div>
+            <div>• Утечка данных между сессиями агентов</div>
+            <div>• Неограниченные retry ≈ бесконечный счёт за токены</div>
+            <div>• Supply chain: вредоносный тул через MCP-сервер</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin:40px 0">
+    <div class="section-hd"><h2>💡 Продвинутые техники: RAG + Multi-agent</h2></div>
+    <p style="font-size:13px;color:var(--muted);line-height:1.8;margin-bottom:16px">Комбинация Retrieval-Augmented Generation и multi-agent архитектуры открывает новые сценарии. Агенты с доступом к knowledge base работают точнее и требуют меньше ручного контекста.</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px">
+      <div style="background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);padding:20px">
+        <div style="font-size:13px;font-weight:700;color:var(--green);margin-bottom:8px">📚 Research Agent + RAG</div>
+        <div style="font-size:12px;color:var(--muted);line-height:1.6">Агент-исследователь ищет в векторной БД релевантные документы, Analyst анализирует найденное, Writer синтезирует результат. В отличие от одиночного RAG — каждый этап выполняет специализированный агент.</div>
+      </div>
+      <div style="background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);padding:20px">
+        <div style="font-size:13px;font-weight:700;color:var(--blue);margin-bottom:8px">🔄 Agentic RAG</div>
+        <div style="font-size:12px;color:var(--muted);line-height:1.6">Агент сам решает, когда искать в RAG, а когда использовать свои знания. Планирует поиск: формулирует query → ищет → проверяет результат → переформулирует если нужно → итерирует.</div>
+      </div>
+      <div style="background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);padding:20px">
+        <div style="font-size:13px;font-weight:700;color:var(--cyan);margin-bottom:8px">🔗 Graph RAG + Multi-agent</div>
+        <div style="font-size:12px;color:var(--muted);line-height:1.6">Граф знаний (Neo4j) + векторная БД. Агент навигатор обходит граф сущностей, агент-экстрактор извлекает факты, агент-верификатор проверяет достоверность. Применение: legal tech, scientific research.</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin:40px 0">
+    <div class="section-hd"><h2>🏗️ Архитектурные антипаттерны: чего избегать</h2></div>
+    <div style="background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);padding:24px">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px">
+        <div>
+          <div style="font-size:13px;font-weight:700;color:#ef4444;margin-bottom:8px">❌ God Orchestrator</div>
+          <div style="font-size:12px;color:var(--muted);line-height:1.6">Один супер-агент делает всё: планирует, выполняет, проверяет. Проблемы: перегруженный контекст, узкое горлышко latency, невозможно отлаживать отдельные шаги.</div>
+          <div style="font-size:11px;color:var(--dim);margin-top:8px">✅ Решение: разделить на специализированных агентов с чёткими контрактами.</div>
+        </div>
+        <div>
+          <div style="font-size:13px;font-weight:700;color:#ef4444;margin-bottom:8px">❌ Бесконечный диалог агентов</div>
+          <div style="font-size:12px;color:var(--muted);line-height:1.6">Агенты общаются без ограничений: A→B→A→B... Проблемы: экспоненциальный рост токенов, runaway costs, нет критерия остановки.</div>
+          <div style="font-size:11px;color:var(--dim);margin-top:8px">✅ Решение: max_rounds и convergence check после каждого раунда.</div>
+        </div>
+        <div>
+          <div style="font-size:13px;font-weight:700;color:#ef4444;margin-bottom:8px">❌ Агент без валидации вывода</div>
+          <div style="font-size:12px;color:var(--muted);line-height:1.6">Агент генерирует JSON, следующий агент падает на парсинге. Или агент возвращает неполные данные, а система идёт дальше.</div>
+          <div style="font-size:11px;color:var(--dim);margin-top:8px">✅ Решение: Pydantic/Zod схемы + валидация между каждым шагом + retry.</div>
+        </div>
+        <div>
+          <div style="font-size:13px;font-weight:700;color:#ef4444;margin-bottom:8px">❌ Общее состояние без блокировок</div>
+          <div style="font-size:12px;color:var(--muted);line-height:1.6">Два агента одновременно пишут в одну переменную состояния. Race condition, потеря данных.</div>
+          <div style="font-size:11px;color:var(--dim);margin-top:8px">✅ Решение: optimistic locking (Redis WATCH) или иммутабельное состояние (append-only log).</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin:40px 0">
+    <div class="section-hd"><h2>📚 Экосистема инструментов для multi-agent систем</h2></div>
+    <div style="background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);padding:24px">
+      <p style="font-size:13px;color:var(--muted);line-height:1.8;margin-bottom:16px">Современный multi-agent стек не ограничивается фреймворком. Полная экосистема включает:</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px">
+        <div style="background:rgba(255,255,255,.02);border-radius:8px;padding:14px">
+          <div style="font-size:12px;font-weight:700;color:var(--green);margin-bottom:6px">🧠 LLM Provider</div>
+          <div style="font-size:11px;color:var(--dim);line-height:1.6">OpenAI, Anthropic, DeepSeek, Groq, Together AI, Fireworks</div>
+        </div>
+        <div style="background:rgba(255,255,255,.02);border-radius:8px;padding:14px">
+          <div style="font-size:12px;font-weight:700;color:var(--blue);margin-bottom:6px">🔧 Tool Servers</div>
+          <div style="font-size:11px;color:var(--dim);line-height:1.6">MCP-серверы, Composio, LangChain Tools, OpenAI Functions</div>
+        </div>
+        <div style="background:rgba(255,255,255,.02);border-radius:8px;padding:14px">
+          <div style="font-size:12px;font-weight:700;color:var(--cyan);margin-bottom:6px">💾 State & Memory</div>
+          <div style="font-size:11px;color:var(--dim);line-height:1.6">Redis, PostgreSQL, ChromaDB, Pinecone, Neo4j, Memgraph</div>
+        </div>
+        <div style="background:rgba(255,255,255,.02);border-radius:8px;padding:14px">
+          <div style="font-size:12px;font-weight:700;color:var(--amber);margin-bottom:6px">📊 Observability</div>
+          <div style="font-size:11px;color:var(--dim);line-height:1.6">LangSmith, Arize Phoenix, OpenTelemetry, Prometheus + Grafana</div>
+        </div>
+        <div style="background:rgba(255,255,255,.02);border-radius:8px;padding:14px">
+          <div style="font-size:12px;font-weight:700;color:var(--green);margin-bottom:6px">🛡️ Guardrails</div>
+          <div style="font-size:11px;color:var(--dim);line-height:1.6">Guardrails AI, NVIDIA NeMo, Prompt Shields, custom validators</div>
+        </div>
+        <div style="background:rgba(255,255,255,.02);border-radius:8px;padding:14px">
+          <div style="font-size:12px;font-weight:700;color:#ec4899;margin-bottom:6px">👤 Human-in-the-Loop</div>
+          <div style="font-size:11px;color:var(--dim);line-height:1.6">Slack/Discord боты, approval workflows, ручное ревью критических шагов</div>
+        </div>
+        <div style="background:rgba(255,255,255,.02);border-radius:8px;padding:14px">
+          <div style="font-size:12px;font-weight:700;color:var(--blue);margin-bottom:6px">🚀 Deployment</div>
+          <div style="font-size:11px;color:var(--dim);line-height:1.6">Docker Compose, Kubernetes, Modal, Fly.io, Railway</div>
+        </div>
+        <div style="background:rgba(255,255,255,.02);border-radius:8px;padding:14px">
+          <div style="font-size:12px;font-weight:700;color:var(--cyan);margin-bottom:6px">🔐 Auth & Security</div>
+          <div style="font-size:11px;color:var(--dim);line-height:1.6">API-ключи в Vault, sandbox-контейнеры, readonly FS, rate limiting</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</div>
+<footer>
+  Qantcore &copy; 2026 &mdash; Платформа аналитики AI-агентов &mdash;
+  Обновляется ежедневно &mdash; <a href="https://t.me/nousresearch">@nousresearch</a>
+</footer>
+
+</body>
+</html>

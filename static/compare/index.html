@@ -28,7 +28,7 @@
   --red:#ef4444;--red-dim:rgba(239,68,68,.12);
   --radius:12px;--radius-sm:8px}
 body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
-  background:var(--bg);color:var(--text);min-height:100vh;line-height:1.6;
+  background:var(--bg);color:var(--text);min-height:100vh;line-height:1.6;font-size:16px;
   -webkit-font-smoothing:antialiased}
 a{color:inherit;text-decoration:none}
 ::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:transparent}
@@ -45,12 +45,14 @@ header{position:sticky;top:0;z-index:100;backdrop-filter:blur(20px) saturate(180
   box-shadow:0 0 8px rgba(16,185,129,.5);animation:pulse 2s infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
 .mega-nav{display:flex;gap:4px;align-items:center}
-.mega-nav a,.mega-nav .nav-section{font-size:12.5px;color:var(--muted);
+.mega-nav a,.mega-nav .nav-section{font-size:13.5px;color:var(--muted);
   padding:6px 12px;border-radius:6px;transition:all .2s;font-weight:500;
   letter-spacing:.01em;white-space:nowrap}
 .mega-nav a:hover{color:var(--text);background:rgba(255,255,255,.04)}
 .mega-nav a.active{color:var(--green);background:var(--green-dim)}
 .nav-sep{width:1px;height:18px;background:var(--border);margin:0 4px}
+.nav-featured{font-size:14px!important;font-weight:700!important;color:var(--green)!important;
+  background:var(--green-dim)!important;padding:8px 16px!important;letter-spacing:.02em}
 
 /* ─── Terminal Grid (hero bg) ─── */
 .terminal-grid{position:absolute;top:0;left:0;right:0;bottom:0;overflow:hidden;pointer-events:none;z-index:0}
@@ -70,7 +72,7 @@ header{position:sticky;top:0;z-index:100;backdrop-filter:blur(20px) saturate(180
 /* ─── Hero ─── */
 .hero{text-align:center;padding:72px 24px 48px;position:relative;overflow:hidden}
 .hero>*{position:relative;z-index:2}
-.hero h1{font-size:clamp(32px,5vw,56px);font-weight:800;letter-spacing:-.03em;
+.hero h1{font-size:clamp(36px,5vw,60px);font-weight:800;letter-spacing:-.03em;
   line-height:1.15;color:#f1f5f9;max-width:800px;margin:0 auto}
 .hero h1 .accent{color:var(--green)}
 .hero .sub{font-size:17px;color:var(--muted);margin-top:16px;max-width:640px;
@@ -80,7 +82,7 @@ header{position:sticky;top:0;z-index:100;backdrop-filter:blur(20px) saturate(180
 .hero-metrics{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:28px}
 .hero-metric{background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius-sm);
   padding:10px 18px;text-align:center;min-width:100px}
-.hero-metric .val{font-size:22px;font-weight:800;color:var(--green);font-variant-numeric:tabular-nums}
+.hero-metric .val{font-size:24px;font-weight:800;color:var(--green);font-variant-numeric:tabular-nums}
 .hero-metric .lbl{font-size:11px;color:var(--muted);margin-top:2px;text-transform:uppercase;letter-spacing:.06em}
 .hero-cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:32px}
 .cta-primary{padding:12px 28px;border-radius:var(--radius-sm);font-size:14px;font-weight:600;
@@ -96,6 +98,9 @@ header{position:sticky;top:0;z-index:100;backdrop-filter:blur(20px) saturate(180
 .enterprise-cta{background:linear-gradient(135deg,rgba(16,185,129,.08) 0%,rgba(59,130,246,.04) 100%);
   border:1px solid rgba(16,185,129,.15);border-radius:var(--radius);margin:40px 0 32px;padding:0}
 .ec-inner{display:flex;align-items:center;justify-content:space-between;gap:32px;padding:32px 36px;flex-wrap:wrap}
+.card-title{font-size:16px;font-weight:600;color:var(--text);margin-bottom:8px;line-height:1.4;
+  display:flex;align-items:flex-start;gap:6px}
+.agent-icon{font-size:18px;flex-shrink:0;line-height:1.2}
 .ec-text h3{font-size:20px;font-weight:700;color:var(--text);margin-bottom:8px}
 .ec-text p{font-size:14px;color:var(--muted);line-height:1.6;max-width:480px}
 .ec-actions{display:flex;gap:12px;flex-shrink:0;flex-wrap:wrap}
@@ -107,7 +112,7 @@ header{position:sticky;top:0;z-index:100;backdrop-filter:blur(20px) saturate(180
 .auth-stat{flex:1;min-width:130px;padding:18px 20px;text-align:center;
   border-right:1px solid var(--border);position:relative}
 .auth-stat:last-child{border-right:none}
-.auth-stat .n{font-size:26px;font-weight:800;color:var(--green);font-variant-numeric:tabular-nums;
+.auth-stat .n{font-size:28px;font-weight:800;color:var(--green);font-variant-numeric:tabular-nums;
   letter-spacing:-.02em}
 .auth-stat .n.amber{color:var(--amber)}
 .auth-stat .l{font-size:11px;color:var(--muted);margin-top:3px;text-transform:uppercase;letter-spacing:.05em}
@@ -117,7 +122,7 @@ header{position:sticky;top:0;z-index:100;backdrop-filter:blur(20px) saturate(180
 /* ─── Section Headers ─── */
 .section-hd{max-width:1320px;margin:0 auto;padding:8px 24px 16px;
   display:flex;align-items:center;justify-content:space-between}
-.section-hd h2{font-size:18px;font-weight:700;color:var(--text);letter-spacing:-.01em}
+.section-hd h2{font-size:20px;font-weight:700;color:var(--text);letter-spacing:-.01em}
 .section-hd .see-all{font-size:13px;color:var(--green);font-weight:500}
 .section-hd .see-all:hover{text-decoration:underline}
 
@@ -149,13 +154,12 @@ header{position:sticky;top:0;z-index:100;backdrop-filter:blur(20px) saturate(180
 .badge-platform{background:var(--amber-dim);color:var(--amber)}
 .badge-model{background:var(--red-dim);color:var(--red)}
 .badge-infra{background:rgba(139,92,246,.12);color:#8b5cf6}
-.card-title{font-size:15px;font-weight:700;color:#f1f5f9;margin-bottom:6px;letter-spacing:-.01em;line-height:1.3}
-.card-desc{font-size:12.5px;color:var(--muted);line-height:1.5;display:-webkit-box;
+.card-desc{font-size:13.5px;color:var(--muted);line-height:1.5;display:-webkit-box;
   -webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;margin-bottom:12px;flex:1}
 /* Intelligence Panel */
 .card-panel{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:auto}
 .panel-item{background:rgba(255,255,255,.02);border-radius:6px;padding:8px 10px}
-.panel-item .pv{font-size:14px;font-weight:700;color:var(--text);font-variant-numeric:tabular-nums}
+.panel-item .pv{font-size:16px;font-weight:700;color:var(--text);font-variant-numeric:tabular-nums}
 .panel-item .pv.green{color:var(--green)}
 .panel-item .pv.amber{color:var(--amber)}
 .panel-item .pl{font-size:10px;color:var(--dim);margin-top:1px;text-transform:uppercase;letter-spacing:.03em}
@@ -183,6 +187,38 @@ header{position:sticky;top:0;z-index:100;backdrop-filter:blur(20px) saturate(180
 .compare-clear{font-size:12px;color:var(--muted);cursor:pointer;background:none;border:none}
 .compare-clear:hover{color:var(--red)}
 
+/* ─── Live Connection Lines ─── */
+.live-lines{position:fixed;top:0;left:0;width:100%;height:100%;z-index:150;
+  pointer-events:none;opacity:0;transition:opacity .3s}
+.live-lines.active{opacity:1}
+
+/* ─── Install / Code Block ─── */
+.install-block{background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);
+  overflow:hidden;margin-bottom:24px}
+.install-header{display:flex;align-items:center;justify-content:space-between;
+  padding:12px 20px;background:rgba(59,130,246,.06);border-bottom:1px solid var(--border)}
+.install-badge{font-size:13px;font-weight:600;color:var(--blue);
+  background:rgba(59,130,246,.12);padding:4px 12px;border-radius:4px}
+.copy-btn{font-size:12px;color:var(--muted);background:rgba(255,255,255,.04);
+  border:1px solid var(--border);padding:5px 14px;border-radius:4px;
+  cursor:pointer;transition:all .2s;font-weight:500}
+.copy-btn:hover{color:var(--green);border-color:var(--green)}
+.code-block{background:#0d1117;padding:20px 24px;margin:0;overflow-x:auto;
+  font-family:'JetBrains Mono','Fira Code','Cascadia Code',monospace;
+  font-size:13px;line-height:1.7;color:#c9d1d9;white-space:pre-wrap;
+  border-radius:0 0 var(--radius) var(--radius)}
+.code-block code{background:none;padding:0;font-size:inherit}
+.desc-block h2{display:flex;align-items:center;gap:8px}
+
+/* ─── Stats Mini (colored) ─── */
+.stats-mini{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap}
+.stat-mini{background:var(--card-bg);border:1px solid var(--border);
+  border-radius:8px;padding:10px 16px;text-align:center;min-width:80px}
+.stat-mini .sv{font-size:20px;font-weight:800;color:var(--green);
+  font-variant-numeric:tabular-nums}
+.stat-mini .sl{font-size:10px;color:var(--dim);margin-top:2px;
+  text-transform:uppercase;letter-spacing:.03em}
+
 /* ─── Integrations Overlay ─── */
 .integ-overlay{position:fixed;top:0;left:0;width:100%;height:100%;z-index:9999;
   background:rgba(0,0,0,.85);backdrop-filter:blur(8px);
@@ -199,8 +235,9 @@ header{position:sticky;top:0;z-index:100;backdrop-filter:blur(20px) saturate(180
   border-bottom:1px solid var(--border)}
 .integ-agent-card{display:flex;align-items:center;gap:8px;background:var(--card-bg);
   border:1px solid var(--border);border-radius:8px;padding:8px 14px;font-size:13px;color:var(--text)}
-.integ-agent-card .iac-icon{width:24px;height:24px;border-radius:4px;
-  background:rgba(59,130,246,.15);display:flex;align-items:center;justify-content:center;font-size:14px}
+.integ-agent-card .iac-icon{width:28px;height:28px;border-radius:6px;
+  background:rgba(59,130,246,.15);display:flex;align-items:center;justify-content:center;font-size:14px;overflow:hidden}
+.integ-agent-card .iac-icon img{width:100%;height:100%;object-fit:contain}
 .integ-diagram{padding:8px 28px;background:rgba(0,0,0,.2);border-bottom:1px solid var(--border)}
 .integ-diagram svg{display:block}
 .integ-matches{padding:24px 28px}
@@ -212,7 +249,9 @@ header{position:sticky;top:0;z-index:100;backdrop-filter:blur(20px) saturate(180
   padding:3px 10px;border-radius:4px}
 .im-effort{font-size:12px;color:var(--muted)}
 .im-desc{font-size:13px;color:var(--muted);line-height:1.6;margin-bottom:8px}
-.im-agents{font-size:11px;color:var(--dim);font-family:monospace}
+.im-agents{font-size:11px;color:var(--dim);font-family:monospace;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.im-agents img{width:20px;height:20px;border-radius:4px;object-fit:contain;vertical-align:middle}
+.im-agents a{display:inline-flex;align-items:center;gap:4px}
 .integ-empty{text-align:center;padding:40px 20px;color:var(--muted)}
 .integ-cta{text-align:center;padding:20px 28px;border-top:1px solid var(--border);
   background:linear-gradient(180deg,transparent,rgba(16,185,129,.04))}
@@ -235,13 +274,52 @@ header{position:sticky;top:0;z-index:100;backdrop-filter:blur(20px) saturate(180
 .featured-card .fc-desc{font-size:13px;color:var(--muted);line-height:1.6}
 
 /* ─── Compare Table ─── */
-.compare-table-wrap{overflow-x:auto;margin:20px 0}
+.compare-table-wrap{overflow-x:auto;margin:20px 0;border-radius:12px;
+  border:1px solid var(--border);background:linear-gradient(180deg,#121821 0%,var(--bg) 100%)}
 .compare-table{width:100%;border-collapse:collapse;font-size:13px}
-.compare-table th{text-align:left;padding:12px 16px;color:var(--muted);font-weight:500;
-  font-size:11px;text-transform:uppercase;letter-spacing:.04em;border-bottom:1px solid var(--border)}
-.compare-table td{padding:14px 16px;border-bottom:1px solid var(--border)}
-.compare-table tr:last-child td{border-bottom:none}
-.compare-table .winner{color:var(--green);font-weight:600}
+.compare-table thead th{padding:16px 16px 14px;color:var(--text);font-weight:700;font-size:13px;
+  text-align:center;border-bottom:2px solid rgba(16,185,129,.3);
+  background:linear-gradient(180deg,rgba(16,185,129,.06) 0%,transparent 100%)}
+.compare-table thead th:first-child{text-align:left;color:var(--muted);font-size:11px;
+  font-weight:500;text-transform:uppercase;letter-spacing:.04em;border-right:1px solid var(--border)}
+.compare-table thead th .th-icon{font-size:18px;display:block;margin-bottom:4px}
+.compare-table thead th .th-name{display:block;max-width:140px;margin:0 auto;line-height:1.3}
+.compare-table tbody th{text-align:left;padding:12px 16px;color:var(--muted);font-weight:500;
+  font-size:11px;text-transform:uppercase;letter-spacing:.04em;border-bottom:1px solid var(--border);
+  border-right:1px solid var(--border);white-space:nowrap}
+.compare-table tbody td{padding:12px 14px;border-bottom:1px solid var(--border);
+  text-align:center;font-weight:600;font-size:13px;position:relative}
+.compare-table tbody tr:last-child td,.compare-table tbody tr:last-child th{border-bottom:none}
+.compare-table tbody tr:nth-child(even){background:rgba(18,24,33,.4)}
+.compare-table .winner{background:rgba(16,185,129,.08) !important;
+  box-shadow:inset 0 0 0 1px rgba(16,185,129,.25)}
+.compare-table .winner::after{content:'';position:absolute;top:2px;right:2px;
+  width:6px;height:6px;border-radius:50%;background:var(--green)}
+/* Score bar inside metric cells */
+.metric-bar{display:inline-block;height:6px;border-radius:3px;margin-right:8px;
+  vertical-align:middle;min-width:4px;transition:width .5s ease}
+.metric-val{display:inline-flex;align-items:center;gap:6px;white-space:nowrap}
+.score-high{color:var(--green)}
+.score-mid{color:var(--cyan)}
+.score-low{color:var(--amber)}
+.compare-header-bar{display:flex;align-items:center;gap:8px;margin-bottom:24px}
+.compare-header-bar h1{font-size:24px;font-weight:800;color:var(--text);margin:0}
+.compare-badge{display:inline-block;padding:3px 10px;border-radius:20px;
+  font-size:11px;font-weight:600;letter-spacing:.03em;
+  background:rgba(34,211,238,.1);color:var(--cyan);border:1px solid rgba(34,211,238,.2)}
+.result-actions{display:flex;gap:10px;margin-top:20px}
+.btn-back{padding:10px 20px;border-radius:8px;font-size:13px;font-weight:600;
+  background:var(--card-bg);color:var(--text);border:1px solid var(--border);
+  cursor:pointer;transition:all .2s}
+.btn-back:hover{background:var(--surface);border-color:var(--muted)}
+.btn-share{padding:10px 20px;border-radius:8px;font-size:13px;font-weight:600;
+  background:rgba(59,130,246,.12);color:var(--blue);border:1px solid rgba(59,130,246,.2);
+  cursor:pointer;transition:all .2s}
+.btn-share:hover{background:rgba(59,130,246,.2)}
+.compare-legend{display:flex;align-items:center;gap:16px;margin-top:16px;flex-wrap:wrap}
+.compare-legend .dot{display:inline-block;width:8px;height:8px;border-radius:50%}
+.compare-legend .dot.green{background:var(--green)}
+.compare-legend span{font-size:12px;color:var(--muted)}
 .compare-check{color:var(--green)}
 
 /* ─── Live Feed ─── */
@@ -298,8 +376,11 @@ header{position:sticky;top:0;z-index:100;backdrop-filter:blur(20px) saturate(180
 .stack-metric .sm-val{font-size:20px;font-weight:700;color:var(--text)}
 .stack-metric .sm-lbl{font-size:11px;color:var(--dim);margin-top:2px}
 
+/* ─── Container ─── */
+.container{max-width:1320px;margin:0 auto;padding:0 24px}
+
 /* ─── Product Detail ─── */
-.detail{max-width:900px}
+.detail{max-width:900px;margin:0 auto}
 .detail-header{margin-bottom:32px}
 .detail-header h1{font-size:32px;font-weight:800;color:#f1f5f9;letter-spacing:-.01em}
 .detail-header .tagline{font-size:16px;color:var(--muted);margin-top:8px}
@@ -309,9 +390,9 @@ header{position:sticky;top:0;z-index:100;backdrop-filter:blur(20px) saturate(180
   border:1px solid var(--border)}
 .meta-item strong{color:var(--text)}
 .meta-item.green{color:var(--green);border-color:rgba(16,185,129,.2)}
-.detail-body{margin-top:28px;font-size:14.5px;line-height:1.8;color:#b0b8c8}
-.detail-body h2{font-size:20px;font-weight:700;color:var(--text);margin:28px 0 10px}
-.detail-body h3{font-size:16px;font-weight:600;color:#d0d8e8;margin:22px 0 8px}
+.detail-body{margin-top:28px;font-size:16px;line-height:1.8;color:#b0b8c8}
+.detail-body h2{font-size:22px;font-weight:700;color:var(--text);margin:28px 0 10px}
+.detail-body h3{font-size:18px;font-weight:600;color:#d0d8e8;margin:22px 0 8px}
 .detail-body p{margin-bottom:14px}
 .detail-body ul,.detail-body ol{padding-left:22px;margin-bottom:14px}
 .detail-body li{margin-bottom:5px}
@@ -400,17 +481,17 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
       <span class="nav-sep"></span>
       <a href="/benchmarks/">Бенчмарки</a>
       <span class="nav-sep"></span>
-      <a href="/catalog/review/" class="">Обзоры</a>
-      <span class="nav-sep"></span>
       <a href="/benchmarks/">Рейтинг</a>
       <span class="nav-sep"></span>
       <a href="/catalog/product/">Локальный AI</a>
       <span class="nav-sep"></span>
-      <a href="/catalog/product/">Разработка</a>
+      <a href="/development/" class="">Разработка</a>
       <span class="nav-sep"></span>
-      <a href="/catalog/product/">Мульти-агенты</a>
+      <a href="/multi-agent/" class="">Мульти-агенты</a>
       <span class="nav-sep"></span>
-      <a href="#guides">Гайды</a>
+      <a href="/guides/" class="nav-featured ">📖 Гайды</a>
+      <span class="nav-sep"></span>
+      <a href="/catalog/review/" class="">Обзоры</a>
       <span class="nav-sep"></span>
       <a href="/methodology/" class="">Методология</a>
       <span class="nav-sep"></span>
@@ -443,10 +524,10 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
         <div class="card-icon"><img src="/images/hermes-agent.png" alt="Hermes Agent — AI-агент, который растёт вместе с вами" loading="lazy"></div>
         <span class="card-badge badge-agent">Agent</span>
       </div>
-      <div class="card-title">Hermes Agent — AI-агент, который растёт вместе с вами</div>
+      <div class="card-title"><span class="agent-icon">🔮</span> Hermes Agent — AI-агент, который растёт вместе с вами</div>
       <div class="card-desc">Агент с памятью, навыками и полным доступом к системе</div>
       <div class="card-panel"><div class="panel-item qs-badge"><div class="pv" style="color:var(--green);font-size:16px">85</div><div class="pl">QantScore™</div></div><div class="panel-item"><div class="pv amber">4.9 ★</div><div class="pl">Rating</div></div><div class="panel-item"><div class="pv green">Open Source</div><div class="pl">Цена</div></div><div class="panel-item"><div class="pv">🏠 Local</div><div class="pl">Развёртывание</div></div><div class="panel-item"><div class="pv">10</div><div class="pl">Maturity /10</div></div><div class="panel-item"><div class="pv cyan">↑↑ +23.0%</div><div class="pl">Velocity</div></div><div class="panel-item"><div class="pv">7.8</div><div class="pl">Deploy /10</div></div></div>
-      <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T06:54:41.537089+00:00">🕐 6h ago</span><span>📊 3200 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
+      <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T06:54:41.537089+00:00">🕐 1d ago</span><span>📊 3200 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
     </a><a href="/product/ollama/" class="card">
       <div class="card-compare"><input type="checkbox" value="ollama" onchange="toggleCompare(this)" aria-label="Compare"></div>
       <button class="bookmark-btn" data-slug="ollama" onclick="toggleSave(this,&#39;ollama&#39;)" title="Save">☆</button>
@@ -455,10 +536,10 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
         <div class="card-icon"><img src="/images/ollama.png" alt="Ollama — локальный запуск LLM одной командой" loading="lazy"></div>
         <span class="card-badge badge-agent">Agent</span>
       </div>
-      <div class="card-title">Ollama — локальный запуск LLM одной командой</div>
+      <div class="card-title"><span class="agent-icon">🦙</span> Ollama — локальный запуск LLM одной командой</div>
       <div class="card-desc">Запустите Kimi-K2.5, DeepSeek, Qwen, Gemma и сотни других локально</div>
       <div class="card-panel"><div class="panel-item qs-badge"><div class="pv" style="color:var(--cyan);font-size:16px">77</div><div class="pl">QantScore™</div></div><div class="panel-item"><div class="pv amber">4.9 ★</div><div class="pl">Rating</div></div><div class="panel-item"><div class="pv green">Open Source</div><div class="pl">Цена</div></div><div class="panel-item"><div class="pv">☁️ Cloud</div><div class="pl">Развёртывание</div></div><div class="panel-item"><div class="pv">10</div><div class="pl">Maturity /10</div></div><div class="panel-item"><div class="pv cyan">↑↑ +23.0%</div><div class="pl">Velocity</div></div><div class="panel-item"><div class="pv">3.8</div><div class="pl">Deploy /10</div></div></div>
-      <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T06:54:41.555446+00:00">🕐 6h ago</span><span>📊 5600 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
+      <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T06:54:41.555446+00:00">🕐 1d ago</span><span>📊 5600 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
     </a><a href="/product/cursor-ide/" class="card">
       <div class="card-compare"><input type="checkbox" value="cursor-ide" onchange="toggleCompare(this)" aria-label="Compare"></div>
       <button class="bookmark-btn" data-slug="cursor-ide" onclick="toggleSave(this,&#39;cursor-ide&#39;)" title="Save">☆</button>
@@ -467,10 +548,10 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
         <div class="card-icon"><img src="/images/cursor-ide.png" alt="Cursor IDE — AI-среда разработки нового поколения" loading="lazy"></div>
         <span class="card-badge badge-agent">Agent</span>
       </div>
-      <div class="card-title">Cursor IDE — AI-среда разработки нового поколения</div>
+      <div class="card-title"><span class="agent-icon">🖱️</span> Cursor IDE — AI-среда разработки нового поколения</div>
       <div class="card-desc">AI-first IDE, которое понимает ваш код</div>
       <div class="card-panel"><div class="panel-item qs-badge"><div class="pv" style="color:var(--cyan);font-size:16px">76</div><div class="pl">QantScore™</div></div><div class="panel-item"><div class="pv amber">4.8 ★</div><div class="pl">Rating</div></div><div class="panel-item"><div class="pv green">Freemium</div><div class="pl">Цена</div></div><div class="panel-item"><div class="pv">☁️ Cloud</div><div class="pl">Развёртывание</div></div><div class="panel-item"><div class="pv">10</div><div class="pl">Maturity /10</div></div><div class="panel-item"><div class="pv cyan">↑↑ +23.0%</div><div class="pl">Velocity</div></div><div class="panel-item"><div class="pv">3.8</div><div class="pl">Deploy /10</div></div></div>
-      <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T06:54:38.434828+00:00">🕐 6h ago</span><span>📊 2340 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
+      <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T06:54:38.434828+00:00">🕐 1d ago</span><span>📊 2340 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
     </a><a href="/product/open-interpreter/" class="card">
       <div class="card-compare"><input type="checkbox" value="open-interpreter" onchange="toggleCompare(this)" aria-label="Compare"></div>
       <button class="bookmark-btn" data-slug="open-interpreter" onclick="toggleSave(this,&#39;open-interpreter&#39;)" title="Save">☆</button>
@@ -479,7 +560,7 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
         <div class="card-icon"><img src="/images/open-interpreter.png" alt="Open Interpreter — AI-агент с доступом к компьютеру" loading="lazy"></div>
         <span class="card-badge badge-agent">Agent</span>
       </div>
-      <div class="card-title">Open Interpreter — AI-агент с доступом к компьютеру</div>
+      <div class="card-title"><span class="agent-icon">💻</span> Open Interpreter — AI-агент с доступом к компьютеру</div>
       <div class="card-desc">AI, который исполняет код на вашем компьютере</div>
       <div class="card-panel"><div class="panel-item qs-badge"><div class="pv" style="color:var(--cyan);font-size:16px">84</div><div class="pl">QantScore™</div></div><div class="panel-item"><div class="pv amber">4.8 ★</div><div class="pl">Rating</div></div><div class="panel-item"><div class="pv green">Open Source</div><div class="pl">Цена</div></div><div class="panel-item"><div class="pv">🏠 Local</div><div class="pl">Развёртывание</div></div><div class="panel-item"><div class="pv">10</div><div class="pl">Maturity /10</div></div><div class="panel-item"><div class="pv cyan">↑↑ +23.0%</div><div class="pl">Velocity</div></div><div class="panel-item"><div class="pv">8.1</div><div class="pl">Deploy /10</div></div></div>
       <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span>📊 3200 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
@@ -491,7 +572,7 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
         <div class="card-icon"><img src="/images/llama-meta.png" alt="Llama 3 — открытая модель от Meta" loading="lazy"></div>
         <span class="card-badge badge-model">Model</span>
       </div>
-      <div class="card-title">Llama 3 — открытая модель от Meta</div>
+      <div class="card-title"><span class="agent-icon">🦙</span> Llama 3 — открытая модель от Meta</div>
       <div class="card-desc">Лучшая open source LLM: 8B и 70B параметров</div>
       <div class="card-panel"><div class="panel-item qs-badge"><div class="pv" style="color:var(--cyan);font-size:16px">78</div><div class="pl">QantScore™</div></div><div class="panel-item"><div class="pv amber">4.8 ★</div><div class="pl">Rating</div></div><div class="panel-item"><div class="pv green">Open Source</div><div class="pl">Цена</div></div><div class="panel-item"><div class="pv">☁️ Cloud</div><div class="pl">Развёртывание</div></div><div class="panel-item"><div class="pv">10</div><div class="pl">Maturity /10</div></div><div class="panel-item"><div class="pv cyan">↑↑ +23.0%</div><div class="pl">Velocity</div></div><div class="panel-item"><div class="pv">5.0</div><div class="pl">Deploy /10</div></div></div>
       <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span>📊 12000 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
@@ -503,10 +584,10 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
         <div class="card-icon"><img src="/images/openclaw-agent.png" alt="OpenClaw — персональный AI-ассистент с открытым кодом" loading="lazy"></div>
         <span class="card-badge badge-agent">Agent</span>
       </div>
-      <div class="card-title">OpenClaw — персональный AI-ассистент с открытым кодом</div>
+      <div class="card-title"><span class="agent-icon">🦞</span> OpenClaw — персональный AI-ассистент с открытым кодом</div>
       <div class="card-desc">Ваш личный AI. Любая ОС. Любая платформа. 🦞</div>
       <div class="card-panel"><div class="panel-item qs-badge"><div class="pv" style="color:var(--cyan);font-size:16px">84</div><div class="pl">QantScore™</div></div><div class="panel-item"><div class="pv amber">4.8 ★</div><div class="pl">Rating</div></div><div class="panel-item"><div class="pv green">Open Source</div><div class="pl">Цена</div></div><div class="panel-item"><div class="pv">🏠 Local</div><div class="pl">Развёртывание</div></div><div class="panel-item"><div class="pv">10</div><div class="pl">Maturity /10</div></div><div class="panel-item"><div class="pv cyan">↑↑ +23.0%</div><div class="pl">Velocity</div></div><div class="panel-item"><div class="pv">8.1</div><div class="pl">Deploy /10</div></div></div>
-      <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T06:54:41.530478+00:00">🕐 6h ago</span><span>📊 2100 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
+      <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T06:54:41.530478+00:00">🕐 1d ago</span><span>📊 2100 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
     </a><a href="/product/cline-vscode/" class="card">
       <div class="card-compare"><input type="checkbox" value="cline-vscode" onchange="toggleCompare(this)" aria-label="Compare"></div>
       <button class="bookmark-btn" data-slug="cline-vscode" onclick="toggleSave(this,&#39;cline-vscode&#39;)" title="Save">☆</button>
@@ -515,10 +596,10 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
         <div class="card-icon"><img src="/images/cline-vscode.png" alt="Cline — автономный AI-агент для VS Code" loading="lazy"></div>
         <span class="card-badge badge-agent">Agent</span>
       </div>
-      <div class="card-title">Cline — автономный AI-агент для VS Code</div>
+      <div class="card-title"><span class="agent-icon">🤖</span> Cline — автономный AI-агент для VS Code</div>
       <div class="card-desc">AI-агент с доступом к файлам и терминалу</div>
       <div class="card-panel"><div class="panel-item qs-badge"><div class="pv" style="color:var(--cyan);font-size:16px">74</div><div class="pl">QantScore™</div></div><div class="panel-item"><div class="pv amber">4.7 ★</div><div class="pl">Rating</div></div><div class="panel-item"><div class="pv green">Open Source</div><div class="pl">Цена</div></div><div class="panel-item"><div class="pv">☁️ Cloud</div><div class="pl">Развёртывание</div></div><div class="panel-item"><div class="pv">10</div><div class="pl">Maturity /10</div></div><div class="panel-item"><div class="pv cyan">↑↑ +17.8%</div><div class="pl">Velocity</div></div><div class="panel-item"><div class="pv">3.8</div><div class="pl">Deploy /10</div></div></div>
-      <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T06:54:38.454650+00:00">🕐 6h ago</span><span>📊 560 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
+      <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T06:54:38.454650+00:00">🕐 1d ago</span><span>📊 560 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
     </a><a href="/product/perplexity-ai/" class="card">
       <div class="card-compare"><input type="checkbox" value="perplexity-ai" onchange="toggleCompare(this)" aria-label="Compare"></div>
       <button class="bookmark-btn" data-slug="perplexity-ai" onclick="toggleSave(this,&#39;perplexity-ai&#39;)" title="Save">☆</button>
@@ -527,10 +608,10 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
         <div class="card-icon"><img src="/images/perplexity-ai.png" alt="Perplexity AI — поисковая система с искусственным интеллектом" loading="lazy"></div>
         <span class="card-badge badge-agent">Agent</span>
       </div>
-      <div class="card-title">Perplexity AI — поисковая система с искусственным интеллектом</div>
+      <div class="card-title"><span class="agent-icon">🔎</span> Perplexity AI — поисковая система с искусственным интеллектом</div>
       <div class="card-desc">AI-поисковик с цитированием источников</div>
       <div class="card-panel"><div class="panel-item qs-badge"><div class="pv" style="color:var(--cyan);font-size:16px">76</div><div class="pl">QantScore™</div></div><div class="panel-item"><div class="pv amber">4.7 ★</div><div class="pl">Rating</div></div><div class="panel-item"><div class="pv green">Freemium</div><div class="pl">Цена</div></div><div class="panel-item"><div class="pv">☁️ Cloud</div><div class="pl">Развёртывание</div></div><div class="panel-item"><div class="pv">10</div><div class="pl">Maturity /10</div></div><div class="panel-item"><div class="pv cyan">↑↑ +23.0%</div><div class="pl">Velocity</div></div><div class="panel-item"><div class="pv">4.1</div><div class="pl">Deploy /10</div></div></div>
-      <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T06:54:38.473254+00:00">🕐 6h ago</span><span>📊 3100 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
+      <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T06:54:38.473254+00:00">🕐 1d ago</span><span>📊 3100 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
     </a><a href="/product/claude-anthropic/" class="card">
       <div class="card-compare"><input type="checkbox" value="claude-anthropic" onchange="toggleCompare(this)" aria-label="Compare"></div>
       <button class="bookmark-btn" data-slug="claude-anthropic" onclick="toggleSave(this,&#39;claude-anthropic&#39;)" title="Save">☆</button>
@@ -539,10 +620,10 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
         <div class="card-icon"><img src="/images/claude-anthropic.png" alt="Claude — AI-ассистент от Anthropic" loading="lazy"></div>
         <span class="card-badge badge-agent">Agent</span>
       </div>
-      <div class="card-title">Claude — AI-ассистент от Anthropic</div>
+      <div class="card-title"><span class="agent-icon">🎭</span> Claude — AI-ассистент от Anthropic</div>
       <div class="card-desc">Этичный AI с длинным контекстом и agentic режимом</div>
       <div class="card-panel"><div class="panel-item qs-badge"><div class="pv" style="color:var(--cyan);font-size:16px">76</div><div class="pl">QantScore™</div></div><div class="panel-item"><div class="pv amber">4.7 ★</div><div class="pl">Rating</div></div><div class="panel-item"><div class="pv green">Freemium</div><div class="pl">Цена</div></div><div class="panel-item"><div class="pv">☁️ Cloud</div><div class="pl">Развёртывание</div></div><div class="panel-item"><div class="pv">10</div><div class="pl">Maturity /10</div></div><div class="panel-item"><div class="pv cyan">↑↑ +23.0%</div><div class="pl">Velocity</div></div><div class="panel-item"><div class="pv">4.4</div><div class="pl">Deploy /10</div></div></div>
-      <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T06:54:38.477249+00:00">🕐 6h ago</span><span>📊 4200 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
+      <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T06:54:38.477249+00:00">🕐 1d ago</span><span>📊 4200 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
     </a><a href="/product/aider-ai/" class="card">
       <div class="card-compare"><input type="checkbox" value="aider-ai" onchange="toggleCompare(this)" aria-label="Compare"></div>
       <button class="bookmark-btn" data-slug="aider-ai" onclick="toggleSave(this,&#39;aider-ai&#39;)" title="Save">☆</button>
@@ -551,7 +632,7 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
         <div class="card-icon"><img src="/images/aider-ai.png" alt="Aider — AI-парный программист в терминале" loading="lazy"></div>
         <span class="card-badge badge-agent">Agent</span>
       </div>
-      <div class="card-title">Aider — AI-парный программист в терминале</div>
+      <div class="card-title"><span class="agent-icon">🅰️</span> Aider — AI-парный программист в терминале</div>
       <div class="card-desc">Open source AI-агент для терминала: пишет и правит код в Git</div>
       <div class="card-panel"><div class="panel-item qs-badge"><div class="pv" style="color:var(--cyan);font-size:16px">82</div><div class="pl">QantScore™</div></div><div class="panel-item"><div class="pv amber">4.7 ★</div><div class="pl">Rating</div></div><div class="panel-item"><div class="pv green">Open Source</div><div class="pl">Цена</div></div><div class="panel-item"><div class="pv">🏠 Local</div><div class="pl">Развёртывание</div></div><div class="panel-item"><div class="pv">10</div><div class="pl">Maturity /10</div></div><div class="panel-item"><div class="pv cyan">↑↑ +17.7%</div><div class="pl">Velocity</div></div><div class="panel-item"><div class="pv">8.1</div><div class="pl">Deploy /10</div></div></div>
       <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span>📊 540 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
@@ -563,7 +644,7 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
         <div class="card-icon"><img src="/images/smolagents-huggingface.png" alt="SmolAgents — минималистичные агенты от Hugging Face" loading="lazy"></div>
         <span class="card-badge badge-framework">Framework</span>
       </div>
-      <div class="card-title">SmolAgents — минималистичные агенты от Hugging Face</div>
+      <div class="card-title"><span class="agent-icon">🤗</span> SmolAgents — минималистичные агенты от Hugging Face</div>
       <div class="card-desc">Агенты в 100 строк кода: code agents и tool-calling agents</div>
       <div class="card-panel"><div class="panel-item qs-badge"><div class="pv" style="color:var(--cyan);font-size:16px">76</div><div class="pl">QantScore™</div></div><div class="panel-item"><div class="pv amber">4.7 ★</div><div class="pl">Rating</div></div><div class="panel-item"><div class="pv green">Open Source</div><div class="pl">Цена</div></div><div class="panel-item"><div class="pv">☁️ Cloud</div><div class="pl">Развёртывание</div></div><div class="panel-item"><div class="pv">10</div><div class="pl">Maturity /10</div></div><div class="panel-item"><div class="pv cyan">↑↑ +16.1%</div><div class="pl">Velocity</div></div><div class="panel-item"><div class="pv">5.0</div><div class="pl">Deploy /10</div></div></div>
       <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span>📊 210 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
@@ -575,7 +656,7 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
         <div class="card-icon"><img src="/images/mistral-ai.png" alt="Mistral AI — европейский лидер открытых LLM" loading="lazy"></div>
         <span class="card-badge badge-model">Model</span>
       </div>
-      <div class="card-title">Mistral AI — европейский лидер открытых LLM</div>
+      <div class="card-title"><span class="agent-icon">🌬️</span> Mistral AI — европейский лидер открытых LLM</div>
       <div class="card-desc">SoTA открытые модели от французского стартапа</div>
       <div class="card-panel"><div class="panel-item qs-badge"><div class="pv" style="color:var(--cyan);font-size:16px">76</div><div class="pl">QantScore™</div></div><div class="panel-item"><div class="pv amber">4.7 ★</div><div class="pl">Rating</div></div><div class="panel-item"><div class="pv green">Open Source</div><div class="pl">Цена</div></div><div class="panel-item"><div class="pv">☁️ Cloud</div><div class="pl">Развёртывание</div></div><div class="panel-item"><div class="pv">10</div><div class="pl">Maturity /10</div></div><div class="panel-item"><div class="pv cyan">↑↑ +23.0%</div><div class="pl">Velocity</div></div><div class="panel-item"><div class="pv">4.1</div><div class="pl">Deploy /10</div></div></div>
       <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span>📊 4300 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
@@ -587,7 +668,7 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
         <div class="card-icon"><img src="/images/vercel-v0.png" alt="v0 by Vercel — генерация UI компонентов текстом" loading="lazy"></div>
         <span class="card-badge badge-agent">Agent</span>
       </div>
-      <div class="card-title">v0 by Vercel — генерация UI компонентов текстом</div>
+      <div class="card-title"><span class="agent-icon">▲</span> v0 by Vercel — генерация UI компонентов текстом</div>
       <div class="card-desc">Промпт → React-компонент с Tailwind: дизайн за секунды</div>
       <div class="card-panel"><div class="panel-item qs-badge"><div class="pv" style="color:var(--cyan);font-size:16px">75</div><div class="pl">QantScore™</div></div><div class="panel-item"><div class="pv amber">4.7 ★</div><div class="pl">Rating</div></div><div class="panel-item"><div class="pv green">Freemium</div><div class="pl">Цена</div></div><div class="panel-item"><div class="pv">☁️ Cloud</div><div class="pl">Развёртывание</div></div><div class="panel-item"><div class="pv">10</div><div class="pl">Maturity /10</div></div><div class="panel-item"><div class="pv cyan">↑↑ +23.0%</div><div class="pl">Velocity</div></div><div class="panel-item"><div class="pv">3.8</div><div class="pl">Deploy /10</div></div></div>
       <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span>📊 3400 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
@@ -599,7 +680,7 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
         <div class="card-icon"><img src="/images/anthropic-mcp.png" alt="Anthropic MCP — протокол для подключения AI к данным" loading="lazy"></div>
         <span class="card-badge badge-infra">Infra</span>
       </div>
-      <div class="card-title">Anthropic MCP — протокол для подключения AI к данным</div>
+      <div class="card-title"><span class="agent-icon">🔌</span> Anthropic MCP — протокол для подключения AI к данным</div>
       <div class="card-desc">Открытый протокол Model Context Protocol: AI ↔ инструменты и данные</div>
       <div class="card-panel"><div class="panel-item qs-badge"><div class="pv" style="color:var(--cyan);font-size:16px">82</div><div class="pl">QantScore™</div></div><div class="panel-item"><div class="pv amber">4.7 ★</div><div class="pl">Rating</div></div><div class="panel-item"><div class="pv green">Open Source</div><div class="pl">Цена</div></div><div class="panel-item"><div class="pv">🏠 Local</div><div class="pl">Развёртывание</div></div><div class="panel-item"><div class="pv">10</div><div class="pl">Maturity /10</div></div><div class="panel-item"><div class="pv cyan">↑↑ +16.9%</div><div class="pl">Velocity</div></div><div class="panel-item"><div class="pv">8.1</div><div class="pl">Deploy /10</div></div></div>
       <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span>📊 380 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
@@ -611,10 +692,10 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
         <div class="card-icon"><img src="/images/codex-cli.png" alt="OpenAI Codex CLI — лёгкий агент для кода в терминале" loading="lazy"></div>
         <span class="card-badge badge-agent">Agent</span>
       </div>
-      <div class="card-title">OpenAI Codex CLI — лёгкий агент для кода в терминале</div>
+      <div class="card-title"><span class="agent-icon">⌨️</span> OpenAI Codex CLI — лёгкий агент для кода в терминале</div>
       <div class="card-desc">AI-агент, который живёт в вашем терминале</div>
       <div class="card-panel"><div class="panel-item qs-badge"><div class="pv" style="color:var(--cyan);font-size:16px">76</div><div class="pl">QantScore™</div></div><div class="panel-item"><div class="pv amber">4.7 ★</div><div class="pl">Rating</div></div><div class="panel-item"><div class="pv green">Open Source</div><div class="pl">Цена</div></div><div class="panel-item"><div class="pv">☁️ Cloud</div><div class="pl">Развёртывание</div></div><div class="panel-item"><div class="pv">10</div><div class="pl">Maturity /10</div></div><div class="panel-item"><div class="pv cyan">↑↑ +23.0%</div><div class="pl">Velocity</div></div><div class="panel-item"><div class="pv">4.4</div><div class="pl">Deploy /10</div></div></div>
-      <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T06:54:41.534104+00:00">🕐 6h ago</span><span>📊 1800 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
+      <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T06:54:41.534104+00:00">🕐 1d ago</span><span>📊 1800 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
     </a><a href="/product/anythingllm/" class="card">
       <div class="card-compare"><input type="checkbox" value="anythingllm" onchange="toggleCompare(this)" aria-label="Compare"></div>
       <button class="bookmark-btn" data-slug="anythingllm" onclick="toggleSave(this,&#39;anythingllm&#39;)" title="Save">☆</button>
@@ -623,10 +704,10 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
         <div class="card-icon"><img src="/images/anythingllm.png" alt="AnythingLLM — универсальный AI-ускоритель продуктивности" loading="lazy"></div>
         <span class="card-badge badge-agent">Agent</span>
       </div>
-      <div class="card-title">AnythingLLM — универсальный AI-ускоритель продуктивности</div>
+      <div class="card-title"><span class="agent-icon">📚</span> AnythingLLM — универсальный AI-ускоритель продуктивности</div>
       <div class="card-desc">Всё-в-одном: RAG, агенты, MCP и кастомные модели — без настройки</div>
       <div class="card-panel"><div class="panel-item qs-badge"><div class="pv" style="color:var(--cyan);font-size:16px">75</div><div class="pl">QantScore™</div></div><div class="panel-item"><div class="pv amber">4.7 ★</div><div class="pl">Rating</div></div><div class="panel-item"><div class="pv green">Open Source</div><div class="pl">Цена</div></div><div class="panel-item"><div class="pv">☁️ Cloud</div><div class="pl">Развёртывание</div></div><div class="panel-item"><div class="pv">10</div><div class="pl">Maturity /10</div></div><div class="panel-item"><div class="pv cyan">↑↑ +22.5%</div><div class="pl">Velocity</div></div><div class="panel-item"><div class="pv">3.8</div><div class="pl">Deploy /10</div></div></div>
-      <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T06:54:41.551561+00:00">🕐 6h ago</span><span>📊 1500 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
+      <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T06:54:41.551561+00:00">🕐 1d ago</span><span>📊 1500 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
     </a><a href="/product/lm-studio/" class="card">
       <div class="card-compare"><input type="checkbox" value="lm-studio" onchange="toggleCompare(this)" aria-label="Compare"></div>
       <button class="bookmark-btn" data-slug="lm-studio" onclick="toggleSave(this,&#39;lm-studio&#39;)" title="Save">☆</button>
@@ -635,10 +716,10 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
         <div class="card-icon"><img src="/images/lm-studio.png" alt="LM Studio — десктопное приложение для локальных LLM" loading="lazy"></div>
         <span class="card-badge badge-agent">Agent</span>
       </div>
-      <div class="card-title">LM Studio — десктопное приложение для локальных LLM</div>
+      <div class="card-title"><span class="agent-icon">🖥️</span> LM Studio — десктопное приложение для локальных LLM</div>
       <div class="card-desc">Запускайте любые модели локально с удобным UI и GPU-ускорением</div>
       <div class="card-panel"><div class="panel-item qs-badge"><div class="pv" style="color:var(--cyan);font-size:16px">75</div><div class="pl">QantScore™</div></div><div class="panel-item"><div class="pv amber">4.7 ★</div><div class="pl">Rating</div></div><div class="panel-item"><div class="pv green">Freemium</div><div class="pl">Цена</div></div><div class="panel-item"><div class="pv">☁️ Cloud</div><div class="pl">Развёртывание</div></div><div class="panel-item"><div class="pv">10</div><div class="pl">Maturity /10</div></div><div class="panel-item"><div class="pv cyan">↑↑ +23.0%</div><div class="pl">Velocity</div></div><div class="panel-item"><div class="pv">3.8</div><div class="pl">Deploy /10</div></div></div>
-      <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T06:54:41.558495+00:00">🕐 6h ago</span><span>📊 2800 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
+      <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T06:54:41.558495+00:00">🕐 1d ago</span><span>📊 2800 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
     </a><a href="/product/claude-desktop/" class="card">
       <div class="card-compare"><input type="checkbox" value="claude-desktop" onchange="toggleCompare(this)" aria-label="Compare"></div>
       <button class="bookmark-btn" data-slug="claude-desktop" onclick="toggleSave(this,&#39;claude-desktop&#39;)" title="Save">☆</button>
@@ -647,10 +728,10 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
         <div class="card-icon">🤖</div>
         <span class="card-badge badge-agent">Agent</span>
       </div>
-      <div class="card-title">Claude Desktop — AI-ассистент от Anthropic для рабочего стола</div>
+      <div class="card-title"><span class="agent-icon">💻</span> Claude Desktop — AI-ассистент от Anthropic для рабочего стола</div>
       <div class="card-desc">Десктопное приложение Claude с файловым доступом, MCP-серверами и системной интеграцией</div>
       <div class="card-panel"><div class="panel-item qs-badge"><div class="pv" style="color:var(--cyan);font-size:16px">75</div><div class="pl">QantScore™</div></div><div class="panel-item"><div class="pv amber">4.7 ★</div><div class="pl">Rating</div></div><div class="panel-item"><div class="pv green">Freemium</div><div class="pl">Цена</div></div><div class="panel-item"><div class="pv">☁️ Cloud</div><div class="pl">Развёртывание</div></div><div class="panel-item"><div class="pv">10</div><div class="pl">Maturity /10</div></div><div class="panel-item"><div class="pv cyan">↑↑ +22.2%</div><div class="pl">Velocity</div></div><div class="panel-item"><div class="pv">3.8</div><div class="pl">Deploy /10</div></div></div>
-      <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T10:40:24.875533+00:00">🕐 2h ago</span><span>📊 3400 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
+      <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T10:40:24.875533+00:00">🕐 1d ago</span><span>📊 3400 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
     </a><a href="/product/claude-code/" class="card">
       <div class="card-compare"><input type="checkbox" value="claude-code" onchange="toggleCompare(this)" aria-label="Compare"></div>
       <button class="bookmark-btn" data-slug="claude-code" onclick="toggleSave(this,&#39;claude-code&#39;)" title="Save">☆</button>
@@ -659,10 +740,10 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
         <div class="card-icon"><img src="/images/claude-code.png" alt="Claude Code — агентное программирование от Anthropic" loading="lazy"></div>
         <span class="card-badge badge-agent">Agent</span>
       </div>
-      <div class="card-title">Claude Code — агентное программирование от Anthropic</div>
+      <div class="card-title"><span class="agent-icon">🧑‍💻</span> Claude Code — агентное программирование от Anthropic</div>
       <div class="card-desc">AI-агент, который читает кодовую базу и пишет PR</div>
       <div class="card-panel"><div class="panel-item qs-badge"><div class="pv" style="color:var(--cyan);font-size:16px">82</div><div class="pl">QantScore™</div></div><div class="panel-item"><div class="pv amber">4.6 ★</div><div class="pl">Rating</div></div><div class="panel-item"><div class="pv green">Usage-based</div><div class="pl">Цена</div></div><div class="panel-item"><div class="pv">🏠 Local</div><div class="pl">Развёртывание</div></div><div class="panel-item"><div class="pv">10</div><div class="pl">Maturity /10</div></div><div class="panel-item"><div class="pv cyan">↑↑ +19.4%</div><div class="pl">Velocity</div></div><div class="panel-item"><div class="pv">8.1</div><div class="pl">Deploy /10</div></div></div>
-      <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T06:54:38.452029+00:00">🕐 6h ago</span><span>📊 890 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
+      <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T06:54:38.452029+00:00">🕐 1d ago</span><span>📊 890 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
     </a><a href="/product/n8n-automation/" class="card">
       <div class="card-compare"><input type="checkbox" value="n8n-automation" onchange="toggleCompare(this)" aria-label="Compare"></div>
       <button class="bookmark-btn" data-slug="n8n-automation" onclick="toggleSave(this,&#39;n8n-automation&#39;)" title="Save">☆</button>
@@ -671,10 +752,10 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
         <div class="card-icon"><img src="/images/n8n-automation.png" alt="n8n — автоматизация рабочих процессов с AI" loading="lazy"></div>
         <span class="card-badge badge-platform">Platform</span>
       </div>
-      <div class="card-title">n8n — автоматизация рабочих процессов с AI</div>
+      <div class="card-title"><span class="agent-icon">⚙️</span> n8n — автоматизация рабочих процессов с AI</div>
       <div class="card-desc">Open-source альтернатива Zapier с AI-нодами</div>
       <div class="card-panel"><div class="panel-item qs-badge"><div class="pv" style="color:var(--cyan);font-size:16px">74</div><div class="pl">QantScore™</div></div><div class="panel-item"><div class="pv amber">4.6 ★</div><div class="pl">Rating</div></div><div class="panel-item"><div class="pv green">Freemium</div><div class="pl">Цена</div></div><div class="panel-item"><div class="pv">☁️ Cloud</div><div class="pl">Развёртывание</div></div><div class="panel-item"><div class="pv">10</div><div class="pl">Maturity /10</div></div><div class="panel-item"><div class="pv cyan">↑↑ +21.0%</div><div class="pl">Velocity</div></div><div class="panel-item"><div class="pv">3.8</div><div class="pl">Deploy /10</div></div></div>
-      <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T06:54:38.471456+00:00">🕐 6h ago</span><span>📊 1200 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
+      <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T06:54:38.471456+00:00">🕐 1d ago</span><span>📊 1200 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
     </a><a href="/product/chatgpt-openai/" class="card">
       <div class="card-compare"><input type="checkbox" value="chatgpt-openai" onchange="toggleCompare(this)" aria-label="Compare"></div>
       <button class="bookmark-btn" data-slug="chatgpt-openai" onclick="toggleSave(this,&#39;chatgpt-openai&#39;)" title="Save">☆</button>
@@ -683,10 +764,10 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
         <div class="card-icon"><img src="/images/chatgpt-openai.png" alt="ChatGPT — универсальный AI-ассистент от OpenAI" loading="lazy"></div>
         <span class="card-badge badge-agent">Agent</span>
       </div>
-      <div class="card-title">ChatGPT — универсальный AI-ассистент от OpenAI</div>
+      <div class="card-title"><span class="agent-icon">🧠</span> ChatGPT — универсальный AI-ассистент от OpenAI</div>
       <div class="card-desc">Самый популярный AI-чат с агентными возможностями</div>
       <div class="card-panel"><div class="panel-item qs-badge"><div class="pv" style="color:var(--cyan);font-size:16px">83</div><div class="pl">QantScore™</div></div><div class="panel-item"><div class="pv amber">4.6 ★</div><div class="pl">Rating</div></div><div class="panel-item"><div class="pv green">Freemium</div><div class="pl">Цена</div></div><div class="panel-item"><div class="pv">🏠 Local</div><div class="pl">Развёртывание</div></div><div class="panel-item"><div class="pv">10</div><div class="pl">Maturity /10</div></div><div class="panel-item"><div class="pv cyan">↑↑ +23.0%</div><div class="pl">Velocity</div></div><div class="panel-item"><div class="pv">8.1</div><div class="pl">Deploy /10</div></div></div>
-      <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T06:54:38.475236+00:00">🕐 6h ago</span><span>📊 25000 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
+      <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T06:54:38.475236+00:00">🕐 1d ago</span><span>📊 25000 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
     </a><a href="/product/metagpt-framework/" class="card">
       <div class="card-compare"><input type="checkbox" value="metagpt-framework" onchange="toggleCompare(this)" aria-label="Compare"></div>
       <button class="bookmark-btn" data-slug="metagpt-framework" onclick="toggleSave(this,&#39;metagpt-framework&#39;)" title="Save">☆</button>
@@ -695,7 +776,7 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
         <div class="card-icon"><img src="/images/metagpt-framework.png" alt="MetaGPT — multi-agent фреймворк с ролями как в компании" loading="lazy"></div>
         <span class="card-badge badge-framework">Framework</span>
       </div>
-      <div class="card-title">MetaGPT — multi-agent фреймворк с ролями как в компании</div>
+      <div class="card-title"><span class="agent-icon">🏗️</span> MetaGPT — multi-agent фреймворк с ролями как в компании</div>
       <div class="card-desc">Симуляция IT-компании: агенты-архитекторы, разработчики, тестировщики</div>
       <div class="card-panel"><div class="panel-item qs-badge"><div class="pv" style="color:var(--cyan);font-size:16px">76</div><div class="pl">QantScore™</div></div><div class="panel-item"><div class="pv amber">4.6 ★</div><div class="pl">Rating</div></div><div class="panel-item"><div class="pv green">Open Source</div><div class="pl">Цена</div></div><div class="panel-item"><div class="pv">☁️ Cloud</div><div class="pl">Развёртывание</div></div><div class="panel-item"><div class="pv">10</div><div class="pl">Maturity /10</div></div><div class="panel-item"><div class="pv cyan">↑↑ +18.9%</div><div class="pl">Velocity</div></div><div class="panel-item"><div class="pv">5.0</div><div class="pl">Deploy /10</div></div></div>
       <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span>📊 780 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
@@ -707,7 +788,7 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
         <div class="card-icon"><img src="/images/openai-swarm.png" alt="OpenAI Swarm — минималистичная оркестрация агентов" loading="lazy"></div>
         <span class="card-badge badge-framework">Framework</span>
       </div>
-      <div class="card-title">OpenAI Swarm — минималистичная оркестрация агентов</div>
+      <div class="card-title"><span class="agent-icon">🐝</span> OpenAI Swarm — минималистичная оркестрация агентов</div>
       <div class="card-desc">Лёгкий фреймворк для multi-agent систем от OpenAI</div>
       <div class="card-panel"><div class="panel-item qs-badge"><div class="pv" style="color:var(--cyan);font-size:16px">75</div><div class="pl">QantScore™</div></div><div class="panel-item"><div class="pv amber">4.6 ★</div><div class="pl">Rating</div></div><div class="panel-item"><div class="pv green">Open Source</div><div class="pl">Цена</div></div><div class="panel-item"><div class="pv">☁️ Cloud</div><div class="pl">Развёртывание</div></div><div class="panel-item"><div class="pv">10</div><div class="pl">Maturity /10</div></div><div class="panel-item"><div class="pv cyan">↑↑ +16.4%</div><div class="pl">Velocity</div></div><div class="panel-item"><div class="pv">5.0</div><div class="pl">Deploy /10</div></div></div>
       <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span>📊 280 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
@@ -719,7 +800,7 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
         <div class="card-icon"><img src="/images/phind-ai.png" alt="Phind — AI-поисковик для разработчиков" loading="lazy"></div>
         <span class="card-badge badge-agent">Agent</span>
       </div>
-      <div class="card-title">Phind — AI-поисковик для разработчиков</div>
+      <div class="card-title"><span class="agent-icon">🔎</span> Phind — AI-поисковик для разработчиков</div>
       <div class="card-desc">Технический поиск с мгновенными ответами и ссылками на код</div>
       <div class="card-panel"><div class="panel-item qs-badge"><div class="pv" style="color:var(--cyan);font-size:16px">74</div><div class="pl">QantScore™</div></div><div class="panel-item"><div class="pv amber">4.6 ★</div><div class="pl">Rating</div></div><div class="panel-item"><div class="pv green">Freemium</div><div class="pl">Цена</div></div><div class="panel-item"><div class="pv">☁️ Cloud</div><div class="pl">Развёртывание</div></div><div class="panel-item"><div class="pv">10</div><div class="pl">Maturity /10</div></div><div class="panel-item"><div class="pv cyan">↑↑ +19.6%</div><div class="pl">Velocity</div></div><div class="panel-item"><div class="pv">4.1</div><div class="pl">Deploy /10</div></div></div>
       <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span>📊 920 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
@@ -731,7 +812,7 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
         <div class="card-icon"><img src="/images/lovable-dev.png" alt="Lovable — AI-разработка приложений без кода" loading="lazy"></div>
         <span class="card-badge badge-agent">Agent</span>
       </div>
-      <div class="card-title">Lovable — AI-разработка приложений без кода</div>
+      <div class="card-title"><span class="agent-icon">❤️</span> Lovable — AI-разработка приложений без кода</div>
       <div class="card-desc">Опишите идею — получите работающее приложение</div>
       <div class="card-panel"><div class="panel-item qs-badge"><div class="pv" style="color:var(--cyan);font-size:16px">75</div><div class="pl">QantScore™</div></div><div class="panel-item"><div class="pv amber">4.6 ★</div><div class="pl">Rating</div></div><div class="panel-item"><div class="pv green">Freemium</div><div class="pl">Цена</div></div><div class="panel-item"><div class="pv">☁️ Cloud</div><div class="pl">Развёртывание</div></div><div class="panel-item"><div class="pv">10</div><div class="pl">Maturity /10</div></div><div class="panel-item"><div class="pv cyan">↑↑ +23.0%</div><div class="pl">Velocity</div></div><div class="panel-item"><div class="pv">4.1</div><div class="pl">Deploy /10</div></div></div>
       <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span>📊 1800 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
@@ -743,7 +824,7 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
         <div class="card-icon"><img src="/images/composio-tools.png" alt="Composio — платформа интеграций для AI-агентов" loading="lazy"></div>
         <span class="card-badge badge-infra">Infra</span>
       </div>
-      <div class="card-title">Composio — платформа интеграций для AI-агентов</div>
+      <div class="card-title"><span class="agent-icon">🔗</span> Composio — платформа интеграций для AI-агентов</div>
       <div class="card-desc">200+ инструментов и интеграций для агентов: Gmail, GitHub, Jira...</div>
       <div class="card-panel"><div class="panel-item qs-badge"><div class="pv" style="color:var(--cyan);font-size:16px">75</div><div class="pl">QantScore™</div></div><div class="panel-item"><div class="pv amber">4.6 ★</div><div class="pl">Rating</div></div><div class="panel-item"><div class="pv green">Freemium</div><div class="pl">Цена</div></div><div class="panel-item"><div class="pv">☁️ Cloud</div><div class="pl">Развёртывание</div></div><div class="panel-item"><div class="pv">10</div><div class="pl">Maturity /10</div></div><div class="panel-item"><div class="pv cyan">↑↑ +17.1%</div><div class="pl">Velocity</div></div><div class="panel-item"><div class="pv">5.0</div><div class="pl">Deploy /10</div></div></div>
       <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span>📊 430 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
@@ -755,10 +836,10 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
         <div class="card-icon"><img src="/images/continue-dev.png" alt="Continue — AI-расширение для IDE с открытым кодом" loading="lazy"></div>
         <span class="card-badge badge-agent">Agent</span>
       </div>
-      <div class="card-title">Continue — AI-расширение для IDE с открытым кодом</div>
+      <div class="card-title"><span class="agent-icon">▶️</span> Continue — AI-расширение для IDE с открытым кодом</div>
       <div class="card-desc">AI-проверки кода, enforceable в CI</div>
       <div class="card-panel"><div class="panel-item qs-badge"><div class="pv" style="color:var(--cyan);font-size:16px">74</div><div class="pl">QantScore™</div></div><div class="panel-item"><div class="pv amber">4.6 ★</div><div class="pl">Rating</div></div><div class="panel-item"><div class="pv green">Open Source</div><div class="pl">Цена</div></div><div class="panel-item"><div class="pv">☁️ Cloud</div><div class="pl">Развёртывание</div></div><div class="panel-item"><div class="pv">10</div><div class="pl">Maturity /10</div></div><div class="panel-item"><div class="pv cyan">↑↑ +19.8%</div><div class="pl">Velocity</div></div><div class="panel-item"><div class="pv">3.8</div><div class="pl">Deploy /10</div></div></div>
-      <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T06:54:41.541897+00:00">🕐 6h ago</span><span>📊 950 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
+      <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T06:54:41.541897+00:00">🕐 1d ago</span><span>📊 950 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
     </a><a href="/product/github-copilot/" class="card">
       <div class="card-compare"><input type="checkbox" value="github-copilot" onchange="toggleCompare(this)" aria-label="Compare"></div>
       <button class="bookmark-btn" data-slug="github-copilot" onclick="toggleSave(this,&#39;github-copilot&#39;)" title="Save">☆</button>
@@ -767,10 +848,10 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
         <div class="card-icon"><img src="/images/github-copilot.png" alt="GitHub Copilot — AI-парный программист" loading="lazy"></div>
         <span class="card-badge badge-agent">Agent</span>
       </div>
-      <div class="card-title">GitHub Copilot — AI-парный программист</div>
+      <div class="card-title"><span class="agent-icon">🐙</span> GitHub Copilot — AI-парный программист</div>
       <div class="card-desc">AI-помощник, встроенный в ваш редактор</div>
       <div class="card-panel"><div class="panel-item qs-badge"><div class="pv" style="color:var(--cyan);font-size:16px">75</div><div class="pl">QantScore™</div></div><div class="panel-item"><div class="pv amber">4.5 ★</div><div class="pl">Rating</div></div><div class="panel-item"><div class="pv green">Paid</div><div class="pl">Цена</div></div><div class="panel-item"><div class="pv">☁️ Cloud</div><div class="pl">Развёртывание</div></div><div class="panel-item"><div class="pv">10</div><div class="pl">Maturity /10</div></div><div class="panel-item"><div class="pv cyan">↑↑ +23.0%</div><div class="pl">Velocity</div></div><div class="panel-item"><div class="pv">4.4</div><div class="pl">Deploy /10</div></div></div>
-      <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T06:54:38.447978+00:00">🕐 6h ago</span><span>📊 5200 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
+      <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T06:54:38.447978+00:00">🕐 1d ago</span><span>📊 5200 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
     </a><a href="/product/dify-platform/" class="card">
       <div class="card-compare"><input type="checkbox" value="dify-platform" onchange="toggleCompare(this)" aria-label="Compare"></div>
       <button class="bookmark-btn" data-slug="dify-platform" onclick="toggleSave(this,&#39;dify-platform&#39;)" title="Save">☆</button>
@@ -779,10 +860,10 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
         <div class="card-icon"><img src="/images/dify-platform.png" alt="Dify — платформа для LLM-приложений" loading="lazy"></div>
         <span class="card-badge badge-platform">Platform</span>
       </div>
-      <div class="card-title">Dify — платформа для LLM-приложений</div>
+      <div class="card-title"><span class="agent-icon">🔷</span> Dify — платформа для LLM-приложений</div>
       <div class="card-desc">Open-source платформа для создания AI-приложений</div>
       <div class="card-panel"><div class="panel-item qs-badge"><div class="pv" style="color:var(--cyan);font-size:16px">81</div><div class="pl">QantScore™</div></div><div class="panel-item"><div class="pv amber">4.5 ★</div><div class="pl">Rating</div></div><div class="panel-item"><div class="pv green">Freemium</div><div class="pl">Цена</div></div><div class="panel-item"><div class="pv">🏠 Local</div><div class="pl">Развёртывание</div></div><div class="panel-item"><div class="pv">10</div><div class="pl">Maturity /10</div></div><div class="panel-item"><div class="pv cyan">↑↑ +18.9%</div><div class="pl">Velocity</div></div><div class="panel-item"><div class="pv">7.8</div><div class="pl">Deploy /10</div></div></div>
-      <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T06:54:38.467672+00:00">🕐 6h ago</span><span>📊 780 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
+      <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T06:54:38.467672+00:00">🕐 1d ago</span><span>📊 780 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
     </a><a href="/product/deepseek-llm/" class="card">
       <div class="card-compare"><input type="checkbox" value="deepseek-llm" onchange="toggleCompare(this)" aria-label="Compare"></div>
       <button class="bookmark-btn" data-slug="deepseek-llm" onclick="toggleSave(this,&#39;deepseek-llm&#39;)" title="Save">☆</button>
@@ -791,10 +872,10 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
         <div class="card-icon"><img src="/images/deepseek-llm.png" alt="DeepSeek — китайский LLM нового поколения" loading="lazy"></div>
         <span class="card-badge badge-model">Model</span>
       </div>
-      <div class="card-title">DeepSeek — китайский LLM нового поколения</div>
+      <div class="card-title"><span class="agent-icon">🐋</span> DeepSeek — китайский LLM нового поколения</div>
       <div class="card-desc">Открытая модель, сравнимая с GPT-4</div>
       <div class="card-panel"><div class="panel-item qs-badge"><div class="pv" style="color:var(--cyan);font-size:16px">82</div><div class="pl">QantScore™</div></div><div class="panel-item"><div class="pv amber">4.5 ★</div><div class="pl">Rating</div></div><div class="panel-item"><div class="pv green">Usage-based</div><div class="pl">Цена</div></div><div class="panel-item"><div class="pv">🏠 Local</div><div class="pl">Развёртывание</div></div><div class="panel-item"><div class="pv">10</div><div class="pl">Maturity /10</div></div><div class="panel-item"><div class="pv cyan">↑↑ +23.0%</div><div class="pl">Velocity</div></div><div class="panel-item"><div class="pv">8.1</div><div class="pl">Deploy /10</div></div></div>
-      <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T06:54:38.479937+00:00">🕐 6h ago</span><span>📊 1800 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
+      <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T06:54:38.479937+00:00">🕐 1d ago</span><span>📊 1800 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
     </a><a href="/product/swe-agent/" class="card">
       <div class="card-compare"><input type="checkbox" value="swe-agent" onchange="toggleCompare(this)" aria-label="Compare"></div>
       <button class="bookmark-btn" data-slug="swe-agent" onclick="toggleSave(this,&#39;swe-agent&#39;)" title="Save">☆</button>
@@ -803,7 +884,7 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
         <div class="card-icon"><img src="/images/swe-agent.png" alt="SWE-Agent — AI для решения GitHub issues" loading="lazy"></div>
         <span class="card-badge badge-agent">Agent</span>
       </div>
-      <div class="card-title">SWE-Agent — AI для решения GitHub issues</div>
+      <div class="card-title"><span class="agent-icon">🔧</span> SWE-Agent — AI для решения GitHub issues</div>
       <div class="card-desc">Автономный агент: от баг-репорта до Pull Request</div>
       <div class="card-panel"><div class="panel-item qs-badge"><div class="pv" style="color:var(--cyan);font-size:16px">75</div><div class="pl">QantScore™</div></div><div class="panel-item"><div class="pv amber">4.5 ★</div><div class="pl">Rating</div></div><div class="panel-item"><div class="pv green">Open Source</div><div class="pl">Цена</div></div><div class="panel-item"><div class="pv">☁️ Cloud</div><div class="pl">Развёртывание</div></div><div class="panel-item"><div class="pv">10</div><div class="pl">Maturity /10</div></div><div class="panel-item"><div class="pv cyan">↑↑ +17.1%</div><div class="pl">Velocity</div></div><div class="panel-item"><div class="pv">5.0</div><div class="pl">Deploy /10</div></div></div>
       <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span>📊 430 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
@@ -815,7 +896,7 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
         <div class="card-icon"><img src="/images/phidata-framework.png" alt="Phidata — фреймворк для AI-агентов с долговременной памятью" loading="lazy"></div>
         <span class="card-badge badge-framework">Framework</span>
       </div>
-      <div class="card-title">Phidata — фреймворк для AI-агентов с долговременной памятью</div>
+      <div class="card-title"><span class="agent-icon">📊</span> Phidata — фреймворк для AI-агентов с долговременной памятью</div>
       <div class="card-desc">Строительные блоки для агентов: память, знания, инструменты</div>
       <div class="card-panel"><div class="panel-item qs-badge"><div class="pv" style="color:var(--cyan);font-size:16px">75</div><div class="pl">QantScore™</div></div><div class="panel-item"><div class="pv amber">4.5 ★</div><div class="pl">Rating</div></div><div class="panel-item"><div class="pv green">Open Source</div><div class="pl">Цена</div></div><div class="panel-item"><div class="pv">☁️ Cloud</div><div class="pl">Развёртывание</div></div><div class="panel-item"><div class="pv">10</div><div class="pl">Maturity /10</div></div><div class="panel-item"><div class="pv cyan">↑↑ +16.7%</div><div class="pl">Velocity</div></div><div class="panel-item"><div class="pv">5.0</div><div class="pl">Deploy /10</div></div></div>
       <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span>📊 340 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
@@ -827,7 +908,7 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
         <div class="card-icon"><img src="/images/bolt-new.png" alt="Bolt.new — full-stack приложения в браузере с AI" loading="lazy"></div>
         <span class="card-badge badge-agent">Agent</span>
       </div>
-      <div class="card-title">Bolt.new — full-stack приложения в браузере с AI</div>
+      <div class="card-title"><span class="agent-icon">⚡</span> Bolt.new — full-stack приложения в браузере с AI</div>
       <div class="card-desc">Пишите промпт — получайте full-stack приложение с деплоем</div>
       <div class="card-panel"><div class="panel-item qs-badge"><div class="pv" style="color:var(--cyan);font-size:16px">74</div><div class="pl">QantScore™</div></div><div class="panel-item"><div class="pv amber">4.5 ★</div><div class="pl">Rating</div></div><div class="panel-item"><div class="pv green">Freemium</div><div class="pl">Цена</div></div><div class="panel-item"><div class="pv">☁️ Cloud</div><div class="pl">Развёртывание</div></div><div class="panel-item"><div class="pv">10</div><div class="pl">Maturity /10</div></div><div class="panel-item"><div class="pv cyan">↑↑ +23.0%</div><div class="pl">Velocity</div></div><div class="panel-item"><div class="pv">3.8</div><div class="pl">Deploy /10</div></div></div>
       <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span>📊 2200 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
@@ -839,7 +920,7 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
         <div class="card-icon"><img src="/images/e2b-sandbox.png" alt="E2B — песочницы для AI-агентов" loading="lazy"></div>
         <span class="card-badge badge-infra">Infra</span>
       </div>
-      <div class="card-title">E2B — песочницы для AI-агентов</div>
+      <div class="card-title"><span class="agent-icon">📦</span> E2B — песочницы для AI-агентов</div>
       <div class="card-desc">Sandboxed cloud environments для безопасного исполнения кода агентов</div>
       <div class="card-panel"><div class="panel-item qs-badge"><div class="pv" style="color:var(--cyan);font-size:16px">74</div><div class="pl">QantScore™</div></div><div class="panel-item"><div class="pv amber">4.5 ★</div><div class="pl">Rating</div></div><div class="panel-item"><div class="pv green">Usage-based</div><div class="pl">Цена</div></div><div class="panel-item"><div class="pv">☁️ Cloud</div><div class="pl">Развёртывание</div></div><div class="panel-item"><div class="pv">10</div><div class="pl">Maturity /10</div></div><div class="panel-item"><div class="pv cyan">↑↑ +16.4%</div><div class="pl">Velocity</div></div><div class="panel-item"><div class="pv">5.0</div><div class="pl">Deploy /10</div></div></div>
       <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span>📊 280 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
@@ -851,10 +932,10 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
         <div class="card-icon"><img src="/images/jan-ai.png" alt="Jan — опенсорсная альтернатива ChatGPT с локальным запуском" loading="lazy"></div>
         <span class="card-badge badge-agent">Agent</span>
       </div>
-      <div class="card-title">Jan — опенсорсная альтернатива ChatGPT с локальным запуском</div>
+      <div class="card-title"><span class="agent-icon">🧩</span> Jan — опенсорсная альтернатива ChatGPT с локальным запуском</div>
       <div class="card-desc">ChatGPT с открытым кодом, работающий 100% офлайн</div>
       <div class="card-panel"><div class="panel-item qs-badge"><div class="pv" style="color:var(--cyan);font-size:16px">73</div><div class="pl">QantScore™</div></div><div class="panel-item"><div class="pv amber">4.5 ★</div><div class="pl">Rating</div></div><div class="panel-item"><div class="pv green">Open Source</div><div class="pl">Цена</div></div><div class="panel-item"><div class="pv">☁️ Cloud</div><div class="pl">Развёртывание</div></div><div class="panel-item"><div class="pv">10</div><div class="pl">Maturity /10</div></div><div class="panel-item"><div class="pv cyan">↑↑ +20.5%</div><div class="pl">Velocity</div></div><div class="panel-item"><div class="pv">3.8</div><div class="pl">Deploy /10</div></div></div>
-      <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T06:54:41.548512+00:00">🕐 6h ago</span><span>📊 1100 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
+      <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T06:54:41.548512+00:00">🕐 1d ago</span><span>📊 1100 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
     </a><a href="/product/codex-desktop/" class="card">
       <div class="card-compare"><input type="checkbox" value="codex-desktop" onchange="toggleCompare(this)" aria-label="Compare"></div>
       <button class="bookmark-btn" data-slug="codex-desktop" onclick="toggleSave(this,&#39;codex-desktop&#39;)" title="Save">☆</button>
@@ -863,10 +944,10 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
         <div class="card-icon">🤖</div>
         <span class="card-badge badge-agent">Agent</span>
       </div>
-      <div class="card-title">OpenAI Codex Desktop — терминальный AI-агент для разработки</div>
+      <div class="card-title"><span class="agent-icon">🖥️</span> OpenAI Codex Desktop — терминальный AI-агент для разработки</div>
       <div class="card-desc">Десктопный Codex CLI: автономная разработка, рефакторинг и код-ревью в терминале</div>
       <div class="card-panel"><div class="panel-item qs-badge"><div class="pv" style="color:var(--cyan);font-size:16px">80</div><div class="pl">QantScore™</div></div><div class="panel-item"><div class="pv amber">4.5 ★</div><div class="pl">Rating</div></div><div class="panel-item"><div class="pv green">Usage-based</div><div class="pl">Цена</div></div><div class="panel-item"><div class="pv">🏠 Local</div><div class="pl">Развёртывание</div></div><div class="panel-item"><div class="pv">10</div><div class="pl">Maturity /10</div></div><div class="panel-item"><div class="pv cyan">↑↑ +21.5%</div><div class="pl">Velocity</div></div><div class="panel-item"><div class="pv">7.5</div><div class="pl">Deploy /10</div></div></div>
-      <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T10:40:24.875554+00:00">🕐 2h ago</span><span>📊 2100 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
+      <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T10:40:24.875554+00:00">🕐 1d ago</span><span>📊 2100 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
     </a><a href="/product/windsurf-ide/" class="card">
       <div class="card-compare"><input type="checkbox" value="windsurf-ide" onchange="toggleCompare(this)" aria-label="Compare"></div>
       <button class="bookmark-btn" data-slug="windsurf-ide" onclick="toggleSave(this,&#39;windsurf-ide&#39;)" title="Save">☆</button>
@@ -875,10 +956,10 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
         <div class="card-icon"><img src="/images/windsurf-ide.png" alt="Windsurf — AI IDE от Codeium" loading="lazy"></div>
         <span class="card-badge badge-agent">Agent</span>
       </div>
-      <div class="card-title">Windsurf — AI IDE от Codeium</div>
+      <div class="card-title"><span class="agent-icon">🌊</span> Windsurf — AI IDE от Codeium</div>
       <div class="card-desc">Первый AI Flow IDE с каскадным контекстом</div>
       <div class="card-panel"><div class="panel-item qs-badge"><div class="pv" style="color:var(--cyan);font-size:16px">73</div><div class="pl">QantScore™</div></div><div class="panel-item"><div class="pv amber">4.4 ★</div><div class="pl">Rating</div></div><div class="panel-item"><div class="pv green">Freemium</div><div class="pl">Цена</div></div><div class="panel-item"><div class="pv">☁️ Cloud</div><div class="pl">Развёртывание</div></div><div class="panel-item"><div class="pv">10</div><div class="pl">Maturity /10</div></div><div class="panel-item"><div class="pv cyan">↑↑ +21.0%</div><div class="pl">Velocity</div></div><div class="panel-item"><div class="pv">4.1</div><div class="pl">Deploy /10</div></div></div>
-      <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T06:54:38.457238+00:00">🕐 6h ago</span><span>📊 1200 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
+      <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T06:54:38.457238+00:00">🕐 1d ago</span><span>📊 1200 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
     </a><a href="/product/langgraph-framework/" class="card">
       <div class="card-compare"><input type="checkbox" value="langgraph-framework" onchange="toggleCompare(this)" aria-label="Compare"></div>
       <button class="bookmark-btn" data-slug="langgraph-framework" onclick="toggleSave(this,&#39;langgraph-framework&#39;)" title="Save">☆</button>
@@ -887,10 +968,10 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
         <div class="card-icon"><img src="/images/langgraph-framework.png" alt="LangGraph — оркестрация агентов как граф состояний" loading="lazy"></div>
         <span class="card-badge badge-framework">Framework</span>
       </div>
-      <div class="card-title">LangGraph — оркестрация агентов как граф состояний</div>
+      <div class="card-title"><span class="agent-icon">🕸️</span> LangGraph — оркестрация агентов как граф состояний</div>
       <div class="card-desc">Stateful multi-actor приложения от создателей LangChain</div>
       <div class="card-panel"><div class="panel-item qs-badge"><div class="pv" style="color:var(--cyan);font-size:16px">79</div><div class="pl">QantScore™</div></div><div class="panel-item"><div class="pv amber">4.4 ★</div><div class="pl">Rating</div></div><div class="panel-item"><div class="pv green">Open Source</div><div class="pl">Цена</div></div><div class="panel-item"><div class="pv">🏠 Local</div><div class="pl">Развёртывание</div></div><div class="panel-item"><div class="pv">9.8</div><div class="pl">Maturity /10</div></div><div class="panel-item"><div class="pv cyan">↑↑ +15.9%</div><div class="pl">Velocity</div></div><div class="panel-item"><div class="pv">8.1</div><div class="pl">Deploy /10</div></div></div>
-      <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T06:54:38.463588+00:00">🕐 6h ago</span><span>📊 190 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
+      <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T06:54:38.463588+00:00">🕐 1d ago</span><span>📊 190 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
     </a><a href="/product/codeium-windsurf/" class="card">
       <div class="card-compare"><input type="checkbox" value="codeium-windsurf" onchange="toggleCompare(this)" aria-label="Compare"></div>
       <button class="bookmark-btn" data-slug="codeium-windsurf" onclick="toggleSave(this,&#39;codeium-windsurf&#39;)" title="Save">☆</button>
@@ -899,7 +980,7 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
         <div class="card-icon"><img src="/images/codeium-windsurf.png" alt="Codeium — AI-автодополнение и поиск по кодовой базе" loading="lazy"></div>
         <span class="card-badge badge-agent">Agent</span>
       </div>
-      <div class="card-title">Codeium — AI-автодополнение и поиск по кодовой базе</div>
+      <div class="card-title"><span class="agent-icon">💨</span> Codeium — AI-автодополнение и поиск по кодовой базе</div>
       <div class="card-desc">Бесплатное AI-дополнение кода с контекстным поиском</div>
       <div class="card-panel"><div class="panel-item qs-badge"><div class="pv" style="color:var(--cyan);font-size:16px">73</div><div class="pl">QantScore™</div></div><div class="panel-item"><div class="pv amber">4.4 ★</div><div class="pl">Rating</div></div><div class="panel-item"><div class="pv green">Freemium</div><div class="pl">Цена</div></div><div class="panel-item"><div class="pv">☁️ Cloud</div><div class="pl">Развёртывание</div></div><div class="panel-item"><div class="pv">10</div><div class="pl">Maturity /10</div></div><div class="panel-item"><div class="pv cyan">↑↑ +21.0%</div><div class="pl">Velocity</div></div><div class="panel-item"><div class="pv">4.1</div><div class="pl">Deploy /10</div></div></div>
       <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span>📊 1200 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
@@ -911,7 +992,7 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
         <div class="card-icon"><img src="/images/chatdev-agent.png" alt="ChatDev — виртуальная софтверная компания из AI-агентов" loading="lazy"></div>
         <span class="card-badge badge-framework">Framework</span>
       </div>
-      <div class="card-title">ChatDev — виртуальная софтверная компания из AI-агентов</div>
+      <div class="card-title"><span class="agent-icon">💬</span> ChatDev — виртуальная софтверная компания из AI-агентов</div>
       <div class="card-desc">AI-агенты с ролями CEO, CTO, программиста и тестировщика</div>
       <div class="card-panel"><div class="panel-item qs-badge"><div class="pv" style="color:var(--cyan);font-size:16px">74</div><div class="pl">QantScore™</div></div><div class="panel-item"><div class="pv amber">4.4 ★</div><div class="pl">Rating</div></div><div class="panel-item"><div class="pv green">Open Source</div><div class="pl">Цена</div></div><div class="panel-item"><div class="pv">☁️ Cloud</div><div class="pl">Развёртывание</div></div><div class="panel-item"><div class="pv">10</div><div class="pl">Maturity /10</div></div><div class="panel-item"><div class="pv cyan">↑↑ +16.6%</div><div class="pl">Velocity</div></div><div class="panel-item"><div class="pv">5.0</div><div class="pl">Deploy /10</div></div></div>
       <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span>📊 320 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
@@ -923,7 +1004,7 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
         <div class="card-icon"><img src="/images/you-com.png" alt="You.com — AI-поисковик с агентными режимами" loading="lazy"></div>
         <span class="card-badge badge-agent">Agent</span>
       </div>
-      <div class="card-title">You.com — AI-поисковик с агентными режимами</div>
+      <div class="card-title"><span class="agent-icon">🔍</span> You.com — AI-поисковик с агентными режимами</div>
       <div class="card-desc">Поисковая система с AI-агентом: research, creative, genius</div>
       <div class="card-panel"><div class="panel-item qs-badge"><div class="pv" style="color:var(--cyan);font-size:16px">81</div><div class="pl">QantScore™</div></div><div class="panel-item"><div class="pv amber">4.4 ★</div><div class="pl">Rating</div></div><div class="panel-item"><div class="pv green">Freemium</div><div class="pl">Цена</div></div><div class="panel-item"><div class="pv">🏠 Local</div><div class="pl">Развёртывание</div></div><div class="panel-item"><div class="pv">10</div><div class="pl">Maturity /10</div></div><div class="panel-item"><div class="pv cyan">↑↑ +23.0%</div><div class="pl">Velocity</div></div><div class="panel-item"><div class="pv">8.1</div><div class="pl">Deploy /10</div></div></div>
       <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span>📊 1800 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
@@ -935,7 +1016,7 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
         <div class="card-icon"><img src="/images/google-gemini.png" alt="Google Gemini — мультимодальный AI для бизнеса и разработки" loading="lazy"></div>
         <span class="card-badge badge-agent">Agent</span>
       </div>
-      <div class="card-title">Google Gemini — мультимодальный AI для бизнеса и разработки</div>
+      <div class="card-title"><span class="agent-icon">💎</span> Google Gemini — мультимодальный AI для бизнеса и разработки</div>
       <div class="card-desc">Мультимодальный AI от Google: текст, код, изображения, видео</div>
       <div class="card-panel"><div class="panel-item qs-badge"><div class="pv" style="color:var(--cyan);font-size:16px">73</div><div class="pl">QantScore™</div></div><div class="panel-item"><div class="pv amber">4.4 ★</div><div class="pl">Rating</div></div><div class="panel-item"><div class="pv green">Freemium</div><div class="pl">Цена</div></div><div class="panel-item"><div class="pv">☁️ Cloud</div><div class="pl">Развёртывание</div></div><div class="panel-item"><div class="pv">10</div><div class="pl">Maturity /10</div></div><div class="panel-item"><div class="pv cyan">↑↑ +23.0%</div><div class="pl">Velocity</div></div><div class="panel-item"><div class="pv">4.1</div><div class="pl">Deploy /10</div></div></div>
       <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span>📊 8900 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
@@ -947,7 +1028,7 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
         <div class="card-icon"><img src="/images/langsmith-langchain.png" alt="LangSmith — observability и тестирование LLM-приложений" loading="lazy"></div>
         <span class="card-badge badge-infra">Infra</span>
       </div>
-      <div class="card-title">LangSmith — observability и тестирование LLM-приложений</div>
+      <div class="card-title"><span class="agent-icon">📝</span> LangSmith — observability и тестирование LLM-приложений</div>
       <div class="card-desc">DevOps для LLM: трейсинг, оценка, эксперименты</div>
       <div class="card-panel"><div class="panel-item qs-badge"><div class="pv" style="color:var(--cyan);font-size:16px">80</div><div class="pl">QantScore™</div></div><div class="panel-item"><div class="pv amber">4.4 ★</div><div class="pl">Rating</div></div><div class="panel-item"><div class="pv green">Freemium</div><div class="pl">Цена</div></div><div class="panel-item"><div class="pv">🏠 Local</div><div class="pl">Развёртывание</div></div><div class="panel-item"><div class="pv">10</div><div class="pl">Maturity /10</div></div><div class="panel-item"><div class="pv cyan">↑↑ +18.4%</div><div class="pl">Velocity</div></div><div class="panel-item"><div class="pv">8.1</div><div class="pl">Deploy /10</div></div></div>
       <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span>📊 670 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
@@ -959,7 +1040,7 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
         <div class="card-icon"><img src="/images/zapier-ai.png" alt="Zapier AI — автоматизация с AI без кода" loading="lazy"></div>
         <span class="card-badge badge-agent">Agent</span>
       </div>
-      <div class="card-title">Zapier AI — автоматизация с AI без кода</div>
+      <div class="card-title"><span class="agent-icon">⚡</span> Zapier AI — автоматизация с AI без кода</div>
       <div class="card-desc">6000+ интеграций с AI-шагами в рабочих процессах</div>
       <div class="card-panel"><div class="panel-item qs-badge"><div class="pv" style="color:var(--cyan);font-size:16px">73</div><div class="pl">QantScore™</div></div><div class="panel-item"><div class="pv amber">4.4 ★</div><div class="pl">Rating</div></div><div class="panel-item"><div class="pv green">Freemium</div><div class="pl">Цена</div></div><div class="panel-item"><div class="pv">☁️ Cloud</div><div class="pl">Развёртывание</div></div><div class="panel-item"><div class="pv">10</div><div class="pl">Maturity /10</div></div><div class="panel-item"><div class="pv cyan">↑↑ +23.0%</div><div class="pl">Velocity</div></div><div class="panel-item"><div class="pv">4.1</div><div class="pl">Deploy /10</div></div></div>
       <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span>📊 5200 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
@@ -971,10 +1052,10 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
         <div class="card-icon"><img src="/images/crewai-framework.png" alt="CrewAI — фреймворк для multi-agent систем" loading="lazy"></div>
         <span class="card-badge badge-framework">Framework</span>
       </div>
-      <div class="card-title">CrewAI — фреймворк для multi-agent систем</div>
+      <div class="card-title"><span class="agent-icon">👥</span> CrewAI — фреймворк для multi-agent систем</div>
       <div class="card-desc">Оркестрация AI-агентов с ролями и задачами</div>
       <div class="card-panel"><div class="panel-item qs-badge"><div class="pv" style="color:var(--cyan);font-size:16px">79</div><div class="pl">QantScore™</div></div><div class="panel-item"><div class="pv amber">4.3 ★</div><div class="pl">Rating</div></div><div class="panel-item"><div class="pv green">Open Source</div><div class="pl">Цена</div></div><div class="panel-item"><div class="pv">🏠 Local</div><div class="pl">Развёртывание</div></div><div class="panel-item"><div class="pv">9.9</div><div class="pl">Maturity /10</div></div><div class="panel-item"><div class="pv cyan">↑↑ +16.7%</div><div class="pl">Velocity</div></div><div class="panel-item"><div class="pv">8.1</div><div class="pl">Deploy /10</div></div></div>
-      <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T06:54:38.459666+00:00">🕐 6h ago</span><span>📊 340 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
+      <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T06:54:38.459666+00:00">🕐 1d ago</span><span>📊 340 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
     </a><a href="/product/flowise-lowcode/" class="card">
       <div class="card-compare"><input type="checkbox" value="flowise-lowcode" onchange="toggleCompare(this)" aria-label="Compare"></div>
       <button class="bookmark-btn" data-slug="flowise-lowcode" onclick="toggleSave(this,&#39;flowise-lowcode&#39;)" title="Save">☆</button>
@@ -983,10 +1064,10 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
         <div class="card-icon"><img src="/images/flowise-lowcode.png" alt="Flowise — low-code конструктор LLM-потоков" loading="lazy"></div>
         <span class="card-badge badge-platform">Platform</span>
       </div>
-      <div class="card-title">Flowise — low-code конструктор LLM-потоков</div>
+      <div class="card-title"><span class="agent-icon">🎨</span> Flowise — low-code конструктор LLM-потоков</div>
       <div class="card-desc">Визуальное построение AI-пайплайнов drag-and-drop</div>
       <div class="card-panel"><div class="panel-item qs-badge"><div class="pv" style="color:var(--cyan);font-size:16px">71</div><div class="pl">QantScore™</div></div><div class="panel-item"><div class="pv amber">4.3 ★</div><div class="pl">Rating</div></div><div class="panel-item"><div class="pv green">Open Source</div><div class="pl">Цена</div></div><div class="panel-item"><div class="pv">☁️ Cloud</div><div class="pl">Развёртывание</div></div><div class="panel-item"><div class="pv">10</div><div class="pl">Maturity /10</div></div><div class="panel-item"><div class="pv cyan">↑↑ +17.2%</div><div class="pl">Velocity</div></div><div class="panel-item"><div class="pv">3.8</div><div class="pl">Deploy /10</div></div></div>
-      <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T06:54:38.469720+00:00">🕐 6h ago</span><span>📊 440 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
+      <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T06:54:38.469720+00:00">🕐 1d ago</span><span>📊 440 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
     </a><a href="/product/replit-ai/" class="card">
       <div class="card-compare"><input type="checkbox" value="replit-ai" onchange="toggleCompare(this)" aria-label="Compare"></div>
       <button class="bookmark-btn" data-slug="replit-ai" onclick="toggleSave(this,&#39;replit-ai&#39;)" title="Save">☆</button>
@@ -995,7 +1076,7 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
         <div class="card-icon"><img src="/images/replit-ai.png" alt="Replit AI — облачная IDE со встроенным AI-агентом" loading="lazy"></div>
         <span class="card-badge badge-agent">Agent</span>
       </div>
-      <div class="card-title">Replit AI — облачная IDE со встроенным AI-агентом</div>
+      <div class="card-title"><span class="agent-icon">🔄</span> Replit AI — облачная IDE со встроенным AI-агентом</div>
       <div class="card-desc">Облачная среда разработки с AI-агентом и деплоем в один клик</div>
       <div class="card-panel"><div class="panel-item qs-badge"><div class="pv" style="color:var(--cyan);font-size:16px">80</div><div class="pl">QantScore™</div></div><div class="panel-item"><div class="pv amber">4.3 ★</div><div class="pl">Rating</div></div><div class="panel-item"><div class="pv green">Freemium</div><div class="pl">Цена</div></div><div class="panel-item"><div class="pv">🏠 Local</div><div class="pl">Развёртывание</div></div><div class="panel-item"><div class="pv">10</div><div class="pl">Maturity /10</div></div><div class="panel-item"><div class="pv cyan">↑↑ +23.0%</div><div class="pl">Velocity</div></div><div class="panel-item"><div class="pv">7.8</div><div class="pl">Deploy /10</div></div></div>
       <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span>📊 3400 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
@@ -1007,7 +1088,7 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
         <div class="card-icon"><img src="/images/sourcegraph-cody.png" alt="Sourcegraph Cody — AI с пониманием всей кодовой базы" loading="lazy"></div>
         <span class="card-badge badge-agent">Agent</span>
       </div>
-      <div class="card-title">Sourcegraph Cody — AI с пониманием всей кодовой базы</div>
+      <div class="card-title"><span class="agent-icon">🔍</span> Sourcegraph Cody — AI с пониманием всей кодовой базы</div>
       <div class="card-desc">AI-помощник, который читает и понимает весь ваш репозиторий</div>
       <div class="card-panel"><div class="panel-item qs-badge"><div class="pv" style="color:var(--cyan);font-size:16px">72</div><div class="pl">QantScore™</div></div><div class="panel-item"><div class="pv amber">4.3 ★</div><div class="pl">Rating</div></div><div class="panel-item"><div class="pv green">Freemium</div><div class="pl">Цена</div></div><div class="panel-item"><div class="pv">☁️ Cloud</div><div class="pl">Развёртывание</div></div><div class="panel-item"><div class="pv">10</div><div class="pl">Maturity /10</div></div><div class="panel-item"><div class="pv cyan">↑↑ +18.4%</div><div class="pl">Velocity</div></div><div class="panel-item"><div class="pv">4.1</div><div class="pl">Deploy /10</div></div></div>
       <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span>📊 670 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
@@ -1019,7 +1100,7 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
         <div class="card-icon"><img src="/images/superagi-agent.png" alt="SuperAGI — открытая платформа автономных агентов" loading="lazy"></div>
         <span class="card-badge badge-framework">Framework</span>
       </div>
-      <div class="card-title">SuperAGI — открытая платформа автономных агентов</div>
+      <div class="card-title"><span class="agent-icon">🦸</span> SuperAGI — открытая платформа автономных агентов</div>
       <div class="card-desc">Инфраструктура для создания и деплоя автономных AI-агентов</div>
       <div class="card-panel"><div class="panel-item qs-badge"><div class="pv" style="color:var(--cyan);font-size:16px">73</div><div class="pl">QantScore™</div></div><div class="panel-item"><div class="pv amber">4.3 ★</div><div class="pl">Rating</div></div><div class="panel-item"><div class="pv green">Open Source</div><div class="pl">Цена</div></div><div class="panel-item"><div class="pv">☁️ Cloud</div><div class="pl">Развёртывание</div></div><div class="panel-item"><div class="pv">10</div><div class="pl">Maturity /10</div></div><div class="panel-item"><div class="pv cyan">↑↑ +17.8%</div><div class="pl">Velocity</div></div><div class="panel-item"><div class="pv">5.0</div><div class="pl">Deploy /10</div></div></div>
       <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span>📊 560 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
@@ -1031,7 +1112,7 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
         <div class="card-icon"><img src="/images/copy-ai.png" alt="Copy.ai — GTM-платформа с AI-воркфлоу" loading="lazy"></div>
         <span class="card-badge badge-agent">Agent</span>
       </div>
-      <div class="card-title">Copy.ai — GTM-платформа с AI-воркфлоу</div>
+      <div class="card-title"><span class="agent-icon">📋</span> Copy.ai — GTM-платформа с AI-воркфлоу</div>
       <div class="card-desc">От AI-копирайтера к платформе Go-To-Market</div>
       <div class="card-panel"><div class="panel-item qs-badge"><div class="pv" style="color:var(--cyan);font-size:16px">73</div><div class="pl">QantScore™</div></div><div class="panel-item"><div class="pv amber">4.3 ★</div><div class="pl">Rating</div></div><div class="panel-item"><div class="pv green">Freemium</div><div class="pl">Цена</div></div><div class="panel-item"><div class="pv">☁️ Cloud</div><div class="pl">Развёртывание</div></div><div class="panel-item"><div class="pv">10</div><div class="pl">Maturity /10</div></div><div class="panel-item"><div class="pv cyan">↑↑ +23.0%</div><div class="pl">Velocity</div></div><div class="panel-item"><div class="pv">4.1</div><div class="pl">Deploy /10</div></div></div>
       <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span>📊 3100 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
@@ -1043,7 +1124,7 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
         <div class="card-icon"><img src="/images/notion-ai.png" alt="Notion AI — AI-помощник в рабочем пространстве" loading="lazy"></div>
         <span class="card-badge badge-agent">Agent</span>
       </div>
-      <div class="card-title">Notion AI — AI-помощник в рабочем пространстве</div>
+      <div class="card-title"><span class="agent-icon">📄</span> Notion AI — AI-помощник в рабочем пространстве</div>
       <div class="card-desc">AI, встроенный в Notion: пишет, редактирует, анализирует</div>
       <div class="card-panel"><div class="panel-item qs-badge"><div class="pv" style="color:var(--cyan);font-size:16px">73</div><div class="pl">QantScore™</div></div><div class="panel-item"><div class="pv amber">4.3 ★</div><div class="pl">Rating</div></div><div class="panel-item"><div class="pv green">Paid</div><div class="pl">Цена</div></div><div class="panel-item"><div class="pv">☁️ Cloud</div><div class="pl">Развёртывание</div></div><div class="panel-item"><div class="pv">10</div><div class="pl">Maturity /10</div></div><div class="panel-item"><div class="pv cyan">↑↑ +23.0%</div><div class="pl">Velocity</div></div><div class="panel-item"><div class="pv">4.1</div><div class="pl">Deploy /10</div></div></div>
       <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span>📊 4500 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
@@ -1055,10 +1136,10 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
         <div class="card-icon"><img src="/images/autogen-microsoft.png" alt="AutoGen — multi-agent фреймворк от Microsoft" loading="lazy"></div>
         <span class="card-badge badge-framework">Framework</span>
       </div>
-      <div class="card-title">AutoGen — multi-agent фреймворк от Microsoft</div>
+      <div class="card-title"><span class="agent-icon">🔄</span> AutoGen — multi-agent фреймворк от Microsoft</div>
       <div class="card-desc">Создание conversable агентов от Microsoft Research</div>
       <div class="card-panel"><div class="panel-item qs-badge"><div class="pv" style="color:var(--cyan);font-size:16px">79</div><div class="pl">QantScore™</div></div><div class="panel-item"><div class="pv amber">4.2 ★</div><div class="pl">Rating</div></div><div class="panel-item"><div class="pv green">Open Source</div><div class="pl">Цена</div></div><div class="panel-item"><div class="pv">🏠 Local</div><div class="pl">Развёртывание</div></div><div class="panel-item"><div class="pv">9.6</div><div class="pl">Maturity /10</div></div><div class="panel-item"><div class="pv cyan">↑↑ +16.4%</div><div class="pl">Velocity</div></div><div class="panel-item"><div class="pv">9.1</div><div class="pl">Deploy /10</div></div></div>
-      <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T06:54:38.461634+00:00">🕐 6h ago</span><span>📊 280 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
+      <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T06:54:38.461634+00:00">🕐 1d ago</span><span>📊 280 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
     </a><a href="/product/taskade-ai/" class="card">
       <div class="card-compare"><input type="checkbox" value="taskade-ai" onchange="toggleCompare(this)" aria-label="Compare"></div>
       <button class="bookmark-btn" data-slug="taskade-ai" onclick="toggleSave(this,&#39;taskade-ai&#39;)" title="Save">☆</button>
@@ -1067,10 +1148,10 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
         <div class="card-icon"><img src="/images/taskade-ai.png" alt="Taskade — AI-продуктивность для команд" loading="lazy"></div>
         <span class="card-badge badge-agent">Agent</span>
       </div>
-      <div class="card-title">Taskade — AI-продуктивность для команд</div>
+      <div class="card-title"><span class="agent-icon">✅</span> Taskade — AI-продуктивность для команд</div>
       <div class="card-desc">Единое рабочее пространство с AI-агентами</div>
       <div class="card-panel"><div class="panel-item qs-badge"><div class="pv" style="color:var(--cyan);font-size:16px">71</div><div class="pl">QantScore™</div></div><div class="panel-item"><div class="pv amber">4.2 ★</div><div class="pl">Rating</div></div><div class="panel-item"><div class="pv green">Freemium</div><div class="pl">Цена</div></div><div class="panel-item"><div class="pv">☁️ Cloud</div><div class="pl">Развёртывание</div></div><div class="panel-item"><div class="pv">10</div><div class="pl">Maturity /10</div></div><div class="panel-item"><div class="pv cyan">↑↑ +18.2%</div><div class="pl">Velocity</div></div><div class="panel-item"><div class="pv">4.1</div><div class="pl">Deploy /10</div></div></div>
-      <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T06:54:38.486078+00:00">🕐 6h ago</span><span>📊 650 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
+      <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T06:54:38.486078+00:00">🕐 1d ago</span><span>📊 650 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
     </a><a href="/product/amazon-q-developer/" class="card">
       <div class="card-compare"><input type="checkbox" value="amazon-q-developer" onchange="toggleCompare(this)" aria-label="Compare"></div>
       <button class="bookmark-btn" data-slug="amazon-q-developer" onclick="toggleSave(this,&#39;amazon-q-developer&#39;)" title="Save">☆</button>
@@ -1079,7 +1160,7 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
         <div class="card-icon"><img src="/images/amazon-q-developer.png" alt="Amazon Q Developer — AI-помощник от AWS" loading="lazy"></div>
         <span class="card-badge badge-agent">Agent</span>
       </div>
-      <div class="card-title">Amazon Q Developer — AI-помощник от AWS</div>
+      <div class="card-title"><span class="agent-icon">☁️</span> Amazon Q Developer — AI-помощник от AWS</div>
       <div class="card-desc">AI-разработчик для AWS-экосистемы: код, деплой, диагностика</div>
       <div class="card-panel"><div class="panel-item qs-badge"><div class="pv" style="color:var(--cyan);font-size:16px">79</div><div class="pl">QantScore™</div></div><div class="panel-item"><div class="pv amber">4.2 ★</div><div class="pl">Rating</div></div><div class="panel-item"><div class="pv green">Freemium</div><div class="pl">Цена</div></div><div class="panel-item"><div class="pv">🏠 Local</div><div class="pl">Развёртывание</div></div><div class="panel-item"><div class="pv">10</div><div class="pl">Maturity /10</div></div><div class="panel-item"><div class="pv cyan">↑↑ +19.9%</div><div class="pl">Velocity</div></div><div class="panel-item"><div class="pv">7.8</div><div class="pl">Deploy /10</div></div></div>
       <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span>📊 980 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
@@ -1091,7 +1172,7 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
         <div class="card-icon"><img src="/images/semantic-kernel.png" alt="Microsoft Semantic Kernel — оркестрация AI в enterprise" loading="lazy"></div>
         <span class="card-badge badge-framework">Framework</span>
       </div>
-      <div class="card-title">Microsoft Semantic Kernel — оркестрация AI в enterprise</div>
+      <div class="card-title"><span class="agent-icon">🧠</span> Microsoft Semantic Kernel — оркестрация AI в enterprise</div>
       <div class="card-desc">Корпоративный SDK для AI-оркестрации от Microsoft</div>
       <div class="card-panel"><div class="panel-item qs-badge"><div class="pv" style="color:var(--cyan);font-size:16px">73</div><div class="pl">QantScore™</div></div><div class="panel-item"><div class="pv amber">4.2 ★</div><div class="pl">Rating</div></div><div class="panel-item"><div class="pv green">Open Source</div><div class="pl">Цена</div></div><div class="panel-item"><div class="pv">☁️ Cloud</div><div class="pl">Развёртывание</div></div><div class="panel-item"><div class="pv">10</div><div class="pl">Maturity /10</div></div><div class="panel-item"><div class="pv cyan">↑↑ +19.4%</div><div class="pl">Velocity</div></div><div class="panel-item"><div class="pv">5.0</div><div class="pl">Deploy /10</div></div></div>
       <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span>📊 890 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
@@ -1103,7 +1184,7 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
         <div class="card-icon"><img src="/images/jasper-ai.png" alt="Jasper AI — платформа для AI-контента в enterprise" loading="lazy"></div>
         <span class="card-badge badge-agent">Agent</span>
       </div>
-      <div class="card-title">Jasper AI — платформа для AI-контента в enterprise</div>
+      <div class="card-title"><span class="agent-icon">✍️</span> Jasper AI — платформа для AI-контента в enterprise</div>
       <div class="card-desc">Enterprise-платформа для маркетингового контента с AI</div>
       <div class="card-panel"><div class="panel-item qs-badge"><div class="pv" style="color:var(--cyan);font-size:16px">72</div><div class="pl">QantScore™</div></div><div class="panel-item"><div class="pv amber">4.2 ★</div><div class="pl">Rating</div></div><div class="panel-item"><div class="pv green">Paid</div><div class="pl">Цена</div></div><div class="panel-item"><div class="pv">☁️ Cloud</div><div class="pl">Развёртывание</div></div><div class="panel-item"><div class="pv">10</div><div class="pl">Maturity /10</div></div><div class="panel-item"><div class="pv cyan">↑↑ +23.0%</div><div class="pl">Velocity</div></div><div class="panel-item"><div class="pv">4.1</div><div class="pl">Deploy /10</div></div></div>
       <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span>📊 4200 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
@@ -1115,10 +1196,10 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
         <div class="card-icon"><img src="/images/langchain-framework.png" alt="LangChain — главный фреймворк для LLM-приложений" loading="lazy"></div>
         <span class="card-badge badge-framework">Framework</span>
       </div>
-      <div class="card-title">LangChain — главный фреймворк для LLM-приложений</div>
+      <div class="card-title"><span class="agent-icon">🦜</span> LangChain — главный фреймворк для LLM-приложений</div>
       <div class="card-desc">Стандарт индустрии для построения AI-пайплайнов</div>
       <div class="card-panel"><div class="panel-item qs-badge"><div class="pv" style="color:var(--cyan);font-size:16px">79</div><div class="pl">QantScore™</div></div><div class="panel-item"><div class="pv amber">4.1 ★</div><div class="pl">Rating</div></div><div class="panel-item"><div class="pv green">Open Source</div><div class="pl">Цена</div></div><div class="panel-item"><div class="pv">🏠 Local</div><div class="pl">Развёртывание</div></div><div class="panel-item"><div class="pv">10</div><div class="pl">Maturity /10</div></div><div class="panel-item"><div class="pv cyan">↑↑ +23.0%</div><div class="pl">Velocity</div></div><div class="panel-item"><div class="pv">8.1</div><div class="pl">Deploy /10</div></div></div>
-      <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T06:54:38.484118+00:00">🕐 6h ago</span><span>📊 1600 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
+      <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T06:54:38.484118+00:00">🕐 1d ago</span><span>📊 1600 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
     </a><a href="/product/tabnine-ai/" class="card">
       <div class="card-compare"><input type="checkbox" value="tabnine-ai" onchange="toggleCompare(this)" aria-label="Compare"></div>
       <button class="bookmark-btn" data-slug="tabnine-ai" onclick="toggleSave(this,&#39;tabnine-ai&#39;)" title="Save">☆</button>
@@ -1127,7 +1208,7 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
         <div class="card-icon"><img src="/images/tabnine-ai.png" alt="Tabnine — AI-автодополнение с локальными моделями" loading="lazy"></div>
         <span class="card-badge badge-agent">Agent</span>
       </div>
-      <div class="card-title">Tabnine — AI-автодополнение с локальными моделями</div>
+      <div class="card-title"><span class="agent-icon">9️⃣</span> Tabnine — AI-автодополнение с локальными моделями</div>
       <div class="card-desc">AI-дополнение кода с on-premise развёртыванием</div>
       <div class="card-panel"><div class="panel-item qs-badge"><div class="pv" style="color:var(--cyan);font-size:16px">71</div><div class="pl">QantScore™</div></div><div class="panel-item"><div class="pv amber">4.1 ★</div><div class="pl">Rating</div></div><div class="panel-item"><div class="pv green">Paid</div><div class="pl">Цена</div></div><div class="panel-item"><div class="pv">☁️ Cloud</div><div class="pl">Развёртывание</div></div><div class="panel-item"><div class="pv">10</div><div class="pl">Maturity /10</div></div><div class="panel-item"><div class="pv cyan">↑↑ +23.0%</div><div class="pl">Velocity</div></div><div class="panel-item"><div class="pv">4.1</div><div class="pl">Deploy /10</div></div></div>
       <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span>📊 2100 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
@@ -1139,7 +1220,7 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
         <div class="card-icon"><img src="/images/microsoft-copilot.png" alt="Microsoft 365 Copilot — AI в Office и бизнес-процессах" loading="lazy"></div>
         <span class="card-badge badge-agent">Agent</span>
       </div>
-      <div class="card-title">Microsoft 365 Copilot — AI в Office и бизнес-процессах</div>
+      <div class="card-title"><span class="agent-icon">🪟</span> Microsoft 365 Copilot — AI в Office и бизнес-процессах</div>
       <div class="card-desc">AI-ассистент, встроенный в Word, Excel, Teams и всю экосистему M365</div>
       <div class="card-panel"><div class="panel-item qs-badge"><div class="pv" style="color:var(--cyan);font-size:16px">71</div><div class="pl">QantScore™</div></div><div class="panel-item"><div class="pv amber">4.1 ★</div><div class="pl">Rating</div></div><div class="panel-item"><div class="pv green">Paid</div><div class="pl">Цена</div></div><div class="panel-item"><div class="pv">☁️ Cloud</div><div class="pl">Развёртывание</div></div><div class="panel-item"><div class="pv">10</div><div class="pl">Maturity /10</div></div><div class="panel-item"><div class="pv cyan">↑↑ +23.0%</div><div class="pl">Velocity</div></div><div class="panel-item"><div class="pv">4.1</div><div class="pl">Deploy /10</div></div></div>
       <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span>📊 5600 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
@@ -1151,10 +1232,10 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
         <div class="card-icon"><img src="/images/devin-agent.png" alt="Devin — автономный AI-разработчик от Cognition" loading="lazy"></div>
         <span class="card-badge badge-agent">Agent</span>
       </div>
-      <div class="card-title">Devin — автономный AI-разработчик от Cognition</div>
+      <div class="card-title"><span class="agent-icon">🛠️</span> Devin — автономный AI-разработчик от Cognition</div>
       <div class="card-desc">Первый AI software engineer с полным циклом разработки</div>
       <div class="card-panel"><div class="panel-item qs-badge"><div class="pv" style="color:var(--amber);font-size:16px">68</div><div class="pl">QantScore™</div></div><div class="panel-item"><div class="pv amber">4.0 ★</div><div class="pl">Rating</div></div><div class="panel-item"><div class="pv green">Paid</div><div class="pl">Цена</div></div><div class="panel-item"><div class="pv">☁️ Cloud</div><div class="pl">Развёртывание</div></div><div class="panel-item"><div class="pv">9.6</div><div class="pl">Maturity /10</div></div><div class="panel-item"><div class="pv cyan">↑↑ +17.3%</div><div class="pl">Velocity</div></div><div class="panel-item"><div class="pv">4.1</div><div class="pl">Deploy /10</div></div></div>
-      <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T06:54:38.465670+00:00">🕐 6h ago</span><span>📊 460 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
+      <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T06:54:38.465670+00:00">🕐 1d ago</span><span>📊 460 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
     </a><a href="/product/autogpt-agent/" class="card">
       <div class="card-compare"><input type="checkbox" value="autogpt-agent" onchange="toggleCompare(this)" aria-label="Compare"></div>
       <button class="bookmark-btn" data-slug="autogpt-agent" onclick="toggleSave(this,&#39;autogpt-agent&#39;)" title="Save">☆</button>
@@ -1163,10 +1244,10 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
         <div class="card-icon"><img src="/images/autogpt-agent.png" alt="AutoGPT — пионер автономных AI-агентов" loading="lazy"></div>
         <span class="card-badge badge-agent">Agent</span>
       </div>
-      <div class="card-title">AutoGPT — пионер автономных AI-агентов</div>
+      <div class="card-title"><span class="agent-icon">🤖</span> AutoGPT — пионер автономных AI-агентов</div>
       <div class="card-desc">Автономный агент с цепочками задач и памятью</div>
       <div class="card-panel"><div class="panel-item qs-badge"><div class="pv" style="color:var(--cyan);font-size:16px">79</div><div class="pl">QantScore™</div></div><div class="panel-item"><div class="pv amber">3.8 ★</div><div class="pl">Rating</div></div><div class="panel-item"><div class="pv green">Open Source</div><div class="pl">Цена</div></div><div class="panel-item"><div class="pv">🏠 Local</div><div class="pl">Развёртывание</div></div><div class="panel-item"><div class="pv">10</div><div class="pl">Maturity /10</div></div><div class="panel-item"><div class="pv cyan">↑↑ +23.0%</div><div class="pl">Velocity</div></div><div class="panel-item"><div class="pv">9.1</div><div class="pl">Deploy /10</div></div></div>
-      <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T06:54:38.481974+00:00">🕐 6h ago</span><span>📊 2200 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
+      <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T06:54:38.481974+00:00">🕐 1d ago</span><span>📊 2200 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
     </a><a href="/product/babyagi-agent/" class="card">
       <div class="card-compare"><input type="checkbox" value="babyagi-agent" onchange="toggleCompare(this)" aria-label="Compare"></div>
       <button class="bookmark-btn" data-slug="babyagi-agent" onclick="toggleSave(this,&#39;babyagi-agent&#39;)" title="Save">☆</button>
@@ -1175,10 +1256,10 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
         <div class="card-icon"><img src="/images/babyagi-agent.png" alt="BabyAGI — минималистичный автономный агент" loading="lazy"></div>
         <span class="card-badge badge-agent">Agent</span>
       </div>
-      <div class="card-title">BabyAGI — минималистичный автономный агент</div>
+      <div class="card-title"><span class="agent-icon">👶</span> BabyAGI — минималистичный автономный агент</div>
       <div class="card-desc">Task-driven AI агент в 140 строках кода</div>
       <div class="card-panel"><div class="panel-item qs-badge"><div class="pv" style="color:var(--cyan);font-size:16px">73</div><div class="pl">QantScore™</div></div><div class="panel-item"><div class="pv amber">3.5 ★</div><div class="pl">Rating</div></div><div class="panel-item"><div class="pv green">Open Source</div><div class="pl">Цена</div></div><div class="panel-item"><div class="pv">🏠 Local</div><div class="pl">Развёртывание</div></div><div class="panel-item"><div class="pv">9.8</div><div class="pl">Maturity /10</div></div><div class="panel-item"><div class="pv cyan">↑↑ +19.9%</div><div class="pl">Velocity</div></div><div class="panel-item"><div class="pv">8.1</div><div class="pl">Deploy /10</div></div></div>
-      <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T06:54:38.488263+00:00">🕐 6h ago</span><span>📊 980 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
+      <div class="card-trust"><span class="trust-badge trust-fresh">● Fresh</span><span class="time-ago" data-iso="2026-05-25T06:54:38.488263+00:00">🕐 1d ago</span><span>📊 980 reviews</span><span class="trust-badge trust-verified">✓ Verified</span></div>
     </a></div>
     <div class="compare-bar active" id="compare-bar">
       <span class="sel"><strong id="compare-count">0</strong> selected</span>
@@ -1243,26 +1324,56 @@ function renderComparison(slugs) {
   var result = document.getElementById('compare-result');
   result.style.display = 'block';
   
+  // Icon map for product types
+  var icons = {'agent':'🤖','framework':'⚙️','platform':'🏗️','infrastructure':'🔧','model':'🧠'};
+  function getIcon(p) {
+    var t = (p.type || '').toLowerCase();
+    return icons[t] || '📦';
+  }
+
+  // Scorebar helper: renders colored bar + value
+  function scoreBar(val, maxVal, label) {
+    var n = parseFloat(val) || 0;
+    var pct = Math.min(100, (n / maxVal) * 100);
+    var cls = n >= maxVal*0.7 ? 'score-high' : n >= maxVal*0.4 ? 'score-mid' : 'score-low';
+    var barCls = n >= maxVal*0.7 ? 'var(--green)' : n >= maxVal*0.4 ? 'var(--cyan)' : 'var(--amber)';
+    return '<span class="metric-val ' + cls + '"><span class="metric-bar" style="width:' + Math.max(4,pct*0.7) + 'px;background:' + barCls + '"></span>' + label + '</span>';
+  }
+  function velBar(val) {
+    var n = parseFloat(val) || 0;
+    var cls = n >= 15 ? 'score-high' : n >= 5 ? 'score-mid' : 'score-low';
+    var barCls = n >= 15 ? 'var(--green)' : n >= 5 ? 'var(--cyan)' : 'var(--amber)';
+    var w = Math.min(60, Math.abs(n)*1.5);
+    return '<span class="metric-val ' + cls + '"><span class="metric-bar" style="width:' + Math.max(4,w) + 'px;background:' + barCls + '"></span>' + val + '</span>';
+  }
+
   var metrics = [
-    ['QantScore', 'qant_score', true],
-    ['Rating', 'rating', false],
-    ['Pricing', 'pricing', false],
-    ['Type', 'type', false],
-    ['Category', 'category', false],
-    ['Maturity', 'maturity', false],
-    ['Docs Quality', 'docs_quality', false],
-    ['Deployment', 'deployment', false],
-    ['Deploy Score', 'deploy_score', true],
-    ['Freshness', 'freshness', false],
-    ['Velocity', 'velocity', true],
-    ['Reviews', 'reviews', false],
-    ['Tech Stack', 'tech_stack', false],
+    ['QantScore™', 'qant_score', true, function(v) { return scoreBar(v, 100, v); }],
+    ['★ Rating', 'rating', false, null],
+    ['💰 Pricing', 'pricing', false, null],
+    ['📋 Type', 'type', false, null],
+    ['📂 Category', 'category', false, null],
+    ['🎯 Maturity', 'maturity', true, function(v) { var n=parseFloat(v)||0; return scoreBar(n, 10, v); }],
+    ['📖 Docs', 'docs_quality', true, function(v) { var n=parseFloat(v)||0; return scoreBar(n, 10, v); }],
+    ['🏠 Deployment', 'deployment', false, null],
+    ['⚡ Deploy', 'deploy_score', true, function(v) { var n=parseFloat(v)||0; return scoreBar(n, 10, v); }],
+    ['🕐 Freshness', 'freshness', false, null],
+    ['📈 Velocity', 'velocity', true, function(v) { return velBar(v); }],
+    ['💬 Reviews', 'reviews', false, null],
+    ['🔧 Tech Stack', 'tech_stack', false, null],
   ];
   
-  var header = '<tr><th></th>' + prods.map(function(p) { return '<th>' + p.title.substring(0,22) + '</th>'; }).join('') + '</tr>';
+  // Build thead
+  var thead = '<thead><tr><th>Metric</th>';
+  prods.forEach(function(p) {
+    thead += '<th><span class="th-icon">' + getIcon(p) + '</span><span class="th-name">' + p.title.substring(0,22) + '</span></th>';
+  });
+  thead += '</tr></thead>';
+  
+  // Build tbody
   var rows = '';
   metrics.forEach(function(m) {
-    var name = m[0], key = m[1], isWinner = m[2];
+    var name = m[0], key = m[1], isWinner = m[2], fmt = m[3];
     var vals = prods.map(function(p) { return p[key] || '—'; });
     var winner = -1;
     if (isWinner) {
@@ -1271,18 +1382,31 @@ function renderComparison(slugs) {
     }
     rows += '<tr><th>' + name + '</th>';
     vals.forEach(function(v, i) {
-      rows += '<td class="' + (i === winner ? 'winner' : '') + '">' + v + '</td>';
+      var display = fmt ? fmt(v) : v;
+      rows += '<td class="' + (i === winner ? 'winner' : '') + '">' + display + '</td>';
     });
     rows += '</tr>';
   });
   
-  var html = '<div class="breadcrumbs"><a href="/">Catalog</a> &rsaquo; <a href="/compare/" onclick="resetCompare();return false">Compare</a> &rsaquo; <span>Результат</span></div>';
-  html += '<h1 style="font-size:24px;font-weight:800;color:#f1f5f9;margin-bottom:24px">' + prods.map(function(p) { return p.title.substring(0,25); }).join(' vs ') + '</h1>';
-  html += '<div class="compare-table-wrap"><table class="compare-table">' + header + rows + '</table></div>';
-  html += '<p style="color:var(--muted);font-size:12px;margin-top:16px"><span class="compare-check">✓</span> Зелёный = лучший в классе. <a href="/methodology/" style="color:var(--green)">Как мы оцениваем →</a></p>';
-  html += '<button onclick="resetCompare()" style="margin-top:20px;padding:10px 20px;border-radius:6px;background:var(--card-bg);color:var(--text);border:1px solid var(--border);cursor:pointer;font-size:13px">← Назад к выбору</button>';
+  var titles = prods.map(function(p) { return p.title.substring(0,25); }).join(' vs ');
+  var n = prods.length;
+  
+  var html = '<div class="breadcrumbs"><a href="/">Каталог</a> &rsaquo; <a href="/compare/" onclick="resetCompare();return false">Сравнение</a> &rsaquo; <span>Результат</span></div>';
+  html += '<div class="compare-header-bar"><h1>' + titles + '</h1><span class="compare-badge">' + n + ' агента</span></div>';
+  html += '<div class="compare-table-wrap"><table class="compare-table">' + thead + '<tbody>' + rows + '</tbody></table></div>';
+  html += '<div class="compare-legend"><span class="dot green"></span><span>Лучший в классе</span><span style="color:var(--dim)">|</span><span style="color:var(--green)">■■■</span><span>Высокий</span><span style="color:var(--cyan)">■■■</span><span>Средний</span><span style="color:var(--amber)">■■■</span><span>Низкий</span></div>';
+  html += '<p style="color:var(--muted);font-size:12px;margin-top:12px"><a href="/methodology/" style="color:var(--green)">Как мы оцениваем агентов →</a></p>';
+  html += '<div class="result-actions"><button onclick="resetCompare()" class="btn-back">← Назад к выбору</button><button onclick="copyCompareLink()" class="btn-share">📋 Копировать ссылку</button></div>';
   result.innerHTML = html;
   window.scrollTo(0, 0);
+}
+function copyCompareLink() {
+  var url = window.location.href;
+  navigator.clipboard.writeText(url).then(function() {
+    var btn = document.querySelector('.btn-share');
+    btn.textContent = '✓ Скопировано!';
+    setTimeout(function() { btn.textContent = '📋 Копировать ссылку'; }, 2000);
+  });
 }
 function resetCompare() {
   document.getElementById('compare-selector').style.display = 'block';

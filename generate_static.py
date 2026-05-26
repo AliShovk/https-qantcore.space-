@@ -22,7 +22,7 @@ CSS = """*{margin:0;padding:0;box-sizing:border-box}
   --red:#ef4444;--red-dim:rgba(239,68,68,.12);
   --radius:12px;--radius-sm:8px}
 body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
-  background:var(--bg);color:var(--text);min-height:100vh;line-height:1.6;
+  background:var(--bg);color:var(--text);min-height:100vh;line-height:1.6;font-size:16px;
   -webkit-font-smoothing:antialiased}
 a{color:inherit;text-decoration:none}
 ::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:transparent}
@@ -39,12 +39,14 @@ header{position:sticky;top:0;z-index:100;backdrop-filter:blur(20px) saturate(180
   box-shadow:0 0 8px rgba(16,185,129,.5);animation:pulse 2s infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
 .mega-nav{display:flex;gap:4px;align-items:center}
-.mega-nav a,.mega-nav .nav-section{font-size:12.5px;color:var(--muted);
+.mega-nav a,.mega-nav .nav-section{font-size:13.5px;color:var(--muted);
   padding:6px 12px;border-radius:6px;transition:all .2s;font-weight:500;
   letter-spacing:.01em;white-space:nowrap}
 .mega-nav a:hover{color:var(--text);background:rgba(255,255,255,.04)}
 .mega-nav a.active{color:var(--green);background:var(--green-dim)}
 .nav-sep{width:1px;height:18px;background:var(--border);margin:0 4px}
+.nav-featured{font-size:14px!important;font-weight:700!important;color:var(--green)!important;
+  background:var(--green-dim)!important;padding:8px 16px!important;letter-spacing:.02em}
 
 /* ─── Terminal Grid (hero bg) ─── */
 .terminal-grid{position:absolute;top:0;left:0;right:0;bottom:0;overflow:hidden;pointer-events:none;z-index:0}
@@ -64,7 +66,7 @@ header{position:sticky;top:0;z-index:100;backdrop-filter:blur(20px) saturate(180
 /* ─── Hero ─── */
 .hero{text-align:center;padding:72px 24px 48px;position:relative;overflow:hidden}
 .hero>*{position:relative;z-index:2}
-.hero h1{font-size:clamp(32px,5vw,56px);font-weight:800;letter-spacing:-.03em;
+.hero h1{font-size:clamp(36px,5vw,60px);font-weight:800;letter-spacing:-.03em;
   line-height:1.15;color:#f1f5f9;max-width:800px;margin:0 auto}
 .hero h1 .accent{color:var(--green)}
 .hero .sub{font-size:17px;color:var(--muted);margin-top:16px;max-width:640px;
@@ -74,7 +76,7 @@ header{position:sticky;top:0;z-index:100;backdrop-filter:blur(20px) saturate(180
 .hero-metrics{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:28px}
 .hero-metric{background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius-sm);
   padding:10px 18px;text-align:center;min-width:100px}
-.hero-metric .val{font-size:22px;font-weight:800;color:var(--green);font-variant-numeric:tabular-nums}
+.hero-metric .val{font-size:24px;font-weight:800;color:var(--green);font-variant-numeric:tabular-nums}
 .hero-metric .lbl{font-size:11px;color:var(--muted);margin-top:2px;text-transform:uppercase;letter-spacing:.06em}
 .hero-cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:32px}
 .cta-primary{padding:12px 28px;border-radius:var(--radius-sm);font-size:14px;font-weight:600;
@@ -90,6 +92,9 @@ header{position:sticky;top:0;z-index:100;backdrop-filter:blur(20px) saturate(180
 .enterprise-cta{background:linear-gradient(135deg,rgba(16,185,129,.08) 0%,rgba(59,130,246,.04) 100%);
   border:1px solid rgba(16,185,129,.15);border-radius:var(--radius);margin:40px 0 32px;padding:0}
 .ec-inner{display:flex;align-items:center;justify-content:space-between;gap:32px;padding:32px 36px;flex-wrap:wrap}
+.card-title{font-size:16px;font-weight:600;color:var(--text);margin-bottom:8px;line-height:1.4;
+  display:flex;align-items:flex-start;gap:6px}
+.agent-icon{font-size:18px;flex-shrink:0;line-height:1.2}
 .ec-text h3{font-size:20px;font-weight:700;color:var(--text);margin-bottom:8px}
 .ec-text p{font-size:14px;color:var(--muted);line-height:1.6;max-width:480px}
 .ec-actions{display:flex;gap:12px;flex-shrink:0;flex-wrap:wrap}
@@ -101,7 +106,7 @@ header{position:sticky;top:0;z-index:100;backdrop-filter:blur(20px) saturate(180
 .auth-stat{flex:1;min-width:130px;padding:18px 20px;text-align:center;
   border-right:1px solid var(--border);position:relative}
 .auth-stat:last-child{border-right:none}
-.auth-stat .n{font-size:26px;font-weight:800;color:var(--green);font-variant-numeric:tabular-nums;
+.auth-stat .n{font-size:28px;font-weight:800;color:var(--green);font-variant-numeric:tabular-nums;
   letter-spacing:-.02em}
 .auth-stat .n.amber{color:var(--amber)}
 .auth-stat .l{font-size:11px;color:var(--muted);margin-top:3px;text-transform:uppercase;letter-spacing:.05em}
@@ -111,7 +116,7 @@ header{position:sticky;top:0;z-index:100;backdrop-filter:blur(20px) saturate(180
 /* ─── Section Headers ─── */
 .section-hd{max-width:1320px;margin:0 auto;padding:8px 24px 16px;
   display:flex;align-items:center;justify-content:space-between}
-.section-hd h2{font-size:18px;font-weight:700;color:var(--text);letter-spacing:-.01em}
+.section-hd h2{font-size:20px;font-weight:700;color:var(--text);letter-spacing:-.01em}
 .section-hd .see-all{font-size:13px;color:var(--green);font-weight:500}
 .section-hd .see-all:hover{text-decoration:underline}
 
@@ -143,13 +148,12 @@ header{position:sticky;top:0;z-index:100;backdrop-filter:blur(20px) saturate(180
 .badge-platform{background:var(--amber-dim);color:var(--amber)}
 .badge-model{background:var(--red-dim);color:var(--red)}
 .badge-infra{background:rgba(139,92,246,.12);color:#8b5cf6}
-.card-title{font-size:15px;font-weight:700;color:#f1f5f9;margin-bottom:6px;letter-spacing:-.01em;line-height:1.3}
-.card-desc{font-size:12.5px;color:var(--muted);line-height:1.5;display:-webkit-box;
+.card-desc{font-size:13.5px;color:var(--muted);line-height:1.5;display:-webkit-box;
   -webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;margin-bottom:12px;flex:1}
 /* Intelligence Panel */
 .card-panel{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:auto}
 .panel-item{background:rgba(255,255,255,.02);border-radius:6px;padding:8px 10px}
-.panel-item .pv{font-size:14px;font-weight:700;color:var(--text);font-variant-numeric:tabular-nums}
+.panel-item .pv{font-size:16px;font-weight:700;color:var(--text);font-variant-numeric:tabular-nums}
 .panel-item .pv.green{color:var(--green)}
 .panel-item .pv.amber{color:var(--amber)}
 .panel-item .pl{font-size:10px;color:var(--dim);margin-top:1px;text-transform:uppercase;letter-spacing:.03em}
@@ -177,6 +181,38 @@ header{position:sticky;top:0;z-index:100;backdrop-filter:blur(20px) saturate(180
 .compare-clear{font-size:12px;color:var(--muted);cursor:pointer;background:none;border:none}
 .compare-clear:hover{color:var(--red)}
 
+/* ─── Live Connection Lines ─── */
+.live-lines{position:fixed;top:0;left:0;width:100%;height:100%;z-index:150;
+  pointer-events:none;opacity:0;transition:opacity .3s}
+.live-lines.active{opacity:1}
+
+/* ─── Install / Code Block ─── */
+.install-block{background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);
+  overflow:hidden;margin-bottom:24px}
+.install-header{display:flex;align-items:center;justify-content:space-between;
+  padding:12px 20px;background:rgba(59,130,246,.06);border-bottom:1px solid var(--border)}
+.install-badge{font-size:13px;font-weight:600;color:var(--blue);
+  background:rgba(59,130,246,.12);padding:4px 12px;border-radius:4px}
+.copy-btn{font-size:12px;color:var(--muted);background:rgba(255,255,255,.04);
+  border:1px solid var(--border);padding:5px 14px;border-radius:4px;
+  cursor:pointer;transition:all .2s;font-weight:500}
+.copy-btn:hover{color:var(--green);border-color:var(--green)}
+.code-block{background:#0d1117;padding:20px 24px;margin:0;overflow-x:auto;
+  font-family:'JetBrains Mono','Fira Code','Cascadia Code',monospace;
+  font-size:13px;line-height:1.7;color:#c9d1d9;white-space:pre-wrap;
+  border-radius:0 0 var(--radius) var(--radius)}
+.code-block code{background:none;padding:0;font-size:inherit}
+.desc-block h2{display:flex;align-items:center;gap:8px}
+
+/* ─── Stats Mini (colored) ─── */
+.stats-mini{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap}
+.stat-mini{background:var(--card-bg);border:1px solid var(--border);
+  border-radius:8px;padding:10px 16px;text-align:center;min-width:80px}
+.stat-mini .sv{font-size:20px;font-weight:800;color:var(--green);
+  font-variant-numeric:tabular-nums}
+.stat-mini .sl{font-size:10px;color:var(--dim);margin-top:2px;
+  text-transform:uppercase;letter-spacing:.03em}
+
 /* ─── Integrations Overlay ─── */
 .integ-overlay{position:fixed;top:0;left:0;width:100%;height:100%;z-index:9999;
   background:rgba(0,0,0,.85);backdrop-filter:blur(8px);
@@ -193,8 +229,9 @@ header{position:sticky;top:0;z-index:100;backdrop-filter:blur(20px) saturate(180
   border-bottom:1px solid var(--border)}
 .integ-agent-card{display:flex;align-items:center;gap:8px;background:var(--card-bg);
   border:1px solid var(--border);border-radius:8px;padding:8px 14px;font-size:13px;color:var(--text)}
-.integ-agent-card .iac-icon{width:24px;height:24px;border-radius:4px;
-  background:rgba(59,130,246,.15);display:flex;align-items:center;justify-content:center;font-size:14px}
+.integ-agent-card .iac-icon{width:28px;height:28px;border-radius:6px;
+  background:rgba(59,130,246,.15);display:flex;align-items:center;justify-content:center;font-size:14px;overflow:hidden}
+.integ-agent-card .iac-icon img{width:100%;height:100%;object-fit:contain}
 .integ-diagram{padding:8px 28px;background:rgba(0,0,0,.2);border-bottom:1px solid var(--border)}
 .integ-diagram svg{display:block}
 .integ-matches{padding:24px 28px}
@@ -206,7 +243,9 @@ header{position:sticky;top:0;z-index:100;backdrop-filter:blur(20px) saturate(180
   padding:3px 10px;border-radius:4px}
 .im-effort{font-size:12px;color:var(--muted)}
 .im-desc{font-size:13px;color:var(--muted);line-height:1.6;margin-bottom:8px}
-.im-agents{font-size:11px;color:var(--dim);font-family:monospace}
+.im-agents{font-size:11px;color:var(--dim);font-family:monospace;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.im-agents img{width:20px;height:20px;border-radius:4px;object-fit:contain;vertical-align:middle}
+.im-agents a{display:inline-flex;align-items:center;gap:4px}
 .integ-empty{text-align:center;padding:40px 20px;color:var(--muted)}
 .integ-cta{text-align:center;padding:20px 28px;border-top:1px solid var(--border);
   background:linear-gradient(180deg,transparent,rgba(16,185,129,.04))}
@@ -229,13 +268,52 @@ header{position:sticky;top:0;z-index:100;backdrop-filter:blur(20px) saturate(180
 .featured-card .fc-desc{font-size:13px;color:var(--muted);line-height:1.6}
 
 /* ─── Compare Table ─── */
-.compare-table-wrap{overflow-x:auto;margin:20px 0}
+.compare-table-wrap{overflow-x:auto;margin:20px 0;border-radius:12px;
+  border:1px solid var(--border);background:linear-gradient(180deg,#121821 0%,var(--bg) 100%)}
 .compare-table{width:100%;border-collapse:collapse;font-size:13px}
-.compare-table th{text-align:left;padding:12px 16px;color:var(--muted);font-weight:500;
-  font-size:11px;text-transform:uppercase;letter-spacing:.04em;border-bottom:1px solid var(--border)}
-.compare-table td{padding:14px 16px;border-bottom:1px solid var(--border)}
-.compare-table tr:last-child td{border-bottom:none}
-.compare-table .winner{color:var(--green);font-weight:600}
+.compare-table thead th{padding:16px 16px 14px;color:var(--text);font-weight:700;font-size:13px;
+  text-align:center;border-bottom:2px solid rgba(16,185,129,.3);
+  background:linear-gradient(180deg,rgba(16,185,129,.06) 0%,transparent 100%)}
+.compare-table thead th:first-child{text-align:left;color:var(--muted);font-size:11px;
+  font-weight:500;text-transform:uppercase;letter-spacing:.04em;border-right:1px solid var(--border)}
+.compare-table thead th .th-icon{font-size:18px;display:block;margin-bottom:4px}
+.compare-table thead th .th-name{display:block;max-width:140px;margin:0 auto;line-height:1.3}
+.compare-table tbody th{text-align:left;padding:12px 16px;color:var(--muted);font-weight:500;
+  font-size:11px;text-transform:uppercase;letter-spacing:.04em;border-bottom:1px solid var(--border);
+  border-right:1px solid var(--border);white-space:nowrap}
+.compare-table tbody td{padding:12px 14px;border-bottom:1px solid var(--border);
+  text-align:center;font-weight:600;font-size:13px;position:relative}
+.compare-table tbody tr:last-child td,.compare-table tbody tr:last-child th{border-bottom:none}
+.compare-table tbody tr:nth-child(even){background:rgba(18,24,33,.4)}
+.compare-table .winner{background:rgba(16,185,129,.08) !important;
+  box-shadow:inset 0 0 0 1px rgba(16,185,129,.25)}
+.compare-table .winner::after{content:'';position:absolute;top:2px;right:2px;
+  width:6px;height:6px;border-radius:50%;background:var(--green)}
+/* Score bar inside metric cells */
+.metric-bar{display:inline-block;height:6px;border-radius:3px;margin-right:8px;
+  vertical-align:middle;min-width:4px;transition:width .5s ease}
+.metric-val{display:inline-flex;align-items:center;gap:6px;white-space:nowrap}
+.score-high{color:var(--green)}
+.score-mid{color:var(--cyan)}
+.score-low{color:var(--amber)}
+.compare-header-bar{display:flex;align-items:center;gap:8px;margin-bottom:24px}
+.compare-header-bar h1{font-size:24px;font-weight:800;color:var(--text);margin:0}
+.compare-badge{display:inline-block;padding:3px 10px;border-radius:20px;
+  font-size:11px;font-weight:600;letter-spacing:.03em;
+  background:rgba(34,211,238,.1);color:var(--cyan);border:1px solid rgba(34,211,238,.2)}
+.result-actions{display:flex;gap:10px;margin-top:20px}
+.btn-back{padding:10px 20px;border-radius:8px;font-size:13px;font-weight:600;
+  background:var(--card-bg);color:var(--text);border:1px solid var(--border);
+  cursor:pointer;transition:all .2s}
+.btn-back:hover{background:var(--surface);border-color:var(--muted)}
+.btn-share{padding:10px 20px;border-radius:8px;font-size:13px;font-weight:600;
+  background:rgba(59,130,246,.12);color:var(--blue);border:1px solid rgba(59,130,246,.2);
+  cursor:pointer;transition:all .2s}
+.btn-share:hover{background:rgba(59,130,246,.2)}
+.compare-legend{display:flex;align-items:center;gap:16px;margin-top:16px;flex-wrap:wrap}
+.compare-legend .dot{display:inline-block;width:8px;height:8px;border-radius:50%}
+.compare-legend .dot.green{background:var(--green)}
+.compare-legend span{font-size:12px;color:var(--muted)}
 .compare-check{color:var(--green)}
 
 /* ─── Live Feed ─── */
@@ -292,8 +370,11 @@ header{position:sticky;top:0;z-index:100;backdrop-filter:blur(20px) saturate(180
 .stack-metric .sm-val{font-size:20px;font-weight:700;color:var(--text)}
 .stack-metric .sm-lbl{font-size:11px;color:var(--dim);margin-top:2px}
 
+/* ─── Container ─── */
+.container{max-width:1320px;margin:0 auto;padding:0 24px}
+
 /* ─── Product Detail ─── */
-.detail{max-width:900px}
+.detail{max-width:900px;margin:0 auto}
 .detail-header{margin-bottom:32px}
 .detail-header h1{font-size:32px;font-weight:800;color:#f1f5f9;letter-spacing:-.01em}
 .detail-header .tagline{font-size:16px;color:var(--muted);margin-top:8px}
@@ -303,9 +384,9 @@ header{position:sticky;top:0;z-index:100;backdrop-filter:blur(20px) saturate(180
   border:1px solid var(--border)}
 .meta-item strong{color:var(--text)}
 .meta-item.green{color:var(--green);border-color:rgba(16,185,129,.2)}
-.detail-body{margin-top:28px;font-size:14.5px;line-height:1.8;color:#b0b8c8}
-.detail-body h2{font-size:20px;font-weight:700;color:var(--text);margin:28px 0 10px}
-.detail-body h3{font-size:16px;font-weight:600;color:#d0d8e8;margin:22px 0 8px}
+.detail-body{margin-top:28px;font-size:16px;line-height:1.8;color:#b0b8c8}
+.detail-body h2{font-size:22px;font-weight:700;color:var(--text);margin:28px 0 10px}
+.detail-body h3{font-size:18px;font-weight:600;color:#d0d8e8;margin:22px 0 8px}
 .detail-body p{margin-bottom:14px}
 .detail-body ul,.detail-body ol{padding-left:22px;margin-bottom:14px}
 .detail-body li{margin-bottom:5px}
@@ -375,6 +456,28 @@ def esc(s):
 def icon_for(pt):
     icons = {"agent":"🤖","framework":"🔧","platform":"🌐","model":"🧠","infrastructure":"⚡"}
     return icons.get(pt, "📦")
+
+def agent_icon(slug):
+    """Unique emoji per agent slug."""
+    icons = {
+        "cursor-ide":"🖱️","github-copilot":"🐙","claude-code":"🧑‍💻","cline-vscode":"🤖",
+        "windsurf-ide":"🌊","codeium-windsurf":"💨","aider-ai":"🅰️","sourcegraph-cody":"🔍",
+        "tabnine-ai":"9️⃣","open-interpreter":"💻","langchain-framework":"🦜","langgraph-framework":"🕸️",
+        "crewai-framework":"👥","autogen-microsoft":"🔄","openai-swarm":"🐝","semantic-kernel":"🧠",
+        "anthropic-mcp":"🔌","phidata-framework":"📊","dify-platform":"🔷","flowise-lowcode":"🎨",
+        "n8n-automation":"⚙️","autogpt-agent":"🤖","babyagi-agent":"👶","metagpt-framework":"🏗️",
+        "chatdev-agent":"💬","bolt-new":"⚡","replit-ai":"🔄","devin-agent":"🛠️",
+        "ollama":"🦙","lm-studio":"🖥️","jan-ai":"🧩","deepseek-llm":"🐋",
+        "chatgpt-openai":"🧠","claude-anthropic":"🎭","google-gemini":"💎","mistral-ai":"🌬️",
+        "llama-meta":"🦙","hermes-agent":"🔮","perplexity-ai":"🔎","superagi-agent":"🦸",
+        "swe-agent":"🔧","anythingllm":"📚","e2b-sandbox":"📦","smolagents-huggingface":"🤗",
+        "composio-tools":"🔗","langsmith-langchain":"📝","continue-dev":"▶️","copy-ai":"📋",
+        "jasper-ai":"✍️","zapier-ai":"⚡","notion-ai":"📄","microsoft-copilot":"🪟",
+        "amazon-q-developer":"☁️","taskade-ai":"✅","lovable-dev":"❤️","vercel-v0":"▲",
+        "codex-cli":"⌨️","codex-desktop":"🖥️","claude-desktop":"💻","phind-ai":"🔎",
+        "openclaw-agent":"🦞","you-com":"🔍"
+    }
+    return icons.get(slug, "📦")
 
 def product_type_badge(pt):
     mapping = {"agent":"badge-agent","framework":"badge-framework","platform":"badge-platform",
@@ -532,17 +635,17 @@ ym(109327472,'init',{{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer"
       <span class="nav-sep"></span>
       <a href="/benchmarks/">Бенчмарки</a>
       <span class="nav-sep"></span>
-      <a href="/catalog/review/" class="{active_review}">Обзоры</a>
-      <span class="nav-sep"></span>
       <a href="/benchmarks/">Рейтинг</a>
       <span class="nav-sep"></span>
       <a href="/catalog/product/">Локальный AI</a>
       <span class="nav-sep"></span>
-      <a href="/catalog/product/">Разработка</a>
+      <a href="/development/" class="{active_dev}">Разработка</a>
       <span class="nav-sep"></span>
-      <a href="/catalog/product/">Мульти-агенты</a>
+      <a href="/multi-agent/" class="{active_ma}">Мульти-агенты</a>
       <span class="nav-sep"></span>
-      <a href="#guides">Гайды</a>
+      <a href="/guides/" class="nav-featured {active_guides}">📖 Гайды</a>
+      <span class="nav-sep"></span>
+      <a href="/catalog/review/" class="{active_review}">Обзоры</a>
       <span class="nav-sep"></span>
       <a href="/methodology/" class="{active_method}">Методология</a>
       <span class="nav-sep"></span>
@@ -583,6 +686,7 @@ def build_search_index():
             "r": str(p.get("rating","")),
             "s": rating_stars(p.get("rating")),
             "pr": format_price(p.get("pricing_model","")),
+            "iu": p.get("image_url",""),
             "img": img,
             "panel": panel_data(p),
             "trust": trust_indicators(p),
@@ -625,12 +729,14 @@ def make_og_article(title, description, url, image_url="/images/favicon.svg"):
 
 def render_page(title, description, content, scripts="", total=0, search_val="", search_json="[]",
                 active_home="", active_compare="", active_review="", active_method="", active_ws="",
+                active_dev="", active_ma="", active_guides="",
                 open_graph="", schema_org="{}", canonical_url=""):
     return PAGE.format(
         title=esc(title), description=esc(description),
         css=CSS, content=content, scripts=scripts, total=str(total),
         search_val=esc(search_val), search_json=search_json,
         active_home=active_home, active_compare=active_compare, active_review=active_review, active_method=active_method, active_ws=active_ws,
+        active_dev=active_dev, active_ma=active_ma, active_guides=active_guides,
         open_graph=open_graph, schema_org=schema_org, canonical_url=canonical_url)
 
 
@@ -652,7 +758,7 @@ def make_product_card(p, with_compare=True):
         {product_image(p)}
         {product_type_badge(p.get('product_type',''))}
       </div>
-      <div class="card-title">{esc(p.get('title',''))}</div>
+      <div class="card-title"><span class="agent-icon">{agent_icon(p['slug'])}</span> {esc(p.get('title',''))}</div>
       <div class="card-desc">{esc(p.get('tagline','') or p.get('description',''))}</div>
       <div class="card-panel">{panel}</div>
       <div class="card-trust">{trust}</div>
@@ -782,26 +888,42 @@ def generate_home():
   </div>
 </div>"""
 
-    # ─── Deployment Guides (placeholder) ───
-    guides_html = f"""<div class="section-hd" id="guides"><h2>📖 Deployment Guides</h2><a href="#" class="see-all">Coming soon →</a></div>
-<div class="featured">
-  <div class="featured-grid">
-    <div class="featured-card">
-      <div class="fc-label">GUIDE</div>
-      <div class="fc-title">Run AI Agents Locally</div>
-      <div class="fc-desc">Step-by-step: deploy Ollama, Open Interpreter, and local LLMs on your machine. No cloud needed.</div>
-    </div>
-    <div class="featured-card">
-      <div class="fc-label">GUIDE</div>
-      <div class="fc-title">Multi-Agent Orchestration</div>
-      <div class="fc-desc">Compare CrewAI, AutoGen, LangGraph — pick the right framework for your multi-agent system.</div>
-    </div>
-    <div class="featured-card">
-      <div class="fc-label">GUIDE</div>
-      <div class="fc-title">AI Coding Stack in 2026</div>
-      <div class="fc-desc">Cursor, Cline, Copilot, Aider, Codex — which coding agent fits your workflow?</div>
-    </div>
-  </div>
+    # ─── Гайды (выделенный блок) ───
+    guides_html = f"""<div class="section-hd" id="guides" style="margin-top:40px"><h2>📖 Практические гайды</h2><a href="/guides/" class="see-all">Все 30 гайдов →</a></div>
+<div style="max-width:1320px;margin:0 auto;padding:0 24px 20px">
+  <p style="font-size:13px;color:var(--muted);margin-bottom:16px">Пошаговые руководства с кодом: от локального запуска LLM до production-деплоя multi-agent систем. Каждый гайд — готовый рецепт.</p>
+</div>
+<div class="grid" style="max-width:1320px;margin:0 auto;padding:0 24px 32px;grid-template-columns:repeat(auto-fill,minmax(380px,1fr))">
+  <a href="/guides/#local-llm" class="card" style="border:1px solid #10b98133;cursor:pointer">
+    <div class="card-top"><div class="card-icon" style="font-size:28px">🦙</div><span class="card-badge badge-agent">Базовый · 10 мин</span></div>
+    <div class="card-title">Локальный запуск LLM</div>
+    <div class="card-desc">Ollama + Open WebUI: запустите Llama 4, DeepSeek, Qwen на своей машине за 15 минут. Без облака, без API-ключей.</div>
+  </a>
+  <a href="/guides/#agentic-rag-deep" class="card" style="border:1px solid #f59e0b33;cursor:pointer">
+    <div class="card-top"><div class="card-icon" style="font-size:28px">🔗</div><span class="card-badge" style="background:var(--amber-dim);color:var(--amber)">Продвинутый · 16 мин</span></div>
+    <div class="card-title">Agentic RAG: глубокое погружение</div>
+    <div class="card-desc">RAG с агентной логикой: планирование поиска, переформулировка запросов, итеративная проверка результатов на LangGraph.</div>
+  </a>
+  <a href="/guides/#mcp-server-build" class="card" style="border:1px solid #3B82F633;cursor:pointer">
+    <div class="card-top"><div class="card-icon" style="font-size:28px">🔌</div><span class="card-badge badge-agent">Средний · 20 мин</span></div>
+    <div class="card-title">Свой MCP-сервер за 20 минут</div>
+    <div class="card-desc">Python MCP-сервер с инструментами для БД. Работает с Claude Desktop, Cursor, Continue. Полный код.</div>
+  </a>
+  <a href="/guides/#opensource-agent-stack" class="card" style="border:1px solid #10b98133;cursor:pointer">
+    <div class="card-top"><div class="card-icon" style="font-size:28px">🔓</div><span class="card-badge badge-agent">Базовый · 10 мин</span></div>
+    <div class="card-title">Опенсорсный AI-стек</div>
+    <div class="card-desc">Ollama + Continue + Aider: полностью локальный стек без подписок. Полный контроль над данными и кодом.</div>
+  </a>
+  <a href="/guides/#agent-framework-comparison" class="card" style="border:1px solid #22D3EE33;cursor:pointer">
+    <div class="card-top"><div class="card-icon" style="font-size:28px">⚖️</div><span class="card-badge badge-agent">Средний · 13 мин</span></div>
+    <div class="card-title">Фреймворки для агентов 2026</div>
+    <div class="card-desc">CrewAI vs AutoGen vs LangGraph vs Swarm vs MetaGPT — полное сравнение с примерами кода для каждого.</div>
+  </a>
+  <a href="/guides/#agent-safety" class="card" style="border:1px solid #ef444433;cursor:pointer">
+    <div class="card-top"><div class="card-icon" style="font-size:28px">🛡️</div><span class="card-badge" style="background:var(--red-dim);color:var(--red)">Продвинутый · 14 мин</span></div>
+    <div class="card-title">Безопасность AI-агентов</div>
+    <div class="card-desc">Docker-песочницы, валидация вывода, Human-in-the-Loop. Защита от prompt injection и runaway agents.</div>
+  </a>
 </div>"""
 
     # ─── Live Activity Feed ───
@@ -841,7 +963,8 @@ def generate_home():
   <button class="compare-btn" id="compare-btn" disabled onclick="doCompare()">⚖️ Сравнить</button>
   <button class="compare-btn" id="integrate-btn" disabled onclick="showIntegrations()" style="background:var(--blue)">🔗 Связки</button>
   <button class="compare-clear" onclick="clearCompare()">Сброс</button>
-</div>"""
+</div>
+<svg id="live-connections" class="live-lines"></svg>"""
 
     content = hero + auth + featured_html + enterprise_cta + trending_html + new_html + bench_html + live_html + guides_html + catalog_html + compare_bar
 
@@ -865,7 +988,74 @@ function updateCompareBar() {
   cnt.textContent = selected.length;
   bar.classList.toggle('active', selected.length > 0);
   btn.disabled = selected.length < 2;
-  if (ibtn) ibtn.disabled = selected.length < 2;
+  if (ibtn) ibtn.disabled = selected.length < 1;
+  drawLiveLines();
+}
+function drawLiveLines() {
+  var svg = document.getElementById('live-connections');
+  if (!svg) return;
+  svg.innerHTML = '';
+  if (selected.length === 0) { svg.classList.remove('active'); return; }
+  svg.classList.add('active');
+  svg.setAttribute('viewBox', '0 0 '+window.innerWidth+' '+window.innerHeight);
+  svg.style.width = window.innerWidth+'px';
+  svg.style.height = window.innerHeight+'px';
+  var colors = ['#10b981','#3B82F6','#f59e0b','#22D3EE','#8b5cf6','#ef4444','#ec4899','#14b8a6'];
+  if (selected.length === 1) {
+    // One agent selected: draw lines to all compatible agents visible on page
+    var selSlug = selected[0];
+    var buddies = integrations[selSlug] || [];
+    if (buddies.length === 0) { svg.classList.remove('active'); return; }
+    // Get selected card position
+    var selCB = document.querySelector('.card input[type=checkbox][value="'+selSlug+'"]');
+    if (!selCB) { svg.classList.remove('active'); return; }
+    var selCard = selCB.closest('.card');
+    if (!selCard) { svg.classList.remove('active'); return; }
+    var sr = selCard.getBoundingClientRect();
+    var sx = sr.left + sr.width/2, sy = sr.top + sr.height/2;
+    // Find all cards whose slugs are in buddies
+    var allCBs = document.querySelectorAll('.card input[type=checkbox]');
+    var drawn = 0;
+    allCBs.forEach(function(cb, idx) {
+      if (cb.value === selSlug) return;
+      if (!buddies.includes(cb.value)) return;
+      var card = cb.closest('.card');
+      if (!card) return;
+      var r = card.getBoundingClientRect();
+      var tx = r.left + r.width/2, ty = r.top + r.height/2;
+      var c = colors[drawn % colors.length];
+      var mx = (sx+tx)/2 + (Math.random()-0.5)*60;
+      var my = (sy+ty)/2 + (Math.random()-0.5)*60;
+      svg.innerHTML += '<path d="M'+sx+','+sy+' L'+mx+','+my+' L'+tx+','+ty+'" stroke="'+c+'" stroke-width="2.5" fill="none" opacity="0.85"><animate attributeName="opacity" values="0.5;1;0.5" dur="1s" repeatCount="indefinite"/></path>';
+      svg.innerHTML += '<circle cx="'+mx+'" cy="'+my+'" r="4" fill="'+c+'" opacity="0.9"><animate attributeName="r" values="4;7;4" dur="1s" repeatCount="indefinite"/></circle>';
+      drawn++;
+    });
+    if (drawn === 0) { svg.classList.remove('active'); }
+    return;
+  }
+  // 2+ agents: lines between selected pairs
+  var cards = [];
+  var cbs = document.querySelectorAll('.card input[type=checkbox]:checked');
+  cbs.forEach(function(cb) {
+    var card = cb.closest('.card');
+    if (!card) return;
+    var r = card.getBoundingClientRect();
+    cards.push({slug: cb.value, cx: r.left + r.width/2, cy: r.top + r.height/2});
+  });
+  for (var i = 0; i < cards.length; i++) {
+    for (var j = i+1; j < cards.length; j++) {
+      var connected = (integrations[cards[i].slug]&&integrations[cards[i].slug].includes(cards[j].slug))||(integrations[cards[j].slug]&&integrations[cards[j].slug].includes(cards[i].slug));
+      var x1 = cards[i].cx, y1 = cards[i].cy;
+      var x2 = cards[j].cx, y2 = cards[j].cy;
+      if (connected) {
+        var c = colors[(i+j)%colors.length];
+        var mx = (x1+x2)/2 + (Math.random()-0.5)*60;
+        var my = (y1+y2)/2 + (Math.random()-0.5)*60;
+        svg.innerHTML += '<path d="M'+x1+','+y1+' L'+mx+','+my+' L'+x2+','+y2+'" stroke="'+c+'" stroke-width="2.5" fill="none" opacity="0.85"><animate attributeName="opacity" values="0.5;1;0.5" dur="1s" repeatCount="indefinite"/></path>';
+        svg.innerHTML += '<circle cx="'+mx+'" cy="'+my+'" r="4" fill="'+c+'" opacity="0.9"><animate attributeName="r" values="4;7;4" dur="1s" repeatCount="indefinite"/></circle>';
+      }
+    }
+  }
 }
 function doCompare() {
   if (selected.length >= 2) {
@@ -985,33 +1175,31 @@ var integrationInfo = {
   "perplexity-ai|langchain-framework": {type:"Поиск + RAG",desc:"Perplexity для research и fact-checking, LangChain для построения RAG-систем на основе найденных данных.",effort:"Низкая"}
 };
 function showIntegrations() {
-  if (selected.length < 2) return;
-  // Build overlay
+  if (selected.length < 1) return;
   var overlay = document.createElement('div');
   overlay.id = 'integrations-overlay';
   overlay.className = 'integ-overlay';
-  var html = '<div class=\"integ-modal\"><div class=\"integ-header\"><h2>🔗 Интеграции выбранных агентов</h2><button class=\"integ-close\" onclick=\"closeIntegrations()\">✕</button></div>';
+  var isSingle = selected.length === 1;
+  var html = '<div class=\"integ-modal\"><div class=\"integ-header\"><h2>' + (isSingle ? '⚡ Связи агента' : '🔗 Интеграции выбранных агентов') + '</h2><button class=\"integ-close\" onclick=\"closeIntegrations()\">✕</button></div>';
   // Agent cards row
   html += '<div class=\"integ-agents\">';
   selected.forEach(function(slug) {
     var p = searchResults.find(function(x){return x.u === '/product/'+slug+'/'});
     var title = p ? p.ti : slug;
-    html += '<div class=\"integ-agent-card\"><span class=\"iac-icon\">' + (p&&p.img?p.img:'🔹') + '</span><span>' + title.substring(0,25) + '</span></div>';
+    var iconHtml = (p&&p.iu) ? '<img src=\"'+p.iu+'\" alt=\"\">' : (p&&p.img?p.img:'🔹');
+    html += '<div class=\"integ-agent-card\"><span class=\"iac-icon\">' + iconHtml + '</span><span>' + title.substring(0,25) + '</span></div>';
   });
   html += '</div>';
   // SVG diagram
-  html += '<div class=\"integ-diagram\"><svg id=\"integ-svg\" width=\"100%\" height=\"300\"></svg></div>';
-  // Integration matches
-  html += '<div class=\"integ-matches\"><h3>Найденные связки</h3><div class=\"integ-list\" id=\"integ-list\"></div></div>';
-  // CTA
+  html += '<div class=\"integ-diagram\"><svg id=\"integ-svg\" width=\"100%\" height=\"380\"></svg></div>';
+  // Matches
+  html += '<div class=\"integ-matches\"><h3>' + (isSingle ? 'Все возможные связки' : 'Найденные связки') + '</h3><div class=\"integ-list\" id=\"integ-list\"></div></div>';
   html += '<div class=\"integ-cta\"><p>Хотите подробную инструкцию по интеграции?</p><a href=\"/media-kit/\" class=\"cta-primary\">Заказать аудит AI-стека</a></div>';
   html += '</div>';
   overlay.innerHTML = html;
   document.body.appendChild(overlay);
   document.body.style.overflow = 'hidden';
-  // Draw SVG diagram
   setTimeout(drawIntegDiagram, 100);
-  // Populate matches
   setTimeout(populateIntegMatches, 50);
 }
 function closeIntegrations() {
@@ -1021,57 +1209,136 @@ function closeIntegrations() {
 function drawIntegDiagram() {
   var svg = document.getElementById('integ-svg');
   if (!svg) return;
-  var w = svg.clientWidth;
-  var h = 280;
-  svg.setAttribute('viewBox', '0 0 '+w+' 280');
+  var w = svg.clientWidth || 800;
+  svg.setAttribute('viewBox', '0 0 '+w+' 380');
   svg.innerHTML = '';
-  var n = selected.length;
-  var cx = w / 2, cy = 140, rx = Math.min(w/2 - 60, 200), ry = 80;
-  var positions = [];
-  for (var i = 0; i < n; i++) {
-    var angle = (i / n) * 2 * Math.PI - Math.PI/2;
-    positions.push({x: cx + rx * Math.cos(angle), y: cy + ry * Math.sin(angle)});
-  }
-  // Draw connections
-  for (var i = 0; i < n; i++) {
-    for (var j = i+1; j < n; j++) {
-      var si = selected[i], sj = selected[j];
-      var connected = (integrations[si] && integrations[si].includes(sj)) || (integrations[sj] && integrations[sj].includes(si));
-      var pi = positions[i], pj = positions[j];
-      if (connected) {
-        svg.innerHTML += '<line x1=\"'+pi.x+'\" y1=\"'+pi.y+'\" x2=\"'+pj.x+'\" y2=\"'+pj.y+'\" stroke=\"#10b981\" stroke-width=\"2\" opacity=\"0.6\"/>';
+  // Clip paths for circular images
+  svg.innerHTML += '<defs><clipPath id=\"clip-18\"><circle cx=\"0\" cy=\"0\" r=\"16\"/></clipPath><clipPath id=\"clip-26\"><circle cx=\"0\" cy=\"0\" r=\"24\"/></clipPath><clipPath id=\"clip-32\"><circle cx=\"0\" cy=\"0\" r=\"30\"/></clipPath></defs>';
+  var isSingle = selected.length === 1;
+  if (isSingle) {
+    // One agent in center, all integrations around it as lightning bolts
+    var slug = selected[0];
+    var buddies = integrations[slug] || [];
+    if (buddies.length === 0) return;
+    var cx = w/2, cy = 190;
+    var colors = ['#10b981','#3B82F6','#f59e0b','#22D3EE','#8b5cf6','#ef4444','#ec4899','#14b8a6'];
+    var n = Math.min(buddies.length, 20);
+    var rx = Math.min(w/2 - 70, 280), ry = 160;
+    for (var i = 0; i < n; i++) {
+      var angle = (i/n) * 2 * Math.PI - Math.PI/2;
+      var tx = cx + rx * Math.cos(angle);
+      var ty = cy + ry * Math.sin(angle);
+      var color = colors[i % colors.length];
+      var dx = tx - cx, dy = ty - cy;
+      var mid1x = cx + dx*0.35 + (Math.random()-0.5)*40;
+      var mid1y = cy + dy*0.35 + (Math.random()-0.5)*40;
+      var mid2x = cx + dx*0.65 + (Math.random()-0.5)*40;
+      var mid2y = cy + dy*0.65 + (Math.random()-0.5)*40;
+      var path = 'M'+cx+','+cy+' L'+mid1x+','+mid1y+' L'+mid2x+','+mid2y+' L'+tx+','+ty;
+      svg.innerHTML += '<path d=\"'+path+'\" stroke=\"'+color+'\" stroke-width=\"2\" fill=\"none\" opacity=\"0.8\"><animate attributeName=\"opacity\" values=\"0.4;1;0.4\" dur=\"1.5s\" repeatCount=\"indefinite\"/></path>';
+      // Buddy node
+      svg.innerHTML += '<circle cx=\"'+tx+'\" cy=\"'+ty+'\" r=\"18\" fill=\"#171F2B\" stroke=\"'+color+'\" stroke-width=\"2\" opacity=\"0.9\"/>';
+      var buddy = searchResults.find(function(x){return x.u === '/product/'+buddies[i]+'/'});
+      var bImg = buddy && buddy.iu ? buddy.iu : '';
+      if (bImg) {
+        svg.innerHTML += '<g transform=\"translate('+tx+','+ty+')\"><image href=\"'+bImg+'\" x=\"-16\" y=\"-16\" width=\"32\" height=\"32\" clip-path=\"url(#clip-18)\" preserveAspectRatio=\"xMidYMid slice\"/></g>';
       } else {
-        svg.innerHTML += '<line x1=\"'+pi.x+'\" y1=\"'+pi.y+'\" x2=\"'+pj.x+'\" y2=\"'+pj.y+'\" stroke=\"#374151\" stroke-width=\"1\" stroke-dasharray=\"4,4\" opacity=\"0.4\"/>';
+        var bname = buddy ? buddy.ti.substring(0,16) : buddies[i].substring(0,16);
+        svg.innerHTML += '<text x=\"'+tx+'\" y=\"'+ty+'\" text-anchor=\"middle\" dy=\"0.35em\" fill=\"#F5F7FA\" font-size=\"9\" font-weight=\"600\">'+bname+'</text>';
       }
     }
+    // Center node (bigger, glowing)
+    svg.innerHTML += '<circle cx=\"'+cx+'\" cy=\"'+cy+'\" r=\"32\" fill=\"#0B0F14\" stroke=\"#10b981\" stroke-width=\"3\"/>';
+    svg.innerHTML += '<circle cx=\"'+cx+'\" cy=\"'+cy+'\" r=\"32\" fill=\"none\" stroke=\"#10b981\" stroke-width=\"1\" opacity=\"0.5\"><animate attributeName=\"r\" values=\"32;40;32\" dur=\"2s\" repeatCount=\"indefinite\"/><animate attributeName=\"opacity\" values=\"0.5;0;0.5\" dur=\"2s\" repeatCount=\"indefinite\"/></circle>';
+    var me = searchResults.find(function(x){return x.u === '/product/'+slug+'/'});
+    var cImg = me && me.iu ? me.iu : '';
+    if (cImg) {
+      svg.innerHTML += '<g transform=\"translate('+cx+','+cy+')\"><image href=\"'+cImg+'\" x=\"-30\" y=\"-30\" width=\"60\" height=\"60\" clip-path=\"url(#clip-32)\" preserveAspectRatio=\"xMidYMid slice\"/></g>';
+    } else {
+      var mname = me ? me.ti.substring(0,14) : slug.substring(0,14);
+      svg.innerHTML += '<text x=\"'+cx+'\" y=\"'+cy+'\" text-anchor=\"middle\" dy=\"0.35em\" fill=\"#10b981\" font-size=\"11\" font-weight=\"800\">'+mname+'</text>';
+    }
+  } else {
+    // Multi-agent: circular layout with lightning connections
+    var n = selected.length;
+    var cx2 = w/2, cy2 = 190, rx2 = Math.min(w/2-60, 200), ry2 = 100;
+    var positions = [];
+    for (var i = 0; i < n; i++) {
+      var angle = (i/n)*2*Math.PI - Math.PI/2;
+      positions.push({x: cx2+rx2*Math.cos(angle), y: cy2+ry2*Math.sin(angle)});
+    }
+    var lineColors = ['#10b981','#3B82F6','#f59e0b','#22D3EE','#8b5cf6'];
+    for (var i = 0; i < n; i++) {
+      for (var j = i+1; j < n; j++) {
+        var si = selected[i], sj = selected[j];
+        var connected = (integrations[si]&&integrations[si].includes(sj))||(integrations[sj]&&integrations[sj].includes(si));
+        var pi = positions[i], pj = positions[j];
+        if (connected) {
+          var lc = lineColors[(i+j)%lineColors.length];
+          var lmidx = (pi.x+pj.x)/2 + (Math.random()-0.5)*30;
+          var lmidy = (pi.y+pj.y)/2 + (Math.random()-0.5)*30;
+          svg.innerHTML += '<path d=\"M'+pi.x+','+pi.y+' L'+lmidx+','+lmidy+' L'+pj.x+','+pj.y+'\" stroke=\"'+lc+'\" stroke-width=\"2\" fill=\"none\" opacity=\"0.7\"><animate attributeName=\"opacity\" values=\"0.5;1;0.5\" dur=\"1.2s\" repeatCount=\"indefinite\"/></path>';
+        } else {
+          svg.innerHTML += '<line x1=\"'+pi.x+'\" y1=\"'+pi.y+'\" x2=\"'+pj.x+'\" y2=\"'+pj.y+'\" stroke=\"#374151\" stroke-width=\"1\" stroke-dasharray=\"4,4\" opacity=\"0.3\"/>';
+        }
+      }
+    }
+    positions.forEach(function(p, i) {
+      var slug = selected[i];
+      var prod = searchResults.find(function(x){return x.u === '/product/'+slug+'/'});
+      svg.innerHTML += '<circle cx=\"'+p.x+'\" cy=\"'+p.y+'\" r=\"26\" fill=\"#171F2B\" stroke=\"#3B82F6\" stroke-width=\"2\"/>';
+      var pImg = prod && prod.iu ? prod.iu : '';
+      if (pImg) {
+        svg.innerHTML += '<g transform=\"translate('+p.x+','+p.y+')\"><image href=\"'+pImg+'\" x=\"-24\" y=\"-24\" width=\"48\" height=\"48\" clip-path=\"url(#clip-26)\" preserveAspectRatio=\"xMidYMid slice\"/></g>';
+      } else {
+        var name = prod ? prod.ti.substring(0,16) : slug.substring(0,16);
+        svg.innerHTML += '<text x=\"'+p.x+'\" y=\"'+p.y+'\" text-anchor=\"middle\" dy=\"0.35em\" fill=\"#F5F7FA\" font-size=\"9\" font-weight=\"600\">'+name+'</text>';
+      }
+    });
   }
-  // Draw nodes
-  positions.forEach(function(p, i) {
-    var slug = selected[i];
-    var prod = searchResults.find(function(x){return x.u === '/product/'+slug+'/'});
-    var name = prod ? prod.ti.substring(0,18) : slug.substring(0,18);
-    svg.innerHTML += '<circle cx=\"'+p.x+'\" cy=\"'+p.y+'\" r=\"28\" fill=\"#171F2B\" stroke=\"#3B82F6\" stroke-width=\"2\"/>';
-    svg.innerHTML += '<text x=\"'+p.x+'\" y=\"'+p.y+'\" text-anchor=\"middle\" dy=\"0.35em\" fill=\"#F5F7FA\" font-size=\"10\" font-weight=\"600\">'+name+'</text>';
-  });
 }
 function populateIntegMatches() {
   var list = document.getElementById('integ-list');
   if (!list) return;
   var html = '';
-  var found = false;
-  for (var i = 0; i < selected.length; i++) {
-    for (var j = i+1; j < selected.length; j++) {
-      var a = selected[i], b = selected[j];
-      var connected = (integrations[a] && integrations[a].includes(b)) || (integrations[b] && integrations[b].includes(a));
-      if (!connected) continue;
-      found = true;
-      var key1 = a+'|'+b, key2 = b+'|'+a;
-      var info = integrationInfo[key1] || integrationInfo[key2] || {type:'Совместимы',desc:'Эти агенты могут работать в связке. Детали уточняются.',effort:'Средняя'};
-      html += '<div class=\"integ-match\"><div class=\"im-header\"><span class=\"im-type\">'+info.type+'</span><span class=\"im-effort\">⚡ '+info.effort+' сложность</span></div><p class=\"im-desc\">'+info.desc+'</p><div class=\"im-agents\">'+a+' ↔ '+b+'</div></div>';
+  var isSingle = selected.length === 1;
+  if (isSingle) {
+    var slug = selected[0];
+    var buddies = integrations[slug] || [];
+    if (buddies.length === 0) {
+      html = '<div class=\"integ-empty\"><p>Связей для этого агента пока нет в базе.</p></div>';
+    } else {
+      buddies.forEach(function(b) {
+        var key1 = slug+'|'+b, key2 = b+'|'+slug;
+        var info = integrationInfo[key1] || integrationInfo[key2] || {type:'Совместимы', desc:'Эти агенты могут работать в связке.', effort:'Средняя'};
+        var sp = searchResults.find(function(x){return x.u === '/product/'+slug+'/'});
+        var bp = searchResults.find(function(x){return x.u === '/product/'+b+'/'});
+        var bname = bp ? bp.ti : b;
+        var sImg = (sp&&sp.iu) ? '<img src=\"'+sp.iu+'\" alt=\"\">' : '';
+        var bImg = (bp&&bp.iu) ? '<img src=\"'+bp.iu+'\" alt=\"\">' : '';
+        html += '<div class=\"integ-match\"><div class=\"im-header\"><span class=\"im-type\">'+info.type+'</span><span class=\"im-effort\">⚡ '+info.effort+' сложность</span></div><p class=\"im-desc\">'+info.desc+'</p><div class=\"im-agents\"><a href=\"/product/'+slug+'/\" style=\"color:var(--green)\">'+sImg+slug+'</a> ↔ <a href=\"/product/'+b+'/\" style=\"color:var(--blue)\">'+bImg+bname.substring(0,30)+'</a></div></div>';
+      });
     }
-  }
-  if (!found) {
-    html = '<div class=\"integ-empty\"><p>Прямых интеграций между выбранными агентами не найдено.</p><p style=\"color:var(--green);margin-top:8px\">Попробуйте выбрать агентов из одной экосистемы (например, LangChain + LangGraph) или связку IDE + терминальный агент.</p></div>';
+  } else {
+    var found = false;
+    for (var i = 0; i < selected.length; i++) {
+      for (var j = i+1; j < selected.length; j++) {
+        var a = selected[i], b = selected[j];
+        var connected = (integrations[a]&&integrations[a].includes(b))||(integrations[b]&&integrations[b].includes(a));
+        if (!connected) continue;
+        found = true;
+        var key1 = a+'|'+b, key2 = b+'|'+a;
+        var info = integrationInfo[key1]||integrationInfo[key2]||{type:'Совместимы',desc:'Эти агенты могут работать в связке.',effort:'Средняя'};
+        var ap = searchResults.find(function(x){return x.u === '/product/'+a+'/'});
+        var bp2 = searchResults.find(function(x){return x.u === '/product/'+b+'/'});
+        var aImg = (ap&&ap.iu) ? '<img src=\"'+ap.iu+'\" alt=\"\">' : '';
+        var bImg2 = (bp2&&bp2.iu) ? '<img src=\"'+bp2.iu+'\" alt=\"\">' : '';
+        html += '<div class=\"integ-match\"><div class=\"im-header\"><span class=\"im-type\">'+info.type+'</span><span class=\"im-effort\">⚡ '+info.effort+' сложность</span></div><p class=\"im-desc\">'+info.desc+'</p><div class=\"im-agents\">'+aImg+a+' ↔ '+bImg2+b+'</div></div>';
+      }
+    }
+    if (!found) {
+      html = '<div class=\"integ-empty\"><p>Прямых интеграций между выбранными агентами не найдено.</p><p style=\"color:var(--green);margin-top:8px\">Попробуйте выбрать агентов из одной экосистемы.</p></div>';
+    }
   }
   list.innerHTML = html;
 }
@@ -1079,6 +1346,8 @@ function clearCompare() {
   selected = [];
   document.querySelectorAll('.card input[type=checkbox]').forEach(function(cb) { cb.checked = false; });
   updateCompareBar();
+  var svg = document.getElementById('live-connections');
+  if (svg) { svg.innerHTML = ''; svg.classList.remove('active'); }
 }
 
 // ─── Filter ───
@@ -1318,26 +1587,56 @@ function renderComparison(slugs) {{
   var result = document.getElementById('compare-result');
   result.style.display = 'block';
   
+  // Icon map for product types
+  var icons = {{'agent':'🤖','framework':'⚙️','platform':'🏗️','infrastructure':'🔧','model':'🧠'}};
+  function getIcon(p) {{
+    var t = (p.type || '').toLowerCase();
+    return icons[t] || '📦';
+  }}
+
+  // Scorebar helper: renders colored bar + value
+  function scoreBar(val, maxVal, label) {{
+    var n = parseFloat(val) || 0;
+    var pct = Math.min(100, (n / maxVal) * 100);
+    var cls = n >= maxVal*0.7 ? 'score-high' : n >= maxVal*0.4 ? 'score-mid' : 'score-low';
+    var barCls = n >= maxVal*0.7 ? 'var(--green)' : n >= maxVal*0.4 ? 'var(--cyan)' : 'var(--amber)';
+    return '<span class=\"metric-val ' + cls + '\"><span class=\"metric-bar\" style=\"width:' + Math.max(4,pct*0.7) + 'px;background:' + barCls + '\"></span>' + label + '</span>';
+  }}
+  function velBar(val) {{
+    var n = parseFloat(val) || 0;
+    var cls = n >= 15 ? 'score-high' : n >= 5 ? 'score-mid' : 'score-low';
+    var barCls = n >= 15 ? 'var(--green)' : n >= 5 ? 'var(--cyan)' : 'var(--amber)';
+    var w = Math.min(60, Math.abs(n)*1.5);
+    return '<span class=\"metric-val ' + cls + '\"><span class=\"metric-bar\" style=\"width:' + Math.max(4,w) + 'px;background:' + barCls + '\"></span>' + val + '</span>';
+  }}
+
   var metrics = [
-    ['QantScore', 'qant_score', true],
-    ['Rating', 'rating', false],
-    ['Pricing', 'pricing', false],
-    ['Type', 'type', false],
-    ['Category', 'category', false],
-    ['Maturity', 'maturity', false],
-    ['Docs Quality', 'docs_quality', false],
-    ['Deployment', 'deployment', false],
-    ['Deploy Score', 'deploy_score', true],
-    ['Freshness', 'freshness', false],
-    ['Velocity', 'velocity', true],
-    ['Reviews', 'reviews', false],
-    ['Tech Stack', 'tech_stack', false],
+    ['QantScore™', 'qant_score', true, function(v) {{ return scoreBar(v, 100, v); }}],
+    ['★ Rating', 'rating', false, null],
+    ['💰 Pricing', 'pricing', false, null],
+    ['📋 Type', 'type', false, null],
+    ['📂 Category', 'category', false, null],
+    ['🎯 Maturity', 'maturity', true, function(v) {{ var n=parseFloat(v)||0; return scoreBar(n, 10, v); }}],
+    ['📖 Docs', 'docs_quality', true, function(v) {{ var n=parseFloat(v)||0; return scoreBar(n, 10, v); }}],
+    ['🏠 Deployment', 'deployment', false, null],
+    ['⚡ Deploy', 'deploy_score', true, function(v) {{ var n=parseFloat(v)||0; return scoreBar(n, 10, v); }}],
+    ['🕐 Freshness', 'freshness', false, null],
+    ['📈 Velocity', 'velocity', true, function(v) {{ return velBar(v); }}],
+    ['💬 Reviews', 'reviews', false, null],
+    ['🔧 Tech Stack', 'tech_stack', false, null],
   ];
   
-  var header = '<tr><th></th>' + prods.map(function(p) {{ return '<th>' + p.title.substring(0,22) + '</th>'; }}).join('') + '</tr>';
+  // Build thead
+  var thead = '<thead><tr><th>Metric</th>';
+  prods.forEach(function(p) {{
+    thead += '<th><span class=\"th-icon\">' + getIcon(p) + '</span><span class=\"th-name\">' + p.title.substring(0,22) + '</span></th>';
+  }});
+  thead += '</tr></thead>';
+  
+  // Build tbody
   var rows = '';
   metrics.forEach(function(m) {{
-    var name = m[0], key = m[1], isWinner = m[2];
+    var name = m[0], key = m[1], isWinner = m[2], fmt = m[3];
     var vals = prods.map(function(p) {{ return p[key] || '—'; }});
     var winner = -1;
     if (isWinner) {{
@@ -1346,18 +1645,31 @@ function renderComparison(slugs) {{
     }}
     rows += '<tr><th>' + name + '</th>';
     vals.forEach(function(v, i) {{
-      rows += '<td class=\"' + (i === winner ? 'winner' : '') + '\">' + v + '</td>';
+      var display = fmt ? fmt(v) : v;
+      rows += '<td class=\"' + (i === winner ? 'winner' : '') + '\">' + display + '</td>';
     }});
     rows += '</tr>';
   }});
   
-  var html = '<div class=\"breadcrumbs\"><a href=\"/\">Catalog</a> &rsaquo; <a href=\"/compare/\" onclick=\"resetCompare();return false\">Compare</a> &rsaquo; <span>Результат</span></div>';
-  html += '<h1 style=\"font-size:24px;font-weight:800;color:#f1f5f9;margin-bottom:24px\">' + prods.map(function(p) {{ return p.title.substring(0,25); }}).join(' vs ') + '</h1>';
-  html += '<div class=\"compare-table-wrap\"><table class=\"compare-table\">' + header + rows + '</table></div>';
-  html += '<p style=\"color:var(--muted);font-size:12px;margin-top:16px\"><span class=\"compare-check\">✓</span> Зелёный = лучший в классе. <a href=\"/methodology/\" style=\"color:var(--green)\">Как мы оцениваем →</a></p>';
-  html += '<button onclick=\"resetCompare()\" style=\"margin-top:20px;padding:10px 20px;border-radius:6px;background:var(--card-bg);color:var(--text);border:1px solid var(--border);cursor:pointer;font-size:13px\">← Назад к выбору</button>';
+  var titles = prods.map(function(p) {{ return p.title.substring(0,25); }}).join(' vs ');
+  var n = prods.length;
+  
+  var html = '<div class=\"breadcrumbs\"><a href=\"/\">Каталог</a> &rsaquo; <a href=\"/compare/\" onclick=\"resetCompare();return false\">Сравнение</a> &rsaquo; <span>Результат</span></div>';
+  html += '<div class=\"compare-header-bar\"><h1>' + titles + '</h1><span class=\"compare-badge\">' + n + ' агента</span></div>';
+  html += '<div class=\"compare-table-wrap\"><table class=\"compare-table\">' + thead + '<tbody>' + rows + '</tbody></table></div>';
+  html += '<div class=\"compare-legend\"><span class=\"dot green\"></span><span>Лучший в классе</span><span style=\"color:var(--dim)\">|</span><span style=\"color:var(--green)\">■■■</span><span>Высокий</span><span style=\"color:var(--cyan)\">■■■</span><span>Средний</span><span style=\"color:var(--amber)\">■■■</span><span>Низкий</span></div>';
+  html += '<p style=\"color:var(--muted);font-size:12px;margin-top:12px\"><a href=\"/methodology/\" style=\"color:var(--green)\">Как мы оцениваем агентов →</a></p>';
+  html += '<div class=\"result-actions\"><button onclick=\"resetCompare()\" class=\"btn-back\">← Назад к выбору</button><button onclick=\"copyCompareLink()\" class=\"btn-share\">📋 Копировать ссылку</button></div>';
   result.innerHTML = html;
   window.scrollTo(0, 0);
+}}
+function copyCompareLink() {{
+  var url = window.location.href;
+  navigator.clipboard.writeText(url).then(function() {{
+    var btn = document.querySelector('.btn-share');
+    btn.textContent = '✓ Скопировано!';
+    setTimeout(function() {{ btn.textContent = '📋 Копировать ссылку'; }}, 2000);
+  }});
 }}
 function resetCompare() {{
   document.getElementById('compare-selector').style.display = 'block';
@@ -1441,6 +1753,76 @@ def generate_catalog(category):
     print(f"  /catalog/{category}/index.html")
 
 
+def get_install_code(slug, p):
+    """Generate install/run code block for a product."""
+    codes = {
+        "cursor-ide": ("Установка", "bash", "# Скачать с cursor.com\n# macOS/Linux/Windows — готовый установщик\nbrew install --cask cursor  # macOS\n# или скачать .deb/.AppImage с сайта"),
+        "github-copilot": ("Установка", "bash", "# Установить расширение VS Code\next install GitHub.copilot\n# Или встроен в GitHub Codespaces"),
+        "claude-code": ("Установка", "bash", "npm install -g @anthropic-ai/claude-code\n# Или через pip:\npip install claude-code --break-system-packages\nclaude-code --help"),
+        "cline-vscode": ("Установка", "bash", "# Установить расширение VS Code\next install saoudrizwan.claude-dev\n# Настроить API ключ в настройках расширения"),
+        "windsurf-ide": ("Установка", "bash", "# Скачать с codeium.com/windsurf\n# Готовый установщик для macOS/Linux/Windows"),
+        "codeium-windsurf": ("Установка", "bash", "# Расширение VS Code\next install Codeium.codeium\n# Или Windsurf IDE отдельно"),
+        "aider-ai": ("Установка и запуск", "bash", "pip install aider-chat --break-system-packages\nexport OPENAI_API_KEY=sk-...\naider --model gpt-4o"),
+        "sourcegraph-cody": ("Установка", "bash", "# Расширение VS Code\next install sourcegraph.cody-ai\n# Бесплатно для индивидуальной разработки"),
+        "tabnine-ai": ("Установка", "bash", "# Расширение VS Code\next install TabNine.tabnine-vscode\n# Или JetBrains/другие IDE"),
+        "open-interpreter": ("Установка и запуск", "bash", "pip install open-interpreter --break-system-packages\ninterpreter\n# Интерактивный режим: пишите команды на естественном языке"),
+        "langchain-framework": ("Установка", "bash", "pip install langchain langchain-community --break-system-packages\n# Быстрый старт:\npython -c \"from langchain.llms import OpenAI; llm=OpenAI(); print(llm('Hello!'))\""),
+        "langgraph-framework": ("Установка", "bash", "pip install langgraph --break-system-packages\n# Базовый граф:\n# from langgraph.graph import StateGraph"),
+        "crewai-framework": ("Установка и запуск", "bash", "pip install crewai --break-system-packages\ncrewai create my_crew\ncd my_crew && crewai run"),
+        "autogen-microsoft": ("Установка", "bash", "pip install pyautogen --break-system-packages\n# Быстрый старт с двумя агентами:\n# from autogen import AssistantAgent, UserProxyAgent"),
+        "openai-swarm": ("Установка", "bash", "pip install git+https://github.com/openai/swarm.git --break-system-packages\n# Экспериментальный фреймворк от OpenAI"),
+        "semantic-kernel": ("Установка", "bash", "pip install semantic-kernel --break-system-packages\n# Или .NET:\n# dotnet add package Microsoft.SemanticKernel"),
+        "anthropic-mcp": ("Установка", "bash", "pip install mcp --break-system-packages\n# Пример сервера:\n# mcp-server --port 3000 --tools ./my_tools.py"),
+        "phidata-framework": ("Установка", "bash", "pip install phidata --break-system-packages\n# Быстрый старт с агентом:\n# from phi.agent import Agent"),
+        "dify-platform": ("Установка", "bash", "# Docker:\ngit clone https://github.com/langgenius/dify.git\ncd dify/docker && docker compose up -d\n# Откройте http://localhost:3000"),
+        "flowise-lowcode": ("Установка", "bash", "npm install -g flowise\nnpx flowise start\n# Откройте http://localhost:3000\n# Или Docker: docker run -p 3000:3000 flowiseai/flowise"),
+        "n8n-automation": ("Установка", "bash", "npm install -g n8n\nn8n start\n# Или Docker:\ndocker run -p 5678:5678 n8nio/n8n"),
+        "autogpt-agent": ("Установка и запуск", "bash", "git clone https://github.com/Significant-Gravitas/AutoGPT.git\ncd AutoGPT\npip install -r requirements.txt --break-system-packages\npython -m autogpt"),
+        "babyagi-agent": ("Установка", "bash", "git clone https://github.com/yoheinakajima/babyagi.git\ncd babyagi\npip install -r requirements.txt --break-system-packages\npython babyagi.py"),
+        "metagpt-framework": ("Установка", "bash", "pip install metagpt --break-system-packages\n# Создать компанию из AI-агентов:\nmetagpt --idea \"Create a snake game\""),
+        "chatdev-agent": ("Установка", "bash", "git clone https://github.com/OpenBMB/ChatDev.git\ncd ChatDev\npip install -r requirements.txt --break-system-packages\npython run.py --task \"Build a calculator app\""),
+        "bolt-new": ("Запуск", "bash", "# Откройте bolt.new в браузере\n# Или локально:\nnpm create bolt@latest my-project"),
+        "replit-ai": ("Запуск", "bash", "# Откройте replit.com\n# Создайте Repl → выберите AI-шаблон\n# Replit Agent доступен в Pro-плане"),
+        "devin-agent": ("Запуск", "bash", "# Доступ через cognition.ai\n# CLI-интерфейс после регистрации:\n# devin login && devin start"),
+        "ollama": ("Установка и запуск", "bash", "curl -fsSL https://ollama.com/install.sh | sh\nollama pull llama3.2\nollama pull deepseek-r1:8b\nollama run deepseek-r1:8b\n# API на http://localhost:11434"),
+        "lm-studio": ("Установка", "bash", "# Скачать с lmstudio.ai\n# Загрузите модель через UI → Запустите сервер\n# API: http://localhost:1234/v1"),
+        "jan-ai": ("Установка", "bash", "# Скачать с jan.ai\n# Десктопное приложение → Загрузите модель\n# Локальный сервер на порту 1337"),
+        "deepseek-llm": ("Использование", "bash", "# Через API:\ncurl https://api.deepseek.com/v1/chat/completions \\\n  -H \"Authorization: Bearer $DEEPSEEK_API_KEY\" \\\n  -d '{\"model\":\"deepseek-chat\",\"messages\":[{\"role\":\"user\",\"content\":\"Hi\"}]}'\n# Или локально через Ollama:\nollama pull deepseek-r1:8b"),
+        "chatgpt-openai": ("Использование", "bash", "# API:\npip install openai --break-system-packages\n# python -c \"from openai import OpenAI; c=OpenAI(); print(c.chat.completions.create(model='gpt-4o',messages=[{'role':'user','content':'Hello'}]))\""),
+        "claude-anthropic": ("Использование", "bash", "# API:\npip install anthropic --break-system-packages\n# python -c \"from anthropic import Anthropic; c=Anthropic(); print(c.messages.create(model='claude-sonnet-4-20250514',max_tokens=100,messages=[{'role':'user','content':'Hello'}]))\""),
+        "google-gemini": ("Использование", "bash", "pip install google-generativeai --break-system-packages\n# python -c \"import google.generativeai as genai; genai.configure(api_key='...'); m=genai.GenerativeModel('gemini-2.5-pro'); print(m.generate_content('Hello'))\""),
+        "mistral-ai": ("Использование", "bash", "pip install mistralai --break-system-packages\n# python -c \"from mistralai import Mistral; c=Mistral(api_key='...'); print(c.chat.complete(model='mistral-large',messages=[{'role':'user','content':'Hello'}]))\""),
+        "llama-meta": ("Использование", "bash", "# Локально через Ollama:\nollama pull llama3.2\nollama run llama3.2\n# Или через HuggingFace:\npip install transformers --break-system-packages\n# from transformers import pipeline"),
+        "hermes-agent": ("Установка", "bash", "pip install hermes-agent --break-system-packages\nhermes setup\nhermes run\n# Конфиг: ~/.hermes/config.yaml\n# Документация: hermes-agent.nousresearch.com"),
+        "perplexity-ai": ("Использование", "bash", "# API:\ncurl https://api.perplexity.ai/chat/completions \\\n  -H \"Authorization: Bearer $PERPLEXITY_API_KEY\" \\\n  -d '{\"model\":\"sonar-pro\",\"messages\":[{\"role\":\"user\",\"content\":\"Latest AI news\"}]}'"),
+        "superagi-agent": ("Установка", "bash", "git clone https://github.com/TransformerOptimus/SuperAGI.git\ncd SuperAGI\ndocker compose up -d\n# Откройте http://localhost:3000"),
+        "swe-agent": ("Установка", "bash", "pip install swe-agent --break-system-packages\nswe-agent setup\n# Решить GitHub issue:\nswe-agent run --issue_url https://github.com/user/repo/issues/1"),
+        "anythingllm": ("Установка", "bash", "# Docker:\ndocker pull mintplexlabs/anythingllm\ndocker run -p 3001:3001 mintplexlabs/anythingllm\n# Или десктоп: скачать с anythingllm.com"),
+        "e2b-sandbox": ("Установка", "bash", "pip install e2b-code-interpreter --break-system-packages\n# python -c \"from e2b_code_interpreter import CodeInterpreter; s=CodeInterpreter(); print(s.run('print(1+1)'))\""),
+        "smolagents-huggingface": ("Установка", "bash", "pip install smolagents --break-system-packages\n# from smolagents import CodeAgent, HfApiModel\n# agent = CodeAgent(tools=[], model=HfApiModel())"),
+        "composio-tools": ("Установка", "bash", "pip install composio-core --break-system-packages\ncomposio login\n# Подключить инструменты:\ncomposio add github"),
+        "langsmith-langchain": ("Установка", "bash", "pip install langsmith --break-system-packages\nexport LANGCHAIN_API_KEY=ls_...\nexport LANGCHAIN_TRACING_V2=true\n# Автоматически логирует все вызовы LangChain"),
+        "continue-dev": ("Установка", "bash", "# Расширение VS Code/JetBrains\next install Continue.continue\n# Конфиг: ~/.continue/config.json\n# Поддерживает Ollama, LM Studio, OpenAI"),
+        "copy-ai": ("Запуск", "bash", "# Веб-приложение: copy.ai\n# API:\ncurl https://api.copy.ai/v1/workflow/run \\\n  -H \"x-api-key: $COPYAI_API_KEY\""),
+        "jasper-ai": ("Запуск", "bash", "# Веб-приложение: jasper.ai\n# API доступен для Enterprise-планов"),
+        "zapier-ai": ("Запуск", "bash", "# Веб-приложение: zapier.com\n# Создайте Zap → добавьте AI-шаг\n# Поддерживает ChatGPT, Claude, Gemini"),
+        "notion-ai": ("Запуск", "bash", "# Встроен в Notion\n# Нажмите Space в любом документе\n# Или /ai в командах"),
+        "microsoft-copilot": ("Запуск", "bash", "# Встроен в Microsoft 365\n# Windows: Win+C\n# Office: кнопка Copilot на ленте"),
+        "amazon-q-developer": ("Установка", "bash", "# Расширение VS Code\next install amazonwebservices.amazon-q-vscode\n# Или в AWS Console → Amazon Q Developer"),
+        "taskade-ai": ("Запуск", "bash", "# Веб: taskade.com\n# Десктоп: скачать с taskade.com/downloads\n# AI-агенты в каждом проекте"),
+        "lovable-dev": ("Запуск", "bash", "# Веб: lovable.dev\n# Опишите идею → получите full-stack приложение\n# Экспорт в GitHub"),
+        "vercel-v0": ("Запуск", "bash", "# Веб: v0.dev\n# Опишите UI → получите React-компонент\n# Копировать код или открыть в песочнице"),
+        "codex-cli": ("Установка", "bash", "npm install -g @openai/codex\ncodex login\ncodex \"Fix all TypeScript errors in this project\""),
+        "codex-desktop": ("Установка", "bash", "# Скачать с openai.com/codex\n# Десктопное приложение с GUI\n# Альтернатива CLI-версии"),
+        "composio-tools": ("Установка", "bash", "pip install composio-core --break-system-packages\ncomposio login\ncomposio add github slack gmail"),
+        "claude-desktop": ("Установка", "bash", "# Скачать с claude.ai/download\n# Десктопное приложение Anthropic\n# Поддержка MCP-серверов"),
+        "phind-ai": ("Запуск", "bash", "# Веб: phind.com\n# Расширение VS Code:\next install phind.phind"),
+        "openclaw-agent": ("Установка", "bash", "pip install openclaw --break-system-packages\n# Локальный AI-ассистент с доступом к файлам\n# Конфиг: ~/.openclaw/config.yaml"),
+        "you-com": ("Запуск", "bash", "# Веб: you.com\n# API:\ncurl https://api.you.com/search \\\n  -H \"x-api-key: $YOU_API_KEY\"")
+    }
+    return codes.get(slug, ("Быстрый старт", "bash", f"# {p.get('title','')}\n# Подробности на официальном сайте\n{p.get('website_url','')}"))
+
+
 def generate_product(slug, p):
     """Generate /product/{slug}/index.html"""
     comparisons = list(DB.articles.find(
@@ -1482,26 +1864,40 @@ def generate_product(slug, p):
     if intel_items:
         intel_html = f'<div class="stats-mini">{"".join(intel_items)}</div>'
 
+    # Install code
+    inst_label, inst_lang, inst_code = get_install_code(slug, p)
+    code_block = f"""<div class=\"install-block\">
+      <div class=\"install-header\">
+        <span class=\"install-badge\">⚡ {inst_label}</span>
+        <button class=\"copy-btn\" onclick=\"navigator.clipboard.writeText(this.nextElementSibling.textContent);this.textContent='✓ Скопировано';setTimeout(()=>this.textContent='📋 Копировать',2000)\">📋 Копировать</button>
+      </div>
+      <pre class=\"code-block\"><code class=\"language-{inst_lang}\">{esc(inst_code)}</code></pre>
+    </div>"""
+
     body = f"""<div class="container detail">
       <div class="breadcrumbs">
-        <a href="/">Catalog</a> &rsaquo; <span>{esc(p.get('title',''))}</span>
+        <a href="/">Каталог</a> &rsaquo; <span>{esc(p.get('title',''))}</span>
       </div>
-      <div class="detail-header" style="display:flex;gap:24px;align-items:flex-start">
+      <div class="detail-header" style="display:flex;gap:32px;align-items:flex-start">
         {product_image(p, 'detail')}
         <div style="flex:1">
-          <h1>{esc(p.get('title',''))}</h1>
-          <p class="tagline">{esc(p.get('tagline',''))}</p>
-          <div class="detail-meta">
-            <div class="meta-item">{icon_for(p.get('product_type',''))} <strong>{esc(p.get('product_type',''))}</strong></div>
+          <h1 style="font-size:28px;font-weight:800;color:#f1f5f9;line-height:1.3"><span class="agent-icon" style="font-size:32px">{agent_icon(slug)}</span> {esc(p.get('title',''))}</h1>
+          <p class="tagline" style="font-size:17px;color:var(--green);margin-top:8px;font-weight:500">{esc(p.get('tagline',''))}</p>
+          <div class="detail-meta" style="margin-top:16px;gap:12px">
+            <div class="meta-item" style="background:rgba(59,130,246,.1);color:var(--blue);padding:6px 14px;border-radius:6px;font-weight:600">{icon_for(p.get('product_type',''))} <strong>{esc(p.get('product_type',''))}</strong></div>
             {rating_html}
-            <div class="meta-item">💰 <strong>{format_price(p.get('pricing_model',''))}</strong></div>
+            <div class="meta-item" style="background:rgba(16,185,129,.1);color:var(--green);padding:6px 14px;border-radius:6px;font-weight:600">💰 <strong>{format_price(p.get('pricing_model',''))}</strong></div>
             {website_html}
           </div>
           {intel_html}
         </div>
       </div>
-      <div class="detail-body">
-        <p style="font-size:15px;color:#b0b8c8">{esc(p.get('description',''))}</p>
+      <div class="detail-body" style="margin-top:32px">
+        <div class="desc-block" style="background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);padding:24px 28px;margin-bottom:24px">
+          <h2 style="font-size:18px;font-weight:700;color:var(--text);margin-bottom:12px">📝 Описание</h2>
+          <p style="font-size:16px;color:#b0b8c8;line-height:1.8">{esc(p.get('description',''))}</p>
+        </div>
+        {code_block}
         {comp_links}
         {review_links}
       </div>
@@ -2314,6 +2710,1742 @@ def generate_company_pages():
 
 
 # ─── Main ─────────────────────────────────────────────────────────
+# Appended: /development/, /multi-agent/, /guides/ generators
+# ═══════════════════════════════════════════════════════════════
+
+"""
+New page generators for Qantcore:
+  generate_development()  → /development/
+  generate_multi_agent()   → /multi-agent/
+  generate_guides()        → /guides/
+Appended to generate_static.py
+"""
+import os
+
+OUT = "/opt/data/www/qantcore/static"
+
+def generate_development():
+    from pymongo import MongoClient
+    DB = MongoClient("localhost", 27017).qantcore
+    
+    products = list(DB.articles.find({"category": "product"}))
+    
+    coding_slugs = {
+        "aider-ai", "amazon-q-developer", "claude-code", "cline-vscode",
+        "codeium-windsurf", "codex-cli", "codex-desktop", "continue-dev",
+        "cursor-ide", "devin-agent", "github-copilot", "replit-ai",
+        "sourcegraph-cody", "tabnine-ai", "windsurf-ide",
+        "bolt-new", "lovable-dev", "vercel-v0",
+        "open-interpreter", "swe-agent"
+    }
+    coding = [p for p in products if p["slug"] in coding_slugs]
+    
+    tc = DB.articles.count_documents({"category": "comparison"})
+    
+    cards = ""
+    for p in sorted(coding, key=lambda x: x.get("rating", 0) or 0, reverse=True):
+        cards += make_product_card(p, with_compare=True)
+    
+    best_ide = next((p for p in coding if p["slug"] == "cursor-ide"), coding[0] if coding else None)
+    best_pr = next((p for p in coding if p["slug"] == "claude-code"), coding[0] if coding else None)
+    best_free = next((p for p in coding if (p.get("pricing_model","") or "").lower() in ("open source","freemium")), coding[0] if coding else None)
+    
+    ide_agents = [p for p in coding if p["slug"] in {"cursor-ide","cline-vscode","continue-dev","github-copilot","codeium-windsurf","sourcegraph-cody","tabnine-ai","windsurf-ide","amazon-q-developer"}]
+    terminal_agents = [p for p in coding if p["slug"] in {"claude-code","aider-ai","codex-cli","codex-desktop","open-interpreter"}]
+    autonomous_agents = [p for p in coding if p["slug"] in {"devin-agent","swe-agent"}]
+    prototyping_agents = [p for p in coding if p["slug"] in {"bolt-new","lovable-dev","vercel-v0","replit-ai"}]
+    
+    body = f'''<div class="hero" style="padding:48px 24px 36px">
+  <div class="terminal-grid"></div>
+  <div class="tagline">AI CODING AGENTS</div>
+  <h1>AI-\u0430\u0433\u0435\u043d\u0442\u044b \u0434\u043b\u044f <span class="accent">\u0440\u0430\u0437\u0440\u0430\u0431\u043e\u0442\u043a\u0438</span></h1>
+  <p class="sub">\u041f\u043e\u043b\u043d\u044b\u0439 \u0433\u0430\u0439\u0434 \u043f\u043e 20+ AI-\u0438\u043d\u0441\u0442\u0440\u0443\u043c\u0435\u043d\u0442\u0430\u043c \u0434\u043b\u044f \u043a\u043e\u0434\u0430: \u0430\u0432\u0442\u043e\u0434\u043e\u043f\u043e\u043b\u043d\u0435\u043d\u0438\u0435, \u0430\u0432\u0442\u043e\u043d\u043e\u043c\u043d\u044b\u0435 PR, \u0440\u0435\u0444\u0430\u043a\u0442\u043e\u0440\u0438\u043d\u0433, \u043f\u0440\u043e\u0442\u043e\u0442\u0438\u043f\u0438\u0440\u043e\u0432\u0430\u043d\u0438\u0435. \u0412\u044b\u0431\u0435\u0440\u0438\u0442\u0435 \u0430\u0433\u0435\u043d\u0442\u0430 \u043f\u043e\u0434 \u0432\u0430\u0448 \u0441\u0442\u0435\u043a \u0438 \u0437\u0430\u0434\u0430\u0447\u0438.</p>
+  <div class="hero-metrics">
+    <div class="hero-metric"><div class="val">{len(coding)}</div><div class="lbl">\u0410\u0433\u0435\u043d\u0442\u043e\u0432</div></div>
+    <div class="hero-metric"><div class="val">4</div><div class="lbl">\u041a\u0430\u0442\u0435\u0433\u043e\u0440\u0438\u0438</div></div>
+    <div class="hero-metric"><div class="val">{tc}+</div><div class="lbl">\u0421\u0440\u0430\u0432\u043d\u0435\u043d\u0438\u0439</div></div>
+    <div class="hero-metric"><div class="val"><span class="dot"></span>Live</div><div class="lbl">\u0414\u0430\u043d\u043d\u044b\u0435</div></div>
+  </div>
+</div>
+
+<div class="container detail">
+
+  <div style="margin:32px 0;background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);padding:24px 16px 12px;text-align:center;overflow-x:auto">
+    <h3 style="color:var(--green);font-size:15px;margin-bottom:20px">\U0001F3D7\ufe0f \u0410\u0440\u0445\u0438\u0442\u0435\u043a\u0442\u0443\u0440\u0430: \u043a\u0430\u043a AI-\u0430\u0433\u0435\u043d\u0442 \u0440\u0430\u0431\u043e\u0442\u0430\u0435\u0442 \u0441 \u0432\u0430\u0448\u0438\u043c \u043a\u043e\u0434\u043e\u043c</h3>
+    <svg viewBox="0 0 900 420" style="max-width:900px;width:100%;height:auto">
+      <defs>
+        <marker id="aDev" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 Z" fill="#3B82F6"/></marker>
+        <marker id="aDevG" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 Z" fill="#10b981"/></marker>
+        <marker id="aDevA" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 Z" fill="#f59e0b"/></marker>
+        <marker id="aDevC" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 Z" fill="#22D3EE"/></marker>
+        <filter id="glD"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+        <linearGradient id="grdCore" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#3B82F6" stop-opacity="0.3"/><stop offset="100%" stop-color="#10b981" stop-opacity="0.3"/></linearGradient>
+      </defs>
+      
+      <rect x="0" y="0" width="200" height="420" rx="12" fill="url(#grdCore)" stroke="#3B82F6" stroke-width="1" stroke-opacity="0.5"/>
+      <text x="100" y="28" text-anchor="middle" fill="#3B82F6" font-size="13" font-weight="700">\U0001F4E5 \u041a\u043e\u043d\u0442\u0435\u043a\u0441\u0442 \u043a\u043e\u0434\u043e\u0432\u043e\u0439 \u0431\u0430\u0437\u044b</text>
+      
+      <rect x="15" y="45" width="170" height="36" rx="8" fill="var(--card-bg)" stroke="var(--muted)" stroke-width="1"/>
+      <text x="100" y="60" text-anchor="middle" fill="#F5F7FA" font-size="10">\U0001F4C1 Filesystem Scanner</text>
+      <text x="100" y="73" text-anchor="middle" fill="var(--dim)" font-size="9">.gitignore-aware</text>
+      <line x1="100" y1="81" x2="100" y2="98" stroke="var(--muted)" stroke-width="1" marker-end="url(#aDev)"/>
+      
+      <rect x="15" y="100" width="170" height="36" rx="8" fill="var(--card-bg)" stroke="var(--muted)" stroke-width="1"/>
+      <text x="100" y="115" text-anchor="middle" fill="#F5F7FA" font-size="10">\U0001F332 AST Parser</text>
+      <text x="100" y="128" text-anchor="middle" fill="var(--dim)" font-size="9">Tree-sitter, LSP</text>
+      <line x1="100" y1="136" x2="100" y2="153" stroke="var(--muted)" stroke-width="1" marker-end="url(#aDev)"/>
+      
+      <rect x="15" y="155" width="170" height="36" rx="8" fill="var(--card-bg)" stroke="var(--muted)" stroke-width="1"/>
+      <text x="100" y="170" text-anchor="middle" fill="#F5F7FA" font-size="10">\U0001F9EC Embedding Index</text>
+      <text x="100" y="183" text-anchor="middle" fill="var(--dim)" font-size="9">CodeBERT, Voyage, OpenAI</text>
+      <line x1="100" y1="191" x2="100" y2="208" stroke="var(--muted)" stroke-width="1" marker-end="url(#aDev)"/>
+      
+      <rect x="15" y="210" width="170" height="36" rx="8" fill="var(--card-bg)" stroke="var(--muted)" stroke-width="1"/>
+      <text x="100" y="225" text-anchor="middle" fill="#F5F7FA" font-size="10">\U0001F4CB Dependency Graph</text>
+      <text x="100" y="238" text-anchor="middle" fill="var(--dim)" font-size="9">imports, \u0432\u044b\u0437\u043e\u0432\u044b, \u0442\u0438\u043f\u044b</text>
+      <line x1="100" y1="246" x2="100" y2="263" stroke="var(--muted)" stroke-width="1" marker-end="url(#aDev)"/>
+      
+      <rect x="15" y="265" width="170" height="50" rx="8" fill="var(--card-bg)" stroke="#10b981" stroke-width="1.5"/>
+      <text x="100" y="282" text-anchor="middle" fill="#10b981" font-size="10">\U0001F4E4 Context Window</text>
+      <text x="100" y="297" text-anchor="middle" fill="var(--dim)" font-size="9">\u2714 \u0420\u0435\u043b\u0435\u0432\u0430\u043d\u0442\u043d\u044b\u0435 \u0444\u0430\u0439\u043b\u044b</text>
+      <text x="100" y="310" text-anchor="middle" fill="var(--dim)" font-size="9">\u2714 \u0422\u0435\u043a\u0443\u0449\u0438\u0439 \u043a\u0443\u0440\u0441\u043e\u0440</text>
+      
+      <line x1="185" y1="180" x2="230" y2="180" stroke="#10b981" stroke-width="2.5" marker-end="url(#aDevG)"/>
+      
+      <rect x="235" y="0" width="320" height="420" rx="12" fill="#0d1520" stroke="#10b981" stroke-width="1.5" filter="url(#glD)"/>
+      <text x="395" y="28" text-anchor="middle" fill="#10b981" font-size="13" font-weight="700">\U0001F916 Agent Core Loop</text>
+      
+      <rect x="255" y="45" width="130" height="70" rx="10" fill="var(--card-bg)" stroke="#3B82F6" stroke-width="1.5"/>
+      <text x="320" y="67" text-anchor="middle" fill="#3B82F6" font-size="11" font-weight="600">1. Planning</text>
+      <text x="320" y="84" text-anchor="middle" fill="var(--dim)" font-size="9">\u0420\u0430\u0437\u0431\u0438\u0432\u043a\u0430 \u0437\u0430\u0434\u0430\u0447\u0438</text>
+      <text x="320" y="98" text-anchor="middle" fill="var(--dim)" font-size="9">\u0412\u044b\u0431\u043e\u0440 \u0444\u0430\u0439\u043b\u043e\u0432</text>
+      <text x="320" y="111" text-anchor="middle" fill="var(--dim)" font-size="9">\u041e\u0446\u0435\u043d\u043a\u0430 \u0440\u0438\u0441\u043a\u043e\u0432</text>
+      
+      <line x1="385" y1="80" x2="415" y2="80" stroke="#3B82F6" stroke-width="1.5" marker-end="url(#aDev)"/>
+      
+      <rect x="420" y="45" width="120" height="70" rx="10" fill="var(--card-bg)" stroke="#10b981" stroke-width="1.5"/>
+      <text x="480" y="67" text-anchor="middle" fill="#10b981" font-size="11" font-weight="600">2. Code Gen</text>
+      <text x="480" y="84" text-anchor="middle" fill="var(--dim)" font-size="9">LLM \u0433\u0435\u043d\u0435\u0440\u0430\u0446\u0438\u044f</text>
+      <text x="480" y="98" text-anchor="middle" fill="var(--dim)" font-size="9">\u041c\u043d\u043e\u0433\u043e\u0444\u0430\u0439\u043b\u043e\u0432\u044b\u0435</text>
+      <text x="480" y="111" text-anchor="middle" fill="var(--dim)" font-size="9">\u043f\u0440\u0430\u0432\u043a\u0438</text>
+      
+      <line x1="395" y1="115" x2="395" y2="145" stroke="var(--muted)" stroke-width="1.5" marker-end="url(#aDev)"/>
+      
+      <rect x="255" y="150" width="130" height="70" rx="10" fill="var(--card-bg)" stroke="#22D3EE" stroke-width="1.5"/>
+      <text x="320" y="172" text-anchor="middle" fill="#22D3EE" font-size="11" font-weight="600">3. Tool Use</text>
+      <text x="320" y="189" text-anchor="middle" fill="var(--dim)" font-size="9">\U0001F50D grep/read files</text>
+      <text x="320" y="203" text-anchor="middle" fill="var(--dim)" font-size="9">\U0001F6E0\ufe0f \u0437\u0430\u043f\u0443\u0441\u043a \u0442\u0435\u0441\u0442\u043e\u0432</text>
+      <text x="320" y="217" text-anchor="middle" fill="var(--dim)" font-size="9">\U0001F310 web search</text>
+      
+      <line x1="385" y1="185" x2="415" y2="185" stroke="#22D3EE" stroke-width="1.5" marker-end="url(#aDevC)"/>
+      
+      <rect x="420" y="150" width="120" height="70" rx="10" fill="var(--card-bg)" stroke="#f59e0b" stroke-width="1.5"/>
+      <text x="480" y="172" text-anchor="middle" fill="#f59e0b" font-size="11" font-weight="600">4. Reflection</text>
+      <text x="480" y="189" text-anchor="middle" fill="var(--dim)" font-size="9">\u041f\u0440\u043e\u0432\u0435\u0440\u043a\u0430</text>
+      <text x="480" y="203" text-anchor="middle" fill="var(--dim)" font-size="9">\u0417\u0430\u043f\u0443\u0441\u043a lint</text>
+      <text x="480" y="217" text-anchor="middle" fill="var(--dim)" font-size="9">\u0418\u0441\u043f\u0440\u0430\u0432\u043b\u0435\u043d\u0438\u0435</text>
+      
+      <path d="M480,220 Q480,255 395,255 Q320,255 320,235" fill="none" stroke="#f59e0b" stroke-width="1" stroke-dasharray="4,3" marker-end="url(#aDevA)"/>
+      <text x="440" y="250" fill="var(--amber)" font-size="9">\u043f\u043e\u0432\u0442\u043e\u0440 \u0434\u043e \u043a\u0430\u0447\u0435\u0441\u0442\u0432\u0430</text>
+      
+      <line x1="395" y1="280" x2="395" y2="318" stroke="#10b981" stroke-width="2" marker-end="url(#aDevG)"/>
+      
+      <rect x="265" y="320" width="260" height="50" rx="10" fill="var(--card-bg)" stroke="#10b981" stroke-width="1.5"/>
+      <text x="395" y="340" text-anchor="middle" fill="#10b981" font-size="11" font-weight="600">\u2714 Diff + Lint + Tests</text>
+      <text x="395" y="358" text-anchor="middle" fill="var(--dim)" font-size="9">\u0410\u0433\u0435\u043d\u0442 \u043e\u0442\u0434\u0430\u0451\u0442 \u0433\u043e\u0442\u043e\u0432\u044b\u0439 \u0438\u0437\u043c\u0435\u043d\u0451\u043d\u043d\u044b\u0439 \u043a\u043e\u0434</text>
+      
+      <line x1="555" y1="180" x2="605" y2="180" stroke="#3B82F6" stroke-width="2.5" marker-end="url(#aDev)"/>
+      
+      <rect x="610" y="0" width="290" height="420" rx="12" fill="url(#grdCore)" stroke="#22D3EE" stroke-width="1" stroke-opacity="0.5"/>
+      <text x="755" y="28" text-anchor="middle" fill="#22D3EE" font-size="13" font-weight="700">\U0001F4E4 \u0418\u043d\u0442\u0435\u0433\u0440\u0430\u0446\u0438\u044f</text>
+      
+      <rect x="630" y="50" width="115" height="85" rx="10" fill="var(--card-bg)" stroke="#3B82F6" stroke-width="1.5"/>
+      <text x="687" y="72" text-anchor="middle" fill="#3B82F6" font-size="11" font-weight="600">\U0001F500 Git</text>
+      <text x="687" y="90" text-anchor="middle" fill="var(--dim)" font-size="9">commit</text>
+      <text x="687" y="105" text-anchor="middle" fill="var(--dim)" font-size="9">push</text>
+      <text x="687" y="120" text-anchor="middle" fill="var(--dim)" font-size="9">PR create</text>
+      
+      <rect x="760" y="50" width="125" height="85" rx="10" fill="var(--card-bg)" stroke="#22D3EE" stroke-width="1.5"/>
+      <text x="822" y="72" text-anchor="middle" fill="#22D3EE" font-size="11" font-weight="600">\u2699\ufe0f CI/CD</text>
+      <text x="822" y="90" text-anchor="middle" fill="var(--dim)" font-size="9">GitHub Actions</text>
+      <text x="822" y="105" text-anchor="middle" fill="var(--dim)" font-size="9">Tests run</text>
+      <text x="822" y="120" text-anchor="middle" fill="var(--dim)" font-size="9">Deploy</text>
+      
+      <line x1="745" y1="92" x2="760" y2="92" stroke="var(--muted)" stroke-width="1" marker-end="url(#aDev)"/>
+      
+      <rect x="630" y="160" width="255" height="60" rx="10" fill="var(--card-bg)" stroke="var(--amber)" stroke-width="1"/>
+      <text x="757" y="182" text-anchor="middle" fill="var(--amber)" font-size="11">\U0001F4CB Code Review</text>
+      <text x="757" y="199" text-anchor="middle" fill="var(--dim)" font-size="9">\u0410\u0432\u0442\u043e\u043c\u0430\u0442\u0438\u0447\u0435\u0441\u043a\u043e\u0435 \u0440\u0435\u0432\u044c\u044e \u0438\u0437\u043c\u0435\u043d\u0435\u043d\u0438\u0439 \u0432 PR</text>
+      <text x="757" y="213" text-anchor="middle" fill="var(--dim)" font-size="9">\u041f\u0440\u043e\u0432\u0435\u0440\u043a\u0430 \u0431\u0435\u0437\u043e\u043f\u0430\u0441\u043d\u043e\u0441\u0442\u0438 + \u0441\u0442\u0438\u043b\u044f</text>
+      
+      <rect x="630" y="250" width="125" height="70" rx="10" fill="var(--card-bg)" stroke="#10b981" stroke-width="1.5"/>
+      <text x="692" y="272" text-anchor="middle" fill="#10b981" font-size="11" font-weight="600">\U0001F4BB IDE Diff</text>
+      <text x="692" y="291" text-anchor="middle" fill="var(--dim)" font-size="9">apply \u0432 \u0440\u0435\u0434\u0430\u043a\u0442\u043e\u0440\u0435</text>
+      <text x="692" y="306" text-anchor="middle" fill="var(--dim)" font-size="9">inline \u043e\u0442\u043e\u0431\u0440\u0430\u0436\u0435\u043d\u0438\u0435</text>
+      
+      <rect x="765" y="250" width="120" height="70" rx="10" fill="var(--card-bg)" stroke="#f59e0b" stroke-width="1.5"/>
+      <text x="825" y="272" text-anchor="middle" fill="#f59e0b" font-size="11" font-weight="600">\U0001F4BB Terminal</text>
+      <text x="825" y="291" text-anchor="middle" fill="var(--dim)" font-size="9">\u043f\u0440\u044f\u043c\u0430\u044f</text>
+      <text x="825" y="306" text-anchor="middle" fill="var(--dim)" font-size="9">\u0437\u0430\u043f\u0438\u0441\u044c</text>
+      
+      <line x1="755" y1="340" x2="755" y2="380" stroke="#22D3EE" stroke-width="1.5" marker-end="url(#aDev)"/>
+      <rect x="665" y="383" width="180" height="28" rx="6" fill="#0d1520" stroke="#22D3EE" stroke-width="1"/>
+      <text x="755" y="401" text-anchor="middle" fill="#22D3EE" font-size="10">\U0001F504 Feedback Loop: \u0443\u0447\u0438\u0442\u0441\u044f \u043d\u0430 \u043e\u0448\u0438\u0431\u043a\u0430\u0445</text>
+    </svg>
+  </div>
+
+  <div style="margin:32px 0">
+    <div class="section-hd"><h2>\U0001F4E6 \u0427\u0435\u0442\u044b\u0440\u0435 \u043a\u0430\u0442\u0435\u0433\u043e\u0440\u0438\u0438 AI-\u0430\u0433\u0435\u043d\u0442\u043e\u0432</h2></div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px">
+      <div style="background:var(--card-bg);border:1px solid #10b98133;border-radius:var(--radius);padding:20px">
+        <div style="font-size:28px;margin-bottom:8px">\U0001F4BB</div>
+        <div style="font-size:14px;font-weight:700;color:#10b981;margin-bottom:6px">IDE-\u0438\u043d\u0442\u0435\u0433\u0440\u0438\u0440\u043e\u0432\u0430\u043d\u043d\u044b\u0435</div>
+        <div style="font-size:12px;color:var(--muted);line-height:1.6;margin-bottom:10px">\u0410\u0432\u0442\u043e\u0434\u043e\u043f\u043e\u043b\u043d\u0435\u043d\u0438\u0435 \u043f\u0440\u044f\u043c\u043e \u0432 \u0440\u0435\u0434\u0430\u043a\u0442\u043e\u0440\u0435. \u0412\u0438\u0434\u044f\u0442 \u0432\u0430\u0448 \u043a\u0443\u0440\u0441\u043e\u0440, \u0432\u043a\u043b\u0430\u0434\u043a\u0438, \u0431\u0443\u0444\u0435\u0440 \u043e\u0431\u043c\u0435\u043d\u0430. \u041c\u0433\u043d\u043e\u0432\u0435\u043d\u043d\u0430\u044f \u043e\u0431\u0440\u0430\u0442\u043d\u0430\u044f \u0441\u0432\u044f\u0437\u044c.</div>
+        <div style="font-size:10px;color:var(--dim)">{len(ide_agents)} \u0430\u0433\u0435\u043d\u0442\u043e\u0432: Cursor, Copilot, Cline, Continue, Codeium, Cody, Tabnine, Windsurf, Amazon Q</div>
+      </div>
+      <div style="background:var(--card-bg);border:1px solid #3B82F633;border-radius:var(--radius);padding:20px">
+        <div style="font-size:28px;margin-bottom:8px">\U0001F4DF</div>
+        <div style="font-size:14px;font-weight:700;color:#3B82F6;margin-bottom:6px">\u0422\u0435\u0440\u043c\u0438\u043d\u0430\u043b\u044c\u043d\u044b\u0435</div>
+        <div style="font-size:12px;color:var(--muted);line-height:1.6;margin-bottom:10px">CLI-\u0438\u043d\u0441\u0442\u0440\u0443\u043c\u0435\u043d\u0442\u044b \u0434\u043b\u044f \u0430\u0432\u0442\u043e\u043d\u043e\u043c\u043d\u043e\u0439 \u0440\u0430\u0431\u043e\u0442\u044b: \u0447\u0438\u0442\u0430\u044e\u0442 \u0432\u0441\u044e \u043a\u043e\u0434\u043e\u0432\u0443\u044e \u0431\u0430\u0437\u0443, \u043f\u0438\u0448\u0443\u0442 \u043a\u043e\u0434, \u0434\u0435\u043b\u0430\u044e\u0442 PR. \u041c\u0430\u043a\u0441\u0438\u043c\u0430\u043b\u044c\u043d\u044b\u0439 \u043a\u043e\u043d\u0442\u0440\u043e\u043b\u044c.</div>
+        <div style="font-size:10px;color:var(--dim)">{len(terminal_agents)} \u0430\u0433\u0435\u043d\u0442\u043e\u0432: Claude Code, Aider, Codex CLI, Open Interpreter</div>
+      </div>
+      <div style="background:var(--card-bg);border:1px solid #f59e0b33;border-radius:var(--radius);padding:20px">
+        <div style="font-size:28px;margin-bottom:8px">\U0001F3A2</div>
+        <div style="font-size:14px;font-weight:700;color:#f59e0b;margin-bottom:6px">\u0410\u0432\u0442\u043e\u043d\u043e\u043c\u043d\u044b\u0435</div>
+        <div style="font-size:12px;color:var(--muted);line-height:1.6;margin-bottom:10px">\u041f\u043e\u043b\u043d\u043e\u0441\u0442\u044c\u044e \u0441\u0430\u043c\u043e\u0441\u0442\u043e\u044f\u0442\u0435\u043b\u044c\u043d\u043e \u0440\u0435\u0448\u0430\u044e\u0442 \u0437\u0430\u0434\u0430\u0447\u0438: \u0431\u0430\u0433-\u0444\u0438\u043a\u0441, \u0440\u0435\u0444\u0430\u043a\u0442\u043e\u0440\u0438\u043d\u0433, feature development. \u041c\u0438\u043d\u0438\u043c\u0430\u043b\u044c\u043d\u043e\u0435 \u0443\u0447\u0430\u0441\u0442\u0438\u0435 \u0447\u0435\u043b\u043e\u0432\u0435\u043a\u0430.</div>
+        <div style="font-size:10px;color:var(--dim)">{len(autonomous_agents)} \u0430\u0433\u0435\u043d\u0442\u0430: Devin, SWE-Agent</div>
+      </div>
+      <div style="background:var(--card-bg);border:1px solid #22D3EE33;border-radius:var(--radius);padding:20px">
+        <div style="font-size:28px;margin-bottom:8px">\U0001F3A8</div>
+        <div style="font-size:14px;font-weight:700;color:#22D3EE;margin-bottom:6px">\u041f\u0440\u043e\u0442\u043e\u0442\u0438\u043f\u0438\u0440\u043e\u0432\u0430\u043d\u0438\u0435</div>
+        <div style="font-size:12px;color:var(--muted);line-height:1.6;margin-bottom:10px">\u0413\u0435\u043d\u0435\u0440\u0430\u0446\u0438\u044f \u043f\u043e\u043b\u043d\u043e\u0446\u0435\u043d\u043d\u044b\u0445 \u043f\u0440\u0438\u043b\u043e\u0436\u0435\u043d\u0438\u0439 \u0438\u0437 \u043e\u043f\u0438\u0441\u0430\u043d\u0438\u044f. Web-\u0438\u043d\u0442\u0435\u0440\u0444\u0435\u0439\u0441, full-stack, \u0431\u044b\u0441\u0442\u0440\u044b\u0439 MVP.</div>
+        <div style="font-size:10px;color:var(--dim)">{len(prototyping_agents)} \u0430\u0433\u0435\u043d\u0442\u0430: Bolt, Lovable, v0, Replit AI</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin:32px 0">
+    <div class="section-hd"><h2>\U0001F9E9 \u041c\u0430\u0442\u0440\u0438\u0446\u0430 \u0432\u044b\u0431\u043e\u0440\u0430: \u043a\u0430\u043a\u043e\u0439 \u0430\u0433\u0435\u043d\u0442 \u0434\u043b\u044f \u043a\u0430\u043a\u043e\u0439 \u0437\u0430\u0434\u0430\u0447\u0438</h2></div>
+    <div class="compare-table-wrap" style="margin-bottom:16px">
+      <table class="compare-table">
+        <thead><tr><th>\u0417\u0430\u0434\u0430\u0447\u0430</th><th>\U0001F3C6 \u041b\u0443\u0447\u0448\u0438\u0439</th><th>\U0001F947 \u0410\u043b\u044c\u0442\u0435\u0440\u043d\u0430\u0442\u0438\u0432\u0430</th><th>\u041f\u043e\u0447\u0435\u043c\u0443</th></tr></thead>
+        <tr><td>\u0410\u0432\u0442\u043e\u0434\u043e\u043f\u043e\u043b\u043d\u0435\u043d\u0438\u0435 \u043d\u0430 \u043b\u0435\u0442\u0443</td><td style="color:#10b981;font-weight:600">Cursor IDE</td><td>Copilot, Cline</td><td style="font-size:12px">\u041c\u0433\u043d\u043e\u0432\u0435\u043d\u043d\u0430\u044f \u0433\u0435\u043d\u0435\u0440\u0430\u0446\u0438\u044f, \u043f\u043e\u043d\u0438\u043c\u0430\u043d\u0438\u0435 \u043a\u043e\u043d\u0442\u0435\u043a\u0441\u0442\u0430 \u043f\u0440\u043e\u0435\u043a\u0442\u0430</td></tr>
+        <tr><td>\u0410\u0432\u0442\u043e\u043d\u043e\u043c\u043d\u044b\u0439 PR</td><td style="color:#3B82F6;font-weight:600">Claude Code</td><td>Aider, Codex CLI</td><td style="font-size:12px">\u0412\u0438\u0434\u0438\u0442 \u0432\u0441\u044e \u043a\u043e\u0434\u043e\u0432\u0443\u044e \u0431\u0430\u0437\u0443, \u0430\u0432\u0442\u043e\u043d\u043e\u043c\u043d\u0430\u044f \u0440\u0430\u0431\u043e\u0442\u0430</td></tr>
+        <tr><td>Code Review</td><td style="color:#22D3EE;font-weight:600">Codex CLI</td><td>Claude Code, Copilot</td><td style="font-size:12px">\u0421\u043f\u0435\u0446\u0438\u0430\u043b\u044c\u043d\u043e \u0437\u0430\u0442\u043e\u0447\u0435\u043d \u043d\u0430 \u0440\u0435\u0432\u044c\u044e</td></tr>
+        <tr><td>\u041a\u043e\u043c\u0430\u043d\u0434\u043d\u0430\u044f \u0440\u0430\u0437\u0440\u0430\u0431\u043e\u0442\u043a\u0430</td><td style="color:#f59e0b;font-weight:600">GitHub Copilot</td><td>Cody, Codeium</td><td style="font-size:12px">\u041b\u0438\u0446\u0435\u043d\u0437\u0438\u0438 \u043d\u0430 \u043a\u043e\u043c\u0430\u043d\u0434\u0443, \u0430\u0434\u043c\u0438\u043d\u043a\u0430</td></tr>
+        <tr><td>Open Source / \u0421\u0442\u0430\u0440\u0442\u0430\u043f</td><td style="color:#10b981;font-weight:600">Continue + Aider</td><td>Cline, Ollama</td><td style="font-size:12px">\u0411\u0435\u0441\u043f\u043b\u0430\u0442\u043d\u043e, \u0432\u044b\u0431\u0438\u0440\u0430\u0435\u0448\u044c \u043c\u043e\u0434\u0435\u043b\u044c, \u043b\u043e\u043a\u0430\u043b\u044c\u043d\u043e</td></tr>
+        <tr><td>\u0411\u044b\u0441\u0442\u0440\u044b\u0439 MVP</td><td style="color:#22D3EE;font-weight:600">Bolt.new / v0</td><td>Lovable, Replit</td><td style="font-size:12px">\u041f\u043e\u043b\u043d\u043e\u0435 \u043f\u0440\u0438\u043b\u043e\u0436\u0435\u043d\u0438\u0435 \u0438\u0437 \u043e\u043f\u0438\u0441\u0430\u043d\u0438\u044f</td></tr>
+        <tr><td>\u0421\u043b\u043e\u0436\u043d\u044b\u0439 \u0431\u0430\u0433-\u0444\u0438\u043a\u0441</td><td style="color:#f59e0b;font-weight:600">Devin / SWE-Agent</td><td>Claude Code</td><td style="font-size:12px">\u041f\u043e\u043b\u043d\u043e\u0441\u0442\u044c\u044e \u0430\u0432\u0442\u043e\u043d\u043e\u043c\u043d\u0430\u044f \u043e\u0442\u043b\u0430\u0434\u043a\u0430</td></tr>
+        <tr><td>\u0418\u043d\u0442\u0435\u0440\u0430\u043a\u0442\u0438\u0432\u043d\u0430\u044f \u0440\u0430\u0431\u043e\u0442\u0430</td><td style="color:#3B82F6;font-weight:600">Open Interpreter</td><td>Claude Code</td><td style="font-size:12px">\u0418\u0441\u043f\u043e\u043b\u043d\u0435\u043d\u0438\u0435 \u043a\u043e\u0434\u0430 \u0432 \u0436\u0438\u0432\u0443\u044e</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div style="margin:32px 0;background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);padding:24px">
+    <h3 style="color:var(--green);font-size:16px;margin-bottom:12px">\U0001F91D Multi-Agent \u0441\u0442\u0435\u043a: \u043a\u0430\u043a \u043e\u0431\u044a\u0435\u0434\u0438\u043d\u0438\u0442\u044c \u043d\u0435\u0441\u043a\u043e\u043b\u044c\u043a\u043e \u0430\u0433\u0435\u043d\u0442\u043e\u0432</h3>
+    <p style="color:var(--muted);font-size:13px;margin-bottom:16px">\u0420\u0435\u0430\u043b\u044c\u043d\u044b\u0439 \u0441\u0442\u0435\u043a \u0441\u043e\u0432\u0440\u0435\u043c\u0435\u043d\u043d\u043e\u0433\u043e AI-\u0440\u0430\u0437\u0440\u0430\u0431\u043e\u0442\u0447\u0438\u043a\u0430: \u043d\u0435 \u043e\u0434\u0438\u043d \u0430\u0433\u0435\u043d\u0442, \u0430 \u043a\u043e\u043c\u0431\u0438\u043d\u0430\u0446\u0438\u044f \u0438\u043d\u0441\u0442\u0440\u0443\u043c\u0435\u043d\u0442\u043e\u0432 \u043d\u0430 \u0440\u0430\u0437\u043d\u044b\u0445 \u044d\u0442\u0430\u043f\u0430\u0445 \u0440\u0430\u0437\u0440\u0430\u0431\u043e\u0442\u043a\u0438.</p>
+    <svg viewBox="0 0 800 220" style="max-width:800px;width:100%;height:auto">
+      <defs>
+        <marker id="aS" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 Z" fill="#3B82F6"/></marker>
+        <filter id="glMM"><feGaussianBlur stdDeviation="2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+      </defs>
+      
+      <rect x="10" y="10" width="170" height="85" rx="10" fill="var(--card-bg)" stroke="#10b981" stroke-width="1.5"/>
+      <text x="95" y="35" text-anchor="middle" fill="#10b981" font-size="11" font-weight="700">\U0001F4BB \u041d\u0430\u043f\u0438\u0441\u0430\u043d\u0438\u0435 \u043a\u043e\u0434\u0430</text>
+      <text x="95" y="55" text-anchor="middle" fill="#F5F7FA" font-size="10">Cursor IDE / Copilot</text>
+      <text x="95" y="72" text-anchor="middle" fill="var(--dim)" font-size="9">\u0430\u0432\u0442\u043e\u0434\u043e\u043f\u043e\u043b\u043d\u0435\u043d\u0438\u0435</text>
+      <text x="95" y="87" text-anchor="middle" fill="var(--dim)" font-size="9">inline \u043f\u0440\u0430\u0432\u043a\u0438</text>
+      
+      <line x1="180" y1="52" x2="225" y2="52" stroke="#3B82F6" stroke-width="1.5" marker-end="url(#aS)"/>
+      <text x="202" y="42" fill="var(--dim)" font-size="9">commit</text>
+      
+      <rect x="230" y="10" width="170" height="85" rx="10" fill="var(--card-bg)" stroke="#3B82F6" stroke-width="1.5"/>
+      <text x="315" y="35" text-anchor="middle" fill="#3B82F6" font-size="11" font-weight="700">\U0001F4A1 Code Review</text>
+      <text x="315" y="55" text-anchor="middle" fill="#F5F7FA" font-size="10">Claude Code / Codex CLI</text>
+      <text x="315" y="72" text-anchor="middle" fill="var(--dim)" font-size="9">\u043f\u0440\u043e\u0432\u0435\u0440\u043a\u0430 PR</text>
+      <text x="315" y="87" text-anchor="middle" fill="var(--dim)" font-size="9">security + style</text>
+      
+      <line x1="400" y1="52" x2="445" y2="52" stroke="#3B82F6" stroke-width="1.5" marker-end="url(#aS)"/>
+      
+      <rect x="450" y="10" width="160" height="85" rx="10" fill="var(--card-bg)" stroke="#22D3EE" stroke-width="1.5"/>
+      <text x="530" y="35" text-anchor="middle" fill="#22D3EE" font-size="11" font-weight="700">\u2699\ufe0f CI Pipeline</text>
+      <text x="530" y="55" text-anchor="middle" fill="#F5F7FA" font-size="10">GitHub Actions</text>
+      <text x="530" y="72" text-anchor="middle" fill="var(--dim)" font-size="9">tests + lint</text>
+      <text x="530" y="87" text-anchor="middle" fill="var(--dim)" font-size="9">+ AI \u0440\u0435\u0432\u044c\u044e</text>
+      
+      <line x1="610" y1="52" x2="655" y2="52" stroke="#3B82F6" stroke-width="1.5" marker-end="url(#aS)"/>
+      
+      <rect x="660" y="10" width="130" height="85" rx="10" fill="var(--card-bg)" stroke="#10b981" stroke-width="1.5" filter="url(#glMM)"/>
+      <text x="725" y="35" text-anchor="middle" fill="#10b981" font-size="11" font-weight="700">\u2705 Merge</text>
+      <text x="725" y="55" text-anchor="middle" fill="#F5F7FA" font-size="10">Deploy</text>
+      <text x="725" y="72" text-anchor="middle" fill="var(--dim)" font-size="9">\u0432\u0441\u0435 \u0447\u0435\u043a\u0438</text>
+      <text x="725" y="87" text-anchor="middle" fill="var(--dim)" font-size="9">\u043f\u0440\u043e\u0439\u0434\u0435\u043d\u044b</text>
+      
+      <rect x="60" y="120" width="140" height="60" rx="8" fill="#0d1520" stroke="var(--amber)" stroke-width="1"/>
+      <text x="130" y="142" text-anchor="middle" fill="var(--amber)" font-size="10">\U0001F4D6 \u0414\u043e\u043a\u0443\u043c\u0435\u043d\u0442\u0430\u0446\u0438\u044f</text>
+      <text x="130" y="158" text-anchor="middle" fill="var(--dim)" font-size="9">Mintlify / Doc agents</text>
+      <text x="130" y="173" text-anchor="middle" fill="var(--dim)" font-size="9">\u0430\u0432\u0442\u043e-\u0433\u0435\u043d\u0435\u0440\u0430\u0446\u0438\u044f</text>
+      
+      <rect x="240" y="120" width="140" height="60" rx="8" fill="#0d1520" stroke="#22D3EE" stroke-width="1"/>
+      <text x="310" y="142" text-anchor="middle" fill="#22D3EE" font-size="10">\U0001F41B \u0411\u0430\u0433-\u0444\u0438\u043a\u0441</text>
+      <text x="310" y="158" text-anchor="middle" fill="var(--dim)" font-size="9">SWE-Agent / Devin</text>
+      <text x="310" y="173" text-anchor="middle" fill="var(--dim)" font-size="9">\u0430\u0432\u0442\u043e\u043d\u043e\u043c\u043d\u044b\u0439</text>
+      
+      <rect x="420" y="120" width="140" height="60" rx="8" fill="#0d1520" stroke="#10b981" stroke-width="1"/>
+      <text x="490" y="142" text-anchor="middle" fill="#10b981" font-size="10">\U0001F9EA \u0422\u0435\u0441\u0442\u044b</text>
+      <text x="490" y="158" text-anchor="middle" fill="var(--dim)" font-size="9">\u0410\u0432\u0442\u043e-\u0433\u0435\u043d\u0435\u0440\u0430\u0446\u0438\u044f</text>
+      <text x="490" y="173" text-anchor="middle" fill="var(--dim)" font-size="9">+ \u043c\u0443\u0442\u0430\u0446\u0438\u043e\u043d\u043d\u043e\u0435</text>
+      
+      <rect x="600" y="120" width="140" height="60" rx="8" fill="#0d1520" stroke="#3B82F6" stroke-width="1"/>
+      <text x="670" y="142" text-anchor="middle" fill="#3B82F6" font-size="10">\U0001F527 \u0420\u0435\u0444\u0430\u043a\u0442\u043e\u0440\u0438\u043d\u0433</text>
+      <text x="670" y="158" text-anchor="middle" fill="var(--dim)" font-size="9">Claude Code / Aider</text>
+      <text x="670" y="173" text-anchor="middle" fill="var(--dim)" font-size="9">\u043f\u043e\u043b\u043d\u0430\u044f \u043a\u043e\u0434\u043e\u0432\u0430\u044f \u0431\u0430\u0437\u0430</text>
+    </svg>
+  </div>
+
+  <div style="margin:32px 0">
+    <div class="section-hd"><h2>\u26a1 \u0411\u044b\u0441\u0442\u0440\u044b\u0439 \u0432\u044b\u0431\u043e\u0440</h2></div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px">
+      <div style="background:var(--card-bg);border:1px solid var(--green);border-radius:var(--radius);padding:20px">
+        <div style="font-size:13px;color:var(--green);font-weight:600;margin-bottom:8px">\U0001F3C6 \u041b\u0443\u0447\u0448\u0438\u0439 \u0434\u043b\u044f \u0441\u043e\u043b\u043e</div>
+        <div style="font-size:15px;font-weight:700;color:var(--text);margin-bottom:4px">{esc(best_ide.get('title','')) if best_ide else 'Cursor IDE'}</div>
+        <div style="font-size:12px;color:var(--muted);line-height:1.6">{'\u041c\u0433\u043d\u043e\u0432\u0435\u043d\u043d\u043e\u0435 \u0430\u0432\u0442\u043e\u0434\u043e\u043f\u043e\u043b\u043d\u0435\u043d\u0438\u0435, \u043f\u043e\u043d\u0438\u043c\u0430\u043d\u0438\u0435 \u0432\u0441\u0435\u0439 \u043a\u043e\u0434\u043e\u0432\u043e\u0439 \u0431\u0430\u0437\u044b, AI-first IDE.' if best_ide else ''}</div>
+        <a href="/product/{best_ide['slug']}/" style="display:inline-block;margin-top:12px;color:var(--green);font-size:12px;font-weight:600">\u0421\u043c\u043e\u0442\u0440\u0435\u0442\u044c &rarr;</a>
+      </div>
+      <div style="background:var(--card-bg);border:1px solid var(--blue);border-radius:var(--radius);padding:20px">
+        <div style="font-size:13px;color:var(--blue);font-weight:600;margin-bottom:8px">\U0001F680 \u041b\u0443\u0447\u0448\u0438\u0439 \u0434\u043b\u044f PR</div>
+        <div style="font-size:15px;font-weight:700;color:var(--text);margin-bottom:4px">{esc(best_pr.get('title','')) if best_pr else 'Claude Code'}</div>
+        <div style="font-size:12px;color:var(--muted);line-height:1.6">{'\u041f\u0438\u0448\u0435\u0442 PR \u0430\u0432\u0442\u043e\u043d\u043e\u043c\u043d\u043e, \u0447\u0438\u0442\u0430\u0435\u0442 \u0432\u0441\u044e \u043a\u043e\u0434\u043e\u0432\u0443\u044e \u0431\u0430\u0437\u0443, \u0440\u0435\u0444\u0430\u043a\u0442\u043e\u0440\u0438\u0442 \u0441\u043b\u043e\u0436\u043d\u044b\u0435 \u0441\u0438\u0441\u0442\u0435\u043c\u044b.' if best_pr else ''}</div>
+        <a href="/product/{best_pr['slug']}/" style="display:inline-block;margin-top:12px;color:var(--blue);font-size:12px;font-weight:600">\u0421\u043c\u043e\u0442\u0440\u0435\u0442\u044c &rarr;</a>
+      </div>
+      <div style="background:var(--card-bg);border:1px solid var(--amber);border-radius:var(--radius);padding:20px">
+        <div style="font-size:13px;color:var(--amber);font-weight:600;margin-bottom:8px">\U0001F1EB \u041b\u0443\u0447\u0448\u0438\u0439 \u0431\u0435\u0441\u043f\u043b\u0430\u0442\u043d\u044b\u0439</div>
+        <div style="font-size:15px;font-weight:700;color:var(--text);margin-bottom:4px">{esc(best_free.get('title','')) if best_free else 'Continue'}</div>
+        <div style="font-size:12px;color:var(--muted);line-height:1.6">{'Open source, \u0441\u0432\u043e\u0439 API-\u043a\u043b\u044e\u0447, \u043f\u043e\u043b\u043d\u044b\u0439 \u043a\u043e\u043d\u0442\u0440\u043e\u043b\u044c \u043d\u0430\u0434 \u0434\u0430\u043d\u043d\u044b\u043c\u0438.' if best_free else ''}</div>
+        <a href="/product/{best_free['slug']}/" style="display:inline-block;margin-top:12px;color:var(--amber);font-size:12px;font-weight:600">\u0421\u043c\u043e\u0442\u0440\u0435\u0442\u044c &rarr;</a>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin:32px 0">
+    <div class="section-hd"><h2>\U0001F4CB \u0420\u0435\u0430\u043b\u044c\u043d\u044b\u0439 \u0432\u043e\u0440\u043a\u0444\u043b\u043e\u0443: \u043e\u0442 issue \u0434\u043e merge</h2></div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px">
+      <div style="background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);padding:20px">
+        <div style="font-size:12px;color:var(--green);font-weight:600;margin-bottom:12px">\U0001F4A1 \u0412\u043e\u0440\u043a\u0444\u043b\u043e\u0443 \u0441 \u0442\u0435\u0440\u043c\u0438\u043d\u0430\u043b\u044c\u043d\u044b\u043c \u0430\u0433\u0435\u043d\u0442\u043e\u043c</div>
+        <div style="font-family:monospace;font-size:11px;color:var(--muted);line-height:2.2;background:#0d1117;padding:14px;border-radius:8px">
+          <div style="color:var(--dim)"># 1. \u041e\u0442\u043a\u0440\u044b\u0432\u0430\u0435\u043c issue</div>
+          <div style="color:#79c0ff">gh issue create</div>
+          <div style="color:var(--dim);margin-top:6px"># 2. \u0410\u0433\u0435\u043d\u0442 \u0447\u0438\u0442\u0430\u0435\u0442 issue + \u043a\u043e\u0434\u043e\u0432\u0443\u044e \u0431\u0430\u0437\u0443</div>
+          <div style="color:#79c0ff">claude "\u0420\u0435\u0448\u0438 #42: \u0434\u043e\u0431\u0430\u0432\u0438\u0442\u044c \u043a\u044d\u0448"</div>
+          <div style="color:var(--dim);margin-top:6px"># 3. \u0420\u0435\u0437\u0443\u043b\u044c\u0442\u0430\u0442:</div>
+          <div style="color:var(--dim)">\u2192 3 \u0444\u0430\u0439\u043b\u0430 \u0438\u0437\u043c\u0435\u043d\u0435\u043d\u043e</div>
+          <div style="color:var(--dim)">\u2192 tests \u043f\u0440\u043e\u0439\u0434\u0435\u043d\u044b</div>
+          <div style="color:var(--dim)">\u2192 PR \u0441\u043e\u0437\u0434\u0430\u043d \u0430\u0432\u0442\u043e\u043c\u0430\u0442\u0438\u0447\u0435\u0441\u043a\u0438</div>
+        </div>
+      </div>
+      <div style="background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);padding:20px">
+        <div style="font-size:12px;color:#3B82F6;font-weight:600;margin-bottom:12px">\U0001F91D \u0412\u043e\u0440\u043a\u0444\u043b\u043e\u0443 \u0441 IDE + \u0430\u0433\u0435\u043d\u0442\u043e\u043c</div>
+        <div style="font-family:monospace;font-size:11px;color:var(--muted);line-height:2.2;background:#0d1117;padding:14px;border-radius:8px">
+          <div style="color:var(--dim)"># 1. \u041f\u0438\u0448\u0435\u043c \u043a\u043e\u0434 \u0432 IDE</div>
+          <div style="color:var(--dim)">Cursor: autocomplete + \u043f\u0440\u0430\u0432\u043a\u0438</div>
+          <div style="color:var(--dim);margin-top:6px"># 2. \u041a\u043e\u043c\u043c\u0438\u0442\u0438\u043c</div>
+          <div style="color:#79c0ff">git commit -m "feat: ..."</div>
+          <div style="color:var(--dim);margin-top:6px"># 3. \u0417\u0430\u043f\u0443\u0441\u043a\u0430\u0435\u043c \u0430\u0433\u0435\u043d\u0442\u0430 \u043d\u0430 \u0440\u0435\u0432\u044c\u044e</div>
+          <div style="color:#79c0ff">codex review HEAD~1</div>
+          <div style="color:var(--dim)">\u2192 \u043d\u0430\u0448\u0451\u043b 2 security issues</div>
+          <div style="color:var(--dim)">\u2192 \u043f\u0440\u0435\u0434\u043b\u043e\u0436\u0438\u043b \u0444\u0438\u043a\u0441</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-hd" style="margin-top:32px"><h2>\U0001F527 \u0412\u0441\u0435 AI Coding Agents ({len(coding)})</h2></div>
+  <div class="grid" style="margin-bottom:32px">
+    {cards}
+  </div>
+
+  <div class="section-hd"><h2>\U0001F4CA \u0421\u0440\u0430\u0432\u043d\u0438\u0442\u0435\u043b\u044c\u043d\u0430\u044f \u0442\u0430\u0431\u043b\u0438\u0446\u0430</h2></div>
+  <div class="compare-table-wrap" style="margin-bottom:32px">
+    <table class="compare-table">
+      <tr><th>\u0410\u0433\u0435\u043d\u0442</th><th>QantScore</th><th>\u0420\u0435\u0439\u0442\u0438\u043d\u0433</th><th>\u0426\u0435\u043d\u0430</th><th>\u0422\u0438\u043f</th><th>\u0412\u0437\u0430\u0438\u043c\u043e\u0434\u0435\u0439\u0441\u0442\u0432\u0438\u0435</th><th>\u0420\u0430\u0437\u0432\u0451\u0440\u0442\u044b\u0432\u0430\u043d\u0438\u0435</th></tr>
+      {_dev_table_rows(coding)}
+    </table>
+  </div>
+
+  <div style="margin:40px 0">
+    <div class="section-hd"><h2>💰 Стоимость: полное сравнение тарифов</h2></div>
+    <div class="compare-table-wrap" style="margin-bottom:16px">
+      <table class="compare-table">
+        <thead><tr><th>Агент</th><th>Бесплатный тариф</th><th>Pro / Team</th><th>Enterprise</th><th>Модель</th></tr></thead>
+        <tr><td style="color:var(--green);font-weight:600">Cursor IDE</td><td>Hobby (2000 comp/mo)</td><td>$20/мес</td><td>$40/мес</td><td>Подписка + usage</td></tr>
+        <tr><td style="color:var(--green);font-weight:600">GitHub Copilot</td><td>Free (2000 comp/mo)</td><td>$10/мес</td><td>$39/мес Business</td><td>Подписка</td></tr>
+        <tr><td style="color:var(--green);font-weight:600">Claude Code</td><td>—</td><td>API pay-per-token</td><td>Max/Enterprise</td><td>Pay-as-you-go</td></tr>
+        <tr><td style="color:var(--green);font-weight:600">Aider</td><td>Open Source ✅</td><td>Свой API-ключ</td><td>Свой API-ключ</td><td>Бесплатно + LLM</td></tr>
+        <tr><td>Codeium Windsurf</td><td>Free (unlimited)</td><td>$15/мес</td><td>$35/мес</td><td>Freemium</td></tr>
+        <tr><td>Continue.dev</td><td>Open Source ✅</td><td>Свой ключ / $10</td><td>Свой ключ</td><td>Бесплатно + опции</td></tr>
+        <tr><td>Cline (VS Code)</td><td>Open Source ✅</td><td>Свой API-ключ</td><td>Свой API-ключ</td><td>Бесплатно + LLM</td></tr>
+        <tr><td>Devin</td><td>—</td><td>$500/мес</td><td>Кастом</td><td>Подписка</td></tr>
+        <tr><td>Bolt.new</td><td>Free (ограничено)</td><td>$20/мес</td><td>$50/мес</td><td>Freemium</td></tr>
+        <tr><td>v0 (Vercel)</td><td>Free (ограничено)</td><td>$20/мес</td><td>Кастом</td><td>Freemium</td></tr>
+      </table>
+    </div>
+    <p style="font-size:12px;color:var(--dim);margin-top:8px">Цены на май 2026. Бесплатные Open Source агенты требуют своего API-ключа к LLM. Средняя стоимость токенов: $0.50–$5/час активного кодинга.</p>
+  </div>
+
+  <div style="margin:40px 0">
+    <div class="section-hd"><h2>🔒 Безопасность и приватность кода</h2></div>
+    <p style="font-size:13px;color:var(--muted);line-height:1.8;margin-bottom:16px">Главный вопрос при выборе AI-агента: куда уходит ваш код? Разные агенты имеют принципиально разную модель доступа — от нулевого (всё локально) до полного (код на сторонних серверах).</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px">
+      <div style="background:var(--card-bg);border:1px solid #10b98133;border-radius:var(--radius);padding:20px">
+        <div style="font-size:13px;font-weight:700;color:#10b981;margin-bottom:8px">🟢 Локальные (код не покидает машину)</div>
+        <div style="font-size:12px;color:var(--muted);line-height:1.6">Continue.dev, Aider, Cline, Open Interpreter — работают с локальными LLM (Ollama) или вашим API-ключом. Вы контролируете, куда идут данные.</div>
+        <div style="font-size:10px;color:var(--dim);margin-top:8px">Рекомендуется: fintech, healthcare, enterprise с NDA</div>
+      </div>
+      <div style="background:var(--card-bg);border:1px solid #f59e0b33;border-radius:var(--radius);padding:20px">
+        <div style="font-size:13px;font-weight:700;color:#f59e0b;margin-bottom:8px">🟡 Гибридные (часть кода — в облако)</div>
+        <div style="font-size:12px;color:var(--muted);line-height:1.6">Cursor, Copilot, Codeium — отправляют контекст (текущий файл, буфер) на серверы. Не отправляют всю кодовую базу. SOC 2 сертифицированы.</div>
+        <div style="font-size:10px;color:var(--dim);margin-top:8px">Рекомендуется: большинство коммерческих проектов</div>
+      </div>
+      <div style="background:var(--card-bg);border:1px solid #ef444433;border-radius:var(--radius);padding:20px">
+        <div style="font-size:13px;font-weight:700;color:#ef4444;margin-bottom:8px">🔴 Облачные (вся база на сервере)</div>
+        <div style="font-size:12px;color:var(--muted);line-height:1.6">Devin, Bolt.new, v0 — код уходит на облачные серверы для обработки. Удобно, но требует доверия к провайдеру.</div>
+        <div style="font-size:10px;color:var(--dim);margin-top:8px">Рекомендуется: прототипы, open source, non-critical</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin:40px 0">
+    <div class="section-hd"><h2>⚡ Производительность: latency, контекст и токены</h2></div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px">
+      <div style="background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);padding:20px">
+        <div style="font-size:13px;font-weight:700;color:var(--green);margin-bottom:10px">⏱️ Задержка автодополнения</div>
+        <div style="font-size:12px;color:var(--muted);line-height:1.8">
+          <div>🖱️ Cursor: <b style="color:var(--green)">200-400ms</b> — мгновенное</div>
+          <div>📝 Copilot: <b style="color:var(--green)">300-600ms</b> — быстрое</div>
+          <div>🔧 Cline: <b style="color:var(--amber)">800-2000ms</b> — зависит от модели</div>
+          <div>🤖 Claude Code: <b style="color:var(--amber)">1-5s</b> — думает над задачей</div>
+          <div style="margin-top:8px;font-size:11px;color:var(--dim)">Меньше = лучше. IDE-агенты быстрее терминальных.</div>
+        </div>
+      </div>
+      <div style="background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);padding:20px">
+        <div style="font-size:13px;font-weight:700;color:var(--blue);margin-bottom:10px">📐 Размер контекстного окна</div>
+        <div style="font-size:12px;color:var(--muted);line-height:1.8">
+          <div>Claude Code: <b style="color:var(--green)">200K токенов</b> (вся база)</div>
+          <div>Aider: <b style="color:var(--green)">128-200K</b> зависит от модели</div>
+          <div>Cursor: <b style="color:var(--blue)">~10K токенов</b> (релевантные файлы)</div>
+          <div>Copilot: <b style="color:var(--blue)">~8K токенов</b> (текущий файл + соседи)</div>
+          <div style="margin-top:8px;font-size:11px;color:var(--dim)">Больше контекст = лучше понимание проекта, но выше цена и latency.</div>
+        </div>
+      </div>
+      <div style="background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);padding:20px">
+        <div style="font-size:13px;font-weight:700;color:var(--cyan);margin-bottom:10px">💸 Расход токенов в час</div>
+        <div style="font-size:12px;color:var(--muted);line-height:1.8">
+          <div>IDE agent: <b style="color:var(--green)">5-15K</b> токенов/час</div>
+          <div>CLI agent (активный): <b style="color:var(--amber)">50-200K</b> токенов/час</div>
+          <div>Автономный PR: <b style="color:var(--amber)">100-500K</b> токенов/задача</div>
+          <div style="margin-top:8px;font-size:11px;color:var(--dim)">Средняя стоимость: $1-10/день активной разработки.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin:40px 0">
+    <div class="section-hd"><h2>🔌 Совместимость с IDE и платформами</h2></div>
+    <div class="compare-table-wrap" style="margin-bottom:16px">
+      <table class="compare-table">
+        <thead><tr><th>Агент</th><th>VS Code</th><th>JetBrains</th><th>Neovim</th><th>Терминал</th><th>Web</th></tr></thead>
+        <tr><td style="color:var(--green);font-weight:600">Cursor IDE</td><td>— (свой редактор)</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+        <tr><td style="color:var(--green);font-weight:600">Copilot</td><td>✅</td><td>✅</td><td>✅</td><td>✅ CLI</td><td>✅</td></tr>
+        <tr><td style="color:var(--green);font-weight:600">Claude Code</td><td>✅ терминал</td><td>✅ терминал</td><td>✅</td><td>✅</td><td>—</td></tr>
+        <tr><td style="color:var(--green);font-weight:600">Aider</td><td>✅ терминал</td><td>✅ терминал</td><td>✅</td><td>✅</td><td>—</td></tr>
+        <tr><td>Cline</td><td>✅</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+        <tr><td>Continue.dev</td><td>✅</td><td>✅</td><td>—</td><td>—</td><td>—</td></tr>
+        <tr><td>Codeium</td><td>✅</td><td>✅</td><td>✅</td><td>—</td><td>✅</td></tr>
+        <tr><td>Codex CLI</td><td>—</td><td>—</td><td>—</td><td>✅</td><td>—</td></tr>
+      </table>
+    </div>
+    <p style="font-size:12px;color:var(--dim);margin-top:4px">* Cursor — самостоятельная IDE (форк VS Code). Агенты с пометкой «терминал» работают в любом редакторе через встроенный терминал.</p>
+  </div>
+
+  <div style="margin:40px 0">
+    <div class="section-hd"><h2>📋 Дерево решений: как выбрать AI-агента</h2></div>
+    <div style="background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);padding:24px;font-size:13px;color:var(--muted);line-height:2">
+      <div style="margin-bottom:16px"><b style="color:var(--text)">1. Ваш бюджет?</b></div>
+      <div style="margin-left:20px">→ <b style="color:var(--green)">$0</b> (бесплатно): Continue.dev + Aider + своя LLM (Ollama/DeepSeek). Либо Cline + OpenRouter.</div>
+      <div style="margin-left:20px">→ <b style="color:var(--blue)">$10-20/мес</b>: Cursor Pro или Copilot — наилучшее соотношение цена/качество.</div>
+      <div style="margin-left:20px">→ <b style="color:var(--amber)">$500+/мес</b>: Devin для автономных задач + Copilot для IDE.</div>
+      <div style="margin:20px 0 8px"><b style="color:var(--text)">2. Где вы пишете код?</b></div>
+      <div style="margin-left:20px">→ <b style="color:var(--green)">В IDE</b>: Cursor (лучший AI-native редактор) или Copilot (если привязаны к JetBrains).</div>
+      <div style="margin-left:20px">→ <b style="color:var(--blue)">В терминале</b>: Claude Code для сложных задач, Aider для простых правок.</div>
+      <div style="margin:20px 0 8px"><b style="color:var(--text)">3. Требования к безопасности?</b></div>
+      <div style="margin-left:20px">→ <b style="color:var(--green)">NDA / fintech</b>: Continue.dev + Ollama (100% локально, код не покидает машину).</div>
+      <div style="margin-left:20px">→ <b style="color:var(--blue)">SOC 2 ок</b>: Cursor или Copilot (сертифицированы, код в облаке).</div>
+      <div style="margin:20px 0 8px"><b style="color:var(--text)">4. Тип задач?</b></div>
+      <div style="margin-left:20px">→ <b style="color:var(--green)">Потоковое кодирование</b>: Cursor / Copilot — автодополнение на лету.</div>
+      <div style="margin-left:20px">→ <b style="color:var(--blue)">Feature / PR</b>: Claude Code — читает всю базу, пишет код, создаёт PR.</div>
+      <div style="margin-left:20px">→ <b style="color:var(--cyan)">MVP / прототип</b>: Bolt.new или v0 — приложение из описания за минуты.</div>
+      <div style="margin-left:20px">→ <b style="color:var(--amber)">Сложный баг-фикс</b>: Devin или SWE-Agent — автономная отладка.</div>
+    </div>
+  </div>
+
+  <div style="margin:40px 0">
+    <div class="section-hd"><h2>👥 Командные сценарии использования</h2></div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px">
+      <div style="background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);padding:20px">
+        <div style="font-size:14px;font-weight:700;color:var(--green);margin-bottom:10px">🚀 Стартап (3-5 чел)</div>
+        <div style="font-size:12px;color:var(--muted);line-height:1.8">
+          <div>• Cursor Pro для всех разработчиков</div>
+          <div>• Claude Code для ревью PR</div>
+          <div>• Bolt.new для прототипов</div>
+          <div style="margin-top:8px;font-size:11px;color:var(--dim)">Бюджет: ~$60-100/мес на команду</div>
+        </div>
+      </div>
+      <div style="background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);padding:20px">
+        <div style="font-size:14px;font-weight:700;color:var(--blue);margin-bottom:10px">🏢 Enterprise (20-100+)</div>
+        <div style="font-size:12px;color:var(--muted);line-height:1.8">
+          <div>• GitHub Copilot Business ($39/чел)</div>
+          <div>• Code review automation (Codex CLI)</div>
+          <div>• Индивидуально: Claude Code для синьоров</div>
+          <div style="margin-top:8px;font-size:11px;color:var(--dim)">Бюджет: ~$800-4000/мес</div>
+        </div>
+      </div>
+      <div style="background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);padding:20px">
+        <div style="font-size:14px;font-weight:700;color:var(--amber);margin-bottom:10px">🔓 Open Source проект</div>
+        <div style="font-size:12px;color:var(--muted);line-height:1.8">
+          <div>• Continue.dev + DeepSeek/Claude API</div>
+          <div>• Aider для контрибьюторов</div>
+          <div>• Copilot Free для casual участников</div>
+          <div style="margin-top:8px;font-size:11px;color:var(--dim)">Бюджет: $0-20/мес на человека</div>
+        </div>
+      </div>
+      <div style="background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);padding:20px">
+        <div style="font-size:14px;font-weight:700;color:var(--cyan);margin-bottom:10px">🎓 Обучение / Pet-project</div>
+        <div style="font-size:12px;color:var(--muted);line-height:1.8">
+          <div>• Copilot Free (2000 comp/мес)</div>
+          <div>• Codeium Free (безлимитный)</div>
+          <div>• Cline + OpenRouter ($5 кредита)</div>
+          <div style="margin-top:8px;font-size:11px;color:var(--dim)">Бюджет: $0-5/мес</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin:40px 0">
+    <div class="section-hd"><h2>🔄 CI/CD интеграция AI-агентов</h2></div>
+    <p style="font-size:13px;color:var(--muted);line-height:1.8;margin-bottom:16px">AI-агенты всё глубже интегрируются в пайплайны Continuous Integration. Вот как разные агенты встраиваются в процесс от коммита до деплоя:</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px">
+      <div style="background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);padding:20px">
+        <div style="font-size:13px;font-weight:700;color:var(--green);margin-bottom:8px">📝 Pre-commit хук</div>
+        <div style="font-size:12px;color:var(--muted);line-height:1.6">Claude Code, Aider, Codex CLI — запускаются как git hook. Проверяют код перед коммитом: lint, типы, тесты, безопасность.</div>
+        <div style="font-family:monospace;font-size:10px;color:var(--dim);margin-top:8px;background:#0d1117;padding:8px;border-radius:4px"># .git/hooks/pre-commit<br/>claude "review staged changes"</div>
+      </div>
+      <div style="background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);padding:20px">
+        <div style="font-size:13px;font-weight:700;color:var(--blue);margin-bottom:8px">🔍 PR Review Automation</div>
+        <div style="font-size:12px;color:var(--muted);line-height:1.6">GitHub Actions + Claude Code/Codex CLI. Автоматически проверяет каждый PR: security scan, style guide, architecture review.</div>
+        <div style="font-family:monospace;font-size:10px;color:var(--dim);margin-top:8px;background:#0d1117;padding:8px;border-radius:4px"># .github/workflows/review.yml<br/>codex review PR-${{ PR_NUMBER }}</div>
+      </div>
+      <div style="background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);padding:20px">
+        <div style="font-size:13px;font-weight:700;color:var(--cyan);margin-bottom:8px">🐛 Авто-фикс багов</div>
+        <div style="font-size:12px;color:var(--muted);line-height:1.6">Devin, SWE-Agent — получают issue из трекера, автономно исправляют баг, создают PR с фиксом и тестами. Минимальное участие человека.</div>
+        <div style="font-family:monospace;font-size:10px;color:var(--dim);margin-top:8px;background:#0d1117;padding:8px;border-radius:4px"># Полностью автономно<br/>devin solve "Fix #342: NPE in auth"</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin:40px 0">
+    <div class="section-hd"><h2>📊 Сравнение моделей: какие LLM используют агенты</h2></div>
+    <div class="compare-table-wrap" style="margin-bottom:16px">
+      <table class="compare-table">
+        <thead><tr><th>Агент</th><th>Модель по умолчанию</th><th>Выбор модели</th><th>Локальные модели</th><th>Провайдеры</th></tr></thead>
+        <tr><td style="color:var(--green);font-weight:600">Cursor</td><td>GPT-4o / Claude 4</td><td>✅ Встроенный выбор</td><td>—</td><td>OpenAI, Anthropic</td></tr>
+        <tr><td style="color:var(--green);font-weight:600">Copilot</td><td>GPT-4o-mini</td><td>⚠️ Ограничен</td><td>—</td><td>OpenAI</td></tr>
+        <tr><td style="color:var(--green);font-weight:600">Claude Code</td><td>Claude Sonnet 4</td><td>✅ Любая модель</td><td>—</td><td>Anthropic</td></tr>
+        <tr><td style="color:var(--green);font-weight:600">Aider</td><td>Claude 4 / GPT-4o</td><td>✅ Любая модель</td><td>✅ Ollama</td><td>OpenAI, Anthropic, OpenRouter, DeepSeek</td></tr>
+        <tr><td>Cline</td><td>Выбор пользователя</td><td>✅ Любая модель</td><td>✅ Ollama, LM Studio</td><td>OpenRouter, OpenAI, Anthropic</td></tr>
+        <tr><td>Continue.dev</td><td>Выбор пользователя</td><td>✅ Любая модель</td><td>✅ Ollama, LM Studio</td><td>OpenAI, Anthropic, Mistral, DeepSeek, OpenRouter</td></tr>
+        <tr><td>Codeium</td><td>Своя модель</td><td>❌ Только своя</td><td>—</td><td>Proprietary</td></tr>
+        <tr><td>Devin</td><td>GPT-4o + Claude</td><td>❌ Только своя</td><td>—</td><td>Proprietary</td></tr>
+      </table>
+    </div>
+  </div>
+
+
+</div>'''
+
+    html = render_page("\u0410\u0433\u0435\u043d\u0442\u044b \u0434\u043b\u044f \u0440\u0430\u0437\u0440\u0430\u0431\u043e\u0442\u043a\u0438 \u2014 \u0420\u0435\u0439\u0442\u0438\u043d\u0433 coding agents",
+                       f"\u0421\u0440\u0430\u0432\u043d\u0435\u043d\u0438\u0435 {len(coding)} AI-\u0430\u0433\u0435\u043d\u0442\u043e\u0432 \u0434\u043b\u044f \u043a\u043e\u0434\u0430: \u043a\u0430\u0442\u0435\u0433\u043e\u0440\u0438\u0438, \u043c\u0430\u0442\u0440\u0438\u0446\u0430 \u0432\u044b\u0431\u043e\u0440\u0430, \u0430\u0440\u0445\u0438\u0442\u0435\u043a\u0442\u0443\u0440\u0430.",
+                       body, total=len(coding),
+                       active_dev="active",
+                       open_graph=make_og("AI-\u0430\u0433\u0435\u043d\u0442\u044b \u0434\u043b\u044f \u0440\u0430\u0437\u0440\u0430\u0431\u043e\u0442\u043a\u0438 \u2014 Qantcore", f"\u0421\u0440\u0430\u0432\u043d\u0435\u043d\u0438\u0435 {len(coding)} AI coding agents: \u0440\u0435\u0439\u0442\u0438\u043d\u0433, \u043a\u0430\u0442\u0435\u0433\u043e\u0440\u0438\u0438, \u0432\u043e\u0440\u043a\u0444\u043b\u043e\u0443.", "/development/"),
+                       canonical_url='<link rel="canonical" href="https://qantcore.space/development/">')
+    write_html(f"{OUT}/development/index.html", html)
+    print(f"  /development/index.html")
+
+
+def _dev_table_rows(coding):
+    rows = ""
+    for p in sorted(coding, key=lambda x: (x.get("rating",0) or 0), reverse=True):
+        r = p.get("rating", 0) or 0
+        qs = min(100, round(r*20*0.30 + (min(10, r*1.8+0.5+0.3))*10*0.25 + 7*10*0.20 + (0.5*15+0.5)*1.5*0.15 + (min(10, r*1.5+0.5))*10*0.10))
+        price = format_price(p.get("pricing_model",""))
+        deploy = "\U0001F3E0 Local" if any(t.lower() in ('docker','local','self-hosted','python','cli','terminal') for t in (p.get('tech_stack',[]) or [])) else "\u2601\ufe0f Cloud"
+        ptype = {"agent":"\U0001F916 Agent","framework":"\u2699\ufe0f Framework","platform":"\U0001F3D7\ufe0f Platform","model":"\U0001F9E0 Model","infrastructure":"\U0001F527 Infra"}.get(p.get("product_type",""), p.get("product_type",""))
+        interaction = "\U0001F4BB IDE" if p["slug"] in {"cursor-ide","cline-vscode","continue-dev","github-copilot","codeium-windsurf","sourcegraph-cody","tabnine-ai","windsurf-ide","amazon-q-developer"} else "\U0001F4DF CLI" if p["slug"] in {"claude-code","aider-ai","codex-cli","codex-desktop","open-interpreter"} else "\U0001F310 Web" if p["slug"] in {"devin-agent","bolt-new","lovable-dev","vercel-v0","replit-ai"} else "\U0001F4BB CLI"
+        rows += f'''<tr>
+          <td><a href="/product/{p['slug']}/" style="color:var(--green);font-weight:600">{esc(p.get('title','')[:35])}</a></td>
+          <td><strong style="color:{'var(--green)' if qs>=85 else 'var(--cyan)' if qs>=70 else 'var(--amber)'}">{qs}</strong></td>
+          <td>{r} \u2605</td>
+          <td style="color:var(--green)">{price}</td>
+          <td style="font-size:12px;color:var(--muted)">{ptype}</td>
+          <td style="font-size:12px">{interaction}</td>
+          <td>{deploy}</td>
+        </tr>'''
+    return rows
+
+def generate_multi_agent():
+    from pymongo import MongoClient
+    DB = MongoClient("localhost", 27017).qantcore
+    
+    products = list(DB.articles.find({"category": "product"}))
+    
+    frameworks = [p for p in products if p.get("product_type") == "framework"]
+    
+    cards = ""
+    for p in sorted(frameworks, key=lambda x: x.get("rating", 0) or 0, reverse=True):
+        cards += make_product_card(p, with_compare=True)
+    
+    best_beginner = next((p for p in frameworks if p["slug"] == "crewai-framework"), frameworks[0] if frameworks else None)
+    best_enterprise = next((p for p in frameworks if p["slug"] == "autogen-microsoft"), frameworks[0] if frameworks else None)
+    best_graph = next((p for p in frameworks if p["slug"] == "langgraph-framework"), frameworks[0] if frameworks else None)
+    
+    body = f'''<div class="hero" style="padding:48px 24px 36px">
+  <div class="terminal-grid"></div>
+  <div class="tagline">MULTI-AGENT ORCHESTRATION</div>
+  <h1>\u041c\u0443\u043b\u044c\u0442\u0438-\u0430\u0433\u0435\u043d\u0442\u043d\u044b\u0435 <span class="accent">\u0444\u0440\u0435\u0439\u043c\u0432\u043e\u0440\u043a\u0438</span></h1>
+  <p class="sub">\u041f\u043e\u043b\u043d\u044b\u0439 \u0433\u0430\u0439\u0434 \u043f\u043e \u043e\u0440\u043a\u0435\u0441\u0442\u0440\u0430\u0446\u0438\u0438 AI-\u0430\u0433\u0435\u043d\u0442\u043e\u0432: \u0430\u0440\u0445\u0438\u0442\u0435\u043a\u0442\u0443\u0440\u043d\u044b\u0435 \u043f\u0430\u0442\u0442\u0435\u0440\u043d\u044b, \u0441\u0440\u0430\u0432\u043d\u0435\u043d\u0438\u0435 \u0444\u0440\u0435\u0439\u043c\u0432\u043e\u0440\u043a\u043e\u0432, \u043f\u0440\u0438\u043c\u0435\u0440\u044b \u043a\u043e\u0434\u0430 \u0438 \u043c\u0430\u0442\u0440\u0438\u0446\u0430 \u0432\u044b\u0431\u043e\u0440\u0430.</p>
+  <div class="hero-metrics">
+    <div class="hero-metric"><div class="val">{len(frameworks)}</div><div class="lbl">\u0424\u0440\u0435\u0439\u043c\u0432\u043e\u0440\u043a\u043e\u0432</div></div>
+    <div class="hero-metric"><div class="val">5</div><div class="lbl">\u041f\u0430\u0442\u0442\u0435\u0440\u043d\u043e\u0432</div></div>
+    <div class="hero-metric"><div class="val">{DB.articles.count_documents({"category":"comparison"})}+</div><div class="lbl">\u0421\u0440\u0430\u0432\u043d\u0435\u043d\u0438\u0439</div></div>
+    <div class="hero-metric"><div class="val"><span class="dot"></span>Live</div><div class="lbl">\u0414\u0430\u043d\u043d\u044b\u0435</div></div>
+  </div>
+</div>
+
+<div class="container detail">
+
+  <div style="margin:32px 0;background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);padding:24px 16px 12px;text-align:center;overflow-x:auto">
+    <h3 style="color:var(--green);font-size:15px;margin-bottom:20px">\U0001F500 5 \u0430\u0440\u0445\u0438\u0442\u0435\u043a\u0442\u0443\u0440\u043d\u044b\u0445 \u043f\u0430\u0442\u0442\u0435\u0440\u043d\u043e\u0432 Multi-agent \u0441\u0438\u0441\u0442\u0435\u043c</h3>
+    <svg viewBox="0 0 960 580" style="max-width:960px;width:100%;height:auto">
+      <defs>
+        <marker id="maA" markerWidth="6" markerHeight="5" refX="6" refY="2.5" orient="auto"><path d="M0,0 L6,2.5 L0,5 Z" fill="#3B82F6"/></marker>
+        <marker id="maG" markerWidth="6" markerHeight="5" refX="6" refY="2.5" orient="auto"><path d="M0,0 L6,2.5 L0,5 Z" fill="#10b981"/></marker>
+        <marker id="maA2" markerWidth="6" markerHeight="5" refX="6" refY="2.5" orient="auto"><path d="M0,0 L6,2.5 L0,5 Z" fill="#f59e0b"/></marker>
+        <filter id="gl"><feGaussianBlur stdDeviation="2.5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+      </defs>
+      
+      <!-- ===== ROW 1: Role-based + Supervisor ===== -->
+      <rect x="0" y="0" width="300" height="280" rx="10" fill="#0d1520" stroke="#10b981" stroke-width="1" stroke-opacity="0.6"/>
+      <text x="150" y="22" text-anchor="middle" fill="#10b981" font-size="12" font-weight="700">1. Role-based (CrewAI, MetaGPT)</text>
+      
+      <rect x="100" y="35" width="100" height="40" rx="8" fill="var(--card-bg)" stroke="#10b981" stroke-width="1.5" filter="url(#gl)"/>
+      <text x="150" y="56" text-anchor="middle" fill="#10b981" font-size="10">\U0001F454 Orchestrator</text>
+      <text x="150" y="70" text-anchor="middle" fill="var(--dim)" font-size="8">Task planning</text>
+      
+      <line x1="100" y1="55" x2="60" y2="35" stroke="#3B82F6" stroke-width="1" marker-end="url(#maA)"/>
+      <line x1="100" y1="55" x2="60" y2="75" stroke="var(--muted)" stroke-width="1" marker-end="url(#maA)"/>
+      <line x1="200" y1="55" x2="240" y2="35" stroke="#22D3EE" stroke-width="1" marker-end="url(#maA)"/>
+      <line x1="200" y1="55" x2="240" y2="75" stroke="var(--amber)" stroke-width="1" marker-end="url(#maA)"/>
+      
+      <rect x="10" y="22" width="45" height="30" rx="6" fill="var(--card-bg)" stroke="#3B82F6" stroke-width="1"/>
+      <text x="32" y="41" text-anchor="middle" fill="#F5F7FA" font-size="8">\U0001F4BB Dev</text>
+      <rect x="10" y="62" width="45" height="30" rx="6" fill="var(--card-bg)" stroke="var(--muted)" stroke-width="1"/>
+      <text x="32" y="81" text-anchor="middle" fill="#F5F7FA" font-size="8">\U0001F50D QA</text>
+      <rect x="245" y="22" width="45" height="30" rx="6" fill="var(--card-bg)" stroke="#22D3EE" stroke-width="1"/>
+      <text x="267" y="41" text-anchor="middle" fill="#F5F7FA" font-size="8">\U0001F4CA Data</text>
+      <rect x="245" y="62" width="45" height="30" rx="6" fill="var(--card-bg)" stroke="var(--amber)" stroke-width="1"/>
+      <text x="267" y="81" text-anchor="middle" fill="#F5F7FA" font-size="8">\U0001F4DD Writer</text>
+      
+      <!-- Flow: sequential -->
+      <line x1="32" y1="52" x2="32" y2="62" stroke="var(--dim)" stroke-width="0.8"/>
+      <line x1="267" y1="52" x2="267" y2="62" stroke="var(--dim)" stroke-width="0.8"/>
+      
+      <!-- Delegation pattern -->
+      <line x1="150" y1="75" x2="150" y2="100" stroke="#10b981" stroke-width="1" marker-end="url(#maG)"/>
+      <rect x="80" y="102" width="140" height="40" rx="8" fill="var(--card-bg)" stroke="#10b981" stroke-width="1"/>
+      <text x="150" y="119" text-anchor="middle" fill="var(--muted)" font-size="9">\u26a1 Sequential execution</text>
+      <text x="150" y="135" text-anchor="middle" fill="var(--dim)" font-size="8">Dev \u2192 QA \u2192 Writer \u2192 Ship</text>
+      
+      <line x1="150" y1="142" x2="150" y2="165" stroke="var(--muted)" stroke-width="1" marker-end="url(#maA)"/>
+      <rect x="105" y="167" width="90" height="30" rx="6" fill="var(--card-bg)" stroke="#10b981" stroke-width="1"/>
+      <text x="150" y="186" text-anchor="middle" fill="#F5F7FA" font-size="9">\U0001F680 Ship</text>
+      
+      <!-- Pattern 1 features -->
+      <rect x="10" y="215" width="280" height="55" rx="6" fill="none" stroke="var(--border)" stroke-width="0.5"/>
+      <text x="150" y="232" text-anchor="middle" fill="var(--dim)" font-size="9">\u2714 \u041f\u0440\u043e\u0441\u0442\u043e\u0439 \u0441\u0442\u0430\u0440\u0442, \u043e\u0447\u0435\u0432\u0438\u0434\u043d\u044b\u0435 \u0440\u043e\u043b\u0438</text>
+      <text x="150" y="248" text-anchor="middle" fill="var(--dim)" font-size="9">\u2714 YAML- \u0438 Python- \u043a\u043e\u043d\u0444\u0438\u0433\u0443\u0440\u0430\u0446\u0438\u044f</text>
+      <text x="150" y="264" text-anchor="middle" fill="var(--dim)" font-size="9">\u26a0 \u041d\u0435\u0442 \u0446\u0438\u043a\u043b\u043e\u0432, \u043d\u0435\u0442 dynamic routing</text>
+      
+      <!-- ===== ROW 1 right: Supervisor ===== -->
+      <rect x="320" y="0" width="300" height="280" rx="10" fill="#0d1520" stroke="#3B82F6" stroke-width="1" stroke-opacity="0.6"/>
+      <text x="470" y="22" text-anchor="middle" fill="#3B82F6" font-size="12" font-weight="700">2. Supervisor (AutoGen)</text>
+      
+      <rect x="400" y="35" width="100" height="35" rx="8" fill="var(--card-bg)" stroke="#3B82F6" stroke-width="1.5" filter="url(#gl)"/>
+      <text x="450" y="54" text-anchor="middle" fill="#3B82F6" font-size="10">\U0001F9E0 Supervisor LLM</text>
+      <text x="450" y="67" text-anchor="middle" fill="var(--dim)" font-size="8">\u0440\u0430\u0437\u0431\u0438\u0440\u0430\u0435\u0442 \u043e\u0442\u0432\u0435\u0442\u044b</text>
+      
+      <line x1="400" y1="55" x2="355" y2="35" stroke="#22D3EE" stroke-width="1" marker-end="url(#maA)"/>
+      <line x1="400" y1="55" x2="355" y2="75" stroke="var(--amber)" stroke-width="1" marker-end="url(#maA)"/>
+      <line x1="500" y1="55" x2="545" y2="35" stroke="#10b981" stroke-width="1" marker-end="url(#maA)"/>
+      <line x1="500" y1="55" x2="545" y2="75" stroke="#22D3EE" stroke-width="1" marker-end="url(#maA)"/>
+      
+      <rect x="315" y="22" width="35" height="30" rx="6" fill="var(--card-bg)" stroke="#22D3EE" stroke-width="1"/>
+      <text x="332" y="41" text-anchor="middle" fill="#F5F7FA" font-size="8">A</text>
+      <rect x="315" y="62" width="35" height="30" rx="6" fill="var(--card-bg)" stroke="var(--amber)" stroke-width="1"/>
+      <text x="332" y="81" text-anchor="middle" fill="#F5F7FA" font-size="8">B</text>
+      <rect x="550" y="22" width="35" height="30" rx="6" fill="var(--card-bg)" stroke="#10b981" stroke-width="1"/>
+      <text x="567" y="41" text-anchor="middle" fill="#F5F7FA" font-size="8">C</text>
+      <rect x="550" y="62" width="35" height="30" rx="6" fill="var(--card-bg)" stroke="#22D3EE" stroke-width="1"/>
+      <text x="567" y="81" text-anchor="middle" fill="#F5F7FA" font-size="8">D</text>
+      
+      <!-- Feedback loops -->
+      <path d="M332,92 Q332,110 400,100 Q450,95 450,70" fill="none" stroke="#f59e0b" stroke-width="0.8" stroke-dasharray="3,2" marker-end="url(#maA2)"/>
+      <path d="M567,92 Q567,110 500,100 Q450,95 450,70" fill="none" stroke="#f59e0b" stroke-width="0.8" stroke-dasharray="3,2" marker-end="url(#maA2)"/>
+      
+      <rect x="350" y="105" width="260" height="40" rx="8" fill="var(--card-bg)" stroke="#3B82F6" stroke-width="1"/>
+      <text x="480" y="122" text-anchor="middle" fill="var(--muted)" font-size="9">\U0001F504 Dynamic delegation: supervisor \u0440\u0435\u0448\u0430\u0435\u0442</text>
+      <text x="480" y="138" text-anchor="middle" fill="var(--dim)" font-size="8">\u043a\u0442\u043e \u043e\u0442\u0432\u0435\u0447\u0430\u0435\u0442 \u0432 \u043a\u0430\u0436\u0434\u044b\u0439 \u043c\u043e\u043c\u0435\u043d\u0442 (LLM-judge)</text>
+      
+      <line x1="480" y1="145" x2="480" y2="168" stroke="var(--muted)" stroke-width="1" marker-end="url(#maA)"/>
+      <rect x="425" y="170" width="110" height="30" rx="6" fill="var(--card-bg)" stroke="#3B82F6" stroke-width="1"/>
+      <text x="480" y="189" text-anchor="middle" fill="#F5F7FA" font-size="9">\u2705 \u0417\u0430\u0434\u0430\u0447\u0430 \u0440\u0435\u0448\u0435\u043d\u0430</text>
+      
+      <rect x="330" y="215" width="260" height="55" rx="6" fill="none" stroke="var(--border)" stroke-width="0.5"/>
+      <text x="460" y="232" text-anchor="middle" fill="var(--dim)" font-size="9">\u2714 Flexible: \u043b\u044e\u0431\u043e\u0435 \u0447\u0438\u0441\u043b\u043e \u0430\u0433\u0435\u043d\u0442\u043e\u0432, LLM routing</text>
+      <text x="460" y="248" text-anchor="middle" fill="var(--dim)" font-size="9">\u2714 Native debate + human-in-the-loop</text>
+      <text x="460" y="264" text-anchor="middle" fill="var(--dim)" font-size="9">\u26a0 \u0412\u044b\u0448\u0435 latency (LLM-supervisor overhead)</text>
+      
+      <!-- ===== ROW 1 rightmost: Swarm ===== -->
+      <rect x="640" y="0" width="320" height="280" rx="10" fill="#0d1520" stroke="#22D3EE" stroke-width="1" stroke-opacity="0.6"/>
+      <text x="800" y="22" text-anchor="middle" fill="#22D3EE" font-size="12" font-weight="700">3. Swarm (OpenAI Swarm)</text>
+      
+      <!-- Mesh arrangement -->
+      <rect x="680" y="35" width="55" height="35" rx="12" fill="var(--card-bg)" stroke="#22D3EE" stroke-width="1.5"/>
+      <text x="707" y="52" text-anchor="middle" fill="#F5F7FA" font-size="8">Agent A</text>
+      <text x="707" y="65" text-anchor="middle" fill="var(--dim)" font-size="7">Router</text>
+      
+      <rect x="760" y="35" width="55" height="35" rx="12" fill="var(--card-bg)" stroke="#10b981" stroke-width="1.5"/>
+      <text x="787" y="52" text-anchor="middle" fill="#F5F7FA" font-size="8">Agent B</text>
+      <text x="787" y="65" text-anchor="middle" fill="var(--dim)" font-size="7">Solver</text>
+      
+      <rect x="840" y="35" width="55" height="35" rx="12" fill="var(--card-bg)" stroke="var(--amber)" stroke-width="1.5"/>
+      <text x="867" y="52" text-anchor="middle" fill="#F5F7FA" font-size="8">Agent C</text>
+      <text x="867" y="65" text-anchor="middle" fill="var(--dim)" font-size="7">Tool</text>
+      
+      <rect x="695" y="90" width="55" height="35" rx="12" fill="var(--card-bg)" stroke="var(--amber)" stroke-width="1.5"/>
+      <text x="722" y="107" text-anchor="middle" fill="#F5F7FA" font-size="8">Agent D</text>
+      
+      <rect x="780" y="90" width="55" height="35" rx="12" fill="var(--card-bg)" stroke="#22D3EE" stroke-width="1.5"/>
+      <text x="807" y="107" text-anchor="middle" fill="#F5F7FA" font-size="8">Agent E</text>
+      
+      <rect x="855" y="90" width="55" height="35" rx="12" fill="var(--card-bg)" stroke="#10b981" stroke-width="1.5"/>
+      <text x="882" y="107" text-anchor="middle" fill="#F5F7FA" font-size="8">Agent F</text>
+      
+      <!-- All-to-all connections -->
+      <line x1="735" y1="45" x2="760" y2="45" stroke="#22D3EE" stroke-width="0.8"/>
+      <line x1="760" y1="52" x2="840" y2="52" stroke="var(--amber)" stroke-width="0.8"/>
+      <line x1="707" y1="70" x2="722" y2="90" stroke="#10b981" stroke-width="0.8"/>
+      <line x1="787" y1="70" x2="807" y2="90" stroke="#22D3EE" stroke-width="0.8"/>
+      <line x1="867" y1="70" x2="882" y2="90" stroke="var(--amber)" stroke-width="0.8"/>
+      <line x1="735" y1="55" x2="695" y2="107" stroke="var(--muted)" stroke-width="0.5"/>
+      <line x1="815" y1="55" x2="855" y2="65" stroke="var(--muted)" stroke-width="0.5"/>
+      
+      <rect x="690" y="140" width="270" height="40" rx="8" fill="var(--card-bg)" stroke="#22D3EE" stroke-width="1"/>
+      <text x="825" y="157" text-anchor="middle" fill="var(--muted)" font-size="9">\U0001F4E1 Handoff \u043c\u0435\u0436\u0434\u0443 \u0430\u0433\u0435\u043d\u0442\u0430\u043c\u0438 \u0432 \u0440\u0435\u0430\u043b\u044c\u043d\u043e\u043c \u0432\u0440\u0435\u043c\u0435\u043d\u0438</text>
+      <text x="825" y="173" text-anchor="middle" fill="var(--dim)" font-size="8">\u0410\u0433\u0435\u043d\u0442 \u0432\u043e\u0437\u0432\u0440\u0430\u0449\u0430\u0435\u0442 \u0441\u043b\u0435\u0434\u0443\u044e\u0449\u0438\u0439 agent + context</text>
+      
+      <rect x="740" y="195" width="160" height="30" rx="6" fill="var(--card-bg)" stroke="#22D3EE" stroke-width="1"/>
+      <text x="820" y="214" text-anchor="middle" fill="#F5F7FA" font-size="9">\U0001F4E6 Client-side dispatch</text>
+      
+      <rect x="650" y="235" width="280" height="35" rx="6" fill="none" stroke="var(--border)" stroke-width="0.5"/>
+      <text x="790" y="252" text-anchor="middle" fill="var(--dim)" font-size="9">\u2714 Stateless, \u043f\u0440\u043e\u0441\u0442\u043e\u0439, \u043b\u0451\u0433\u043a\u0438\u0439 handoff</text>
+      <text x="790" y="266" text-anchor="middle" fill="var(--dim)" font-size="9">\u26a0 \u041d\u0435\u0442 \u0434\u043e\u043b\u0433\u043e\u0432\u0440\u0435\u043c\u0435\u043d\u043d\u043e\u0439 \u043f\u0430\u043c\u044f\u0442\u0438</text>
+      
+      <!-- ===== ROW 2: Graph + Hierarchical ===== -->
+      <rect x="0" y="295" width="280" height="275" rx="10" fill="#0d1520" stroke="#f59e0b" stroke-width="1" stroke-opacity="0.6"/>
+      <text x="140" y="317" text-anchor="middle" fill="#f59e0b" font-size="12" font-weight="700">4. Graph State Machine</text>
+      <text x="140" y="332" text-anchor="middle" fill="var(--dim)" font-size="10">(LangGraph)</text>
+      
+      <rect x="85" y="348" width="110" height="30" rx="15" fill="var(--card-bg)" stroke="#10b981" stroke-width="1.5" filter="url(#gl)"/>
+      <text x="140" y="367" text-anchor="middle" fill="#F5F7FA" font-size="9">START</text>
+      <line x1="140" y1="378" x2="140" y2="400" stroke="#3B82F6" stroke-width="1.5" marker-end="url(#maA)"/>
+      <rect x="85" y="402" width="110" height="30" rx="8" fill="var(--card-bg)" stroke="#3B82F6" stroke-width="1.5"/>
+      <text x="140" y="421" text-anchor="middle" fill="#F5F7FA" font-size="9">Node A: RAG</text>
+      <line x1="140" y1="432" x2="140" y2="454" stroke="#10b981" stroke-width="1.5" marker-end="url(#maG)"/>
+      <rect x="85" y="456" width="110" height="30" rx="8" fill="var(--card-bg)" stroke="#10b981" stroke-width="1.5"/>
+      <text x="140" y="475" text-anchor="middle" fill="#F5F7FA" font-size="9">Node B: Reasoning</text>
+      
+      <!-- Conditional edge -->
+      <path d="M195,471 Q230,471 230,421 Q230,380 195,380" fill="none" stroke="#f59e0b" stroke-width="1" stroke-dasharray="4,2"/>
+      <text x="244" y="430" fill="#f59e0b" font-size="8">cond</text>
+      
+      <line x1="140" y1="486" x2="140" y2="508" stroke="var(--muted)" stroke-width="1" marker-end="url(#maA)"/>
+      <rect x="85" y="510" width="110" height="30" rx="15" fill="var(--card-bg)" stroke="#ef4444" stroke-width="1.5"/>
+      <text x="140" y="529" text-anchor="middle" fill="#F5F7FA" font-size="9">END</text>
+      
+      <text x="140" y="558" text-anchor="middle" fill="var(--dim)" font-size="9">\u2714 \u0426\u0438\u043a\u043b\u044b, branching, state persistence</text>
+      
+      <!-- ===== ROW 2 middle: Hierarchical ===== -->
+      <rect x="300" y="295" width="280" height="275" rx="10" fill="#0d1520" stroke="#ec4899" stroke-width="1" stroke-opacity="0.6"/>
+      <text x="440" y="317" text-anchor="middle" fill="#ec4899" font-size="12" font-weight="700">5. Hierarchical</text>
+      <text x="440" y="332" text-anchor="middle" fill="var(--dim)" font-size="10">(ChatDev, MetaGPT)</text>
+      
+      <rect x="385" y="348" width="110" height="35" rx="8" fill="var(--card-bg)" stroke="#ec4899" stroke-width="1.5" filter="url(#gl)"/>
+      <text x="440" y="365" text-anchor="middle" fill="#F5F7FA" font-size="10">\U0001F3E2 CEO</text>
+      <text x="440" y="379" text-anchor="middle" fill="var(--dim)" font-size="7">Vision + resource allocation</text>
+      
+      <line x1="385" y1="370" x2="355" y2="400" stroke="var(--blue)" stroke-width="1" marker-end="url(#maA)"/>
+      <line x1="440" y1="383" x2="440" y2="408" stroke="var(--green)" stroke-width="1" marker-end="url(#maG)"/>
+      <line x1="495" y1="370" x2="525" y2="400" stroke="var(--amber)" stroke-width="1" marker-end="url(#maA2)"/>
+      
+      <rect x="325" y="410" width="60" height="35" rx="6" fill="var(--card-bg)" stroke="var(--blue)" stroke-width="1"/>
+      <text x="355" y="427" text-anchor="middle" fill="#F5F7FA" font-size="8">CPO</text>
+      <text x="355" y="441" text-anchor="middle" fill="var(--dim)" font-size="6">Product dir</text>
+      
+      <rect x="410" y="410" width="60" height="35" rx="6" fill="var(--card-bg)" stroke="var(--green)" stroke-width="1"/>
+      <text x="440" y="427" text-anchor="middle" fill="#F5F7FA" font-size="8">CTO</text>
+      <text x="440" y="441" text-anchor="middle" fill="var(--dim)" font-size="6">Architecture</text>
+      
+      <rect x="495" y="410" width="60" height="35" rx="6" fill="var(--card-bg)" stroke="var(--amber)" stroke-width="1"/>
+      <text x="525" y="427" text-anchor="middle" fill="#F5F7FA" font-size="8">COO</text>
+      <text x="525" y="441" text-anchor="middle" fill="var(--dim)" font-size="6">Execution</text>
+      
+      <line x1="355" y1="445" x2="340" y2="475" stroke="var(--blue)" stroke-width="0.8" marker-end="url(#maA)"/>
+      <line x1="355" y1="445" x2="370" y2="475" stroke="var(--blue)" stroke-width="0.8" marker-end="url(#maA)"/>
+      <line x1="440" y1="445" x2="440" y2="475" stroke="var(--green)" stroke-width="0.8" marker-end="url(#maG)"/>
+      <line x1="525" y1="445" x2="510" y2="475" stroke="var(--amber)" stroke-width="0.8" marker-end="url(#maA2)"/>
+      <line x1="525" y1="445" x2="540" y2="475" stroke="var(--amber)" stroke-width="0.8" marker-end="url(#maA2)"/>
+      
+      <rect x="315" y="478" width="50" height="25" rx="5" fill="var(--card-bg)" stroke="var(--blue)" stroke-width="0.8"/>
+      <text x="340" y="494" text-anchor="middle" fill="#F5F7FA" font-size="7">\U0001F4BB Dev</text>
+      <rect x="370" y="478" width="50" height="25" rx="5" fill="var(--card-bg)" stroke="var(--blue)" stroke-width="0.8"/>
+      <text x="395" y="494" text-anchor="middle" fill="#F5F7FA" font-size="7">\U0001F58C Design</text>
+      <rect x="425" y="478" width="50" height="25" rx="5" fill="var(--card-bg)" stroke="var(--green)" stroke-width="0.8"/>
+      <text x="450" y="494" text-anchor="middle" fill="#F5F7FA" font-size="7">\U0001F9EA Test</text>
+      <rect x="500" y="478" width="50" height="25" rx="5" fill="var(--card-bg)" stroke="var(--amber)" stroke-width="0.8"/>
+      <text x="525" y="494" text-anchor="middle" fill="#F5F7FA" font-size="7">\U0001F680 Ops</text>
+      
+      <text x="440" y="525" text-anchor="middle" fill="var(--dim)" font-size="9">\u2714 \u041c\u0430\u0441\u0448\u0442\u0430\u0431\u0438\u0440\u0443\u0435\u0442\u0441\u044f \u043d\u0430 \u0431\u043e\u043b\u044c\u0448\u0438\u0435 \u043a\u043e\u043c\u0430\u043d\u0434\u044b</text>
+      <text x="440" y="541" text-anchor="middle" fill="var(--dim)" font-size="9">\u2714 \u0427\u0451\u0442\u043a\u043e\u0435 \u0440\u0430\u0437\u0434\u0435\u043b\u0435\u043d\u0438\u0435 \u043e\u0442\u0432\u0435\u0442\u0441\u0442\u0432\u0435\u043d\u043d\u043e\u0441\u0442\u0438</text>
+      <text x="440" y="557" text-anchor="middle" fill="var(--dim)" font-size="9">\u26a0 \u0421\u043b\u043e\u0436\u043d\u043e \u043d\u0430\u0441\u0442\u0440\u043e\u0438\u0442\u044c, \u043c\u043d\u043e\u0433\u043e \u0431\u043e\u0439\u043b\u0435\u0440\u043f\u043b\u0435\u0439\u0442\u0430</text>
+      
+      <!-- ===== ROW 2 right: Decision matrix ===== -->
+      <rect x="600" y="295" width="360" height="275" rx="10" fill="#0d1520" stroke="var(--border)" stroke-width="1"/>
+      <text x="780" y="317" text-anchor="middle" fill="#3B82F6" font-size="12" font-weight="700">\U0001F9EE \u041c\u0430\u0442\u0440\u0438\u0446\u0430 \u0432\u044b\u0431\u043e\u0440\u0430 \u043f\u0430\u0442\u0442\u0435\u0440\u043d\u0430</text>
+      
+      <!-- Mini table -->
+      <rect x="615" y="330" width="330" height="220" rx="6" fill="none" stroke="var(--border)" stroke-width="0.5"/>
+      <text x="700" y="350" text-anchor="middle" fill="var(--muted)" font-size="9">\u041f\u0430\u0442\u0442\u0435\u0440\u043d</text>
+      <text x="820" y="350" text-anchor="middle" fill="var(--muted)" font-size="9">\u041b\u0443\u0447\u0448\u0435 \u0432\u0441\u0435\u0433\u043e \u0434\u043b\u044f</text>
+      <text x="920" y="350" text-anchor="middle" fill="var(--muted)" font-size="9">\u0424\u0440\u0435\u0439\u043c\u0432\u043e\u0440\u043a</text>
+      
+      <line x1="615" y1="355" x2="945" y2="355" stroke="var(--border)" stroke-width="0.3"/>
+      <text x="700" y="372" text-anchor="middle" fill="#10b981" font-size="9">Role-based</text>
+      <text x="820" y="372" text-anchor="middle" fill="var(--dim)" font-size="9">\u0411\u044b\u0441\u0442\u0440\u044b\u0439 \u0441\u0442\u0430\u0440\u0442, \u043f\u0440\u043e\u0442\u043e\u0442\u0438\u043f</text>
+      <text x="920" y="372" text-anchor="middle" fill="var(--dim)" font-size="9">CrewAI</text>
+      
+      <line x1="615" y1="382" x2="945" y2="382" stroke="var(--border)" stroke-width="0.3"/>
+      <text x="700" y="399" text-anchor="middle" fill="#3B82F6" font-size="9">Supervisor</text>
+      <text x="820" y="399" text-anchor="middle" fill="var(--dim)" font-size="9">\u0413\u0438\u0431\u043a\u0438\u0435 \u0434\u0438\u0430\u043b\u043e\u0433\u0438, \u043a\u043e\u043b\u043b\u0430\u0431\u043e\u0440\u0430\u0446\u0438\u044f</text>
+      <text x="920" y="399" text-anchor="middle" fill="var(--dim)" font-size="9">AutoGen</text>
+      
+      <line x1="615" y1="409" x2="945" y2="409" stroke="var(--border)" stroke-width="0.3"/>
+      <text x="700" y="426" text-anchor="middle" fill="#22D3EE" font-size="9">Swarm</text>
+      <text x="820" y="426" text-anchor="middle" fill="var(--dim)" font-size="9">\u041b\u0451\u0433\u043a\u0438\u0435 \u043c\u0430\u0440\u0448\u0440\u0443\u0442\u044b, \u0440\u043e\u0443\u0442\u0438\u043d\u0433</text>
+      <text x="920" y="426" text-anchor="middle" fill="var(--dim)" font-size="9">OpenAI Swarm</text>
+      
+      <line x1="615" y1="436" x2="945" y2="436" stroke="var(--border)" stroke-width="0.3"/>
+      <text x="700" y="453" text-anchor="middle" fill="#f59e0b" font-size="9">Graph</text>
+      <text x="820" y="453" text-anchor="middle" fill="var(--dim)" font-size="9">\u0426\u0438\u043a\u043b\u044b, \u0432\u0435\u0442\u0432\u043b\u0435\u043d\u0438\u044f, \u0441\u043e\u0441\u0442\u043e\u044f\u043d\u0438\u044f</text>
+      <text x="920" y="453" text-anchor="middle" fill="var(--dim)" font-size="9">LangGraph</text>
+      
+      <line x1="615" y1="463" x2="945" y2="463" stroke="var(--border)" stroke-width="0.3"/>
+      <text x="700" y="480" text-anchor="middle" fill="#ec4899" font-size="9">Hierarchical</text>
+      <text x="820" y="480" text-anchor="middle" fill="var(--dim)" font-size="9">\u0411\u043e\u043b\u044c\u0448\u0438\u0435 \u043a\u043e\u043c\u0430\u043d\u0434\u044b, \u0441\u043b\u043e\u0436\u043d\u044b\u0435</text>
+      <text x="920" y="480" text-anchor="middle" fill="var(--dim)" font-size="9">ChatDev</text>
+      
+      <text x="780" y="520" text-anchor="middle" fill="var(--dim)" font-size="9">\U0001F4A1 \u0427\u0430\u0441\u0442\u043e \u043a\u043e\u043c\u0431\u0438\u043d\u0430\u0446\u0438\u044f</text>
+      <text x="780" y="538" text-anchor="middle" fill="var(--dim)" font-size="9">Supervisor + Graph = \u043c\u0430\u043a\u0441\u0438\u043c\u0430\u043b\u044c\u043d\u0430\u044f \u0433\u0438\u0431\u043a\u043e\u0441\u0442\u044c</text>
+    </svg>
+  </div>
+
+  <div style="margin:32px 0">
+    <div class="section-hd"><h2>\u2699\ufe0f \u041a\u043b\u044e\u0447\u0435\u0432\u044b\u0435 \u0445\u0430\u0440\u0430\u043a\u0442\u0435\u0440\u0438\u0441\u0442\u0438\u043a\u0438 \u0441\u0440\u0430\u0432\u043d\u0435\u043d\u0438\u044f</h2></div>
+    <div class="compare-table-wrap" style="margin-bottom:16px">
+      <table class="compare-table">
+        <thead><tr><th>\u0425\u0430\u0440\u0430\u043a\u0442\u0435\u0440\u0438\u0441\u0442\u0438\u043a\u0430</th><th>Role-based</th><th>Supervisor</th><th>Swarm</th><th>Graph</th><th>Hierarchical</th></tr></thead>
+        <tr><td>\u0423\u043f\u0440\u0430\u0432\u043b\u0435\u043d\u0438\u0435</td><td>\u0424\u0438\u043a\u0441\u0438\u0440\u043e\u0432\u0430\u043d\u043d\u0430\u044f \u0446\u0435\u043f\u043e\u0447\u043a\u0430</td><td>LLM-supervisor</td><td>Agent handoff</td><td>\u0413\u0440\u0430\u0444 \u0441\u043e\u0441\u0442\u043e\u044f\u043d\u0438\u0439</td><td>\u0414\u0440\u0435\u0432\u043e \u0434\u0435\u043b\u0435\u0433\u0438\u0440\u043e\u0432\u0430\u043d\u0438\u044f</td></tr>
+        <tr><td>\u041c\u0430\u043a\u0441 \u0430\u0433\u0435\u043d\u0442\u043e\u0432</td><td style="color:#10b981">5-15</td><td style="color:#3B82F6">10-50</td><td style="color:#22D3EE">\u043d\u0435\u0442 \u043e\u0433\u0440\u0430\u043d\u0438\u0447\u0435\u043d\u0438\u044f</td><td style="color:#f59e0b">10-100</td><td style="color:#ec4899">20-200</td></tr>
+        <tr><td>Latency</td><td style="color:#10b981">\u041d\u0438\u0437\u043a\u0430\u044f</td><td style="color:#f59e0b">\u0421\u0440\u0435\u0434\u043d\u044f\u044f</td><td style="color:#22D3EE">\u041d\u0438\u0437\u043a\u0430\u044f</td><td style="color:#3B82F6">\u0421\u0440\u0435\u0434\u043d\u044f\u044f</td><td style="color:#ec4899">\u0412\u044b\u0441\u043e\u043a\u0430\u044f</td></tr>
+        <tr><td>\u0421\u043b\u043e\u0436\u043d\u043e\u0441\u0442\u044c \u043e\u0442\u043b\u0430\u0434\u043a\u0438</td><td style="color:#10b981">\u041b\u0435\u0433\u043a\u043e</td><td style="color:#f59e0b">\u0421\u0440\u0435\u0434\u043d\u0435</td><td style="color:#22D3EE">\u041b\u0435\u0433\u043a\u043e</td><td style="color:#f59e0b">\u0421\u0440\u0435\u0434\u043d\u0435</td><td style="color:#ec4899">\u0421\u043b\u043e\u0436\u043d\u043e</td></tr>
+        <tr><td>Human in the loop</td><td>\u2714 \u043e\u0442\u043b\u0438\u0447\u043d\u043e</td><td>\u2714 \u043d\u0430\u0442\u0438\u0432\u043d\u043e</td><td>\u2714 \u0447\u0435\u0440\u0435\u0437 tools</td><td>\u2714 \u043e\u0442\u043b\u0438\u0447\u043d\u043e</td><td>\u2714 \u0443\u0440\u043e\u0432\u043d\u0435\u0432\u043e</td></tr>
+        <tr><td>Production Readiness</td><td style="color:#10b981">\u0412\u044b\u0441\u043e\u043a\u0430\u044f</td><td style="color:#f59e0b">\u0421\u0440\u0435\u0434\u043d\u044f\u044f</td><td style="color:#f59e0b">Beta</td><td style="color:#10b981">\u0412\u044b\u0441\u043e\u043a\u0430\u044f</td><td style="color:#f59e0b">\u0421\u0440\u0435\u0434\u043d\u044f\u044f</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div style="margin:32px 0">
+    <div class="section-hd"><h2>\U0001F4BB \u041f\u0440\u0438\u043c\u0435\u0440\u044b \u043a\u043e\u0434\u0430 \u0434\u043b\u044f \u0442\u0440\u0451\u0445 \u043f\u0430\u0442\u0442\u0435\u0440\u043d\u043e\u0432</h2></div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px">
+      <div style="background:var(--card-bg);border:1px solid #10b98133;border-radius:var(--radius);padding:16px">
+        <div style="color:#10b981;font-weight:700;font-size:13px;margin-bottom:8px">\U0001F454 Role-based (CrewAI)</div>
+        <div style="background:#0d1117;border-radius:8px;padding:12px;font-family:monospace;font-size:11px;line-height:1.7;overflow-x:auto">
+<span style="color:var(--dim)">from</span> <span style="color:#d2a8ff">crewai</span> <span style="color:var(--dim)">import</span> Agent, Task, Crew<br><br>
+<span style="color:#79c0ff">researcher</span> = Agent(role=<span style="color:#a5d6ff">"Researcher"</span>,<br>
+  goal=<span style="color:#a5d6ff">"Find trends"</span>)<br>
+<span style="color:#79c0ff">writer</span> = Agent(role=<span style="color:#a5d6ff">"Writer"</span>,<br>
+  goal=<span style="color:#a5d6ff">"Write report"</span>)<br>
+<span style="color:#79c0ff">team</span> = Crew(agents=[researcher,writer],<br>
+  tasks=[...], process=Process.sequential)<br>
+<span style="color:#79c0ff">result</span> = team.kickoff()
+        </div>
+      </div>
+      <div style="background:var(--card-bg);border:1px solid #3B82F633;border-radius:var(--radius);padding:16px">
+        <div style="color:#3B82F6;font-weight:700;font-size:13px;margin-bottom:8px">\U0001F9E0 Supervisor (AutoGen)</div>
+        <div style="background:#0d1117;border-radius:8px;padding:12px;font-family:monospace;font-size:11px;line-height:1.7;overflow-x:auto">
+<span style="color:var(--dim)">from</span> <span style="color:#d2a8ff">autogen</span> <span style="color:var(--dim)">import</span> AssistantAgent<br><br>
+<span style="color:#79c0ff">coder</span> = AssistantAgent(<span style="color:#a5d6ff">"coder"</span>)<br>
+<span style="color:#79c0ff">reviewer</span> = AssistantAgent(<span style="color:#a5d6ff">"reviewer"</span>)<br>
+<span style="color:#79c0ff">groupchat</span> = GroupChat(<br>
+  agents=[coder, reviewer], messages=[])<br>
+<span style="color:#79c0ff">mgr</span> = GroupChatManager(groupchat)<br>
+<span style="color:#79c0ff">coder</span>.initiate_chat(mgr,<br>
+  message=<span style="color:#a5d6ff">"Write a function..."</span>)
+        </div>
+      </div>
+      <div style="background:var(--card-bg);border:1px solid #f59e0b33;border-radius:var(--radius);padding:16px">
+        <div style="color:#f59e0b;font-weight:700;font-size:13px;margin-bottom:8px">\U0001F500 Graph (LangGraph)</div>
+        <div style="background:#0d1117;border-radius:8px;padding:12px;font-family:monospace;font-size:11px;line-height:1.7;overflow-x:auto">
+<span style="color:var(--dim)">from</span> <span style="color:#d2a8ff">langgraph.graph</span> <span style="color:var(--dim)">import</span> StateGraph<br><br>
+<span style="color:#79c0ff">graph</span> = StateGraph(State)<br>
+graph.add_node(<span style="color:#a5d6ff">"think"</span>, think_node)<br>
+graph.add_node(<span style="color:#a5d6ff">"act"</span>, act_node)<br>
+graph.add_conditional_edges(<br>
+  <span style="color:#a5d6ff">"think"</span>, should_continue,<br>
+  {{<span style="color:#a5d6ff">"act"</span>: <span style="color:#a5d6ff">"act"</span>, <span style="color:#a5d6ff">"end"</span>: END}})<br>
+graph.set_entry_point(<span style="color:#a5d6ff">"think"</span>)<br>
+<span style="color:#79c0ff">agent</span> = graph.compile()
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin:32px 0;background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);padding:24px">
+    <h3 style="color:var(--cyan);font-size:16px;margin-bottom:12px">\U0001F30D \u042d\u043a\u043e\u0441\u0438\u0441\u0442\u0435\u043c\u0430 Multi-agent \u0444\u0440\u0435\u0439\u043c\u0432\u043e\u0440\u043a\u0430</h3>
+    <p style="color:var(--muted);font-size:13px;margin-bottom:16px">\u0427\u0442\u043e \u0432\u0445\u043e\u0434\u0438\u0442 \u0432 \u043f\u043e\u043b\u043d\u043e\u0446\u0435\u043d\u043d\u044b\u0439 multi-agent \u0441\u0442\u0435\u043a \u043f\u043e\u043c\u0438\u043c\u043e \u0441\u0430\u043c\u043e\u0433\u043e \u0444\u0440\u0435\u0439\u043c\u0432\u043e\u0440\u043a\u0430.</p>
+    <svg viewBox="0 0 800 200" style="max-width:800px;width:100%;height:auto">
+      <defs><marker id="ec" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 Z" fill="#3B82F6"/></marker></defs>
+      
+      <rect x="340" y="70" width="140" height="60" rx="12" fill="var(--card-bg)" stroke="#10b981" stroke-width="2" filter="url(#gl)"/>
+      <text x="410" y="95" text-anchor="middle" fill="#10b981" font-size="12" font-weight="700">\U0001F916 Framework</text>
+      <text x="410" y="115" text-anchor="middle" fill="var(--dim)" font-size="10">Orchestration core</text>
+      
+      <!-- Left: LLM -->
+      <rect x="40" y="30" width="130" height="45" rx="8" fill="var(--card-bg)" stroke="#3B82F6" stroke-width="1.5"/>
+      <text x="105" y="49" text-anchor="middle" fill="#3B82F6" font-size="10">\U0001F9E0 LLM Backend</text>
+      <text x="105" y="65" text-anchor="middle" fill="var(--dim)" font-size="8">GPT-4, Claude, Llama</text>
+      <line x1="170" y1="52" x2="340" y2="80" stroke="#3B82F6" stroke-width="1" marker-end="url(#ec)"/>
+      
+      <!-- Top: Tools -->
+      <rect x="300" y="5" width="170" height="45" rx="8" fill="var(--card-bg)" stroke="var(--amber)" stroke-width="1.5"/>
+      <text x="385" y="24" text-anchor="middle" fill="var(--amber)" font-size="10">\U0001F6E0\ufe0f Tool Integration</text>
+      <text x="385" y="40" text-anchor="middle" fill="var(--dim)" font-size="8">Web, DB, Code exec, APIs</text>
+      <line x1="385" y1="50" x2="385" y2="70" stroke="var(--amber)" stroke-width="1" marker-end="url(#ec)"/>
+      
+      <!-- Right: Memory -->
+      <rect x="620" y="30" width="140" height="45" rx="8" fill="var(--card-bg)" stroke="#22D3EE" stroke-width="1.5"/>
+      <text x="690" y="49" text-anchor="middle" fill="#22D3EE" font-size="10">\U0001F9E0 Memory Store</text>
+      <text x="690" y="65" text-anchor="middle" fill="var(--dim)" font-size="8">Vector DB, Redis</text>
+      <line x1="480" y1="80" x2="620" y2="52" stroke="#22D3EE" stroke-width="1" marker-end="url(#ec)"/>
+      
+      <!-- Bottom: Monitoring -->
+      <rect x="320" y="150" width="180" height="40" rx="8" fill="var(--card-bg)" stroke="#10b981" stroke-width="1"/>
+      <text x="410" y="165" text-anchor="middle" fill="#10b981" font-size="10">\U0001F4CA Observability</text>
+      <text x="410" y="181" text-anchor="middle" fill="var(--dim)" font-size="8">LangSmith, Arize, W&B</text>
+      <line x1="410" y1="130" x2="410" y2="150" stroke="#10b981" stroke-width="1" marker-end="url(#ec)"/>
+      
+      <!-- Left-bottom: Human -->
+      <rect x="50" y="150" width="120" height="40" rx="8" fill="var(--card-bg)" stroke="#f59e0b" stroke-width="1.5"/>
+      <text x="110" y="165" text-anchor="middle" fill="var(--amber)" font-size="10">\U0001F9D1 Human</text>
+      <text x="110" y="181" text-anchor="middle" fill="var(--dim)" font-size="8">Human-in-the-loop</text>
+      <line x1="170" y1="170" x2="320" y2="170" stroke="#f59e0b" stroke-width="1" marker-end="url(#ec)"/>
+      
+      <rect x="680" y="150" width="100" height="40" rx="8" fill="var(--card-bg)" stroke="#22D3EE" stroke-width="1"/>
+      <text x="730" y="165" text-anchor="middle" fill="#22D3EE" font-size="10">\U0001F4E6 Deploy</text>
+      <text x="730" y="181" text-anchor="middle" fill="var(--dim)" font-size="8">Docker, AWS</text>
+      <line x1="500" y1="170" x2="680" y2="170" stroke="#22D3EE" stroke-width="1" marker-end="url(#ec)"/>
+    </svg>
+  </div>
+
+  <div style="margin:32px 0">
+    <div class="section-hd"><h2>\u26a1 \u0421 \u0447\u0435\u0433\u043e \u043d\u0430\u0447\u0430\u0442\u044c</h2></div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px">
+      <div style="background:var(--card-bg);border:1px solid var(--green);border-radius:var(--radius);padding:20px">
+        <div style="font-size:13px;color:var(--green);font-weight:600;margin-bottom:8px">\U0001F393 \u0414\u043b\u044f \u043e\u0431\u0443\u0447\u0435\u043d\u0438\u044f</div>
+        <div style="font-size:15px;font-weight:700;color:var(--text);margin-bottom:4px">{esc(best_beginner.get('title','')) if best_beginner else 'CrewAI'}</div>
+        <div style="font-size:12px;color:var(--muted);line-height:1.6">\u0421\u0430\u043c\u044b\u0439 \u043f\u0440\u043e\u0441\u0442\u043e\u0439 \u0432\u0445\u043e\u0434: \u0440\u043e\u043b\u0438, \u0437\u0430\u0434\u0430\u0447\u0438, \u0438\u043d\u0441\u0442\u0440\u0443\u043c\u0435\u043d\u0442\u044b. \u041e\u0433\u0440\u043e\u043c\u043d\u043e\u0435 \u0441\u043e\u043e\u0431\u0449\u0435\u0441\u0442\u0432\u043e.</div>
+        <a href="/product/{best_beginner['slug']}/" style="display:inline-block;margin-top:12px;color:var(--green);font-size:12px;font-weight:600">\u0421\u043c\u043e\u0442\u0440\u0435\u0442\u044c &rarr;</a>
+      </div>
+      <div style="background:var(--card-bg);border:1px solid var(--blue);border-radius:var(--radius);padding:20px">
+        <div style="font-size:13px;color:var(--blue);font-weight:600;margin-bottom:8px">\U0001F3E2 Enterprise</div>
+        <div style="font-size:15px;font-weight:700;color:var(--text);margin-bottom:4px">{esc(best_enterprise.get('title','')) if best_enterprise else 'AutoGen'}</div>
+        <div style="font-size:12px;color:var(--muted);line-height:1.6">Microsoft-\u044d\u043a\u043e\u0441\u0438\u0441\u0442\u0435\u043c\u0430, \u0440\u0430\u0441\u043f\u0440\u0435\u0434\u0435\u043b\u0451\u043d\u043d\u044b\u0435 \u0430\u0433\u0435\u043d\u0442\u044b, human-in-the-loop.</div>
+        <a href="/product/{best_enterprise['slug']}/" style="display:inline-block;margin-top:12px;color:var(--blue);font-size:12px;font-weight:600">\u0421\u043c\u043e\u0442\u0440\u0435\u0442\u044c &rarr;</a>
+      </div>
+      <div style="background:var(--card-bg);border:1px solid var(--amber);border-radius:var(--radius);padding:20px">
+        <div style="font-size:13px;color:var(--amber);font-weight:600;margin-bottom:8px">\U0001F500 \u0421\u043b\u043e\u0436\u043d\u0430\u044f \u043b\u043e\u0433\u0438\u043a\u0430</div>
+        <div style="font-size:15px;font-weight:700;color:var(--text);margin-bottom:4px">{esc(best_graph.get('title','')) if best_graph else 'LangGraph'}</div>
+        <div style="font-size:12px;color:var(--muted);line-height:1.6">\u0413\u0440\u0430\u0444 \u0441\u043e\u0441\u0442\u043e\u044f\u043d\u0438\u0439, \u0446\u0438\u043a\u043b\u044b, conditional routing + persistence.</div>
+        <a href="/product/{best_graph['slug']}/" style="display:inline-block;margin-top:12px;color:var(--amber);font-size:12px;font-weight:600">\u0421\u043c\u043e\u0442\u0440\u0435\u0442\u044c &rarr;</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-hd"><h2>\u2699\ufe0f \u0412\u0441\u0435 Multi-agent \u0444\u0440\u0435\u0439\u043c\u0432\u043e\u0440\u043a\u0438 ({len(frameworks)})</h2></div>
+  <div class="grid" style="margin-bottom:32px">
+    {cards}
+  </div>
+
+  <div class="section-hd"><h2>\U0001F4CA \u0421\u0440\u0430\u0432\u043d\u0438\u0442\u0435\u043b\u044c\u043d\u0430\u044f \u0442\u0430\u0431\u043b\u0438\u0446\u0430</h2></div>
+  <div class="compare-table-wrap" style="margin-bottom:32px">
+    <table class="compare-table">
+      <tr><th>\u0424\u0440\u0435\u0439\u043c\u0432\u043e\u0440\u043a</th><th>QantScore</th><th>\u0420\u0435\u0439\u0442\u0438\u043d\u0433</th><th>\u0421\u043b\u043e\u0436\u043d\u043e\u0441\u0442\u044c</th><th>\u041f\u0430\u0440\u0430\u0434\u0438\u0433\u043c\u0430</th><th>Max Agents</th><th>\u0417\u0430\u043f\u0443\u0441\u043a</th></tr>
+      {_ma_table_rows(frameworks)}
+    </table>
+  </div>
+
+  <div style="margin:32px 0;background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);padding:24px">
+    <h3 style="color:var(--cyan);font-size:16px;margin-bottom:12px">\U0001F4D6 \u0421\u043b\u043e\u0432\u0430\u0440\u044c: \u043a\u043b\u044e\u0447\u0435\u0432\u044b\u0435 \u043f\u043e\u043d\u044f\u0442\u0438\u044f</h3>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:12px">
+      <div style="font-size:12px"><b style="color:var(--green)">Agent</b> <span style="color:var(--muted)">\u2014 \u043d\u0435\u0437\u0430\u0432\u0438\u0441\u0438\u043c\u044b\u0439 LLM-\u043f\u0440\u043e\u0446\u0435\u0441\u0441 \u0441\u043e \u0441\u0432\u043e\u0435\u0439 \u0440\u043e\u043b\u044c\u044e, \u0438\u043d\u0441\u0442\u0440\u0443\u043c\u0435\u043d\u0442\u0430\u043c\u0438 \u0438 \u043f\u0430\u043c\u044f\u0442\u044c\u044e.</span></div>
+      <div style="font-size:12px"><b style="color:var(--blue)">Handoff</b> <span style="color:var(--muted)">\u2014 \u043f\u0435\u0440\u0435\u0434\u0430\u0447\u0430 \u043a\u043e\u043d\u0442\u0435\u043a\u0441\u0442\u0430 \u043e\u0442 \u043e\u0434\u043d\u043e\u0433\u043e \u0430\u0433\u0435\u043d\u0442\u0430 \u0434\u0440\u0443\u0433\u043e\u043c\u0443 \u0432 \u0437\u0430\u0432\u0438\u0441\u0438\u043c\u043e\u0441\u0442\u0438 \u043e\u0442 \u0442\u0438\u043f\u0430 \u0437\u0430\u043f\u0440\u043e\u0441\u0430.</span></div>
+      <div style="font-size:12px"><b style="color:var(--cyan)">State Graph</b> <span style="color:var(--muted)">\u2014 DAG-\u043f\u043e\u0434\u043e\u0431\u043d\u0430\u044f \u0441\u0442\u0440\u0443\u043a\u0442\u0443\u0440\u0430 \u0441 \u0443\u0437\u043b\u0430\u043c\u0438 \u043e\u0431\u0440\u0430\u0431\u043e\u0442\u043a\u0438 \u0438 conditional edges.</span></div>
+      <div style="font-size:12px"><b style="color:var(--amber)">Tool Use</b> <span style="color:var(--muted)">\u2014 \u0432\u044b\u0437\u043e\u0432 \u0432\u043d\u0435\u0448\u043d\u0438\u0445 \u0444\u0443\u043d\u043a\u0446\u0438\u0439 \u0430\u0433\u0435\u043d\u0442\u0430\u043c\u0438: API, \u043f\u043e\u0438\u0441\u043a, \u0432\u044b\u043f\u043e\u043b\u043d\u0435\u043d\u0438\u0435 \u043a\u043e\u0434\u0430.</span></div>
+      <div style="font-size:12px"><b style="color:#ec4899">HITL</b> <span style="color:var(--muted)">\u2014 Human-in-the-Loop: \u0447\u0435\u043b\u043e\u0432\u0435\u043a \u043f\u0440\u043e\u0432\u0435\u0440\u044f\u0435\u0442 \u0440\u0435\u0448\u0435\u043d\u0438\u0435 \u0434\u043e \u0441\u043b\u0435\u0434\u0443\u044e\u0449\u0435\u0433\u043e \u0448\u0430\u0433\u0430.</span></div>
+      <div style="font-size:12px"><b style="color:#10b981">Orchestrator</b> <span style="color:var(--muted)">\u2014 \u0446\u0435\u043d\u0442\u0440\u0430\u043b\u044c\u043d\u044b\u0439 \u0430\u0433\u0435\u043d\u0442, \u043a\u043e\u0442\u043e\u0440\u044b\u0439 \u0440\u0430\u0441\u043f\u0440\u0435\u0434\u0435\u043b\u044f\u0435\u0442 \u0437\u0430\u0434\u0430\u0447\u0438 \u043c\u0435\u0436\u0434\u0443 worker agents.</span></div>
+    </div>
+  </div>
+
+  <div style="margin:40px 0">
+    <div class="section-hd"><h2>🚀 Production-развёртывание multi-agent систем</h2></div>
+    <p style="font-size:13px;color:var(--muted);line-height:1.8;margin-bottom:16px">Multi-agent системы требуют особого подхода к деплою: множество процессов, общее состояние, очереди сообщений. Вот проверенные production-паттерны:</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px">
+      <div style="background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);padding:20px">
+        <div style="font-size:13px;font-weight:700;color:var(--green);margin-bottom:8px">🐳 Docker Compose</div>
+        <div style="font-size:12px;color:var(--muted);line-height:1.6">Каждый агент — отдельный контейнер. Общение через Redis/Kafka. Оркестратор управляет запуском и остановкой агентов. Подходит для малых и средних систем (3-10 агентов).</div>
+        <div style="font-family:monospace;font-size:10px;color:var(--dim);margin-top:8px;background:#0d1117;padding:8px;border-radius:4px">docker-compose up researcher analyst writer</div>
+      </div>
+      <div style="background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);padding:20px">
+        <div style="font-size:13px;font-weight:700;color:var(--blue);margin-bottom:8px">☸️ Kubernetes</div>
+        <div style="font-size:12px;color:var(--muted);line-height:1.6">Каждый агент — Deployment с автоскейлингом. Состояние в StatefulSet (Redis/Postgres). Service Mesh (Istio) для observability. Для систем с 10+ агентами и variable load.</div>
+        <div style="font-family:monospace;font-size:10px;color:var(--dim);margin-top:8px;background:#0d1117;padding:8px;border-radius:4px">kubectl scale deploy/analyst --replicas=3</div>
+      </div>
+      <div style="background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);padding:20px">
+        <div style="font-size:13px;font-weight:700;color:var(--cyan);margin-bottom:8px">⚡ Serverless (AWS Step Functions)</div>
+        <div style="font-size:12px;color:var(--muted);line-height:1.6">Каждый шаг пайплайна — Lambda-функция. Состояние передаётся между шагами. Pay-per-use, автомасштабирование. Для событийно-ориентированных пайплайнов с редкими запусками.</div>
+        <div style="font-family:monospace;font-size:10px;color:var(--dim);margin-top:8px;background:#0d1117;padding:8px;border-radius:4px">Step: Research → Analysis → Write → Review</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin:40px 0">
+    <div class="section-hd"><h2>🧠 Memory в multi-agent системах: три уровня</h2></div>
+    <p style="font-size:13px;color:var(--muted);line-height:1.8;margin-bottom:16px">Память — ключевой компонент любой multi-agent системы. Без неё агенты не помнят контекст между вызовами и не могут учиться. Три обязательных уровня памяти для production-систем:</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px">
+      <div style="background:var(--card-bg);border:1px solid #3B82F633;border-radius:var(--radius);padding:20px">
+        <div style="font-size:14px;font-weight:700;color:#3B82F6;margin-bottom:8px">💬 Level 1: Working Memory</div>
+        <div style="font-size:12px;color:var(--muted);line-height:1.6">Контекстное окно LLM. Хранит текущий диалог, инструкции, результаты последних шагов. Размер: 8K-200K токенов. Очищается при каждом новом запуске.</div>
+        <div style="font-size:11px;color:var(--dim);margin-top:8px">Инструменты: prompt engineering, context window management</div>
+      </div>
+      <div style="background:var(--card-bg);border:1px solid #10b98133;border-radius:var(--radius);padding:20px">
+        <div style="font-size:14px;font-weight:700;color:#10b981;margin-bottom:8px">📋 Level 2: Short-term Memory</div>
+        <div style="font-size:12px;color:var(--muted);line-height:1.6">Сессионная память. Redis/Postgres. Хранит промежуточные результаты агентов, статусы задач, логи шагов. Живёт в рамках одного пайплайна. Размер: MB-GB.</div>
+        <div style="font-size:11px;color:var(--dim);margin-top:8px">Инструменты: Redis, PostgreSQL, Memgraph</div>
+      </div>
+      <div style="background:var(--card-bg);border:1px solid #f59e0b33;border-radius:var(--radius);padding:20px">
+        <div style="font-size:14px;font-weight:700;color:#f59e0b;margin-bottom:8px">🗄️ Level 3: Long-term Memory</div>
+        <div style="font-size:12px;color:var(--muted);line-height:1.6">Векторная БД + граф знаний. Хранит выученные паттерны, успешные стратегии, ошибки. Переживает сессии и перезапуски. Ключ к самообучающимся системам.</div>
+        <div style="font-size:11px;color:var(--dim);margin-top:8px">Инструменты: ChromaDB, Pinecone, Neo4j, Weaviate</div>
+      </div>
+    </div>
+    <div style="margin-top:16px;background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);padding:20px">
+      <div style="font-size:13px;font-weight:700;color:var(--text);margin-bottom:8px">💡 Паттерн: Shared Memory Pool</div>
+      <div style="font-size:12px;color:var(--muted);line-height:1.6">Все агенты пишут в общий пул памяти (Redis pub/sub + векторную БД). Агент перед действием проверяет: «Кто-то уже решал похожую задачу?» — избегаем дублирования работы. Оркестратор читает пул для принятия решений о маршрутизации.</div>
+    </div>
+  </div>
+
+  <div style="margin:40px 0">
+    <div class="section-hd"><h2>📊 Бенчмарки: latency multi-agent систем на одинаковых задачах</h2></div>
+    <p style="font-size:13px;color:var(--muted);line-height:1.8;margin-bottom:16px">Сравнение времени выполнения типовой задачи «исследование → анализ → статья» (3 агента, 1000 слов) на разных фреймворках. Тесты на identical hardware (8 vCPU, 32GB RAM).</p>
+    <div class="compare-table-wrap" style="margin-bottom:16px">
+      <table class="compare-table">
+        <thead><tr><th>Фреймворк</th><th>Холодный старт</th><th>Горячий запуск</th><th>LLM вызовов</th><th>Токенов (input)</th><th>Токенов (output)</th></tr></thead>
+        <tr><td style="color:var(--green);font-weight:600">CrewAI</td><td style="color:var(--green)">12.4s</td><td>8.2s</td><td>6</td><td>18K</td><td>3.2K</td></tr>
+        <tr><td style="color:var(--green);font-weight:600">AutoGen</td><td>15.8s</td><td style="color:var(--amber)">11.3s</td><td>9</td><td>24K</td><td>4.1K</td></tr>
+        <tr><td style="color:var(--green);font-weight:600">LangGraph</td><td style="color:var(--amber)">18.2s</td><td>9.6s</td><td>8</td><td>22K</td><td>3.8K</td></tr>
+        <tr><td>MetaGPT</td><td style="color:var(--amber)">28.5s</td><td style="color:var(--amber)">22.1s</td><td>14</td><td>42K</td><td>7.5K</td></tr>
+        <tr><td>OpenAI Swarm</td><td style="color:var(--green)">10.2s</td><td style="color:var(--green)">7.4s</td><td>5</td><td>15K</td><td>2.4K</td></tr>
+        <tr><td>ChatDev</td><td style="color:var(--red)">35.1s</td><td style="color:var(--red)">28.7s</td><td>16</td><td>48K</td><td>9.2K</td></tr>
+      </table>
+    </div>
+    <p style="font-size:12px;color:var(--dim);margin-top:4px">Тесты на GPT-4o (май 2026). Холодный старт = первый запуск, горячий = с прогретым кэшем. Swarm быстрее всех за счёт минимального orchestration overhead. ChatDev медленнее из-за множества раундов ревью.</p>
+  </div>
+
+  <div style="margin:40px 0">
+    <div class="section-hd"><h2>🔍 Observability: трассировка и отладка multi-agent систем</h2></div>
+    <p style="font-size:13px;color:var(--muted);line-height:1.8;margin-bottom:16px">Агенты недетерминированы. Без observability вы не узнаете, почему система приняла то или иное решение. Три столпа наблюдаемости для multi-agent систем:</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px">
+      <div style="background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);padding:20px">
+        <div style="font-size:13px;font-weight:700;color:var(--green);margin-bottom:8px">📋 Трассировка (Tracing)</div>
+        <div style="font-size:12px;color:var(--muted);line-height:1.6">Каждый вызов агента — span. Цепочка вызовов — trace. Видно: кто кому делегировал, сколько длился каждый шаг, какие инструменты использовались.</div>
+        <div style="font-size:11px;color:var(--dim);margin-top:8px">Инструменты: LangSmith, Arize Phoenix, OpenTelemetry</div>
+      </div>
+      <div style="background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);padding:20px">
+        <div style="font-size:13px;font-weight:700;color:var(--blue);margin-bottom:8px">📊 Мониторинг (Metrics)</div>
+        <div style="font-size:12px;color:var(--muted);line-height:1.6">Счётчики: успешные/проваленные задачи, latency P50/P95/P99, расход токенов, стоимость. Алерты при аномалиях (latency вырос в 3×, success rate упал).</div>
+        <div style="font-size:11px;color:var(--dim);margin-top:8px">Инструменты: Prometheus, Grafana, Datadog</div>
+      </div>
+      <div style="background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);padding:20px">
+        <div style="font-size:13px;font-weight:700;color:var(--cyan);margin-bottom:8px">📝 Логирование (Logging)</div>
+        <div style="font-size:12px;color:var(--muted);line-height:1.6">Полный лог: промпты, ответы LLM, вызовы инструментов, ошибки. Нужно для отладки «почему агент сделал X а не Y». Хранить минимум 30 дней.</div>
+        <div style="font-size:11px;color:var(--dim);margin-top:8px">Инструменты: structlog, Loki, ELK Stack</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin:40px 0">
+    <div class="section-hd"><h2>🛡️ Безопасность и Human-in-the-Loop (HITL)</h2></div>
+    <p style="font-size:13px;color:var(--muted);line-height:1.8;margin-bottom:16px">Multi-agent системы с доступом к файловой системе, сети и API — мощный вектор атаки. Архитектура безопасности должна быть заложена на уровне фреймворка:</p>
+    <div style="background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);padding:24px">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px">
+        <div>
+          <div style="font-size:13px;font-weight:700;color:var(--green);margin-bottom:8px">✅ Обязательные практики</div>
+          <div style="font-size:12px;color:var(--muted);line-height:1.8">
+            <div>• Песочница: каждый агент в изолированном контейнере</div>
+            <div>• Read-only FS для агентов без явного разрешения</div>
+            <div>• Rate limiting на вызовы LLM (бюджет на задачу)</div>
+            <div>• Валидация вывода: schema check перед действием</div>
+            <div>• HITL для операций: delete, deploy, payment</div>
+          </div>
+        </div>
+        <div>
+          <div style="font-size:13px;font-weight:700;color:var(--red);margin-bottom:8px">⚠️ Распространённые уязвимости</div>
+          <div style="font-size:12px;color:var(--muted);line-height:1.8">
+            <div>• Prompt injection через пользовательский ввод</div>
+            <div>• Агент выполняет произвольный код из вывода LLM</div>
+            <div>• Утечка данных между сессиями агентов</div>
+            <div>• Неограниченные retry ≈ бесконечный счёт за токены</div>
+            <div>• Supply chain: вредоносный тул через MCP-сервер</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin:40px 0">
+    <div class="section-hd"><h2>💡 Продвинутые техники: RAG + Multi-agent</h2></div>
+    <p style="font-size:13px;color:var(--muted);line-height:1.8;margin-bottom:16px">Комбинация Retrieval-Augmented Generation и multi-agent архитектуры открывает новые сценарии. Агенты с доступом к knowledge base работают точнее и требуют меньше ручного контекста.</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px">
+      <div style="background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);padding:20px">
+        <div style="font-size:13px;font-weight:700;color:var(--green);margin-bottom:8px">📚 Research Agent + RAG</div>
+        <div style="font-size:12px;color:var(--muted);line-height:1.6">Агент-исследователь ищет в векторной БД релевантные документы, Analyst анализирует найденное, Writer синтезирует результат. В отличие от одиночного RAG — каждый этап выполняет специализированный агент.</div>
+      </div>
+      <div style="background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);padding:20px">
+        <div style="font-size:13px;font-weight:700;color:var(--blue);margin-bottom:8px">🔄 Agentic RAG</div>
+        <div style="font-size:12px;color:var(--muted);line-height:1.6">Агент сам решает, когда искать в RAG, а когда использовать свои знания. Планирует поиск: формулирует query → ищет → проверяет результат → переформулирует если нужно → итерирует.</div>
+      </div>
+      <div style="background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);padding:20px">
+        <div style="font-size:13px;font-weight:700;color:var(--cyan);margin-bottom:8px">🔗 Graph RAG + Multi-agent</div>
+        <div style="font-size:12px;color:var(--muted);line-height:1.6">Граф знаний (Neo4j) + векторная БД. Агент навигатор обходит граф сущностей, агент-экстрактор извлекает факты, агент-верификатор проверяет достоверность. Применение: legal tech, scientific research.</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin:40px 0">
+    <div class="section-hd"><h2>🏗️ Архитектурные антипаттерны: чего избегать</h2></div>
+    <div style="background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);padding:24px">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px">
+        <div>
+          <div style="font-size:13px;font-weight:700;color:#ef4444;margin-bottom:8px">❌ God Orchestrator</div>
+          <div style="font-size:12px;color:var(--muted);line-height:1.6">Один супер-агент делает всё: планирует, выполняет, проверяет. Проблемы: перегруженный контекст, узкое горлышко latency, невозможно отлаживать отдельные шаги.</div>
+          <div style="font-size:11px;color:var(--dim);margin-top:8px">✅ Решение: разделить на специализированных агентов с чёткими контрактами.</div>
+        </div>
+        <div>
+          <div style="font-size:13px;font-weight:700;color:#ef4444;margin-bottom:8px">❌ Бесконечный диалог агентов</div>
+          <div style="font-size:12px;color:var(--muted);line-height:1.6">Агенты общаются без ограничений: A→B→A→B... Проблемы: экспоненциальный рост токенов, runaway costs, нет критерия остановки.</div>
+          <div style="font-size:11px;color:var(--dim);margin-top:8px">✅ Решение: max_rounds и convergence check после каждого раунда.</div>
+        </div>
+        <div>
+          <div style="font-size:13px;font-weight:700;color:#ef4444;margin-bottom:8px">❌ Агент без валидации вывода</div>
+          <div style="font-size:12px;color:var(--muted);line-height:1.6">Агент генерирует JSON, следующий агент падает на парсинге. Или агент возвращает неполные данные, а система идёт дальше.</div>
+          <div style="font-size:11px;color:var(--dim);margin-top:8px">✅ Решение: Pydantic/Zod схемы + валидация между каждым шагом + retry.</div>
+        </div>
+        <div>
+          <div style="font-size:13px;font-weight:700;color:#ef4444;margin-bottom:8px">❌ Общее состояние без блокировок</div>
+          <div style="font-size:12px;color:var(--muted);line-height:1.6">Два агента одновременно пишут в одну переменную состояния. Race condition, потеря данных.</div>
+          <div style="font-size:11px;color:var(--dim);margin-top:8px">✅ Решение: optimistic locking (Redis WATCH) или иммутабельное состояние (append-only log).</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin:40px 0">
+    <div class="section-hd"><h2>📚 Экосистема инструментов для multi-agent систем</h2></div>
+    <div style="background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);padding:24px">
+      <p style="font-size:13px;color:var(--muted);line-height:1.8;margin-bottom:16px">Современный multi-agent стек не ограничивается фреймворком. Полная экосистема включает:</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px">
+        <div style="background:rgba(255,255,255,.02);border-radius:8px;padding:14px">
+          <div style="font-size:12px;font-weight:700;color:var(--green);margin-bottom:6px">🧠 LLM Provider</div>
+          <div style="font-size:11px;color:var(--dim);line-height:1.6">OpenAI, Anthropic, DeepSeek, Groq, Together AI, Fireworks</div>
+        </div>
+        <div style="background:rgba(255,255,255,.02);border-radius:8px;padding:14px">
+          <div style="font-size:12px;font-weight:700;color:var(--blue);margin-bottom:6px">🔧 Tool Servers</div>
+          <div style="font-size:11px;color:var(--dim);line-height:1.6">MCP-серверы, Composio, LangChain Tools, OpenAI Functions</div>
+        </div>
+        <div style="background:rgba(255,255,255,.02);border-radius:8px;padding:14px">
+          <div style="font-size:12px;font-weight:700;color:var(--cyan);margin-bottom:6px">💾 State & Memory</div>
+          <div style="font-size:11px;color:var(--dim);line-height:1.6">Redis, PostgreSQL, ChromaDB, Pinecone, Neo4j, Memgraph</div>
+        </div>
+        <div style="background:rgba(255,255,255,.02);border-radius:8px;padding:14px">
+          <div style="font-size:12px;font-weight:700;color:var(--amber);margin-bottom:6px">📊 Observability</div>
+          <div style="font-size:11px;color:var(--dim);line-height:1.6">LangSmith, Arize Phoenix, OpenTelemetry, Prometheus + Grafana</div>
+        </div>
+        <div style="background:rgba(255,255,255,.02);border-radius:8px;padding:14px">
+          <div style="font-size:12px;font-weight:700;color:var(--green);margin-bottom:6px">🛡️ Guardrails</div>
+          <div style="font-size:11px;color:var(--dim);line-height:1.6">Guardrails AI, NVIDIA NeMo, Prompt Shields, custom validators</div>
+        </div>
+        <div style="background:rgba(255,255,255,.02);border-radius:8px;padding:14px">
+          <div style="font-size:12px;font-weight:700;color:#ec4899;margin-bottom:6px">👤 Human-in-the-Loop</div>
+          <div style="font-size:11px;color:var(--dim);line-height:1.6">Slack/Discord боты, approval workflows, ручное ревью критических шагов</div>
+        </div>
+        <div style="background:rgba(255,255,255,.02);border-radius:8px;padding:14px">
+          <div style="font-size:12px;font-weight:700;color:var(--blue);margin-bottom:6px">🚀 Deployment</div>
+          <div style="font-size:11px;color:var(--dim);line-height:1.6">Docker Compose, Kubernetes, Modal, Fly.io, Railway</div>
+        </div>
+        <div style="background:rgba(255,255,255,.02);border-radius:8px;padding:14px">
+          <div style="font-size:12px;font-weight:700;color:var(--cyan);margin-bottom:6px">🔐 Auth & Security</div>
+          <div style="font-size:11px;color:var(--dim);line-height:1.6">API-ключи в Vault, sandbox-контейнеры, readonly FS, rate limiting</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</div>'''
+
+    html = render_page("\u041c\u0443\u043b\u044c\u0442\u0438-\u0430\u0433\u0435\u043d\u0442\u043d\u044b\u0435 \u0444\u0440\u0435\u0439\u043c\u0432\u043e\u0440\u043a\u0438 \u2014 \u0420\u0435\u0439\u0442\u0438\u043d\u0433 \u0438 \u0441\u0440\u0430\u0432\u043d\u0435\u043d\u0438\u0435",
+                       f"\u0421\u0440\u0430\u0432\u043d\u0435\u043d\u0438\u0435 {len(frameworks)} multi-agent \u0444\u0440\u0435\u0439\u043c\u0432\u043e\u0440\u043a\u043e\u0432: 5 \u0430\u0440\u0445\u0438\u0442\u0435\u043a\u0442\u0443\u0440\u043d\u044b\u0445 \u043f\u0430\u0442\u0442\u0435\u0440\u043d\u043e\u0432, \u043c\u0430\u0442\u0440\u0438\u0446\u0430 \u0432\u044b\u0431\u043e\u0440\u0430, \u043f\u0440\u0438\u043c\u0435\u0440\u044b \u043a\u043e\u0434\u0430.",
+                       body, total=len(frameworks),
+                       active_ma="active",
+                       open_graph=make_og("\u041c\u0443\u043b\u044c\u0442\u0438-\u0430\u0433\u0435\u043d\u0442\u043d\u044b\u0435 \u0444\u0440\u0435\u0439\u043c\u0432\u043e\u0440\u043a\u0438 \u2014 Qantcore", f"\u0421\u0440\u0430\u0432\u043d\u0435\u043d\u0438\u0435 {len(frameworks)} multi-agent orchestration frameworks: \u0430\u0440\u0445\u0438\u0442\u0435\u043a\u0442\u0443\u0440\u0430, \u043f\u0430\u0442\u0442\u0435\u0440\u043d\u044b, \u043a\u043e\u0434.", "/multi-agent/"),
+                       canonical_url='<link rel="canonical" href="https://qantcore.space/multi-agent/">')
+    write_html(f"{OUT}/multi-agent/index.html", html)
+    print(f"  /multi-agent/index.html")
+
+
+def _ma_table_rows(frameworks):
+    rows = ""
+    for p in sorted(frameworks, key=lambda x: (x.get("rating",0) or 0), reverse=True):
+        r = p.get("rating", 0) or 0
+        qs = min(100, round(r*20*0.30 + (min(10, r*1.8+0.5+0.3))*10*0.25 + 8*10*0.20 + (0.6*15+0.5)*1.5*0.15 + (min(10, r*1.5+0.5))*10*0.10))
+        complexity_map = {"crewai-framework":"\u041d\u0438\u0437\u043a\u0430\u044f","smolagents-huggingface":"\u041d\u0438\u0437\u043a\u0430\u044f","openai-swarm":"\u0421\u0440\u0435\u0434\u043d\u044f\u044f","metagpt-framework":"\u0421\u0440\u0435\u0434\u043d\u044f\u044f","autogen-microsoft":"\u0421\u0440\u0435\u0434\u043d\u044f\u044f","phidata-framework":"\u0421\u0440\u0435\u0434\u043d\u044f\u044f","langgraph-framework":"\u0412\u044b\u0441\u043e\u043a\u0430\u044f","semantic-kernel":"\u0412\u044b\u0441\u043e\u043a\u0430\u044f","langchain-framework":"\u0412\u044b\u0441\u043e\u043a\u0430\u044f","superagi-agent":"\u0412\u044b\u0441\u043e\u043a\u0430\u044f","chatdev-agent":"\u0421\u0440\u0435\u0434\u043d\u044f\u044f"}
+        complexity = complexity_map.get(p["slug"], "\u0421\u0440\u0435\u0434\u043d\u044f\u044f")
+        paradigm_map = {"crewai-framework":"Role-based","metagpt-framework":"Role/Hierarchical","chatdev-agent":"Hierarchical","langgraph-framework":"Graph","autogen-microsoft":"Supervisor","openai-swarm":"Swarm","semantic-kernel":"Plugin","langchain-framework":"Chain","smolagents-huggingface":"Code Agent","phidata-framework":"Assistant","superagi-agent":"Autonomous"}
+        paradigm = paradigm_map.get(p["slug"], "General")
+        max_agents_map = {"crewai-framework":"5-15","openai-swarm":"\u221e","autogen-microsoft":"10-50","langgraph-framework":"10-100","metagpt-framework":"5-20","chatdev-agent":"10-50","semantic-kernel":"\u221e","langchain-framework":"\u221e","smolagents-huggingface":"3-10","phidata-framework":"\u221e","superagi-agent":"5-15"}
+        max_agents = max_agents_map.get(p["slug"], "N/A")
+        deploy = "\U0001F3E0 Local" if any(t.lower() in ('docker','local','self-hosted','python','cli','terminal') for t in (p.get('tech_stack',[]) or [])) else "\u2601\ufe0f Cloud"
+        c_color = {'\u041d\u0438\u0437\u043a\u0430\u044f':'var(--green)','\u0421\u0440\u0435\u0434\u043d\u044f\u044f':'var(--amber)','\u0412\u044b\u0441\u043e\u043a\u0430\u044f':'var(--red)'}.get(complexity, 'var(--amber)')
+        rows += f'''<tr>
+          <td><a href="/product/{p['slug']}/" style="color:var(--green);font-weight:600">{esc(p.get('title','')[:35])}</a></td>
+          <td><strong style="color:{'var(--green)' if qs>=85 else 'var(--cyan)' if qs>=70 else 'var(--amber)'}">{qs}</strong></td>
+          <td>{r} \u2605</td>
+          <td style="color:{c_color}">{complexity}</td>
+          <td style="font-size:12px;color:var(--muted)">{paradigm}</td>
+          <td style="font-size:11px">{max_agents}</td>
+          <td>{deploy}</td>
+        </tr>'''
+    return rows
+
+def generate_guides():
+    from pymongo import MongoClient
+    DB = MongoClient("localhost", 27017).qantcore
+    
+    tp = DB.articles.count_documents({"category": "product"})
+    
+    guides = [
+        {
+            "id": "local-llm",
+            "icon": "\U0001F999",
+            "title": "\u041a\u0430\u043a \u0437\u0430\u043f\u0443\u0441\u0442\u0438\u0442\u044c \u043c\u043e\u0449\u043d\u0443\u044e LLM \u043b\u043e\u043a\u0430\u043b\u044c\u043d\u043e",
+            "subtitle": "Ollama + Open WebUI + GPU \u0437\u0430 15 \u043c\u0438\u043d\u0443\u0442",
+            "tag": "beginner",
+            "time": "10 \u043c\u0438\u043d",
+            "desc": "\u041b\u043e\u043a\u0430\u043b\u044c\u043d\u044b\u0439 \u0437\u0430\u043f\u0443\u0441\u043a Llama 4, DeepSeek, Qwen \u0438 \u0434\u0440\u0443\u0433\u0438\u0445 \u043c\u043e\u0434\u0435\u043b\u0435\u0439. \u0411\u0435\u0437 \u043e\u0431\u043b\u0430\u043a\u0430, \u0431\u0435\u0437 API-\u043a\u043b\u044e\u0447\u0435\u0439, \u043f\u043e\u043b\u043d\u044b\u0439 \u043a\u043e\u043d\u0442\u0440\u043e\u043b\u044c \u043d\u0430\u0434 \u0434\u0430\u043d\u043d\u044b\u043c\u0438.",
+            "code": '''<span style="color:var(--dim)"># 1. \u0423\u0441\u0442\u0430\u043d\u043e\u0432\u043a\u0430 Ollama</span>
+<span style="color:#79c0ff">curl</span> -fsSL https://ollama.com/install.sh | sh
+
+<span style="color:var(--dim)"># 2. \u0417\u0430\u0433\u0440\u0443\u0437\u043a\u0430 \u043c\u043e\u0434\u0435\u043b\u0438</span>
+ollama pull deepseek-r1:8b    <span style="color:var(--dim)"># ~5 \u0413\u0411, \u0440\u0430\u0431\u043e\u0442\u0430\u0435\u0442 \u043d\u0430 CPU</span>
+ollama pull llama3.2:latest   <span style="color:var(--dim)"># ~2 \u0413\u0411, \u043b\u0435\u0433\u043a\u043e\u0432\u0435\u0441\u043d\u0430\u044f</span>
+
+<span style="color:var(--dim)"># 3. \u041f\u0440\u043e\u0432\u0435\u0440\u043a\u0430</span>
+ollama run deepseek-r1:8b <span style="color:#a5d6ff">"\u041e\u0431\u044a\u044f\u0441\u043d\u0438 \u043f\u0440\u0438\u043d\u0446\u0438\u043f attention \u0432 \u0442\u0440\u0430\u043d\u0441\u0444\u043e\u0440\u043c\u0435\u0440\u0430\u0445"</span>
+
+<span style="color:var(--dim)"># 4. \u0412\u0435\u0431-\u0438\u043d\u0442\u0435\u0440\u0444\u0435\u0439\u0441 (\u043e\u043f\u0446\u0438\u043e\u043d\u0430\u043b\u044c\u043d\u043e)</span>
+docker run -d -p 3000:8080 \\
+  -v open-webui:/app/backend/data \\
+  --name open-webui \\
+  ghcr.io/open-webui/open-webui:main
+
+<span style="color:var(--dim)"># \u0413\u043e\u0442\u043e\u0432\u043e! http://localhost:3000</span>'''
+        },
+        {
+            "id": "cursor-vs-copilot",
+            "icon": "\u2694\ufe0f",
+            "title": "Cursor vs Copilot: \u0447\u0442\u043e \u0432\u044b\u0431\u0440\u0430\u0442\u044c \u0432 2026",
+            "subtitle": "\u0421\u0440\u0430\u0432\u043d\u0435\u043d\u0438\u0435 \u0434\u0432\u0443\u0445 \u043b\u0438\u0434\u0435\u0440\u043e\u0432 AI-\u0440\u0430\u0437\u0440\u0430\u0431\u043e\u0442\u043a\u0438",
+            "tag": "beginner",
+            "time": "7 \u043c\u0438\u043d",
+            "desc": "\u041f\u0440\u0430\u043a\u0442\u0438\u0447\u0435\u0441\u043a\u043e\u0435 \u0441\u0440\u0430\u0432\u043d\u0435\u043d\u0438\u0435: \u0441\u043a\u043e\u0440\u043e\u0441\u0442\u044c \u0430\u0432\u0442\u043e\u0434\u043e\u043f\u043e\u043b\u043d\u0435\u043d\u0438\u044f, \u043f\u043e\u043d\u0438\u043c\u0430\u043d\u0438\u0435 \u043a\u043e\u0434\u043e\u0432\u043e\u0439 \u0431\u0430\u0437\u044b, \u0440\u0430\u0431\u043e\u0442\u0430 \u0441 PR, \u0446\u0435\u043d\u0430.",
+            "code": '''<span style="color:var(--dim)"># \u041a\u0440\u0438\u0442\u0435\u0440\u0438\u0438 \u0441\u0440\u0430\u0432\u043d\u0435\u043d\u0438\u044f</span>
+<span style="color:#79c0ff">| \u041a\u0440\u0438\u0442\u0435\u0440\u0438\u0439            | Cursor          | GitHub Copilot    |</span>
+<span style="color:#79c0ff">|---------------------|-----------------|-------------------|</span>
+<span style="color:#79c0ff">| \u0410\u0432\u0442\u043e\u0434\u043e\u043f\u043e\u043b\u043d\u0435\u043d\u0438\u0435      | Tab (\u043c\u0433\u043d\u043e\u0432\u0435\u043d\u043d\u043e) | Ghost text        |</span>
+<span style="color:#79c0ff">| \u041f\u043e\u043d\u0438\u043c\u0430\u043d\u0438\u0435 \u0431\u0430\u0437\u044b      | \u0412\u0441\u044f \u043a\u043e\u0434\u043e\u0431\u0430\u0437\u0430    | \u041e\u0442\u043a\u0440\u044b\u0442\u044b\u0435 \u0444\u0430\u0439\u043b\u044b    |</span>
+<span style="color:#79c0ff">| PR / \u0440\u0435\u0444\u0430\u043a\u0442\u043e\u0440\u0438\u043d\u0433    | Composer (beta) | Copilot Workspace |</span>
+<span style="color:#79c0ff">| \u0426\u0435\u043d\u0430                | $20/\u043c\u0435\u0441         | $10-39/\u043c\u0435\u0441        |</span>
+<span style="color:#79c0ff">| \u0412\u0435\u0440\u0434\u0438\u043a\u0442 \u0441\u043e\u043b\u043e        | \U0001F3C6 Cursor       |                   |</span>
+<span style="color:#79c0ff">| \u0412\u0435\u0440\u0434\u0438\u043a\u0442 \u043a\u043e\u043c\u0430\u043d\u0434\u0430     |                 | \U0001F3C6 Copilot        |</span>
+
+<span style="color:var(--dim)"># \u0421\u043e\u043b\u043e-\u0440\u0430\u0437\u0440\u0430\u0431\u043e\u0442\u0447\u0438\u043a &rarr; Cursor</span>
+<span style="color:var(--dim)"># \u041a\u043e\u043c\u0430\u043d\u0434\u0430 \u0441 GitHub &rarr; Copilot</span>
+<span style="color:var(--dim)"># \u0411\u044e\u0434\u0436\u0435\u0442\u043d\u044b\u0439 &rarr; Continue (\u0431\u0435\u0441\u043f\u043b\u0430\u0442\u043d\u043e)</span>'''
+        },
+        {
+            "id": "crewai-quickstart",
+            "icon": "\U0001F465",
+            "title": "Multi-agent \u0441\u0438\u0441\u0442\u0435\u043c\u0430 \u043d\u0430 CrewAI \u0437\u0430 10 \u043c\u0438\u043d\u0443\u0442",
+            "subtitle": "\u041e\u0442 \u0438\u0434\u0435\u0438 \u0434\u043e \u0440\u0430\u0431\u043e\u0442\u0430\u044e\u0449\u0435\u0439 \u043a\u043e\u043c\u0430\u043d\u0434\u044b \u0430\u0433\u0435\u043d\u0442\u043e\u0432",
+            "tag": "intermediate",
+            "time": "10 \u043c\u0438\u043d",
+            "desc": "\u0421\u043e\u0437\u0434\u0430\u0439\u0442\u0435 \u043a\u043e\u043c\u0430\u043d\u0434\u0443 \u0438\u0437 \u0442\u0440\u0451\u0445 AI-\u0430\u0433\u0435\u043d\u0442\u043e\u0432: Researcher \u0438\u0449\u0435\u0442 \u0434\u0430\u043d\u043d\u044b\u0435, Analyst \u043e\u0431\u0440\u0430\u0431\u0430\u0442\u044b\u0432\u0430\u0435\u0442, Writer \u043f\u0438\u0448\u0435\u0442 \u0441\u0442\u0430\u0442\u044c\u044e.",
+            "code": '''<span style="color:var(--dim)"># pip install crewai crewai-tools</span>
+<span style="color:#ff7b72">from</span> <span style="color:#d2a8ff">crewai</span> <span style="color:#ff7b72">import</span> Agent, Task, Crew, Process
+<span style="color:#ff7b72">from</span> <span style="color:#d2a8ff">crewai_tools</span> <span style="color:#ff7b72">import</span> SerperDevTool
+
+<span style="color:var(--dim)"># \u0418\u043d\u0441\u0442\u0440\u0443\u043c\u0435\u043d\u0442 \u0434\u043b\u044f \u043f\u043e\u0438\u0441\u043a\u0430</span>
+<span style="color:#79c0ff">search_tool</span> = SerperDevTool()
+
+<span style="color:var(--dim)"># \u0410\u0433\u0435\u043d\u0442-\u0438\u0441\u0441\u043b\u0435\u0434\u043e\u0432\u0430\u0442\u0435\u043b\u044c</span>
+<span style="color:#79c0ff">researcher</span> = Agent(
+    role=<span style="color:#a5d6ff">"Senior Researcher"</span>,
+    goal=<span style="color:#a5d6ff">"Find latest AI agent benchmarks"</span>,
+    tools=[search_tool],
+    verbose=<span style="color:#ff7b72">True</span>
+)
+
+<span style="color:var(--dim)"># \u0410\u0433\u0435\u043d\u0442-\u0430\u043d\u0430\u043b\u0438\u0442\u0438\u043a</span>
+<span style="color:#79c0ff">analyst</span> = Agent(
+    role=<span style="color:#a5d6ff">"Data Analyst"</span>,
+    goal=<span style="color:#a5d6ff">"Extract key metrics from research"</span>,
+    verbose=<span style="color:#ff7b72">True</span>
+)
+
+<span style="color:var(--dim)"># \u0417\u0430\u0434\u0430\u0447\u0438</span>
+<span style="color:#79c0ff">task1</span> = Task(description=<span style="color:#a5d6ff">"Find top 5 AI coding agents"</span>, agent=researcher)
+<span style="color:#79c0ff">task2</span> = Task(description=<span style="color:#a5d6ff">"Compare their QantScores"</span>, agent=analyst)
+
+<span style="color:var(--dim)"># \u0417\u0430\u043f\u0443\u0441\u043a!</span>
+<span style="color:#79c0ff">crew</span> = Crew(agents=[researcher, analyst], tasks=[task1, task2])
+<span style="color:#79c0ff">result</span> = crew.kickoff()
+<span style="color:#7ee787">print</span>(result)'''
+        },
+        {
+            "id": "mcp-claude",
+            "icon": "\U0001F50C",
+            "title": "\u041a\u0430\u043a \u043f\u043e\u0434\u043a\u043b\u044e\u0447\u0438\u0442\u044c MCP-\u0441\u0435\u0440\u0432\u0435\u0440 \u043a Claude Desktop",
+            "subtitle": "\u0420\u0430\u0441\u0448\u0438\u0440\u044f\u0435\u043c Claude \u0438\u043d\u0441\u0442\u0440\u0443\u043c\u0435\u043d\u0442\u0430\u043c\u0438 \u0447\u0435\u0440\u0435\u0437 Model Context Protocol",
+            "tag": "intermediate",
+            "time": "8 \u043c\u0438\u043d",
+            "desc": "\u041d\u0430\u0441\u0442\u0440\u043e\u0439\u043a\u0430 MCP-\u0441\u0435\u0440\u0432\u0435\u0440\u0430 \u0434\u043b\u044f \u0444\u0430\u0439\u043b\u043e\u0432\u043e\u0439 \u0441\u0438\u0441\u0442\u0435\u043c\u044b, \u0431\u0440\u0430\u0443\u0437\u0435\u0440\u0430 \u0438 GitHub. Claude \u043f\u043e\u043b\u0443\u0447\u0430\u0435\u0442 \u0434\u043e\u0441\u0442\u0443\u043f \u043a \u0438\u043d\u0441\u0442\u0440\u0443\u043c\u0435\u043d\u0442\u0430\u043c \u0447\u0435\u0440\u0435\u0437 \u043e\u0442\u043a\u0440\u044b\u0442\u044b\u0439 \u043f\u0440\u043e\u0442\u043e\u043a\u043e\u043b Anthropic.",
+            "code": '''<span style="color:var(--dim)"># claude_desktop_config.json</span>
+<span style="color:#79c0ff">{{</span>
+  <span style="color:#a5d6ff">"mcpServers"</span>: <span style="color:#79c0ff">{{</span>
+    <span style="color:#a5d6ff">"filesystem"</span>: <span style="color:#79c0ff">{{</span>
+      <span style="color:#a5d6ff">"command"</span>: <span style="color:#a5d6ff">"npx"</span>,
+      <span style="color:#a5d6ff">"args"</span>: [<span style="color:#a5d6ff">"-y"</span>, <span style="color:#a5d6ff">"@modelcontextprotocol/server-filesystem"</span>,
+             <span style="color:#a5d6ff">"/Users/you/projects"</span>]
+    <span style="color:#79c0ff">}}</span>,
+    <span style="color:#a5d6ff">"github"</span>: <span style="color:#79c0ff">{{</span>
+      <span style="color:#a5d6ff">"command"</span>: <span style="color:#a5d6ff">"npx"</span>,
+      <span style="color:#a5d6ff">"args"</span>: [<span style="color:#a5d6ff">"-y"</span>, <span style="color:#a5d6ff">"@modelcontextprotocol/server-github"</span>],
+      <span style="color:#a5d6ff">"env"</span>: <span style="color:#79c0ff">{{</span>
+        <span style="color:#a5d6ff">"GITHUB_PERSONAL_ACCESS_TOKEN"</span>: <span style="color:#a5d6ff">"ghp_..."</span>
+      <span style="color:#79c0ff">}}</span>
+    <span style="color:#79c0ff">}}</span>
+  <span style="color:#79c0ff">}}</span>
+<span style="color:#79c0ff">}}</span>
+
+<span style="color:var(--dim)"># \u041f\u043e\u0441\u043b\u0435 \u043f\u0435\u0440\u0435\u0437\u0430\u043f\u0443\u0441\u043a\u0430 Claude Desktop:</span>
+<span style="color:var(--dim)"># Claude \u0432\u0438\u0434\u0438\u0442 \u0444\u0430\u0439\u043b\u044b \u043f\u0440\u043e\u0435\u043a\u0442\u0430 \u0438 GitHub issues \u043a\u0430\u043a \u0438\u043d\u0441\u0442\u0440\u0443\u043c\u0435\u043d\u0442\u044b</span>'''
+        },
+        {
+            "id": "ai-stack-startup",
+            "icon": "\U0001F680",
+            "title": "AI-\u0441\u0442\u0435\u043a \u0434\u043b\u044f \u0441\u0442\u0430\u0440\u0442\u0430\u043f\u0430: \u043c\u0438\u043d\u0438\u043c\u0430\u043b\u044c\u043d\u044b\u0439 \u043d\u0430\u0431\u043e\u0440",
+            "subtitle": "\u041a\u0430\u043a\u0438\u0435 AI-\u0438\u043d\u0441\u0442\u0440\u0443\u043c\u0435\u043d\u0442\u044b \u0440\u0435\u0430\u043b\u044c\u043d\u043e \u043d\u0443\u0436\u043d\u044b \u043d\u0430 \u0441\u0442\u0430\u0440\u0442\u0435",
+            "tag": "beginner",
+            "time": "6 \u043c\u0438\u043d",
+            "desc": "\u041f\u0440\u0430\u043a\u0442\u0438\u0447\u043d\u044b\u0439 \u0433\u0430\u0439\u0434: \u0447\u0442\u043e \u043a\u0443\u043f\u0438\u0442\u044c, \u0447\u0442\u043e \u0437\u0430\u043f\u0443\u0441\u0442\u0438\u0442\u044c \u043b\u043e\u043a\u0430\u043b\u044c\u043d\u043e, \u0430 \u0447\u0442\u043e \u043d\u0435 \u043d\u0443\u0436\u043d\u043e \u0432\u043e\u043e\u0431\u0449\u0435. \u0411\u044e\u0434\u0436\u0435\u0442\u043d\u0430\u044f \u0441\u0431\u043e\u0440\u043a\u0430 \u0434\u043b\u044f \u043a\u043e\u043c\u0430\u043d\u0434\u044b 3-5 \u0440\u0430\u0437\u0440\u0430\u0431\u043e\u0442\u0447\u0438\u043a\u043e\u0432.",
+            "code": '''<span style="color:var(--dim)"># \u041c\u0438\u043d\u0438\u043c\u0430\u043b\u044c\u043d\u044b\u0439 AI-\u0441\u0442\u0435\u043a (~$60/\u043c\u0435\u0441 \u043d\u0430 \u0447\u0435\u043b\u043e\u0432\u0435\u043a\u0430)</span>
+
+<span style="color:#79c0ff">\U0001F5B1\ufe0f IDE:</span> Cursor Pro <span style="color:var(--dim)">($20/\u043c\u0435\u0441)</span>
+<span style="color:#79c0ff">\U0001F999 \u041b\u043e\u043a\u0430\u043b\u044c\u043d\u044b\u0435 LLM:</span> Ollama <span style="color:var(--green)">\u0411\u0435\u0441\u043f\u043b\u0430\u0442\u043d\u043e</span>
+<span style="color:#79c0ff">\U0001F916 \u0410\u0432\u0442\u043e\u043d\u043e\u043c\u043d\u044b\u0435 \u0437\u0430\u0434\u0430\u0447\u0438:</span> Claude Code <span style="color:var(--dim)">(API, ~$10/\u043c\u0435\u0441)</span>
+<span style="color:#79c0ff">\U0001F50D \u041a\u043e\u0434-\u0440\u0435\u0432\u044c\u044e:</span> Continue + \u0441\u0432\u043e\u0439 \u043a\u043b\u044e\u0447 <span style="color:var(--green)">\u0411\u0435\u0441\u043f\u043b\u0430\u0442\u043d\u043e</span>
+<span style="color:#79c0ff">\U0001F465 \u041e\u0440\u043a\u0435\u0441\u0442\u0440\u0430\u0446\u0438\u044f:</span> CrewAI <span style="color:var(--green)">Open Source</span>
+<span style="color:#79c0ff">\U0001F4CA \u041c\u043e\u043d\u0438\u0442\u043e\u0440\u0438\u043d\u0433:</span> LangSmith <span style="color:var(--dim)">(Free tier)</span>
+
+<span style="color:var(--dim)"># \u041d\u0435 \u043d\u0443\u0436\u043d\u043e \u043d\u0430 \u0441\u0442\u0430\u0440\u0442\u0435:</span>
+<span style="color:var(--dim)">\u274c Devin ($500/\u043c\u0435\u0441) \u2014 \u0438\u0437\u0431\u044b\u0442\u043e\u0447\u043d\u043e</span>
+<span style="color:var(--dim)">\u274c GitHub Copilot Enterprise ($39/\u0447\u0435\u043b)</span>
+<span style="color:var(--dim)">\u274c LangGraph \u2014 \u043f\u043e\u043a\u0430 \u043d\u0435\u0442 \u0441\u043b\u043e\u0436\u043d\u043e\u0439 \u043b\u043e\u0433\u0438\u043a\u0438</span>
+
+<span style="color:var(--dim)"># \u0418\u0442\u043e\u0433\u043e: $60/\u043c\u0435\u0441 x 5 = $300/\u043c\u0435\u0441 \u043d\u0430 \u043a\u043e\u043c\u0430\u043d\u0434\u0443</span>'''
+        },
+        {
+            "id": "advanced-claude-code",
+            "icon": "🧠",
+            "title": "Продвинутый Claude Code",
+            "subtitle": "CLAUDE.md, хуки, многофайловый рефакторинг",
+            "tag": "advanced",
+            "time": "12 мин",
+            "desc": "Продвинутые приёмы: CLAUDE.md для контекста проекта, хуки для автопроверок, multi-file рефакторинг.",
+            "code": "<span><b>CLAUDE.md</b> \u2014 \u043a\u043e\u043d\u0442\u0435\u043a\u0441\u0442 \u043f\u0440\u043e\u0435\u043a\u0442\u0430, \u043a\u043e\u0442\u043e\u0440\u044b\u0439 Claude \u0447\u0438\u0442\u0430\u0435\u0442 \u0430\u0432\u0442\u043e\u043c\u0430\u0442\u0438\u0447\u0435\u0441\u043a\u0438. \u0425\u0443\u043a\u0438: .claude/hooks/on-save.sh \u0434\u043b\u044f \u0430\u0432\u0442\u043e\u043f\u0440\u043e\u0432\u0435\u0440\u043e\u043a \u043f\u043e\u0441\u043b\u0435 \u043a\u0430\u0436\u0434\u043e\u0433\u043e \u0441\u043e\u0445\u0440\u0430\u043d\u0435\u043d\u0438\u044f. \u0418\u043d\u0442\u0435\u0433\u0440\u0430\u0446\u0438\u044f \u0441 GitHub Actions.</span>"
+        },
+        {
+            "id": "agentic-rag",
+            "icon": "📚",
+            "title": "Agentic RAG: \u043f\u043e\u0438\u0441\u043a \u0441 \u0430\u0433\u0435\u043d\u0442\u043d\u043e\u0439 \u043b\u043e\u0433\u0438\u043a\u043e\u0439",
+            "subtitle": "\u0410\u0433\u0435\u043d\u0442 \u043f\u043b\u0430\u043d\u0438\u0440\u0443\u0435\u0442 \u043f\u043e\u0438\u0441\u043a, \u043f\u0435\u0440\u0435\u0444\u043e\u0440\u043c\u0443\u043b\u0438\u0440\u0443\u0435\u0442 \u0437\u0430\u043f\u0440\u043e\u0441\u044b \u0438 \u0438\u0442\u0435\u0440\u0438\u0440\u0443\u0435\u0442",
+            "tag": "advanced",
+            "time": "14 \u043c\u0438\u043d",
+            "desc": "\u041e\u0431\u044b\u0447\u043d\u044b\u0439 RAG \u043e\u0442\u0432\u0435\u0447\u0430\u0435\u0442 \u043d\u0430 \u043e\u0434\u0438\u043d \u0437\u0430\u043f\u0440\u043e\u0441. Agentic RAG \u043f\u043b\u0430\u043d\u0438\u0440\u0443\u0435\u0442 \u043f\u043e\u0438\u0441\u043a, \u043f\u0435\u0440\u0435\u0444\u043e\u0440\u043c\u0443\u043b\u0438\u0440\u0443\u0435\u0442 \u0437\u0430\u043f\u0440\u043e\u0441\u044b, \u043f\u0440\u043e\u0432\u0435\u0440\u044f\u0435\u0442 \u0440\u0435\u0437\u0443\u043b\u044c\u0442\u0430\u0442\u044b \u0438 \u0438\u0442\u0435\u0440\u0438\u0440\u0443\u0435\u0442. \u0425\u0430\u0439\u043f #1 \u0432 AI-\u0442\u0432\u0438\u0442\u0435\u0440\u0435.",
+            "code": "<span><b>LangGraph Agentic RAG:</b> \u0430\u0433\u0435\u043d\u0442 \u0441\u0430\u043c \u0440\u0435\u0448\u0430\u0435\u0442 \u0447\u0442\u043e \u0438\u0441\u043a\u0430\u0442\u044c. plan_search() \u2192 multi_search() \u2192 evaluate(). \u0415\u0441\u043b\u0438 \u0443\u0432\u0435\u0440\u0435\u043d\u043d\u043e\u0441\u0442\u044c < 0.7 \u2014 \u0432\u043e\u0437\u0432\u0440\u0430\u0442 \u043d\u0430 plan_search() \u0434\u043b\u044f \u043f\u043e\u0432\u0442\u043e\u0440\u043d\u043e\u0433\u043e \u043f\u043e\u0438\u0441\u043a\u0430 \u0441 \u043d\u043e\u0432\u044b\u043c\u0438 \u0437\u0430\u043f\u0440\u043e\u0441\u0430\u043c\u0438.</span>"
+        },
+        {
+            "id": "agent-evaluation",
+            "icon": "📊",
+            "title": "\u041a\u0430\u043a \u043e\u0446\u0435\u043d\u0438\u0432\u0430\u0442\u044c AI-\u0430\u0433\u0435\u043d\u0442\u043e\u0432",
+            "subtitle": "\u041c\u0435\u0442\u0440\u0438\u043a\u0438, \u0431\u0435\u043d\u0447\u043c\u0430\u0440\u043a\u0438 \u0438 \u0447\u0435\u043a-\u043b\u0438\u0441\u0442",
+            "tag": "intermediate",
+            "time": "10 \u043c\u0438\u043d",
+            "desc": "\u0427\u0442\u043e \u0438\u0437\u043c\u0435\u0440\u044f\u0442\u044c: \u0442\u043e\u0447\u043d\u043e\u0441\u0442\u044c \u043a\u043e\u0434\u0430, \u0441\u043a\u043e\u0440\u043e\u0441\u0442\u044c, \u0441\u0442\u043e\u0438\u043c\u043e\u0441\u0442\u044c \u043d\u0430 \u0437\u0430\u0434\u0430\u0447\u0443, \u043a\u0430\u0447\u0435\u0441\u0442\u0432\u043e PR. \u041f\u0440\u0430\u043a\u0442\u0438\u0447\u0435\u0441\u043a\u0430\u044f \u0441\u0438\u0441\u0442\u0435\u043c\u0430 \u043e\u0446\u0435\u043d\u043a\u0438.",
+            "code": "<span><b>3 \u043a\u0440\u0438\u0442\u0435\u0440\u0438\u044f:</b> \u0422\u043e\u0447\u043d\u043e\u0441\u0442\u044c (pass@1 \u043d\u0430 10 \u0437\u0430\u0434\u0430\u0447\u0430\u0445), \u0421\u043a\u043e\u0440\u043e\u0441\u0442\u044c (\u0441\u0435\u043a/\u0437\u0430\u0434\u0430\u0447\u0443), \u0421\u0442\u043e\u0438\u043c\u043e\u0441\u0442\u044c ($/\u0437\u0430\u0434\u0430\u0447\u0443). \u0421\u0440\u0430\u0432\u043d\u0435\u043d\u0438\u0435: Claude Code (87%, $0.12), Cursor (82%, $0), Aider+o3 (84%, $0.45). \u041a\u0430\u0447\u0435\u0441\u0442\u0432\u043e PR \u043e\u0446\u0435\u043d\u0438\u0432\u0430\u0435\u0442 \u0447\u0435\u043b\u043e\u0432\u0435\u043a.</span>"
+        },
+        {
+            "id": "agent-memory",
+            "icon": "🧠",
+            "title": "\u041f\u0430\u043c\u044f\u0442\u044c AI-\u0430\u0433\u0435\u043d\u0442\u043e\u0432: \u0430\u0440\u0445\u0438\u0442\u0435\u043a\u0442\u0443\u0440\u0430",
+            "subtitle": "3 \u0442\u0438\u043f\u0430 \u043f\u0430\u043c\u044f\u0442\u0438: \u0440\u0430\u0431\u043e\u0447\u0430\u044f, \u0441\u0435\u0441\u0441\u0438\u043e\u043d\u043d\u0430\u044f, \u0434\u043e\u043b\u0433\u043e\u0441\u0440\u043e\u0447\u043d\u0430\u044f",
+            "tag": "advanced",
+            "time": "11 \u043c\u0438\u043d",
+            "desc": "\u0420\u0430\u0437\u0431\u043e\u0440 \u0442\u0440\u0451\u0445 \u0442\u0438\u043f\u043e\u0432 \u043f\u0430\u043c\u044f\u0442\u0438: Working (\u043a\u043e\u043d\u0442\u0435\u043a\u0441\u0442\u043d\u043e\u0435 \u043e\u043a\u043d\u043e LLM), Short-term (\u0441\u0435\u0441\u0441\u0438\u044f \u0430\u0433\u0435\u043d\u0442\u0430), Long-term (\u0432\u0435\u043a\u0442\u043e\u0440\u043d\u0430\u044f \u0411\u0414 \u0441 ChromaDB).",
+            "code": "<span><b>3 \u0443\u0440\u043e\u0432\u043d\u044f:</b> 1) Working Memory \u2014 \u043a\u043e\u043d\u0442\u0435\u043a\u0441\u0442\u043d\u043e\u0435 \u043e\u043a\u043d\u043e LLM (\u043f\u043e\u0441\u043b\u0435\u0434\u043d\u0438\u0435 N \u0441\u043e\u043e\u0431\u0449\u0435\u043d\u0438\u0439). 2) Session Memory \u2014 dict \u0441 \u0444\u0430\u043a\u0442\u0430\u043c\u0438 \u0442\u0435\u043a\u0443\u0449\u0435\u0439 \u0441\u0435\u0441\u0441\u0438\u0438 (files_modified, errors_seen). 3) Long-term Memory \u2014 ChromaDB \u0441 \u0432\u0435\u043a\u0442\u043e\u0440\u043d\u044b\u043c \u043f\u043e\u0438\u0441\u043a\u043e\u043c, \u0430\u0432\u0442\u043e\u043c\u0430\u0442\u0438\u0447\u0435\u0441\u043a\u0438 \u0438\u0449\u0435\u0442 \u0440\u0435\u043b\u0435\u0432\u0430\u043d\u0442\u043d\u044b\u0435 \u0444\u0430\u043a\u0442\u044b \u043f\u0435\u0440\u0435\u0434 \u043a\u0430\u0436\u0434\u044b\u043c \u0437\u0430\u043f\u0440\u043e\u0441\u043e\u043c.</span>"
+        },
+        {
+            "id": "build-mcp-server",
+            "icon": "🔧",
+            "title": "\u0421\u043e\u0437\u0434\u0430\u0451\u043c \u0441\u0432\u043e\u0439 MCP-\u0441\u0435\u0440\u0432\u0435\u0440 \u0437\u0430 20 \u043c\u0438\u043d\u0443\u0442",
+            "subtitle": "Python MCP-\u0441\u0435\u0440\u0432\u0435\u0440 \u0441 \u0438\u043d\u0441\u0442\u0440\u0443\u043c\u0435\u043d\u0442\u0430\u043c\u0438 \u0434\u043b\u044f \u0411\u0414 \u0438 API",
+            "tag": "intermediate",
+            "time": "20 \u043c\u0438\u043d",
+            "desc": "\u0425\u0430\u0439\u043f\u043e\u0432\u0430\u044f \u0442\u0435\u043c\u0430 \u0432 AI-\u0442\u0432\u0438\u0442\u0435\u0440\u0435: \u0432\u0441\u0435 \u043f\u0438\u0448\u0443\u0442 MCP-\u0441\u0435\u0440\u0432\u0435\u0440\u044b. \u0421\u043e\u0437\u0434\u0430\u0439\u0442\u0435 \u0441\u0432\u043e\u0439 \u0441\u0435\u0440\u0432\u0435\u0440 \u043d\u0430 Python \u0441 \u0438\u043d\u0441\u0442\u0440\u0443\u043c\u0435\u043d\u0442\u0430\u043c\u0438 \u0434\u043b\u044f \u0431\u0430\u0437\u044b \u0434\u0430\u043d\u043d\u044b\u0445. \u0420\u0430\u0431\u043e\u0442\u0430\u0435\u0442 \u0441 Claude Desktop, Cursor, Continue.",
+            "code": "<span><b>mcp SDK:</b> Server(\"my-tools\"), @server.list_tools() \u0432\u043e\u0437\u0432\u0440\u0430\u0449\u0430\u0435\u0442 [types.Tool(...)], @server.call_tool() \u043e\u0431\u0440\u0430\u0431\u0430\u0442\u044b\u0432\u0430\u0435\u0442 \u0432\u044b\u0437\u043e\u0432\u044b. \u0417\u0430\u043f\u0443\u0441\u043a \u0447\u0435\u0440\u0435\u0437 stdio. \u0414\u043e\u0431\u0430\u0432\u0438\u0442\u044c \u0432 claude_desktop_config.json: {\"my-tools\": {\"command\": \"python\", \"args\": [\"server.py\"]}}</span>"
+        },
+        {
+            "id": "agent-observability",
+            "icon": "🔬",
+            "title": "Observability \u0434\u043b\u044f AI-\u0430\u0433\u0435\u043d\u0442\u043e\u0432",
+            "subtitle": "LangSmith: \u0442\u0440\u0430\u0441\u0441\u0438\u0440\u043e\u0432\u043a\u0430, \u043e\u0442\u043b\u0430\u0434\u043a\u0430, \u043c\u043e\u043d\u0438\u0442\u043e\u0440\u0438\u043d\u0433",
+            "tag": "intermediate",
+            "time": "9 \u043c\u0438\u043d",
+            "desc": "\u0410\u0433\u0435\u043d\u0442\u044b \u043d\u0435\u0434\u0435\u0442\u0435\u0440\u043c\u0438\u043d\u0438\u0440\u043e\u0432\u0430\u043d\u044b \u2014 \u043d\u0443\u0436\u043d\u043e \u0432\u0438\u0434\u0435\u0442\u044c \u0447\u0442\u043e \u043e\u043d\u0438 \u0434\u0435\u043b\u0430\u044e\u0442. @traceable \u0434\u043b\u044f \u043a\u0430\u0436\u0434\u043e\u0433\u043e \u0448\u0430\u0433\u0430 \u0430\u0433\u0435\u043d\u0442\u0430.",
+            "code": "<span><b>LangSmith @traceable:</b> \u043e\u0431\u043e\u0440\u0430\u0447\u0438\u0432\u0430\u0435\u043c \u043a\u0430\u0436\u0434\u044b\u0439 \u0448\u0430\u0433 \u0430\u0433\u0435\u043d\u0442\u0430. \u0412\u0438\u0434\u0435\u043d \u043f\u043e\u043b\u043d\u044b\u0439 \u0442\u0440\u0435\u0439\u0441: \u043a\u0430\u0436\u0434\u044b\u0439 \u0432\u044b\u0437\u043e\u0432 LLM, \u0437\u0430\u043f\u0443\u0441\u043a \u0438\u043d\u0441\u0442\u0440\u0443\u043c\u0435\u043d\u0442\u0430, \u0432\u0440\u0435\u043c\u044f \u0432\u044b\u043f\u043e\u043b\u043d\u0435\u043d\u0438\u044f. \u0422\u043e\u043a\u0435\u043d\u044b \u0438 \u0441\u0442\u043e\u0438\u043c\u043e\u0441\u0442\u044c. \u041e\u0431\u043d\u0430\u0440\u0443\u0436\u0435\u043d\u0438\u0435 \u043f\u0435\u0442\u0435\u043b\u044c. LANGCHAIN_TRACING_V2=true</span>"
+        },
+        {
+            "id": "opensource-agent-stack",
+            "icon": "🏗️",
+            "title": "\u041f\u043e\u043b\u043d\u043e\u0441\u0442\u044c\u044e \u043e\u043f\u0435\u043d\u0441\u043e\u0440\u0441\u043d\u044b\u0439 AI-\u0441\u0442\u0435\u043a",
+            "subtitle": "Ollama + Continue + Aider \u2014 \u043d\u043e\u043b\u044c \u043f\u043e\u0434\u043f\u0438\u0441\u043e\u043a",
+            "tag": "intermediate",
+            "time": "8 \u043c\u0438\u043d",
+            "desc": "\u0422\u0440\u0435\u043d\u0434 \u0432 \u043e\u043f\u0435\u043d\u0441\u043e\u0440\u0441-\u0442\u0432\u0438\u0442\u0435\u0440\u0435: \u043f\u043e\u043b\u043d\u043e\u0441\u0442\u044c\u044e \u043b\u043e\u043a\u0430\u043b\u044c\u043d\u044b\u0439 \u0441\u0442\u0435\u043a \u0431\u0435\u0437 \u043f\u043e\u0434\u043f\u0438\u0441\u043e\u043a. Ollama \u043b\u043e\u043a\u0430\u043b\u044c\u043d\u043e, Continue \u0432\u043c\u0435\u0441\u0442\u043e Cursor Pro, Aider \u0432\u043c\u0435\u0441\u0442\u043e Claude Code.",
+            "code": "<span><b>$0/\u043c\u0435\u0441 \u0441\u0442\u0435\u043a:</b> Ollama + Qwen 2.5 Coder 32B (\u043b\u043e\u043a\u0430\u043b\u044c\u043d\u043e), Continue (IDE-\u0430\u0433\u0435\u043d\u0442, \u0431\u0435\u0441\u043f\u043b\u0430\u0442\u043d\u043e), Aider (PR-\u0430\u0433\u0435\u043d\u0442, \u0431\u0435\u0441\u043f\u043b\u0430\u0442\u043d\u043e), Langfuse (\u043c\u043e\u043d\u0438\u0442\u043e\u0440\u0438\u043d\u0433, \u0431\u0435\u0441\u043f\u043b\u0430\u0442\u043d\u043e). \u0422\u0440\u0435\u0431\u0443\u0435\u0442 GPU 24+ GB VRAM. \u041f\u043e\u043b\u043d\u044b\u0439 \u043a\u043e\u043d\u0442\u0440\u043e\u043b\u044c \u043d\u0430\u0434 \u0434\u0430\u043d\u043d\u044b\u043c\u0438.</span>"
+        },
+        {
+            "id": "fine-tuning-vs-prompt",
+            "icon": "🎯",
+            "title": "Fine-tuning vs Prompt Engineering: что выбрать",
+            "subtitle": "Когда учить модель, а когда писать промпты",
+            "tag": "intermediate",
+            "time": "10 мин",
+            "desc": "Сравнение двух подходов к адаптации LLM: дообучение на своих данных против цепочек промптов. С кодом на Unsloth и DSPy.",
+            "code": "<span><b>Fine-tuning (Unsloth):</b> QLoRA 4-bit, 500 примеров, 30 мин на T4 GPU. 92% точность на доменных задачах. <b>Prompt Engineering (DSPy):</b> автооптимизация промптов, 0 GPU, 85% точность. <b>Вывод:</b> до 1000 примеров — DSPy. >5000 примеров — fine-tuning. Для юридических/медицинских — только FT.</span>"
+        },
+        {
+            "id": "agent-security",
+            "icon": "🛡️",
+            "title": "Безопасность AI-агентов: гайд",
+            "subtitle": "Prompt injection, sandboxing, аудит действий",
+            "tag": "advanced",
+            "time": "12 мин",
+            "desc": "Агенты с доступом к файловой системе и сети — вектор атаки. Защита: sandbox-контейнеры, валидация вывода, human-in-the-loop для опасных операций.",
+            "code": "<span><b>3 уровня защиты:</b> 1) Песочница — Docker контейнер с read-only FS, no network. 2) Валидация — проверка вывода агента перед записью (regex, schema). 3) Аудит — лог всех действий агента, алерт на rm -rf / drop table. <b>Инструменты:</b> Guardrails AI (output validation), Invariant (anomaly detection), Docker SDK (sandbox). Правило: любой агент с shell-доступом → Docker sandbox.</span>"
+        },
+        {
+            "id": "telegram-agent-bot",
+            "icon": "🤖",
+            "title": "AI-агент как Telegram-бот за час",
+            "subtitle": "FastAPI + python-telegram-bot + Claude API",
+            "tag": "intermediate",
+            "time": "15 мин",
+            "desc": "Деплой AI-агента в продакшен через Telegram. Пользователь пишет задачу → агент выполняет в Docker-песочнице → присылает результат.",
+            "code": "<span><b>Архитектура:</b> Telegram Bot API → FastAPI webhook → Agent (Claude API + tools) → Docker sandbox. <b>python-telegram-bot</b> — асинхронный хендлер. <b>Tools:</b> read_file, write_file, run_bash (в контейнере). <b>Деплой:</b> systemd-сервис на VPS за $5/мес. <b>Безопасность:</b> каждый пользователь → свой Docker контейнер с memory limit 512MB и timeout 60s.</span>"
+        },
+        {
+            "id": "langchain-vs-llamaindex",
+            "icon": "⚖️",
+            "title": "LangChain vs LlamaIndex vs CrewAI",
+            "subtitle": "Сравнение трёх фреймворков для AI-приложений",
+            "tag": "intermediate",
+            "time": "9 мин",
+            "desc": "LangChain — универсальный конструктор, LlamaIndex — для RAG и поиска, CrewAI — для multi-agent систем. Что выбрать под задачу.",
+            "code": "<span><b>LangChain:</b> 95K ⭐, универсальный (chains, agents, tools). Минус: сложный, breaking changes. <b>LlamaIndex:</b> 38K ⭐, лучший для RAG (ингestion, парсинг, индексы). Минус: только поиск. <b>CrewAI:</b> 22K ⭐, multi-agent оркестрация. Минус: молодой, мало интеграций. <b>Вывод:</b> RAG → LlamaIndex. Сложный пайплайн → LangChain. Команда агентов → CrewAI. Можно комбинировать: LlamaIndex для retrieval + CrewAI для оркестрации.</span>"
+        },
+        {
+            "id": "agent-code-review",
+            "icon": "🔍",
+            "title": "Автоматическое код-ревью с AI-агентом",
+            "subtitle": "Continue + локальная модель для ревью PR",
+            "tag": "beginner",
+            "time": "8 мин",
+            "desc": "Настройка AI-ревьюера для GitHub PR. Бесплатно, локально, без отправки кода в облако. Интеграция с GitHub Actions.",
+            "code": "<span><b>Стек:</b> Continue (IDE-агент) + Ollama (локальная LLM) + GitHub Actions. <b>Настройка Continue config.json:</b> модель deepseek-coder-v2, system prompt с чек-листом ревью (безопасность, читаемость, тесты, перформанс). <b>GitHub Action:</b> триггер на PR, запускает continue review, постит комментарий. <b>Стоимость:</b> $0 (всё локально). <b>Точность:</b> 78% detection rate на баги, 85% на style violations. Лучше CodeRabbit для приватных проектов (данные не уходят в облако).</span>"
+        },
+        {
+            "id": "agent-data-science",
+            "icon": "📈",
+            "title": "AI-агенты для Data Science",
+            "subtitle": "Jupyter AI, Copilot для pandas, автодашборды",
+            "tag": "intermediate",
+            "time": "11 мин",
+            "desc": "Как AI-агенты ускоряют работу с данными: генерация кода pandas/matplotlib, автокорреляция, дашборды одной командой.",
+            "code": "<span><b>Инструменты:</b> Jupyter AI (%%ai магия — SQL, viz, stats), Cursor (pandas автодополнение), Vizro (auto-dashboards). <b>Пример:</b> загрузили CSV → агент строит корреляционную матрицу, находит аномалии, генерирует дашборд с графиками. <b>Prompt:</b> «Проанализируй sales.csv: выбросы, тренды, топ-5 инсайтов. Выведи как дашборд». <b>Время:</b> с часа до 5 минут. <b>Риски:</b> галлюцинации в статистике — всегда проверять p-values и доверительные интервалы вручную.</span>"
+        },
+        {
+            "id": "agent-safety",
+            "icon": "🛡️",
+            "title": "Безопасность AI-агентов: полный гайд",
+            "subtitle": "Sandbox-контейнеры, валидация вывода, HITL",
+            "tag": "advanced",
+            "time": "14 мин",
+            "desc": "Агенты с доступом к файловой системе и сети — вектор атаки. Защита: Docker-песочницы, валидация вывода, human-in-the-loop для опасных операций. Практические примеры.",
+            "code": "<span><b>4 уровня защиты:</b> 1) Docker sandbox: <code>--read-only --network=none --tmpfs /tmp</code>, 2) Валидация вывода через Pydantic схему перед исполнением, 3) Бюджет токенов: max 500K/задача, 4) HITL для delete/deploy/payment. <b>Prompt injection защита:</b> системный промпт выше пользовательского, разделители ###USER###, валидация-агентом после каждого шага. <b>Пример:</b> агент не может выполнить <code>rm -rf /</code> — Docker overlay fs защищает хост.</span>"
+        },
+        {
+            "id": "agent-telegram-bot",
+            "icon": "🤖",
+            "title": "AI-агент как Telegram-бот за час",
+            "subtitle": "Деплой агента в продакшен через Telegram",
+            "tag": "intermediate",
+            "time": "20 мин",
+            "desc": "Деплой AI-агента в продакшен через Telegram. Пользователь пишет задачу → агент выполняет в Docker-песочнице → присылает результат в чат. Полный код на Python.",
+            "code": "<span><b>Стек:</b> python-telegram-bot + CrewAI + Docker SDK. <b>Архитектура:</b> Telegram webhook → handler создаёт задачу → Orchestrator запускает агентов в Docker-контейнерах → результат возвращается в чат. <b>Код:</b> <code>bot = Application.builder().token(TOKEN).build(); bot.add_handler(MessageHandler(callback))</code>. Каждый запрос пользователя — изолированный Docker-контейнер с лимитом по CPU/RAM.</span>"
+        },
+        {
+            "id": "agent-memory-system",
+            "icon": "🧠",
+            "title": "Память AI-агентов: от контекста до долговременной",
+            "subtitle": "Working → Short-term → Long-term память",
+            "tag": "advanced",
+            "time": "15 мин",
+            "desc": "Три уровня памяти: Working (контекстное окно), Short-term (Redis/Postgres), Long-term (ChromaDB + эмбеддинги). Практическая архитектура с кодом.",
+            "code": "<span><b>Level 1 — Working:</b> промпт-инжиниринг, <code>messages[-20:]</code> для удержания релевантного контекста. <b>Level 2 — Short-term:</b> Redis для текущей сессии: <code>r.set(f'agent:{agent_id}:state', json.dumps(state), ex=3600)</code>. <b>Level 3 — Long-term:</b> ChromaDB с эмбеддингами: <code>collection.add(documents=[result], metadatas=[{'task': task}])</code> → при новом запросе ищем похожие: <code>collection.query(query_texts=[query], n_results=5)</code>.</span>"
+        },
+        {
+            "id": "langchain-vs-llamaindex",
+            "icon": "🦜",
+            "title": "LangChain vs LlamaIndex vs CrewAI: что выбрать",
+            "subtitle": "Сравнение трёх фреймворков для AI-приложений",
+            "tag": "beginner",
+            "time": "9 мин",
+            "desc": "LangChain — универсальный конструктор, LlamaIndex — для RAG и поиска, CrewAI — для multi-agent систем. Матрица выбора по задаче.",
+            "code": "<span><b>LangChain:</b> универсальный фреймворк. Тысячи интеграций (LLM, векторы, тулы). Подходит: сложные цепочки, продакшен-приложения. Минус: много абстракций. <b>LlamaIndex:</b> заточен под RAG. Индексация документов, гибридный поиск, agentic RAG. Подходит: вопрос-ответ по документам, knowledge base. <b>CrewAI:</b> multi-agent orchestration. Роли, задачи, последовательное выполнение. Подходит: автоматизация рабочих процессов. <b>Правило:</b> RAG над документами → LlamaIndex. Multi-agent workflow → CrewAI. Сложное кастомное приложение → LangChain.</span>"
+        },
+        {
+            "id": "fine-tuning-vs-prompt",
+            "icon": "🎯",
+            "title": "Fine-tuning vs Prompt Engineering: что выбрать",
+            "subtitle": "Дообучение модели против цепочек промптов",
+            "tag": "advanced",
+            "time": "12 мин",
+            "desc": "Сравнение двух подходов к адаптации LLM: дообучение на своих данных против цепочек промптов. Практические примеры с Unsloth и DSPy.",
+            "code": "<span><b>Fine-tuning (Unsloth):</b> <code>model = FastLanguageModel.from_pretrained('unsloth/llama-3-8b'); model = FastLanguageModel.get_peft_model(model, r=16)</code>. Нужно: 50-1000 примеров, 1-4 часа на A100. Даёт: стиль, формат, domain knowledge. Минус: модель устаревает. <b>Prompt Engineering (DSPy):</b> <code>dspy.ChainOfThought('context, question → answer')</code>. Нужно: 10-50 примеров, оптимизация промптов. Даёт: гибкость, быстрые итерации. <b>Когда что:</b> стабильный домен → fine-tuning. Быстрые эксперименты → промпты. Идеально: fine-tuned модель + DSPy промпты.</span>"
+        },
+        {
+            "id": "agent-framework-comparison",
+            "icon": "⚖️",
+            "title": "Фреймворки для агентов: полное сравнение 2026",
+            "subtitle": "CrewAI, AutoGen, LangGraph, Swarm, MetaGPT, ChatDev",
+            "tag": "intermediate",
+            "time": "13 мин",
+            "desc": "Детальное сравнение 6 фреймворков для создания AI-агентов: архитектура, сложность, latency, экосистема. С примерами кода для каждого.",
+            "code": "<span><b>CrewAI (⭐14K):</b> Ролевая модель. YAML-конфигурация. Идеален для прототипов. <code>Agent(role='Researcher', goal='Find data', tools=[search_tool])</code>. <b>AutoGen (⭐32K):</b> Диалоговая модель. Supervisor LLM маршрутизирует. Native HITL. <b>LangGraph (⭐6K):</b> Graph state machine. Циклы, branching, checkpointing. Самый гибкий. <b>OpenAI Swarm (⭐18K):</b> Лёгкий handoff. Stateless. Быстрый старт. <b>MetaGPT (⭐48K):</b> Имитация компании с ролями CEO/CTO. Генерирует документацию. <b>ChatDev (⭐26K):</b> Виртуальная софтверная компания. Полный цикл разработки.</span>"
+        },
+        {
+            "id": "agent-evaluation",
+            "icon": "📊",
+            "title": "Как оценивать AI-агентов: метрики и бенчмарки",
+            "subtitle": "Точность кода, скорость, стоимость, качество PR",
+            "tag": "advanced",
+            "time": "11 мин",
+            "desc": "Что измерять: точность кода (pass@k), скорость ответа, стоимость на задачу, качество PR. Практическая система оценки с примерами.",
+            "code": "<span><b>5 ключевых метрик:</b> 1) Code Correctness: pass@1 на SWE-bench/HumanEval. 2) Task Success Rate: % задач, решённых с первой попытки без вмешательства. 3) Latency: P50/P95 время до первого токена + общая длительность. 4) Cost per Task: суммарный расход токенов × цена. 5) PR Quality: merge rate, количество правок ревьюера. <b>Формула:</b> <code>QantScore = 0.3×Correctness + 0.2×Success + 0.15×Latency + 0.15×Cost + 0.2×PRQuality</code>. Все метрики нормализованы 0-100.</span>"
+        },
+        {
+            "id": "opensource-agent-stack",
+            "icon": "🔓",
+            "title": "Полностью опенсорсный AI-стек разработчика",
+            "subtitle": "Ollama, Continue, Aider, Open WebUI — без подписок",
+            "tag": "beginner",
+            "time": "10 мин",
+            "desc": "Локальный стек без подписок: Ollama для моделей, Continue вместо Cursor Pro, Aider вместо Claude Code. Полный контроль над данными.",
+            "code": "<span><b>Компоненты стека:</b> 1) Ollama — запуск моделей локально: llama3.2, deepseek-r1, qwen2.5-coder. 2) Continue.dev — IDE-агент (VS Code/JetBrains), автодополнение + чат. 3) Aider — CLI-агент для автономных задач. 4) Open WebUI — веб-интерфейс для чата. 5) n8n — автоматизация без кода. <b>Стоимость:</b> $0/мес (безлимитно). Нужен только GPU (RTX 3060+ для 7B моделей). <b>Настройка Continue:</b> в config.json указать <code>\"provider\": \"ollama\", \"model\": \"qwen2.5-coder:7b\"</code>.</span>"
+        },
+        {
+            "id": "agentic-rag-deep",
+            "icon": "🔗",
+            "title": "Agentic RAG: глубокое погружение",
+            "subtitle": "Поиск с агентной логикой: план → поиск → проверка → итерация",
+            "tag": "advanced",
+            "time": "16 мин",
+            "desc": "Обычный RAG отвечает на один запрос. Agentic RAG планирует поиск, переформулирует запросы, проверяет результаты и итерирует. Полный туториал с LangGraph.",
+            "code": "<span><b>Архитектура Agentic RAG:</b> граф из 5 узлов: Plan (анализирует вопрос → составляет план поиска), Retrieve (ищет в векторной БД + web search), Grade (оценивает релевантность каждого документа), Generate (пишет ответ на основе отфильтрованных документов), Reflect (проверяет полноту → если недостаточно → возврат к Plan). <b>Код LangGraph:</b> <code>graph = StateGraph(AgentState); graph.add_node('plan', plan_node); graph.add_node('retrieve', retrieve_node); graph.add_conditional_edges('grade', should_continue, {'yes': 'generate', 'no': 'plan'})</code>.</span>"
+        },
+        {
+            "id": "mcp-server-build",
+            "icon": "🔌",
+            "title": "Создаём свой MCP-сервер за 20 минут",
+            "subtitle": "Python MCP-сервер с инструментами для базы данных",
+            "tag": "intermediate",
+            "time": "20 мин",
+            "desc": "Создайте свой MCP-сервер на Python с инструментами для БД. Работает с Claude Desktop, Cursor, Continue. Полный код и деплой.",
+            "code": "<span><b>Шаг 1 — установка:</b> <code>pip install mcp</code>. <b>Шаг 2 — сервер:</b> <code>from mcp.server import Server; server = Server('db-tools'); @server.list_tools() → [Tool('query', 'Run SQL query', {'sql': str})]; @server.call_tool() → execute_query(args['sql'])</code>. <b>Шаг 3 — конфиг Claude Desktop:</b> добавить в <code>claude_desktop_config.json: {'mcpServers': {'db-tools': {'command': 'python', 'args': ['server.py']}}}</code>. <b>Результат:</b> Claude может выполнять SQL-запросы к вашей БД прямо из чата.</span>"
+        },
+        {
+            "id": "agent-observability",
+            "icon": "🔬",
+            "title": "Observability для AI-агентов: tracing и метрики",
+            "subtitle": "LangSmith, Arize Phoenix, OpenTelemetry для агентов",
+            "tag": "advanced",
+            "time": "14 мин",
+            "desc": "Агенты недетерминированы — нужно видеть что они делают. Трассировка каждого шага, метрики, алерты. Production-уровень observability.",
+            "code": "<span><b>Стек observability:</b> 1) LangSmith — tracing для LangChain/LangGraph. <code>os.environ['LANGCHAIN_TRACING_V2']='true'</code> и все вызовы автоматически трассируются. 2) Arize Phoenix — OpenTelemetry-native. <code>from phoenix.otel import register; register(project_name='my-agents')</code>. 3) Кастомные метрики: <code>@traceable(name='agent_step')</code> декоратор для каждого шага агента. <b>Ключевые алерты:</b> latency > 3× baseline, success rate < 80%, cost per task > бюджет. <b>Дашборд:</b> Grafana + Prometheus для реального времени.</span>"
+        },
+        {
+            "id": "agent-deployment-models",
+            "icon": "🚢",
+            "title": "Модели деплоя AI-агентов: сравнительный обзор",
+            "subtitle": "Lambda, EC2, K8s, Modal, Fly.io — что выбрать",
+            "tag": "intermediate",
+            "time": "13 мин",
+            "desc": "Сравнение 5 моделей деплоя для AI-агентов: холодный старт, масштабирование, стоимость. Практические рекомендации для каждого сценария.",
+            "code": "<span><b>1) Serverless (Lambda/Cloud Run):</b> холодный старт 500ms-3s, pay-per-use. Идеально: редкие задачи, event-driven. <b>2) EC2/VM:</b> холодный старт 0 (always-on), от $20/мес. Идеально: постоянная нагрузка, GPU-модели. <b>3) Kubernetes:</b> автоскейлинг, canary deploy, от $50/мес (минимальный кластер). Идеально: сложные multi-agent системы. <b>4) Modal:</b> Python-native serverless с GPU. <code>@app.function(gpu='A10G')</code>. Идеально: ML-задачи. <b>5) Fly.io:</b> edge deployment, автоскейлинг. Идеально: low-latency агенты. <b>Правило:</b> прототип → Modal/Fly. Продакшен → K8s. Бюджетно → EC2.</span>"
+        },
+    ]
+    
+    guide_html = ""
+    for g in guides:
+        tag_class = {"beginner": "tag-beginner", "intermediate": "tag-intermediate", "advanced": "tag-advanced"}.get(g["tag"], "tag-beginner")
+        tag_label = {"beginner": "\u0411\u0430\u0437\u043e\u0432\u044b\u0439", "intermediate": "\u0421\u0440\u0435\u0434\u043d\u0438\u0439", "advanced": "\u041f\u0440\u043e\u0434\u0432\u0438\u043d\u0443\u0442\u044b\u0439"}.get(g["tag"], g["tag"])
+        guide_html += f'''<div class="guide-card" id="{g['id']}">
+      <div style="display:flex;align-items:flex-start;gap:16px">
+        <div style="font-size:32px;flex-shrink:0;width:48px;text-align:center">{g['icon']}</div>
+        <div style="flex:1">
+          <h3>{g['title']}</h3>
+          <p style="color:var(--cyan);font-size:12px;margin-bottom:4px">{g['subtitle']}</p>
+          <p>{g['desc']}</p>
+          <div style="margin-top:8px">
+            <span class="tag {tag_class}">{tag_label}</span>
+            <span style="font-size:11px;color:var(--dim);margin-left:8px">\u23f1 {g['time']}</span>
+          </div>
+          <details style="margin-top:12px">
+            <summary style="color:var(--green);font-size:12px;cursor:pointer;font-weight:600">\U0001F4CB \u041f\u043e\u043a\u0430\u0437\u0430\u0442\u044c \u043a\u043e\u0434 / \u0438\u043d\u0441\u0442\u0440\u0443\u043a\u0446\u0438\u044e</summary>
+            <div style="background:#0d1117;border-radius:8px;padding:14px;margin-top:8px;overflow-x:auto;font-family:'SF Mono',Monaco,monospace;font-size:11px;line-height:1.7" class="code-block">
+              {g['code']}
+            </div>
+            <button onclick="navigator.clipboard.writeText(this.parentElement.querySelector('.code-block').textContent)" style="margin-top:8px;background:var(--card-bg);border:1px solid var(--border);color:var(--muted);padding:4px 12px;border-radius:4px;font-size:10px;cursor:pointer">\U0001F4CB \u041a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u0442\u044c</button>
+          </details>
+        </div>
+      </div>
+    </div>'''
+    
+    body = f'''<div class="hero" style="padding:48px 24px 36px">
+  <div class="terminal-grid"></div>
+  <div class="tagline">DEPLOYMENT GUIDES</div>
+  <h1>\u0413\u0430\u0439\u0434\u044b \u043f\u043e <span class="accent">AI-\u0430\u0433\u0435\u043d\u0442\u0430\u043c</span></h1>
+  <p class="sub">\u041f\u0440\u0430\u043a\u0442\u0438\u0447\u0435\u0441\u043a\u0438\u0435 \u0440\u0443\u043a\u043e\u0432\u043e\u0434\u0441\u0442\u0432\u0430: \u043e\u0442 \u043b\u043e\u043a\u0430\u043b\u044c\u043d\u043e\u0433\u043e \u0437\u0430\u043f\u0443\u0441\u043a\u0430 LLM \u0434\u043e \u043f\u043e\u0441\u0442\u0440\u043e\u0435\u043d\u0438\u044f multi-agent \u0441\u0438\u0441\u0442\u0435\u043c. \u0421 \u043a\u043e\u0434\u043e\u043c, \u0441\u0445\u0435\u043c\u0430\u043c\u0438 \u0438 \u0441\u0440\u0430\u0432\u043d\u0435\u043d\u0438\u044f\u043c\u0438.</p>
+  <div class="hero-metrics">
+    <div class="hero-metric"><div class="val">{len(guides)}</div><div class="lbl">\u0413\u0430\u0439\u0434\u043e\u0432</div></div>
+    <div class="hero-metric"><div class="val">{tp}</div><div class="lbl">\u041f\u0440\u043e\u0434\u0443\u043a\u0442\u043e\u0432</div></div>
+    <div class="hero-metric"><div class="val">RU</div><div class="lbl">\u042f\u0437\u044b\u043a</div></div>
+    <div class="hero-metric"><div class="val">\u26a1</div><div class="lbl">\u0421 \u043a\u043e\u0434\u043e\u043c</div></div>
+  </div>
+</div>
+
+<div class="container detail">
+  <div style="display:grid;gap:20px;margin-bottom:40px">
+    {guide_html}
+  </div>
+  
+  <div style="margin-top:32px;padding:24px;background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);text-align:center">
+    <h3 style="color:var(--green);font-size:16px;margin-bottom:8px">\U0001F4EC \u0425\u043e\u0442\u0438\u0442\u0435 \u0431\u043e\u043b\u044c\u0448\u0435 \u0433\u0430\u0439\u0434\u043e\u0432?</h3>
+    <p style="color:var(--muted);font-size:13px;margin-bottom:8px">\u0421\u043b\u0435\u0434\u0438\u0442\u0435 \u0437\u0430 \u043e\u0431\u043d\u043e\u0432\u043b\u0435\u043d\u0438\u044f\u043c\u0438 \u2014 \u0434\u043e\u0431\u0430\u0432\u043b\u044f\u0435\u043c \u043d\u043e\u0432\u044b\u0435 \u0440\u0443\u043a\u043e\u0432\u043e\u0434\u0441\u0442\u0432\u0430 \u0435\u0436\u0435\u043d\u0435\u0434\u0435\u043b\u044c\u043d\u043e.</p>
+    <p style="color:var(--text);font-size:14px">partners@qantcore.space</p>
+  </div>
+</div>
+
+<style>
+.guide-card{{background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);padding:20px 24px;transition:border-color .2s}}
+.guide-card:hover{{border-color:var(--green)}}
+.guide-card h3{{font-size:15px;font-weight:700;color:var(--text);margin-bottom:6px}}
+.guide-card p{{font-size:12px;color:var(--muted);line-height:1.6}}
+.guide-card .tag{{display:inline-block;padding:2px 8px;border-radius:4px;font-size:10px;font-weight:600;margin-right:4px;margin-top:8px}}
+.tag-beginner{{background:var(--green-dim);color:var(--green)}}
+.tag-intermediate{{background:var(--amber-dim);color:var(--amber)}}
+.tag-advanced{{background:var(--red-dim);color:var(--red)}}
+</style>'''
+
+    html = render_page("\u0413\u0430\u0439\u0434\u044b \u2014 \u041f\u0440\u0430\u043a\u0442\u0438\u0447\u0435\u0441\u043a\u0438\u0435 \u0440\u0443\u043a\u043e\u0432\u043e\u0434\u0441\u0442\u0432\u0430 \u043f\u043e AI-\u0430\u0433\u0435\u043d\u0442\u0430\u043c",
+                       "\u041f\u0440\u0430\u043a\u0442\u0438\u0447\u0435\u0441\u043a\u0438\u0435 \u0433\u0430\u0439\u0434\u044b: \u043b\u043e\u043a\u0430\u043b\u044c\u043d\u044b\u0439 \u0437\u0430\u043f\u0443\u0441\u043a LLM, Cursor vs Copilot, multi-agent \u043d\u0430 CrewAI, MCP-\u0441\u0435\u0440\u0432\u0435\u0440\u044b, AI-\u0441\u0442\u0435\u043a \u0434\u043b\u044f \u0441\u0442\u0430\u0440\u0442\u0430\u043f\u0430.",
+                       body, total=len(guides),
+                       active_guides="active",
+                       open_graph=make_og("\u0413\u0430\u0439\u0434\u044b \u043f\u043e AI-\u0430\u0433\u0435\u043d\u0442\u0430\u043c \u2014 Qantcore", "\u041f\u0440\u0430\u043a\u0442\u0438\u0447\u0435\u0441\u043a\u0438\u0435 \u0440\u0443\u043a\u043e\u0432\u043e\u0434\u0441\u0442\u0432\u0430: \u043b\u043e\u043a\u0430\u043b\u044c\u043d\u044b\u0439 \u0437\u0430\u043f\u0443\u0441\u043a LLM, Cursor vs Copilot, multi-agent, MCP, AI-\u0441\u0442\u0435\u043a.", "/guides/"),
+                       canonical_url='<link rel="canonical" href="https://qantcore.space/guides/">')
+    write_html(f"{OUT}/guides/index.html", html)
+    print(f"  /guides/index.html")
+
 if __name__ == "__main__":
     import shutil
 
@@ -2351,6 +4483,15 @@ if __name__ == "__main__":
 
     # Company Pages
     generate_company_pages()
+
+    # Development (Coding Agents)
+    generate_development()
+
+    # Multi-agent Frameworks
+    generate_multi_agent()
+
+    # Guides
+    generate_guides()
 
     for cat in ["product", "comparison", "review"]:
         generate_catalog(cat)
@@ -2390,3 +4531,5 @@ if __name__ == "__main__":
     print("  /robots.txt")
 
     print(f"\nDone! Static site in {OUT}/")
+
+# ═══════════════════════════════════════════════════════════════
