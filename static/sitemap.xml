@@ -8,7 +8,6 @@
   <url><loc>https://qantcore.space/benchmarks/</loc><changefreq>weekly</changefreq><priority>0.8</priority><lastmod>2026-05-26</lastmod></url>
   <url><loc>https://qantcore.space/methodology/</loc><changefreq>monthly</changefreq><priority>0.6</priority><lastmod>2026-05-26</lastmod></url>
   <url><loc>https://qantcore.space/workspace/</loc><changefreq>monthly</changefreq><priority>0.5</priority><lastmod>2026-05-26</lastmod></url>
-  <url><loc>https://qantcore.space/company/</loc><changefreq>weekly</changefreq><priority>0.7</priority><lastmod>2026-05-26</lastmod></url>
   <url><loc>https://qantcore.space/media-kit/</loc><changefreq>monthly</changefreq><priority>0.4</priority><lastmod>2026-05-26</lastmod></url>
   <url><loc>https://qantcore.space/product/cursor-ide</loc><changefreq>weekly</changefreq><priority>0.9</priority><lastmod>2026-05-26</lastmod></url>
   <url><loc>https://qantcore.space/product/github-copilot</loc><changefreq>weekly</changefreq><priority>0.9</priority><lastmod>2026-05-26</lastmod></url>
@@ -170,7 +169,6 @@
   <url><loc>https://qantcore.space/compare/langgraph-framework-vs-jasper-ai</loc><changefreq>monthly</changefreq><priority>0.7</priority><lastmod>2026-05-26</lastmod></url>
   <url><loc>https://qantcore.space/compare/claude-anthropic-vs-babyagi-agent</loc><changefreq>monthly</changefreq><priority>0.7</priority><lastmod>2026-05-26</lastmod></url>
   <url><loc>https://qantcore.space/compare/chatdev-agent-vs-anythingllm</loc><changefreq>monthly</changefreq><priority>0.7</priority><lastmod>2026-05-26</lastmod></url>
-  <url><loc>https://qantcore.space/development/</loc><changefreq>weekly</changefreq><priority>0.8</priority><lastmod>2026-05-26</lastmod></url>
   <url><loc>https://qantcore.space/multi-agent/</loc><changefreq>weekly</changefreq><priority>0.8</priority><lastmod>2026-05-26</lastmod></url>
   <url><loc>https://qantcore.space/guides/</loc><changefreq>weekly</changefreq><priority>0.7</priority><lastmod>2026-05-26</lastmod></url>
 </urlset>

@@ -633,25 +633,21 @@ ym(109327472,'init',{{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer"
       <span class="nav-sep"></span>
       <a href="/catalog/comparison/" class="{active_compare}">Сравнения</a>
       <span class="nav-sep"></span>
+      <a href="/guides/" class="nav-featured {active_guides}">📖 Гайды</a>
+      <span class="nav-sep"></span>
       <a href="/benchmarks/">Бенчмарки</a>
       <span class="nav-sep"></span>
       <a href="/benchmarks/">Рейтинг</a>
       <span class="nav-sep"></span>
       <a href="/catalog/product/">Локальный AI</a>
       <span class="nav-sep"></span>
-      <a href="/development/" class="{active_dev}">Разработка</a>
-      <span class="nav-sep"></span>
       <a href="/multi-agent/" class="{active_ma}">Мульти-агенты</a>
-      <span class="nav-sep"></span>
-      <a href="/guides/" class="nav-featured {active_guides}">📖 Гайды</a>
       <span class="nav-sep"></span>
       <a href="/catalog/review/" class="{active_review}">Обзоры</a>
       <span class="nav-sep"></span>
       <a href="/methodology/" class="{active_method}">Методология</a>
       <span class="nav-sep"></span>
       <a href="/workspace/" class="{active_ws}">Кабинет</a>
-      <span class="nav-sep"></span>
-      <a href="/company/">Компании</a>
       <span class="nav-sep"></span>
       <a href="#saved" class="saved-nav" style="display:none">★ Избранное</a>
     </div>
@@ -4481,16 +4477,16 @@ if __name__ == "__main__":
     # Media Kit
     generate_media_kit()
 
-    # Company Pages
-    generate_company_pages()
+    # Company Pages — REMOVED (merged into catalog)
+    # generate_company_pages()
 
-    # Development (Coding Agents)
-    generate_development()
+    # Development — REMOVED (merged into /guides/)
+    # generate_development()
 
     # Multi-agent Frameworks
     generate_multi_agent()
 
-    # Guides
+    # Guides (includes coding agents + multi-agent + all tutorials)
     generate_guides()
 
     for cat in ["product", "comparison", "review"]:
