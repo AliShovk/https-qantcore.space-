@@ -36,13 +36,28 @@ header{position:sticky;top:0;z-index:100;backdrop-filter:blur(20px) saturate(180
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
 .mega-nav{display:flex;gap:4px;align-items:center}
 .mega-nav a,.mega-nav .nav-section{font-size:13.5px;color:var(--muted);
-  padding:6px 12px;border-radius:6px;transition:all .2s;font-weight:500;
-  letter-spacing:.01em;white-space:nowrap}
+  padding:6px 12px;border-radius:6px;transition:color .2s,background .2s;font-weight:500;
+  letter-spacing:.01em;white-space:nowrap;text-decoration:none;
+  -webkit-tap-highlight-color:transparent;outline:none;user-select:none}
 .mega-nav a:hover{color:var(--text);background:rgba(255,255,255,.04)}
+.mega-nav a:active{color:var(--muted);background:transparent}
+.mega-nav a:focus-visible{outline:2px solid var(--green);outline-offset:-2px}
 .mega-nav a.active{color:var(--green);background:var(--green-dim)}
+.mega-nav a.active:active{color:var(--green);background:var(--green-dim)}
 .nav-sep{width:1px;height:18px;background:var(--border);margin:0 4px}
 .nav-featured{font-size:14px!important;font-weight:700!important;color:var(--green)!important;
   background:var(--green-dim)!important;padding:8px 16px!important;letter-spacing:.02em}
+.nav-featured:active{color:var(--green)!important;background:var(--green-dim)!important}
+.nav-review{font-size:14px!important;font-weight:700!important;color:#a78bfa!important;
+  padding:6px 14px!important;letter-spacing:.01em}
+.nav-review:hover{color:#c4b5fd!important;background:rgba(167,139,250,.1)!important}
+.nav-review:active{color:#a78bfa!important}
+.nav-review.active{background:rgba(167,139,250,.15)!important}
+.nav-local{font-size:14px!important;font-weight:700!important;color:var(--blue)!important;
+  padding:6px 14px!important;letter-spacing:.01em}
+.nav-local:hover{color:#60a5fa!important;background:rgba(59,130,246,.1)!important}
+.nav-local:active{color:var(--blue)!important}
+.nav-local.active{background:rgba(59,130,246,.15)!important}
 
 /* ─── Terminal Grid (hero bg) ─── */
 .terminal-grid{position:absolute;top:0;left:0;right:0;bottom:0;overflow:hidden;pointer-events:none;z-index:0}
@@ -62,7 +77,7 @@ header{position:sticky;top:0;z-index:100;backdrop-filter:blur(20px) saturate(180
 /* ─── Hero ─── */
 .hero{text-align:center;padding:72px 24px 48px;position:relative;overflow:hidden}
 .hero>*{position:relative;z-index:2}
-.hero h1{font-size:clamp(36px,5vw,60px);font-weight:800;letter-spacing:-.03em;
+.hero h1{font-size:clamp(12px,1.67vw,20px);font-weight:800;letter-spacing:-.03em;
   line-height:1.15;color:#f1f5f9;max-width:800px;margin:0 auto}
 .hero h1 .accent{color:var(--green)}
 .hero .sub{font-size:17px;color:var(--muted);margin-top:16px;max-width:640px;
@@ -82,7 +97,7 @@ header{position:sticky;top:0;z-index:100;backdrop-filter:blur(20px) saturate(180
 .cta-secondary{padding:12px 28px;border-radius:var(--radius-sm);font-size:14px;font-weight:600;
   background:transparent;color:var(--text);border:1px solid var(--border);cursor:pointer;
   transition:all .2s}
-.cta-secondary:hover{border-color:var(--green);color:var(--green)}
+.cta-secondary:hover{border-color:var(--blue);color:var(--blue)}
 
 /* ─── Enterprise CTA Banner ─── */
 .enterprise-cta{background:linear-gradient(135deg,rgba(16,185,129,.08) 0%,rgba(59,130,246,.04) 100%);
@@ -131,7 +146,7 @@ header{position:sticky;top:0;z-index:100;backdrop-filter:blur(20px) saturate(180
   display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
 
 .card{background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);
-  padding:20px;transition:all .2s;position:relative;display:flex;flex-direction:column}
+  padding:20px;transition:all .2s;position:relative;display:flex;flex-direction:column;overflow:visible}
 .card:hover{border-color:rgba(16,185,129,.25);transform:translateY(-2px);
   box-shadow:0 8px 30px rgba(0,0,0,.4)}
 .card-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:12px}
@@ -153,12 +168,12 @@ header{position:sticky;top:0;z-index:100;backdrop-filter:blur(20px) saturate(180
 .panel-item .pv.green{color:var(--green)}
 .panel-item .pv.amber{color:var(--amber)}
 .panel-item .pl{font-size:10px;color:var(--dim);margin-top:1px;text-transform:uppercase;letter-spacing:.03em}
-.card-compare{position:absolute;top:12px;right:12px;z-index:5}
-.card-compare input[type=checkbox]{appearance:none;width:18px;height:18px;border-radius:4px;
+.card-compare{position:absolute;top:10px;right:10px;z-index:5}
+.card-compare input[type=checkbox]{appearance:none;width:24px;height:24px;border-radius:6px;
   border:2px solid var(--dim);cursor:pointer;transition:all .2s;position:relative}
 .card-compare input[type=checkbox]:checked{border-color:var(--green);background:var(--green)}
 .card-compare input[type=checkbox]:checked::after{content:'✓';position:absolute;
-  top:-1px;left:2px;color:#000;font-size:13px;font-weight:700}
+  top:0;left:4px;color:#000;font-size:16px;font-weight:700}
 .card-trust{display:flex;gap:12px;margin-top:8px;font-size:10px;color:var(--dim)}
 .card-trust span{display:flex;align-items:center;gap:3px}
 
@@ -427,22 +442,60 @@ footer a{color:var(--green)}
 .search-bar input::placeholder{color:var(--dim)}
 
 @media(max-width:768px){
-  .hero h1{font-size:28px}
-  .grid,.featured-grid{grid-template-columns:1fr}
-  .mega-nav{overflow-x:auto;gap:2px;-webkit-overflow-scrolling:touch}
+  .hero h1{font-size:24px;line-height:1.3}
+  .hero .sub{font-size:13px}
+  .hero .tagline{font-size:10px}
+  .grid,.featured-grid{grid-template-columns:1fr!important}
+  .mega-nav{overflow-x:auto;gap:2px;-webkit-overflow-scrolling:touch;flex-wrap:nowrap}
   .mega-nav a,.mega-nav .nav-section{font-size:11px;padding:5px 8px}
   .nav-sep{display:none}
   .auth-stat{min-width:80px;padding:12px 10px}
   .auth-stat .n{font-size:18px}
   .auth-stat .l{font-size:9px}
-  .hero-metrics{gap:6px}
+  .hero-metrics{gap:6px;flex-wrap:wrap}
   .hero-metric{min-width:70px;padding:8px 12px}
   .hero-metric .val{font-size:16px}
   .hero-metric .lbl{font-size:9px}
   .compare-bar{left:16px;right:16px;transform:none;border-radius:var(--radius-sm)}
   .section-hd{padding:8px 16px 12px}
+  .section-hd h2{font-size:16px}
   .filters-bar,.grid,.featured,.auth-bar{padding-left:16px;padding-right:16px}
   .header-inner{padding:12px 16px}
+  .logo{font-size:16px}
+  /* Card panels */
+  .card{padding:14px}
+  .card-panel{grid-template-columns:1fr 1fr;gap:6px}
+  .panel-item{padding:6px 8px}
+  .panel-item .pv{font-size:13px}
+  .card-title{font-size:14px}
+  .card-desc{font-size:12px}
+  /* Section rows → wrap */
+  [style*="display:flex"][style*="overflow-x:auto"]{flex-wrap:nowrap}
+  /* Catalog 5-col → 2-col */
+  #catalog-grid{grid-template-columns:repeat(2,1fr)!important}
+  /* Enterprise CTA */
+  .ec-inner{flex-direction:column;text-align:center;padding:20px}
+  .ec-actions{justify-content:center}
+  /* Product detail */
+  .detail-header h1{font-size:22px}
+  .detail-body{font-size:13px}
+  /* Code blocks */
+  .code-block{font-size:11px;padding:14px}
+  /* Stack builder */
+  .stack-row{flex-direction:column}
+  /* Footer */
+  .footer-inner{flex-direction:column;gap:16px;text-align:center}
+}
+@media(max-width:480px){
+  .hero h1{font-size:20px}
+  .hero .sub{font-size:12px}
+  .hero-metrics{gap:4px}
+  .hero-metric{min-width:60px;padding:6px 10px}
+  .hero-metric .val{font-size:14px}
+  .card-panel{grid-template-columns:1fr}
+  .auth-inner{flex-wrap:wrap}
+  .auth-stat{flex:1 1 50%;border-right:none;border-bottom:1px solid var(--border)}
+  #catalog-grid{grid-template-columns:1fr!important}
 }</style>
 <script type="application/ld+json">
 {}
@@ -471,13 +524,13 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
       <span class="nav-sep"></span>
       <a href="/guides/" class="nav-featured ">📖 Гайды</a>
       <span class="nav-sep"></span>
-      <a href="/benchmarks/">Рейтинг</a>
-      <span class="nav-sep"></span>
-      <a href="/catalog/product/">Локальный AI</a>
+      <a href="/catalog/review/" class="nav-review active">Обзоры</a>
       <span class="nav-sep"></span>
       <a href="/multi-agent/" class="">Мульти-агенты</a>
       <span class="nav-sep"></span>
-      <a href="/catalog/review/" class="active">Обзоры</a>
+      <a href="/benchmarks/">Рейтинг</a>
+      <span class="nav-sep"></span>
+      <a href="/local-models/" class="nav-local">Локальные LLM</a>
       <span class="nav-sep"></span>
       <a href="/methodology/" class="">Методология</a>
       <span class="nav-sep"></span>
@@ -498,11 +551,53 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
           <p class="tagline">Детальный обзор Cline — AI-агент с доступом к файлам и терминалу</p>
           <div class="detail-meta">
             <a href="/product/cline-vscode/" class="meta-item">🔗 Cline — автономный AI-агент для VS Code</a>
-            <div class="meta-item">📝 1250 words</div>
+            <div class="meta-item">📝 1102 words</div>
           </div>
         </div>
       </div>
-      <div class="detail-body"></div>
+      <div class="detail-body"><h2>Что такое Cline</h2>
+<p>Cline — это AI-агент для разработки, который работает непосредственно в среде IDE (Visual Studio Code и его форки) и обладает прямым доступом к файловой системе проекта и терминалу. В отличие от большинства AI-ассистентов, которые лишь генерируют фрагменты кода или дают рекомендации, Cline способен самостоятельно выполнять цепочки действий: читать файлы, вносить изменения, запускать команды, анализировать вывод и на основе этого корректировать своё поведение. По сути, это автономный программист, который не просто подсказывает, а делает.</p>
+<p>Основная целевая аудитория — разработчики, работающие над сложными проектами с разветвлённой кодовой базой, где требуется не просто генерация кода, а его рефакторинг, отладка, настройка инфраструктуры и интеграция. Ценность Cline заключается в том, что он берёт на себя рутинные операции, требующие последовательного выполнения нескольких шагов: от поиска ошибки в логах до исправления её в нескольких файлах и перезапуска сервиса. Инструмент позиционируется как «агент», а не «помощник», что подчёркивает его способность к самостоятельному принятию решений в рамках заданного контекста.</p>
+
+<h2>Ключевые возможности</h2>
+<ul>
+<li><strong>Прямой доступ к терминалу и файловой системе:</strong> Cline может выполнять произвольные shell-команды (npm install, git commit, docker-compose up) и напрямую редактировать файлы, включая создание, удаление и переименование. Это отличает его от инструментов, работающих только через API IDE.</li>
+<li><strong>Многошаговое планирование и выполнение:</strong> Агент способен разбивать сложную задачу на подзадачи, выполнять их последовательно, анализировать промежуточные результаты и при необходимости возвращаться к предыдущим шагам. Реализовано через внутренний цикл «наблюдение-действие-оценка».</li>
+<li><strong>Поддержка контекста проекта:</strong> Cline автоматически индексирует структуру проекта, читает файлы конфигурации (package.json, tsconfig, Dockerfile) и использует эту информацию для принятия решений. Не требует ручного указания путей или описания архитектуры.</li>
+<li><strong>Работа с Git:</strong> Встроенная интеграция с системой контроля версий: агент может создавать коммиты, просматривать историю изменений, анализировать diff и предлагать решения на основе изменений в коде. Поддерживает создание pull request через CLI.</li>
+<li><strong>Динамическое управление моделями:</strong> Cline поддерживает переключение между различными LLM (GPT-4o, Claude 3.5 Sonnet, локальные модели через Ollama) без перезапуска сессии. Пользователь может назначить разные модели для разных этапов: например, Claude для планирования, GPT-4o для генерации кода.</li>
+<li><strong>Режим «Approval» с настраиваемой политикой:</strong> Агент может работать в полностью автоматическом режиме, либо требовать подтверждения на каждое действие (запись в файл, выполнение команды). Политики настраиваются по типу операции: например, чтение файлов без подтверждения, запись — с подтверждением.</li>
+<li><strong>Логирование и воспроизведение сессий:</strong> Все действия Cline записываются в структурированный лог (JSON), который можно просматривать, экспортировать и повторно использовать для обучения или аудита. Поддерживается режим «replay» для визуализации цепочки решений.</li>
+</ul>
+
+<h2>Характеристики и тарифы</h2>
+<p>Cline распространяется как расширение для VS Code с открытым исходным кодом (лицензия Apache 2.0). Исходный код доступен на GitHub, что позволяет сообществу вносить изменения, создавать форки и адаптировать инструмент под свои нужды. Базовая версия расширения бесплатна и включает все ключевые функции, однако требует наличия API-ключа от провайдера LLM (OpenAI, Anthropic, Google и др.).</p>
+<p>Тарифная модель построена на двух уровнях. <strong>Community Edition</strong> (бесплатно) предоставляет полный функционал, но с ограничением на количество одновременных сессий (до 3) и без приоритетной поддержки. <strong>Team Edition</strong> ($29/мес на пользователя) добавляет централизованное управление политиками безопасности, общие логи для команды, интеграцию с корпоративными системами аутентификации (SSO) и приоритетную поддержку. Для крупных организаций доступна Enterprise-лицензия с индивидуальным ценообразованием, включающая развёртывание на собственной инфраструктуре и кастомизацию моделей.</p>
+<p>Важно отметить, что стоимость использования LLM оплачивается отдельно напрямую провайдеру. Cline не взимает комиссию за токены и не предоставляет собственных вычислительных мощностей. Средний расход токенов на типовую задачу (рефакторинг модуля из 500 строк) составляет около 15-20 тысяч токенов ввода и 5-8 тысяч токенов вывода при использовании GPT-4o.</p>
+
+<h2>Плюсы и минусы</h2>
+<h3>Сильные стороны</h3>
+<ul>
+<li><strong>Глубина автономности:</strong> Cline способен выполнять задачи, требующие 10-15 последовательных шагов, без вмешательства пользователя. Это значительно превосходит возможности конкурентов, которые обычно застревают после 3-4 шагов.</li>
+<li><strong>Прозрачность действий:</strong> Каждое изменение в файле и каждая команда в терминале логируются с указанием причины. Разработчик всегда может понять, почему агент принял то или иное решение, и при необходимости откатить изменения.</li>
+<li><strong>Гибкость в выборе моделей:</strong> Возможность комбинировать разные LLM в рамках одной сессии позволяет оптимизировать стоимость и качество: дешёвая модель для рутинных операций, дорогая — для сложного анализа.</li>
+<li><strong>Открытый исходный код:</strong> Сообщество активно развивает инструмент: появляются плагины для поддержки новых языков, интеграции с CI/CD и кастомные политики безопасности. Прозрачность кода снижает риски, связанные с передачей данных третьим сторонам.</li>
+</ul>
+<h3>Ограничения</h3>
+<ul>
+<li><strong>Зависимость от качества модели:</strong> При использовании слабых LLM (например, локальных моделей 7B) Cline часто генерирует некорректные команды или вносит ошибки в код. Инструмент требует как минимум GPT-4 или Claude 3 для стабильной работы.</li>
+<li><strong>Отсутствие встроенной песочницы:</strong> Cline выполняет команды напрямую в терминале пользователя. Это означает, что ошибочная команда (например, rm -rf) может нанести реальный ущерб. Режим подтверждения снижает риск, но не устраняет его полностью.</li>
+<li><strong>Проблемы с большими проектами:</strong> При работе с кодовой базой объёмом более 100 000 файлов Cline начинает заметно тормозить из-за необходимости индексировать структуру и поддерживать контекст. Разработчики рекомендуют ограничивать область видимости через .clineignore.</li>
+</ul>
+
+<h2>Сравнение с аналогами</h2>
+<p>Ближайший конкурент Cline — <strong>GitHub Copilot Agent Mode</strong> (режим агента, анонсированный в 2025 году). Copilot также умеет выполнять команды в терминале и редактировать файлы, но его автономность ограничена: он редко выполняет более 5 шагов без запроса подтверждения. Кроме того, Copilot привязан к моделям OpenAI и не позволяет переключаться на альтернативные LLM. Cline выигрывает в гибкости и глубине планирования, но проигрывает в интеграции с экосистемой GitHub (Copilot напрямую работает с Issues и Code Review).</p>
+<p>Второй конкурент — <strong>Continue.dev</strong> с включённым режимом агента. Continue также является open-source расширением для VS Code и поддерживает множество моделей. Однако его агентский режим менее зрелый: он часто теряет контекст при выполнении длинных цепочек действий и не умеет корректно обрабатывать ошибки выполнения команд. Cline превосходит Continue в стабильности и предсказуемости поведения, особенно при работе с инфраструктурными задачами (Docker, CI/CD).</p>
+<p>Третий игрок — <strong>Devin</strong> (от Cognition AI). Devin — это полностью автономный AI-инженер, работающий в собственной облачной среде. Он не требует установки в IDE и может выполнять задачи от начала до конца без участия человека. Однако Devin является проприетарным продуктом с ценой от $500/мес, что делает его недоступным для индивидуальных разработчиков. Cline предлагает сопоставимый уровень автономности за существенно меньшую цену (фактически — только стоимость API), но требует ручного запуска и контроля.</p>
+
+<h2>Вердикт</h2>
+<p>Cline лучше всего подходит для опытных разработчиков, работающих над средними и крупными проектами, где требуется автоматизация рутинных операций: рефакторинг, миграция зависимостей, настройка инфраструктуры, написание тестов. Инструмент особенно эффективен в сценариях, где задача требует последовательного изменения нескольких файлов и выполнения команд в терминале — например, обновление API-клиента с изменением схемы данных и перезапуском сервера.</p>
+<p>Выбирать Cline стоит, если вы готовы инвестировать время в настройку политик безопасности и выбор оптимальной LLM, а также если вам важна прозрачность и контроль над каждым действием агента. Инструмент не подходит новичкам, которые не могут оценить корректность генерируемых команд, а также для работы с конфиденциальными данными в средах без изолированной песочницы. В этих случаях лучше рассмотреть Devin (для полной автономии) или Copilot Agent Mode (для более безопасной, но ограниченной автоматизации).</p></div>
     </div>
 <footer>
   Qantcore &copy; 2026 &mdash; Платформа аналитики AI-агентов &mdash;

@@ -1,0 +1,203 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 620" font-family="system-ui, -apple-system, sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0A0A0F"/>
+      <stop offset="100%" stop-color="#141420"/>
+    </linearGradient>
+    <linearGradient id="orangeGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#FF8C2A"/>
+      <stop offset="100%" stop-color="#E07000"/>
+    </linearGradient>
+    <linearGradient id="blueGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#3B82F6"/>
+      <stop offset="100%" stop-color="#1D4ED8"/>
+    </linearGradient>
+    <linearGradient id="greenGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#22C55E"/>
+      <stop offset="100%" stop-color="#15803D"/>
+    </linearGradient>
+    <linearGradient id="purpleGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#A855F7"/>
+      <stop offset="100%" stop-color="#7E22CE"/>
+    </linearGradient>
+    <linearGradient id="pinkGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#EC4899"/>
+      <stop offset="100%" stop-color="#BE185D"/>
+    </linearGradient>
+    <linearGradient id="tealGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#14B8A6"/>
+      <stop offset="100%" stop-color="#0F766E"/>
+    </linearGradient>
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-opacity="0.3"/>
+    </filter>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <marker id="arrowOrange" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#FF8C2A"/>
+    </marker>
+    <marker id="arrowGray" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#6B7280"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="960" height="620" fill="url(#bg)" rx="12"/>
+
+  <!-- Title -->
+  <text x="480" y="38" text-anchor="middle" fill="#FBF9EC" font-size="22" font-weight="800" letter-spacing="-0.02em">Архитектура PaioClaw — Managed OpenClaw Agent Platform</text>
+
+  <!-- ====== LAYER 1: USER ENTRY POINTS ====== -->
+  <rect x="30" y="58" width="900" height="50" rx="8" fill="#1A1A2E" stroke="#FFFFFF10" stroke-width="1"/>
+  <text x="50" y="80" fill="#ACA994" font-size="11" text-anchor="start" font-weight="700">▸ КАНАЛЫ ВЗАИМОДЕЙСТВИЯ</text>
+
+  <!-- Channel icons row -->
+  <rect x="280" y="65" width="85" height="34" rx="6" fill="url(#orangeGrad)" filter="url(#shadow)"/>
+  <text x="322" y="86" text-anchor="middle" fill="#1A0A00" font-size="11" font-weight="700">Web App</text>
+
+  <rect x="380" y="65" width="80" height="34" rx="6" fill="#232340" stroke="#FFFFFF10" stroke-width="1"/>
+  <text x="420" y="86" text-anchor="middle" fill="#E8E5DD" font-size="11" font-weight="600">Telegram</text>
+
+  <rect x="475" y="65" width="70" height="34" rx="6" fill="#232340" stroke="#FFFFFF10" stroke-width="1"/>
+  <text x="510" y="86" text-anchor="middle" fill="#E8E5DD" font-size="11" font-weight="600">Discord</text>
+
+  <rect x="560" y="65" width="60" height="34" rx="6" fill="#232340" stroke="#FFFFFF10" stroke-width="1"/>
+  <text x="590" y="86" text-anchor="middle" fill="#E8E5DD" font-size="11" font-weight="600">Slack</text>
+
+  <rect x="635" y="65" width="75" height="34" rx="6" fill="#232340" stroke="#FFFFFF10" stroke-width="1"/>
+  <text x="672" y="86" text-anchor="middle" fill="#E8E5DD" font-size="11" font-weight="600">WhatsApp</text>
+
+  <rect x="725" y="65" width="65" height="34" rx="6" fill="#232340" stroke="#FFFFFF10" stroke-width="1"/>
+  <text x="757" y="86" text-anchor="middle" fill="#E8E5DD" font-size="11" font-weight="600">Mac App</text>
+
+  <rect x="805" y="65" width="55" height="34" rx="6" fill="#232340" stroke="#FFFFFF10" stroke-width="1"/>
+  <text x="832" y="86" text-anchor="middle" fill="#E8E5DD" font-size="11" font-weight="600">CLI</text>
+
+  <!-- ====== ARROWS L1 -> L2 ====== -->
+  <line x1="322" y1="99" x2="322" y2="130" stroke="#FF8C2A" stroke-width="1.5" marker-end="url(#arrowOrange)"/>
+  <line x1="420" y1="99" x2="420" y2="130" stroke="#6B7280" stroke-width="1" marker-end="url(#arrowGray)"/>
+  <line x1="672" y1="99" x2="672" y2="130" stroke="#6B7280" stroke-width="1" marker-end="url(#arrowGray)"/>
+
+  <!-- ====== LAYER 2: PAIO PLATFORM ====== -->
+  <rect x="30" y="131" width="900" height="135" rx="12" fill="#1E1E30" stroke="#FF8C2A" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="480" y="155" text-anchor="middle" fill="#FF8C2A" font-size="14" font-weight="800" letter-spacing="0.05em">PAIO HOSTING PLATFORM</text>
+
+  <!-- API Gateway -->
+  <rect x="55" y="168" width="160" height="40" rx="6" fill="url(#blueGrad)" opacity="0.9"/>
+  <text x="135" y="192" text-anchor="middle" fill="#FFF" font-size="11" font-weight="700">API Gateway + Auth</text>
+
+  <!-- Orchestrator -->
+  <rect x="235" y="168" width="160" height="40" rx="6" fill="url(#purpleGrad)" opacity="0.9"/>
+  <text x="315" y="192" text-anchor="middle" fill="#FFF" font-size="11" font-weight="700">Instance Orchestrator</text>
+
+  <!-- Skills -->
+  <rect x="415" y="168" width="150" height="40" rx="6" fill="url(#greenGrad)" opacity="0.9"/>
+  <text x="490" y="192" text-anchor="middle" fill="#FFF" font-size="11" font-weight="700">2000+ Skills Lib</text>
+
+  <!-- Token optimizer -->
+  <rect x="585" y="168" width="150" height="40" rx="6" fill="url(#pinkGrad)" opacity="0.9"/>
+  <text x="660" y="192" text-anchor="middle" fill="#FFF" font-size="11" font-weight="700">Token Optimizer (-50%)</text>
+
+  <!-- Scheduler -->
+  <rect x="755" y="168" width="150" height="40" rx="6" fill="url(#tealGrad)" opacity="0.9"/>
+  <text x="830" y="192" text-anchor="middle" fill="#FFF" font-size="11" font-weight="700">Cron Scheduler</text>
+
+  <!-- Sub-components row 2 -->
+  <rect x="55" y="218" width="120" height="35" rx="5" fill="#2A2A40" stroke="#FFFFFF08" stroke-width="1"/>
+  <text x="115" y="240" text-anchor="middle" fill="#ACA994" font-size="9" font-weight="600">SSH Terminal</text>
+
+  <rect x="190" y="218" width="130" height="35" rx="5" fill="#2A2A40" stroke="#FFFFFF08" stroke-width="1"/>
+  <text x="255" y="240" text-anchor="middle" fill="#ACA994" font-size="9" font-weight="600">Memory Tiers</text>
+
+  <rect x="335" y="218" width="120" height="35" rx="5" fill="#2A2A40" stroke="#FFFFFF08" stroke-width="1"/>
+  <text x="395" y="240" text-anchor="middle" fill="#ACA994" font-size="9" font-weight="600">Personas</text>
+
+  <rect x="470" y="218" width="130" height="35" rx="5" fill="#2A2A40" stroke="#FFFFFF08" stroke-width="1"/>
+  <text x="535" y="240" text-anchor="middle" fill="#ACA994" font-size="9" font-weight="600">Provisioning WS</text>
+
+  <rect x="615" y="218" width="120" height="35" rx="5" fill="#2A2A40" stroke="#FFFFFF08" stroke-width="1"/>
+  <text x="675" y="240" text-anchor="middle" fill="#ACA994" font-size="9" font-weight="600">Relay Extension</text>
+
+  <rect x="750" y="218" width="155" height="35" rx="5" fill="#2A2A40" stroke="#FFFFFF08" stroke-width="1"/>
+  <text x="827" y="240" text-anchor="middle" fill="#ACA994" font-size="9" font-weight="600">Auto-update Engine</text>
+
+  <!-- ====== ARROWS L2 -> L3 ====== -->
+  <line x1="315" y1="266" x2="315" y2="298" stroke="#7E22CE" stroke-width="1.5" marker-end="url(#arrowGray)"/>
+  <line x1="490" y1="266" x2="490" y2="298" stroke="#15803D" stroke-width="1.5" marker-end="url(#arrowGray)"/>
+
+  <!-- ====== LAYER 3: AGENT INSTANCES ====== -->
+  <rect x="180" y="300" width="600" height="100" rx="12" fill="#162032" stroke="#3B82F6" stroke-width="1.5" stroke-dasharray="6,3" filter="url(#shadow)"/>
+  <text x="480" y="323" text-anchor="middle" fill="#60A5FA" font-size="13" font-weight="800">AGENT ИНСТАНСЫ (OpenClaw / Hermes Agent)</text>
+
+  <rect x="205" y="335" width="130" height="50" rx="6" fill="#1A2740" stroke="#3B82F6" stroke-width="0.8"/>
+  <text x="270" y="355" text-anchor="middle" fill="#93C5FD" font-size="9" font-weight="700">Agent #1</text>
+  <text x="270" y="372" text-anchor="middle" fill="#6B7280" font-size="8">user-1 • free</text>
+
+  <rect x="350" y="335" width="130" height="50" rx="6" fill="#1A2740" stroke="#3B82F6" stroke-width="0.8"/>
+  <text x="415" y="355" text-anchor="middle" fill="#93C5FD" font-size="9" font-weight="700">Agent #2</text>
+  <text x="415" y="372" text-anchor="middle" fill="#6B7280" font-size="8">user-2 • pro</text>
+
+  <rect x="495" y="335" width="130" height="50" rx="6" fill="#1A2740" stroke="#3B82F6" stroke-width="0.8"/>
+  <text x="560" y="355" text-anchor="middle" fill="#93C5FD" font-size="9" font-weight="700">Agent #3</text>
+  <text x="560" y="372" text-anchor="middle" fill="#6B7280" font-size="8">user-3 • pro</text>
+
+  <rect x="640" y="335" width="115" height="50" rx="6" fill="#1A2740" stroke="#3B82F6" stroke-width="0.8"/>
+  <text x="697" y="355" text-anchor="middle" fill="#93C5FD" font-size="9" font-weight="700">Agent #N</text>
+  <text x="697" y="372" text-anchor="middle" fill="#6B7280" font-size="8">user-n • ...</text>
+
+  <!-- ====== ARROWS L3 -> L4 ====== -->
+  <line x1="270" y1="400" x2="270" y2="435" stroke="#3B82F6" stroke-width="1" marker-end="url(#arrowGray)"/>
+  <line x1="415" y1="400" x2="415" y2="435" stroke="#3B82F6" stroke-width="1" marker-end="url(#arrowGray)"/>
+  <line x1="697" y1="400" x2="697" y2="435" stroke="#3B82F6" stroke-width="1" marker-end="url(#arrowGray)"/>
+
+  <!-- ====== LAYER 4: INFRASTRUCTURE ====== -->
+  <text x="30" y="458" fill="#ACA994" font-size="11" font-weight="700">▸ ИНФРАСТРУКТУРА И ИНТЕГРАЦИИ</text>
+
+  <!-- Infrastructure boxes -->
+  <rect x="30" y="468" width="130" height="65" rx="8" fill="#232340" stroke="#FFFFFF10" stroke-width="1"/>
+  <text x="95" y="495" text-anchor="middle" fill="#E8E5DD" font-size="11" font-weight="700">OpenRouter</text>
+  <text x="95" y="515" text-anchor="middle" fill="#6B7280" font-size="9">200+ LLM Models</text>
+
+  <rect x="175" y="468" width="130" height="65" rx="8" fill="#232340" stroke="#FFFFFF10" stroke-width="1"/>
+  <text x="240" y="495" text-anchor="middle" fill="#E8E5DD" font-size="11" font-weight="700">OpenAI</text>
+  <text x="240" y="515" text-anchor="middle" fill="#6B7280" font-size="9">GPT-4o, o3, etc.</text>
+
+  <rect x="320" y="468" width="130" height="65" rx="8" fill="#232340" stroke="#FFFFFF10" stroke-width="1"/>
+  <text x="385" y="495" text-anchor="middle" fill="#E8E5DD" font-size="11" font-weight="700">Supabase</text>
+  <text x="385" y="515" text-anchor="middle" fill="#6B7280" font-size="9">DB + Realtime WS</text>
+
+  <rect x="465" y="468" width="130" height="65" rx="8" fill="#232340" stroke="#FFFFFF10" stroke-width="1"/>
+  <text x="530" y="495" text-anchor="middle" fill="#E8E5DD" font-size="11" font-weight="700">Your API Keys</text>
+  <text x="530" y="515" text-anchor="middle" fill="#6B7280" font-size="9">User-owned keys</text>
+
+  <rect x="610" y="468" width="140" height="65" rx="8" fill="#232340" stroke="#FFFFFF10" stroke-width="1"/>
+  <text x="680" y="495" text-anchor="middle" fill="#E8E5DD" font-size="11" font-weight="700">GitHub / Gmail</text>
+  <text x="680" y="515" text-anchor="middle" fill="#6B7280" font-size="9">Google Calendar</text>
+
+  <rect x="765" y="468" width="140" height="65" rx="8" fill="#232340" stroke="#FFFFFF10" stroke-width="1"/>
+  <text x="835" y="495" text-anchor="middle" fill="#E8E5DD" font-size="11" font-weight="700">HomeKit / MQTT</text>
+  <text x="835" y="515" text-anchor="middle" fill="#6B7280" font-size="9">Smart Home</text>
+
+  <!-- ====== KEY / PRICING at bottom ====== -->
+  <rect x="30" y="548" width="900" height="58" rx="8" fill="#1A1A2E" stroke="#FFFFFF08" stroke-width="1"/>
+
+  <rect x="50" y="560" width="16" height="16" rx="3" fill="url(#orangeGrad)"/>
+  <text x="74" y="573" fill="#ACA994" font-size="10">PaioClaw — $19/мес</text>
+
+  <rect x="210" y="560" width="16" height="16" rx="3" fill="#232340" stroke="#FFFFFF20" stroke-width="1"/>
+  <text x="234" y="573" fill="#ACA994" font-size="10">MyClaw — $20/мес</text>
+
+  <rect x="370" y="560" width="16" height="16" rx="3" fill="#232340" stroke="#FFFFFF20" stroke-width="1"/>
+  <text x="394" y="573" fill="#ACA994" font-size="10">Blink Claw — $45/мес</text>
+
+  <rect x="530" y="560" width="16" height="16" rx="3" fill="#232340" stroke="#FFFFFF20" stroke-width="1"/>
+  <text x="554" y="573" fill="#ACA994" font-size="10">Self-Host (Hermes Agent) — $5-20/мес VPS</text>
+
+  <rect x="800" y="560" width="16" height="16" rx="3" fill="url(#greenGrad)"/>
+  <text x="824" y="573" fill="#ACA994" font-size="10">Open Source (MIT)</text>
+
+  <!-- Bottom tagline -->
+  <text x="480" y="602" text-anchor="middle" fill="#6B7280" font-size="9">PaioClaw = Managed OpenClaw/Hermes Agent Platform  •  paio claw.ai  •  @PaioClaw on X</text>
+</svg>

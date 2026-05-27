@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Static HTML generator for Qantcore.
 Bloomberg-terminal × Linear × Anthropic design.
@@ -57,6 +58,11 @@ header{position:sticky;top:0;z-index:100;backdrop-filter:blur(20px) saturate(180
 .nav-review:hover{color:#c4b5fd!important;background:rgba(167,139,250,.1)!important}
 .nav-review:active{color:#a78bfa!important}
 .nav-review.active{background:rgba(167,139,250,.15)!important}
+.nav-local{font-size:14px!important;font-weight:700!important;color:var(--blue)!important;
+  padding:6px 14px!important;letter-spacing:.01em}
+.nav-local:hover{color:#60a5fa!important;background:rgba(59,130,246,.1)!important}
+.nav-local:active{color:var(--blue)!important}
+.nav-local.active{background:rgba(59,130,246,.15)!important}
 
 /* ─── Terminal Grid (hero bg) ─── */
 .terminal-grid{position:absolute;top:0;left:0;right:0;bottom:0;overflow:hidden;pointer-events:none;z-index:0}
@@ -96,7 +102,7 @@ header{position:sticky;top:0;z-index:100;backdrop-filter:blur(20px) saturate(180
 .cta-secondary{padding:12px 28px;border-radius:var(--radius-sm);font-size:14px;font-weight:600;
   background:transparent;color:var(--text);border:1px solid var(--border);cursor:pointer;
   transition:all .2s}
-.cta-secondary:hover{border-color:var(--green);color:var(--green)}
+.cta-secondary:hover{border-color:var(--blue);color:var(--blue)}
 
 /* ─── Enterprise CTA Banner ─── */
 .enterprise-cta{background:linear-gradient(135deg,rgba(16,185,129,.08) 0%,rgba(59,130,246,.04) 100%);
@@ -148,13 +154,6 @@ header{position:sticky;top:0;z-index:100;backdrop-filter:blur(20px) saturate(180
   padding:20px;transition:all .2s;position:relative;display:flex;flex-direction:column;overflow:visible}
 .card:hover{border-color:rgba(16,185,129,.25);transform:translateY(-2px);
   box-shadow:0 8px 30px rgba(0,0,0,.4)}
-/* Diagonal arrow pointing to checkbox */
-.card:hover::before{content:'';position:absolute;
-  width:42px;height:12px;background:rgba(59,130,246,.7);
-  clip-path:polygon(0 8%,80% 8%,80% 0,100% 50%,80% 100%,80% 92%,0 92%);
-  top:16px;right:22px;transform-origin:100% 50%;
-  z-index:4;pointer-events:none;animation:arrowIn .3s ease}
-@keyframes arrowIn{from{opacity:0;transform:rotate(-22deg) scale(.3)}to{opacity:1;transform:rotate(-22deg) scale(1)}}
 .card-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:12px}
 .card-icon{width:40px;height:40px;border-radius:var(--radius-sm);background:rgba(255,255,255,.04);
   display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;overflow:hidden}
@@ -448,22 +447,60 @@ footer a{color:var(--green)}
 .search-bar input::placeholder{color:var(--dim)}
 
 @media(max-width:768px){
-  .hero h1{font-size:9px}
-  .grid,.featured-grid{grid-template-columns:1fr}
-  .mega-nav{overflow-x:auto;gap:2px;-webkit-overflow-scrolling:touch}
+  .hero h1{font-size:24px;line-height:1.3}
+  .hero .sub{font-size:13px}
+  .hero .tagline{font-size:10px}
+  .grid,.featured-grid{grid-template-columns:1fr!important}
+  .mega-nav{overflow-x:auto;gap:2px;-webkit-overflow-scrolling:touch;flex-wrap:nowrap}
   .mega-nav a,.mega-nav .nav-section{font-size:11px;padding:5px 8px}
   .nav-sep{display:none}
   .auth-stat{min-width:80px;padding:12px 10px}
   .auth-stat .n{font-size:18px}
   .auth-stat .l{font-size:9px}
-  .hero-metrics{gap:6px}
+  .hero-metrics{gap:6px;flex-wrap:wrap}
   .hero-metric{min-width:70px;padding:8px 12px}
   .hero-metric .val{font-size:16px}
   .hero-metric .lbl{font-size:9px}
   .compare-bar{left:16px;right:16px;transform:none;border-radius:var(--radius-sm)}
   .section-hd{padding:8px 16px 12px}
+  .section-hd h2{font-size:16px}
   .filters-bar,.grid,.featured,.auth-bar{padding-left:16px;padding-right:16px}
   .header-inner{padding:12px 16px}
+  .logo{font-size:16px}
+  /* Card panels */
+  .card{padding:14px}
+  .card-panel{grid-template-columns:1fr 1fr;gap:6px}
+  .panel-item{padding:6px 8px}
+  .panel-item .pv{font-size:13px}
+  .card-title{font-size:14px}
+  .card-desc{font-size:12px}
+  /* Section rows → wrap */
+  [style*="display:flex"][style*="overflow-x:auto"]{flex-wrap:nowrap}
+  /* Catalog 5-col → 2-col */
+  #catalog-grid{grid-template-columns:repeat(2,1fr)!important}
+  /* Enterprise CTA */
+  .ec-inner{flex-direction:column;text-align:center;padding:20px}
+  .ec-actions{justify-content:center}
+  /* Product detail */
+  .detail-header h1{font-size:22px}
+  .detail-body{font-size:13px}
+  /* Code blocks */
+  .code-block{font-size:11px;padding:14px}
+  /* Stack builder */
+  .stack-row{flex-direction:column}
+  /* Footer */
+  .footer-inner{flex-direction:column;gap:16px;text-align:center}
+}
+@media(max-width:480px){
+  .hero h1{font-size:20px}
+  .hero .sub{font-size:12px}
+  .hero-metrics{gap:4px}
+  .hero-metric{min-width:60px;padding:6px 10px}
+  .hero-metric .val{font-size:14px}
+  .card-panel{grid-template-columns:1fr}
+  .auth-inner{flex-wrap:wrap}
+  .auth-stat{flex:1 1 50%;border-right:none;border-bottom:1px solid var(--border)}
+  #catalog-grid{grid-template-columns:1fr!important}
 }"""
 
 # ─── Helpers ──────────────────────────────────────────────────────
@@ -658,7 +695,7 @@ ym(109327472,'init',{{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer"
       <span class="nav-sep"></span>
       <a href="/benchmarks/">Рейтинг</a>
       <span class="nav-sep"></span>
-      <a href="/catalog/product/">Локальный AI</a>
+      <a href="/local-models/" class="nav-local">Локальные LLM</a>
       <span class="nav-sep"></span>
       <a href="/methodology/" class="{active_method}">Методология</a>
       <span class="nav-sep"></span>
@@ -741,10 +778,10 @@ def make_og_article(title, description, url, image_url="/images/favicon.svg"):
 def render_page(title, description, content, scripts="", total=0, search_val="", search_json="[]",
                 active_home="", active_compare="", active_review="", active_method="", active_ws="",
                 active_dev="", active_ma="", active_guides="",
-                open_graph="", schema_org="{}", canonical_url=""):
+                open_graph="", schema_org="{}", canonical_url="", extra_css=""):
     return PAGE.format(
         title=esc(title), description=esc(description),
-        css=CSS, content=content, scripts=scripts, total=str(total),
+        css=CSS + extra_css, content=content, scripts=scripts, total=str(total),
         search_val=esc(search_val), search_json=search_json,
         active_home=active_home, active_compare=active_compare, active_review=active_review, active_method=active_method, active_ws=active_ws,
         active_dev=active_dev, active_ma=active_ma, active_guides=active_guides,
@@ -829,8 +866,8 @@ def generate_home():
   </div>
   <div class="hero-cta">
     <a href="/compare/" class="cta-primary">Сравнить свой AI-стек</a>
-    <a href="/media-kit/" class="cta-secondary">Запросить обзор вендора</a>
-    <a href="/benchmarks/" class="cta-secondary">Получить отчёт</a>
+    <a href="/guides/" class="cta-secondary" style="border-color:var(--blue);color:var(--blue)">Гайды</a>
+    <a href="/catalog/review/" class="cta-secondary">Обзоры</a>
   </div>
 </section>"""
 
@@ -875,11 +912,21 @@ def generate_home():
     comps = list(DB.articles.find({"category": "comparison"}).limit(4))
     comp_cards = ""
     for c in comps:
+        pa_slug = c.get('product_a', ''); pb_slug = c.get('product_b', '')
+        pa_img = ''; pb_img = ''
+        if pa_slug:
+            pa = DB.articles.find_one({"slug": pa_slug, "category": "product"})
+            if pa:
+                iu = pa.get("image_url", "")
+                pa_img = f'<img src="{iu}" alt="" style="width:40px;height:40px;object-fit:contain;border-radius:6px;background:rgba(255,255,255,.03);padding:2px">' if iu else f'<span style="font-size:24px">{icon_for(pa.get("product_type",""))}</span>'
+        if pb_slug:
+            pb = DB.articles.find_one({"slug": pb_slug, "category": "product"})
+            if pb:
+                iu = pb.get("image_url", "")
+                pb_img = f'<img src="{iu}" alt="" style="width:40px;height:40px;object-fit:contain;border-radius:6px;background:rgba(255,255,255,.03);padding:2px">' if iu else f'<span style="font-size:24px">{icon_for(pb.get("product_type",""))}</span>'
+        vs_block = f'<div style="display:flex;align-items:center;gap:6px;margin-bottom:10px">{pa_img}<span style="font-size:12px;font-weight:800;color:var(--green);background:var(--green-dim);padding:2px 6px;border-radius:4px">VS</span>{pb_img}</div>' if pa_img and pb_img else '<div class="card-icon">⚖️</div>'
         comp_cards += f"""<a href="/compare/{c['slug']}/" class="card" style="flex:0 0 290px">
-      <div class="card-top">
-        <div class="card-icon">⚖️</div>
-        <span class="card-badge badge-framework">VS</span>
-      </div>
+      {vs_block}
       <div class="card-title">{esc(c.get('title',''))}</div>
       <div class="card-desc">{esc(str(c.get('description',''))[:120])}</div>
       <div class="card-trust"><span class="trust-badge trust-verified">✓ Detailed comparison</span></div>
@@ -924,7 +971,7 @@ def generate_home():
 <div style="max-width:1320px;margin:0 auto;padding:0 24px 20px">
   <p style="font-size:13px;color:var(--muted);margin-bottom:16px">Пошаговые руководства с кодом: от локального запуска LLM до production-деплоя multi-agent систем. Каждый гайд — готовый рецепт.</p>
 </div>
-<div class="grid" style="max-width:1320px;margin:0 auto;padding:0 24px 32px;grid-template-columns:repeat(auto-fill,minmax(380px,1fr))">
+<div class="grid" style="max-width:1320px;margin:0 auto;padding:0 24px 32px;grid-template-columns:repeat(4,1fr)">
   <a href="/guides/#local-llm" class="card" style="border:1px solid #10b98133;cursor:pointer">
     <div class="card-top"><div class="card-icon" style="font-size:28px">🦙</div><span class="card-badge badge-agent">Базовый · 10 мин</span></div>
     <div class="card-title">Локальный запуск LLM</div>
@@ -954,6 +1001,16 @@ def generate_home():
     <div class="card-top"><div class="card-icon" style="font-size:28px">🛡️</div><span class="card-badge" style="background:var(--red-dim);color:var(--red)">Продвинутый · 14 мин</span></div>
     <div class="card-title">Безопасность AI-агентов</div>
     <div class="card-desc">Docker-песочницы, валидация вывода, Human-in-the-Loop. Защита от prompt injection и runaway agents.</div>
+  </a>
+  <a href="/guides/#cursor-vs-copilot" class="card" style="border:1px solid #3B82F633;cursor:pointer">
+    <div class="card-top"><div class="card-icon" style="font-size:28px">⚔️</div><span class="card-badge badge-agent">Базовый · 7 мин</span></div>
+    <div class="card-title">Cursor vs Copilot 2026</div>
+    <div class="card-desc">Практическое сравнение лидеров: автодополнение, понимание кодовой базы, работа с PR, цена.</div>
+  </a>
+  <a href="/guides/#ai-stack-startup" class="card" style="border:1px solid #10b98133;cursor:pointer">
+    <div class="card-top"><div class="card-icon" style="font-size:28px">🚀</div><span class="card-badge badge-agent">Базовый · 6 мин</span></div>
+    <div class="card-title">AI-стек для стартапа</div>
+    <div class="card-desc">Минимальный набор инструментов: что купить, что локально, а что не нужно. Бюджетная сборка для команды.</div>
   </a>
 </div>"""
 
@@ -1504,7 +1561,8 @@ if(getSaved().length>0){var nav=document.querySelector('.saved-nav');if(nav)nav.
     html = render_page("Каталог AI-агентов", "Каталог AI-агентов: {}+ отслеживается, глубокие обзоры, живые бенчмарки.".format(tp),
                        content, scripts=scripts, total=tp, active_home="active",
                        open_graph=make_og("Каталог AI-агентов — QantCore", "Каталог AI-агентов: 60+ отслеживается, глубокие обзоры, живые бенчмарки.", "/"),
-                       canonical_url='<link rel="canonical" href="https://qantcore.space/">')
+                       canonical_url='<link rel="canonical" href="https://qantcore.space/">',
+                       extra_css="""#catalog-grid .card:hover::before{content:'';position:absolute;width:42px;height:12px;background:rgba(59,130,246,.7);clip-path:polygon(0 8%,80% 8%,80% 0,100% 50%,80% 100%,80% 92%,0 92%);top:16px;right:22px;transform-origin:100% 50%;z-index:4;pointer-events:none;animation:arrowIn .3s ease}@keyframes arrowIn{from{opacity:0;transform:rotate(-22deg) scale(.3)}to{opacity:1;transform:rotate(-22deg) scale(1)}}""")
 
     write_html(f"{OUT}/index.html", html)
     print(f"  /index.html")
@@ -1555,7 +1613,7 @@ def generate_compare_page(slugs=None):
     compare_json = json.dumps(compare_entries)
     
     # Body: selector grid if no slugs, or client-rendered table
-    cards = '<div class="grid" id="compare-select-grid">'
+    cards = '<div class="grid" id="compare-select-grid" style="grid-template-columns:repeat(4,1fr)">'
     for p in all_prods:
         cards += make_product_card(p, with_compare=True)
     cards += '</div>'
@@ -1758,7 +1816,7 @@ def generate_catalog(category):
     if not items:
         cards = f'<div class="empty"><h2>Пока ничего нет</h2><p>Категория «{esc(label)}» пуста</p><p style="margin-top:12px"><a href="/catalog/product/" style="color:var(--green)">← Смотреть каталог агентов</a></p></div>'
     else:
-        cards = '<div class="grid">'
+        cards = '<div class="grid" style="grid-template-columns:repeat(4,1fr)">' if category == "review" else '<div class="grid">'
         for item in items:
             if category == "product":
                 cards += make_product_card(item, with_compare=False)
@@ -4136,7 +4194,7 @@ docker run -d -p 3000:8080 \\
 </div>
 
 <div class="container detail">
-  <div style="display:grid;gap:20px;margin-bottom:40px">
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:40px">
     {guide_html}
   </div>
   
@@ -4213,6 +4271,13 @@ if __name__ == "__main__":
 
     # Guides (includes coding agents + multi-agent + all tutorials)
     generate_guides()
+
+    # Local models page
+    import shutil as _shutil
+    lm_src = "/opt/data/https-qantcore.space-/local-models.html"
+    os.makedirs(f"{OUT}/local-models", exist_ok=True)
+    _shutil.copy2(lm_src, f"{OUT}/local-models/index.html")
+    print("  /local-models/index.html")
 
     for cat in ["product", "comparison", "review"]:
         generate_catalog(cat)

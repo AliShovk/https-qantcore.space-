@@ -36,13 +36,28 @@ header{position:sticky;top:0;z-index:100;backdrop-filter:blur(20px) saturate(180
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
 .mega-nav{display:flex;gap:4px;align-items:center}
 .mega-nav a,.mega-nav .nav-section{font-size:13.5px;color:var(--muted);
-  padding:6px 12px;border-radius:6px;transition:all .2s;font-weight:500;
-  letter-spacing:.01em;white-space:nowrap}
+  padding:6px 12px;border-radius:6px;transition:color .2s,background .2s;font-weight:500;
+  letter-spacing:.01em;white-space:nowrap;text-decoration:none;
+  -webkit-tap-highlight-color:transparent;outline:none;user-select:none}
 .mega-nav a:hover{color:var(--text);background:rgba(255,255,255,.04)}
+.mega-nav a:active{color:var(--muted);background:transparent}
+.mega-nav a:focus-visible{outline:2px solid var(--green);outline-offset:-2px}
 .mega-nav a.active{color:var(--green);background:var(--green-dim)}
+.mega-nav a.active:active{color:var(--green);background:var(--green-dim)}
 .nav-sep{width:1px;height:18px;background:var(--border);margin:0 4px}
 .nav-featured{font-size:14px!important;font-weight:700!important;color:var(--green)!important;
   background:var(--green-dim)!important;padding:8px 16px!important;letter-spacing:.02em}
+.nav-featured:active{color:var(--green)!important;background:var(--green-dim)!important}
+.nav-review{font-size:14px!important;font-weight:700!important;color:#a78bfa!important;
+  padding:6px 14px!important;letter-spacing:.01em}
+.nav-review:hover{color:#c4b5fd!important;background:rgba(167,139,250,.1)!important}
+.nav-review:active{color:#a78bfa!important}
+.nav-review.active{background:rgba(167,139,250,.15)!important}
+.nav-local{font-size:14px!important;font-weight:700!important;color:var(--blue)!important;
+  padding:6px 14px!important;letter-spacing:.01em}
+.nav-local:hover{color:#60a5fa!important;background:rgba(59,130,246,.1)!important}
+.nav-local:active{color:var(--blue)!important}
+.nav-local.active{background:rgba(59,130,246,.15)!important}
 
 /* ─── Terminal Grid (hero bg) ─── */
 .terminal-grid{position:absolute;top:0;left:0;right:0;bottom:0;overflow:hidden;pointer-events:none;z-index:0}
@@ -62,7 +77,7 @@ header{position:sticky;top:0;z-index:100;backdrop-filter:blur(20px) saturate(180
 /* ─── Hero ─── */
 .hero{text-align:center;padding:72px 24px 48px;position:relative;overflow:hidden}
 .hero>*{position:relative;z-index:2}
-.hero h1{font-size:clamp(36px,5vw,60px);font-weight:800;letter-spacing:-.03em;
+.hero h1{font-size:clamp(12px,1.67vw,20px);font-weight:800;letter-spacing:-.03em;
   line-height:1.15;color:#f1f5f9;max-width:800px;margin:0 auto}
 .hero h1 .accent{color:var(--green)}
 .hero .sub{font-size:17px;color:var(--muted);margin-top:16px;max-width:640px;
@@ -82,7 +97,7 @@ header{position:sticky;top:0;z-index:100;backdrop-filter:blur(20px) saturate(180
 .cta-secondary{padding:12px 28px;border-radius:var(--radius-sm);font-size:14px;font-weight:600;
   background:transparent;color:var(--text);border:1px solid var(--border);cursor:pointer;
   transition:all .2s}
-.cta-secondary:hover{border-color:var(--green);color:var(--green)}
+.cta-secondary:hover{border-color:var(--blue);color:var(--blue)}
 
 /* ─── Enterprise CTA Banner ─── */
 .enterprise-cta{background:linear-gradient(135deg,rgba(16,185,129,.08) 0%,rgba(59,130,246,.04) 100%);
@@ -131,7 +146,7 @@ header{position:sticky;top:0;z-index:100;backdrop-filter:blur(20px) saturate(180
   display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
 
 .card{background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);
-  padding:20px;transition:all .2s;position:relative;display:flex;flex-direction:column}
+  padding:20px;transition:all .2s;position:relative;display:flex;flex-direction:column;overflow:visible}
 .card:hover{border-color:rgba(16,185,129,.25);transform:translateY(-2px);
   box-shadow:0 8px 30px rgba(0,0,0,.4)}
 .card-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:12px}
@@ -153,12 +168,12 @@ header{position:sticky;top:0;z-index:100;backdrop-filter:blur(20px) saturate(180
 .panel-item .pv.green{color:var(--green)}
 .panel-item .pv.amber{color:var(--amber)}
 .panel-item .pl{font-size:10px;color:var(--dim);margin-top:1px;text-transform:uppercase;letter-spacing:.03em}
-.card-compare{position:absolute;top:12px;right:12px;z-index:5}
-.card-compare input[type=checkbox]{appearance:none;width:18px;height:18px;border-radius:4px;
+.card-compare{position:absolute;top:10px;right:10px;z-index:5}
+.card-compare input[type=checkbox]{appearance:none;width:24px;height:24px;border-radius:6px;
   border:2px solid var(--dim);cursor:pointer;transition:all .2s;position:relative}
 .card-compare input[type=checkbox]:checked{border-color:var(--green);background:var(--green)}
 .card-compare input[type=checkbox]:checked::after{content:'✓';position:absolute;
-  top:-1px;left:2px;color:#000;font-size:13px;font-weight:700}
+  top:0;left:4px;color:#000;font-size:16px;font-weight:700}
 .card-trust{display:flex;gap:12px;margin-top:8px;font-size:10px;color:var(--dim)}
 .card-trust span{display:flex;align-items:center;gap:3px}
 
@@ -427,22 +442,60 @@ footer a{color:var(--green)}
 .search-bar input::placeholder{color:var(--dim)}
 
 @media(max-width:768px){
-  .hero h1{font-size:28px}
-  .grid,.featured-grid{grid-template-columns:1fr}
-  .mega-nav{overflow-x:auto;gap:2px;-webkit-overflow-scrolling:touch}
+  .hero h1{font-size:24px;line-height:1.3}
+  .hero .sub{font-size:13px}
+  .hero .tagline{font-size:10px}
+  .grid,.featured-grid{grid-template-columns:1fr!important}
+  .mega-nav{overflow-x:auto;gap:2px;-webkit-overflow-scrolling:touch;flex-wrap:nowrap}
   .mega-nav a,.mega-nav .nav-section{font-size:11px;padding:5px 8px}
   .nav-sep{display:none}
   .auth-stat{min-width:80px;padding:12px 10px}
   .auth-stat .n{font-size:18px}
   .auth-stat .l{font-size:9px}
-  .hero-metrics{gap:6px}
+  .hero-metrics{gap:6px;flex-wrap:wrap}
   .hero-metric{min-width:70px;padding:8px 12px}
   .hero-metric .val{font-size:16px}
   .hero-metric .lbl{font-size:9px}
   .compare-bar{left:16px;right:16px;transform:none;border-radius:var(--radius-sm)}
   .section-hd{padding:8px 16px 12px}
+  .section-hd h2{font-size:16px}
   .filters-bar,.grid,.featured,.auth-bar{padding-left:16px;padding-right:16px}
   .header-inner{padding:12px 16px}
+  .logo{font-size:16px}
+  /* Card panels */
+  .card{padding:14px}
+  .card-panel{grid-template-columns:1fr 1fr;gap:6px}
+  .panel-item{padding:6px 8px}
+  .panel-item .pv{font-size:13px}
+  .card-title{font-size:14px}
+  .card-desc{font-size:12px}
+  /* Section rows → wrap */
+  [style*="display:flex"][style*="overflow-x:auto"]{flex-wrap:nowrap}
+  /* Catalog 5-col → 2-col */
+  #catalog-grid{grid-template-columns:repeat(2,1fr)!important}
+  /* Enterprise CTA */
+  .ec-inner{flex-direction:column;text-align:center;padding:20px}
+  .ec-actions{justify-content:center}
+  /* Product detail */
+  .detail-header h1{font-size:22px}
+  .detail-body{font-size:13px}
+  /* Code blocks */
+  .code-block{font-size:11px;padding:14px}
+  /* Stack builder */
+  .stack-row{flex-direction:column}
+  /* Footer */
+  .footer-inner{flex-direction:column;gap:16px;text-align:center}
+}
+@media(max-width:480px){
+  .hero h1{font-size:20px}
+  .hero .sub{font-size:12px}
+  .hero-metrics{gap:4px}
+  .hero-metric{min-width:60px;padding:6px 10px}
+  .hero-metric .val{font-size:14px}
+  .card-panel{grid-template-columns:1fr}
+  .auth-inner{flex-wrap:wrap}
+  .auth-stat{flex:1 1 50%;border-right:none;border-bottom:1px solid var(--border)}
+  #catalog-grid{grid-template-columns:1fr!important}
 }</style>
 <script type="application/ld+json">
 {}
@@ -471,13 +524,13 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
       <span class="nav-sep"></span>
       <a href="/guides/" class="nav-featured ">📖 Гайды</a>
       <span class="nav-sep"></span>
-      <a href="/benchmarks/">Рейтинг</a>
-      <span class="nav-sep"></span>
-      <a href="/catalog/product/">Локальный AI</a>
+      <a href="/catalog/review/" class="nav-review active">Обзоры</a>
       <span class="nav-sep"></span>
       <a href="/multi-agent/" class="">Мульти-агенты</a>
       <span class="nav-sep"></span>
-      <a href="/catalog/review/" class="active">Обзоры</a>
+      <a href="/benchmarks/">Рейтинг</a>
+      <span class="nav-sep"></span>
+      <a href="/local-models/" class="nav-local">Локальные LLM</a>
       <span class="nav-sep"></span>
       <a href="/methodology/" class="">Методология</a>
       <span class="nav-sep"></span>
@@ -498,11 +551,52 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
           <p class="tagline">Детальный обзор Aider — Open source AI-агент для терминала: пишет и правит код в Git</p>
           <div class="detail-meta">
             <a href="/product/aider-ai/" class="meta-item">🔗 Aider — AI-парный программист в терминал</a>
-            <div class="meta-item">📝 650 words</div>
+            <div class="meta-item">📝 960 words</div>
           </div>
         </div>
       </div>
-      <div class="detail-body"></div>
+      <div class="detail-body"><h2>Что такое Aider</h2>
+<p>Aider — это open-source AI-агент, работающий непосредственно в терминале и интегрированный с Git. В отличие от большинства AI-ассистентов для кода, которые предлагают чат-интерфейс или плагины в IDE, Aider действует как полноценный участник команды разработки: он анализирует код в репозитории, предлагает изменения и сразу применяет их, создавая коммиты. Инструмент ориентирован на разработчиков, которые предпочитают работать в командной строке и хотят автоматизировать рутинные задачи рефакторинга, написания тестов и исправления багов без переключения контекста.</p>
+<p>Основная ценность Aider — в его способности понимать структуру проекта целиком. Он не просто генерирует фрагменты кода, а модифицирует существующие файлы, учитывая зависимости, импорты и архитектурные решения. Благодаря интеграции с Git, каждое изменение фиксируется отдельным коммитом с осмысленным сообщением, что позволяет легко откатывать неудачные правки. Aider поддерживает работу с большими языковыми моделями (LLM) через API, включая GPT-4, Claude 3.5 и локальные модели через Ollama, что делает его гибким инструментом для разных сценариев использования.</p>
+
+<h2>Ключевые возможности</h2>
+<ul>
+<li><strong>Автоматическое редактирование кода в Git-репозитории</strong>: Aider анализирует текущее состояние проекта, определяет изменённые файлы и применяет правки напрямую, создавая коммиты с автоматически сгенерированными сообщениями. Это позволяет сохранять историю изменений и откатывать неудачные модификации одной командой.</li>
+<li><strong>Поддержка контекста всего репозитория</strong>: Агент использует векторную базу данных для индексации кодовой базы и при генерации ответа учитывает не только запрос пользователя, но и релевантные файлы, классы и функции из проекта. Это критически важно для корректного рефакторинга и добавления функциональности в больших проектах.</li>
+<li><strong>Работа с несколькими моделями через единый интерфейс</strong>: Aider поддерживает API OpenAI (GPT-4, GPT-4o), Anthropic (Claude 3.5 Sonnet), Google (Gemini 1.5 Pro), а также локальные модели через Ollama и llama.cpp. Пользователь может переключаться между моделями без изменения конфигурации проекта.</li>
+<li><strong>Режим "архитектора" (architect mode)</strong>: В этом режиме Aider сначала генерирует план изменений, а затем реализует его пошагово, запрашивая подтверждение на каждом этапе. Это полезно для сложных задач, где требуется контроль над последовательностью действий.</li>
+<li><strong>Автоматическое исправление ошибок компиляции и тестов</strong>: После внесения изменений Aider может запустить тесты или сборку проекта и, если обнаружит ошибки, попытается их исправить без дополнительного запроса пользователя. Работает с pytest, unittest, а также кастомными скриптами.</li>
+<li><strong>Поддержка множества языков программирования</strong>: Aider корректно работает с Python, JavaScript, TypeScript, Java, C++, Go, Rust и другими языками. Он понимает синтаксис и структуру файлов, что позволяет генерировать синтаксически корректный код.</li>
+<li><strong>Режим "чат" и "терминал"</strong>: Пользователь может общаться с Aider в интерактивном режиме, задавая вопросы о коде, или передавать команды напрямую из shell-скриптов, что удобно для автоматизации CI/CD пайплайнов.</li>
+</ul>
+
+<h2>Характеристики и тарифы</h2>
+<p>Aider распространяется как open-source проект под лицензией Apache 2.0. Исходный код доступен на GitHub, установка производится через pip (пакет <code>aider-chat</code>) или Docker. Инструмент не имеет собственных тарифных планов — все расходы связаны с использованием API выбранной языковой модели. Пользователь оплачивает токены напрямую провайдеру (OpenAI, Anthropic и т.д.). Для локальных моделей (через Ollama) затраты отсутствуют, но требуется GPU с достаточным объёмом видеопамяти (от 8 ГБ для моделей уровня CodeLlama 34B).</p>
+<p>Базовый функционал Aider полностью бесплатен и не имеет ограничений по количеству запросов или размеру проекта. Дополнительные возможности, такие как поддержка расширенного контекста (векторная база для больших репозиториев) и режим архитектора, также доступны всем пользователям. Единственное ограничение — для работы с коммерческими API требуется активный ключ доступа и средства на счёте провайдера.</p>
+
+<h2>Плюсы и минусы</h2>
+<h3>Сильные стороны</h3>
+<ul>
+<li><strong>Глубокая интеграция с Git</strong>: Aider не просто генерирует код, а управляет версиями изменений, создавая атомарные коммиты. Это делает его безопасным для использования в production-репозиториях.</li>
+<li><strong>Поддержка больших кодовых баз</strong>: Благодаря векторному индексированию, Aider может работать с проектами, содержащими тысячи файлов, не теряя контекст и не превышая лимиты токенов модели.</li>
+<li><strong>Гибкость в выборе модели</strong>: Возможность переключаться между GPT-4, Claude и локальными моделями позволяет балансировать между качеством ответов и стоимостью. Для рутинных задач можно использовать дешёвые модели, для сложного рефакторинга — топовые.</li>
+<li><strong>Автономное исправление ошибок</strong>: Функция автоматического запуска тестов и повторного редактирования кода при ошибках значительно ускоряет итерации разработки, особенно при написании тестов или миграции кода.</li>
+</ul>
+<h3>Ограничения</h3>
+<ul>
+<li><strong>Требуется настройка API-ключей</strong>: Для использования коммерческих моделей необходимо зарегистрироваться у провайдера и настроить биллинг. Это создаёт порог входа для новых пользователей.</li>
+<li><strong>Зависимость от качества модели</strong>: Aider — это обёртка над LLM, и его эффективность напрямую зависит от возможностей выбранной модели. Слабые модели (например, GPT-3.5) могут генерировать некорректные правки.</li>
+<li><strong>Отсутствие GUI</strong>: Инструмент полностью консольный, что может быть неудобно для разработчиков, привыкших к визуальным интерфейсам IDE. Нет подсветки синтаксиса в diff-представлении.</li>
+</ul>
+
+<h2>Сравнение с аналогами</h2>
+<p><strong>GitHub Copilot Chat</strong> — ближайший коммерческий аналог, встроенный в IDE. Copilot лучше интегрирован в редактор (VS Code, JetBrains) и предлагает автодополнение в реальном времени, но не умеет самостоятельно редактировать файлы и создавать коммиты. Aider выигрывает в автономности и работе с Git, но проигрывает в удобстве для быстрых правок внутри редактора.</p>
+<p><strong>Cursor</strong> — AI-first IDE, которая использует модель для генерации кода и рефакторинга. Cursor предлагает более глубокую интеграцию с файловой системой и поддерживает мультифайловые изменения, но является проприетарным продуктом с ежемесячной подпиской. Aider, будучи open-source, не требует платы за использование самого инструмента, но требует самостоятельной настройки моделей.</p>
+<p><strong>Open Interpreter</strong> — ещё один open-source агент для терминала, который может выполнять код и работать с файлами. В отличие от Aider, Open Interpreter ориентирован на выполнение произвольных команд (включая системные), а не только на редактирование кода. Aider специализирован именно на разработке и предлагает лучшую интеграцию с Git и тестовыми фреймворками.</p>
+
+<h2>Вердикт</h2>
+<p>Aider — лучший выбор для разработчиков, которые работают в терминале, активно используют Git и хотят автоматизировать рефакторинг, написание тестов и исправление багов. Инструмент идеально подходит для проектов с чёткой структурой и тестовым покрытием, где каждое изменение должно быть зафиксировано в истории. Благодаря поддержке локальных моделей, Aider также подходит для команд, работающих с чувствительными данными, которые нельзя отправлять на внешние API.</p>
+<p>Стоит рассмотреть альтернативы, если вы предпочитаете визуальные интерфейсы IDE и нуждаетесь в автодополнении кода в реальном времени — в этом случае GitHub Copilot или Cursor будут удобнее. Также Aider не подходит для задач, не связанных с программированием (например, анализ данных или написание текстов) — для этого лучше использовать универсальные агенты вроде Open Interpreter.</p></div>
     </div>
 <footer>
   Qantcore &copy; 2026 &mdash; Платформа аналитики AI-агентов &mdash;

@@ -187,7 +187,8 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
     <nav>
       <a href="/" class="{{active_home}}">Каталог</a>
       <a href="/catalog?category=comparison" class="{{active_compare}}">Сравнения</a>
-      <a href="/catalog?category=review" class="{{active_review}}">Обзоры</a>
+      <a href="/guides/" class="">📖 Гайды</a>
+      <a href="/catalog?category=review" class="{{active_review}}" style="color:#a78bfa">Обзоры</a>
       <span class="badge">{{total}} продуктов</span>
     </nav>
   </div>

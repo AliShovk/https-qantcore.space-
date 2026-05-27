@@ -36,13 +36,28 @@ header{position:sticky;top:0;z-index:100;backdrop-filter:blur(20px) saturate(180
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
 .mega-nav{display:flex;gap:4px;align-items:center}
 .mega-nav a,.mega-nav .nav-section{font-size:13.5px;color:var(--muted);
-  padding:6px 12px;border-radius:6px;transition:all .2s;font-weight:500;
-  letter-spacing:.01em;white-space:nowrap}
+  padding:6px 12px;border-radius:6px;transition:color .2s,background .2s;font-weight:500;
+  letter-spacing:.01em;white-space:nowrap;text-decoration:none;
+  -webkit-tap-highlight-color:transparent;outline:none;user-select:none}
 .mega-nav a:hover{color:var(--text);background:rgba(255,255,255,.04)}
+.mega-nav a:active{color:var(--muted);background:transparent}
+.mega-nav a:focus-visible{outline:2px solid var(--green);outline-offset:-2px}
 .mega-nav a.active{color:var(--green);background:var(--green-dim)}
+.mega-nav a.active:active{color:var(--green);background:var(--green-dim)}
 .nav-sep{width:1px;height:18px;background:var(--border);margin:0 4px}
 .nav-featured{font-size:14px!important;font-weight:700!important;color:var(--green)!important;
   background:var(--green-dim)!important;padding:8px 16px!important;letter-spacing:.02em}
+.nav-featured:active{color:var(--green)!important;background:var(--green-dim)!important}
+.nav-review{font-size:14px!important;font-weight:700!important;color:#a78bfa!important;
+  padding:6px 14px!important;letter-spacing:.01em}
+.nav-review:hover{color:#c4b5fd!important;background:rgba(167,139,250,.1)!important}
+.nav-review:active{color:#a78bfa!important}
+.nav-review.active{background:rgba(167,139,250,.15)!important}
+.nav-local{font-size:14px!important;font-weight:700!important;color:var(--blue)!important;
+  padding:6px 14px!important;letter-spacing:.01em}
+.nav-local:hover{color:#60a5fa!important;background:rgba(59,130,246,.1)!important}
+.nav-local:active{color:var(--blue)!important}
+.nav-local.active{background:rgba(59,130,246,.15)!important}
 
 /* ─── Terminal Grid (hero bg) ─── */
 .terminal-grid{position:absolute;top:0;left:0;right:0;bottom:0;overflow:hidden;pointer-events:none;z-index:0}
@@ -62,7 +77,7 @@ header{position:sticky;top:0;z-index:100;backdrop-filter:blur(20px) saturate(180
 /* ─── Hero ─── */
 .hero{text-align:center;padding:72px 24px 48px;position:relative;overflow:hidden}
 .hero>*{position:relative;z-index:2}
-.hero h1{font-size:clamp(36px,5vw,60px);font-weight:800;letter-spacing:-.03em;
+.hero h1{font-size:clamp(12px,1.67vw,20px);font-weight:800;letter-spacing:-.03em;
   line-height:1.15;color:#f1f5f9;max-width:800px;margin:0 auto}
 .hero h1 .accent{color:var(--green)}
 .hero .sub{font-size:17px;color:var(--muted);margin-top:16px;max-width:640px;
@@ -82,7 +97,7 @@ header{position:sticky;top:0;z-index:100;backdrop-filter:blur(20px) saturate(180
 .cta-secondary{padding:12px 28px;border-radius:var(--radius-sm);font-size:14px;font-weight:600;
   background:transparent;color:var(--text);border:1px solid var(--border);cursor:pointer;
   transition:all .2s}
-.cta-secondary:hover{border-color:var(--green);color:var(--green)}
+.cta-secondary:hover{border-color:var(--blue);color:var(--blue)}
 
 /* ─── Enterprise CTA Banner ─── */
 .enterprise-cta{background:linear-gradient(135deg,rgba(16,185,129,.08) 0%,rgba(59,130,246,.04) 100%);
@@ -131,7 +146,7 @@ header{position:sticky;top:0;z-index:100;backdrop-filter:blur(20px) saturate(180
   display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
 
 .card{background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);
-  padding:20px;transition:all .2s;position:relative;display:flex;flex-direction:column}
+  padding:20px;transition:all .2s;position:relative;display:flex;flex-direction:column;overflow:visible}
 .card:hover{border-color:rgba(16,185,129,.25);transform:translateY(-2px);
   box-shadow:0 8px 30px rgba(0,0,0,.4)}
 .card-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:12px}
@@ -153,12 +168,12 @@ header{position:sticky;top:0;z-index:100;backdrop-filter:blur(20px) saturate(180
 .panel-item .pv.green{color:var(--green)}
 .panel-item .pv.amber{color:var(--amber)}
 .panel-item .pl{font-size:10px;color:var(--dim);margin-top:1px;text-transform:uppercase;letter-spacing:.03em}
-.card-compare{position:absolute;top:12px;right:12px;z-index:5}
-.card-compare input[type=checkbox]{appearance:none;width:18px;height:18px;border-radius:4px;
+.card-compare{position:absolute;top:10px;right:10px;z-index:5}
+.card-compare input[type=checkbox]{appearance:none;width:24px;height:24px;border-radius:6px;
   border:2px solid var(--dim);cursor:pointer;transition:all .2s;position:relative}
 .card-compare input[type=checkbox]:checked{border-color:var(--green);background:var(--green)}
 .card-compare input[type=checkbox]:checked::after{content:'✓';position:absolute;
-  top:-1px;left:2px;color:#000;font-size:13px;font-weight:700}
+  top:0;left:4px;color:#000;font-size:16px;font-weight:700}
 .card-trust{display:flex;gap:12px;margin-top:8px;font-size:10px;color:var(--dim)}
 .card-trust span{display:flex;align-items:center;gap:3px}
 
@@ -427,22 +442,60 @@ footer a{color:var(--green)}
 .search-bar input::placeholder{color:var(--dim)}
 
 @media(max-width:768px){
-  .hero h1{font-size:28px}
-  .grid,.featured-grid{grid-template-columns:1fr}
-  .mega-nav{overflow-x:auto;gap:2px;-webkit-overflow-scrolling:touch}
+  .hero h1{font-size:24px;line-height:1.3}
+  .hero .sub{font-size:13px}
+  .hero .tagline{font-size:10px}
+  .grid,.featured-grid{grid-template-columns:1fr!important}
+  .mega-nav{overflow-x:auto;gap:2px;-webkit-overflow-scrolling:touch;flex-wrap:nowrap}
   .mega-nav a,.mega-nav .nav-section{font-size:11px;padding:5px 8px}
   .nav-sep{display:none}
   .auth-stat{min-width:80px;padding:12px 10px}
   .auth-stat .n{font-size:18px}
   .auth-stat .l{font-size:9px}
-  .hero-metrics{gap:6px}
+  .hero-metrics{gap:6px;flex-wrap:wrap}
   .hero-metric{min-width:70px;padding:8px 12px}
   .hero-metric .val{font-size:16px}
   .hero-metric .lbl{font-size:9px}
   .compare-bar{left:16px;right:16px;transform:none;border-radius:var(--radius-sm)}
   .section-hd{padding:8px 16px 12px}
+  .section-hd h2{font-size:16px}
   .filters-bar,.grid,.featured,.auth-bar{padding-left:16px;padding-right:16px}
   .header-inner{padding:12px 16px}
+  .logo{font-size:16px}
+  /* Card panels */
+  .card{padding:14px}
+  .card-panel{grid-template-columns:1fr 1fr;gap:6px}
+  .panel-item{padding:6px 8px}
+  .panel-item .pv{font-size:13px}
+  .card-title{font-size:14px}
+  .card-desc{font-size:12px}
+  /* Section rows → wrap */
+  [style*="display:flex"][style*="overflow-x:auto"]{flex-wrap:nowrap}
+  /* Catalog 5-col → 2-col */
+  #catalog-grid{grid-template-columns:repeat(2,1fr)!important}
+  /* Enterprise CTA */
+  .ec-inner{flex-direction:column;text-align:center;padding:20px}
+  .ec-actions{justify-content:center}
+  /* Product detail */
+  .detail-header h1{font-size:22px}
+  .detail-body{font-size:13px}
+  /* Code blocks */
+  .code-block{font-size:11px;padding:14px}
+  /* Stack builder */
+  .stack-row{flex-direction:column}
+  /* Footer */
+  .footer-inner{flex-direction:column;gap:16px;text-align:center}
+}
+@media(max-width:480px){
+  .hero h1{font-size:20px}
+  .hero .sub{font-size:12px}
+  .hero-metrics{gap:4px}
+  .hero-metric{min-width:60px;padding:6px 10px}
+  .hero-metric .val{font-size:14px}
+  .card-panel{grid-template-columns:1fr}
+  .auth-inner{flex-wrap:wrap}
+  .auth-stat{flex:1 1 50%;border-right:none;border-bottom:1px solid var(--border)}
+  #catalog-grid{grid-template-columns:1fr!important}
 }</style>
 <script type="application/ld+json">
 {}
@@ -471,13 +524,13 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
       <span class="nav-sep"></span>
       <a href="/guides/" class="nav-featured ">📖 Гайды</a>
       <span class="nav-sep"></span>
-      <a href="/benchmarks/">Рейтинг</a>
-      <span class="nav-sep"></span>
-      <a href="/catalog/product/">Локальный AI</a>
+      <a href="/catalog/review/" class="nav-review active">Обзоры</a>
       <span class="nav-sep"></span>
       <a href="/multi-agent/" class="">Мульти-агенты</a>
       <span class="nav-sep"></span>
-      <a href="/catalog/review/" class="active">Обзоры</a>
+      <a href="/benchmarks/">Рейтинг</a>
+      <span class="nav-sep"></span>
+      <a href="/local-models/" class="nav-local">Локальные LLM</a>
       <span class="nav-sep"></span>
       <a href="/methodology/" class="">Методология</a>
       <span class="nav-sep"></span>
@@ -498,11 +551,52 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
           <p class="tagline">Детальный обзор Open Interpreter — AI, который исполняет код на вашем компьютере</p>
           <div class="detail-meta">
             <a href="/product/open-interpreter/" class="meta-item">🔗 Open Interpreter — AI-агент с доступом к</a>
-            <div class="meta-item">📝 650 words</div>
+            <div class="meta-item">📝 936 words</div>
           </div>
         </div>
       </div>
-      <div class="detail-body"></div>
+      <div class="detail-body"><h2>Что такое Open Interpreter</h2>
+<p>Open Interpreter — это агентный AI-инструмент с открытым исходным кодом, который предоставляет языковым моделям (LLM) возможность выполнять код на вашем локальном компьютере в режиме реального времени. В отличие от традиционных чат-ботов, которые только генерируют текстовые ответы, Open Interpreter переводит запросы пользователя на естественном языке в исполняемые команды: от bash-скриптов и Python-кода до манипуляций с файловой системой и API. Проект позиционируется как альтернатива проприетарным решениям вроде GitHub Copilot или Code Interpreter от OpenAI, но с принципиальным отличием — полным контролем над средой выполнения.</p>
+<p>Основная целевая аудитория — разработчики, DevOps-инженеры и аналитики данных, которым требуется автоматизация рутинных задач без написания кода вручную. Ценность инструмента заключается в снижении порога входа: пользователь описывает задачу словами, а агент самостоятельно подбирает библиотеки, пишет скрипты и исполняет их, возвращая результат. При этом Open Interpreter поддерживает работу с локальными моделями (через Ollama, llama.cpp) и облачными API (GPT-4, Claude, Gemini), что делает его гибким решением для сценариев, где конфиденциальность данных критична.</p>
+
+<h2>Ключевые возможности</h2>
+<ul>
+<li><strong>Исполнение кода в изолированной среде:</strong> Open Interpreter по умолчанию запускает код в Docker-контейнере или виртуальном окружении Python, предотвращая повреждение основной системы. Поддерживаются языки: Python, JavaScript, Shell, R, C++ (через компиляторы).</li>
+<li><strong>Многошаговая автономность:</strong> Агент способен разбивать сложные запросы на последовательность действий: от парсинга веб-страниц до построения графиков и отправки результатов по email. Контроль итераций осуществляется через механизм подтверждения (approval mode).</li>
+<li><strong>Работа с файловой системой:</strong> Полный доступ к чтению, записи и удалению файлов. Поддерживаются форматы CSV, JSON, Excel, PDF, изображения (через Pillow). Агент может автоматически конвертировать форматы и агрегировать данные.</li>
+<li><strong>Интеграция с LLM-провайдерами:</strong> Из коробки поддерживаются OpenAI (GPT-4o, GPT-4-turbo), Anthropic (Claude 3.5 Sonnet), Google (Gemini 1.5 Pro), а также локальные модели через Ollama (Llama 3, Mistral, Qwen). Выбор модели влияет на качество генерации кода и скорость выполнения.</li>
+<li><strong>Режим «Code Only»:</strong> Опция, при которой агент возвращает только готовый код без пояснений, что ускоряет интеграцию в CI/CD пайплайны. Полезно для автоматизации развертывания и тестирования.</li>
+<li><strong>Поддержка пользовательских функций (Custom Tools):</strong> Разработчик может расширять возможности агента, добавляя собственные Python-функции с декораторами. Например, функция для работы с внутренним API компании или специфической СУБД.</li>
+<li><strong>Логирование и отладка:</strong> Каждое выполнение кода записывается в JSON-лог с полным контекстом (запрос, сгенерированный код, stdout/stderr, время выполнения). Это позволяет анализировать ошибки и оптимизировать промпты.</li>
+</ul>
+
+<h2>Характеристики и тарифы</h2>
+<p>Open Interpreter распространяется как open-source проект под лицензией AGPL-3.0. Исходный код доступен на GitHub, установка производится через pip (<code>pip install open-interpreter</code>) или Docker. Базовая версия полностью бесплатна и не имеет ограничений по функциональности — вы платите только за вызовы API выбранной LLM (если используете облачные модели). Для локальных моделей затраты сводятся к вычислительным ресурсам (GPU/CPU).</p>
+<p>Проект также предлагает платную облачную версию — Open Interpreter Cloud, которая включает предустановленные модели, автоматическое масштабирование и SLA. Тарифы: Starter ($20/мес, 500 запросов, базовая поддержка), Pro ($50/мес, 2000 запросов, приоритетная поддержка, доступ к GPT-4o), Enterprise (индивидуально, неограниченные запросы, on-premise развертывание, аудит безопасности). Для академических пользователей предусмотрена скидка 50% на тариф Pro.</p>
+
+<h2>Плюсы и минусы</h2>
+<h3>Сильные стороны</h3>
+<ul>
+<li><strong>Полная прозрачность:</strong> Открытый исходный код позволяет аудировать каждый шаг агента, модифицировать его поведение и форкать проект под корпоративные нужды. Нет vendor lock-in.</li>
+<li><strong>Гибкость моделей:</strong> Возможность переключаться между десятками LLM без изменения кода. Для задач с высокими требованиями к приватности можно использовать полностью локальный стек (Ollama + Open Interpreter).</li>
+<li><strong>Автономность выполнения:</strong> Агент корректно обрабатывает ошибки выполнения (например, отсутствие библиотеки) — он автоматически устанавливает зависимости через pip и повторяет попытку. Это снижает количество ручных вмешательств.</li>
+<li><strong>Интеграция с Docker:</strong> Изоляция процессов через контейнеризацию делает инструмент безопасным для использования на рабочих станциях и серверах. Риск повреждения системы минимален.</li>
+</ul>
+<h3>Ограничения</h3>
+<ul>
+<li><strong>Зависимость от качества LLM:</strong> При использовании слабых локальных моделей (например, Llama 3 8B) агент часто генерирует некорректный код или «галлюцинирует» API-вызовы. Для стабильной работы требуется модель уровня GPT-4 или Claude 3.5.</li>
+<li><strong>Отсутствие встроенного планировщика:</strong> Open Interpreter не поддерживает отложенные задачи или расписания (cron). Для периодического выполнения требуется внешняя обвязка (например, systemd или Airflow).</li>
+<li><strong>Потребление ресурсов:</strong> При работе с Docker и локальной LLM (даже 7B-моделью) требуется минимум 8 ГБ ОЗУ и 10 ГБ дискового пространства. На слабых машинах (4 ГБ ОЗУ) инструмент практически неработоспособен.</li>
+</ul>
+
+<h2>Сравнение с аналогами</h2>
+<p><strong>GitHub Copilot Chat</strong> — основной конкурент от Microsoft. Copilot глубоко интегрирован в IDE (VS Code, JetBrains) и лучше справляется с контекстом кода, но его автономность ограничена: он генерирует сниппеты, а не выполняет их. Open Interpreter выигрывает в сценариях, где требуется полный цикл «запрос → исполнение → результат» (например, обработка данных), но проигрывает в скорости подсказок при написании кода.</p>
+<p><strong>AutoGPT</strong> — более старый агентный фреймворк, ориентированный на долгосрочные задачи с разбивкой на подзадачи. В отличие от Open Interpreter, AutoGPT использует собственную память (векторную базу) и может работать с веб-браузером, но его кодогенерация менее стабильна, а установка сложнее. Open Interpreter предпочтительнее для быстрых однократных задач (конвертация файлов, парсинг логов).</p>
+<p><strong>LangChain Agents</strong> — библиотека для построения кастомных агентов. LangChain предоставляет больше контроля над цепочками вызовов и поддерживает сотни интеграций, но требует написания кода для настройки. Open Interpreter — это готовое решение «из коробки» с минимальным порогом входа. Для типовых задач (анализ CSV, работа с API) Open Interpreter удобнее, для сложных мультиагентных систем — LangChain.</p>
+
+<h2>Вердикт</h2>
+<p>Open Interpreter лучше всего подходит для сценариев, где требуется быстрое прототипирование скриптов и автоматизация рутинных операций с файлами и данными. Инструмент идеален для аналитиков данных, которые хотят получать готовые визуализации и отчеты без написания кода, а также для DevOps-инженеров, автоматизирующих задачи администрирования (очистка логов, мониторинг дисков). Благодаря поддержке локальных моделей, Open Interpreter — один из лучших вариантов для организаций с жесткими требованиями к конфиденциальности (финтех, медицина, госсектор).</p>
+<p>Стоит рассмотреть альтернативы, если ваша работа требует глубокой интеграции с IDE (выбирайте Copilot) или построения сложных мультиагентных пайплайнов (присмотритесь к LangChain или AutoGPT). Также инструмент не подходит для продакшен-сред без дополнительной обвязки — отсутствие встроенного мониторинга и планировщика делает его непригодным для критичных бизнес-процессов в чистом виде.</p></div>
     </div>
 <footer>
   Qantcore &copy; 2026 &mdash; Платформа аналитики AI-агентов &mdash;

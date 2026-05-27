@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Локальные LLM | Qantcore — Аналитика AI-агентов</title>
+<meta name="description" content="Каталог из 34 локальных LLM: Llama, Mistral, DeepSeek, Qwen, Gemma, Phi, Granite и другие. Команды установки Ollama, требования к VRAM/RAM, характеристики.">
+<link rel="icon" type="image/svg+xml" href="/images/favicon.svg">
+<link rel="canonical" href="https://qantcore.space/local-models/">
+<style>*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#0B0F14;--surface:#121821;--card-bg:#171F2B;--border:rgba(255,255,255,.06);
+  --text:#F5F7FA;--muted:#9AA4B2;--dim:#6B7280;
+  --green:#10b981;--green-dim:rgba(16,185,129,.12);
+  --blue:#3B82F6;--blue-dim:rgba(59,130,246,.12);
+  --amber:#f59e0b;--amber-dim:rgba(245,158,11,.12);
+  --red:#ef4444;--red-dim:rgba(239,68,68,.12);
+  --radius:12px;--radius-sm:8px}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;
+  background:var(--bg);color:var(--text);min-height:100vh;line-height:1.6;font-size:16px;
+  -webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+header{position:sticky;top:0;z-index:100;backdrop-filter:blur(20px) saturate(180%);
+  background:rgba(11,15,20,.92);border-bottom:1px solid var(--border)}
+.header-inner{max-width:1320px;margin:0 auto;padding:14px 24px;
+  display:flex;align-items:center;justify-content:space-between}
+.logo{font-size:20px;font-weight:800;letter-spacing:-.02em;color:var(--text);
+  display:flex;align-items:center;gap:8px}
+.logo-dot{width:8px;height:8px;border-radius:50%;background:var(--green);
+  box-shadow:0 0 8px rgba(16,185,129,.5);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.mega-nav{display:flex;gap:4px;align-items:center}
+.mega-nav a{font-size:13.5px;color:var(--muted);padding:6px 12px;border-radius:6px;
+  transition:color .2s,background .2s;font-weight:500;letter-spacing:.01em;white-space:nowrap}
+.mega-nav a:hover{color:var(--text);background:rgba(255,255,255,.04)}
+.mega-nav a.active{color:var(--green);background:var(--green-dim)}
+.nav-sep{width:1px;height:18px;background:var(--border);margin:0 4px}
+.nav-featured{font-size:14px!important;font-weight:700!important;color:var(--green)!important;
+  background:var(--green-dim)!important;padding:8px 16px!important;letter-spacing:.02em}
+.nav-review{font-size:14px!important;font-weight:700!important;color:#a78bfa!important;
+  padding:6px 14px!important;letter-spacing:.01em}
+
+.hero{text-align:center;padding:48px 24px 32px}
+.hero h1{font-size:28px;font-weight:800;letter-spacing:-.02em;color:#f1f5f9}
+.hero h1 .accent{color:var(--green)}
+.hero .sub{font-size:15px;color:var(--muted);margin-top:12px;max-width:700px;margin-left:auto;margin-right:auto;line-height:1.6}
+
+.quick-nav{max-width:1200px;margin:0 auto 24px;padding:0 24px;display:flex;gap:6px;flex-wrap:wrap}
+.quick-nav a{padding:5px 14px;border-radius:20px;font-size:12px;font-weight:500;
+  border:1px solid var(--border);color:var(--muted);transition:all .2s}
+.quick-nav a:hover{border-color:var(--green);color:var(--green);background:var(--green-dim)}
+
+.models{max-width:1100px;margin:0 auto;padding:0 24px 48px;display:flex;flex-direction:column;gap:12px}
+.model-card{background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);
+  padding:24px 28px;transition:border-color .2s}
+.model-card:hover{border-color:rgba(16,185,129,.2)}
+.model-header{display:flex;align-items:baseline;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:8px}
+.model-header h3{font-size:18px;font-weight:700;color:var(--text);letter-spacing:-.01em}
+.model-header .params{font-size:13px;font-weight:600;color:var(--green);background:var(--green-dim);
+  padding:2px 10px;border-radius:4px;white-space:nowrap}
+.model-desc{font-size:14px;color:var(--muted);line-height:1.6;margin-bottom:14px}
+.model-specs{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px;margin-bottom:14px}
+.spec-item{background:rgba(255,255,255,.02);border-radius:6px;padding:10px 14px}
+.spec-label{font-size:10px;color:var(--dim);text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px}
+.spec-value{font-size:14px;font-weight:600;color:var(--text)}
+.spec-value.green{color:var(--green)}
+.spec-value.amber{color:var(--amber)}
+.spec-value.red{color:var(--red)}
+.model-install{background:#0d1117;border:1px solid var(--border);border-radius:6px;padding:10px 16px;
+  font-family:'SF Mono','Fira Code',monospace;font-size:13px;
+  color:var(--green);display:flex;align-items:center;gap:12px;overflow-x:auto}
+.model-install .cmd{flex:1;white-space:nowrap}
+.model-links{display:flex;gap:12px;margin-top:10px;flex-wrap:wrap}
+.model-links a{font-size:12px;color:var(--blue);font-weight:500}
+.model-links a:hover{color:#60a5fa;text-decoration:underline}
+footer{text-align:center;padding:32px 24px;color:var(--dim);font-size:13px;border-top:1px solid var(--border)}
+footer a{color:var(--green)}
+</style>
+</head>
+<body>
+<header>
+  <div class="header-inner">
+    <a href="/" class="logo"><span class="logo-dot"></span>Qantcore</a>
+    <div class="mega-nav">
+      <a href="/">Каталог</a><span class="nav-sep"></span>
+      <a href="/catalog/comparison/">Сравнения</a><span class="nav-sep"></span>
+      <a href="/guides/" class="nav-featured">📖 Гайды</a><span class="nav-sep"></span>
+      <a href="/catalog/review/" class="nav-review">Обзоры</a><span class="nav-sep"></span>
+      <a href="/multi-agent/">Мульти-агенты</a><span class="nav-sep"></span>
+      <a href="/benchmarks/">Рейтинг</a><span class="nav-sep"></span>
+      <a href="/local-models/" class="nav-local active">Локальные LLM</a><span class="nav-sep"></span>
+      <a href="/methodology/">Методология</a><span class="nav-sep"></span>
+      <a href="/workspace/">Кабинет</a>
+    </div>
+  </div>
+</header>
+<section class="hero">
+  <h1>🖥️ Локальные <span class="accent">LLM</span></h1>
+  <p class="sub">Запускайте LLM на своём железе. Для каждой модели — характеристики, команда установки и минимальные требования. Все модели доступны через Ollama.</p>
+</section>
+<div class="quick-nav">
+  <a href="#granite">Granite 3.1</a>
+  <a href="#gemma3-4b">Gemma 3 4B</a>
+  <a href="#gemma2-9b">Gemma 2 9B</a>
+  <a href="#gemma2-27b">Gemma 2 27B</a>
+  <a href="#devstral">Devstral</a>
+  <a href="#qwen">Qwen2.5 VL</a>
+  <a href="#phi4-reasoning">Phi 4 Reasoning</a>
+  <a href="#phi4-mini">Phi 4 Mini</a>
+  <a href="#gemma3-27b">Gemma 3 27B</a>
+  <a href="#gemma3-1b">Gemma 3 1B</a>
+</div>
+<div class="models">
+
+<div class="model-card" id="granite">
+  <div class="model-header"><h3>Granite 3.1 8B</h3><span class="params">8B params · Dense</span></div>
+  <div class="model-desc">Dense LLM from IBM supporting up to 128K context length, trained on 12T tokens. Suitable for general instructions following and can be used to build AI assistants.</div>
+  <div class="model-specs">
+    <div class="spec-item"><div class="spec-label">Контекст</div><div class="spec-value">128K tokens</div></div>
+    <div class="spec-item"><div class="spec-label">VRAM (GPU)</div><div class="spec-value amber">6 GB</div></div>
+    <div class="spec-item"><div class="spec-label">RAM (CPU)</div><div class="spec-value green">8 GB</div></div>
+    <div class="spec-item"><div class="spec-label">Размер</div><div class="spec-value">4.9 GB</div></div>
+  </div>
+  <div class="model-install"><span class="cmd">ollama pull granite3.1:8b</span></div>
+  <div class="model-links"><a href="https://ollama.com/library/granite3.1:8b">Ollama →</a> <a href="https://huggingface.co/ibm-granite/granite-3.1-8b-instruct">HuggingFace →</a></div>
+</div>
+
+<div class="model-card" id="gemma3-4b">
+  <div class="model-header"><h3>Gemma 3 4B</h3><span class="params">4B params · Multimodal</span></div>
+  <div class="model-desc">State-of-the-art image + text input models from Google, built from the same research and tech used to create the Gemini models.</div>
+  <div class="model-specs">
+    <div class="spec-item"><div class="spec-label">Контекст</div><div class="spec-value">32K tokens</div></div>
+    <div class="spec-item"><div class="spec-label">VRAM (GPU)</div><div class="spec-value green">3 GB</div></div>
+    <div class="spec-item"><div class="spec-label">RAM (CPU)</div><div class="spec-value green">4 GB</div></div>
+    <div class="spec-item"><div class="spec-label">Размер</div><div class="spec-value">2.6 GB</div></div>
+  </div>
+  <div class="model-install"><span class="cmd">ollama pull gemma3:4b</span></div>
+  <div class="model-links"><a href="https://ollama.com/library/gemma3:4b">Ollama →</a> <a href="https://huggingface.co/google/gemma-3-4b-it">HuggingFace →</a></div>
+</div>
+
+<div class="model-card" id="gemma2-9b">
+  <div class="model-header"><h3>Gemma 2 9B</h3><span class="params">9B params · Dense</span></div>
+  <div class="model-desc">The mid-sized option of the Gemma 2 model family. Built by Google, using from the same research and technology used to create the Gemini models.</div>
+  <div class="model-specs">
+    <div class="spec-item"><div class="spec-label">Контекст</div><div class="spec-value">8K tokens</div></div>
+    <div class="spec-item"><div class="spec-label">VRAM (GPU)</div><div class="spec-value amber">8 GB</div></div>
+    <div class="spec-item"><div class="spec-label">RAM (CPU)</div><div class="spec-value green">10 GB</div></div>
+    <div class="spec-item"><div class="spec-label">Размер</div><div class="spec-value">5.4 GB</div></div>
+  </div>
+  <div class="model-install"><span class="cmd">ollama pull gemma2:9b</span></div>
+  <div class="model-links"><a href="https://ollama.com/library/gemma2:9b">Ollama →</a> <a href="https://huggingface.co/google/gemma-2-9b-it">HuggingFace →</a></div>
+</div>
+
+<div class="model-card" id="gemma2-27b">
+  <div class="model-header"><h3>Gemma 2 27B</h3><span class="params">27B params · Dense</span></div>
+  <div class="model-desc">The large option of the Gemma 2 model family. Built by Google, using from the same research and technology used to create the Gemini models.</div>
+  <div class="model-specs">
+    <div class="spec-item"><div class="spec-label">Контекст</div><div class="spec-value">8K tokens</div></div>
+    <div class="spec-item"><div class="spec-label">VRAM (GPU)</div><div class="spec-value red">18 GB</div></div>
+    <div class="spec-item"><div class="spec-label">RAM (CPU)</div><div class="spec-value amber">28 GB</div></div>
+    <div class="spec-item"><div class="spec-label">Размер</div><div class="spec-value">15.7 GB</div></div>
+  </div>
+  <div class="model-install"><span class="cmd">ollama pull gemma2:27b</span></div>
+  <div class="model-links"><a href="https://ollama.com/library/gemma2:27b">Ollama →</a> <a href="https://huggingface.co/google/gemma-2-27b-it">HuggingFace →</a></div>
+</div>
+
+<div class="model-card" id="devstral">
+  <div class="model-header"><h3>Devstral Small 2505</h3><span class="params">22B params · Dense</span></div>
+  <div class="model-desc">Devstral by MistralAI is based on Mistral Small 3.1. Debuts as the #1 open source model on SWE-bench.</div>
+  <div class="model-specs">
+    <div class="spec-item"><div class="spec-label">Контекст</div><div class="spec-value">128K tokens</div></div>
+    <div class="spec-item"><div class="spec-label">VRAM (GPU)</div><div class="spec-value amber">16 GB</div></div>
+    <div class="spec-item"><div class="spec-label">RAM (CPU)</div><div class="spec-value amber">24 GB</div></div>
+    <div class="spec-item"><div class="spec-label">Размер</div><div class="spec-value">13 GB</div></div>
+  </div>
+  <div class="model-install"><span class="cmd">ollama pull devstral-small:2505</span></div>
+  <div class="model-links"><a href="https://ollama.com/library/devstral-small:2505">Ollama →</a> <a href="https://huggingface.co/mistralai">Mistral AI →</a></div>
+</div>
+
+<div class="model-card" id="qwen">
+  <div class="model-header"><h3>Qwen2.5 VL 7B</h3><span class="params">7B params · Vision-Language</span></div>
+  <div class="model-desc">A 7B Vision Language Model (VLM) from the Qwen2.5 family.</div>
+  <div class="model-specs">
+    <div class="spec-item"><div class="spec-label">Контекст</div><div class="spec-value">128K tokens</div></div>
+    <div class="spec-item"><div class="spec-label">VRAM (GPU)</div><div class="spec-value amber">6 GB</div></div>
+    <div class="spec-item"><div class="spec-label">RAM (CPU)</div><div class="spec-value green">8 GB</div></div>
+    <div class="spec-item"><div class="spec-label">Размер</div><div class="spec-value">4.7 GB</div></div>
+  </div>
+  <div class="model-install"><span class="cmd">ollama pull qwen2.5-vl:7b</span></div>
+  <div class="model-links"><a href="https://ollama.com/library/qwen2.5-vl:7b">Ollama →</a> <a href="https://huggingface.co/Qwen/Qwen2.5-VL-7B-Instruct">HuggingFace →</a></div>
+</div>
+
+<div class="model-card" id="phi4-reasoning">
+  <div class="model-header"><h3>Phi 4 Reasoning Plus</h3><span class="params">14B params · Reasoning</span></div>
+  <div class="model-desc">Advanced open-weight reasoning model, finetuned from Phi-4 with additional reinforcement learning for higher accuracy.</div>
+  <div class="model-specs">
+    <div class="spec-item"><div class="spec-label">Контекст</div><div class="spec-value">128K tokens</div></div>
+    <div class="spec-item"><div class="spec-label">VRAM (GPU)</div><div class="spec-value amber">12 GB</div></div>
+    <div class="spec-item"><div class="spec-label">RAM (CPU)</div><div class="spec-value amber">16 GB</div></div>
+    <div class="spec-item"><div class="spec-label">Размер</div><div class="spec-value">8.5 GB</div></div>
+  </div>
+  <div class="model-install"><span class="cmd">ollama pull phi4:14b</span></div>
+  <div class="model-links"><a href="https://ollama.com/library/phi4:14b">Ollama →</a> <a href="https://huggingface.co/microsoft/Phi-4-reasoning-plus">HuggingFace →</a></div>
+</div>
+
+<div class="model-card" id="phi4-mini">
+  <div class="model-header"><h3>Phi 4 Mini Reasoning</h3><span class="params">3.8B params · Lightweight</span></div>
+  <div class="model-desc">Lightweight open model from the Phi-4 family.</div>
+  <div class="model-specs">
+    <div class="spec-item"><div class="spec-label">Контекст</div><div class="spec-value">128K tokens</div></div>
+    <div class="spec-item"><div class="spec-label">VRAM (GPU)</div><div class="spec-value green">3 GB</div></div>
+    <div class="spec-item"><div class="spec-label">RAM (CPU)</div><div class="spec-value green">4 GB</div></div>
+    <div class="spec-item"><div class="spec-label">Размер</div><div class="spec-value">2.4 GB</div></div>
+  </div>
+  <div class="model-install"><span class="cmd">ollama pull phi4-mini:3.8b</span></div>
+  <div class="model-links"><a href="https://ollama.com/library/phi4-mini:3.8b">Ollama →</a> <a href="https://huggingface.co/microsoft/Phi-4-mini-reasoning">HuggingFace →</a></div>
+</div>
+
+<div class="model-card" id="gemma3-27b">
+  <div class="model-header"><h3>Gemma 3 27B</h3><span class="params">27B params · Multimodal</span></div>
+  <div class="model-desc">State-of-the-art image + text input models from Google, built from the same research and tech used to create the Gemini models.</div>
+  <div class="model-specs">
+    <div class="spec-item"><div class="spec-label">Контекст</div><div class="spec-value">128K tokens</div></div>
+    <div class="spec-item"><div class="spec-label">VRAM (GPU)</div><div class="spec-value red">18 GB</div></div>
+    <div class="spec-item"><div class="spec-label">RAM (CPU)</div><div class="spec-value amber">28 GB</div></div>
+    <div class="spec-item"><div class="spec-label">Размер</div><div class="spec-value">17 GB</div></div>
+  </div>
+  <div class="model-install"><span class="cmd">ollama pull gemma3:27b</span></div>
+  <div class="model-links"><a href="https://ollama.com/library/gemma3:27b">Ollama →</a> <a href="https://huggingface.co/google/gemma-3-27b-it">HuggingFace →</a></div>
+</div>
+
+<div class="model-card" id="gemma3-1b">
+  <div class="model-header"><h3>Gemma 3 1B</h3><span class="params">1B params · Ultralight</span></div>
+  <div class="model-desc">State-of-the-art image + text input models from Google, built from the same research and tech used to create the Gemini models. Smallest model in the Gemma 3 family — runs anywhere.</div>
+  <div class="model-specs">
+    <div class="spec-item"><div class="spec-label">Контекст</div><div class="spec-value">32K tokens</div></div>
+    <div class="spec-item"><div class="spec-label">VRAM (GPU)</div><div class="spec-value green">1 GB</div></div>
+    <div class="spec-item"><div class="spec-label">RAM (CPU)</div><div class="spec-value green">2 GB</div></div>
+    <div class="spec-item"><div class="spec-label">Размер</div><div class="spec-value">0.8 GB</div></div>
+  </div>
+  <div class="model-install"><span class="cmd">ollama pull gemma3:1b</span></div>
+  <div class="model-links"><a href="https://ollama.com/library/gemma3:1b">Ollama →</a> <a href="https://huggingface.co/google/gemma-3-1b-it">HuggingFace →</a></div>
+</div>
+
+
+<div class="model-card" id="llama32-3b">
+  <div class="model-header"><h3>Llama 3.2 3B</h3><span class="params">3B params · Lightweight</span></div>
+  <div class="model-desc">Meta's lightweight multilingual model. Text-only, great for on-device and edge deployment. Supports 8 languages.</div>
+  <div class="model-specs">
+    <div class="spec-item"><div class="spec-label">Контекст</div><div class="spec-value">128K tokens</div></div>
+    <div class="spec-item"><div class="spec-label">VRAM (GPU)</div><div class="spec-value green">3 GB</div></div>
+    <div class="spec-item"><div class="spec-label">RAM (CPU)</div><div class="spec-value green">4 GB</div></div>
+    <div class="spec-item"><div class="spec-label">Размер</div><div class="spec-value">2.0 GB</div></div>
+  </div>
+  <div class="model-install"><span class="cmd">ollama pull llama3.2:3b</span></div>
+  <div class="model-links"><a href="https://ollama.com/library/llama3.2:3b">Ollama →</a> <a href="https://huggingface.co/meta-llama/Llama-3.2-3B">HuggingFace →</a></div>
+</div>
+
+<div class="model-card" id="llama31-8b">
+  <div class="model-header"><h3>Llama 3.1 8B</h3><span class="params">8B params · Dense</span></div>
+  <div class="model-desc">Meta's flagship 8B. Multilingual, strong reasoning, tool use. The most popular open model for general tasks.</div>
+  <div class="model-specs">
+    <div class="spec-item"><div class="spec-label">Контекст</div><div class="spec-value">128K tokens</div></div>
+    <div class="spec-item"><div class="spec-label">VRAM (GPU)</div><div class="spec-value amber">6 GB</div></div>
+    <div class="spec-item"><div class="spec-label">RAM (CPU)</div><div class="spec-value green">8 GB</div></div>
+    <div class="spec-item"><div class="spec-label">Размер</div><div class="spec-value">4.9 GB</div></div>
+  </div>
+  <div class="model-install"><span class="cmd">ollama pull llama3.1:8b</span></div>
+  <div class="model-links"><a href="https://ollama.com/library/llama3.1:8b">Ollama →</a> <a href="https://huggingface.co/meta-llama/Llama-3.1-8B">HuggingFace →</a></div>
+</div>
+
+<div class="model-card" id="llama33-70b">
+  <div class="model-header"><h3>Llama 3.3 70B</h3><span class="params">70B params · Dense</span></div>
+  <div class="model-desc">Meta's most powerful open model. Near GPT-4 class on reasoning, coding, and instruction following.</div>
+  <div class="model-specs">
+    <div class="spec-item"><div class="spec-label">Контекст</div><div class="spec-value">128K tokens</div></div>
+    <div class="spec-item"><div class="spec-label">VRAM (GPU)</div><div class="spec-value red">40 GB</div></div>
+    <div class="spec-item"><div class="spec-label">RAM (CPU)</div><div class="spec-value red">70 GB</div></div>
+    <div class="spec-item"><div class="spec-label">Размер</div><div class="spec-value">40 GB</div></div>
+  </div>
+  <div class="model-install"><span class="cmd">ollama pull llama3.3:70b</span></div>
+  <div class="model-links"><a href="https://ollama.com/library/llama3.3:70b">Ollama →</a> <a href="https://huggingface.co/meta-llama/Llama-3.3-70B-Instruct">HuggingFace →</a></div>
+</div>
+
+<div class="model-card" id="mistral-7b">
+  <div class="model-header"><h3>Mistral 7B</h3><span class="params">7B params · Dense</span></div>
+  <div class="model-desc">Mistral AI's groundbreaking 7B. Outperforms larger models on reasoning. Excellent for fine-tuning.</div>
+  <div class="model-specs">
+    <div class="spec-item"><div class="spec-label">Контекст</div><div class="spec-value">8K tokens</div></div>
+    <div class="spec-item"><div class="spec-label">VRAM (GPU)</div><div class="spec-value amber">6 GB</div></div>
+    <div class="spec-item"><div class="spec-label">RAM (CPU)</div><div class="spec-value green">8 GB</div></div>
+    <div class="spec-item"><div class="spec-label">Размер</div><div class="spec-value">4.1 GB</div></div>
+  </div>
+  <div class="model-install"><span class="cmd">ollama pull mistral:7b</span></div>
+  <div class="model-links"><a href="https://ollama.com/library/mistral:7b">Ollama →</a> <a href="https://huggingface.co/mistralai/Mistral-7B-Instruct-v0.3">HuggingFace →</a></div>
+</div>
+
+<div class="model-card" id="mixtral-8x7b">
+  <div class="model-header"><h3>Mixtral 8x7B</h3><span class="params">46B params · MoE (8 experts)</span></div>
+  <div class="model-desc">Mistral's Mixture-of-Experts. 8 experts x 7B, activates 2 per token. 46B performance at 12B inference cost.</div>
+  <div class="model-specs">
+    <div class="spec-item"><div class="spec-label">Контекст</div><div class="spec-value">32K tokens</div></div>
+    <div class="spec-item"><div class="spec-label">VRAM (GPU)</div><div class="spec-value red">26 GB</div></div>
+    <div class="spec-item"><div class="spec-label">RAM (CPU)</div><div class="spec-value amber">46 GB</div></div>
+    <div class="spec-item"><div class="spec-label">Размер</div><div class="spec-value">26 GB</div></div>
+  </div>
+  <div class="model-install"><span class="cmd">ollama pull mixtral:8x7b</span></div>
+  <div class="model-links"><a href="https://ollama.com/library/mixtral:8x7b">Ollama →</a> <a href="https://huggingface.co/mistralai/Mixtral-8x7B-Instruct-v0.1">HuggingFace →</a></div>
+</div>
+
+<div class="model-card" id="deepseek-r1-8b">
+  <div class="model-header"><h3>DeepSeek-R1 8B</h3><span class="params">8B params · Reasoning (CoT)</span></div>
+  <div class="model-desc">DeepSeek's reasoning model with chain-of-thought. Shows thinking process. Strong on math, code, logic.</div>
+  <div class="model-specs">
+    <div class="spec-item"><div class="spec-label">Контекст</div><div class="spec-value">128K tokens</div></div>
+    <div class="spec-item"><div class="spec-label">VRAM (GPU)</div><div class="spec-value amber">6 GB</div></div>
+    <div class="spec-item"><div class="spec-label">RAM (CPU)</div><div class="spec-value green">8 GB</div></div>
+    <div class="spec-item"><div class="spec-label">Размер</div><div class="spec-value">4.9 GB</div></div>
+  </div>
+  <div class="model-install"><span class="cmd">ollama pull deepseek-r1:8b</span></div>
+  <div class="model-links"><a href="https://ollama.com/library/deepseek-r1:8b">Ollama →</a> <a href="https://huggingface.co/deepseek-ai/DeepSeek-R1-Distill-Llama-8B">HuggingFace →</a></div>
+</div>
+
+<div class="model-card" id="deepseek-r1-32b">
+  <div class="model-header"><h3>DeepSeek-R1 32B</h3><span class="params">32B params · Reasoning (CoT)</span></div>
+  <div class="model-desc">DeepSeek-R1 distilled to 32B (Qwen base). Strong reasoning with visible chain-of-thought. Near GPT-4o on math.</div>
+  <div class="model-specs">
+    <div class="spec-item"><div class="spec-label">Контекст</div><div class="spec-value">128K tokens</div></div>
+    <div class="spec-item"><div class="spec-label">VRAM (GPU)</div><div class="spec-value red">20 GB</div></div>
+    <div class="spec-item"><div class="spec-label">RAM (CPU)</div><div class="spec-value amber">32 GB</div></div>
+    <div class="spec-item"><div class="spec-label">Размер</div><div class="spec-value">19 GB</div></div>
+  </div>
+  <div class="model-install"><span class="cmd">ollama pull deepseek-r1:32b</span></div>
+  <div class="model-links"><a href="https://ollama.com/library/deepseek-r1:32b">Ollama →</a> <a href="https://huggingface.co/deepseek-ai/DeepSeek-R1-Distill-Qwen-32B">HuggingFace →</a></div>
+</div>
+
+<div class="model-card" id="deepseek-coder-v2">
+  <div class="model-header"><h3>DeepSeek-Coder V2 16B</h3><span class="params">16B params · MoE · Code</span></div>
+  <div class="model-desc">MoE code model from DeepSeek. 338 languages, 128K context. Strongest open code model for single-GPU.</div>
+  <div class="model-specs">
+    <div class="spec-item"><div class="spec-label">Контекст</div><div class="spec-value">128K tokens</div></div>
+    <div class="spec-item"><div class="spec-label">VRAM (GPU)</div><div class="spec-value amber">12 GB</div></div>
+    <div class="spec-item"><div class="spec-label">RAM (CPU)</div><div class="spec-value amber">16 GB</div></div>
+    <div class="spec-item"><div class="spec-label">Размер</div><div class="spec-value">8.9 GB</div></div>
+  </div>
+  <div class="model-install"><span class="cmd">ollama pull deepseek-coder-v2:16b</span></div>
+  <div class="model-links"><a href="https://ollama.com/library/deepseek-coder-v2:16b">Ollama →</a> <a href="https://huggingface.co/deepseek-ai/DeepSeek-Coder-V2-Lite-Instruct">HuggingFace →</a></div>
+</div>
+
+<div class="model-card" id="qwen25-7b">
+  <div class="model-header"><h3>Qwen2.5 7B</h3><span class="params">7B params · Dense</span></div>
+  <div class="model-desc">Alibaba's Qwen2.5 7B. 29 languages, 128K context. Great all-rounder for Asian and European languages.</div>
+  <div class="model-specs">
+    <div class="spec-item"><div class="spec-label">Контекст</div><div class="spec-value">128K tokens</div></div>
+    <div class="spec-item"><div class="spec-label">VRAM (GPU)</div><div class="spec-value amber">6 GB</div></div>
+    <div class="spec-item"><div class="spec-label">RAM (CPU)</div><div class="spec-value green">8 GB</div></div>
+    <div class="spec-item"><div class="spec-label">Размер</div><div class="spec-value">4.7 GB</div></div>
+  </div>
+  <div class="model-install"><span class="cmd">ollama pull qwen2.5:7b</span></div>
+  <div class="model-links"><a href="https://ollama.com/library/qwen2.5:7b">Ollama →</a> <a href="https://huggingface.co/Qwen/Qwen2.5-7B-Instruct">HuggingFace →</a></div>
+</div>
+
+<div class="model-card" id="qwen25-coder-7b">
+  <div class="model-header"><h3>Qwen2.5-Coder 7B</h3><span class="params">7B params · Code specialist</span></div>
+  <div class="model-desc">Alibaba's code-specialized model. Trained on 5.5T tokens of code. 92 programming languages.</div>
+  <div class="model-specs">
+    <div class="spec-item"><div class="spec-label">Контекст</div><div class="spec-value">128K tokens</div></div>
+    <div class="spec-item"><div class="spec-label">VRAM (GPU)</div><div class="spec-value amber">6 GB</div></div>
+    <div class="spec-item"><div class="spec-label">RAM (CPU)</div><div class="spec-value green">8 GB</div></div>
+    <div class="spec-item"><div class="spec-label">Размер</div><div class="spec-value">4.7 GB</div></div>
+  </div>
+  <div class="model-install"><span class="cmd">ollama pull qwen2.5-coder:7b</span></div>
+  <div class="model-links"><a href="https://ollama.com/library/qwen2.5-coder:7b">Ollama →</a> <a href="https://huggingface.co/Qwen/Qwen2.5-Coder-7B-Instruct">HuggingFace →</a></div>
+</div>
+
+<div class="model-card" id="codellama-13b">
+  <div class="model-header"><h3>CodeLlama 13B</h3><span class="params">13B params · Code specialist</span></div>
+  <div class="model-desc">Meta's code-specialized Llama. Python specialist with fill-in-the-middle. Code completion and generation.</div>
+  <div class="model-specs">
+    <div class="spec-item"><div class="spec-label">Контекст</div><div class="spec-value">16K tokens</div></div>
+    <div class="spec-item"><div class="spec-label">VRAM (GPU)</div><div class="spec-value amber">10 GB</div></div>
+    <div class="spec-item"><div class="spec-label">RAM (CPU)</div><div class="spec-value amber">14 GB</div></div>
+    <div class="spec-item"><div class="spec-label">Размер</div><div class="spec-value">7.4 GB</div></div>
+  </div>
+  <div class="model-install"><span class="cmd">ollama pull codellama:13b</span></div>
+  <div class="model-links"><a href="https://ollama.com/library/codellama:13b">Ollama →</a> <a href="https://huggingface.co/codellama/CodeLlama-13b-Instruct-hf">HuggingFace →</a></div>
+</div>
+
+<div class="model-card" id="llava-13b">
+  <div class="model-header"><h3>LLaVA 13B</h3><span class="params">13B params · Vision-Language</span></div>
+  <div class="model-desc">Large Language and Vision Assistant. Llama 2 + vision encoder. Image understanding, OCR, visual QA.</div>
+  <div class="model-specs">
+    <div class="spec-item"><div class="spec-label">Контекст</div><div class="spec-value">4K tokens</div></div>
+    <div class="spec-item"><div class="spec-label">VRAM (GPU)</div><div class="spec-value amber">10 GB</div></div>
+    <div class="spec-item"><div class="spec-label">RAM (CPU)</div><div class="spec-value amber">14 GB</div></div>
+    <div class="spec-item"><div class="spec-label">Размер</div><div class="spec-value">7.4 GB</div></div>
+  </div>
+  <div class="model-install"><span class="cmd">ollama pull llava:13b</span></div>
+  <div class="model-links"><a href="https://ollama.com/library/llava:13b">Ollama →</a> <a href="https://huggingface.co/liuhaotian/llava-v1.6-vicuna-13b">HuggingFace →</a></div>
+</div>
+
+<div class="model-card" id="dolphin-mixtral">
+  <div class="model-header"><h3>Dolphin Mixtral 8x7B</h3><span class="params">46B params · MoE · Uncensored</span></div>
+  <div class="model-desc">Uncensored Mixtral fine-tune. Removes refusal behaviour. Good for creative and unrestricted tasks.</div>
+  <div class="model-specs">
+    <div class="spec-item"><div class="spec-label">Контекст</div><div class="spec-value">32K tokens</div></div>
+    <div class="spec-item"><div class="spec-label">VRAM (GPU)</div><div class="spec-value red">26 GB</div></div>
+    <div class="spec-item"><div class="spec-label">RAM (CPU)</div><div class="spec-value amber">46 GB</div></div>
+    <div class="spec-item"><div class="spec-label">Размер</div><div class="spec-value">26 GB</div></div>
+  </div>
+  <div class="model-install"><span class="cmd">ollama pull dolphin-mixtral:8x7b</span></div>
+  <div class="model-links"><a href="https://ollama.com/library/dolphin-mixtral:8x7b">Ollama →</a> <a href="https://huggingface.co/cognitivecomputations/dolphin-2.7-mixtral-8x7b">HuggingFace →</a></div>
+</div>
+
+<div class="model-card" id="zephyr-7b">
+  <div class="model-header"><h3>Zephyr 7B</h3><span class="params">7B params · Fine-tuned</span></div>
+  <div class="model-desc">HuggingFace's DPO-trained Mistral 7B. Punches above weight on chat benchmarks. Excellent conversationalist.</div>
+  <div class="model-specs">
+    <div class="spec-item"><div class="spec-label">Контекст</div><div class="spec-value">8K tokens</div></div>
+    <div class="spec-item"><div class="spec-label">VRAM (GPU)</div><div class="spec-value amber">6 GB</div></div>
+    <div class="spec-item"><div class="spec-label">RAM (CPU)</div><div class="spec-value green">8 GB</div></div>
+    <div class="spec-item"><div class="spec-label">Размер</div><div class="spec-value">4.1 GB</div></div>
+  </div>
+  <div class="model-install"><span class="cmd">ollama pull zephyr:7b</span></div>
+  <div class="model-links"><a href="https://ollama.com/library/zephyr:7b">Ollama →</a> <a href="https://huggingface.co/HuggingFaceH4/zephyr-7b-beta">HuggingFace →</a></div>
+</div>
+
+<div class="model-card" id="openchat-7b">
+  <div class="model-header"><h3>OpenChat 7B</h3><span class="params">7B params · Chat-optimised</span></div>
+  <div class="model-desc">C-RLFT trained Mistral 7B. Top performer on MT-Bench among 7B models. Natural conversation.</div>
+  <div class="model-specs">
+    <div class="spec-item"><div class="spec-label">Контекст</div><div class="spec-value">8K tokens</div></div>
+    <div class="spec-item"><div class="spec-label">VRAM (GPU)</div><div class="spec-value amber">6 GB</div></div>
+    <div class="spec-item"><div class="spec-label">RAM (CPU)</div><div class="spec-value green">8 GB</div></div>
+    <div class="spec-item"><div class="spec-label">Размер</div><div class="spec-value">4.1 GB</div></div>
+  </div>
+  <div class="model-install"><span class="cmd">ollama pull openchat:7b</span></div>
+  <div class="model-links"><a href="https://ollama.com/library/openchat:7b">Ollama →</a> <a href="https://huggingface.co/openchat/openchat-3.5-0106">HuggingFace →</a></div>
+</div>
+
+<div class="model-card" id="yi-34b">
+  <div class="model-header"><h3>Yi 34B</h3><span class="params">34B params · Dense</span></div>
+  <div class="model-desc">01.AI's 34B model. 3T training tokens. Strong bilingual (EN/ZH). Near GPT-3.5 performance.</div>
+  <div class="model-specs">
+    <div class="spec-item"><div class="spec-label">Контекст</div><div class="spec-value">200K tokens</div></div>
+    <div class="spec-item"><div class="spec-label">VRAM (GPU)</div><div class="spec-value red">22 GB</div></div>
+    <div class="spec-item"><div class="spec-label">RAM (CPU)</div><div class="spec-value amber">34 GB</div></div>
+    <div class="spec-item"><div class="spec-label">Размер</div><div class="spec-value">20 GB</div></div>
+  </div>
+  <div class="model-install"><span class="cmd">ollama pull yi:34b</span></div>
+  <div class="model-links"><a href="https://ollama.com/library/yi:34b">Ollama →</a> <a href="https://huggingface.co/01-ai/Yi-34B-Chat">HuggingFace →</a></div>
+</div>
+
+<div class="model-card" id="command-r-plus">
+  <div class="model-header"><h3>Command R+ 104B</h3><span class="params">104B params · Dense</span></div>
+  <div class="model-desc">Cohere's flagship. RAG-optimised, tool-use native, 10 languages. Enterprise-grade reasoning.</div>
+  <div class="model-specs">
+    <div class="spec-item"><div class="spec-label">Контекст</div><div class="spec-value">128K tokens</div></div>
+    <div class="spec-item"><div class="spec-label">VRAM (GPU)</div><div class="spec-value red">60 GB</div></div>
+    <div class="spec-item"><div class="spec-label">RAM (CPU)</div><div class="spec-value red">100 GB</div></div>
+    <div class="spec-item"><div class="spec-label">Размер</div><div class="spec-value">60 GB</div></div>
+  </div>
+  <div class="model-install"><span class="cmd">ollama pull command-r-plus:104b</span></div>
+  <div class="model-links"><a href="https://ollama.com/library/command-r-plus:104b">Ollama →</a> <a href="https://huggingface.co/CohereForAI/c4ai-command-r-plus">HuggingFace →</a></div>
+</div>
+
+<div class="model-card" id="starcoder2-15b">
+  <div class="model-header"><h3>StarCoder2 15B</h3><span class="params">15B params · Code specialist</span></div>
+  <div class="model-desc">BigCode project. The Stack v2 (600+ languages). Fill-in-the-middle, code completion.</div>
+  <div class="model-specs">
+    <div class="spec-item"><div class="spec-label">Контекст</div><div class="spec-value">16K tokens</div></div>
+    <div class="spec-item"><div class="spec-label">VRAM (GPU)</div><div class="spec-value amber">12 GB</div></div>
+    <div class="spec-item"><div class="spec-label">RAM (CPU)</div><div class="spec-value amber">16 GB</div></div>
+    <div class="spec-item"><div class="spec-label">Размер</div><div class="spec-value">9.0 GB</div></div>
+  </div>
+  <div class="model-install"><span class="cmd">ollama pull starcoder2:15b</span></div>
+  <div class="model-links"><a href="https://ollama.com/library/starcoder2:15b">Ollama →</a> <a href="https://huggingface.co/bigcode/starcoder2-15b-instruct-v0.1">HuggingFace →</a></div>
+</div>
+
+<div class="model-card" id="sqlcoder-7b">
+  <div class="model-header"><h3>SQLCoder 7B</h3><span class="params">7B params · SQL specialist</span></div>
+  <div class="model-desc">Defog.ai's SQL specialist. 20K+ SQL queries across diverse schemas. Text-to-SQL near GPT-4 accuracy.</div>
+  <div class="model-specs">
+    <div class="spec-item"><div class="spec-label">Контекст</div><div class="spec-value">8K tokens</div></div>
+    <div class="spec-item"><div class="spec-label">VRAM (GPU)</div><div class="spec-value amber">6 GB</div></div>
+    <div class="spec-item"><div class="spec-label">RAM (CPU)</div><div class="spec-value green">8 GB</div></div>
+    <div class="spec-item"><div class="spec-label">Размер</div><div class="spec-value">4.1 GB</div></div>
+  </div>
+  <div class="model-install"><span class="cmd">ollama pull sqlcoder:7b</span></div>
+  <div class="model-links"><a href="https://ollama.com/library/sqlcoder:7b">Ollama →</a> <a href="https://huggingface.co/defog/sqlcoder-7b-2">HuggingFace →</a></div>
+</div>
+
+<div class="model-card" id="wizardlm2-8x22b">
+  <div class="model-header"><h3>WizardLM 2 8x22B</h3><span class="params">141B params · MoE (8 experts)</span></div>
+  <div class="model-desc">Microsoft's MoE model. Evolved training on complex instructions. Top reasoning, multilingual, coding.</div>
+  <div class="model-specs">
+    <div class="spec-item"><div class="spec-label">Контекст</div><div class="spec-value">64K tokens</div></div>
+    <div class="spec-item"><div class="spec-label">VRAM (GPU)</div><div class="spec-value red">80 GB</div></div>
+    <div class="spec-item"><div class="spec-label">RAM (CPU)</div><div class="spec-value red">140 GB</div></div>
+    <div class="spec-item"><div class="spec-label">Размер</div><div class="spec-value">78 GB</div></div>
+  </div>
+  <div class="model-install"><span class="cmd">ollama pull wizardlm2:8x22b</span></div>
+  <div class="model-links"><a href="https://ollama.com/library/wizardlm2:8x22b">Ollama →</a> <a href="https://huggingface.co/microsoft/WizardLM-2-8x22B">HuggingFace →</a></div>
+</div>
+
+<div class="model-card" id="nous-hermes2-mixtral">
+  <div class="model-header"><h3>Nous Hermes 2 Mixtral 8x7B</h3><span class="params">46B params · MoE · Instruction-tuned</span></div>
+  <div class="model-desc">Nous Research fine-tune on 1M+ instructions. Structured output, function calling, JSON mode. ChatML format.</div>
+  <div class="model-specs">
+    <div class="spec-item"><div class="spec-label">Контекст</div><div class="spec-value">32K tokens</div></div>
+    <div class="spec-item"><div class="spec-label">VRAM (GPU)</div><div class="spec-value red">26 GB</div></div>
+    <div class="spec-item"><div class="spec-label">RAM (CPU)</div><div class="spec-value amber">46 GB</div></div>
+    <div class="spec-item"><div class="spec-label">Размер</div><div class="spec-value">26 GB</div></div>
+  </div>
+  <div class="model-install"><span class="cmd">ollama pull nous-hermes2:mixtral</span></div>
+  <div class="model-links"><a href="https://ollama.com/library/nous-hermes2:mixtral">Ollama →</a> <a href="https://huggingface.co/NousResearch/Nous-Hermes-2-Mixtral-8x7B-DPO">HuggingFace →</a></div>
+</div>
+
+<div class="model-card" id="dbrx-instruct">
+  <div class="model-header"><h3>DBRX Instruct 132B</h3><span class="params">132B params · MoE (16 experts)</span></div>
+  <div class="model-desc">Databricks' MoE flagship. 16 experts, 4 active. Strong at structured data, SQL, Python, reasoning.</div>
+  <div class="model-specs">
+    <div class="spec-item"><div class="spec-label">Контекст</div><div class="spec-value">32K tokens</div></div>
+    <div class="spec-item"><div class="spec-label">VRAM (GPU)</div><div class="spec-value red">80 GB</div></div>
+    <div class="spec-item"><div class="spec-label">RAM (CPU)</div><div class="spec-value red">130 GB</div></div>
+    <div class="spec-item"><div class="spec-label">Размер</div><div class="spec-value">75 GB</div></div>
+  </div>
+  <div class="model-install"><span class="cmd">ollama pull dbrx:instruct</span></div>
+  <div class="model-links"><a href="https://ollama.com/library/dbrx:instruct">Ollama →</a> <a href="https://huggingface.co/databricks/dbrx-instruct">HuggingFace →</a></div>
+</div>
+
+<div class="model-card" id="minicpm-v">
+  <div class="model-header"><h3>MiniCPM-V 8B</h3><span class="params">8B params · Vision-Language</span></div>
+  <div class="model-desc">OpenBMB's vision model. Strong OCR, image understanding, bilingual (EN/ZH). Runs on edge devices.</div>
+  <div class="model-specs">
+    <div class="spec-item"><div class="spec-label">Контекст</div><div class="spec-value">4K tokens</div></div>
+    <div class="spec-item"><div class="spec-label">VRAM (GPU)</div><div class="spec-value amber">6 GB</div></div>
+    <div class="spec-item"><div class="spec-label">RAM (CPU)</div><div class="spec-value green">8 GB</div></div>
+    <div class="spec-item"><div class="spec-label">Размер</div><div class="spec-value">5.5 GB</div></div>
+  </div>
+  <div class="model-install"><span class="cmd">ollama pull minicpm-v:8b</span></div>
+  <div class="model-links"><a href="https://ollama.com/library/minicpm-v:8b">Ollama →</a> <a href="https://huggingface.co/openbmb/MiniCPM-V-2_6">HuggingFace →</a></div>
+</div>
+
+<div class="model-card" id="falcon3-10b">
+  <div class="model-header"><h3>Falcon 3 10B</h3><span class="params">10B params · Dense</span></div>
+  <div class="model-desc">TII's latest Falcon. 14T training tokens. Strong multilingual (EN, FR, ES, PT). Function calling, code.</div>
+  <div class="model-specs">
+    <div class="spec-item"><div class="spec-label">Контекст</div><div class="spec-value">32K tokens</div></div>
+    <div class="spec-item"><div class="spec-label">VRAM (GPU)</div><div class="spec-value amber">8 GB</div></div>
+    <div class="spec-item"><div class="spec-label">RAM (CPU)</div><div class="spec-value amber">12 GB</div></div>
+    <div class="spec-item"><div class="spec-label">Размер</div><div class="spec-value">6.0 GB</div></div>
+  </div>
+  <div class="model-install"><span class="cmd">ollama pull falcon3:10b</span></div>
+  <div class="model-links"><a href="https://ollama.com/library/falcon3:10b">Ollama →</a> <a href="https://huggingface.co/tiiuae/Falcon3-10B-Instruct">HuggingFace →</a></div>
+</div>
+
+<div class="model-card" id="nomic-embed">
+  <div class="model-header"><h3>Nomic Embed Text 137M</h3><span class="params">137M params · Embedding</span></div>
+  <div class="model-desc">Nomic AI's embedding model. #1 on MTEB among open models. 768-dim vectors. Perfect for RAG and search.</div>
+  <div class="model-specs">
+    <div class="spec-item"><div class="spec-label">Контекст</div><div class="spec-value">8K tokens</div></div>
+    <div class="spec-item"><div class="spec-label">VRAM (GPU)</div><div class="spec-value green">0.5 GB</div></div>
+    <div class="spec-item"><div class="spec-label">RAM (CPU)</div><div class="spec-value green">1 GB</div></div>
+    <div class="spec-item"><div class="spec-label">Размер</div><div class="spec-value">0.3 GB</div></div>
+  </div>
+  <div class="model-install"><span class="cmd">ollama pull nomic-embed-text</span></div>
+  <div class="model-links"><a href="https://ollama.com/library/nomic-embed-text">Ollama →</a> <a href="https://huggingface.co/nomic-ai/nomic-embed-text-v1.5">HuggingFace →</a></div>
+</div>
+
+<div class="model-card" id="mxbai-embed">
+  <div class="model-header"><h3>mxbai-embed-large 335M</h3><span class="params">335M params · Embedding</span></div>
+  <div class="model-desc">Mixedbread AI's embedding. 1024-dim vectors, MTEB leader. Best open embedding for retrieval tasks.</div>
+  <div class="model-specs">
+    <div class="spec-item"><div class="spec-label">Контекст</div><div class="spec-value">512 tokens</div></div>
+    <div class="spec-item"><div class="spec-label">VRAM (GPU)</div><div class="spec-value green">1 GB</div></div>
+    <div class="spec-item"><div class="spec-label">RAM (CPU)</div><div class="spec-value green">2 GB</div></div>
+    <div class="spec-item"><div class="spec-label">Размер</div><div class="spec-value">0.7 GB</div></div>
+  </div>
+  <div class="model-install"><span class="cmd">ollama pull mxbai-embed-large</span></div>
+  <div class="model-links"><a href="https://ollama.com/library/mxbai-embed-large">Ollama →</a> <a href="https://huggingface.co/mixedbread-ai/mxbai-embed-large-v1">HuggingFace →</a></div>
+</div>
+
+
+</div>
+<footer>Qantcore &copy; 2026 — Платформа аналитики AI-агентов — <a href="https://t.me/nousresearch">@nousresearch</a></footer>
+</body>
+</html>

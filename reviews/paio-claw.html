@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Обзор PaioClaw: Платформа персональных AI-агентов без боли настройки</title>
+<meta name="description" content="Глубокий обзор PaioClaw — managed-платформы на базе OpenClaw. 2000+ навыков, 60-секундная настройка, экономия токенов 50%. Сравнение с MyClaw, Blink Claw, Hostinger и self-host.">
+<style>
+  :root { --bg: #0A0A0F; --card: #141420; --text: #E8E5DD; --muted: #ACA994; --orange: #FF8C2A; --blue: #3B82F6; --green: #22C55E; --border: #FFFFFF10; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--bg); color: var(--text); font-family: 'Plus Jakarta Sans', system-ui, sans-serif; line-height: 1.7; }
+  .container { max-width: 860px; margin: 0 auto; padding: 40px 24px; }
+  h1 { font-size: 2.4rem; font-weight: 800; line-height: 1.2; margin-bottom: 8px; letter-spacing: -0.02em; }
+  h2 { font-size: 1.5rem; font-weight: 700; margin: 48px 0 16px; color: #FBF9EC; border-left: 3px solid var(--orange); padding-left: 14px; }
+  h3 { font-size: 1.15rem; font-weight: 700; margin: 24px 0 10px; color: #FBF9EC; }
+  p { margin-bottom: 14px; color: var(--text); }
+  a { color: var(--orange); text-decoration: none; border-bottom: 1px solid transparent; transition: border .2s; }
+  a:hover { border-bottom-color: var(--orange); }
+  .muted { color: var(--muted); font-size: 0.9rem; }
+  .badge { display: inline-block; padding: 3px 10px; border-radius: 12px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; margin-right: 6px; }
+  .badge-hot { background: rgba(255,140,42,0.15); color: #FF8C2A; border: 1px solid rgba(255,140,42,0.3); }
+  .badge-new { background: rgba(34,197,94,0.15); color: #22C55E; border: 1px solid rgba(34,197,94,0.3); }
+  .card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 24px; margin: 20px 0; }
+  .card h3 { margin-top: 0; }
+  table { width: 100%; border-collapse: collapse; margin: 20px 0; background: var(--card); border-radius: 12px; overflow: hidden; border: 1px solid var(--border); }
+  th { background: #1E1E30; padding: 12px 16px; text-align: left; font-size: 0.8rem; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; }
+  td { padding: 10px 16px; border-bottom: 1px solid var(--border); font-size: 0.9rem; }
+  tr:last-child td { border-bottom: none; }
+  .check { color: var(--green); }
+  .cross { color: #EF4444; }
+  .partial { color: #F59E0B; }
+  .highlight { background: rgba(255,140,42,0.06); border-left: 2px solid var(--orange); padding: 14px 18px; border-radius: 0 8px 8px 0; margin: 16px 0; }
+  .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px,1fr)); gap: 12px; margin: 20px 0; }
+  .stat-box { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 16px; text-align: center; }
+  .stat-box .num { font-size: 1.8rem; font-weight: 800; color: var(--orange); }
+  .stat-box .label { font-size: 0.8rem; color: var(--muted); margin-top: 4px; }
+  .diagram { text-align: center; margin: 30px 0; }
+  .diagram img { max-width: 100%; border-radius: 12px; border: 1px solid var(--border); }
+  ul, ol { margin: 10px 0 16px 24px; }
+  li { margin-bottom: 6px; }
+  @media (max-width:640px) { h1 { font-size: 1.6rem; } .container { padding: 20px 16px; } }
+</style>
+</head>
+<body>
+<div class="container">
+
+<h1>PaioClaw: Ваш AI-агент за 60 секунд</h1>
+<p class="muted">
+  <span class="badge badge-hot">Hot</span>
+  <span class="badge badge-new">Январь 2026</span>
+  Обзор платформы персональных AI-агентов на базе OpenClaw — без Docker, без CLI, без боли.
+</p>
+
+<div class="stats">
+  <div class="stat-box"><div class="num">2000+</div><div class="label">навыков (skills)</div></div>
+  <div class="stat-box"><div class="num">60с</div><div class="label">до первого запуска</div></div>
+  <div class="stat-box"><div class="num">-50%</div><div class="label">экономия токенов</div></div>
+  <div class="stat-box"><div class="num">$19</div><div class="label">от / месяц</div></div>
+  <div class="stat-box"><div class="num">10</div><div class="label">каналов связи</div></div>
+</div>
+
+<h2>Что такое PaioClaw</h2>
+
+<p>
+  <a href="https://paioclaw.ai" target="_blank">PaioClaw</a> — это managed-платформа для запуска персональных AI-агентов. 
+  Под капотом работает <strong>Hermes Agent</strong> (ранее OpenClaw) — open-source агент от 
+  <a href="https://nousresearch.com" target="_blank">Nous Research</a>, 
+  лицензия MIT, <a href="https://github.com/NousResearch/hermes-agent" target="_blank">GitHub</a>.
+</p>
+
+<p>
+  Главная «фишка» PaioClaw — <strong>нулевой порог входа</strong>. Пока self-host требует Docker, CLI, настройки 
+  переменных окружения и VPS, PaioClaw обещает запуск за 60 секунд: регистрация → выбор шаблона агента → готово.
+</p>
+
+<div class="highlight">
+  <strong>Ключевое позиционирование:</strong> «Most people give up on OpenClaw during setup. 
+  PaioClaw: sign up → pick a prebuilt agent → live in 60 seconds.»
+  <br><span class="muted">— @PaioClaw на X, 8 мая 2026</span>
+</div>
+
+<h2>Архитектура платформы</h2>
+
+<div class="diagram">
+  <img src="/images/paio-claw-architecture.svg" alt="Архитектура PaioClaw" loading="lazy">
+  <p class="muted" style="margin-top:8px">Схема: слои платформы, каналы взаимодействия, инстансы агентов, инфраструктура</p>
+</div>
+
+<p>PaioClaw построен как четырёхуровневая система:</p>
+<ol>
+  <li><strong>Каналы взаимодействия</strong> — Web App, Telegram, Discord, Slack, WhatsApp, Mac App, CLI</li>
+  <li><strong>Платформа Paio</strong> — API Gateway, оркестратор инстансов, библиотека навыков, оптимизатор токенов, cron-планировщик, SSH-терминал, memory tiers, personas</li>
+  <li><strong>Agent Instances</strong> — изолированные инстансы Hermes Agent под каждого пользователя</li>
+  <li><strong>Инфраструктура</strong> — OpenRouter (200+ моделей), OpenAI, Supabase (БД + realtime), пользовательские API-ключи, интеграции (GitHub, Gmail, Calendar, HomeKit, MQTT)</li>
+</ol>
+
+<h2>2000+ навыков: полный каталог</h2>
+
+<p>
+  PaioClaw поставляется с предустановленной библиотекой из 2000+ навыков, сгруппированных по юзкейсам.
+  В отличие от self-host Hermes Agent, где навыки создаются агентом по мере использования, PaioClaw отдаёт готовый каталог.
+</p>
+
+<h3>Разработка (Developer)</h3>
+<table>
+  <tr><th>Навык</th><th>Описание</th><th>Популярность</th></tr>
+  <tr><td>Code Review</td><td>Анализ PR, поиск антипаттернов, уязвимостей, code smells</td><td>95%</td></tr>
+  <tr><td>Test Gen</td><td>Генерация unit и integration тестов для непокрытых функций</td><td>90%</td></tr>
+  <tr><td>Bug Detection</td><td>Сканирование кода на баги, null references, edge cases</td><td>92%</td></tr>
+  <tr><td>Git Ops</td><td>Автоматизация branching, merging, tagging, release workflows</td><td>82%</td></tr>
+  <tr><td>Docs Gen</td><td>Автогенерация документации из комментариев и сигнатур</td><td>78%</td></tr>
+</table>
+
+<h3>Автоматизация (Automation)</h3>
+<table>
+  <tr><th>Юзкейс</th><th>Навыки</th><th>Каналы</th></tr>
+  <tr><td>Email Triage</td><td>Read, Spam Filter, Categorize, Task Extract, GitHub Issues, Reminders</td><td>Gmail, Slack, GitHub</td></tr>
+  <tr><td>Morning Briefing</td><td>Email Scan, Calendar Read, Summarize, Weather, Digest Send</td><td>Gmail, Google Calendar</td></tr>
+  <tr><td>Flight Check-in</td><td>Flight Lookup, Auto Check-in, Seat Select, Boarding Pass</td><td>Browser Agent, Telegram</td></tr>
+  <tr><td>Meeting Notes</td><td>Transcribe, Summarize, Action Items, Assignees, Ticket Create</td><td>Google Meet, Slack</td></tr>
+  <tr><td>CRM Data Sync</td><td>Contact Sync, Deal Update, Dedup, Webhooks, Audit</td><td>Salesforce, HubSpot, Notion</td></tr>
+</table>
+
+<h3>Умный дом (Smart Home)</h3>
+<p>
+  Lights, Thermostat, Locks, Cameras, Scenes, Geofence, Energy Monitor, Music.
+  Каналы: HomeKit, Google Home, MQTT.
+</p>
+
+<h3>Креативные (Creative)</h3>
+<p>
+  Color Palette, Image Resize, Social Post, Brand Kit, Typography.
+  Каналы: Browser Agent, Mac Agent.
+</p>
+
+<h3>Мониторинг (Monitoring)</h3>
+<p>
+  CPU Monitor, Memory Monitor, Disk Monitor, Network Monitor, Auto Restart.
+  Каналы: Terminal, Slack. Восстановление сервисов при падении.
+</p>
+
+<h2>Сравнение с конкурентами</h2>
+
+<p>
+  PaioClaw позиционирует себя как <strong>лидера</strong> среди managed OpenClaw-хостингов.
+  Вот официальная таблица сравнения с сайта:
+</p>
+
+<table>
+  <tr><th>Характеристика</th><th style="color:#FF8C2A">PaioClaw</th><th>MyClaw</th><th>Blink Claw</th><th>Hostinger</th><th>Self-Host</th></tr>
+  <tr><td>24/7 uptime</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td><td class="cross">✗</td></tr>
+  <tr><td>OpenClaw layout</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td><td class="cross">✗</td></tr>
+  <tr><td>SSH терминал</td><td class="check">✓</td><td class="check">✓</td><td class="cross">✗</td><td class="check">✓</td><td class="check">✓</td></tr>
+  <tr><td>Multiple assistants</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td><td class="cross">✗</td><td class="partial">◐</td></tr>
+  <tr><td>Auto-update OpenClaw</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td><td class="cross">✗</td><td class="cross">✗</td></tr>
+  <tr><td>Setup &lt; 60 сек</td><td class="check">✓</td><td class="partial">◐</td><td class="partial">◐</td><td class="cross">✗</td><td class="cross">✗</td></tr>
+  <tr><td>Pre-installed skills</td><td class="check">✓</td><td class="partial">◐</td><td class="cross">✗</td><td class="cross">✗</td><td class="cross">✗</td></tr>
+  <tr><td>Security by design</td><td class="check">✓</td><td class="cross">✗</td><td class="cross">✗</td><td class="cross">✗</td><td class="cross">✗</td></tr>
+  <tr><td>Mac agent app</td><td class="check">✓</td><td class="cross">✗</td><td class="cross">✗</td><td class="cross">✗</td><td class="cross">✗</td></tr>
+  <tr><td><span class="badge badge-hot">Hot</span> -50% токенов</td><td class="check">✓</td><td class="cross">✗</td><td class="cross">✗</td><td class="cross">✗</td><td class="cross">✗</td></tr>
+  <tr><td><span class="badge badge-hot">Hot</span> Relay Extension</td><td class="check">✓</td><td class="cross">✗</td><td class="cross">✗</td><td class="cross">✗</td><td class="cross">✗</td></tr>
+  <tr style="border-top:1px solid rgba(255,255,255,0.15)"><td><strong>Цена</strong></td><td style="color:#FF8C2A;font-weight:700">$19/мес</td><td>~$20/мес</td><td>$45/мес flat</td><td>~$6/мес + setup</td><td>$5-20/мес VPS</td></tr>
+</table>
+
+<h2>Технические особенности</h2>
+
+<div class="card">
+  <h3>50% экономия токенов</h3>
+  <p>
+    PaioClaw утверждает, что использует внутренний оптимизатор токенов, который сокращает потребление на 50%. 
+    Вероятно, это достигается за счёт агрессивного кэширования системных промптов, сжатия контекста и 
+    оптимизированных цепочек вызовов. Для пользователей, платящих за API-ключи, это прямо конвертируется в экономию бюджета.
+  </p>
+</div>
+
+<div class="card">
+  <h3>Relay Extension</h3>
+  <p>
+    Фирменное расширение для подключения агента к внешним сервисам без сложной настройки webhook'ов. 
+    Позволяет агенту взаимодействовать с Gmail, GitHub, Google Calendar, HomeKit и другими сервисами 
+    через единый прокси-слой.
+  </p>
+</div>
+
+<div class="card">
+  <h3>Memory Tiers и Personas</h3>
+  <p>
+    Многоуровневая система памяти: агент помнит контекст между сессиями, адаптируется под пользователя.
+    Personas — изолированные «личности» агента под разные задачи (рабочая, домашняя, творческая).
+  </p>
+</div>
+
+<h2>Модели и провайдеры</h2>
+
+<p>PaioClaw поддерживает два LLM-провайдера:</p>
+<ul>
+  <li><a href="https://openrouter.ai" target="_blank">OpenRouter</a> — 200+ моделей (Claude, Gemini, Llama, Mixtral, Command R+, DeepSeek, Qwen...)</li>
+  <li><a href="https://openai.com" target="_blank">OpenAI</a> — GPT-4o, GPT-4o-mini, o3, o3-mini</li>
+</ul>
+
+<p>
+  Важный нюанс: пользователь использует <strong>свои API-ключи</strong>. PaioClaw не перепродаёт токены — 
+  платформа только управляет агентом, а вызовы к LLM идут напрямую через ваши ключи.
+  Это принципиально отличается от модели «всё включено».
+</p>
+
+<h2>Плюсы и минусы</h2>
+
+<h3>Сильные стороны</h3>
+<ul>
+  <li><strong>Мгновенный старт.</strong> Ни Docker, ни CLI, ни VPS — регистрация и 60 секунд.</li>
+  <li><strong>Готовые навыки.</strong> 2000+ skills из коробки, разбитых по use cases.</li>
+  <li><strong>Изоляция.</strong> Каждый пользователь получает выделенный инстанс агента.</li>
+  <li><strong>Экономия токенов.</strong> Заявленные -50% через оптимизатор.</li>
+  <li><strong>UI/UX.</strong> Веб-интерфейс вместо терминала — ниже порог входа.</li>
+  <li><strong>Multi-channel.</strong> Telegram, Discord, Slack, WhatsApp из коробки.</li>
+  <li><strong>Mac App.</strong> Нативное приложение — у конкурентов этого нет.</li>
+</ul>
+
+<h3>Слабые стороны и риски</h3>
+<ul>
+  <li><strong>Молодой проект.</strong> Запущен в январе 2026. 266 фолловеров в X, 59 твитов. Нет track record.</li>
+  <li><strong>Зависимость от OpenClaw.</strong> Платформа — надстройка над open-source агентом. Если Hermes Agent изменит API — PaioClaw должен адаптироваться.</li>
+  <li><strong>Vendor lock-in.</strong> Навыки, personas, memory tiers привязаны к платформе. Мигрировать на self-host будет больно.</li>
+  <li><strong>Цена vs self-host.</strong> $19/мес × 12 = $228/год против $5/мес VPS ($60/год). Разница ×3.8.</li>
+  <li><strong>Прозрачность.</strong> Нет открытого кода платформы. «Security by design» — маркетинговое заявление без аудита.</li>
+  <li><strong>Ограниченные провайдеры.</strong> Только OpenRouter и OpenAI. Self-host Hermes Agent поддерживает 10+ провайдеров, включая локальные модели через llama.cpp.</li>
+</ul>
+
+<h2>Для кого это?</h2>
+
+<table>
+  <tr><th>Сценарий</th><th>PaioClaw</th><th>Self-Host Hermes Agent</th></tr>
+  <tr><td>Хочу AI-агента, не хочу разбираться с серверами</td><td class="check">✓ Идеально</td><td class="cross">✗ Сложно</td></tr>
+  <tr><td>Нужен агент для команды из 5+ человек</td><td class="check">✓ Pro-план</td><td class="partial">◐ Требует администрирования</td></tr>
+  <tr><td>Нужны локальные модели (llama.cpp)</td><td class="cross">✗ Нет</td><td class="check">✓ Да</td></tr>
+  <tr><td>Хочу полный контроль над данными</td><td class="partial">◐ Ваши ключи, но платформа Paio</td><td class="check">✓ Полный контроль</td></tr>
+  <tr><td>Бюджет $0-10/мес</td><td class="cross">✗ $19/мес</td><td class="check">✓ $5/мес VPS</td></tr>
+  <tr><td>Нужен Mac Agent</td><td class="check">✓ Да</td><td class="cross">✗ Нет</td></tr>
+</table>
+
+<h2>Вывод</h2>
+
+<p>
+  PaioClaw решает реальную проблему: <strong>развёртывание OpenClaw/Hermes Agent — это больно</strong>. 
+  Docker, конфигурация, выбор модели, настройка gateway, провайдеров, навыков — всё это отпугивает 
+  массового пользователя. PaioClaw убирает трение и даёт готового агента за минуту.
+</p>
+
+<p>
+  Цена в $19/мес — это плата за удобство, а не за токены (токены и так ваши). Сравнимо с MyClaw ($20/мес), 
+  но PaioClaw выигрывает по фичам: Mac App, Relay Extension, оптимизатор токенов, больше навыков.
+</p>
+
+<div class="highlight">
+  <strong>Вердикт:</strong> Как продукт — сильный. Как бизнес — слишком рано судить. 
+  Для не-технических пользователей это лучший способ получить персонального AI-агента. 
+  Для разработчиков self-host Hermes Agent ($5/мес VPS + свой контроль) всё ещё привлекательнее.
+  <br><br>
+  <strong>Следить.</strong> Если PaioClaw выживет год и нарастит базу — это может стать стандартным 
+  способом потребления AI-агентов для массового рынка.
+</div>
+
+<h2>Ссылки</h2>
+<ul>
+  <li><a href="https://paioclaw.ai" target="_blank">PaioClaw — официальный сайт</a></li>
+  <li><a href="https://x.com/PaioClaw" target="_blank">@PaioClaw на X (Twitter)</a></li>
+  <li><a href="https://x.com/i/status/2052810183651307607" target="_blank">Твит-анонс (8 мая 2026)</a></li>
+  <li><a href="https://github.com/NousResearch/hermes-agent" target="_blank">Hermes Agent на GitHub (open-source основа)</a></li>
+  <li><a href="https://hermes-agent.nousresearch.com/docs/" target="_blank">Документация Hermes Agent</a></li>
+  <li><a href="https://openrouter.ai" target="_blank">OpenRouter — 200+ LLM моделей</a></li>
+</ul>
+
+<p class="muted" style="margin-top:40px;border-top:1px solid var(--border);padding-top:20px">
+  Обзор написан 26 мая 2026. На основе анализа сайта paioclaw.ai, JS-бандлов, X-аккаунта, 
+  и сравнения с открытым кодом Hermes Agent. Схема архитектуры: 
+  <a href="/images/paio-claw-architecture.svg">SVG</a>.
+</p>
+
+</div>
+</body>
+</html>

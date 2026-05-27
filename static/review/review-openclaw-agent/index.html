@@ -36,13 +36,28 @@ header{position:sticky;top:0;z-index:100;backdrop-filter:blur(20px) saturate(180
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
 .mega-nav{display:flex;gap:4px;align-items:center}
 .mega-nav a,.mega-nav .nav-section{font-size:13.5px;color:var(--muted);
-  padding:6px 12px;border-radius:6px;transition:all .2s;font-weight:500;
-  letter-spacing:.01em;white-space:nowrap}
+  padding:6px 12px;border-radius:6px;transition:color .2s,background .2s;font-weight:500;
+  letter-spacing:.01em;white-space:nowrap;text-decoration:none;
+  -webkit-tap-highlight-color:transparent;outline:none;user-select:none}
 .mega-nav a:hover{color:var(--text);background:rgba(255,255,255,.04)}
+.mega-nav a:active{color:var(--muted);background:transparent}
+.mega-nav a:focus-visible{outline:2px solid var(--green);outline-offset:-2px}
 .mega-nav a.active{color:var(--green);background:var(--green-dim)}
+.mega-nav a.active:active{color:var(--green);background:var(--green-dim)}
 .nav-sep{width:1px;height:18px;background:var(--border);margin:0 4px}
 .nav-featured{font-size:14px!important;font-weight:700!important;color:var(--green)!important;
   background:var(--green-dim)!important;padding:8px 16px!important;letter-spacing:.02em}
+.nav-featured:active{color:var(--green)!important;background:var(--green-dim)!important}
+.nav-review{font-size:14px!important;font-weight:700!important;color:#a78bfa!important;
+  padding:6px 14px!important;letter-spacing:.01em}
+.nav-review:hover{color:#c4b5fd!important;background:rgba(167,139,250,.1)!important}
+.nav-review:active{color:#a78bfa!important}
+.nav-review.active{background:rgba(167,139,250,.15)!important}
+.nav-local{font-size:14px!important;font-weight:700!important;color:var(--blue)!important;
+  padding:6px 14px!important;letter-spacing:.01em}
+.nav-local:hover{color:#60a5fa!important;background:rgba(59,130,246,.1)!important}
+.nav-local:active{color:var(--blue)!important}
+.nav-local.active{background:rgba(59,130,246,.15)!important}
 
 /* ─── Terminal Grid (hero bg) ─── */
 .terminal-grid{position:absolute;top:0;left:0;right:0;bottom:0;overflow:hidden;pointer-events:none;z-index:0}
@@ -62,7 +77,7 @@ header{position:sticky;top:0;z-index:100;backdrop-filter:blur(20px) saturate(180
 /* ─── Hero ─── */
 .hero{text-align:center;padding:72px 24px 48px;position:relative;overflow:hidden}
 .hero>*{position:relative;z-index:2}
-.hero h1{font-size:clamp(36px,5vw,60px);font-weight:800;letter-spacing:-.03em;
+.hero h1{font-size:clamp(12px,1.67vw,20px);font-weight:800;letter-spacing:-.03em;
   line-height:1.15;color:#f1f5f9;max-width:800px;margin:0 auto}
 .hero h1 .accent{color:var(--green)}
 .hero .sub{font-size:17px;color:var(--muted);margin-top:16px;max-width:640px;
@@ -82,7 +97,7 @@ header{position:sticky;top:0;z-index:100;backdrop-filter:blur(20px) saturate(180
 .cta-secondary{padding:12px 28px;border-radius:var(--radius-sm);font-size:14px;font-weight:600;
   background:transparent;color:var(--text);border:1px solid var(--border);cursor:pointer;
   transition:all .2s}
-.cta-secondary:hover{border-color:var(--green);color:var(--green)}
+.cta-secondary:hover{border-color:var(--blue);color:var(--blue)}
 
 /* ─── Enterprise CTA Banner ─── */
 .enterprise-cta{background:linear-gradient(135deg,rgba(16,185,129,.08) 0%,rgba(59,130,246,.04) 100%);
@@ -131,7 +146,7 @@ header{position:sticky;top:0;z-index:100;backdrop-filter:blur(20px) saturate(180
   display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
 
 .card{background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);
-  padding:20px;transition:all .2s;position:relative;display:flex;flex-direction:column}
+  padding:20px;transition:all .2s;position:relative;display:flex;flex-direction:column;overflow:visible}
 .card:hover{border-color:rgba(16,185,129,.25);transform:translateY(-2px);
   box-shadow:0 8px 30px rgba(0,0,0,.4)}
 .card-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:12px}
@@ -153,12 +168,12 @@ header{position:sticky;top:0;z-index:100;backdrop-filter:blur(20px) saturate(180
 .panel-item .pv.green{color:var(--green)}
 .panel-item .pv.amber{color:var(--amber)}
 .panel-item .pl{font-size:10px;color:var(--dim);margin-top:1px;text-transform:uppercase;letter-spacing:.03em}
-.card-compare{position:absolute;top:12px;right:12px;z-index:5}
-.card-compare input[type=checkbox]{appearance:none;width:18px;height:18px;border-radius:4px;
+.card-compare{position:absolute;top:10px;right:10px;z-index:5}
+.card-compare input[type=checkbox]{appearance:none;width:24px;height:24px;border-radius:6px;
   border:2px solid var(--dim);cursor:pointer;transition:all .2s;position:relative}
 .card-compare input[type=checkbox]:checked{border-color:var(--green);background:var(--green)}
 .card-compare input[type=checkbox]:checked::after{content:'✓';position:absolute;
-  top:-1px;left:2px;color:#000;font-size:13px;font-weight:700}
+  top:0;left:4px;color:#000;font-size:16px;font-weight:700}
 .card-trust{display:flex;gap:12px;margin-top:8px;font-size:10px;color:var(--dim)}
 .card-trust span{display:flex;align-items:center;gap:3px}
 
@@ -427,22 +442,60 @@ footer a{color:var(--green)}
 .search-bar input::placeholder{color:var(--dim)}
 
 @media(max-width:768px){
-  .hero h1{font-size:28px}
-  .grid,.featured-grid{grid-template-columns:1fr}
-  .mega-nav{overflow-x:auto;gap:2px;-webkit-overflow-scrolling:touch}
+  .hero h1{font-size:24px;line-height:1.3}
+  .hero .sub{font-size:13px}
+  .hero .tagline{font-size:10px}
+  .grid,.featured-grid{grid-template-columns:1fr!important}
+  .mega-nav{overflow-x:auto;gap:2px;-webkit-overflow-scrolling:touch;flex-wrap:nowrap}
   .mega-nav a,.mega-nav .nav-section{font-size:11px;padding:5px 8px}
   .nav-sep{display:none}
   .auth-stat{min-width:80px;padding:12px 10px}
   .auth-stat .n{font-size:18px}
   .auth-stat .l{font-size:9px}
-  .hero-metrics{gap:6px}
+  .hero-metrics{gap:6px;flex-wrap:wrap}
   .hero-metric{min-width:70px;padding:8px 12px}
   .hero-metric .val{font-size:16px}
   .hero-metric .lbl{font-size:9px}
   .compare-bar{left:16px;right:16px;transform:none;border-radius:var(--radius-sm)}
   .section-hd{padding:8px 16px 12px}
+  .section-hd h2{font-size:16px}
   .filters-bar,.grid,.featured,.auth-bar{padding-left:16px;padding-right:16px}
   .header-inner{padding:12px 16px}
+  .logo{font-size:16px}
+  /* Card panels */
+  .card{padding:14px}
+  .card-panel{grid-template-columns:1fr 1fr;gap:6px}
+  .panel-item{padding:6px 8px}
+  .panel-item .pv{font-size:13px}
+  .card-title{font-size:14px}
+  .card-desc{font-size:12px}
+  /* Section rows → wrap */
+  [style*="display:flex"][style*="overflow-x:auto"]{flex-wrap:nowrap}
+  /* Catalog 5-col → 2-col */
+  #catalog-grid{grid-template-columns:repeat(2,1fr)!important}
+  /* Enterprise CTA */
+  .ec-inner{flex-direction:column;text-align:center;padding:20px}
+  .ec-actions{justify-content:center}
+  /* Product detail */
+  .detail-header h1{font-size:22px}
+  .detail-body{font-size:13px}
+  /* Code blocks */
+  .code-block{font-size:11px;padding:14px}
+  /* Stack builder */
+  .stack-row{flex-direction:column}
+  /* Footer */
+  .footer-inner{flex-direction:column;gap:16px;text-align:center}
+}
+@media(max-width:480px){
+  .hero h1{font-size:20px}
+  .hero .sub{font-size:12px}
+  .hero-metrics{gap:4px}
+  .hero-metric{min-width:60px;padding:6px 10px}
+  .hero-metric .val{font-size:14px}
+  .card-panel{grid-template-columns:1fr}
+  .auth-inner{flex-wrap:wrap}
+  .auth-stat{flex:1 1 50%;border-right:none;border-bottom:1px solid var(--border)}
+  #catalog-grid{grid-template-columns:1fr!important}
 }</style>
 <script type="application/ld+json">
 {}
@@ -471,13 +524,13 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
       <span class="nav-sep"></span>
       <a href="/guides/" class="nav-featured ">📖 Гайды</a>
       <span class="nav-sep"></span>
-      <a href="/benchmarks/">Рейтинг</a>
-      <span class="nav-sep"></span>
-      <a href="/catalog/product/">Локальный AI</a>
+      <a href="/catalog/review/" class="nav-review active">Обзоры</a>
       <span class="nav-sep"></span>
       <a href="/multi-agent/" class="">Мульти-агенты</a>
       <span class="nav-sep"></span>
-      <a href="/catalog/review/" class="active">Обзоры</a>
+      <a href="/benchmarks/">Рейтинг</a>
+      <span class="nav-sep"></span>
+      <a href="/local-models/" class="nav-local">Локальные LLM</a>
       <span class="nav-sep"></span>
       <a href="/methodology/" class="">Методология</a>
       <span class="nav-sep"></span>
@@ -498,11 +551,51 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
           <p class="tagline">Детальный обзор OpenClaw — Ваш личный AI. Любая ОС. Любая платформа. 🦞</p>
           <div class="detail-meta">
             <a href="/product/openclaw-agent/" class="meta-item">🔗 OpenClaw — персональный AI-ассистент с о</a>
-            <div class="meta-item">📝 580 words</div>
+            <div class="meta-item">📝 998 words</div>
           </div>
         </div>
       </div>
-      <div class="detail-body"></div>
+      <div class="detail-body"><h2>Что такое OpenClaw</h2>
+<p>OpenClaw 2026 — это агентная платформа, позиционируемая как «личный AI» с кроссплатформенным агентом, способным работать на любой операционной системе (Windows, macOS, Linux, включая ARM-сборки) и в любом окружении — от настольного ПК до серверного кластера или edge-устройства. В отличие от облачных AI-сервисов, OpenClaw делает ставку на локальное выполнение агентов с возможностью выбора рантайма: пользователь может запустить агента как на собственном железе, так и в инфраструктуре провайдера. Основная целевая аудитория — разработчики, DevOps-инженеры и исследователи, которым нужен гибкий инструмент для построения автономных AI-пайплайнов без привязки к конкретному вендору.</p>
+<p>Ключевая ценность OpenClaw — модульная архитектура на основе микросервисов, где каждый агент представляет собой изолированный контейнер с собственным рантаймом (Python, JavaScript, Rust). Платформа предоставляет встроенный оркестратор для управления жизненным циклом агентов, систему очередей задач и единый API для интеграции с внешними LLM (OpenAI, Anthropic, локальные модели через Ollama или vLLM). В 2026 году добавлена поддержка гибридного выполнения: часть агентов может работать локально, часть — в облаке, с автоматической синхронизацией состояния через распределённое хранилище на базе SQLite или PostgreSQL.</p>
+
+<h2>Ключевые возможности</h2>
+<ul>
+<li><strong>Кроссплатформенный рантайм агентов</strong>: OpenClaw использует WebAssembly (Wasm) и контейнеризацию через Firecracker microVM, что позволяет запускать агентов на любом устройстве — от Raspberry Pi до серверов x86. Поддерживаются все основные ОС, включая Alpine Linux и FreeBSD.</li>
+<li><strong>Встроенный оркестратор с DAG-планировщиком</strong>: агенты объединяются в направленные ациклические графы (DAG) с поддержкой условных переходов, циклов и параллельного выполнения. Планировщик использует алгоритм на основе критического пути для оптимизации времени выполнения.</li>
+<li><strong>Гибридное выполнение (Local-First)</strong>: по умолчанию все агенты выполняются локально, но при превышении порогов загрузки CPU/RAM автоматически мигрируют в облачный кластер. Миграция происходит без потери состояния благодаря чекпоинтам на основе CRDT.</li>
+<li><strong>Единый API для LLM-провайдеров</strong>: абстрактный слой Model Gateway поддерживает более 20 провайдеров, включая OpenAI, Anthropic, Google Gemini, Mistral, а также локальные модели через llama.cpp и ExLlama. Поддерживается fallback между провайдерами при недоступности.</li>
+<li><strong>Встроенная система observability</strong>: каждый агент генерирует структурированные логи в формате OpenTelemetry, визуализация доступна через встроенный дашборд на Grafana. Поддерживается трассировка запросов между агентами с точностью до микросекунды.</li>
+<li><strong>Песочница для агентов (Sandbox)</strong>: изолированное выполнение с ограничением доступа к файловой системе, сети и системным вызовам через seccomp-профили. Песочница поддерживает политики безопасности на основе OPA (Open Policy Agent).</li>
+<li><strong>Встроенный маркетплейс агентов</strong>: репозиторий готовых агентов для типовых задач — парсинг данных, генерация отчётов, мониторинг систем, интеграция с Jira/GitLab. Агенты распространяются в формате OCI-образов.</li>
+</ul>
+
+<h2>Характеристики и тарифы</h2>
+<p>OpenClaw 2026 распространяется по модели <strong>Freemium с открытым ядром</strong>. Базовый рантайм и оркестратор доступны под лицензией Apache 2.0 в репозитории GitHub. Проприетарные компоненты включают Model Gateway с поддержкой коммерческих LLM, систему гибридного выполнения и расширенную observability. Для индивидуальных разработчиков доступен бесплатный тарифный план «Community» с ограничением на 5 одновременно работающих агентов и 1 ГБ оперативной памяти на агента. План «Pro» ($29/мес) снимает ограничения на количество агентов и добавляет приоритетную поддержку, а также возможность подключения собственных LLM-ключей. Корпоративный тариф «Enterprise» ($199/мес) включает SLA 99.9%, выделенный инстанс оркестратора и интеграцию с корпоративными SSO-провайдерами (Okta, Keycloak). Все тарифы включают неограниченное количество вызовов API к встроенному Model Gateway, но с ограничением по токенам: 1 млн токенов/мес на Community, 10 млн на Pro, безлимит на Enterprise.</p>
+
+<h2>Плюсы и минусы</h2>
+<h3>Сильные стороны</h3>
+<ul>
+<li><strong>Полная локальность выполнения</strong>: агенты работают без обязательного подключения к интернету, что критично для задач с конфиденциальными данными (финансы, медицина, оборонка). Все вычисления могут оставаться на устройстве пользователя.</li>
+<li><strong>Гибкая архитектура оркестрации</strong>: поддержка DAG-графов с условной логикой позволяет строить сложные многошаговые пайплайны, включая циклы и рекурсивные вызовы агентов. Это выгодно отличает OpenClaw от линейных цепочек в LangChain.</li>
+<li><strong>Низкий порог входа для разработчиков</strong>: агенты пишутся на стандартных языках (Python, JS, Rust) с использованием привычных библиотек. Не требуется изучать проприетарный DSL — достаточно описать логику в виде обычной функции с аннотациями.</li>
+<li><strong>Встроенная безопасность</strong>: песочница с seccomp и OPA-политиками позволяет запускать непроверенный код от сторонних разработчиков без риска для основной системы. Это особенно важно для маркетплейса агентов.</li>
+</ul>
+<h3>Ограничения</h3>
+<ul>
+<li><strong>Ограниченная производительность на слабом железе</strong>: при выполнении сложных агентов (например, с мультимодальными LLM) на устройствах с менее 8 ГБ RAM наблюдается значительное замедление. Гибридное выполнение частично решает проблему, но требует стабильного интернет-соединения.</li>
+<li><strong>Отсутствие встроенной поддержки GPU-ускорения для локальных моделей</strong>: хотя OpenClaw может использовать CUDA через внешние рантаймы (Ollama, vLLM), собственный рантайм не оптимизирован для GPU. Это ограничивает производительность при работе с большими языковыми моделями локально.</li>
+<li><strong>Сложность настройки для не-разработчиков</strong>: несмотря на декларируемую простоту, создание агентов требует понимания контейнеризации, сетевых протоколов и основ распределённых систем. GUI-редактор графов пока находится в статусе beta.</li>
+</ul>
+
+<h2>Сравнение с аналогами</h2>
+<p><strong>LangChain/LangGraph</strong>: главный конкурент в области оркестрации агентов. LangChain предлагает более широкую экосистему интеграций (более 500 инструментов) и зрелое сообщество. Однако OpenClaw выигрывает в производительности за счёт локального выполнения и микросекундной трассировки, тогда как LangChain ориентирован на облачные пайплайны с задержками на сетевые вызовы. Кроме того, OpenClaw предоставляет встроенную песочницу, тогда как в LangChain безопасность выполнения агентов остаётся на совести разработчика.</p>
+<p><strong>AutoGPT/AI Agent</strong>: эти проекты фокусируются на автономных агентах с долгосрочной памятью и планированием. OpenClaw уступает в готовых решениях для самопланирования (нет встроенного ReAct-цикла), но превосходит в гибкости оркестрации — пользователь может точно контролировать последовательность действий агентов, а не полагаться на чёрный ящик LLM. Для задач, требующих детерминированного выполнения (например, обработка транзакций), OpenClaw предпочтительнее.</p>
+<p><strong>Dify / Flowise</strong>: low-code платформы для создания AI-приложений. Они предлагают удобный визуальный интерфейс и подходят для бизнес-пользователей без навыков программирования. OpenClaw, напротив, ориентирован на разработчиков и предоставляет более тонкий контроль над выполнением (ручное управление памятью, настройка seccomp-профилей). Для продакшн-сценариев с высокими требованиями к безопасности и производительности OpenClaw является более зрелым решением.</p>
+
+<h2>Вердикт</h2>
+<p>OpenClaw 2026 — лучший выбор для команд, которым нужна <strong>полная автономия от облачных провайдеров</strong> и возможность запускать AI-агентов на собственном оборудовании. Платформа идеально подходит для сценариев с конфиденциальными данными (финансовые транзакции, медицинские записи, юридические документы), где передача информации в облако недопустима. Также OpenClaw стоит рекомендовать DevOps-инженерам, строящим сложные CI/CD-пайплайны с AI-компонентами — встроенная observability и DAG-планировщик позволяют эффективно отлаживать и мониторить выполнение.</p>
+<p>Однако если ваша задача — быстрое прототипирование AI-приложений без глубокого погружения в инфраструктуру, или если вы работаете исключительно с облачными LLM и не планируете локальное выполнение, стоит присмотреться к LangChain или Dify. OpenClaw требует инвестиций времени в настройку и понимание архитектуры, но окупается в долгосрочных проектах с высокими требованиями к безопасности и производительности.</p></div>
     </div>
 <footer>
   Qantcore &copy; 2026 &mdash; Платформа аналитики AI-агентов &mdash;

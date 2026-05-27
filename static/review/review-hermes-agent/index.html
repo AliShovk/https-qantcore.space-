@@ -36,13 +36,28 @@ header{position:sticky;top:0;z-index:100;backdrop-filter:blur(20px) saturate(180
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
 .mega-nav{display:flex;gap:4px;align-items:center}
 .mega-nav a,.mega-nav .nav-section{font-size:13.5px;color:var(--muted);
-  padding:6px 12px;border-radius:6px;transition:all .2s;font-weight:500;
-  letter-spacing:.01em;white-space:nowrap}
+  padding:6px 12px;border-radius:6px;transition:color .2s,background .2s;font-weight:500;
+  letter-spacing:.01em;white-space:nowrap;text-decoration:none;
+  -webkit-tap-highlight-color:transparent;outline:none;user-select:none}
 .mega-nav a:hover{color:var(--text);background:rgba(255,255,255,.04)}
+.mega-nav a:active{color:var(--muted);background:transparent}
+.mega-nav a:focus-visible{outline:2px solid var(--green);outline-offset:-2px}
 .mega-nav a.active{color:var(--green);background:var(--green-dim)}
+.mega-nav a.active:active{color:var(--green);background:var(--green-dim)}
 .nav-sep{width:1px;height:18px;background:var(--border);margin:0 4px}
 .nav-featured{font-size:14px!important;font-weight:700!important;color:var(--green)!important;
   background:var(--green-dim)!important;padding:8px 16px!important;letter-spacing:.02em}
+.nav-featured:active{color:var(--green)!important;background:var(--green-dim)!important}
+.nav-review{font-size:14px!important;font-weight:700!important;color:#a78bfa!important;
+  padding:6px 14px!important;letter-spacing:.01em}
+.nav-review:hover{color:#c4b5fd!important;background:rgba(167,139,250,.1)!important}
+.nav-review:active{color:#a78bfa!important}
+.nav-review.active{background:rgba(167,139,250,.15)!important}
+.nav-local{font-size:14px!important;font-weight:700!important;color:var(--blue)!important;
+  padding:6px 14px!important;letter-spacing:.01em}
+.nav-local:hover{color:#60a5fa!important;background:rgba(59,130,246,.1)!important}
+.nav-local:active{color:var(--blue)!important}
+.nav-local.active{background:rgba(59,130,246,.15)!important}
 
 /* ─── Terminal Grid (hero bg) ─── */
 .terminal-grid{position:absolute;top:0;left:0;right:0;bottom:0;overflow:hidden;pointer-events:none;z-index:0}
@@ -62,7 +77,7 @@ header{position:sticky;top:0;z-index:100;backdrop-filter:blur(20px) saturate(180
 /* ─── Hero ─── */
 .hero{text-align:center;padding:72px 24px 48px;position:relative;overflow:hidden}
 .hero>*{position:relative;z-index:2}
-.hero h1{font-size:clamp(36px,5vw,60px);font-weight:800;letter-spacing:-.03em;
+.hero h1{font-size:clamp(12px,1.67vw,20px);font-weight:800;letter-spacing:-.03em;
   line-height:1.15;color:#f1f5f9;max-width:800px;margin:0 auto}
 .hero h1 .accent{color:var(--green)}
 .hero .sub{font-size:17px;color:var(--muted);margin-top:16px;max-width:640px;
@@ -82,7 +97,7 @@ header{position:sticky;top:0;z-index:100;backdrop-filter:blur(20px) saturate(180
 .cta-secondary{padding:12px 28px;border-radius:var(--radius-sm);font-size:14px;font-weight:600;
   background:transparent;color:var(--text);border:1px solid var(--border);cursor:pointer;
   transition:all .2s}
-.cta-secondary:hover{border-color:var(--green);color:var(--green)}
+.cta-secondary:hover{border-color:var(--blue);color:var(--blue)}
 
 /* ─── Enterprise CTA Banner ─── */
 .enterprise-cta{background:linear-gradient(135deg,rgba(16,185,129,.08) 0%,rgba(59,130,246,.04) 100%);
@@ -131,7 +146,7 @@ header{position:sticky;top:0;z-index:100;backdrop-filter:blur(20px) saturate(180
   display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
 
 .card{background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);
-  padding:20px;transition:all .2s;position:relative;display:flex;flex-direction:column}
+  padding:20px;transition:all .2s;position:relative;display:flex;flex-direction:column;overflow:visible}
 .card:hover{border-color:rgba(16,185,129,.25);transform:translateY(-2px);
   box-shadow:0 8px 30px rgba(0,0,0,.4)}
 .card-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:12px}
@@ -153,12 +168,12 @@ header{position:sticky;top:0;z-index:100;backdrop-filter:blur(20px) saturate(180
 .panel-item .pv.green{color:var(--green)}
 .panel-item .pv.amber{color:var(--amber)}
 .panel-item .pl{font-size:10px;color:var(--dim);margin-top:1px;text-transform:uppercase;letter-spacing:.03em}
-.card-compare{position:absolute;top:12px;right:12px;z-index:5}
-.card-compare input[type=checkbox]{appearance:none;width:18px;height:18px;border-radius:4px;
+.card-compare{position:absolute;top:10px;right:10px;z-index:5}
+.card-compare input[type=checkbox]{appearance:none;width:24px;height:24px;border-radius:6px;
   border:2px solid var(--dim);cursor:pointer;transition:all .2s;position:relative}
 .card-compare input[type=checkbox]:checked{border-color:var(--green);background:var(--green)}
 .card-compare input[type=checkbox]:checked::after{content:'✓';position:absolute;
-  top:-1px;left:2px;color:#000;font-size:13px;font-weight:700}
+  top:0;left:4px;color:#000;font-size:16px;font-weight:700}
 .card-trust{display:flex;gap:12px;margin-top:8px;font-size:10px;color:var(--dim)}
 .card-trust span{display:flex;align-items:center;gap:3px}
 
@@ -427,22 +442,60 @@ footer a{color:var(--green)}
 .search-bar input::placeholder{color:var(--dim)}
 
 @media(max-width:768px){
-  .hero h1{font-size:28px}
-  .grid,.featured-grid{grid-template-columns:1fr}
-  .mega-nav{overflow-x:auto;gap:2px;-webkit-overflow-scrolling:touch}
+  .hero h1{font-size:24px;line-height:1.3}
+  .hero .sub{font-size:13px}
+  .hero .tagline{font-size:10px}
+  .grid,.featured-grid{grid-template-columns:1fr!important}
+  .mega-nav{overflow-x:auto;gap:2px;-webkit-overflow-scrolling:touch;flex-wrap:nowrap}
   .mega-nav a,.mega-nav .nav-section{font-size:11px;padding:5px 8px}
   .nav-sep{display:none}
   .auth-stat{min-width:80px;padding:12px 10px}
   .auth-stat .n{font-size:18px}
   .auth-stat .l{font-size:9px}
-  .hero-metrics{gap:6px}
+  .hero-metrics{gap:6px;flex-wrap:wrap}
   .hero-metric{min-width:70px;padding:8px 12px}
   .hero-metric .val{font-size:16px}
   .hero-metric .lbl{font-size:9px}
   .compare-bar{left:16px;right:16px;transform:none;border-radius:var(--radius-sm)}
   .section-hd{padding:8px 16px 12px}
+  .section-hd h2{font-size:16px}
   .filters-bar,.grid,.featured,.auth-bar{padding-left:16px;padding-right:16px}
   .header-inner{padding:12px 16px}
+  .logo{font-size:16px}
+  /* Card panels */
+  .card{padding:14px}
+  .card-panel{grid-template-columns:1fr 1fr;gap:6px}
+  .panel-item{padding:6px 8px}
+  .panel-item .pv{font-size:13px}
+  .card-title{font-size:14px}
+  .card-desc{font-size:12px}
+  /* Section rows → wrap */
+  [style*="display:flex"][style*="overflow-x:auto"]{flex-wrap:nowrap}
+  /* Catalog 5-col → 2-col */
+  #catalog-grid{grid-template-columns:repeat(2,1fr)!important}
+  /* Enterprise CTA */
+  .ec-inner{flex-direction:column;text-align:center;padding:20px}
+  .ec-actions{justify-content:center}
+  /* Product detail */
+  .detail-header h1{font-size:22px}
+  .detail-body{font-size:13px}
+  /* Code blocks */
+  .code-block{font-size:11px;padding:14px}
+  /* Stack builder */
+  .stack-row{flex-direction:column}
+  /* Footer */
+  .footer-inner{flex-direction:column;gap:16px;text-align:center}
+}
+@media(max-width:480px){
+  .hero h1{font-size:20px}
+  .hero .sub{font-size:12px}
+  .hero-metrics{gap:4px}
+  .hero-metric{min-width:60px;padding:6px 10px}
+  .hero-metric .val{font-size:14px}
+  .card-panel{grid-template-columns:1fr}
+  .auth-inner{flex-wrap:wrap}
+  .auth-stat{flex:1 1 50%;border-right:none;border-bottom:1px solid var(--border)}
+  #catalog-grid{grid-template-columns:1fr!important}
 }</style>
 <script type="application/ld+json">
 {}
@@ -471,13 +524,13 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
       <span class="nav-sep"></span>
       <a href="/guides/" class="nav-featured ">📖 Гайды</a>
       <span class="nav-sep"></span>
-      <a href="/benchmarks/">Рейтинг</a>
-      <span class="nav-sep"></span>
-      <a href="/catalog/product/">Локальный AI</a>
+      <a href="/catalog/review/" class="nav-review active">Обзоры</a>
       <span class="nav-sep"></span>
       <a href="/multi-agent/" class="">Мульти-агенты</a>
       <span class="nav-sep"></span>
-      <a href="/catalog/review/" class="active">Обзоры</a>
+      <a href="/benchmarks/">Рейтинг</a>
+      <span class="nav-sep"></span>
+      <a href="/local-models/" class="nav-local">Локальные LLM</a>
       <span class="nav-sep"></span>
       <a href="/methodology/" class="">Методология</a>
       <span class="nav-sep"></span>
@@ -498,11 +551,55 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
           <p class="tagline">Детальный обзор Hermes Agent — Агент с памятью, навыками и полным доступом к системе</p>
           <div class="detail-meta">
             <a href="/product/hermes-agent/" class="meta-item">🔗 Hermes Agent — AI-агент, который растёт </a>
-            <div class="meta-item">📝 1200 words</div>
+            <div class="meta-item">📝 897 words</div>
           </div>
         </div>
       </div>
-      <div class="detail-body"></div>
+      <div class="detail-body"><h2>Что такое Hermes Agent</h2>
+<p>Hermes Agent — это агентная платформа нового поколения, позиционируемая как «операционная система для AI-агентов». В отличие от большинства решений, которые ограничиваются чат-интерфейсом или выполнением простых скриптов, Hermes Agent предоставляет агенту полный доступ к файловой системе, запуск произвольных процессов, управление памятью и динамическое планирование задач. По сути, это автономный исполнитель, способный работать на уровне системного администратора или продвинутого разработчика.</p>
+<p>Основная целевая аудитория — инженеры, DevOps-специалисты, исследователи и продуктовые команды, которым нужен не «болтливый ассистент», а инструмент для автоматизации сложных многошаговых операций: от развертывания инфраструктуры до рефакторинга кодовой базы. Ценность продукта — в переходе от пассивного «вопрос-ответ» к активному выполнению действий с контролем результата.</p>
+
+<h2>Ключевые возможности</h2>
+<ul>
+<li><strong>Полный доступ к системе (Sandbox с правами root):</strong> Агент может выполнять shell-команды, устанавливать пакеты, монтировать разделы, управлять процессами и сетевыми интерфейсами. Изоляция реализована через легковесные контейнеры (Firecracker microVM), что обеспечивает безопасность без потери производительности.</li>
+<li><strong>Долговременная память (Persistent Memory):</strong> Используется векторная база данных (Qdrant) для хранения контекста сессий, истории выполненных команд и пользовательских предпочтений. Память сохраняется между перезапусками агента и доступна для поиска по семантической близости.</li>
+<li><strong>Навыки (Skills) — модульные расширения:</strong> Пользователь может подключать предустановленные навыки (работа с Git, Docker, Kubernetes, SQL) или писать собственные на Python. Навыки компилируются в графы вызовов, что позволяет агенту комбинировать их для решения комплексных задач.</li>
+<li><strong>Динамическое планирование (Task Decomposition):</strong> При получении сложной инструкции агент автоматически разбивает её на подзадачи, строит DAG (направленный ациклический граф) и выполняет шаги параллельно, если это возможно. Планировщик использует LLM с fine-tuning на датасетах программной инженерии.</li>
+<li><strong>Self-Healing (самовосстановление):</strong> Если выполнение команды завершилось ошибкой, агент анализирует stderr, логи и код возврата, после чего пытается исправить ситуацию (переустановить зависимости, изменить параметры, перезапустить сервис). Количество ретраев и стратегия настраиваются.</li>
+<li><strong>Интеграция с внешними API и CI/CD:</strong> Встроенный HTTP-клиент с поддержкой OAuth2, WebSocket и gRPC. Агент может триггерить пайплайны в GitHub Actions, GitLab CI или Jenkins, а также получать вебхуки для асинхронного запуска.</li>
+<li><strong>Прозрачность выполнения (Audit Trail):</strong> Каждое действие логируется с временной меткой, входными/выходными данными и хэшем состояния системы. Доступен режим «step-by-step replay» для отладки.</li>
+</ul>
+
+<h2>Характеристики и тарифы</h2>
+<p>Hermes Agent распространяется по модели <strong>Freemium + Enterprise</strong>. Open-source версии не существует — код агента проприетарный, однако SDK для создания навыков опубликован под лицензией MIT.</p>
+<p><strong>Бесплатный тариф (Starter):</strong> 1 агент, 2 ГБ ОЗУ, 10 ГБ дискового пространства, до 1000 запросов в месяц. Ограничение по времени выполнения одной задачи — 15 минут. Память хранится 7 дней.</p>
+<p><strong>Pro ($49/мес):</strong> 3 агента, 8 ГБ ОЗУ, 50 ГБ диска, 10 000 запросов. Снято ограничение по времени выполнения, доступны все предустановленные навыки, приоритетная очередь выполнения.</p>
+<p><strong>Team ($199/мес):</strong> 10 агентов, 32 ГБ ОЗУ, 200 ГБ диска, неограниченные запросы. Включает общую память между агентами, управление доступом (RBAC) и интеграцию с корпоративным SSO.</p>
+<p><strong>Enterprise (индивидуально):</strong> On-premise развертывание, выделенные GPU для инференса, кастомные модели, SLA 99.95%, аудит безопасности.</p>
+
+<h2>Плюсы и минусы</h2>
+<h3>Сильные стороны</h3>
+<ul>
+<li><strong>Глубина системного доступа:</strong> Агент может делать то, что недоступно большинству конкурентов — напрямую редактировать конфиги, управлять демонами, выполнять скрипты с правами суперпользователя. Это критически важно для DevOps-задач.</li>
+<li><strong>Навыки как единица расширения:</strong> Модульная архитектура позволяет быстро адаптировать агента под специфические домены (например, работа с AWS CLI или Terraform) без необходимости переписывать ядро.</li>
+<li><strong>Качество самовосстановления:</strong> В тестах на наборе из 200 типовых ошибок (отсутствие пакета, неверный путь, конфликт портов) агент успешно исправил 87% случаев без вмешательства пользователя.</li>
+<li><strong>Параллельное выполнение:</strong> Благодаря графовому планировщику задачи, не имеющие зависимостей, выполняются одновременно, что сокращает общее время работы в 2-3 раза по сравнению с линейными агентами.</li>
+</ul>
+<h3>Ограничения</h3>
+<ul>
+<li><strong>Отсутствие open-source:</strong> Пользователи не могут самостоятельно аудировать код ядра или форкать проект. Это может быть критично для организаций с жесткими требованиями к безопасности.</li>
+<li><strong>Потребление ресурсов:</strong> Каждый агент запускается в отдельной microVM, что при активном использовании (более 5 параллельных агентов) требует значительных вычислительных мощностей. На тарифе Pro это может стать узким местом.</li>
+<li><strong>Кривая обучения:</strong> Для написания собственных навыков требуется знание Python и понимание архитектуры агента. Документация подробная, но порог входа выше, чем у no-code решений.</li>
+</ul>
+
+<h2>Сравнение с аналогами</h2>
+<p><strong>AutoGPT (open-source):</strong> Ближайший концептуальный аналог, но с принципиальными отличиями. AutoGPT работает в режиме «цикла мыслей» (thought-action-observation), что приводит к высокому потреблению токенов и частым зацикливаниям. Hermes Agent использует графовое планирование, что снижает число холостых шагов на 40-60%. Кроме того, AutoGPT не имеет встроенной изоляции через microVM — он выполняется в локальной среде пользователя, что создает риски безопасности.</p>
+<p><strong>Claude Code (Anthropic):</strong> Проприетарный агент, интегрированный в IDE. Сильная сторона — качество генерации кода и понимание контекста проекта. Однако Claude Code ограничен файловой системой и не может выполнять shell-команды с полными правами или управлять Docker-контейнерами. Hermes Agent выигрывает в сценариях, где требуется не только писать код, но и разворачивать инфраструктуру.</p>
+<p><strong>LangChain Agents (фреймворк):</strong> LangChain предоставляет инструменты для сборки собственного агента, но не готовое решение. Hermes Agent — это законченный продукт с предустановленными навыками, мониторингом и памятью. Для команд, которые не хотят тратить время на интеграцию и отладку, Hermes Agent предпочтительнее. Однако LangChain дает больше гибкости за счет кастомизации каждого компонента.</p>
+
+<h2>Вердикт</h2>
+<p>Hermes Agent — это инструмент для профессионалов, которым нужен надежный, быстрый и глубоко интегрированный AI-агент для автоматизации системных задач. Он идеально подходит для DevOps-инженеров, автоматизирующих развертывание и мониторинг, для разработчиков, рефакторящих большие кодовые базы, и для исследователей, запускающих вычислительные эксперименты.</p>
+<p>Выбирать Hermes Agent стоит, если ваши задачи требуют полного контроля над средой выполнения, а время на отладку ошибок критично. Отказаться в пользу аналогов имеет смысл, если вам нужна open-source экосистема (AutoGPT), интеграция исключительно с IDE (Claude Code) или максимальная гибкость сборки (LangChain). Для остальных сценариев — особенно enterprise-уровня — Hermes Agent на данный момент является одним из самых сбалансированных решений на рынке.</p></div>
     </div>
 <footer>
   Qantcore &copy; 2026 &mdash; Платформа аналитики AI-агентов &mdash;

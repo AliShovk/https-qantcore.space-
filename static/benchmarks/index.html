@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Бенчмарки — Данные производительности AI-агентов | Qantcore — Аналитика AI-агентов</title>
-<meta name="description" content="Quantitative benchmarks for 62 AI agents: QantScore, freshness, ratings, deployment readiness.">
+<title>Рейтинг AI-агентов — QantScore, метрики, бенчмарки | Qantcore — Аналитика AI-агентов</title>
+<meta name="description" content="Рейтинг 62 AI-агентов: QantScore, свежесть, рейтинги, готовность к деплою. Топ-20.">
 <link rel="icon" type="image/svg+xml" href="/images/favicon.svg">
 <link rel="canonical" href="https://qantcore.space/benchmarks/">
 <link rel="canonical" href="https://qantcore.space/benchmarks/">
@@ -46,13 +46,28 @@ header{position:sticky;top:0;z-index:100;backdrop-filter:blur(20px) saturate(180
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
 .mega-nav{display:flex;gap:4px;align-items:center}
 .mega-nav a,.mega-nav .nav-section{font-size:13.5px;color:var(--muted);
-  padding:6px 12px;border-radius:6px;transition:all .2s;font-weight:500;
-  letter-spacing:.01em;white-space:nowrap}
+  padding:6px 12px;border-radius:6px;transition:color .2s,background .2s;font-weight:500;
+  letter-spacing:.01em;white-space:nowrap;text-decoration:none;
+  -webkit-tap-highlight-color:transparent;outline:none;user-select:none}
 .mega-nav a:hover{color:var(--text);background:rgba(255,255,255,.04)}
+.mega-nav a:active{color:var(--muted);background:transparent}
+.mega-nav a:focus-visible{outline:2px solid var(--green);outline-offset:-2px}
 .mega-nav a.active{color:var(--green);background:var(--green-dim)}
+.mega-nav a.active:active{color:var(--green);background:var(--green-dim)}
 .nav-sep{width:1px;height:18px;background:var(--border);margin:0 4px}
 .nav-featured{font-size:14px!important;font-weight:700!important;color:var(--green)!important;
   background:var(--green-dim)!important;padding:8px 16px!important;letter-spacing:.02em}
+.nav-featured:active{color:var(--green)!important;background:var(--green-dim)!important}
+.nav-review{font-size:14px!important;font-weight:700!important;color:#a78bfa!important;
+  padding:6px 14px!important;letter-spacing:.01em}
+.nav-review:hover{color:#c4b5fd!important;background:rgba(167,139,250,.1)!important}
+.nav-review:active{color:#a78bfa!important}
+.nav-review.active{background:rgba(167,139,250,.15)!important}
+.nav-local{font-size:14px!important;font-weight:700!important;color:var(--blue)!important;
+  padding:6px 14px!important;letter-spacing:.01em}
+.nav-local:hover{color:#60a5fa!important;background:rgba(59,130,246,.1)!important}
+.nav-local:active{color:var(--blue)!important}
+.nav-local.active{background:rgba(59,130,246,.15)!important}
 
 /* ─── Terminal Grid (hero bg) ─── */
 .terminal-grid{position:absolute;top:0;left:0;right:0;bottom:0;overflow:hidden;pointer-events:none;z-index:0}
@@ -72,7 +87,7 @@ header{position:sticky;top:0;z-index:100;backdrop-filter:blur(20px) saturate(180
 /* ─── Hero ─── */
 .hero{text-align:center;padding:72px 24px 48px;position:relative;overflow:hidden}
 .hero>*{position:relative;z-index:2}
-.hero h1{font-size:clamp(36px,5vw,60px);font-weight:800;letter-spacing:-.03em;
+.hero h1{font-size:clamp(12px,1.67vw,20px);font-weight:800;letter-spacing:-.03em;
   line-height:1.15;color:#f1f5f9;max-width:800px;margin:0 auto}
 .hero h1 .accent{color:var(--green)}
 .hero .sub{font-size:17px;color:var(--muted);margin-top:16px;max-width:640px;
@@ -92,7 +107,7 @@ header{position:sticky;top:0;z-index:100;backdrop-filter:blur(20px) saturate(180
 .cta-secondary{padding:12px 28px;border-radius:var(--radius-sm);font-size:14px;font-weight:600;
   background:transparent;color:var(--text);border:1px solid var(--border);cursor:pointer;
   transition:all .2s}
-.cta-secondary:hover{border-color:var(--green);color:var(--green)}
+.cta-secondary:hover{border-color:var(--blue);color:var(--blue)}
 
 /* ─── Enterprise CTA Banner ─── */
 .enterprise-cta{background:linear-gradient(135deg,rgba(16,185,129,.08) 0%,rgba(59,130,246,.04) 100%);
@@ -141,7 +156,7 @@ header{position:sticky;top:0;z-index:100;backdrop-filter:blur(20px) saturate(180
   display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
 
 .card{background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);
-  padding:20px;transition:all .2s;position:relative;display:flex;flex-direction:column}
+  padding:20px;transition:all .2s;position:relative;display:flex;flex-direction:column;overflow:visible}
 .card:hover{border-color:rgba(16,185,129,.25);transform:translateY(-2px);
   box-shadow:0 8px 30px rgba(0,0,0,.4)}
 .card-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:12px}
@@ -163,12 +178,12 @@ header{position:sticky;top:0;z-index:100;backdrop-filter:blur(20px) saturate(180
 .panel-item .pv.green{color:var(--green)}
 .panel-item .pv.amber{color:var(--amber)}
 .panel-item .pl{font-size:10px;color:var(--dim);margin-top:1px;text-transform:uppercase;letter-spacing:.03em}
-.card-compare{position:absolute;top:12px;right:12px;z-index:5}
-.card-compare input[type=checkbox]{appearance:none;width:18px;height:18px;border-radius:4px;
+.card-compare{position:absolute;top:10px;right:10px;z-index:5}
+.card-compare input[type=checkbox]{appearance:none;width:24px;height:24px;border-radius:6px;
   border:2px solid var(--dim);cursor:pointer;transition:all .2s;position:relative}
 .card-compare input[type=checkbox]:checked{border-color:var(--green);background:var(--green)}
 .card-compare input[type=checkbox]:checked::after{content:'✓';position:absolute;
-  top:-1px;left:2px;color:#000;font-size:13px;font-weight:700}
+  top:0;left:4px;color:#000;font-size:16px;font-weight:700}
 .card-trust{display:flex;gap:12px;margin-top:8px;font-size:10px;color:var(--dim)}
 .card-trust span{display:flex;align-items:center;gap:3px}
 
@@ -437,22 +452,60 @@ footer a{color:var(--green)}
 .search-bar input::placeholder{color:var(--dim)}
 
 @media(max-width:768px){
-  .hero h1{font-size:28px}
-  .grid,.featured-grid{grid-template-columns:1fr}
-  .mega-nav{overflow-x:auto;gap:2px;-webkit-overflow-scrolling:touch}
+  .hero h1{font-size:24px;line-height:1.3}
+  .hero .sub{font-size:13px}
+  .hero .tagline{font-size:10px}
+  .grid,.featured-grid{grid-template-columns:1fr!important}
+  .mega-nav{overflow-x:auto;gap:2px;-webkit-overflow-scrolling:touch;flex-wrap:nowrap}
   .mega-nav a,.mega-nav .nav-section{font-size:11px;padding:5px 8px}
   .nav-sep{display:none}
   .auth-stat{min-width:80px;padding:12px 10px}
   .auth-stat .n{font-size:18px}
   .auth-stat .l{font-size:9px}
-  .hero-metrics{gap:6px}
+  .hero-metrics{gap:6px;flex-wrap:wrap}
   .hero-metric{min-width:70px;padding:8px 12px}
   .hero-metric .val{font-size:16px}
   .hero-metric .lbl{font-size:9px}
   .compare-bar{left:16px;right:16px;transform:none;border-radius:var(--radius-sm)}
   .section-hd{padding:8px 16px 12px}
+  .section-hd h2{font-size:16px}
   .filters-bar,.grid,.featured,.auth-bar{padding-left:16px;padding-right:16px}
   .header-inner{padding:12px 16px}
+  .logo{font-size:16px}
+  /* Card panels */
+  .card{padding:14px}
+  .card-panel{grid-template-columns:1fr 1fr;gap:6px}
+  .panel-item{padding:6px 8px}
+  .panel-item .pv{font-size:13px}
+  .card-title{font-size:14px}
+  .card-desc{font-size:12px}
+  /* Section rows → wrap */
+  [style*="display:flex"][style*="overflow-x:auto"]{flex-wrap:nowrap}
+  /* Catalog 5-col → 2-col */
+  #catalog-grid{grid-template-columns:repeat(2,1fr)!important}
+  /* Enterprise CTA */
+  .ec-inner{flex-direction:column;text-align:center;padding:20px}
+  .ec-actions{justify-content:center}
+  /* Product detail */
+  .detail-header h1{font-size:22px}
+  .detail-body{font-size:13px}
+  /* Code blocks */
+  .code-block{font-size:11px;padding:14px}
+  /* Stack builder */
+  .stack-row{flex-direction:column}
+  /* Footer */
+  .footer-inner{flex-direction:column;gap:16px;text-align:center}
+}
+@media(max-width:480px){
+  .hero h1{font-size:20px}
+  .hero .sub{font-size:12px}
+  .hero-metrics{gap:4px}
+  .hero-metric{min-width:60px;padding:6px 10px}
+  .hero-metric .val{font-size:14px}
+  .card-panel{grid-template-columns:1fr}
+  .auth-inner{flex-wrap:wrap}
+  .auth-stat{flex:1 1 50%;border-right:none;border-bottom:1px solid var(--border)}
+  #catalog-grid{grid-template-columns:1fr!important}
 }</style>
 <script type="application/ld+json">
 {}
@@ -481,13 +534,13 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
       <span class="nav-sep"></span>
       <a href="/guides/" class="nav-featured ">📖 Гайды</a>
       <span class="nav-sep"></span>
-      <a href="/benchmarks/">Рейтинг</a>
-      <span class="nav-sep"></span>
-      <a href="/catalog/product/">Локальный AI</a>
+      <a href="/catalog/review/" class="nav-review ">Обзоры</a>
       <span class="nav-sep"></span>
       <a href="/multi-agent/" class="">Мульти-агенты</a>
       <span class="nav-sep"></span>
-      <a href="/catalog/review/" class="">Обзоры</a>
+      <a href="/benchmarks/">Рейтинг</a>
+      <span class="nav-sep"></span>
+      <a href="/local-models/" class="nav-local">Локальные LLM</a>
       <span class="nav-sep"></span>
       <a href="/methodology/" class="">Методология</a>
       <span class="nav-sep"></span>
@@ -498,172 +551,172 @@ ym(109327472,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",
   </div>
 </header>
 <div class="container detail">
-  <div class="breadcrumbs"><a href="/">Catalog</a> &rsaquo; <span>Benchmarks</span></div>
-  <h1 style="font-size:28px;font-weight:800;color:#f1f5f9;margin:24px 0 8px">AI Agent Benchmarks</h1>
-  <p style="color:var(--muted);font-size:15px;line-height:1.7;max-width:760px">Quantitative performance data for 62 AI agents. Updated daily from official sources and community feedback.</p>
+  <div class="breadcrumbs"><a href="/">Каталог</a> &rsaquo; <span>Рейтинг</span></div>
+  <h1 style="font-size:32px;font-weight:800;color:#f1f5f9;margin:24px 0 8px">Рейтинг AI-агентов</h1>
+  <p style="color:var(--muted);font-size:16px;line-height:1.7;max-width:760px">Количественные метрики для 62 AI-агентов. QantScore, свежесть, рейтинги, готовность к внедрению.</p>
   
   <div class="auth-bar" style="margin-top:24px">
     <div class="auth-inner">
-      <div class="auth-stat"><div class="n">62</div><div class="l">Agents benchmarked</div></div>
-      <div class="auth-stat"><div class="n amber">100</div><div class="l">Head-to-head tests</div></div>
-      <div class="auth-stat"><div class="n">Daily</div><div class="l">Refresh rate</div></div>
-      <div class="auth-stat"><div class="n"><span class="dot"></span>Live</div><div class="l">Data pipeline</div></div>
+      <div class="auth-stat"><div class="n" style="font-size:32px">62</div><div class="l">Агентов в рейтинге</div></div>
+      <div class="auth-stat"><div class="n amber" style="font-size:32px">100</div><div class="l">Сравнений</div></div>
+      <div class="auth-stat"><div class="n" style="font-size:32px">Ежедневно</div><div class="l">Обновление</div></div>
+      <div class="auth-stat"><div class="n" style="font-size:32px"><span class="dot"></span>Live</div><div class="l">Данные</div></div>
     </div>
   </div>
   
   <div style="margin-top:32px">
-    <div class="section-hd"><h2>Top 20 by QantScore™</h2></div>
+    <div class="section-hd"><h2 style="font-size:22px">Top 20 по QantScore™</h2></div>
     <div class="compare-table-wrap">
-      <table class="compare-table">
-        <tr><th>Agent</th><th>QantScore</th><th>Freshness</th><th>Rating</th><th>Reviews</th><th>Deployment</th></tr>
+      <table class="compare-table" style="font-size:14px">
+        <tr><th style="font-size:13px;padding:16px 16px">Агент</th><th style="font-size:13px">QantScore</th><th style="font-size:13px">Свежесть</th><th style="font-size:13px">Рейтинг</th><th style="font-size:13px">Отзывы</th><th style="font-size:13px">Деплой</th></tr>
         <tr>
-          <td><a href="/product/hermes-agent/" style="color:var(--green)">Hermes Agent — AI-агент, котор</a></td>
-          <td><strong>83</strong></td>
-          <td>100%</td>
-          <td>4.9 ★</td>
-          <td>3200</td>
-          <td>🏠 Local</td>
+          <td style="font-size:15px;font-weight:600"><a href="/product/hermes-agent/" style="color:var(--text);display:flex;align-items:center"><img src="/images/hermes-agent.png" alt="" style="width:32px;height:32px;object-fit:contain;border-radius:6px;background:rgba(255,255,255,.04);vertical-align:middle;margin-right:10px;flex-shrink:0">Hermes Agent — AI-агент, который ра</a></td>
+          <td style="font-size:16px"><strong style="color:var(--cyan)">83</strong></td>
+          <td style="font-size:14px">100%</td>
+          <td style="font-size:14px">4.9 ★</td>
+          <td style="font-size:14px">3200</td>
+          <td style="font-size:14px">🏠 Local</td>
         </tr><tr>
-          <td><a href="/product/ollama/" style="color:var(--green)">Ollama — локальный запуск LLM </a></td>
-          <td><strong>83</strong></td>
-          <td>100%</td>
-          <td>4.9 ★</td>
-          <td>5600</td>
-          <td>☁️ Cloud</td>
+          <td style="font-size:15px;font-weight:600"><a href="/product/ollama/" style="color:var(--text);display:flex;align-items:center"><img src="/images/ollama.png" alt="" style="width:32px;height:32px;object-fit:contain;border-radius:6px;background:rgba(255,255,255,.04);vertical-align:middle;margin-right:10px;flex-shrink:0">Ollama — локальный запуск LLM одной</a></td>
+          <td style="font-size:16px"><strong style="color:var(--cyan)">83</strong></td>
+          <td style="font-size:14px">100%</td>
+          <td style="font-size:14px">4.9 ★</td>
+          <td style="font-size:14px">5600</td>
+          <td style="font-size:14px">☁️ Cloud</td>
         </tr><tr>
-          <td><a href="/product/cursor-ide/" style="color:var(--green)">Cursor IDE — AI-среда разработ</a></td>
-          <td><strong>82</strong></td>
-          <td>100%</td>
-          <td>4.8 ★</td>
-          <td>2340</td>
-          <td>☁️ Cloud</td>
+          <td style="font-size:15px;font-weight:600"><a href="/product/cursor-ide/" style="color:var(--text);display:flex;align-items:center"><img src="/images/cursor-ide.png" alt="" style="width:32px;height:32px;object-fit:contain;border-radius:6px;background:rgba(255,255,255,.04);vertical-align:middle;margin-right:10px;flex-shrink:0">Cursor IDE — AI-среда разработки но</a></td>
+          <td style="font-size:16px"><strong style="color:var(--cyan)">82</strong></td>
+          <td style="font-size:14px">100%</td>
+          <td style="font-size:14px">4.8 ★</td>
+          <td style="font-size:14px">2340</td>
+          <td style="font-size:14px">☁️ Cloud</td>
         </tr><tr>
-          <td><a href="/product/open-interpreter/" style="color:var(--green)">Open Interpreter — AI-агент с </a></td>
-          <td><strong>82</strong></td>
-          <td>100%</td>
-          <td>4.8 ★</td>
-          <td>3200</td>
-          <td>🏠 Local</td>
+          <td style="font-size:15px;font-weight:600"><a href="/product/open-interpreter/" style="color:var(--text);display:flex;align-items:center"><img src="/images/open-interpreter.png" alt="" style="width:32px;height:32px;object-fit:contain;border-radius:6px;background:rgba(255,255,255,.04);vertical-align:middle;margin-right:10px;flex-shrink:0">Open Interpreter — AI-агент с досту</a></td>
+          <td style="font-size:16px"><strong style="color:var(--cyan)">82</strong></td>
+          <td style="font-size:14px">100%</td>
+          <td style="font-size:14px">4.8 ★</td>
+          <td style="font-size:14px">3200</td>
+          <td style="font-size:14px">🏠 Local</td>
         </tr><tr>
-          <td><a href="/product/llama-meta/" style="color:var(--green)">Llama 3 — открытая модель от M</a></td>
-          <td><strong>82</strong></td>
-          <td>100%</td>
-          <td>4.8 ★</td>
-          <td>12000</td>
-          <td>☁️ Cloud</td>
+          <td style="font-size:15px;font-weight:600"><a href="/product/llama-meta/" style="color:var(--text);display:flex;align-items:center"><img src="/images/llama-meta.png" alt="" style="width:32px;height:32px;object-fit:contain;border-radius:6px;background:rgba(255,255,255,.04);vertical-align:middle;margin-right:10px;flex-shrink:0">Llama 3 — открытая модель от Meta</a></td>
+          <td style="font-size:16px"><strong style="color:var(--cyan)">82</strong></td>
+          <td style="font-size:14px">100%</td>
+          <td style="font-size:14px">4.8 ★</td>
+          <td style="font-size:14px">12000</td>
+          <td style="font-size:14px">☁️ Cloud</td>
         </tr><tr>
-          <td><a href="/product/openclaw-agent/" style="color:var(--green)">OpenClaw — персональный AI-асс</a></td>
-          <td><strong>82</strong></td>
-          <td>100%</td>
-          <td>4.8 ★</td>
-          <td>2100</td>
-          <td>🏠 Local</td>
+          <td style="font-size:15px;font-weight:600"><a href="/product/openclaw-agent/" style="color:var(--text);display:flex;align-items:center"><img src="/images/openclaw-agent.png" alt="" style="width:32px;height:32px;object-fit:contain;border-radius:6px;background:rgba(255,255,255,.04);vertical-align:middle;margin-right:10px;flex-shrink:0">OpenClaw — персональный AI-ассистен</a></td>
+          <td style="font-size:16px"><strong style="color:var(--cyan)">82</strong></td>
+          <td style="font-size:14px">100%</td>
+          <td style="font-size:14px">4.8 ★</td>
+          <td style="font-size:14px">2100</td>
+          <td style="font-size:14px">🏠 Local</td>
         </tr><tr>
-          <td><a href="/product/cline-vscode/" style="color:var(--green)">Cline — автономный AI-агент дл</a></td>
-          <td><strong>80</strong></td>
-          <td>100%</td>
-          <td>4.7 ★</td>
-          <td>560</td>
-          <td>☁️ Cloud</td>
+          <td style="font-size:15px;font-weight:600"><a href="/product/cline-vscode/" style="color:var(--text);display:flex;align-items:center"><img src="/images/cline-vscode.png" alt="" style="width:32px;height:32px;object-fit:contain;border-radius:6px;background:rgba(255,255,255,.04);vertical-align:middle;margin-right:10px;flex-shrink:0">Cline — автономный AI-агент для VS </a></td>
+          <td style="font-size:16px"><strong style="color:var(--cyan)">80</strong></td>
+          <td style="font-size:14px">100%</td>
+          <td style="font-size:14px">4.7 ★</td>
+          <td style="font-size:14px">560</td>
+          <td style="font-size:14px">☁️ Cloud</td>
         </tr><tr>
-          <td><a href="/product/perplexity-ai/" style="color:var(--green)">Perplexity AI — поисковая сист</a></td>
-          <td><strong>81</strong></td>
-          <td>100%</td>
-          <td>4.7 ★</td>
-          <td>3100</td>
-          <td>☁️ Cloud</td>
+          <td style="font-size:15px;font-weight:600"><a href="/product/perplexity-ai/" style="color:var(--text);display:flex;align-items:center"><img src="/images/perplexity-ai.png" alt="" style="width:32px;height:32px;object-fit:contain;border-radius:6px;background:rgba(255,255,255,.04);vertical-align:middle;margin-right:10px;flex-shrink:0">Perplexity AI — поисковая система с</a></td>
+          <td style="font-size:16px"><strong style="color:var(--cyan)">81</strong></td>
+          <td style="font-size:14px">100%</td>
+          <td style="font-size:14px">4.7 ★</td>
+          <td style="font-size:14px">3100</td>
+          <td style="font-size:14px">☁️ Cloud</td>
         </tr><tr>
-          <td><a href="/product/claude-anthropic/" style="color:var(--green)">Claude — AI-ассистент от Anthr</a></td>
-          <td><strong>81</strong></td>
-          <td>100%</td>
-          <td>4.7 ★</td>
-          <td>4200</td>
-          <td>☁️ Cloud</td>
+          <td style="font-size:15px;font-weight:600"><a href="/product/claude-anthropic/" style="color:var(--text);display:flex;align-items:center"><img src="/images/claude-anthropic.png" alt="" style="width:32px;height:32px;object-fit:contain;border-radius:6px;background:rgba(255,255,255,.04);vertical-align:middle;margin-right:10px;flex-shrink:0">Claude — AI-ассистент от Anthropic</a></td>
+          <td style="font-size:16px"><strong style="color:var(--cyan)">81</strong></td>
+          <td style="font-size:14px">100%</td>
+          <td style="font-size:14px">4.7 ★</td>
+          <td style="font-size:14px">4200</td>
+          <td style="font-size:14px">☁️ Cloud</td>
         </tr><tr>
-          <td><a href="/product/aider-ai/" style="color:var(--green)">Aider — AI-парный программист </a></td>
-          <td><strong>80</strong></td>
-          <td>100%</td>
-          <td>4.7 ★</td>
-          <td>540</td>
-          <td>🏠 Local</td>
+          <td style="font-size:15px;font-weight:600"><a href="/product/aider-ai/" style="color:var(--text);display:flex;align-items:center"><img src="/images/aider-ai.png" alt="" style="width:32px;height:32px;object-fit:contain;border-radius:6px;background:rgba(255,255,255,.04);vertical-align:middle;margin-right:10px;flex-shrink:0">Aider — AI-парный программист в тер</a></td>
+          <td style="font-size:16px"><strong style="color:var(--cyan)">80</strong></td>
+          <td style="font-size:14px">100%</td>
+          <td style="font-size:14px">4.7 ★</td>
+          <td style="font-size:14px">540</td>
+          <td style="font-size:14px">🏠 Local</td>
         </tr><tr>
-          <td><a href="/product/smolagents-huggingface/" style="color:var(--green)">SmolAgents — минималистичные а</a></td>
-          <td><strong>80</strong></td>
-          <td>100%</td>
-          <td>4.7 ★</td>
-          <td>210</td>
-          <td>☁️ Cloud</td>
+          <td style="font-size:15px;font-weight:600"><a href="/product/smolagents-huggingface/" style="color:var(--text);display:flex;align-items:center"><img src="/images/smolagents-huggingface.png" alt="" style="width:32px;height:32px;object-fit:contain;border-radius:6px;background:rgba(255,255,255,.04);vertical-align:middle;margin-right:10px;flex-shrink:0">SmolAgents — минималистичные агенты</a></td>
+          <td style="font-size:16px"><strong style="color:var(--cyan)">80</strong></td>
+          <td style="font-size:14px">100%</td>
+          <td style="font-size:14px">4.7 ★</td>
+          <td style="font-size:14px">210</td>
+          <td style="font-size:14px">☁️ Cloud</td>
         </tr><tr>
-          <td><a href="/product/mistral-ai/" style="color:var(--green)">Mistral AI — европейский лидер</a></td>
-          <td><strong>81</strong></td>
-          <td>100%</td>
-          <td>4.7 ★</td>
-          <td>4300</td>
-          <td>☁️ Cloud</td>
+          <td style="font-size:15px;font-weight:600"><a href="/product/mistral-ai/" style="color:var(--text);display:flex;align-items:center"><img src="/images/mistral-ai.png" alt="" style="width:32px;height:32px;object-fit:contain;border-radius:6px;background:rgba(255,255,255,.04);vertical-align:middle;margin-right:10px;flex-shrink:0">Mistral AI — европейский лидер откр</a></td>
+          <td style="font-size:16px"><strong style="color:var(--cyan)">81</strong></td>
+          <td style="font-size:14px">100%</td>
+          <td style="font-size:14px">4.7 ★</td>
+          <td style="font-size:14px">4300</td>
+          <td style="font-size:14px">☁️ Cloud</td>
         </tr><tr>
-          <td><a href="/product/vercel-v0/" style="color:var(--green)">v0 by Vercel — генерация UI ко</a></td>
-          <td><strong>81</strong></td>
-          <td>100%</td>
-          <td>4.7 ★</td>
-          <td>3400</td>
-          <td>☁️ Cloud</td>
+          <td style="font-size:15px;font-weight:600"><a href="/product/vercel-v0/" style="color:var(--text);display:flex;align-items:center"><img src="/images/vercel-v0.png" alt="" style="width:32px;height:32px;object-fit:contain;border-radius:6px;background:rgba(255,255,255,.04);vertical-align:middle;margin-right:10px;flex-shrink:0">v0 by Vercel — генерация UI компоне</a></td>
+          <td style="font-size:16px"><strong style="color:var(--cyan)">81</strong></td>
+          <td style="font-size:14px">100%</td>
+          <td style="font-size:14px">4.7 ★</td>
+          <td style="font-size:14px">3400</td>
+          <td style="font-size:14px">☁️ Cloud</td>
         </tr><tr>
-          <td><a href="/product/anthropic-mcp/" style="color:var(--green)">Anthropic MCP — протокол для п</a></td>
-          <td><strong>80</strong></td>
-          <td>100%</td>
-          <td>4.7 ★</td>
-          <td>380</td>
-          <td>🏠 Local</td>
+          <td style="font-size:15px;font-weight:600"><a href="/product/anthropic-mcp/" style="color:var(--text);display:flex;align-items:center"><img src="/images/anthropic-mcp.png" alt="" style="width:32px;height:32px;object-fit:contain;border-radius:6px;background:rgba(255,255,255,.04);vertical-align:middle;margin-right:10px;flex-shrink:0">Anthropic MCP — протокол для подклю</a></td>
+          <td style="font-size:16px"><strong style="color:var(--cyan)">80</strong></td>
+          <td style="font-size:14px">100%</td>
+          <td style="font-size:14px">4.7 ★</td>
+          <td style="font-size:14px">380</td>
+          <td style="font-size:14px">🏠 Local</td>
         </tr><tr>
-          <td><a href="/product/codex-cli/" style="color:var(--green)">OpenAI Codex CLI — лёгкий аген</a></td>
-          <td><strong>81</strong></td>
-          <td>100%</td>
-          <td>4.7 ★</td>
-          <td>1800</td>
-          <td>☁️ Cloud</td>
+          <td style="font-size:15px;font-weight:600"><a href="/product/codex-cli/" style="color:var(--text);display:flex;align-items:center"><img src="/images/codex-cli.png" alt="" style="width:32px;height:32px;object-fit:contain;border-radius:6px;background:rgba(255,255,255,.04);vertical-align:middle;margin-right:10px;flex-shrink:0">OpenAI Codex CLI — лёгкий агент для</a></td>
+          <td style="font-size:16px"><strong style="color:var(--cyan)">81</strong></td>
+          <td style="font-size:14px">100%</td>
+          <td style="font-size:14px">4.7 ★</td>
+          <td style="font-size:14px">1800</td>
+          <td style="font-size:14px">☁️ Cloud</td>
         </tr><tr>
-          <td><a href="/product/anythingllm/" style="color:var(--green)">AnythingLLM — универсальный AI</a></td>
-          <td><strong>81</strong></td>
-          <td>100%</td>
-          <td>4.7 ★</td>
-          <td>1500</td>
-          <td>☁️ Cloud</td>
+          <td style="font-size:15px;font-weight:600"><a href="/product/anythingllm/" style="color:var(--text);display:flex;align-items:center"><img src="/images/anythingllm.png" alt="" style="width:32px;height:32px;object-fit:contain;border-radius:6px;background:rgba(255,255,255,.04);vertical-align:middle;margin-right:10px;flex-shrink:0">AnythingLLM — универсальный AI-уско</a></td>
+          <td style="font-size:16px"><strong style="color:var(--cyan)">81</strong></td>
+          <td style="font-size:14px">100%</td>
+          <td style="font-size:14px">4.7 ★</td>
+          <td style="font-size:14px">1500</td>
+          <td style="font-size:14px">☁️ Cloud</td>
         </tr><tr>
-          <td><a href="/product/lm-studio/" style="color:var(--green)">LM Studio — десктопное приложе</a></td>
-          <td><strong>81</strong></td>
-          <td>100%</td>
-          <td>4.7 ★</td>
-          <td>2800</td>
-          <td>☁️ Cloud</td>
+          <td style="font-size:15px;font-weight:600"><a href="/product/lm-studio/" style="color:var(--text);display:flex;align-items:center"><img src="/images/lm-studio.png" alt="" style="width:32px;height:32px;object-fit:contain;border-radius:6px;background:rgba(255,255,255,.04);vertical-align:middle;margin-right:10px;flex-shrink:0">LM Studio — десктопное приложение д</a></td>
+          <td style="font-size:16px"><strong style="color:var(--cyan)">81</strong></td>
+          <td style="font-size:14px">100%</td>
+          <td style="font-size:14px">4.7 ★</td>
+          <td style="font-size:14px">2800</td>
+          <td style="font-size:14px">☁️ Cloud</td>
         </tr><tr>
-          <td><a href="/product/claude-desktop/" style="color:var(--green)">Claude Desktop — AI-ассистент </a></td>
-          <td><strong>81</strong></td>
-          <td>95%</td>
-          <td>4.7 ★</td>
-          <td>3400</td>
-          <td>☁️ Cloud</td>
+          <td style="font-size:15px;font-weight:600"><a href="/product/claude-desktop/" style="color:var(--text);display:flex;align-items:center"><img src="/images/claude-desktop.png" alt="" style="width:32px;height:32px;object-fit:contain;border-radius:6px;background:rgba(255,255,255,.04);vertical-align:middle;margin-right:10px;flex-shrink:0">Claude Desktop — AI-ассистент от An</a></td>
+          <td style="font-size:16px"><strong style="color:var(--cyan)">81</strong></td>
+          <td style="font-size:14px">95%</td>
+          <td style="font-size:14px">4.7 ★</td>
+          <td style="font-size:14px">3400</td>
+          <td style="font-size:14px">☁️ Cloud</td>
         </tr><tr>
-          <td><a href="/product/claude-code/" style="color:var(--green)">Claude Code — агентное програм</a></td>
-          <td><strong>80</strong></td>
-          <td>100%</td>
-          <td>4.6 ★</td>
-          <td>890</td>
-          <td>🏠 Local</td>
+          <td style="font-size:15px;font-weight:600"><a href="/product/claude-code/" style="color:var(--text);display:flex;align-items:center"><img src="/images/claude-code.png" alt="" style="width:32px;height:32px;object-fit:contain;border-radius:6px;background:rgba(255,255,255,.04);vertical-align:middle;margin-right:10px;flex-shrink:0">Claude Code — агентное программиров</a></td>
+          <td style="font-size:16px"><strong style="color:var(--cyan)">80</strong></td>
+          <td style="font-size:14px">100%</td>
+          <td style="font-size:14px">4.6 ★</td>
+          <td style="font-size:14px">890</td>
+          <td style="font-size:14px">🏠 Local</td>
         </tr><tr>
-          <td><a href="/product/n8n-automation/" style="color:var(--green)">n8n — автоматизация рабочих пр</a></td>
-          <td><strong>80</strong></td>
-          <td>100%</td>
-          <td>4.6 ★</td>
-          <td>1200</td>
-          <td>☁️ Cloud</td>
+          <td style="font-size:15px;font-weight:600"><a href="/product/n8n-automation/" style="color:var(--text);display:flex;align-items:center"><img src="/images/n8n-automation.png" alt="" style="width:32px;height:32px;object-fit:contain;border-radius:6px;background:rgba(255,255,255,.04);vertical-align:middle;margin-right:10px;flex-shrink:0">n8n — автоматизация рабочих процесс</a></td>
+          <td style="font-size:16px"><strong style="color:var(--cyan)">80</strong></td>
+          <td style="font-size:14px">100%</td>
+          <td style="font-size:14px">4.6 ★</td>
+          <td style="font-size:14px">1200</td>
+          <td style="font-size:14px">☁️ Cloud</td>
         </tr>
       </table>
     </div>
   </div>
   
   <div style="margin-top:32px;padding:24px;background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius)">
-    <h3 style="color:var(--green);font-size:14px;margin-bottom:8px">Methodology</h3>
-    <p style="color:var(--muted);font-size:13px;line-height:1.7">QantScore™ is a composite 0-100 score: Rating (30%) + Maturity (25%) + Deployability (20%) + Community Velocity (15%) + Documentation Quality (10%). See <a href="/methodology/" style="color:var(--green)">full methodology</a>.</p>
+    <h3 style="color:var(--green);font-size:15px;margin-bottom:8px">Методология</h3>
+    <p style="color:var(--muted);font-size:14px;line-height:1.7">QantScore™ — композитная оценка 0-100: Рейтинг (30%) + Зрелость (25%) + Развёртываемость (20%) + Скорость сообщества (15%) + Качество документации (10%). <a href="/methodology/" style="color:var(--green)">Полная методология</a>.</p>
   </div>
 </div>
 <footer>
