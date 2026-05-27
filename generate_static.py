@@ -4225,6 +4225,47 @@ docker run -d -p 3000:8080 \\
     write_html(f"{OUT}/guides/index.html", html)
     print(f"  /guides/index.html")
 
+
+# ─── Intent Pages Generator ──────────────────────────────────────
+def generate_intent_pages():
+    """Generate /best/* and /alternatives/* SEO landing pages."""
+    pages = list(DB.articles.find({"category": "intent-page"}))
+    if not pages:
+        print("  No intent pages found")
+        return
+    
+    for p in pages:
+        slug = p["slug"]
+        title = p.get("title", slug)
+        description = p.get("description", "")
+        body_html = p.get("body_html", "")
+        
+        base_dir = "best" if p.get("intent_type") == "best" else "alternatives"
+        
+        content = f"""<section class="hero">
+  <div class="terminal-grid"></div>
+  <div class="tagline">{"ЛУЧШИЙ ВЫБОР" if p.get("intent_type") == "best" else "АЛЬТЕРНАТИВЫ"}</div>
+  <h1>{esc(title)}</h1>
+  <p class="sub">{esc(p.get("tagline", description))}</p>
+</section>
+
+<div class="detail">
+  {body_html}
+</div>"""
+
+        html = render_page(
+            f"{title} — Qantcore",
+            description if description else title,
+            content,
+            open_graph=make_og(f"{title} — Qantcore", description, f"/{base_dir}/{slug}/"),
+            canonical_url=f'<link rel="canonical" href="https://qantcore.space/{base_dir}/{slug}/">'
+        )
+        
+        os.makedirs(f"{OUT}/{base_dir}/{slug}", exist_ok=True)
+        write_html(f"{OUT}/{base_dir}/{slug}/index.html", html)
+        print(f"  /{base_dir}/{slug}/index.html")
+
+
 if __name__ == "__main__":
     import shutil
 
@@ -4271,6 +4312,9 @@ if __name__ == "__main__":
 
     # Guides (includes coding agents + multi-agent + all tutorials)
     generate_guides()
+
+    # Intent-money SEO pages
+    generate_intent_pages()
 
     # Local models page
     import shutil as _shutil
