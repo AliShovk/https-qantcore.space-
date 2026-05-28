@@ -868,6 +868,7 @@ def generate_home():
     <a href="/compare/" class="cta-primary">Сравнить свой AI-стек</a>
     <a href="/guides/" class="cta-secondary" style="border-color:var(--blue);color:var(--blue)">Гайды</a>
     <a href="/catalog/review/" class="cta-secondary">Обзоры</a>
+    <a href="https://t.me/AliBizCo" style="display:inline-flex;align-items:center;gap:6px;padding:12px 20px;background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.25);border-radius:10px;color:var(--green);font-size:14px;font-weight:600;text-decoration:none;transition:all .2s" onmouseover="this.style.background='rgba(16,185,129,.15)';this.style.borderColor='var(--green)'" onmouseout="this.style.background='rgba(16,185,129,.08)';this.style.borderColor='rgba(16,185,129,.25)'"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="flex-shrink:0"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.14.14-.26.26-.54.26l.19-2.69 4.9-4.43c.213-.19-.046-.296-.33-.105l-6.06 3.82-2.61-.82c-.568-.177-.58-.568.116-.84l10.22-3.94c.472-.177.886.105.733.84z"/></svg> @AliBizCo</a>
   </div>
 </section>"""
 
