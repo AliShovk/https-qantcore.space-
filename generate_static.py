@@ -4194,7 +4194,7 @@ docker run -d -p 3000:8080 \\
 </div>
 
 <div class="container detail">
-  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:40px">
+  <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin-bottom:40px">
     {guide_html}
   </div>
   
