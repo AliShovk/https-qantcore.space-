@@ -663,7 +663,7 @@ ym(109327472,'init',{{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer"
 {content}
 <footer>
   Qantcore &copy; 2026 &mdash; Платформа аналитики AI-агентов &mdash;
-  Обновляется ежедневно &mdash; <a href="https://t.me/nousresearch">@nousresearch</a>
+  Обновляется ежедневно &mdash; <a href="https://t.me/AliBizCo">@AliBizCo</a>
 </footer>
 {scripts}
 </body>
@@ -823,6 +823,7 @@ def generate_home():
     <a href="/compare/" class="cta-primary">Сравнить свой AI-стек</a>
     <a href="/media-kit/" class="cta-secondary">Запросить обзор вендора</a>
     <a href="/benchmarks/" class="cta-secondary">Получить отчёт</a>
+    <a href="https://t.me/AliBizCo" style="display:inline-flex;align-items:center;gap:6px;padding:12px 20px;background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.25);border-radius:10px;color:var(--green);font-size:14px;font-weight:600;text-decoration:none;transition:all .2s" onmouseover="this.style.background='rgba(16,185,129,.15)';this.style.borderColor='var(--green)'" onmouseout="this.style.background='rgba(16,185,129,.08)';this.style.borderColor='rgba(16,185,129,.25)'">💬 @AliBizCo</a>
   </div>
 </section>"""
 
@@ -3429,6 +3430,7 @@ def generate_multi_agent():
         {"title": "Локальный multi-agent с Ollama", "time": "15 мин", "tag": "beginner"},
         {"title": "Свой MCP-сервер для агентов", "time": "30 мин", "tag": "advanced"},
         {"title": "Observability для multi-agent систем", "time": "20 мин", "tag": "intermediate"},
+        {"title": "MemClaw: общая память Claude+ChatGPT", "time": "12 мин", "tag": "intermediate"},
     ]
     tag_colors = {"beginner": "var(--green)", "intermediate": "var(--amber)", "advanced": "var(--red)"}
     guide_cards = ""
@@ -4085,6 +4087,47 @@ docker run -d -p 3000:8080 \\
             "time": "13 мин",
             "desc": "Сравнение 5 моделей деплоя для AI-агентов: холодный старт, масштабирование, стоимость. Практические рекомендации для каждого сценария.",
             "code": "<span><b>1) Serverless (Lambda/Cloud Run):</b> холодный старт 500ms-3s, pay-per-use. Идеально: редкие задачи, event-driven. <b>2) EC2/VM:</b> холодный старт 0 (always-on), от $20/мес. Идеально: постоянная нагрузка, GPU-модели. <b>3) Kubernetes:</b> автоскейлинг, canary deploy, от $50/мес (минимальный кластер). Идеально: сложные multi-agent системы. <b>4) Modal:</b> Python-native serverless с GPU. <code>@app.function(gpu='A10G')</code>. Идеально: ML-задачи. <b>5) Fly.io:</b> edge deployment, автоскейлинг. Идеально: low-latency агенты. <b>Правило:</b> прототип → Modal/Fly. Продакшен → K8s. Бюджетно → EC2.</span>"
+        },
+        {
+            "id": "memclaw-cross-model-memory",
+            "icon": "🧠",
+            "title": "MemClaw: общая память для Claude и ChatGPT",
+            "subtitle": "Кросс-модельная память: рассказал одному — другой помнит",
+            "tag": "intermediate",
+            "time": "12 мин",
+            "desc": "CauraAI «поженили» Claude и ChatGPT через MemClaw — governed shared memory для AI-агентов. Рассказываем как это работает: архитектура, 12 MCP-инструментов, быстрый старт за 5 минут. Apache 2.0, Docker, MCP.",
+            "code": '''<span style="color:var(--dim)"># 1. Клонируем и запускаем MemClaw (Docker)</span>
+<span style="color:#79c0ff">git clone</span> https://github.com/caura-ai/caura-memclaw.git
+<span style="color:#79c0ff">cd</span> caura-memclaw && <span style="color:#79c0ff">cp</span> .env.example .env
+<span style="color:#79c0ff">docker compose up -d</span>  <span style="color:var(--dim)"># ~30 сек</span>
+
+<span style="color:var(--dim)"># 2. Проверяем</span>
+<span style="color:#79c0ff">curl</span> http://localhost:8000/api/v1/health
+
+<span style="color:var(--dim)"># 3. Claude записывает факт в память</span>
+<span style="color:var(--dim)"># Claude вызывает memclaw_write:</span>
+<span style="color:#a5d6ff">"content": "Проект использует React 19 + Next.js 15"</span>
+
+<span style="color:var(--dim)"># 4. ChatGPT читает память</span>
+<span style="color:var(--dim)"># ChatGPT вызывает memclaw_recall:</span>
+<span style="color:#a5d6ff">"query": "Какой стек у проекта?"</span>
+<span style="color:var(--dim)"># → Ответ: "React 19 + Next.js 15" ← Клод записал, ChatGPT помнит!</span>
+
+<span style="color:var(--dim)"># 5. MCP-конфиг для Claude Desktop</span>
+<span style="color:#79c0ff">{</span>
+  <span style="color:#a5d6ff">"mcpServers"</span>: <span style="color:#79c0ff">{</span>
+    <span style="color:#a5d6ff">"memclaw"</span>: <span style="color:#79c0ff">{</span>
+      <span style="color:#a5d6ff">"url"</span>: <span style="color:#a5d6ff">"https://memclaw.net/mcp"</span>,
+      <span style="color:#a5d6ff">"headers"</span>: <span style="color:#79c0ff">{</span>
+        <span style="color:#a5d6ff">"X-API-Key"</span>: <span style="color:#a5d6ff">"mc_your_key"</span>
+      <span style="color:#79c0ff">}</span>
+    <span style="color:#79c0ff">}</span>
+  <span style="color:#79c0ff">}</span>
+<span style="color:#79c0ff">}</span>
+
+<span style="color:var(--dim)"># 6. 12 MCP-инструментов:</span>
+<span style="color:var(--dim)"># memclaw_write/recall/list/manage/doc/entity_get</span>
+<span style="color:var(--dim)"># memclaw_tune/insights/evolve/stats/keystones/keystones_set</span>'''
         },
     ]
     
