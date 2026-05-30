@@ -817,7 +817,8 @@ def make_product_card(p, with_compare=True, compact=False):
         desc_style = ''
         panel_style = ''
         trust_style = ''
-    return f"""<a href="/product/{p['slug']}/" class="card" {style}>
+    pt_attr = p.get('product_type', 'agent')
+    return f"""<a href="/product/{p['slug']}/" class="card" data-pt="{pt_attr}" {style}>
       {compare_html}
       {bookmark_html}
       {watch_html}
@@ -1068,7 +1069,7 @@ def generate_home():
   <div class="partners-grid">
 
     <a href="https://bothub.ru/?invitedBy=J0xaBCyOs5I6tpG1UVvCS" class="partner-banner" target="_blank" rel="nofollow sponsored" style="background:linear-gradient(135deg,#1e1b4b,#312e81)">
-      <img src="/images/partners/bothub.svg" class="pb-logo" alt="Bothub" width="48" height="48">
+      <img src="/images/partners/bothub.svg" class="pb-logo" alt="Bothub" width="32" height="32">
       <div class="pb-info">
         <div class="pb-name">Bothub</div>
         <div class="pb-desc">ChatGPT, Claude, Gemini, Midjourney — всё в одном сервисе</div>
@@ -1077,7 +1078,7 @@ def generate_home():
     </a>
 
     <a href="https://www.reg.ru/?rlink=reflink-31809933" class="partner-banner" target="_blank" rel="nofollow sponsored" style="background:linear-gradient(135deg,#1a1020,#2d1a3a)">
-      <img src="/images/partners/regru.svg" class="pb-logo" alt="REG.RU" width="48" height="48">
+      <img src="/images/partners/regru.svg" class="pb-logo" alt="REG.RU" width="32" height="32">
       <div class="pb-info">
         <div class="pb-name">REG.RU</div>
         <div class="pb-desc">Домены, хостинг, облачные и выделенные серверы</div>
@@ -1086,7 +1087,7 @@ def generate_home():
     </a>
 
     <a href="https://gptunnel.ru/?ref=6a1075f08d4e550001d22ce8" class="partner-banner" target="_blank" rel="nofollow sponsored" style="background:linear-gradient(135deg,#1a1028,#3b1a5c)">
-      <img src="/images/partners/gptunnel.svg" class="pb-logo" alt="GPTunnel" width="48" height="48">
+      <img src="/images/partners/gptunnel.svg" class="pb-logo" alt="GPTunnel" width="32" height="32">
       <div class="pb-info">
         <div class="pb-name">GPTunnel</div>
         <div class="pb-desc">ChatGPT и Claude без VPN — российские карты</div>
@@ -1095,7 +1096,7 @@ def generate_home():
     </a>
 
     <a href="https://timeweb.com/ru/services/hosting?utm_source=cj098936&utm_medium=timeweb&utm_campaign=timeweb-bring-a-friend" class="partner-banner" target="_blank" rel="nofollow sponsored" style="background:linear-gradient(135deg,#0a1a14,#0d3328)">
-      <img src="/images/partners/timeweb.svg" class="pb-logo" alt="Timeweb" width="48" height="48">
+      <img src="/images/partners/timeweb.svg" class="pb-logo" alt="Timeweb" width="32" height="32">
       <div class="pb-info">
         <div class="pb-name">Timeweb</div>
         <div class="pb-desc">Хостинг, VPS, облачные серверы — SSD и поддержка 24/7</div>
@@ -1104,7 +1105,7 @@ def generate_home():
     </a>
 
     <a href="https://bothelp.io/ru/?ref=9018" class="partner-banner" target="_blank" rel="nofollow sponsored" style="background:linear-gradient(135deg,#0a1a20,#0d2838)">
-      <img src="/images/partners/bothelp.svg" class="pb-logo" alt="BotHelp" width="48" height="48">
+      <img src="/images/partners/bothelp.svg" class="pb-logo" alt="BotHelp" width="32" height="32">
       <div class="pb-info">
         <div class="pb-name">BotHelp</div>
         <div class="pb-desc">Чат-боты Telegram/WhatsApp/ВК + CRM и приём платежей</div>
@@ -1113,7 +1114,7 @@ def generate_home():
     </a>
 
     <a href="https://beget.com/p2620246" class="partner-banner" target="_blank" rel="nofollow sponsored" style="background:linear-gradient(135deg,#1a1808,#2d2a10)">
-      <img src="/images/partners/beget.svg" class="pb-logo" alt="Beget" width="48" height="48">
+      <img src="/images/partners/beget.svg" class="pb-logo" alt="Beget" width="32" height="32">
       <div class="pb-info">
         <div class="pb-name">Beget</div>
         <div class="pb-desc">Хостинг с посекундной тарифацией VPS — SSL и бэкапы</div>
@@ -1531,9 +1532,8 @@ function filterCards(type) {
   var grid = document.getElementById('catalog-grid');
   var cards = grid.querySelectorAll('.card');
   cards.forEach(function(card) {
-    var badge = card.querySelector('.card-badge');
-    if (!badge) return;
-    var pt = badge.textContent.trim().toLowerCase();
+    var pt = card.getAttribute('data-pt');
+    if (!pt) return;
     if (type === 'all') { card.style.display = ''; return; }
     card.style.display = pt === type.toLowerCase() ? '' : 'none';
   });
@@ -1632,21 +1632,21 @@ if(getSaved().length>0){var nav=document.querySelector('.saved-nav');if(nav)nav.
                        content, scripts=scripts, total=tp, active_home="active",
                        open_graph=make_og("Каталог AI-агентов — QantCore", "Каталог AI-агентов: 60+ отслеживается, глубокие обзоры, живые бенчмарки.", "/"),
                        canonical_url='<link rel="canonical" href="https://qantcore.space/">',
-                       extra_css=""".partners{max-width:1400px;margin:40px auto;padding:48px 24px;border-top:1px solid var(--border)}
-.partners-header{text-align:center;margin-bottom:36px}
-.partners-header h2{font-size:28px;font-weight:800;margin-bottom:8px;color:var(--text)}
-.partners-header p{color:var(--text-muted);font-size:15px}
-.partners-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
-.partner-banner{display:flex;align-items:center;gap:18px;padding:24px 28px;border-radius:16px;border:1px solid rgba(255,255,255,.08);text-decoration:none;transition:all .3s;position:relative;overflow:hidden;min-height:96px}
-.partner-banner:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(0,0,0,.4);border-color:rgba(255,255,255,.2)}
-.partner-banner .pb-logo{width:56px;height:56px;border-radius:12px;object-fit:contain;background:rgba(255,255,255,.06);padding:6px;flex-shrink:0}
+                       extra_css=""".partners{max-width:1400px;margin:24px auto;padding:28px 20px;border-top:1px solid var(--border)}
+.partners-header{text-align:center;margin-bottom:20px}
+.partners-header h2{font-size:22px;font-weight:800;margin-bottom:4px;color:var(--text)}
+.partners-header p{color:var(--text-muted);font-size:13px}
+.partners-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.partner-banner{display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:12px;border:1px solid rgba(255,255,255,.08);text-decoration:none;transition:all .3s;position:relative;overflow:hidden;min-height:52px}
+.partner-banner:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.4);border-color:rgba(255,255,255,.2)}
+.partner-banner .pb-logo{width:32px;height:32px;border-radius:8px;object-fit:contain;background:rgba(255,255,255,.06);padding:3px;flex-shrink:0}
 .partner-banner .pb-info{flex:1;min-width:0}
-.partner-banner .pb-name{font-weight:800;font-size:20px;color:#fff;margin-bottom:4px;letter-spacing:-.01em}
-.partner-banner .pb-desc{font-size:13px;color:rgba(255,255,255,.6);line-height:1.4}
-.partner-banner .pb-cta{flex-shrink:0;padding:10px 22px;background:rgba(255,255,255,.12);color:#fff;border-radius:10px;font-size:14px;font-weight:700;transition:background .2s;white-space:nowrap}
+.partner-banner .pb-name{font-weight:700;font-size:14px;color:#fff;margin-bottom:1px;letter-spacing:-.01em}
+.partner-banner .pb-desc{font-size:11px;color:rgba(255,255,255,.5);line-height:1.3}
+.partner-banner .pb-cta{flex-shrink:0;padding:5px 12px;background:rgba(255,255,255,.12);color:#fff;border-radius:8px;font-size:11px;font-weight:700;transition:background .2s;white-space:nowrap}
 .partner-banner:hover .pb-cta{background:rgba(255,255,255,.22)}
-@media(max-width:900px){.partners-grid{grid-template-columns:1fr}}
-@media(max-width:600px){.partner-banner{flex-direction:column;text-align:center;gap:12px;padding:20px}.partner-banner .pb-cta{width:100%;text-align:center}}""")
+@media(max-width:1200px){.partners-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.partners-grid{grid-template-columns:1fr}.partner-banner{flex-direction:column;text-align:center;gap:8px;padding:14px}.partner-banner .pb-cta{width:100%;text-align:center}}""")
 
     write_html(f"{OUT}/index.html", html)
     print(f"  /index.html")
@@ -1948,8 +1948,24 @@ def generate_catalog(category):
     active_compare = "active" if category == "comparison" else ""
     active_review = "active" if category == "review" else ""
 
+    # Filters for product catalog
+    filter_bar = ""
+    if category == "product":
+        product_types = DB.articles.distinct("product_type", {"category": "product"})
+        type_counts = {}
+        for pt in product_types:
+            type_counts[pt] = DB.articles.count_documents({"category": "product", "product_type": pt})
+        filters_html = '<span class="label">Фильтр:</span>'
+        filters_html += '<button class="filter-btn active" onclick="filterCards(\'all\')">Все</button>'
+        for pt in sorted(product_types):
+            cnt = type_counts.get(pt, 0)
+            pt_label = {"agent": "Агенты", "framework": "Фреймворки", "platform": "Платформы", "model": "Модели", "infrastructure": "Инфра", "agent-framework": "Агент-фреймворки"}.get(pt, pt)
+            filters_html += f'<button class="filter-btn" onclick="filterCards(\'{pt}\')">{esc(pt_label)}<span class="count">{cnt}</span></button>'
+        filter_bar = f'<div class="filters-bar">{filters_html}</div>'
+
     body = f"""<div class="container">
   <h2 style="font-size:22px;font-weight:700;color:#f1f5f9;margin-bottom:20px">{esc(label)}</h2>
+  {filter_bar}
   {cards}
 </div>"""
 
