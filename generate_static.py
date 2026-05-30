@@ -701,6 +701,8 @@ ym(109327472,'init',{{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer"
       <span class="nav-sep"></span>
       <a href="/local-models/" class="nav-local">Локальные LLM</a>
       <span class="nav-sep"></span>
+      <span class="nav-sep"></span>
+      <a href="/oplata-ai/" style="font-size:14px!important;font-weight:700!important;color:var(--amber)!important;padding:6px 14px!important;letter-spacing:.01em">💳 Оплата AI</a>
       <a href="/methodology/" class="{active_method}">Методология</a>
       <span class="nav-sep"></span>
       <a href="/workspace/" class="{active_ws}">Кабинет</a>
@@ -1061,6 +1063,19 @@ def generate_home():
 </div>
 <svg id="live-connections" class="live-lines"></svg>"""
 
+    oplata_banner_html = '''<div style="max-width:1320px;margin:0 auto;padding:0 24px 0">
+  <a href="/oplata-ai/" style="display:flex;align-items:center;justify-content:space-between;padding:20px 28px;background:linear-gradient(135deg,rgba(245,158,11,.1),rgba(245,158,11,.04));border:1px solid rgba(245,158,11,.25);border-radius:var(--radius);text-decoration:none;transition:all .2s;flex-wrap:wrap;gap:16px" onmouseover="this.style.borderColor='var(--amber)';this.style.background='linear-gradient(135deg,rgba(245,158,11,.15),rgba(245,158,11,.06))'" onmouseout="this.style.borderColor='rgba(245,158,11,.25)';this.style.background='linear-gradient(135deg,rgba(245,158,11,.1),rgba(245,158,11,.04))'">
+    <div style="display:flex;align-items:center;gap:14px">
+      <span style="font-size:32px">💳</span>
+      <div>
+        <div style="font-size:18px;font-weight:800;color:var(--amber);letter-spacing:-.01em">Оплата AI</div>
+        <div style="font-size:13px;color:var(--muted);margin-top:4px;line-height:1.4">Где купить доступ к ChatGPT, Claude, Gemini, Midjourney и 150+ AI-сервисам</div>
+      </div>
+    </div>
+    <span style="padding:10px 22px;background:var(--amber);color:#000;border-radius:8px;font-size:14px;font-weight:700;white-space:nowrap;transition:all .2s">Смотреть таблицу →</span>
+  </a>
+</div>'''
+
     partners_html = '''<section class="partners" id="partners">
   <div class="partners-header">
     <h2>Партнёрские сервисы</h2>
@@ -1125,7 +1140,7 @@ def generate_home():
   </div>
 </section>'''
 
-    content = '<div class="container">' + hero + partners_html + auth + featured_html + enterprise_cta + trending_html + new_html + bench_html + live_html + guides_html + catalog_html + '</div>' + compare_bar
+    content = '<div class="container">' + hero + oplata_banner_html + partners_html + auth + featured_html + enterprise_cta + trending_html + new_html + bench_html + live_html + guides_html + catalog_html + '</div>' + compare_bar
 
     # Scripts
     scripts = """<script>
@@ -4366,6 +4381,474 @@ def generate_intent_pages():
         print(f"  /{base_dir}/{slug}/index.html")
 
 
+
+
+# ─── Оплата AI Page ─────────────────────────────────────────────
+# ─── Оплата AI Page (Interactive v2) ─────────────────────────────
+# ─── Оплата AI Page (Interactive v3 — fixed JS escaping) ─────────
+def generate_oplata_ai():
+    """Generate /oplata-ai/ — AI service availability with search + clickable rows + payment modal."""
+
+    LINK_PLATIPOMIRU = "https://platipomiru.com/?code=68GWGYBN"
+    LINK_GGSEL = "https://gglead.org/ggsel3/?flow=15060&ulp=https%3A%2F%2Fggsel.net%2Fcatalog%2Fartificial-intelligence"
+    LINK_POLZA = "https://polza.ai/?referral=NWp3KtVDvw"
+
+    def status_cell(text):
+        t = text.strip()
+        if 'Доступен' in t or 'В составе' in t or 'Бесплатно' in t or 'Включено' in t:
+            return ('yes', '<span style="color:var(--green)">' + esc(t) + '</span>')
+        elif 'Пополнение' in t or 'Есть товары' in t or 'Нестабильно' in t or 'Редко' in t or 'Ограничен' in t or 'По запросу' in t or 'Баланс' in t:
+            return ('warn', '<span style="color:var(--amber)">' + esc(t) + '</span>')
+        elif 'Снят' in t:
+            return ('no', '<span style="color:var(--dim)">' + esc(t) + '</span>')
+        elif 'Отсутствует' in t:
+            return ('no', '<span style="color:var(--dim)">' + esc(t) + '</span>')
+        elif t == '-':
+            return ('na', '<span style="color:var(--dim)">-</span>')
+        else:
+            return ('other', esc(t))
+
+    def build_table(provider_name, provider_emoji, rows):
+        html = '<h2 style="font-size:20px;font-weight:700;color:var(--text);margin:32px 0 12px;padding-bottom:8px;border-bottom:1px solid var(--border)">' + provider_emoji + ' ' + provider_name + '</h2>\n'
+        html += '<div style="overflow-x:auto;margin-bottom:24px">\n'
+        html += '<table style="width:100%;border-collapse:collapse;font-size:13px;background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius)">\n'
+        html += '<thead><tr style="background:rgba(16,185,129,.06)">'
+        html += '<th style="padding:10px 14px;text-align:left;color:var(--text);font-weight:600;border-bottom:2px solid rgba(16,185,129,.25)">Сервис / Модель</th>'
+        html += '<th style="padding:10px 14px;text-align:center;color:var(--dim);font-size:11px;border-bottom:2px solid rgba(16,185,129,.25)">Тип</th>'
+        html += '<th style="padding:10px 14px;text-align:center;color:var(--green);font-weight:600;border-bottom:2px solid rgba(16,185,129,.25)">💰 ПлатиПоМиру</th>'
+        html += '<th style="padding:10px 14px;text-align:center;color:var(--blue);font-weight:600;border-bottom:2px solid rgba(16,185,129,.25)">🛒 GGSEL AI</th>'
+        html += '<th style="padding:10px 14px;text-align:center;color:var(--cyan);font-weight:600;border-bottom:2px solid rgba(16,185,129,.25)">⚡️ Polza AI</th>'
+        html += '</tr></thead><tbody>\n'
+
+        last_section = None
+        for idx, r in enumerate(rows):
+            if r.get('section') and r['section'] != last_section:
+                last_section = r['section']
+                html += '<tr style="background:rgba(255,255,255,.02)"><td colspan="5" style="padding:8px 14px;color:var(--muted);font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.03em">' + esc(last_section) + '</td></tr>\n'
+
+            p_status, p_display = status_cell(r.get('platipomiru', '❌ Отсутствует'))
+            g_status, g_display = status_cell(r.get('ggsel', '❌ Отсутствует'))
+            z_status, z_display = status_cell(r.get('polza', '❌ Отсутствует'))
+
+            bg = ' style="background:rgba(255,255,255,.01)"' if idx % 2 == 0 else ''
+            name_esc = esc(r['name'])
+            type_esc = esc(r.get('type', 'API'))
+            provider_esc = esc(provider_name)
+
+            html += '<tr class="ai-row"' + bg + ' data-model="' + name_esc + '" data-type="' + type_esc + '" data-provider="' + provider_esc + '" data-platipomiru="' + p_status + '" data-ggsel="' + g_status + '" data-polza="' + z_status + '">'
+            html += '<td style="padding:8px 14px;color:var(--text);cursor:pointer">' + name_esc + '</td>'
+            html += '<td style="padding:8px 14px;text-align:center;color:var(--dim)">' + type_esc + '</td>'
+            html += '<td style="padding:8px 14px;text-align:center">' + p_display + '</td>'
+            html += '<td style="padding:8px 14px;text-align:center">' + g_display + '</td>'
+            html += '<td style="padding:8px 14px;text-align:center">' + z_display + '</td>'
+            html += '</tr>\n'
+
+        html += '</tbody></table></div>\n'
+        return html
+
+    # ─── ALL TABLES ───
+    tables_html = ""
+
+    tables_html += build_table("OpenAI", "🤖", [
+        {"section": "Подписки", "name": "ChatGPT Plus (GPT-4o, o3-mini и др.)", "type": "Подписка", "platipomiru": "✅ Доступен", "ggsel": "✅ Доступен", "polza": "❌ Отсутствует"},
+        {"name": "ChatGPT Pro (безлимитный доступ)", "type": "Подписка", "platipomiru": "✅ Доступен", "ggsel": "✅ Доступен", "polza": "❌ Отсутствует"},
+        {"name": "ChatGPT Team", "type": "Подписка", "platipomiru": "⚠️ Редко", "ggsel": "⚠️ Редко", "polza": "❌ Отсутствует"},
+        {"name": "ChatGPT Enterprise", "type": "Подписка", "platipomiru": "❌ Отсутствует", "ggsel": "❌ Отсутствует", "polza": "❌ Отсутствует"},
+        {"section": "API-модели", "name": "GPT-4o", "type": "API", "platipomiru": "⚠️ Пополнение", "ggsel": "⚠️ Есть товары", "polza": "❌ Отсутствует"},
+        {"name": "GPT-4o-mini", "type": "API", "platipomiru": "⚠️ Пополнение", "ggsel": "⚠️ Есть товары", "polza": "❌ Отсутствует"},
+        {"name": "GPT-4 Turbo", "type": "API", "platipomiru": "⚠️ Пополнение", "ggsel": "⚠️ Есть товары", "polza": "❌ Отсутствует"},
+        {"name": "GPT-4", "type": "API", "platipomiru": "⚠️ Пополнение", "ggsel": "⚠️ Есть товары", "polza": "❌ Отсутствует"},
+        {"name": "GPT-3.5 Turbo", "type": "API", "platipomiru": "⚠️ Пополнение", "ggsel": "⚠️ Есть товары", "polza": "❌ Отсутствует"},
+        {"name": "o3-mini", "type": "API", "platipomiru": "⚠️ Пополнение", "ggsel": "⚠️ Есть товары", "polza": "❌ Отсутствует"},
+        {"name": "o1 / o1-mini", "type": "API", "platipomiru": "⚠️ Пополнение", "ggsel": "⚠️ Есть товары", "polza": "❌ Отсутствует"},
+        {"name": "Whisper (распознавание речи)", "type": "API", "platipomiru": "⚠️ Пополнение", "ggsel": "⚠️ Есть товары", "polza": "❌ Отсутствует"},
+        {"name": "DALL·E 3", "type": "API", "platipomiru": "⚠️ Пополнение", "ggsel": "⚠️ Есть товары", "polza": "❌ Отсутствует"},
+        {"name": "TTS (озвучка текста)", "type": "API", "platipomiru": "⚠️ Пополнение", "ggsel": "⚠️ Есть товары", "polza": "❌ Отсутствует"},
+        {"name": "Embeddings", "type": "API", "platipomiru": "⚠️ Пополнение", "ggsel": "⚠️ Есть товары", "polza": "❌ Отсутствует"},
+        {"name": "Assistants API", "type": "API", "platipomiru": "⚠️ Пополнение", "ggsel": "⚠️ Есть товары", "polza": "❌ Отсутствует"},
+    ])
+
+    tables_html += build_table("Anthropic (Claude)", "📝", [
+        {"section": "Подписки", "name": "Claude Pro", "type": "Подписка", "platipomiru": "✅ Доступен", "ggsel": "✅ Доступен", "polza": "❌ Отсутствует"},
+        {"name": "Claude Team", "type": "Подписка", "platipomiru": "⚠️ Редко", "ggsel": "⚠️ Редко", "polza": "❌ Отсутствует"},
+        {"name": "Claude Enterprise", "type": "Подписка", "platipomiru": "❌ Отсутствует", "ggsel": "❌ Отсутствует", "polza": "❌ Отсутствует"},
+        {"section": "API-модели", "name": "Claude 3.5 Sonnet", "type": "API", "platipomiru": "⚠️ Нестабильно", "ggsel": "⚠️ Нестабильно", "polza": "✅ Доступен"},
+        {"name": "Claude 3.5 Haiku", "type": "API", "platipomiru": "⚠️ Нестабильно", "ggsel": "⚠️ Нестабильно", "polza": "✅ Доступен"},
+        {"name": "Claude 3 Opus", "type": "API", "platipomiru": "⚠️ Нестабильно", "ggsel": "⚠️ Нестабильно", "polza": "✅ Доступен"},
+        {"name": "Claude 3 Sonnet", "type": "API", "platipomiru": "⚠️ Нестабильно", "ggsel": "⚠️ Нестабильно", "polza": "✅ Доступен"},
+        {"name": "Claude 3 Haiku", "type": "API", "platipomiru": "⚠️ Нестабильно", "ggsel": "⚠️ Нестабильно", "polza": "✅ Доступен"},
+        {"name": "Claude 2.1 / 2.0", "type": "API", "platipomiru": "⚠️ Нестабильно", "ggsel": "❌ Отсутствует", "polza": "❌ Отсутствует"},
+    ])
+
+    tables_html += build_table("Google DeepMind (Gemini)", "🔮", [
+        {"section": "Подписки", "name": "Google One AI Premium (Gemini Advanced)", "type": "Подписка", "platipomiru": "✅ Доступен", "ggsel": "✅ Доступен", "polza": "❌ Отсутствует"},
+        {"name": "Gemini Business", "type": "Подписка", "platipomiru": "⚠️ Редко", "ggsel": "❌ Отсутствует", "polza": "❌ Отсутствует"},
+        {"section": "API-модели", "name": "Gemini 2.0 Flash", "type": "API", "platipomiru": "⚠️ Нестабильно", "ggsel": "⚠️ Нестабильно", "polza": "✅ Доступен"},
+        {"name": "Gemini 2.0 Pro (Experimental)", "type": "API", "platipomiru": "⚠️ Нестабильно", "ggsel": "⚠️ Нестабильно", "polza": "✅ Доступен"},
+        {"name": "Gemini 1.5 Pro", "type": "API", "platipomiru": "⚠️ Нестабильно", "ggsel": "⚠️ Нестабильно", "polza": "✅ Доступен"},
+        {"name": "Gemini 1.5 Flash", "type": "API", "platipomiru": "⚠️ Нестабильно", "ggsel": "⚠️ Нестабильно", "polza": "✅ Доступен"},
+        {"name": "Gemini 1.0 Pro", "type": "API", "platipomiru": "⚠️ Нестабильно", "ggsel": "⚠️ Нестабильно", "polza": "✅ Доступен"},
+        {"name": "Gemini 1.0 Ultra", "type": "API", "platipomiru": "⚠️ Нестабильно", "ggsel": "❌ Отсутствует", "polza": "⚠️ Ограничен"},
+        {"name": "Imagen (генерация изображений)", "type": "API", "platipomiru": "❌ Отсутствует", "ggsel": "❌ Отсутствует", "polza": "⚠️ Нестабильно"},
+        {"name": "Veo (генерация видео)", "type": "API", "platipomiru": "❌ Отсутствует", "ggsel": "❌ Отсутствует", "polza": "❌ Отсутствует"},
+        {"name": "Gemma (открытая модель)", "type": "API", "platipomiru": "❌ Отсутствует", "ggsel": "❌ Отсутствует", "polza": "✅ Доступен"},
+    ])
+
+    tables_html += build_table("xAI (Grok)", "🚀", [
+        {"section": "Подписки", "name": "X Premium+ (Grok 3)", "type": "Подписка", "platipomiru": "✅ Доступен", "ggsel": "✅ Доступен", "polza": "❌ Отсутствует"},
+        {"name": "SuperGrok (отдельная подписка)", "type": "Подписка", "platipomiru": "⚠️ Редко", "ggsel": "⚠️ Редко", "polza": "❌ Отсутствует"},
+        {"section": "API-модели", "name": "Grok 3 / Grok 3 Mini", "type": "API", "platipomiru": "⚠️ Нестабильно", "ggsel": "⚠️ Нестабильно", "polza": "✅ Доступен"},
+        {"name": "Grok 2 / Grok 2 Vision", "type": "API", "platipomiru": "⚠️ Нестабильно", "ggsel": "⚠️ Нестабильно", "polza": "✅ Доступен"},
+        {"name": "Grok 1.5 / Grok 1", "type": "API", "platipomiru": "❌ Снят с продаж", "ggsel": "❌ Снят с продаж", "polza": "❌ Отсутствует"},
+    ])
+
+    tables_html += build_table("Perplexity", "🔍", [
+        {"section": "Подписки", "name": "Perplexity Pro", "type": "Подписка", "platipomiru": "✅ Доступен", "ggsel": "✅ Доступен", "polza": "❌ Отсутствует"},
+        {"name": "Perplexity Enterprise Pro", "type": "Подписка", "platipomiru": "❌ Отсутствует", "ggsel": "❌ Отсутствует", "polza": "❌ Отсутствует"},
+        {"section": "API-модели", "name": "Sonar (онлайн-поиск)", "type": "API", "platipomiru": "⚠️ Нестабильно", "ggsel": "⚠️ Нестабильно", "polza": "✅ Доступен"},
+        {"name": "Sonar Pro", "type": "API", "platipomiru": "⚠️ Нестабильно", "ggsel": "⚠️ Нестабильно", "polza": "✅ Доступен"},
+        {"name": "Sonar Reasoning", "type": "API", "platipomiru": "⚠️ Нестабильно", "ggsel": "⚠️ Нестабильно", "polza": "✅ Доступен"},
+        {"name": "pplx-7b / pplx-70b (устаревшие)", "type": "API", "platipomiru": "❌ Отсутствует", "ggsel": "❌ Отсутствует", "polza": "❌ Отсутствует"},
+    ])
+
+    tables_html += build_table("Инструменты разработки", "💻", [
+        {"name": "Cursor Pro", "type": "Подписка", "platipomiru": "✅ Доступен", "ggsel": "✅ Доступен", "polza": "❌ Отсутствует"},
+        {"name": "Cursor Business", "type": "Подписка", "platipomiru": "⚠️ Редко", "ggsel": "❌ Отсутствует", "polza": "❌ Отсутствует"},
+        {"name": "Windsurf Pro", "type": "Подписка", "platipomiru": "⚠️ Нестабильно", "ggsel": "⚠️ Нестабильно", "polza": "❌ Отсутствует"},
+        {"name": "Windsurf Teams", "type": "Подписка", "platipomiru": "❌ Отсутствует", "ggsel": "❌ Отсутствует", "polza": "❌ Отсутствует"},
+        {"name": "GitHub Copilot Individual", "type": "Подписка", "platipomiru": "✅ Доступен", "ggsel": "✅ Доступен", "polza": "❌ Отсутствует"},
+        {"name": "GitHub Copilot Business", "type": "Подписка", "platipomiru": "⚠️ Редко", "ggsel": "⚠️ Редко", "polza": "❌ Отсутствует"},
+        {"name": "GitHub Copilot Enterprise", "type": "Подписка", "platipomiru": "❌ Отсутствует", "ggsel": "❌ Отсутствует", "polza": "❌ Отсутствует"},
+        {"name": "Replit Core / Pro", "type": "Подписка", "platipomiru": "⚠️ Нестабильно", "ggsel": "✅ Доступен", "polza": "❌ Отсутствует"},
+        {"name": "Tabnine Pro", "type": "Подписка", "platipomiru": "❌ Отсутствует", "ggsel": "⚠️ Редко", "polza": "❌ Отсутствует"},
+        {"name": "Codeium Teams", "type": "Подписка", "platipomiru": "❌ Отсутствует", "ggsel": "❌ Отсутствует", "polza": "❌ Отсутствует"},
+        {"name": "Cody (Sourcegraph) Pro", "type": "Подписка", "platipomiru": "❌ Отсутствует", "ggsel": "⚠️ Редко", "polza": "❌ Отсутствует"},
+        {"name": "Amazon CodeWhisperer Pro", "type": "Подписка", "platipomiru": "❌ Отсутствует", "ggsel": "❌ Отсутствует", "polza": "❌ Отсутствует"},
+    ])
+
+    tables_html += build_table("DeepSeek", "🐋", [
+        {"section": "Подписки", "name": "DeepSeek Чат (веб/приложение)", "type": "Бесплатно", "platipomiru": "-", "ggsel": "-", "polza": "-"},
+        {"section": "API-модели", "name": "DeepSeek-V3", "type": "API", "platipomiru": "⚠️ Нестабильно", "ggsel": "✅ Доступен", "polza": "✅ Доступен"},
+        {"name": "DeepSeek-R1 (reasoning)", "type": "API", "platipomiru": "⚠️ Нестабильно", "ggsel": "✅ Доступен", "polza": "✅ Доступен"},
+        {"name": "DeepSeek-R1 Distill (сжатые версии)", "type": "API", "platipomiru": "❌ Отсутствует", "ggsel": "⚠️ Есть товары", "polza": "✅ Доступен"},
+        {"name": "DeepSeek-V2 / V2.5 (устаревшие)", "type": "API", "platipomiru": "❌ Снят с продаж", "ggsel": "❌ Снят с продаж", "polza": "❌ Отсутствует"},
+        {"name": "DeepSeek-Coder V2", "type": "API", "platipomiru": "❌ Отсутствует", "ggsel": "⚠️ Есть товары", "polza": "✅ Доступен"},
+    ])
+
+    tables_html += build_table("Mistral AI", "🔬", [
+        {"section": "Подписки", "name": "Le Chat Pro", "type": "Подписка", "platipomiru": "❌ Отсутствует", "ggsel": "⚠️ Редко", "polza": "❌ Отсутствует"},
+        {"section": "API-модели", "name": "Mistral Large 2 (top-tier)", "type": "API", "platipomiru": "❌ Отсутствует", "ggsel": "❌ Отсутствует", "polza": "✅ Доступен"},
+        {"name": "Mistral Large", "type": "API", "platipomiru": "❌ Отсутствует", "ggsel": "❌ Отсутствует", "polza": "✅ Доступен"},
+        {"name": "Mistral Medium", "type": "API", "platipomiru": "❌ Отсутствует", "ggsel": "❌ Отсутствует", "polza": "✅ Доступен"},
+        {"name": "Mistral Small 3", "type": "API", "platipomiru": "❌ Отсутствует", "ggsel": "❌ Отсутствует", "polza": "✅ Доступен"},
+        {"name": "Mistral Nemo", "type": "API", "platipomiru": "❌ Отсутствует", "ggsel": "❌ Отсутствует", "polza": "✅ Доступен"},
+        {"name": "Mixtral 8x22B", "type": "API", "platipomiru": "❌ Отсутствует", "ggsel": "❌ Отсутствует", "polza": "✅ Доступен"},
+        {"name": "Mixtral 8x7B", "type": "API", "platipomiru": "❌ Отсутствует", "ggsel": "❌ Отсутствует", "polza": "✅ Доступен"},
+        {"name": "Mistral 7B", "type": "API", "platipomiru": "❌ Отсутствует", "ggsel": "❌ Отсутствует", "polza": "✅ Доступен"},
+        {"name": "Codestral (код)", "type": "API", "platipomiru": "❌ Отсутствует", "ggsel": "❌ Отсутствует", "polza": "✅ Доступен"},
+        {"name": "Mistral Embed", "type": "API", "platipomiru": "❌ Отсутствует", "ggsel": "❌ Отсутствует", "polza": "✅ Доступен"},
+        {"name": "Ministral 3B / 8B (edge)", "type": "API", "platipomiru": "❌ Отсутствует", "ggsel": "❌ Отсутствует", "polza": "⚠️ Нестабильно"},
+    ])
+
+    tables_html += build_table("Meta (Llama)", "🦙", [
+        {"name": "Llama 3.3 70B", "type": "API", "platipomiru": "❌ Отсутствует", "ggsel": "❌ Отсутствует", "polza": "✅ Доступен"},
+        {"name": "Llama 3.2 (1B, 3B, 11B Vision)", "type": "API", "platipomiru": "❌ Отсутствует", "ggsel": "❌ Отсутствует", "polza": "✅ Доступен"},
+        {"name": "Llama 3.1 405B", "type": "API", "platipomiru": "❌ Отсутствует", "ggsel": "❌ Отсутствует", "polza": "✅ Доступен"},
+        {"name": "Llama 3.1 70B", "type": "API", "platipomiru": "❌ Отсутствует", "ggsel": "❌ Отсутствует", "polza": "✅ Доступен"},
+        {"name": "Llama 3.1 8B", "type": "API", "platipomiru": "❌ Отсутствует", "ggsel": "❌ Отсутствует", "polza": "✅ Доступен"},
+        {"name": "Llama 3 70B / 8B", "type": "API", "platipomiru": "❌ Отсутствует", "ggsel": "❌ Отсутствует", "polza": "✅ Доступен"},
+        {"name": "Llama 2 (все версии, устаревшие)", "type": "API", "platipomiru": "❌ Отсутствует", "ggsel": "❌ Отсутствует", "polza": "⚠️ По запросу"},
+        {"name": "Code Llama 70B / 34B / 13B / 7B", "type": "API", "platipomiru": "❌ Отсутствует", "ggsel": "❌ Отсутствует", "polza": "✅ Доступен"},
+    ])
+
+    tables_html += build_table("Alibaba (Qwen)", "🧠", [
+        {"name": "Qwen 2.5 Max (top-tier)", "type": "API", "platipomiru": "❌ Отсутствует", "ggsel": "❌ Отсутствует", "polza": "✅ Доступен"},
+        {"name": "Qwen 2.5 (72B, 32B, 14B, 7B)", "type": "API", "platipomiru": "❌ Отсутствует", "ggsel": "❌ Отсутствует", "polza": "✅ Доступен"},
+        {"name": "Qwen 2.5 Coder (32B, 14B, 7B)", "type": "API", "platipomiru": "❌ Отсутствует", "ggsel": "❌ Отсутствует", "polza": "✅ Доступен"},
+        {"name": "Qwen 2.5 VL (Vision, 72B/7B)", "type": "API", "platipomiru": "❌ Отсутствует", "ggsel": "❌ Отсутствует", "polza": "✅ Доступен"},
+        {"name": "Qwen 2 (устаревшая серия)", "type": "API", "platipomiru": "❌ Отсутствует", "ggsel": "❌ Отсутствует", "polza": "⚠️ По запросу"},
+        {"name": "Qwen 1.5 (устаревшая серия)", "type": "API", "platipomiru": "❌ Отсутствует", "ggsel": "❌ Отсутствует", "polza": "❌ Отсутствует"},
+        {"name": "Qwen Audio (звук)", "type": "API", "platipomiru": "❌ Отсутствует", "ggsel": "❌ Отсутствует", "polza": "⚠️ Нестабильно"},
+        {"name": "Tongyi Qianwen (китайский)", "type": "API", "platipomiru": "❌ Отсутствует", "ggsel": "❌ Отсутствует", "polza": "❌ Отсутствует"},
+    ])
+
+    tables_html += build_table("Midjourney", "🎨", [
+        {"name": "Midjourney Basic", "type": "Подписка", "platipomiru": "✅ Доступен", "ggsel": "✅ Доступен", "polza": "❌ Отсутствует"},
+        {"name": "Midjourney Standard", "type": "Подписка", "platipomiru": "✅ Доступен", "ggsel": "✅ Доступен", "polza": "❌ Отсутствует"},
+        {"name": "Midjourney Pro", "type": "Подписка", "platipomiru": "✅ Доступен", "ggsel": "⚠️ Нестабильно", "polza": "❌ Отсутствует"},
+        {"name": "Midjourney Mega", "type": "Подписка", "platipomiru": "⚠️ Редко", "ggsel": "⚠️ Нестабильно", "polza": "❌ Отсутствует"},
+        {"name": "Midjourney Turbo", "type": "Подписка", "platipomiru": "❌ Отсутствует", "ggsel": "❌ Отсутствует", "polza": "❌ Отсутствует"},
+        {"name": "Midjourney API (официальный)", "type": "API", "platipomiru": "❌ Отсутствует", "ggsel": "❌ Отсутствует", "polza": "❌ Отсутствует"},
+    ])
+
+    tables_html += build_table("Генерация видео и аудио", "🎬", [
+        {"section": "Runway", "name": "Runway Standard", "type": "Подписка", "platipomiru": "⚠️ Нестабильно", "ggsel": "⚠️ Нестабильно", "polza": "❌ Отсутствует"},
+        {"name": "Runway Pro", "type": "Подписка", "platipomiru": "⚠️ Нестабильно", "ggsel": "⚠️ Нестабильно", "polza": "❌ Отсутствует"},
+        {"name": "Runway Unlimited", "type": "Подписка", "platipomiru": "❌ Отсутствует", "ggsel": "⚠️ Редко", "polza": "❌ Отсутствует"},
+        {"name": "Runway Enterprise", "type": "Подписка", "platipomiru": "❌ Отсутствует", "ggsel": "❌ Отсутствует", "polza": "❌ Отсутствует"},
+        {"section": "Kling AI", "name": "Kling AI Standard", "type": "Подписка", "platipomiru": "✅ Доступен", "ggsel": "✅ Доступен", "polza": "❌ Отсутствует"},
+        {"name": "Kling AI Pro", "type": "Подписка", "platipomiru": "✅ Доступен", "ggsel": "✅ Доступен", "polza": "❌ Отсутствует"},
+        {"name": "Kling AI Premium", "type": "Подписка", "platipomiru": "⚠️ Редко", "ggsel": "⚠️ Редко", "polza": "❌ Отсутствует"},
+        {"section": "Остальные", "name": "Pika Basic", "type": "Подписка", "platipomiru": "⚠️ Редко", "ggsel": "✅ Доступен", "polza": "❌ Отсутствует"},
+        {"name": "Pika Pro", "type": "Подписка", "platipomiru": "❌ Отсутствует", "ggsel": "⚠️ Редко", "polza": "❌ Отсутствует"},
+        {"name": "Hailuo Standard", "type": "Подписка", "platipomiru": "⚠️ Редко", "ggsel": "✅ Доступен", "polza": "❌ Отсутствует"},
+        {"name": "Hailuo Pro", "type": "Подписка", "platipomiru": "❌ Отсутствует", "ggsel": "⚠️ Редко", "polza": "❌ Отсутствует"},
+        {"name": "Luma Basic", "type": "Подписка", "platipomiru": "❌ Отсутствует", "ggsel": "✅ Доступен", "polza": "❌ Отсутствует"},
+        {"name": "Luma Pro", "type": "Подписка", "platipomiru": "❌ Отсутствует", "ggsel": "⚠️ Редко", "polza": "❌ Отсутствует"},
+        {"name": "Sora (через ChatGPT Plus/Pro)", "type": "Включено", "platipomiru": "✅ В составе", "ggsel": "✅ В составе", "polza": "❌ Отсутствует"},
+        {"section": "ElevenLabs", "name": "ElevenLabs Starter", "type": "Подписка", "platipomiru": "✅ Доступен", "ggsel": "✅ Доступен", "polza": "❌ Отсутствует"},
+        {"name": "ElevenLabs Creator", "type": "Подписка", "platipomiru": "✅ Доступен", "ggsel": "✅ Доступен", "polza": "❌ Отсутствует"},
+        {"name": "ElevenLabs Pro", "type": "Подписка", "platipomiru": "✅ Доступен", "ggsel": "✅ Доступен", "polza": "❌ Отсутствует"},
+        {"name": "ElevenLabs Scale / Business", "type": "Подписка", "platipomiru": "⚠️ Редко", "ggsel": "❌ Отсутствует", "polza": "❌ Отсутствует"},
+        {"name": "ElevenLabs API", "type": "API", "platipomiru": "⚠️ Нестабильно", "ggsel": "⚠️ Нестабильно", "polza": "❌ Отсутствует"},
+        {"section": "Suno / Udio", "name": "Suno Basic", "type": "Подписка", "platipomiru": "✅ Доступен", "ggsel": "✅ Доступен", "polza": "❌ Отсутствует"},
+        {"name": "Suno Pro", "type": "Подписка", "platipomiru": "✅ Доступен", "ggsel": "✅ Доступен", "polza": "❌ Отсутствует"},
+        {"name": "Suno Premier", "type": "Подписка", "platipomiru": "⚠️ Редко", "ggsel": "⚠️ Редко", "polza": "❌ Отсутствует"},
+        {"name": "Udio Standard", "type": "Подписка", "platipomiru": "⚠️ Редко", "ggsel": "✅ Доступен", "polza": "❌ Отсутствует"},
+        {"name": "Udio Pro", "type": "Подписка", "platipomiru": "❌ Отсутствует", "ggsel": "⚠️ Редко", "polza": "❌ Отсутствует"},
+    ])
+
+    tables_html += build_table("Видеоредакторы и графика", "🎬", [
+        {"section": "CapCut", "name": "CapCut Pro", "type": "Подписка", "platipomiru": "✅ Доступен", "ggsel": "✅ Доступен", "polza": "❌ Отсутствует"},
+        {"name": "CapCut Premium", "type": "Подписка", "platipomiru": "✅ Доступен", "ggsel": "✅ Доступен", "polza": "❌ Отсутствует"},
+        {"name": "CapCut Team", "type": "Подписка", "platipomiru": "⚠️ Редко", "ggsel": "❌ Отсутствует", "polza": "❌ Отсутствует"},
+        {"section": "Canva", "name": "Canva Pro", "type": "Подписка", "platipomiru": "✅ Доступен", "ggsel": "✅ Доступен", "polza": "❌ Отсутствует"},
+        {"name": "Canva Teams", "type": "Подписка", "platipomiru": "⚠️ Нестабильно", "ggsel": "⚠️ Редко", "polza": "❌ Отсутствует"},
+        {"name": "Canva Enterprise", "type": "Подписка", "platipomiru": "❌ Отсутствует", "ggsel": "❌ Отсутствует", "polza": "❌ Отсутствует"},
+        {"section": "Adobe", "name": "Adobe Creative Cloud (все приложения)", "type": "Подписка", "platipomiru": "✅ Доступен", "ggsel": "✅ Доступен", "polza": "❌ Отсутствует"},
+        {"name": "Adobe Photoshop (отдельно)", "type": "Подписка", "platipomiru": "✅ Доступен", "ggsel": "✅ Доступен", "polza": "❌ Отсутствует"},
+        {"name": "Adobe Firefly Premium", "type": "Подписка", "platipomiru": "⚠️ Редко", "ggsel": "⚠️ Редко", "polza": "❌ Отсутствует"},
+        {"name": "Adobe Premiere Pro", "type": "Подписка", "platipomiru": "✅ Доступен", "ggsel": "✅ Доступен", "polza": "❌ Отсутствует"},
+        {"section": "Figma", "name": "Figma Pro", "type": "Подписка", "platipomiru": "✅ Доступен", "ggsel": "✅ Доступен", "polza": "❌ Отсутствует"},
+        {"name": "Figma Organization", "type": "Подписка", "platipomiru": "⚠️ Редко", "ggsel": "❌ Отсутствует", "polza": "❌ Отсутствует"},
+        {"name": "Figma Enterprise", "type": "Подписка", "platipomiru": "❌ Отсутствует", "ggsel": "❌ Отсутствует", "polza": "❌ Отсутствует"},
+    ])
+
+    tables_html += build_table("Другие AI-модели (API)", "🤖", [
+        {"section": "Stability AI", "name": "Stable Diffusion 3.5 (все размеры)", "type": "API", "platipomiru": "❌ Отсутствует", "ggsel": "❌ Отсутствует", "polza": "✅ Доступен"},
+        {"name": "Stable Diffusion 3", "type": "API", "platipomiru": "❌ Отсутствует", "ggsel": "❌ Отсутствует", "polza": "✅ Доступен"},
+        {"name": "Stable Image Ultra / Core", "type": "API", "platipomiru": "❌ Отсутствует", "ggsel": "❌ Отсутствует", "polza": "✅ Доступен"},
+        {"name": "SDXL 1.0", "type": "API", "platipomiru": "❌ Отсутствует", "ggsel": "❌ Отсутствует", "polza": "✅ Доступен"},
+        {"name": "Stable Video Diffusion", "type": "API", "platipomiru": "❌ Отсутствует", "ggsel": "❌ Отсутствует", "polza": "⚠️ Нестабильно"},
+        {"section": "Cohere", "name": "Command R+", "type": "API", "platipomiru": "❌ Отсутствует", "ggsel": "❌ Отсутствует", "polza": "✅ Доступен"},
+        {"name": "Command R", "type": "API", "platipomiru": "❌ Отсутствует", "ggsel": "❌ Отсутствует", "polza": "✅ Доступен"},
+        {"name": "Command (light/nightly)", "type": "API", "platipomiru": "❌ Отсутствует", "ggsel": "❌ Отсутствует", "polza": "✅ Доступен"},
+        {"name": "Embed / Rerank", "type": "API", "platipomiru": "❌ Отсутствует", "ggsel": "❌ Отсутствует", "polza": "✅ Доступен"},
+        {"section": "Прочие", "name": "AI21 Labs — Jurassic-2", "type": "API", "platipomiru": "❌ Отсутствует", "ggsel": "❌ Отсутствует", "polza": "✅ Доступен"},
+        {"name": "Writer.com — Palmyra", "type": "API", "platipomiru": "❌ Отсутствует", "ggsel": "❌ Отсутствует", "polza": "⚠️ По запросу"},
+        {"name": "Amazon Titan (все модели)", "type": "API", "platipomiru": "❌ Отсутствует", "ggsel": "❌ Отсутствует", "polza": "⚠️ По запросу"},
+        {"name": "Amazon Nova (Pro/Lite/Micro/Canvas)", "type": "API", "platipomiru": "❌ Отсутствует", "ggsel": "❌ Отсутствует", "polza": "⚠️ По запросу"},
+        {"name": "Upstage Solar Pro / Mini", "type": "API", "platipomiru": "❌ Отсутствует", "ggsel": "❌ Отсутствует", "polza": "✅ Доступен"},
+        {"name": "GigaChat / GigaChat Pro (Сбер, РФ)", "type": "API", "platipomiru": "❌ Отсутствует", "ggsel": "❌ Отсутствует", "polza": "⚠️ По запросу"},
+        {"name": "YandexGPT / YandexART (РФ)", "type": "API", "platipomiru": "❌ Отсутствует", "ggsel": "❌ Отсутствует", "polza": "⚠️ По запросу"},
+    ])
+
+    tables_html += build_table("DevOps и облака (AI-инфраструктура)", "🔧", [
+        {"name": "Hugging Face Pro", "type": "Подписка", "platipomiru": "⚠️ Редко", "ggsel": "✅ Доступен", "polza": "❌ Отсутствует"},
+        {"name": "Hugging Face Enterprise", "type": "Подписка", "platipomiru": "❌ Отсутствует", "ggsel": "❌ Отсутствует", "polza": "❌ Отсутствует"},
+        {"name": "Replicate (облачный GPU)", "type": "API/PAYG", "platipomiru": "❌ Отсутствует", "ggsel": "❌ Отсутствует", "polza": "⚠️ Баланс"},
+        {"name": "Lambda Labs GPU Cloud", "type": "Инфра", "platipomiru": "❌ Отсутствует", "ggsel": "❌ Отсутствует", "polza": "❌ Отсутствует"},
+        {"name": "RunPod", "type": "Инфра", "platipomiru": "❌ Отсутствует", "ggsel": "❌ Отсутствует", "polza": "❌ Отсутствует"},
+        {"name": "Vercel AI SDK (платные фичи)", "type": "Подписка", "platipomiru": "❌ Отсутствует", "ggsel": "❌ Отсутствует", "polza": "❌ Отсутствует"},
+    ])
+
+    # ─── BODY (using %s, not f-string, to avoid JS brace escaping) ───
+    body = """<div class="container detail">
+  <div class="breadcrumbs"><a href="/">Каталог</a> &rsaquo; <span>Оплата AI</span></div>
+  <h1 style="font-size:28px;font-weight:800;color:#f1f5f9;margin:24px 0 8px">🌐 Доступность AI-сервисов и моделей</h1>
+  <p style="color:var(--muted);font-size:15px;line-height:1.7;max-width:760px;margin-bottom:8px">Нажмите на любую строку, чтобы открыть окно оплаты. Полная таблица доступности AI-сервисов через <strong style="color:var(--green)">ПлатиПоМиру</strong>, <strong style="color:var(--blue)">GGSEL AI</strong> и <strong style="color:var(--cyan)">Polza AI</strong>.</p>
+
+  <!-- Search -->
+  <div style="margin:24px 0;position:relative">
+    <input type="text" id="model-search" placeholder="🔍 Поиск модели или сервиса..." style="width:100%;padding:14px 18px;border-radius:var(--radius-sm);background:var(--card-bg);border:2px solid var(--border);color:var(--text);font-size:15px;outline:none;transition:border-color .2s" onfocus="this.style.borderColor='var(--green)'" onblur="this.style.borderColor='var(--border)'">
+    <div id="search-count" style="margin-top:8px;font-size:12px;color:var(--dim)"></div>
+  </div>
+
+  <div id="tables-container" style="margin-top:12px">
+    __TABLES_HTML__
+  </div>
+
+  <!-- Стратегический анализ -->
+  <h2 style="font-size:20px;font-weight:700;color:var(--text);margin:32px 0 12px;padding-bottom:8px;border-bottom:1px solid var(--border)">📊 Стратегический анализ</h2>
+  <div style="overflow-x:auto;margin-bottom:24px">
+  <table style="width:100%;border-collapse:collapse;font-size:13px;background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius)">
+    <thead><tr style="background:rgba(16,185,129,.06)">
+      <th style="padding:10px 14px;text-align:left;color:var(--text);font-weight:600;border-bottom:2px solid rgba(16,185,129,.25)">Провайдер</th>
+      <th style="padding:10px 14px;text-align:left;color:var(--text);font-weight:600;border-bottom:2px solid rgba(16,185,129,.25)">Фокус</th>
+      <th style="padding:10px 14px;text-align:left;color:var(--green);font-weight:600;border-bottom:2px solid rgba(16,185,129,.25)">Сильные стороны</th>
+      <th style="padding:10px 14px;text-align:left;color:var(--amber);font-weight:600;border-bottom:2px solid rgba(16,185,129,.25)">Слабые стороны</th>
+    </tr></thead>
+    <tbody>
+      <tr><td style="padding:10px 14px;color:var(--green);font-weight:600">💰 ПлатиПоМиру</td><td style="padding:10px 14px;color:var(--text)">Массовые подписки</td><td style="padding:10px 14px;color:var(--text)">Максимальный охват медиа-сервисов (Adobe, Canva, CapCut)</td><td style="padding:10px 14px;color:var(--muted)">Почти нет API; слабо в open-source</td></tr>
+      <tr style="background:rgba(255,255,255,.01)"><td style="padding:10px 14px;color:var(--blue);font-weight:600">🛒 GGSEL AI</td><td style="padding:10px 14px;color:var(--text)">Универсальный реселлер</td><td style="padding:10px 14px;color:var(--text)">Креативные AI (Pika, Luma, Hailuo) + часть API</td><td style="padding:10px 14px;color:var(--muted)">Нестабильность API-позиций</td></tr>
+      <tr><td style="padding:10px 14px;color:var(--cyan);font-weight:600">⚡️ Polza AI</td><td style="padding:10px 14px;color:var(--text)">B2B / API для разработчиков</td><td style="padding:10px 14px;color:var(--text)">Полный спектр LLM API (Mistral, Llama, Qwen, Cohere, SD)</td><td style="padding:10px 14px;color:var(--muted)">Полное отсутствие потребительских подписок</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div style="margin-top:32px;padding:24px;background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius)">
+    <h3 style="font-size:18px;font-weight:700;color:var(--green);margin-bottom:12px">💡 Ключевой вывод</h3>
+    <p style="font-size:14px;color:var(--muted);line-height:1.7">Три сервиса практически не пересекаются по целевой аудитории:</p>
+    <ul style="list-style:none;padding:0;margin-top:12px;display:flex;flex-direction:column;gap:10px">
+      <li style="padding:12px 16px;background:rgba(16,185,129,.05);border-left:3px solid var(--green);border-radius:0 8px 8px 0;font-size:14px;color:var(--text)"><strong style="color:var(--green)">ПлатиПоМиру</strong> — для креаторов и дизайнеров</li>
+      <li style="padding:12px 16px;background:rgba(59,130,246,.05);border-left:3px solid var(--blue);border-radius:0 8px 8px 0;font-size:14px;color:var(--text)"><strong style="color:var(--blue)">GGSEL AI</strong> — для гиков-универсалов</li>
+      <li style="padding:12px 16px;background:rgba(34,211,238,.05);border-left:3px solid var(--cyan);border-radius:0 8px 8px 0;font-size:14px;color:var(--text)"><strong style="color:var(--cyan)">Polza AI</strong> — строго для разработчиков, встраивающих AI в код</li>
+    </ul>
+  </div>
+</div>
+
+<!-- PAYMENT MODAL -->
+<div id="payment-modal" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;z-index:9999;background:rgba(0,0,0,.85);backdrop-filter:blur(8px);align-items:center;justify-content:center" onclick="if(event.target===this)closeModal()">
+  <div style="background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);width:100%;max-width:520px;box-shadow:0 20px 60px rgba(0,0,0,.5);overflow:hidden" onclick="event.stopPropagation()">
+    <div style="display:flex;align-items:center;justify-content:space-between;padding:20px 24px;border-bottom:1px solid var(--border)">
+      <h2 id="modal-title" style="font-size:20px;font-weight:700;color:var(--text);margin:0"></h2>
+      <button onclick="closeModal()" style="background:none;border:none;color:var(--muted);font-size:22px;cursor:pointer;padding:4px 8px;border-radius:6px" onmouseover="this.style.color='var(--red)';this.style.background='rgba(255,255,255,.05)'" onmouseout="this.style.color='var(--muted)';this.style.background='none'">✕</button>
+    </div>
+    <div style="padding:24px">
+      <div style="display:flex;gap:12px;margin-bottom:24px;flex-wrap:wrap">
+        <span id="modal-type" style="padding:4px 12px;border-radius:4px;font-size:12px;font-weight:600;background:var(--blue-dim);color:var(--blue)"></span>
+        <span id="modal-provider" style="padding:4px 12px;border-radius:4px;font-size:12px;font-weight:600;background:var(--green-dim);color:var(--green)"></span>
+      </div>
+      <p style="font-size:14px;color:var(--muted);margin-bottom:24px;line-height:1.6">Выберите сервис для оплаты. Кнопки активны только для сервисов, где эта модель доступна.</p>
+      <div style="display:flex;flex-direction:column;gap:12px" id="modal-buttons">
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+var LINKS = {
+  platipomiru: "__LINK_P__",
+  ggsel: "__LINK_G__",
+  polza: "__LINK_Z__"
+};
+
+var searchInput = document.getElementById('model-search');
+var searchCount = document.getElementById('search-count');
+var allRows = document.querySelectorAll('.ai-row');
+
+function updateSearch() {
+  var q = searchInput.value.toLowerCase().trim();
+  var visible = 0;
+
+  allRows.forEach(function(row) {
+    var text = row.textContent.toLowerCase();
+    var match = !q || text.indexOf(q) !== -1;
+    row.style.display = match ? '' : 'none';
+    if (match) {
+      visible++;
+      var h2 = row.closest('div').previousElementSibling;
+    }
+  });
+
+  document.querySelectorAll('#tables-container > h2').forEach(function(h2) {
+    var tableDiv = h2.nextElementSibling;
+    if (!tableDiv) return;
+    var hasVisible = false;
+    tableDiv.querySelectorAll('.ai-row').forEach(function(r) {
+      if (r.style.display !== 'none') hasVisible = true;
+    });
+    h2.style.display = hasVisible ? '' : 'none';
+    tableDiv.style.display = hasVisible ? '' : 'none';
+  });
+
+  if (q) {
+    searchCount.textContent = 'Найдено: ' + visible + ' моделей/сервисов';
+  } else {
+    searchCount.textContent = '';
+  }
+}
+
+searchInput.addEventListener('input', updateSearch);
+
+var modal = document.getElementById('payment-modal');
+var modalTitle = document.getElementById('modal-title');
+var modalType = document.getElementById('modal-type');
+var modalProvider = document.getElementById('modal-provider');
+var modalButtons = document.getElementById('modal-buttons');
+
+function showPaymentModal(model, type, provider, pStatus, gStatus, zStatus) {
+  modalTitle.textContent = model;
+  modalType.textContent = type;
+  modalProvider.textContent = provider;
+
+  var buttonsHtml = '';
+
+  if (pStatus === 'yes' || pStatus === 'warn') {
+    buttonsHtml += '<a href="' + LINKS.platipomiru + '" target="_blank" rel="nofollow sponsored" style="display:flex;align-items:center;justify-content:space-between;padding:16px 20px;background:rgba(16,185,129,.08);border:2px solid rgba(16,185,129,.3);border-radius:var(--radius-sm);text-decoration:none;transition:all .2s" onmouseover="this.style.background=\\'rgba(16,185,129,.15)\\';this.style.borderColor=\\'var(--green)\\'" onmouseout="this.style.background=\\'rgba(16,185,129,.08)\\';this.style.borderColor=\\'rgba(16,185,129,.3)\\'"><span style="font-size:15px;font-weight:700;color:var(--green)">💰 ПлатиПоМиру</span><span style="font-size:13px;color:var(--green);font-weight:600">Оплатить →</span></a>';
+  } else if (pStatus === 'na') {
+    buttonsHtml += '<div style="display:flex;align-items:center;justify-content:space-between;padding:14px 20px;background:rgba(255,255,255,.02);border:1px solid var(--border);border-radius:var(--radius-sm);opacity:.5"><span style="font-size:14px;color:var(--dim)">💰 ПлатиПоМиру</span><span style="font-size:12px;color:var(--dim)">Не применимо</span></div>';
+  } else {
+    buttonsHtml += '<div style="display:flex;align-items:center;justify-content:space-between;padding:14px 20px;background:rgba(255,255,255,.02);border:1px solid var(--border);border-radius:var(--radius-sm);opacity:.5"><span style="font-size:14px;color:var(--dim)">💰 ПлатиПоМиру</span><span style="font-size:12px;color:var(--dim)">Недоступно</span></div>';
+  }
+
+  if (gStatus === 'yes' || gStatus === 'warn') {
+    buttonsHtml += '<a href="' + LINKS.ggsel + '" target="_blank" rel="nofollow sponsored" style="display:flex;align-items:center;justify-content:space-between;padding:16px 20px;background:rgba(59,130,246,.08);border:2px solid rgba(59,130,246,.3);border-radius:var(--radius-sm);text-decoration:none;transition:all .2s" onmouseover="this.style.background=\\'rgba(59,130,246,.15)\\';this.style.borderColor=\\'var(--blue)\\'" onmouseout="this.style.background=\\'rgba(59,130,246,.08)\\';this.style.borderColor=\\'rgba(59,130,246,.3)\\'"><span style="font-size:15px;font-weight:700;color:var(--blue)">🛒 GGSEL AI</span><span style="font-size:13px;color:var(--blue);font-weight:600">Оплатить →</span></a>';
+  } else if (gStatus === 'na') {
+    buttonsHtml += '<div style="display:flex;align-items:center;justify-content:space-between;padding:14px 20px;background:rgba(255,255,255,.02);border:1px solid var(--border);border-radius:var(--radius-sm);opacity:.5"><span style="font-size:14px;color:var(--dim)">🛒 GGSEL AI</span><span style="font-size:12px;color:var(--dim)">Не применимо</span></div>';
+  } else {
+    buttonsHtml += '<div style="display:flex;align-items:center;justify-content:space-between;padding:14px 20px;background:rgba(255,255,255,.02);border:1px solid var(--border);border-radius:var(--radius-sm);opacity:.5"><span style="font-size:14px;color:var(--dim)">🛒 GGSEL AI</span><span style="font-size:12px;color:var(--dim)">Недоступно</span></div>';
+  }
+
+  if (zStatus === 'yes' || zStatus === 'warn') {
+    buttonsHtml += '<a href="' + LINKS.polza + '" target="_blank" rel="nofollow sponsored" style="display:flex;align-items:center;justify-content:space-between;padding:16px 20px;background:rgba(34,211,238,.08);border:2px solid rgba(34,211,238,.3);border-radius:var(--radius-sm);text-decoration:none;transition:all .2s" onmouseover="this.style.background=\\'rgba(34,211,238,.15)\\';this.style.borderColor=\\'var(--cyan)\\'" onmouseout="this.style.background=\\'rgba(34,211,238,.08)\\';this.style.borderColor=\\'rgba(34,211,238,.3)\\'"><span style="font-size:15px;font-weight:700;color:var(--cyan)">⚡️ Polza AI</span><span style="font-size:13px;color:var(--cyan);font-weight:600">Оплатить →</span></a>';
+  } else if (zStatus === 'na') {
+    buttonsHtml += '<div style="display:flex;align-items:center;justify-content:space-between;padding:14px 20px;background:rgba(255,255,255,.02);border:1px solid var(--border);border-radius:var(--radius-sm);opacity:.5"><span style="font-size:14px;color:var(--dim)">⚡️ Polza AI</span><span style="font-size:12px;color:var(--dim)">Не применимо</span></div>';
+  } else {
+    buttonsHtml += '<div style="display:flex;align-items:center;justify-content:space-between;padding:14px 20px;background:rgba(255,255,255,.02);border:1px solid var(--border);border-radius:var(--radius-sm);opacity:.5"><span style="font-size:14px;color:var(--dim)">⚡️ Polza AI</span><span style="font-size:12px;color:var(--dim)">Недоступно</span></div>';
+  }
+
+  modalButtons.innerHTML = buttonsHtml;
+  modal.style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  modal.style.display = 'none';
+  document.body.style.overflow = '';
+}
+
+allRows.forEach(function(row) {
+  row.addEventListener('click', function() {
+    var model = this.dataset.model;
+    var type = this.dataset.type;
+    var provider = this.dataset.provider;
+    var p = this.dataset.platipomiru;
+    var g = this.dataset.ggsel;
+    var z = this.dataset.polza;
+    showPaymentModal(model, type, provider, p, g, z);
+  });
+  row.style.cursor = 'pointer';
+});
+
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closeModal();
+});
+</script>
+
+<style>
+.ai-row { transition: background .15s; }
+.ai-row:hover { background: rgba(16,185,129,.06) !important; }
+.ai-row td:first-child:hover { color: var(--green); }
+</style>"""
+
+    # Replace placeholders
+    body = body.replace("__TABLES_HTML__", tables_html)
+    body = body.replace("__LINK_P__", LINK_PLATIPOMIRU)
+    body = body.replace("__LINK_G__", LINK_GGSEL)
+    body = body.replace("__LINK_Z__", LINK_POLZA)
+
+    html = render_page(
+        "Оплата AI — Доступность AI-сервисов",
+        "Полная таблица доступности AI-сервисов, моделей и подписок: OpenAI, Anthropic, Google Gemini, xAI Grok, Perplexity, DeepSeek, Mistral, Llama, Qwen, Midjourney. Нажмите на строку для оплаты через партнёрские ссылки.",
+        body,
+        active_home="active",
+        open_graph=make_og("Оплата AI — Доступность AI-сервисов", "Полная таблица доступности AI-моделей и подписок. Интерактивный поиск, кликабельные строки, оплата через партнёрские ссылки ПлатиПоМиру, GGSEL AI, Polza AI.", "/oplata-ai/"),
+        canonical_url='<link rel="canonical" href="https://qantcore.space/oplata-ai/">'
+    )
+    write_html(f"{OUT}/oplata-ai/index.html", html)
+    print("  /oplata-ai/index.html")
+
 if __name__ == "__main__":
     import shutil
 
@@ -4422,6 +4905,8 @@ if __name__ == "__main__":
 
     # Intent-money SEO pages
     generate_intent_pages()
+    # Оплата AI
+    generate_oplata_ai()
 
     # Local models page
     import shutil as _shutil
